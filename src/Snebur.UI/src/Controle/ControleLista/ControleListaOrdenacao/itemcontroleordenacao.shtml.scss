@@ -1,0 +1,52 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+.sn-controle-lista-ordenacao {
+    position: relative;
+    /*float: left;*/
+    overflow: hidden;
+    perspective: 50em;
+    display:block;
+    width:100%;
+
+    * {
+        box-sizing: border-box;
+        transition: all 0.6s ease;
+    }
+
+    .sn-item-vertical-anterior-simples {
+        border-top: 2px solid black;
+        border-bottom: 0;
+    }
+
+    .sn-item-vertical-proximo-simples {
+        border-bottom: 2px solid black;
+        border-top: 0;
+    }
+
+    .sn-item-horizontal-anterior-simples {
+    }
+
+    .sn-item-horizontal-anterior-simples {
+    }
+
+    .sn-item-horizontal-anterior {
+
+        &:hover {
+        }
+
+        width: 100%;
+        transform-origin: 0;
+        transform: rotateY(30deg);
+    }
+
+    .sn-item-horizontal-proximo {
+
+        &:hover {
+        }
+
+        width: 100%;
+        transform-origin: 100%;
+        transform: rotateY(-30deg);
+    }
+}

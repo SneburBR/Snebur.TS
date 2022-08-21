@@ -1,0 +1,11 @@
+﻿[
+  {
+    "outputFile": "Css/Snebur.Documentacao.css",
+    "inputFile": "Estilos/Snebur.Documentacao.scss",
+    "sourceMap": true,
+    "minify": {
+      "enabled": false
+    }
+
+  } 
+]

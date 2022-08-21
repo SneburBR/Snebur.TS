@@ -1,0 +1,50 @@
+﻿ <div  sn-item-elemento="LocalRotuloFlutuante"  class="local-rotulo-flutuante"></div>
+<div sn-item-elemento="Caixa" class="caixa-texto">
+   
+    <ap-painel-horizontal ap-tipo-painel="Bloco">
+        <ap-coluna
+            ap-largura="20px"
+            ap-margem-interna="0px 0px 0px 0px">
+            
+            <sn-botao 
+                sn-nome="BtnMenos" 
+                ap-icone="ArrowBackIos" 
+                sn-tipo-botao="Icone" 
+                ap-tamanho-icone="Pequeno" 
+                sn-click="BtnMenos_Click" > </sn-botao>
+        </ap-coluna>
+        <ap-coluna 
+            >
+            <!--<ap-texto sn-bind="{{Quantidade}}, Origem=this"></ap-texto>-->
+         
+            <input class="input-texto"
+                sn-item-elemento="ControleInput"
+                value="0" type="text" 
+                inputmode="numeric"
+                required step="1" />
+
+        </ap-coluna>
+        <ap-coluna 
+            ap-largura="20px"
+            ap-margem-interna="0px 0px 0px 0px">
+
+            <sn-botao sn-nome="BtnMais" 
+                ap-icone="ArrowForwardIos"
+                sn-tipo-botao="Icone" 
+                ap-tamanho-icone="Pequeno" 
+                sn-click="BtnMais_Click" ></sn-botao>
+        </ap-coluna>
+    </ap-painel-horizontal>
+    
+    <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+    <div class="linha-horizontal-externa" >
+        <div class="linha-horizontal">
+        </div>
+    </div>
+</div>
+
+<div class="mensagem-validacao" sn-item-elemento="MensagemValidacao"></div>
+
+
+
+ 

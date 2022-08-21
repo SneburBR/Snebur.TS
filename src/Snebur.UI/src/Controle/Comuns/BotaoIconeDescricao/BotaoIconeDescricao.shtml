@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <ap-painel ap-tipo-painel="PilhaVertical" ap-margem="0px 2px" ap-largura="100%">
+        <ap-bloco sn-nome="BlocoRecipienteIcone" ap-largura="100%" >
+           
+            <ap-bloco-item ap-alinhamento-horizontal="Centro"  >
+                <ap-icone sn-nome="ControleIcone" ></ap-icone>
+            </ap-bloco-item>
+        </ap-bloco>
+
+        <ap-bloco sn-nome="BloboRecipienteRotulo" 
+            ap-margem="0px 0px 0px 0px">
+           
+            <ap-bloco-item 
+                ap-alinhamento-horizontal="Centro">
+                <ap-texto sn-nome="TextoRotuloInterno"
+                    sn-item-elemento="RotuloInterno" > Descrição </ap-texto>
+            </ap-bloco-item>
+            
+        </ap-bloco>
+    </ap-painel>
+</body>
+</html>

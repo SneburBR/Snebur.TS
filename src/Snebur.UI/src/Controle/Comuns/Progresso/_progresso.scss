@@ -1,0 +1,22 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+sn-progresso,
+.sn-progresso {
+    position: relative;
+    display: inline-flex;
+    height: 16px;
+
+    > conteudo-apresentacao {
+        background-color: #d0cfcf;
+
+        .sn-barra-progresso {
+            position: relative;
+            background-color: $cor-principal;
+            display: block;
+            height: 100%;
+            max-height: 100%;
+        }
+    }
+}
+ 

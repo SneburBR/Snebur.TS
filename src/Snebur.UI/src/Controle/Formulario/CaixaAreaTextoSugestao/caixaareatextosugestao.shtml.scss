@@ -1,0 +1,96 @@
+﻿@import "../../../../scss/variaveis.scss";
+@import "../../../../scss/mixins.scss";
+
+.sn-caixa-area-texto-sugestao,
+sn-caixa-area-texto-sugestao {
+
+    textarea {
+        background-color: transparent !important;
+        resize: none;
+    }
+
+    &.sn-sem-rotulo-flutuante {
+        label {
+            margin-top: retornar-em(-16px) !important;
+        }
+    }
+
+    textarea-espelho {
+        display: inline !important;
+        position: absolute !important;
+        color: transparent !important;
+        background-color: transparent !important;
+        z-index: 1;
+        pointer-events: none;
+        /*word-wrap: break-word;*/
+        top: 8px;
+        left: 8px;
+        width: auto !important;
+        white-space: pre-wrap;
+        letter-spacing: normal !important;
+        opacity: 1;
+        border: 2px solid transparent !important;
+        padding-right: 8px !important;
+
+        > cursor--espelho {
+            color: transparent;
+        }
+          
+        > span {
+            margin-left: -1px;
+        }
+
+        > span-complemento {
+            color: #CCC;
+            margin-left: -1px;
+        }
+    }
+
+    &.is-caixa-sugestao-aberta {
+        &.ap-caixa--delineada {
+            /*border-bottom-color: transparent !important;*/
+
+
+           /* &.sn-is-focus {
+
+                &:not(.sn-is-valicacao--falha) {
+                    .caixa-texto {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }*/
+
+            .caixa-texto {
+                /*border-bottom-color: transparent !important;*/
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 1;
+                    pointer-events: none;
+                    border-radius: 4px;
+                    border: 2px solid transparent;
+                }
+            }
+
+          /*  &.sn-is-focus {
+                .caixa-texto {
+                    &::before {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }*/
+
+           /* &.sn-is-valicacao--falha {
+                .caixa-texto {
+                    &::before {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }*/
+        }
+    }
+}

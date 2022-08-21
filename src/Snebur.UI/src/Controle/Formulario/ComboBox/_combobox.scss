@@ -1,0 +1,234 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+@import "../_baseControleFormulario.scss";
+@import "_combobox.mixins.scss";
+
+$altura-rotulo-flutuante: 1.4em;
+$distancia-rotulo-flutuante: -1.5em;
+$distancia-rotulo: 1.35em;
+$tamanho-fonte-validacao: retornar-em(14px);
+
+
+sn-combobox,
+sn-combobox-enum,
+sn-combobox-nn {
+
+
+    &:not([class*='ap-tipografia--']) {
+        font-size: 16px;
+        font-size: var(--tamanho-fonte-documento);
+    }
+
+    &.ap-caixa--padrao {
+        display: inline-flex;
+        min-width: 3em;
+        position: relative;
+        height: $altura-controle;
+
+        > conteudo-apresentacao {
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .caixa {
+            cursor: pointer;
+            min-height: 1.2em;
+            width: 100% !important;
+
+            &:hover {
+                background-color: rgba(#ccc, 0.2);
+            }
+        }
+
+        &.sn-is-focus {
+            .caixa {
+                background-color: rgba(#ccc, 0.2);
+            }
+        }
+
+        .sn-bloco-item-selecionado {
+
+            > conteudo-apresentacao {
+                min-height: 1.5em !important;
+            }
+        }
+
+
+        .sn-combobox-seta {
+            position: absolute !important;
+            right: 0;
+            width: retornar-em(10px);
+            height: 100%;
+
+            > seta {
+                width: 0px;
+                height: 0px;
+                border-left: 0.3em solid transparent;
+                border-right: 0.3em solid transparent;
+                border-top: 0.3em solid black;
+                top: retornar-em(10px);
+                right: retornar-em(2px);
+                position: absolute !important;
+            }
+        }
+
+        label {
+
+            &.rotulo {
+                position: absolute;
+                left: 0px;
+                pointer-events: none;
+                z-index: 10;
+                top: 50%;
+                /*  top: $distancia-rotulo;*/
+                color: $cor-rotulo-sem-focus;
+                font-size: $tamanho-fonte-rotulo;
+                transition: all 0.1s;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 400;
+                width: calc(100% - retornar-em(20px) );
+                overflow: hidden;
+                z-index: 1000;
+            }
+        }
+
+        .mensagem-validacao {
+            color: $cor-falha;
+            font-size: $tamanho-fonte-validacao;
+            width: 100%;
+            display: block;
+            position: relative;
+            min-height: 0.8em;
+            white-space: normal;
+            visibility: hidden;
+        }
+
+        .linha-horizontal-externa {
+            position: absolute;
+            height: retornar-em(2px);
+            background-color: $cor-linha-horizontal;
+            width: 100%;
+
+            .linha-horizontal {
+                position: absolute;
+                height: retornar-em(2px);
+                width: 0%;
+                pointer-events: none;
+                display: block;
+                transition: all 0.2s;
+                background-color: transparent;
+            }
+        }
+
+        &.sn-is-valicacao--falha,
+        &.rotulo-flutuante {
+
+            .rotulo {
+                top: 0em !important;
+                color: $cor-principal !important;
+                font-size: $tamanho-fonte-rotulo-flutuante !important;
+            }
+
+            .linha-horizontal {
+                background-color: $cor-principal;
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        &.sn-sem-rotulo-flutuante,
+        &.sn-is-rotulo-vazio {
+
+            ap-bloco[sn-nome=BlocoEspacoRotuloFlutuante] {
+                display: none !important;
+            }
+
+            &:not(rotulo-flutuante) {
+                .rotulo {
+                    top: 0.125em;
+                    top: 50% !important;
+                    transform : translateY(-50%);
+                }
+            }
+
+            &.rotulo-flutuante {
+                .rotulo {
+                    opacity: 0 !important;
+                }
+            }
+        }
+
+        &.sn-is-valicacao--falha {
+
+            .rotulo {
+                color: $cor-falha;
+            }
+
+            .linha-horizontal-externa {
+                background-color: $cor-falha !important;
+            }
+        }
+
+        &.sn-desabilitado {
+
+            .rotulo {
+                color: $cor-desabilitado !important;
+            }
+
+            .linha-horizontal {
+                background-color: $cor-desabilitado !important;
+            }
+        }
+
+        &.sn-somente-leitura {
+            pointer-events: none;
+
+            .linha-horizontal-externa {
+                display: none !important;
+
+                .linha-horizontal {
+                    display: none !important;
+                }
+            }
+
+            .sn-combobox-seta {
+                display: none;
+            }
+        }
+    }
+}
+
+sn-combobox-enum {
+    &.rotulo-flutuante {
+
+        .rotulo {
+            top: retornar-em(5px) !important;
+            color: $cor-principal !important;
+            font-size: $tamanho-fonte-rotulo-flutuante !important;
+        }
+
+        .linha-horizontal {
+            background-color: $cor-principal;
+            width: 100%;
+            left: 0;
+        }
+    }
+
+    &.sn-desabilitado {
+
+        &.rotulo-flutuante {
+
+            .rotulo {
+                color: $cor-rotulo-sem-focus !important;
+            }
+        }
+
+        .linha-horizontal {
+            background-color: $cor-desabilitado !important;
+        }
+    }
+}
+
+@include ComboBoxCor($cor-principal);

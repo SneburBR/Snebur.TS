@@ -1,0 +1,11 @@
+﻿<ap-bloco ap-largura="100%" ap-altura="100%"
+    ap-barra-rolagem-vertical="Automatica"
+    class="sn-barra-rolagem">
+   
+    <sn-painel-lista
+        sn-nome="PainelLista"
+        ap-tipo-painel="PilhaVertical"  >
+
+    </sn-painel-lista>
+</ap-bloco>
+

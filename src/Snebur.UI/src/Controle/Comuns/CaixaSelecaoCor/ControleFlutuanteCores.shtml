@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body ap-largura="380px">
+
+    <ap-painel 
+        ap-tipo-painel="PilhaVertical"
+        ap-margem="16px 12px 0px 8px">
+
+        <ap-painel sn-nome="PainelSugestaoCores" ap-tipo-painel="PilhaVertical" sn-visibilidade="Oculto">
+
+            <ap-bloco>
+                <ap-texto sn-nome="ElementoRotuloSugestaoCor" ap-margem="0px 0px 0px 5px">Cores sugeridas </ap-texto>
+
+            </ap-bloco>
+
+            <ap-painel ap-tipo-painel="PilhaHorizontal">
+
+                <!--
+                    <ap-bloco sn-nome="ElementoSemSugestaoCores">
+                    <sn-botao sn-click="RemoverCor_Click" sn-tipo-botao="Icone" ap-icone="Close"></sn-botao>
+                </ap-bloco>-->
+
+                <ap-bloco sn-nome="ElementoDestinoSugestaoCores" ap-largura="320px">
+                </ap-bloco>
+
+                <ap-bloco ap-largura="36px">
+                    <sn-botao sn-nome="BtnBotaoAtualizar" sn-tipo-botao="Icone"
+                        ap-icone="Refresh" sn-click="BtnAtualizarCoresSugeridas_Click">
+                    </sn-botao>
+                </ap-bloco>
+            </ap-painel>
+
+            <ap-texto ap-margem="0px 10px 0px 10px">Cores padrão </ap-texto>
+
+        </ap-painel>
+
+        <ap-bloco sn-nome="ElementoDestinoPaleta" ap-margem="0px -4px 0px 0px"></ap-bloco>
+
+        <ap-painel sn-nome="ElementoGrupoOpacidade"
+            ap-tipo-painel="PilhaHorizontal" ap-margem="0px 8px 0px 0px">
+            <ap-texto ap-largura="90px">Opacidade </ap-texto>
+            <sn-caixa-slider ap-largura="230px" sn-nome="ControleOpacidade" sn-minimo="0" sn-maximo="100" sn-passo-largo="10" sn-valor-alterado="ControleOpacidade_ValorAlterado">
+            </sn-caixa-slider>
+            <ap-bloco ap-largura="36px">
+                <div class="fundo-visualziacao">
+                    <div sn-nome="ElementoVisualizacao"
+                        class="visualizacao"
+                        sn-click="DivSelecionar_Click">
+                    </div>
+                </div>
+            </ap-bloco>
+        </ap-painel>
+        <ap-texto sn-nome="ElementoRotuloHistorico">Historico </ap-texto>
+        <div sn-nome="ElementoDestinoHistoricoInterno" class="sn-bloco">
+        </div>
+
+    </ap-painel>
+
+    <ap-bloco-item ap-largura="30px"
+        ap-altura="30px"
+        ap-alinhamento-horizontal="DireitaAbsoluto"
+        ap-alinhamento-vertical="SuperiorAbsoluto"
+        ap-margem="8px">
+
+        <sn-botao
+            sn-nome="BtnFecharInterno"
+            ap-icone="Close" sn-tipo-botao="Icone"
+            ap-alinhamento-horizontal="Direita"
+            sn-click="BtnFechar_Click">
+        </sn-botao>
+    </ap-bloco-item>
+</body>
+</html>

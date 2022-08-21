@@ -1,0 +1,16 @@
+﻿ <div  sn-item-elemento="LocalRotuloFlutuante"  class="local-rotulo-flutuante"></div>
+<div sn-item-elemento="Caixa" class="caixa-texto">
+    <input class="input-texto" sn-item-elemento="ControleInput" min="0" max="100" 
+        value="0" 
+        type="number" inputmode="numeric" required />
+    <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+    <div class="linha-horizontal-externa" >
+        <div class="linha-horizontal">
+        </div>
+    </div>
+</div>
+<div class="mensagem-validacao" sn-item-elemento="MensagemValidacao"></div>
+
+
+
+ 

@@ -1,0 +1,21 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+
+
+@mixin ComboBoxCor($cor) {
+
+    sn-combobox,
+    sn-combobox-enum,
+    sn-combobox-nn {
+         
+        &.rotulo-flutuante {
+
+            .rotulo {
+                color: $cor !important;
+            }
+
+            .linha-horizontal {
+                background-color: $cor !important;
+            }
+        }
+    }
+}

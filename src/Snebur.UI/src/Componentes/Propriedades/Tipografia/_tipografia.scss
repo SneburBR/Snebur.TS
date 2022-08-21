@@ -1,0 +1,173 @@
+﻿@import "../../../../scss/mixins.scss";
+
+$tamanho-fonte-padrao: 1rem !default;
+$margem-padrao: 1rem !default;
+$fonte-titulo: "Roboto", sans-serif;
+$prefixo-tipografia: "ap-tipografia--";
+
+
+
+$dicionario-font-weight: ( thin: 100, light: 300, regular: 400, medium: 500, bold: 700, black: 900 ) !default;
+
+@function retornar-espaco-letras($tracking, $font-size) {
+    @return $tracking / ($font-size * 16) * 1em;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    margin: 0;
+}
+
+h1,
+.ap-tipografia--h1 {
+    font-size: 6rem; // 96px
+    line-height: 6rem;
+    font-weight: map-get($dicionario-font-weight, light);
+    letter-spacing: retornar-espaco-letras(-1.5, 6);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+h2,
+.ap-tipografia--h2 {
+    font-size: 3.75rem;
+    line-height: 3.75rem;
+    font-weight: map-get($dicionario-font-weight, light);
+    letter-spacing: retornar-espaco-letras(-.5, 3.75);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+h3,
+.ap-tipografia--h3 {
+    font-size: 3rem; // 48px
+    line-height: 3.125rem; // 50px
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: normal;
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+h4,
+.ap-tipografia--h4 {
+    font-size: 2.125rem; // 34px
+    line-height: 2.5rem; // 40px
+    font-weight: map-get($dicionario-font-weight, light);
+    letter-spacing: retornar-espaco-letras(.25, 2.125);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+h5,
+.ap-tipografia--h5 {
+    font-size: 1.5rem; // 24px
+    line-height: 2rem; // 32px
+    font-weight: map-get($dicionario-font-weight, light);
+    letter-spacing: normal;
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+h6,
+.ap-tipografia--h6 {
+    font-size: 1.25rem; // 20px
+    line-height: 2rem; // 32px
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.25, 1.25);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+
+h7,
+.ap-tipografia--h7 {
+    font-size: 1.125rem; // 18px
+    line-height: 1.3rem;
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.25, 1.25);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--titulo {
+    /*line-height: 2rem; */
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.25, 1.25);
+    text-decoration: inherit;
+    text-transform: inherit;
+    font-family: $fonte-titulo;
+    font-size: 1.5rem; // 20px
+
+    @include responsivo(celular){
+       font-size:  1.4rem;
+    }
+}
+
+.ap-tipografia--sub-titulo {
+    font-size: 1rem; // 16px
+    /*line-height: 1.75rem; // 28px*/
+    font-weight: map-get($dicionario-font-weight, medium);
+    letter-spacing: retornar-espaco-letras(.15, 1);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--sub-titulo2 {
+    font-size: .875rem; // 14px
+    /*line-height: 1.375rem; // 22px*/
+    font-weight: map-get($dicionario-font-weight, medium);
+    letter-spacing: retornar-espaco-letras(.1, .875);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--corpo {
+    font-size: 0.875rem; // 16px
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.5, 1);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--corpo2 {
+    font-size: .775rem; // 14px
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.25, .875);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--descricao {
+    font-size: .75rem; // 12px
+    /*line-height: 1.25rem; // 20px*/
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.4, .75);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--descricao2 {
+    font-size: .6875rem; // 11px
+    /*line-height: 1.125rem; // 18px*/
+    font-weight: map-get($dicionario-font-weight, regular);
+    letter-spacing: retornar-espaco-letras(.4, .625);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
+.ap-tipografia--botao-caixa-alta {
+    font-size: .875rem; // 14px
+    /*line-height: 1.25rem; // 20px*/
+    font-weight: map-get($dicionario-font-weight, light);
+    letter-spacing: retornar-espaco-letras(1.25, .875);
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.ap-tipografia--linha-caixa-alta {
+    font-size: .75rem; // 12px
+    /*line-height: 2rem; // 32px*/
+    font-weight: map-get($dicionario-font-weight, medium);
+    letter-spacing: retornar-espaco-letras(2, .75);
+    text-decoration: none;
+    text-transform: uppercase;
+}

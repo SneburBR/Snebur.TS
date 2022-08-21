@@ -1,0 +1,5 @@
+﻿
+interface ISelecionado
+{
+    IsSelecionado: boolean;
+}

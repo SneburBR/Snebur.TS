@@ -1,0 +1,122 @@
+﻿@import "_barraRolagem.mixins.scss";
+
+.sn-barra-rolagem-padrao {
+
+    @include BarraRolagem;
+
+    @include Responsivo(celular, tablet) {
+        padding-right: 6px !important;
+    }
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/*#region AMBOS*/
+
+.ap-barra-rolagem--oculta {
+    overflow: hidden !important;
+}
+
+.ap-barra-rolagem--automatica {
+    @extend .sn-barra-rolagem-padrao;
+    overflow: auto !important;
+    /*overflow: overlay !important;*/
+
+    > controle-usuario {
+        width: auto;
+    }
+}
+
+.ap-barra-rolagem--visivel {
+    @extend .sn-barra-rolagem-padrao;
+    overflow: scroll !important;
+
+    > sn-controle-usuario {
+        width: auto;
+        height: auto;
+    }
+}
+
+.ap-barra-rolagem--transbordar {
+    overflow: visible !important;
+
+    > sn-controle-usuario {
+        width: auto;
+        height: auto;
+    }
+}
+
+/*#endregion*/
+
+/*#region Horizontal*/
+
+.ap-barra-rolagem-horizontal--oculta {
+    overflow-x: hidden !important;
+}
+
+.ap-barra-rolagem-horizontal--automatica {
+    @extend .sn-barra-rolagem-padrao;
+    overflow-x: auto !important;
+    /*overflow-x: overlay !important;*/
+
+    > controle-usuario {
+        width: auto;
+    }
+}
+
+.ap-barra-rolagem-horizontal--visivel {
+    @extend .sn-barra-rolagem-padrao;
+    overflow-x: scroll !important;
+
+    > sn-controle-usuario {
+        width: auto;
+    }
+}
+
+.ap-barra-rolagem-horizontal--transbordar {
+    overflow-x: visible !important;
+
+    > sn-controle-usuario {
+        width: auto;
+    }
+}
+
+/*#endregion*/
+
+/*#region VERTICAL */
+
+.ap-barra-rolagem-vertical--oculta {
+    @extend .sn-barra-rolagem-padrao;
+    overflow-y: hidden !important;
+}
+
+.ap-barra-rolagem-vertical--automatica {
+    @extend .sn-barra-rolagem-padrao;
+
+    overflow-y: auto !important;
+    /*overflow-y: overlay !important;*/
+
+    > sn-controle-usuario {
+        height: auto;
+    }
+}
+
+.ap-barra-rolagem-vertical--visivel {
+    @extend .sn-barra-rolagem-padrao;
+    overflow-y: scroll !important;
+
+    > controle-usuario {
+        height: auto;
+    }
+}
+
+
+.ap-barra-rolagem-vertical--transbordar {
+    overflow-y: visible !important;
+
+    > controle-usuario {
+        height: auto;
+    }
+}
+
+/*#endregion*/

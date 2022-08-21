@@ -1,0 +1,245 @@
+﻿@import "_tipografias.variaveis.scss";
+@import "_margens.variaveis.scss";
+@import "_telas.mixins.scss";
+
+
+/*
+-font-family-sans-serif:
+// Safari for OS X and iOS (San Francisco)
+-apple-system,
+// Chrome < 56 for OS X (San Francisco)
+BlinkMacSystemFont,
+// Windows
+"Segoe UI",
+// Android
+"Roboto",
+// Basic web fallback
+"Helvetica Neue", Arial, sans-serif,
+// Emoji fonts
+"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+*/
+
+html, body {
+    font-family: $fonte-padrao;
+    font-size: $tamanho-fonte-pixel-inicial;
+    font-weight: map-get($dicionario-font-weight, light);
+}
+
+input, textarea, select, option {
+    font-family: $tamanho-fonte-padrao;
+}
+
+.zs-texto {
+    font-size: $tamanho-fonte-padrao;
+}
+
+/*#region mostrar padrao*/
+
+.zs-texto-padrao {
+    font-size: $tamanho-fonte-padrao;
+}
+
+
+.zs-altua-linha-texto-padrao {
+    height: $altura-linha-texto-padrao;
+    line-height: $altura-linha-texto-padrao;
+}
+
+.zs-mostrar-padrao {
+    font-size: $tamanho-fonte-padrao;
+    line-height: $altura-linha-texto-padrao;
+    height: $altura-linha-texto-padrao;
+}
+
+/*#endregion*/
+
+/*#region mostrar pequeno*/
+
+.zs-texto-pequeno {
+    font-size: $tamanho-fonte-pequeno;
+}
+
+
+.zs-altua-linha-texto-pequeno {
+    height: $altura-linha-texto-pequeno;
+    line-height: $altura-linha-texto-pequeno;
+}
+
+.zs-mostrar-pequeno {
+    font-size: $tamanho-fonte-pequeno;
+    line-height: $altura-linha-texto-pequeno;
+    height: $altura-linha-texto-pequeno;
+}
+
+/*#endregion*/
+
+/*#region mostrar medio*/
+
+.zs-texto-medio {
+    font-size: $tamanho-fonte-medio;
+}
+
+.zs-altua-linha-texto-medio {
+    height: $altura-linha-texto-medio;
+    line-height: $altura-linha-texto-medio;
+}
+
+.zs-mostrar-medio {
+    font-size: $tamanho-fonte-medio;
+    line-height: $altura-linha-texto-medio;
+    height: $altura-linha-texto-medio;
+}
+
+/*#endregion*/
+
+/*#region mostrar grande*/
+
+.zs-texto-grande {
+    font-size: $tamanho-fonte-grande;
+}
+
+.zs-altua-linha-texto-grande {
+    height: $altura-linha-texto-grande;
+    line-height: $altura-linha-texto-grande;
+}
+
+.zs-mostrar-grande {
+    font-size: $tamanho-fonte-grande;
+    line-height: $altura-linha-texto-grande;
+    height: $altura-linha-texto-grande;
+}
+
+/*#endregion*/
+
+
+/*#region sub-titulo*/
+
+.zs-texto-sub-titulo {
+    font-size: $tamanho-fonte-sub-titulo;
+}
+
+.zs-altua-sub-linha-titulo {
+    height: $altura-linha-sub-tilulo;
+    line-height: $altura-linha-sub-tilulo;
+}
+
+.zs-sub-titulo {
+    font-size: $tamanho-fonte-sub-titulo;
+    line-height: $altura-linha-sub-tilulo;
+    height: $altura-linha-sub-tilulo;
+}
+
+/*#endregion*/
+
+
+/*#region titulo*/
+
+.zs-texto-titulo {
+    font-size: $tamanho-fonte-titulo;
+}
+
+.zs-altua-linha-titulo {
+    height: $altura-linha-tilulo;
+    line-height: $altura-linha-tilulo;
+}
+
+.zs-titulo {
+    font-size: $tamanho-fonte-titulo;
+    line-height: $altura-linha-tilulo;
+    height: $altura-linha-tilulo;
+}
+
+
+
+/*#endregion*/
+
+
+
+
+/*#region estilos*/
+
+.zs-leve {
+    font-weight: $font-leve;
+}
+
+.zs-pesado {
+    font-weight: $font-pesada;
+}
+
+.zs-negrito[class*='ap-tipografia--'] {
+    font-weight: 700 !important;
+}
+
+.zs-negrito {
+    font-weight: 700 !important;
+
+
+    > conteudo-apresentacao[class*='ap-tipografia--'] {
+        font-weight: 700 !important;
+    }
+
+    &.ap-tipografia--titulo,
+    &.ap-tipografia--sub-titulo,
+    &.ap-tipografia--sub-titulo2,
+    &.ap-tipografia--corpo,
+    &.ap-tipografia--corpo2,
+    &.ap-tipografia--h1,
+    &.ap-tipografia--h2,
+    &.ap-tipografia--h3,
+    &.ap-tipografia--h4,
+    &.ap-tipografia--h5,
+    &.ap-tipografia--h6,
+    &.ap-tipografia--h7 {
+    }
+}
+/*#endregion*/
+.zs-caixa-alta {
+    text-transform: uppercase
+}
+
+.zs-input-caixa-alta {
+
+    input[type=search],
+    input[type=tel],
+    input[type=text] {
+        text-transform: uppercase;
+    }
+}
+/*h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    margin: 0;
+    font-family: $titulo-fonte;
+    font-weight: $titulo-fonte-peso;
+    color: $titulo-cor;
+}
+
+h1, .h1 {
+    font-size: $h1-tamanho-fonte;
+}
+
+h2, .h2 {
+    font-size: $h2-tamanho-fonte;
+}
+
+h3, .h3 {
+    font-size: $h3-tamanho-fonte;
+}
+
+h4, .h4 {
+    font-size: $h4-tamanho-fonte;
+}
+
+
+
+h5, .h5 {
+    font-size: $h5-tamanho-fonte;
+}
+
+h6, .h6 {
+    font-size: $h6-tamanho-fonte;
+}*/
+p {
+    margin: $margem-padrao;
+    font-size: $tamanho-fonte-padrao;
+}

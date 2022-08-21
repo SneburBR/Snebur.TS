@@ -1,0 +1,72 @@
+﻿
+
+ap-texto,
+.ap-texto {
+    /*display: inline-block;*/
+    display: inline;
+    /*display: inline;
+    position: relative;*/
+    > conteudo-apresentacao:first-child {
+        /*display: inline-block !important;
+            display: inline-flex !important;*/
+        display: inline !important;
+    }
+
+
+    &.ap-alinhamento-horizontal--direita,
+    &.ap-alinhamento-horizontal--centro,
+    &.ap-alinhamento-horizontal--esquerda,
+    &.ap-alinhamento-vertical--superior,
+    &.ap-alinhamento-vertical--centro,
+    &.ap-alinhamento-vertical--inferior {
+        /*display: inline-block !important;
+        display: inline-flex !important;*/
+        display: inline-block;
+        display: inline-flex;
+
+        > conteudo-apresentacao:first-child {
+            /*display: inline-block !important;
+            display: inline-flex !important;*/
+            display: inline !important;
+        }
+    }
+}
+
+ap-paragrafo .ap-paragrafo {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+
+.sn-nao-quebrar {
+    white-space: nowrap !important;
+    text-overflow: ellipsis;
+}
+
+.sn-caixa-alta {
+    text-transform: uppercase !important;
+
+    input {
+        text-transform: uppercase !important;
+    }
+}
+
+.sn-caixa-baixa {
+    text-transform: lowercase !important;
+
+    input {
+        text-transform: lowercase !important;
+    }
+}
+
+
+.sn-input-caixa-altura {
+    &input {
+        text-transform: uppercase !important;
+    }
+
+    input {
+        text-transform: uppercase !important;
+    }
+}

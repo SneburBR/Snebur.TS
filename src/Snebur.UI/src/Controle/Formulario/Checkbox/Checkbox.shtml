@@ -1,0 +1,12 @@
+﻿<label sn-item-elemento="Caixa" class="checkbox_caixa">
+    <input sn-item-elemento="ControleInput" type="checkbox" class="checkbox_input" />
+    <span class="checkbox_marcacao">
+    </span>
+
+    <span sn-item-elemento="Rotulo" class="checkbox_rotulo">Rotulo não encontrado</span>
+    <span sn-item-elemento="MensagemValidacao" class="checkbox_mensagem_validacao"></span>
+
+</label>
+
+
+ 

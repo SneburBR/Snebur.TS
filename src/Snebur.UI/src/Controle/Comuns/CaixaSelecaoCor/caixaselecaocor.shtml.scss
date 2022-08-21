@@ -1,0 +1,89 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+$diametro: 2rem;
+
+sn-caixa-selecao-cor,
+.sn-caixa-selecao-cor {
+    display: inline-flex;
+    position: relative;
+    width: 50px !important;
+
+    > conteudo-apresentacao {
+        display: block !important;
+
+        > sn-botao {
+            padding: 0 !important;
+            display: block;
+
+            > conteudo-apresentacao {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                padding-left: 1rem !important;
+                padding-right: 0.5rem !important;
+                padding: 0.3rem !important;
+
+                > ap-icone {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+
+    .fundo-visualziacao {
+        width: $diametro;
+        height: $diametro;
+        /*border: 3px solid #ccc;*/
+        background: url(https://cdn.sigi.com.br/resources/images/fundo-transparencia.png);
+        box-sizing: border-box;
+        position: relative;
+        display: block;
+        border: 1px solid rgba(200, 200, 200, 1);
+
+        &:hover {
+            border: 1px solid #666;
+        }
+    }
+
+    .visualizacao {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        /*border: 3px solid #ccc;*/
+        background-color: transparent;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+
+    .visulizacao-icone {
+        display: block;
+        position: relative;
+        width: $diametro;
+        height: $diametro;
+        cursor: pointer;
+        box-sizing: border-box;
+    }
+
+    &.sn-caixa-selecao-cor-fixa {
+        width: 100% !important;
+        display: block;
+
+        > conteudo-apresentacao {
+            width: 100% !important;
+            display: block;
+        }
+    }
+
+    .input-color-picker-nativo {
+        width: $diametro;
+        height: $diametro;
+
+        input {
+            border: 1px solid #888;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}

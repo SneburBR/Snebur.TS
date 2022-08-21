@@ -1,0 +1,208 @@
+﻿$margem-lateral: 8px;
+$margem-vertical: 8px;
+
+.ap-painel,
+sn-painel-lista,
+sn-painel-lista-selecao,
+sn-painel-lista-ordenacao,
+ap-painel {
+    position: relative;
+
+    &.ap-tipo-painel--bloco {
+        display: flex;
+        width: 100%;
+        /*height: 100%;*/
+        > conteudo-apresentacao {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            align-content: center;
+            vertical-align: middle;
+            height: auto;
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > sn-bloco-selecao,
+            > ap-bloco-template,
+            > ap-bloco-template-selecionado,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                max-width: 100%;
+                display: inline-block;
+
+                > conteudo-apresentacao {
+                    position: relative;
+                    display: block;
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-top: 0;
+                padding-left: $margem-lateral;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--bloco-vertical {
+        display: flex !important;
+        /*width: 100%;*/
+        height: 100%;
+
+
+        &.ap-alinhamento-horizontal--centro,
+        &.sn-centro {
+            > conteudo-apresentacao {
+                align-content: center;
+                vertical-align: middle;
+            }
+        }
+
+        > conteudo-apresentacao {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: flex-start !important;
+            flex-direction: column !important;
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > sn-bloco-selecao,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                display: inline-block !important;
+
+                > conteudo-apresentacao {
+                    position: relative;
+                    display: block;
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-left: 0;
+                padding-top: $margem-vertical;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--pilha-horizontal-cheia {
+        display: flex !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto;
+        max-height: 100%;
+        overflow: hidden;
+
+        > conteudo-apresentacao {
+            display: flex !important;
+            flex-wrap: nowrap !important;
+            flex-direction: row !important;
+            align-items: center;
+            align-content: center;
+            vertical-align: middle;
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > sn-bloco-selecao,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                display: block;
+                height: 100%;
+                /* flex-basis: auto;
+                flex-grow: 1;
+                flex-shrink: 1;*/
+            }
+
+            > * {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+                display: block;
+                height: 100%;
+                /* flex-basis: auto;
+                flex-grow: 1;
+                flex-shrink: 1;*/
+            }
+
+            > sn-botao + sn-botao {
+                padding-top: 0;
+                padding-left: $margem-lateral;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--pilha-vertical-cheia {
+        display: flex !important;
+        height: 100%;
+
+        > conteudo-apresentacao {
+            display: flex !important;
+            height: 100%;
+            flex-wrap: nowrap !important;
+            flex-direction: column;
+            align-items: center;
+            align-content: center;
+            vertical-align: middle;
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > sn-bloco-selecao,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                width: 100%;
+                max-height: 100%;
+                height: 100%;
+                /*flex-basis: 0;
+                flex-grow: 1;
+                flex-shrink: 1;*/
+                conteudo-apresentacao {
+                    align-items: center;
+                    align-content: center;
+                    vertical-align: middle;
+                }
+            }
+
+            > * {
+                position: relative;
+                width: 100%;
+                max-height: 100%;
+                height: 100%;
+                /*flex-basis: 0;
+                flex-grow: 1;
+                flex-shrink: 1;*/
+                > conteudo-apresentacao {
+                    align-items: center;
+                    align-content: center;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+}

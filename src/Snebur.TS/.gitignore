@@ -1,0 +1,14 @@
+.vshistory
+aspnet_client
+bin
+Media
+obj
+Scripts
+Testes
+Properties
+*.*
+!*.ts
+!*.json
+!*.config
+!*.csproj
+!.gitignore

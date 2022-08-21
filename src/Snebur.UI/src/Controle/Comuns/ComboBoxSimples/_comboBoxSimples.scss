@@ -1,0 +1,44 @@
+﻿
+
+$altura-combobox-simples: 2rem;
+
+.sn-combobx-simples {
+    display: inline-block;
+    min-width: 3rem;
+    height: $altura-combobox-simples;
+
+
+    .elemento-select {
+        width: 100%;
+        padding-left: 0.15rem;
+        padding-right: 0.15rem;
+        /*font-size: 1rem;*/
+        border: 1px solid #ccc;
+        height: $altura-combobox-simples;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        /*teste*/
+        /*background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAU0lEQVR4Ae3MAQYAIBBE0fbGAQIEhNCVOlZAVRYZNCSghg+MZ95e1i5DH3K9xCD92B3kRaQChlDSjzdkEbAJARIZglhYoEAQipURIkcYIseY9uoab/klQ4Aht80AAAAASUVORK5CYII=) 96%/0.5rem no-repeat #eee;*/
+        /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAU0lEQVR4Ae3MAQYAIBBE0fbGAQIEhNCVOlZAVRYZNCSghg+MZ95e1i5DH3K9xCD92B3kRaQChlDSjzdkEbAJARIZglhYoEAQipURIkcYIseY9uoab/klQ4Aht80AAAAASUVORK5CYII=);*/
+        background-color: #eee;
+        /*background-repeat: no-repeat;
+        background-position-x: 90%;
+        background-position-y: 0.5rem;*/
+        &::-ms-expand {
+            display: none; /* remove default arrow in IE 10 and 11 */
+        }
+
+        &:active {
+            border: 1px solid red;
+        }
+
+        &:focus {
+            border: 1px solid #ccc;
+            box-shadow:none;
+        }
+
+
+
+        
+    }
+}

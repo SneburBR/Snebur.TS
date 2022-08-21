@@ -1,0 +1,38 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+
+sn-botao {
+
+    &.sn-tipo-botao--tab {
+         
+        > conteudo-apresentacao {
+
+            &::after {
+                content: "";
+                bottom: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                height: retornar-rem(2px);
+                background: #999;
+                z-index: 10;
+                display: block;
+            }
+
+
+            &:hover {
+
+                &::after {
+                    background: $cor-principal;
+                }
+            }
+        }
+
+        &.sn-is-selecionado {
+            > conteudo-apresentacao {
+                &::after {
+                    background: $cor-principal;
+                }
+            }
+        }
+    }
+}

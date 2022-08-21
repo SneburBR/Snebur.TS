@@ -1,0 +1,34 @@
+﻿<sn-painel-lista ap-tipo-painel="Bloco" sn-nome="ControleLista">
+    <sn-bloco-template>
+        <ap-painel ap-tipo-painel="PilhaHorizontal" ap-margem="4px 2px" class="sn-painel-item-template">
+            <ap-bloco sn-item-elemento="ItemTemplate" class="item-template">
+              
+                <!--DESTINO DO ITEM TEMPLATE-->
+                [[DESTINO_HTML_ITEM_TEMPLATE_SELECIONADO]]
+
+            </ap-bloco>
+            <ap-bloco ap-largura="20px">
+
+                <sn-botao sn-nome="BtnRemover" sn-click="BtnRemover_Click" sn-tipo-botao="Icone"
+                    ap-cor-texto="SistemaFalha"
+                    ap-tipografia="Descricao" ap-tamanho-icone="Pequeno" ap-icone="Close">
+                </sn-botao>
+
+            </ap-bloco>
+        </ap-painel>
+    </sn-bloco-template>
+</sn-painel-lista>
+
+<!--<div class="sn-combobox-nn-itens-selecionado-corpo">
+
+    <sn-controle-lista sn-nome="ControleLista"
+        sn-tag-elemento-itens-colecao="ul">
+        <sn-item-template sn-tag-elemento-item-template="li" class="sn-combobox-nn-itens-selecionado-item">
+            <div sn-item-elemento="ItemTemplate" class="sn-combobox-nn-itens-selecionado-item-template">
+                <span sn-bind-texto="{{Nome}}"></span>
+            </div>
+            <sn-botao sn-click="BtnRemover_Click" sn-tipo-botao="Icone" ap-icone="Close" ap-cor-texto="SistemaFalha" class="sn-combobox-nn-itens-selecionado-botao-remover"></sn-botao>
+        </sn-item-template>
+    </sn-controle-lista>
+
+</div>-->

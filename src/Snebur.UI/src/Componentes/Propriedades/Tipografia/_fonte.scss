@@ -1,0 +1,23 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+
+@mixin Fonte($fonte) {
+    font-family: $fonte !important;
+
+    > conteudo-apresentacao[class*='ap-tipografia--'] {
+        font-family: $fonte !important;
+
+        input {
+            font-family: $fonte !important;
+        }
+    }
+}
+
+.ap-fonte--roboto {
+    @include Fonte($fonte-roboto);
+}
+
+.ap-peso--roboto {
+    @include Fonte($fonte-roboto-condensed);
+} 

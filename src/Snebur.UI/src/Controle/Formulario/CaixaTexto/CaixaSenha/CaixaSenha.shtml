@@ -1,0 +1,26 @@
+﻿<div sn-item-elemento="LocalRotuloFlutuante" class="local-rotulo-flutuante"></div>
+<div sn-item-elemento="Caixa" class="caixa-texto">
+
+    <input class="input-texto" sn-item-elemento="ControleInput" type="password" required autocomplete="off" />
+    <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+    <div class="linha-horizontal-externa">
+        <div class="linha-horizontal">
+        </div>
+    </div>
+    <div class="visiblidade-olho" sn-click="BtnMostrarSenhaAlternancia_Click">
+        <ap-icone 
+             sn-nome="Icone"
+            ap-icone="Visibility" 
+            ap-cor-texto="Cinza"
+             ap-tonalidade-texto=""
+            ap-margem="0px -2px 0px 0px" 
+            ap-alinhamento-horizontal="Direita"  >
+        </ap-icone>
+    </div>
+</div>
+<div class="mensagem-validacao" sn-item-elemento="MensagemValidacao">
+</div>
+
+
+
+    

@@ -1,0 +1,58 @@
+﻿@import "_bordas.variaveis.scss";
+
+$cor-tonalidade-intervalo: 8;
+
+@mixin criar-cor($cor, $cor-nome, $prefixo, $propriedade-estilo ) {
+
+    .zs-cor-#{$prefixo}--#{$cor-nome} {
+        #{$propriedade-estilo}: $cor !important
+    }
+
+    @for $i from 1 through 9 {
+
+        $cor-base: if($i >= 5, #000, #fff);
+
+        $tonalidade: if($i > 5,$i - 5, $i);
+
+        $tonalidade: $i - 5;
+
+        $cor-tonalidade-intervalo: $cor-tonalidade-intervalo /10;
+
+        $tonalidade: abs($tonalidade) * 16;
+
+        $cor-tonalidade: mix($cor-base, $cor, percentage($tonalidade /100));
+
+        $tonalidade-descricao: $i * 100;
+
+        .zs-cor-#{$prefixo}--#{$cor-nome}-#{$tonalidade-descricao} {
+            #{$propriedade-estilo}: $cor-tonalidade !important;
+
+            @if ($prefixo == texto ) {
+                input {
+                    color: $cor-tonalidade !important;
+                }
+            }
+        }
+    }
+
+    @for $i from 1 through 9 {
+
+        $alpha-descricao: $i * 10;
+
+        .zs-cor-#{$prefixo}--#{$cor-nome}-alpha-#{$alpha-descricao} {
+            #{$propriedade-estilo}: rgba($cor, $i /10);
+
+            @if ($prefixo == texto ) {
+                input {
+                    color: rgba($cor, $i /10);
+                }
+            }
+        }
+    }
+}
+
+
+@function RetornarCorAleatoria() {
+
+    @return rgb(random(255),random(255),random(255));
+}

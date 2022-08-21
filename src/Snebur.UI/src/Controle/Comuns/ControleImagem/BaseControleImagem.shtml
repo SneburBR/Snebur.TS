@@ -1,0 +1,8 @@
+﻿<figure sn-nome="ElementoRecipienteImagem" draggable="false" >
+   
+    <sobre-posicao  sn-item-elemento="SobrePosicao">
+    </sobre-posicao>
+
+    <img draggable="false" sn-item-elemento="Imagem"   />
+    
+</figure>

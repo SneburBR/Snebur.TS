@@ -1,0 +1,58 @@
+﻿@import "../../../../../scss/_cores.variaveis.scss";
+@import "../../../../../scss/_funcoes.scss";
+
+sn-combobox-selecao,
+.sn-combobox-colecao {
+    display: block;
+    height: retornar-rem(300px);
+    margin-top: -1px;
+    background: #fff;
+    color: #000;
+    border: 1px solid #aaa;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+    /*box-shadow: 0px 4px 5px rgba(0,0,0,0.15);*/
+    box-shadow: 0px 5px 11px 0px rgba(0,0,0,0.18), 0px 4px 15px 0px rgba(0,0,0,0.15);
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    > ap-bloco {
+
+        > conteudo-apresentacao {
+            padding-right: 2px !important;
+
+            > sn-painel-lista {
+
+                > conteudo-apresentacao {
+                     
+                    > ap-bloco {
+                        /*background-color: red;*/
+                        padding-left: 8px;
+
+                        &:hover {
+                            /*background-color: rgba( $cor-principal, .2 );*/
+                            background-color: #DDD;
+                        }
+
+                        &.sn-item-selecionado {
+                            background-color: #ccc;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sn-combobox-item {
+    padding-left: retornar-rem(16px);
+    padding-top: retornar-rem( 8px);
+    padding-bottom: retornar-rem(8px);
+}
+
+.sn-combobox-item:hover {
+    background-color: #5897fb;
+    color: white;
+    cursor: pointer;
+}

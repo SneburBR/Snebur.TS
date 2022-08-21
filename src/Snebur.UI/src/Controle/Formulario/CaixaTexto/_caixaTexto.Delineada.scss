@@ -1,0 +1,309 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+@import "../../../../scss/mixins.scss";
+@import "../../../../scss/_tipografias.variaveis.scss";
+@import "../_baseControleFormulario.scss";
+
+
+$altura-controle: auto;
+$altura-controle-celular: auto;
+
+$altura-rotulo-flutuante: 0.5em;
+$distancia-rotulo-flutuante: -0.9em;
+$distancia-rotulo: -0.1em;
+$altura-sem-rotulo: 1.85em;
+$cor-fundo-somente-leitura: #f6f6f6;
+$cor-fonte-somente-leitura: #aaa;
+
+.sn-caixa-texto,
+sn-caixa-senha-simples,
+sn-caixa-senha,
+sn-caixa-numero,
+sn-caixa-moeda,
+sn-caixa-hora,
+sn-caixa-cartao-credito,
+sn-caixa-texto,
+sn-caixa-data,
+sn-caixa-quantidade {
+
+    &.ap-caixa--delineada {
+        display: inline-flex;
+        min-width: 1em;
+        position: relative;
+        height: auto;
+        z-index: 10;
+        /*@include Responsivo(celular) {
+            height: $altura-controle-celular;
+        }*/
+        conteudo-apresentacao {
+            overflow: visible;
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .linha-horizontal-externa {
+            display: none !important;
+        }
+
+        &.sn-somente-leitura,
+        &.sn-desabilitado {
+            input,
+            textarea {
+                background-color: $cor-fundo-somente-leitura !important;
+                color: $cor-fonte-somente-leitura !important;
+            }
+        }
+
+        &.sn-somente-leitura {
+            .caixa-texto {
+                background-color: $cor-fundo-somente-leitura !important;
+                color: $cor-fonte-somente-leitura !important;
+            }
+        }
+
+
+        .caixa-texto {
+            padding-left: retornar-em(8px);
+            padding-right: retornar-em(8px);
+            padding-top: retornar-em(8px);
+            padding-bottom: retornar-em(8px);
+            border: 1px solid $cor-rotulo-sem-focus;
+            border-radius: 5px;
+            position: relative;
+            overflow: visible !important;
+            width: 100%;
+            display: block;
+            overflow: visible;
+            background-color: white;
+            cursor: text;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1;
+                pointer-events: none;
+                border-radius: 4px;
+                border: 2px solid transparent;
+            }
+
+            textarea-espelho,
+            input-espelho,
+            textarea,
+            input {
+                border-radius: 0;
+                outline: none;
+                -webkit-appearance: none;
+                font-size: 1em;
+                width: 100%;
+                border: none;
+                background-color: transparent;
+                font-family: $fonte-padrao;
+                /*padding: retornar-em(8px) retornar-em(4px);*/
+            }
+
+            textarea[disabled],
+            textarea[readonly],
+            input[disabled],
+            input[readonly] {
+                background-color: $cor-fundo-somente-leitura;
+                color: $cor-fonte-somente-leitura !important;
+            }
+
+            &:not(.sn-desabilitado) {
+                textarea,
+                input {
+
+                    &:focus + .rotulo-caixa-texto {
+                        top: $distancia-rotulo-flutuante !important;
+                        font-size: $tamanho-fonte-rotulo-flutuante !important;
+                        /*background:white !important;*/
+                        &::before {
+                            display: block;
+                        }
+                    }
+
+                    &::placeholder {
+                        color: $cor-rotulo-sem-focus;
+                        font-size: $tamanho-fonte-padrao;
+                        font-weight: 400;
+                    }
+                }
+            }
+
+            .rotulo-caixa-texto {
+                position: absolute;
+                background: transparent;
+                pointer-events: none;
+                z-index: 10;
+                color: $cor-rotulo-sem-focus;
+                font-size: $tamanho-fonte-rotulo;
+                transition: all 0.1s;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 400;
+                top: 20% !important;
+                background-color: transparent;
+                left: 8px;
+                padding: 2px;
+                z-index: 5;
+
+
+                &::before {
+                    content: "";
+                    background: white;
+                    position: absolute;
+                    pointer-events: none;
+                    left: 0;
+                    top: retornar-em(2px);
+                    bottom: 0.4em;
+                    right: 0;
+                    z-index: -1;
+                    display: none;
+                }
+            }
+
+            .sn-is-valicacao--sucesso {
+
+                .rotulo-caixa-texto {
+                    top: $distancia-rotulo-flutuante;
+                    color: $cor-rotulo-valido;
+                    font-size: $tamanho-fonte-rotulo-flutuante;
+                    padding: 2px 8px;
+
+                    &::before {
+                        display: block;
+                    }
+                }
+            }
+
+
+
+            .mensagem-validacao {
+                color: $cor-falha;
+                font-size: $tamanho-fonte-validacao;
+                width: 100%;
+                display: block;
+                position: relative;
+                min-height: 0.8em;
+                white-space: normal;
+                visibility: hidden;
+            }
+
+            &.sn-is-valicacao--falha {
+
+
+                .mensagem-validacao {
+                    display: inline;
+                    visibility: visible;
+                }
+            }
+
+            &.sn-desabilitado {
+
+                .rotulo-caixa-texto {
+                    top: $distancia-rotulo-flutuante !important;
+                    color: #ccc !important;
+                    font-size: $tamanho-fonte-rotulo-flutuante !important;
+                    padding: 2px 8px;
+                }
+            }
+        }
+
+        &:not(.sn-is-focus) {
+            .caixa-texto {
+                &:hover {
+                    background-color: rgba(#ccc, 0.1);
+                    border-color: darken( $cor-rotulo-sem-focus, 20%);
+                }
+            }
+        }
+
+        &.sn-possui-conteudo,
+        &.sn-is-focus {
+
+            .caixa-texto {
+
+                .rotulo-caixa-texto {
+                    top: $distancia-rotulo-flutuante !important;
+                    font-size: $tamanho-fonte-rotulo-flutuante !important;
+                    padding: 2px 8px;
+
+                    &::before {
+                        display: block;
+                    }
+                }
+            }
+
+            .caixa-texto {
+                &.sn-is-valicacao--falha {
+                    border: 1px solid $cor-falha;
+
+                    .rotulo-caixa-texto {
+                        color: $cor-falha !important;
+                    }
+                }
+            }
+
+            &.sn-sem-rotulo-flutuante {
+
+                .rotulo-caixa-texto {
+                    opacity: 0 !important;
+                }
+            }
+        }
+
+        &.sn-is-valicacao--falha {
+            .caixa-texto {
+                border-color: $cor-falha !important;
+                background-color: rgba($cor-falha, 0.1);
+
+                .rotulo-caixa-texto {
+                    background-color: transparent;
+                    color: black !important;
+                }
+
+                &::before {
+                    border-color: $cor-falha !important;
+                }
+            }
+        }
+
+        .local-rotulo-flutuante {
+            width: 100%;
+            height: $altura-rotulo-flutuante;
+            display: block;
+            position: relative;
+            opacity: 0;
+            /*background-color: transparent;*/
+            pointer-events: none;
+        }
+        /* &.sn-sem-rotulo-flutuante {
+            height: $altura-sem-rotulo !important;
+        }*/
+        .mensagem-validacao {
+            color: $cor-falha;
+            font-size: $tamanho-fonte-validacao;
+            width: 100%;
+            display: none;
+            position: relative;
+            min-height: 0.8em;
+            white-space: normal;
+            visibility: hidden;
+        }
+
+        &.sn-is-valicacao--falha {
+
+            .mensagem-validacao {
+                display: inline;
+                visibility: visible;
+            }
+        }
+    }
+}
+
+@include CaixaTexoCor($cor-principal);

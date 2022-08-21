@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <link href="http://localhost/Snebur.UI/Estilos/Bibliotecas/mdl/css/material.blue_grey-red.min.css" rel="stylesheet" />
+
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+
+
+<body class="sn-controle-paginacao">
+
+    <ap-painel-horizontal class="rodape-paginacao" ap-altura="60px" ap-tipografia="Descricao">
+        <ap-coluna ap-margem="10px 0px">
+            <ap-painel
+                ap-tipo-painel="PilhaHorizontal"
+                sn-visibilidade="{{TotalRegistros > 0}}"
+                ap-alinhamento-vertical="Centro">
+
+                <ap-texto sn-bind-texto="{{TotalRegistros}}"></ap-texto>
+                <ap-texto ap-margem="4px 0px">registros encontrados</ap-texto>
+
+            </ap-painel>
+
+            <ap-painel
+                ap-tipo-painel="PilhaHorizontal"
+                sn-visibilidade="{{TotalRegistros == 0}}"
+                ap-alinhamento-vertical="Centro">
+
+                <ap-texto ap-alinhamento-horizontal="Esquerda">Nenhum registro foi encontrado</ap-texto>
+            </ap-painel>
+
+        </ap-coluna>
+
+        <ap-coluna ap-largura="60%">
+
+            <ap-painel-horizontal>
+                <ap-coluna ap-largura="65%">
+
+                    <ap-painel
+                        
+                        ap-tipo-painel="PilhaHorizontal"
+                        ap-alinhamento-vertical="Centro"
+                        ap-margem="48px 0px 0px 0px">
+
+                        <sn-botao
+                            sn-click="BtnPaginacao_Click"
+                            sn-parametros="Pagina=Anterior"
+                            sn-tipo-botao="Icone"
+                            ap-icone="KeyboardArrowLeft"
+                            sn-nome="BtnPaginacaoVoltar"
+                            ap-margem="0px 0px 10px 0px"
+                            sn-legenda="Anterior">
+                        </sn-botao>
+
+                        <ap-bloco ap-cor-fundo="Amarelo">
+                            <sn-painel-lista
+                                sn-nome="ControleListaPaginas"
+                                sn-bind-lista="{{Paginas}}"
+                                ap-tipo-painel="PilhaHorizontal">
+
+                                <sn-bloco-template
+                                    class="sn-paginacao-item-lista"
+                                    ap-margem="2px 0px">
+                                    <sn-botao
+                                        sn-click="BtnPaginacao_Click"
+                                        sn-parametros="Pagina={{Pagina}}"
+                                        sn-bind-texto="{{Pagina}}"
+                                        sn-bind-css-classe="{{CssClasse}}"
+                                        sn-tipo-botao="MiniCirculo">
+                                    </sn-botao>
+                                </sn-bloco-template>
+
+                            </sn-painel-lista>
+                        </ap-bloco>
+
+                        <ap-bloco ap-margem="15px 0px 0px 0px">
+                            <sn-botao
+                                sn-click="BtnPaginacao_Click"
+                                sn-parametros="Pagina=Proxima"
+                                sn-tipo-botao="Icone"
+                                ap-icone="KeyboardArrowRight"
+                                sn-nome="BtnPaginacaoAvancar"
+                               
+                                sn-legenda="Próxima">
+                            </sn-botao>
+                        </ap-bloco>
+
+                    </ap-painel>
+
+                </ap-coluna>
+
+                <ap-coluna>
+                    <ap-painel
+                        ap-tipo-painel="PilhaHorizontal"
+                        ap-alinhamento-vertical="Centro"
+                        ap-alinhamento-horizontal="Direita"
+                        ap-margem="0px 0px 10px 0px"
+                        sn-visibilidade="{{IsMostrarControleRegistrosPorPagina}}, Converter=VerdadeiroParaVisibilidade">
+
+                        <ap-texto ap-margem="0px 4px 0px 0px">Registros por página</ap-texto>
+
+                        <sn-combobox
+                            sn-bind-lista="{{Limites}}"
+                            sn-bind="{{RegistroPorPagina}}"
+                            sn-permitir-limpar="false"
+                            sn-is-rotulo-vazio="true"
+                            ap-largura="50px"
+                            ap-margem="50px 0px 0px 0px">
+
+                            <sn-item-template>
+                                <span sn-bind="{{Descricao}}" ap-altura-linha="28px" ap-margem="8px 0px"></span>
+                            </sn-item-template>
+
+                        </sn-combobox>
+                    </ap-painel>
+
+                </ap-coluna>
+
+
+            </ap-painel-horizontal>
+        </ap-coluna>
+    </ap-painel-horizontal>
+
+
+</body>
+</html> 

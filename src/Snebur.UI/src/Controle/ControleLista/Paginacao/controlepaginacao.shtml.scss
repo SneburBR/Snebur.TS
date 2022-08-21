@@ -1,0 +1,65 @@
+﻿@import "../../../../scss/variaveis.scss";
+@import "../../../../scss/mixins.scss";
+
+.sn-controle-paginacao,
+sn-controle-paginacao {
+
+    .sn-paginacao-lista {
+        display: inline-block;
+    }
+
+
+    .rodape-paginacao {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .sn-paginacao-item-lista {
+        display: inline-block;
+
+        sn-botao {
+        /* border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        text-align: center; */
+            &.sn-paginacao-item-item-atual {
+                > conteudo-apresentacao {
+                    background-color: black !important;
+                    color: white;
+                }
+            }
+
+            &.sn-paginacao-item {
+
+                > conteudo-apresentacao {
+                    background-color: lightgray !important;
+                }
+            }
+        }
+        /*sn-botao {
+        background-color: red;
+    }
+
+    .mdl-button {
+        min-width: 10px;
+        color: red;
+
+        &:hover {
+            color: black;
+        }
+    }
+
+    .sn-paginacao-item-lista-selecionado {
+        background-color: black;
+        color: white;
+
+        &:hover {
+            background-color: blue;
+            color: white;
+        }
+    }*/
+    }
+}

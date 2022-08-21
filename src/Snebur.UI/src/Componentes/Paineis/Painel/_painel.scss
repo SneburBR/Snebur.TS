@@ -1,0 +1,230 @@
+﻿
+$margem-lateral: 8px;
+$margem-vertical: 8px;
+
+.ap-painel,
+sn-painel-lista,
+sn-painel-lista-selecao,
+sn-painel-lista-ordenacao,
+ap-painel {
+    position: relative;
+
+    &.ap-tipo-painel--pilha-horizontal {
+        display: inline-flex;
+        /*display: inline-flex;*/
+        > conteudo-apresentacao:first-child {
+            /*display: block;*/
+            display: inline-flex;
+            /*display: block;*/
+            white-space: nowrap;
+            align-items: center;
+            align-content: center;
+            vertical-align: middle;
+
+            > sn-controle-usuario {
+                width: auto;
+
+                > conteudo-apresentacao {
+                    width: auto;
+                }
+            }
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                display: inline-flex;
+                /*display: inline-flex;*/
+                height: 100%;
+
+                > conteudo-apresentacao {
+                    display: block;
+                    vertical-align: middle;
+                    align-content: center;
+                    /*display: inline-flex;*/
+                }
+            }
+
+            > * {
+                position: relative;
+
+
+                > conteudo-apresentacao {
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-top: 0;
+                padding-left: $margem-lateral;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--pilha-vertical {
+        display: block;
+        height: auto;
+
+        > conteudo-apresentacao:first-child {
+            display: block;
+            position: relative;
+            height: auto;
+
+            > * {
+                display: block;
+                position: relative;
+            }
+
+
+            > sn-controle-usuario {
+                height: auto;
+
+                > conteudo-apresentacao {
+                    height: auto;
+                }
+            }
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                display: block;
+
+                > conteudo-apresentacao {
+                    position: relative;
+                    display: block;
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-left: 0;
+                padding-top: $margem-vertical;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--bloco-pilha {
+        display: flex;
+        width: 100%;
+        /*height: 100%;*/
+        > conteudo-apresentacao {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            height: auto;
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > sn-bloco-selecao,
+            > ap-bloco-template,
+            > ap-bloco-template-selecionado,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                max-width: 100%;
+                display: inline-block;
+
+                > conteudo-apresentacao {
+                    position: relative;
+                    display: block;
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-top: 0;
+                padding-left: $margem-lateral;
+            }
+        }
+    }
+
+    &.ap-tipo-painel--pilha-horizontal-em-linha {
+        display: inline-block;
+        /*display: inline-flex;*/
+
+        /*border: 5px solid red;*/
+        /*overflow: visible;*/
+        /*width:auto !important;*/
+
+        > conteudo-apresentacao {
+            /*display: block;*/
+            display: inline-block !important;
+            /*display: block;*/
+            white-space: nowrap;
+            width: auto !important;
+            overflow: visible;
+
+
+            > sn-controle-usuario {
+                display: inline-block;
+                width: auto;
+
+                > conteudo-apresentacao {
+                    width: auto;
+                    display: inline-block;
+                }
+            }
+
+            > ap-bloco,
+            > ap-bloco-lista-vazia,
+            > ap-bloco-lista-carregando,
+            > ap-bloco-cabecalho,
+            > ap-bloco-rodape,
+            > sn-bloco,
+            > ap-bloco-template,
+            > ap-bloco-ordenacao,
+            > ap-bloco-animado,
+            > .ap-bloco {
+                position: relative;
+                display: inline-block;
+                /*display: inline-flex;*/
+                height: 100%;
+                width: auto;
+
+                > conteudo-apresentacao {
+                    display: block;
+                    vertical-align: middle;
+                    align-content: center;
+                    white-space: normal;
+                    /*display: inline-flex;*/
+                }
+            }
+
+            > * {
+                position: relative;
+                display: inline-block;
+
+                > conteudo-apresentacao {
+                    display: inline-block;
+                }
+            }
+
+            > sn-botao + sn-botao {
+                padding-top: 0;
+                padding-left: $margem-lateral;
+            }
+        }
+    }
+
+    sn-bloco-template {
+        display: none;
+    }
+}
+

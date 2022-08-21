@@ -1,0 +1,32 @@
+﻿@import "../../../../scss/variaveis.scss";
+@import "../../../../scss/mixins.scss";
+
+
+.sn-controle-area-lista-sugestoes {
+    border: 1px solid transparent;
+    /*border: 3px solid #fbd242;*/
+    border-top-color: transparent !important;
+    border-top-width: 0;
+    background: white;
+    box-shadow: none;
+    margin-top: -3px;
+    box-shadow: 2px 2px 5px 0px rgba(110,109,110,0.5);
+
+    hr {
+        background: red;
+        border: 1px solid #fafafa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .sn-item-sugestao {
+         
+        &:hover {
+            background-color: #f4f4f4;
+        }
+
+        &.sn-item-sugestao-selecionado {
+            background-color: #e5e5e5;
+        }
+    }
+}

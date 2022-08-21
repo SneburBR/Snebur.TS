@@ -1,0 +1,31 @@
+﻿@import "../../../../../scss/mixins.scss";
+@import "../../../../../scss/variaveis.scss";
+
+.sn-janela-ocupado {
+    text-align: center;
+
+    .titulo-janela-ocupado {
+        /*text-align: center;*/
+        font-size: 1.65rem;
+        font-weight: bold;
+    }
+
+    .subtitulo-janela-ocupado {
+    }
+
+    .sn-loader-pai {
+        position: relative;
+
+        .sn-loader-janela-ocupado {
+            width: 10em;
+            height: 10em;
+        }
+
+        .sn-progresso-loader {
+            @include centralizar-horizontal-vertical;
+            position: absolute;
+            font-size: 1.5rem;
+        }
+    }
+
+}

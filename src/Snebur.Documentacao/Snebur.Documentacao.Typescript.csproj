@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{88406eca-e976-4bc9-bfd2-31c4f75d928d}</ProjectGuid>
+    <ProjectTypeGuids>{de22e377-3381-43e1-bd1f-496245aeec3e};{779d6514-93eb-4e99-b424-ae20e424f600}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{fe174b5f-bddc-45dd-8bc0-57e79bf0f702}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cache.manifest" />
+    <Content Include="Estilos\Snebur.Documentacao.scss" />
+    <Content Include="Estilos\variaveis.scss" />
+    <Content Include="favicon.ico" />
+    <Content Include="Recursos\Fontes\Material\Icones\material-icons.css" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.svg" />
+    <Content Include="Recursos\Imagens\72 colors_2.png" />
+    <Content Include="Recursos\Imagens\erro.png" />
+    <Content Include="Recursos\Imagens\carregando.gif" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="Index.html" />
+    <Content Include="Recursos\Imagens\fundo-transparencia.png" />
+    <Content Include="Recursos\Imagens\paleta.png" />
+    <Content Include="Recursos\Imagens\erro.gif" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\CustomElements.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\CustomElements.min.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\HTMLImports.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\HTMLImports.min.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\MutationObserver.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\MutationObserver.min.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\ShadowDOM.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\ShadowDOM.min.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\webcomponents-lite.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\webcomponents-lite.min.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\webcomponents.js" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\webcomponents.min.js" />
+    <Content Include="Temp\Controle-sn\TesteControle.html" />
+    <Content Include="Temp\Onse.ui\css\onsen-css-components.css" />
+    <Content Include="Temp\Onse.ui\css\onsenui.css" />
+    <Content Include="Temp\Onse.ui\js\onsenui.js" />
+    <Content Include="Temp\Onse.ui\TesteUI.html" />
+    <Content Include="Temp\Pica\Index.aspx" />
+    <Content Include="Temp\Pica\pica.js" />
+    <Content Include="Temp\Pica\scripts.js" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Bibliotecas\WebComponents\bower.json" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\package.json" />
+    <Content Include="Scripts\Bibliotecas\WebComponents\README.md" />
+    <Content Include="tsconfig.json" />
+    <Content Include="Recursos\Fontes\Material\Icones\codepoints" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.eot" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.ijmap" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.ttf" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.woff" />
+    <Content Include="Recursos\Fontes\Material\Icones\MaterialIcons-Regular.woff2" />
+    <Content Include="Recursos\Fontes\Material\Icones\README.md" />
+    <Content Include="Estilos\mixins.scss" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Temp\Pica\pica.worker.js" />
+    <TypeScriptCompile Include="TypeScripts\Aplicacao.Config.ts" />
+    <TypeScriptCompile Include="TypeScripts\Aplicacao.ts" />
+    <TypeScriptCompile Include="TypeScripts\Snebur.Documentacao\Html.Referencias.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Css\" />
+    <Folder Include="Recursos\Fontes\Material\Texto\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Snebur.UI.Typescript</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Snebur.UI.Typescript</AssemblyName>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{de22e377-3381-43e1-bd1f-496245aeec3e}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64596</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://documentacao.snebur.local</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+</Project>

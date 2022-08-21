@@ -1,0 +1,27 @@
+﻿
+
+sn-caixa-prazo-tempo {
+    display: block;
+    position: relative;
+
+    ap-painel[ap-tipo-painel=PilhaHorizontal],
+    ap-painel[ap-tipo-painel=PilhaHorizontalCheia] {
+
+
+
+        sn-combobox-enum {
+            padding-right: 8px;
+            margin-top: 4px;
+        }
+
+        sn-caixa-numero,
+        sn-caixa-hora {
+            margin-top: -12px;
+            padding-left: 8px;
+        }
+    }
+
+    sn-combobox-enum {
+        display: block;
+    }
+}

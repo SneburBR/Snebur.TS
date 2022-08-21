@@ -1,0 +1,44 @@
+﻿
+sn-bloco,
+ap-bloco,
+ap-bloco-lista-vazia,
+ap-bloco-lista-carregando,
+ap-bloco-cabecalho,
+ap-bloco-rodape,
+sn-bloco-selecao,
+ap-bloco-ordenacao,
+ap-bloco-animado,
+.ap-bloco {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+
+     
+}
+
+ap-painel
+.ap-painel {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    /*width: 100%;*/
+    ap-bloco,
+    ap-bloco-lista-vazia,
+    ap-bloco-lista-carregando,
+    ap-bloco-cabecalho,
+    .ap-bloco {
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        /*padding-left: $margem-lateral;
+          padding-right: $margem-lateral;*/
+    }
+}
+
+ap-bloco-item {
+    display: inline-block;
+    display: inline-flex;
+    box-sizing: border-box;
+    position: relative
+}

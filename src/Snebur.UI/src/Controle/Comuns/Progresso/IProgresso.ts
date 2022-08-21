@@ -1,0 +1,5 @@
+﻿
+interface IProgresso
+{
+    Progresso: number;
+}

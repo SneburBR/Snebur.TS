@@ -1,0 +1,18 @@
+﻿<div sn-nome="ElementoBarraAcao">
+
+    <ap-painel ap-tipo-painel="PilhaHorizontal" ap-alinhamento-horizontal="Direita"
+        ap-margem-interna="4px 2px" >
+        <sn-botao sn-nome="BtnRestaurarJanelaInterno" sn-click="BtnRestaurarJanelaInterno_Click" sn-tipo-botao="Icone" ap-icone="FullscreenExit" style="display: none"></sn-botao>
+        <sn-botao sn-nome="BtnMaximizarJaenlaInterno" sn-click="BtnMaximizarJaenlaInterno_Click" sn-tipo-botao="Icone" ap-icone="Fullscreen"></sn-botao>
+        <sn-botao sn-nome="BtnFecharJanelaInterno" sn-click="BtnFecharJanelaInterno_Click"
+            ap-cor-texto="Cinza"
+            sn-tipo-botao="Icone"
+            ap-icone="Close"></sn-botao>
+    </ap-painel>
+
+</div>
+<div sn-nome="ElementoConteudoInterno" class="sn-janela-conteudo-interno">
+    [[CONTEUDO_INTERNO]]
+</div>
+
+

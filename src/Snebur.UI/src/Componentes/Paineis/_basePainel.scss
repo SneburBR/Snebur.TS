@@ -1,0 +1,46 @@
+﻿
+$cor-pontilhado: #888;
+
+.debug-pontilhar-areas {
+    /*border: 1px dotted #888;*/
+
+    conteudo-apresentacao {
+        border: 1px dotted #808080;
+    }
+    /*border-bottom-color: $cor-pontilhado !important;
+    border-bottom-width: 1px !important;
+    border-bottom-style: dotted !important;
+    border-right-color: $cor-pontilhado !important;
+    border-right-width: 1px !important;
+    border-right-style: dotted !important;*/
+}
+
+ 
+debug-nome-como-texto-fundo,
+.debug-nome-como-texto-fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+
+
+    > nome-texto {
+
+        &:before {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+        }
+
+        text-transform: uppercase;
+        font-size: 16px;
+        text-overflow: ellipsis;
+        color: rgba(136, 136, 136, 0.6)
+    }
+}

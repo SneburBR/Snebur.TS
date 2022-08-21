@@ -1,0 +1,17 @@
+﻿@import "_simples.mixins.scss";
+
+.sn-centralizar-horizontal {
+    @include centralizar-horizontal;
+}
+
+.sn-centralizar-vertical {
+    @include centralizar-vertical;
+}
+
+.sn-altura-auto {
+
+    height:auto;
+
+}
+
+  

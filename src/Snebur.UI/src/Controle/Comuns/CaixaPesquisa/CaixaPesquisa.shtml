@@ -1,0 +1,19 @@
+﻿<ap-painel ap-tipo-painel="PilhaHorizontal" sn-item-elemento="Caixa">
+    <ap-bloco >
+        <sn-caixa-texto sn-nome="ControleInput" class="sn-pesquisa"></sn-caixa-texto>
+    </ap-bloco>
+
+    <ap-bloco>
+        <sn-botao sn-nome="BotaoPesquisa" sn-tipo-botao="Icone" ap-icone="Search" sn-click="BtnPesquisar_Click" ap-margem="8px 16px 0px 0px"></sn-botao>
+    </ap-bloco>    
+</ap-painel>
+
+<!--<div sn-item-elemento="Caixa" class="mdl-textfield mdl-js-textfield">
+    
+	<input sn-item-elemento="ControleInput" class="mdl-textfield__input" type="text">
+    <label sn-item-elemento="Rotulo" class="mdl-textfield__label"></label>
+    <label sn-item-elemento="Rotulo" class="mdl-button mdl-button--icon sn-pesquisa-icone-pesquisa">
+        <i class="material-icons">search</i>
+    </label>
+	
+</div>-->

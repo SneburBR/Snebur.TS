@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+    
+
+    <div sn-nome="ElementoProgressoEnvioArquivos" 
+        ap-cor-fundo="SistemaPrincipal" 
+        class="sn-progresso-envio-arquivos">
+
+    </div>
+
+     <!--<div sn-nome="ElementoProgressoRestante" 
+        ap-cor-fundo="SistemaPrincipal" 
+        class="sn-progresso-envio-arquivos-restante">
+
+    </div>-->
+
+</body>
+</html>

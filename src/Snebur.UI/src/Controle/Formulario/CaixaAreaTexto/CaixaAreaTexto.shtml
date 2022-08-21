@@ -1,0 +1,27 @@
+﻿<ap-painel-vertical sn-nome="PainelPrincipal" ap-tipo-painel="PilhaVertical" ap-largura="100%">
+    <ap-linha ap-altura="20px" sn-nome="ElementoLocalRotuloFlutuante">
+    </ap-linha>
+    <ap-linha sn-item-elemento="Caixa">
+        <textarea class="input-texto"
+            sn-item-elemento="ControleInput"
+            rows="1"></textarea>
+    </ap-linha>
+    <ap-linha ap-altura="2px">
+        <div class="linha-horizontal-externa">
+            <div class="linha-horizontal">
+            </div>
+        </div>
+    </ap-linha>
+    <ap-rodape
+        ap-altura="16px"
+        sn-visibilidade="{{IsMostrarContadorCaracteres}}, Origem=thisform">
+        <ap-bloco ap-margem="0px 4px 0px 0px">
+            <ap-texto ap-tipografia="Descricao2" ap-quebrar="NaoQuebrar">
+                <span sn-bind="{{ContadorCaracteresObservacao}}, Origem=thisform"></span>&nbsp;restantes
+            </ap-texto>
+        </ap-bloco>
+
+    </ap-rodape>
+</ap-painel-vertical>
+<div class="mensagem-validacao" sn-item-elemento="MensagemValidacao"></div>
+<label class="rotulo" sn-item-elemento="Rotulo"></label>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body 
+    ap-largura="400px"
+    ap-largura--celular="100%" >
+
+    <ap-painel ap-tipo-painel="PilhaVertical" 
+       
+        class="sn-janela-ocupado">
+        <ap-bloco ap-margem="0px 16px 0px 8px">
+            <ap-texto class="titulo-janela-ocupado" sn-bind="{{Titulo}}"></ap-texto>
+        </ap-bloco>
+
+        <ap-bloco>
+            <ap-texto class="subtitulo-janela-ocupado"  
+                sn-bind="{{Mensagem}}"></ap-texto>
+        </ap-bloco>
+
+        <ap-bloco sn-nome="BlocoLoader" ap-margem="160px 16px 0px 8px">
+            <ap-bloco class="sn-loader"></ap-bloco>
+        </ap-bloco>
+
+        <ap-bloco sn-nome="BlocoProgresso" ap-margem="16px 24px 16px 24px" sn-visibilidade="Oculto">
+            <sn-progresso sn-nome="BarraProgresso" 
+                ap-altura="23px"
+                sn-bind-progresso="{{Progresso}}"></sn-progresso>
+        </ap-bloco>
+    </ap-painel>    
+
+</body>
+</html>

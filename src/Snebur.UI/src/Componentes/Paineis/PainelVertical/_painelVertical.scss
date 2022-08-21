@@ -1,0 +1,26 @@
+﻿
+ap-painel-vertical,
+ap-painel-vertical {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+
+    > conteudo-apresentacao:first-child {
+        overflow: hidden;
+    }
+}
+
+
+
+ap-cabecalho,
+ap-linha,
+ap-rodape,
+.ap-linha {
+    display: block;
+    min-height: 1px;
+    overflow: hidden;
+    position: relative;
+}
+

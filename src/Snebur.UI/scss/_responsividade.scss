@@ -1,0 +1,8 @@
+﻿@import "_telas.mixins.scss";
+
+.sn-ocultar-tablet-altura-super-pequena {
+
+    @include Responsivo(tablet-super-pequena) {
+        display: none !important;
+    }
+}

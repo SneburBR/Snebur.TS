@@ -1,0 +1,23 @@
+﻿
+
+@mixin RadioCor($cor) {
+
+    sn-radio,
+    .sn-radio {
+
+        > conteudo-apresentacao {
+            .radio_input {
+
+                &:checked + .radio_marcacao {
+                    background-color: $cor;
+                }
+            }
+        }
+
+        &.sn-radio-selecionado {
+            .radio_marcacao {
+                background-color: $cor !important;
+            }
+        }
+    }
+}

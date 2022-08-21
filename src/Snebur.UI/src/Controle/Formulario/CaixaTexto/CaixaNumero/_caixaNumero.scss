@@ -1,0 +1,33 @@
+﻿@import "../../../../../scss/_funcoes.mixins.scss";
+
+.sn-caixa-numero,
+sn-caixa-numero {
+
+    input[type=number] {
+        /* não me recordo o motivo pq foi alterado para centro*/
+        /*text-align: center;*/
+        text-align: center;
+    }
+
+
+    &.sn-direita {
+
+        input {
+            text-align: right !important;
+        }
+    }
+
+    &.sn-centro {
+
+        input {
+            text-align: center !important;
+        }
+    }
+
+    &.sn-esquerda {
+
+        input {
+            text-align: left !important;
+        }
+    }
+}

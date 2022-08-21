@@ -1,0 +1,42 @@
+﻿
+
+Os componentes apresentação não são controles!!
+controles possuem classe controladora e um classe de layout e estilo
+
+o componente apresentacao é o proprio elemento, sendo assim
+todos eventos do Ex sn-click, o codigo ficara dentro do controle pai
+
+Os componentes são elementos dom especializado, possuindo codigo, as 
+
+
+
+Propriedades de apresentacao
+
+AS propriedades de apresentação,
+são propriedades com implentaçao  Retornar(Get)  Atribuir (Set) e atualizar  (Update).
+Casa propriedade possui atributo no elemento. 
+Então ela possui comportamento bi lateral, se valores podem ser alterado tanto no Dom, direto no elemento dom (html) 
+
+ex:  <ap-blobo ap-cor-fundo="Preto"></ap-bloco>
+
+ou valores poder atribuido diretamente
+
+var painel = new Painel()
+painel.CorFundo = EnumCor.Preto;
+
+
+Implementação
+
+Cada componente possuem suas propriedades de apresentacao
+elas precisam ser mapeados
+o padrão, no do arquivo
+
+NomeComponenete.Mapeamento
+
+bloco.Mapeamento.ts
+
+
+cansei de escrever, quer saber mais me pergunte - rubens
+kkkkkk
+
+

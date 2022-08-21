@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div sn-nome="ElementoProgressoCirculo" class="progress-circle progresso-0">
+        
+        <span sn-nome="SpanProgresso">0%</span>
+        <div class="left-half-clipper">
+            <div class="first50-bar"></div>
+            <div class="barra-progresso"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>

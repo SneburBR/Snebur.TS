@@ -1,0 +1,91 @@
+﻿@import "_cores.variaveis.scss";
+@import "_bordas.variaveis.scss";
+@import "_funcoes.scss";
+
+
+%borda-padrao { 
+
+}
+
+%borda-cor-padrao {
+}
+
+@mixin borda( $largura-borda, $cor-borda, $destino ) {
+
+    @if map-has-key($destinos-borda-mapeamento, $destino) {
+
+        $posicao: map-get($destinos-borda-mapeamento, $destino);
+
+        border#{$posicao}width: $largura-borda;
+        border#{$posicao}color: $cor-borda;
+        border#{$posicao}style: solid;
+    }
+    @else {
+        @error "o destino da borda '" + $destino +"'  não é suportado";
+    }
+}
+ 
+
+.sn-borda {
+    @include borda($largura-borda-padrao, $cor-borda-padrao, tudo);
+}
+
+@each $destino in $destinos-borda {
+
+    @if map-has-key($destinos-borda-mapeamento, $destino) {
+
+        $sufixo: if($destino == tudo, "", "-" + $destino);
+
+        @each $largura-borda in $larguras-borda {
+
+            .sn-borda#{$sufixo}-#{$largura-borda} {
+
+                $largura-borda: retornar-rem($largura-borda);
+                @include borda( $largura-borda, $cor-borda-padrao, $destino);
+            }
+        }
+    }
+
+    @else {
+        @error "o destino da borda '" + $destino +"'  não é suportado";
+    }
+}
+
+.sn-redonda {
+    border-radius: $borda-redonda !important;
+}
+
+.sn-redonda-superior {
+    border-top-left-radius: $borda-redonda !important;
+    border-top-right-radius: $borda-redonda !important;
+}
+
+.sn-redonda-direita {
+    border-top-right-radius: $borda-redonda !important;
+    border-bottom-right-radius: $borda-redonda !important;
+}
+
+.redondo-inferior {
+    border-bottom-right-radius: $borda-redonda !important;
+    border-bottom-left-radius: $borda-redonda !important;
+}
+
+.sn-redonda-esquerda {
+    border-top-left-radius: $borda-redonda !important;
+    border-bottom-left-radius: $borda-redonda !important;
+}
+
+.sn-borda-circulo {
+    border-radius: 50% !important;
+}
+
+.sn-remover-redondo {
+    border-radius: 0 !important;
+}
+
+.sn-remober-borda {
+    border-radius: 0;
+    border-width: 0;
+    border-style: none;
+    border-color: transparent;
+}

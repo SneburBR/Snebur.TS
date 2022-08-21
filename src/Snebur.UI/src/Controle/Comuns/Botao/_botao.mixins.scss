@@ -1,0 +1,17 @@
+﻿$cor-botao-padrao: #c8c8c8;
+
+@mixin botao-circulo($largura) {
+
+    conteudo-apresentacao {
+        border-radius: 50%;
+        background-color: $cor-botao-padrao;
+        width: $largura;
+        height: $largura;
+        min-width: $largura;
+        min-height: $largura;
+        line-height: $largura;
+        padding: 0 !important;
+        text-align: center;
+    }
+}
+ 

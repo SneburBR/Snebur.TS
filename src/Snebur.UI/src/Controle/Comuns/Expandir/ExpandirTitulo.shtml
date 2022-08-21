@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <ap-painel ap-tipo-painel="PilhaHorizontalCheia">
+        <ap-bloco ap-largura="40px">
+            <sn-botao sn-nome="BotaoIcone" sn-tipo-botao="Icone"></sn-botao>
+        </ap-bloco>
+        <ap-bloco sn-nome="BlocoTitulo">
+            [[CONTEUDO-INTERNO]]
+        </ap-bloco>
+    </ap-painel>
+</body>
+</html>

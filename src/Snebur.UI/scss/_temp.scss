@@ -1,0 +1,83 @@
+﻿
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.sn-tabela {
+    /*display:table;*/
+}
+
+.sn-celula {
+    /*display:table-cell;*/
+    display: inline-block;
+}
+
+.sn-nao-quebrar {
+    white-space: nowrap;
+}
+
+.sn-linha {
+    /*display: table-row;*/
+    display: block;
+    white-space: nowrap;
+}
+
+
+.sn-cursor-arrastar {
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+    cursor: grabbing;
+}
+
+.sn-ocupado {
+    /*cursor: wait;
+    pointer-events: none;
+    opacity: 0.95;*/
+}
+
+.sn-ocupar-input {
+    /*cursor: wait;*/
+}
+
+.sn-nao-selecionar {
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.sn-lado-esquerdo {
+    float: left;
+}
+
+.sn-lado-direito {
+    float: right;
+}
+
+.sn-va-m {
+    vertical-align: middle;
+}
+
+.sn-scroll-vertical {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.sn-cheio {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.sn-cheio-absoluto {
+    @extend .sn-cheio;
+    position: absolute;
+}
+
+.sn-cursor-link {
+
+    &:hover {
+        cursor: pointer;
+    }
+}

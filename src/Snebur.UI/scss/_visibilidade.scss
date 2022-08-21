@@ -1,0 +1,23 @@
+﻿@import "_telas.mixins.scss";
+
+@include Responsivo(celular) {
+
+    .sn-ocultar-celular {
+        display: none !important;
+    }
+}
+
+@include Responsivo(tablet) {
+
+    .sn-ocultar-tablet {
+        display: none !important;
+    }
+}
+
+@include Responsivo("desktop") {
+
+    .sn-ocultar-desktop {
+        display: none !important;
+    }
+}
+

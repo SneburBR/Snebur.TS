@@ -1,0 +1,275 @@
+﻿@import "../../../../../../scss/variaveis.scss";
+@import "../../../../../../scss/mixins.scss";
+
+%sn-data-dia {
+    padding: 3px;
+    border-radius: 5px;
+    width: 25px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ccc;
+    }
+}
+
+sn-caixa-calendario {
+    display: block;
+    font-size: 0.9rem !important;
+
+    .sn-painel-superior {
+        border-bottom: 1px solid #ccc;
+
+        sn-combobox {
+            font-size: 1.2rem !important;
+
+            .sn-combobox-seta {
+                display: none !important;
+            }
+
+            .linha-horizontal-externa {
+                display: none !important;
+            }
+        }
+    }
+
+    .sn-painel-dias-semana {
+        .sn-dia-semana {
+            padding: 4px;
+            font-weight: 700 !important;
+            color: #777;
+        }
+    }
+
+    .sn-data-dia--selecionado {
+        @extend %sn-data-dia;
+        background-color: lighten( $cor-secundaria, 15%);
+
+        &:hover {
+            background-color: $cor-secundaria;
+            color: white;
+        }
+    }
+
+    .sn-data-dia--feriado {
+        @extend %sn-data-dia;
+        /*border: 1px solid lighten( $cor-falha, 30%);*/
+        color: $cor-falha;
+        /*background-color: lighten( $cor-falha, 30%);*/
+        &:hover {
+            background-color: $cor-falha;
+            color: white;
+        }
+    }
+
+    .sn-data-dia--fora {
+        @extend %sn-data-dia;
+        color: #ccc;
+    }
+
+    .sn-data-dia--normal {
+        @extend %sn-data-dia;
+        background-color: white;
+    }
+
+    .sn-painel-inferior {
+        border-top: 1px solid #ccc;
+    }
+}
+
+.sn-pika-single {
+    z-index: 9999;
+    display: block;
+    position: relative;
+    color: #333;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-bottom-color: #bbb;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.sn-pika-single:after, .sn-pika-single:before {
+    content: " ";
+    display: table;
+}
+
+.sn-pika-single:after {
+    clear: both;
+}
+
+.sn-pika-single.sn-is-hidden {
+    display: none;
+}
+
+.sn-pika-single.sn-is-bound {
+    position: absolute;
+    box-shadow: 0 5px 15px -5px rgba(0,0,0,.5);
+}
+
+.sn-pika-lendar {
+    float: left;
+    width: 240px;
+    margin: 8px;
+}
+
+.sn-pika-title {
+    position: relative;
+    text-align: center;
+}
+
+.sn-pika-label {
+    display: inline-block;
+    position: relative;
+    z-index: 9999;
+    overflow: hidden;
+    margin: 0;
+    padding: 5px 3px;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #fff;
+}
+
+.sn-pika-title select {
+    cursor: pointer;
+    position: absolute;
+    z-index: 9998;
+    margin: 0;
+    left: 0;
+    top: 5px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+.sn-pika-next, .sn-pika-prev {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    width: 20px;
+    height: 30px;
+    text-indent: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: transparent;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 75% 75%;
+    opacity: .5;
+}
+
+.sn-pika-next:hover, .sn-pika-prev:hover {
+    opacity: 1;
+}
+
+.sn-is-rtl .sn-pika-next, .sn-pika-prev {
+    float: left;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==);
+}
+
+.sn-is-rtl .sn-pika-prev, .sn-pika-next {
+    float: right;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=);
+}
+
+.sn-pika-next.sn-is-disabled, .sn-pika-prev.sn-is-disabled {
+    cursor: default;
+    opacity: .2;
+}
+
+.sn-pika-select {
+    display: inline-block;
+}
+
+.sn-pika-table {
+    width: 100%;
+    border: 0;
+}
+
+.sn-pika-table td, .sn-pika-table th {
+    width: 14.285714285714286%;
+    padding: 0;
+}
+
+.sn-pika-table th {
+    color: #999;
+    font-size: 12px;
+    line-height: 25px;
+    text-align: center;
+}
+
+.sn-pika-button {
+    cursor: pointer;
+    display: block;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    color: #666;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+    background: #f5f5f5;
+}
+
+.sn-c3-tooltip td > span, .sn-fa, .sn-fa-stack {
+    display: inline-block;
+}
+
+.sn-pika-week {
+    font-size: 11px;
+    color: #999;
+}
+
+.sn-is-today .sn-pika-button {
+    color: #3af;
+}
+
+.sn-is-selected .sn-pika-button {
+    color: #fff;
+    font-weight: 700;
+    background: #3af;
+    box-shadow: inset 0 1px 3px #178fe5;
+    border-radius: 3px;
+}
+
+.sn-is-inrange .sn-pika-button {
+    background: #D5E9F7;
+}
+
+.sn-is-startrange .sn-pika-button {
+    color: #fff;
+    background: #6CB31D;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.sn-is-endrange .sn-pika-button {
+    color: #fff;
+    background: #3af;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.sn-is-disabled .sn-pika-button {
+    pointer-events: none;
+    cursor: default;
+    color: #999;
+    opacity: .3;
+}
+
+.sn-pika-button:hover {
+    color: #fff;
+    background: #5897fb;
+    box-shadow: none;
+    border-radius: 3px;
+}
+
+.sn-pika-table abbr {
+    border-bottom: none;
+    cursor: help;
+}

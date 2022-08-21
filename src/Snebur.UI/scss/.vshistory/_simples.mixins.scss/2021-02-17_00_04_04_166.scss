@@ -1,0 +1,50 @@
+﻿@mixin centralizar-horizontal-vertical {
+    transform: translate(-50%, -50%);
+    transform: translate(calc(-50% + 1px - 1px ), calc(-50% + 1px - 1px ));
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+@mixin centralizar-horizontal {
+    transform: translateX(-50%);
+    transform: translateX(calc(-50% + 1px - 1px ));
+    position: relative;
+    left: 50%;
+}
+
+@mixin centralizar-vertical {
+    transform: translateY(-50%);
+    transform: translateY(calc(-50% + 1px - 1px ));
+    position: relative;
+    top: 50%;
+}
+
+
+@mixin absoluto-cheio {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+@mixin absoluto-cheio {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5rem;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    display: inline-flex;
+    display: inline;
+}
+
+
+ 

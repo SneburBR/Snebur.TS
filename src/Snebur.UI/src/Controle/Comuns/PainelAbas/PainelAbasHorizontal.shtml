@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../../Css/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+    <ap-painel-vertical sn-nome="PainelVertical">
+
+        <ap-cabecalho sn-nome="Cabecalho"
+            ap-altura="48px">
+
+            <ap-painel
+                sn-nome="PainelAbasInterno"
+                sn-item-elemento="ElementoDestinoAbas"
+                ap-tipo-painel="PilhaHorizontalCheia"
+                ap-altura="100%">
+            </ap-painel>
+
+            <div sn-nome="DivMarcador" >
+
+            </div>
+
+        </ap-cabecalho>
+        <ap-linha ap-barra-rolagem-vertical="Automatica">
+
+            <sn-navegador sn-nome="Navegador" 
+                sn-item-elemento="Navegador"
+                sn-bind-data-source="{{.}}" 
+                sn-is-propagar-bind-data-source="true" >
+            </sn-navegador>
+
+        </ap-linha>
+    </ap-painel-vertical>
+
+</body>
+</html>

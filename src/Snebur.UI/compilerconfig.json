@@ -1,0 +1,11 @@
+﻿[
+  {
+    "outputFile": "build/Snebur.UI.css",
+    "inputFile": "scss/Snebur.UI.scss",
+    "minify": {
+      "enabled": true
+    },
+    "includeInProject": false,
+    "sourceMap": true
+  } 
+]

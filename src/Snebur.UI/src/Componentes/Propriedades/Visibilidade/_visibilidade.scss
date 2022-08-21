@@ -1,0 +1,58 @@
+﻿@import "../../../../scss/_telas.mixins.scss";
+
+.ap-visibilidade--ocultar {
+    display: none !important;
+    visibility: collapse;
+
+    &[ap-visibilidade=Oculto] {
+        display: none !important;
+    }
+}
+
+.ap-visibilidade--invisivel {
+    visibility: hidden;
+}
+
+@include Responsivo(desktop) {
+
+    .ap-visibilidade--ocultar {
+
+        &[ap-visibilidade-desktop=Oculto] {
+            display: none !important;
+        }
+    }
+}
+
+
+@include Responsivo(notebook) {
+
+    .ap-visibilidade--ocultar {
+
+        &[ap-visibilidade-notebook=Oculto] {
+            display: none;
+        }
+    }
+}
+
+
+@include Responsivo(tablet) {
+
+    .ap-visibilidade--ocultar {
+
+        &[ap-visibilidade-tablet=Oculto] {
+            display: none;
+        }
+    }
+}
+
+
+
+@include Responsivo(celular) {
+
+    .ap-visibilidade--ocultar {
+
+        &[ap-visibilidade-celular=Oculto] {
+            display: none;
+        }
+    }
+}

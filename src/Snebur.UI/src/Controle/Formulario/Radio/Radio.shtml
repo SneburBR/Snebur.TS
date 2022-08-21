@@ -1,0 +1,9 @@
+﻿<label sn-item-elemento="Caixa" class="radio_caixa">
+    <input sn-item-elemento="ControleInput" type="radio" class="radio_input" />
+    <span class="radio_marcacao"></span>
+
+    <span sn-item-elemento="Rotulo" class="radio_rotulo">Rotulo não encontrado</span>
+    <span sn-item-elemento="MensagemValidacao" class="checkbox_mensagem_validacao"></span>
+</label>
+
+

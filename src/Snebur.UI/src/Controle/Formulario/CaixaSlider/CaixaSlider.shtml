@@ -1,0 +1,27 @@
+﻿<ap-painel ap-tipo-painel="PilhaVertical" ap-largura="100%">
+    <label sn-item-elemento="Rotulo"></label>
+
+    <ap-painel sn-item-elemento="Caixa" ap-tipo-painel="PilhaHorizontalCheia">
+
+        <ap-bloco ap-largura="36px" ap-margem="0px -3px 0px 0px" >
+            <sn-botao sn-tipo-botao="Icone" ap-icone="Remove"  
+                sn-click="BtnMenos_Click" ap-tamanho-icone="Pequeno"></sn-botao>
+        </ap-bloco>
+
+        <ap-bloco ap-margem-interna="8px">
+            <input sn-item-elemento="ControleInput" class="sn-slider" type="range" style="width: 100% !important" value="0" />
+        </ap-bloco>
+
+        <ap-bloco ap-largura="36px" ap-margem="0px -3px 0px 0px" >
+            <sn-botao sn-tipo-botao="Icone" ap-icone="Add" sn-click="BtnMais_Click" ap-tamanho-icone="Pequeno"></sn-botao>
+        </ap-bloco>
+
+        <ap-bloco sn-nome="BlocoTextoValor" sn-item-elemento="ItemBlocoTextoValor" ap-largura="45px">
+            <ap-texto ap-margem="0px 2px 0px 0px" sn-nome="TextoValor" ap-alinhamento-horizontal="Direita" ap-quebrar="NaoQuebrar"></ap-texto>
+        </ap-bloco>
+
+    </ap-painel>
+
+</ap-painel>
+
+<span sn-item-elemento="MensagemValidacao" sn-visibilidade="Oculto">Mensagem erro</span>

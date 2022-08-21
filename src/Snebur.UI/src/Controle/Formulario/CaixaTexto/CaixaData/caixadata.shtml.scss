@@ -1,0 +1,71 @@
+﻿@import "../../../../../scss/variaveis.scss";
+@import "../../../../../scss/mixins.scss";
+@import "../../../../../scss/_funcoes.scss";
+
+.sn-caixa-data,
+sn-caixa-data {
+
+    .sn-destino-controles {
+        display: flex;
+        height: 100%;
+        overflow: hidden;
+        flex-wrap: nowrap;
+
+        .sn-destino-input {
+            width: calc(100% - 1.4em);
+            display: inline-flex;
+            overflow: hidden;
+
+
+            input {
+                width: 100% !important;
+                min-width: 1em !important;
+                /*font-size: 1.2em !important;*/
+            }
+        }
+
+        .sn-destino-botao-abrir-calendario {
+            width: 1.4em;
+            height: 100%;
+            display: inline-flex;
+            overflow: hidden;
+
+            ap-icone {
+                font-size: 1.3em !important;
+                display: inline !important;
+                margin-left: 4px;
+                color: #777;
+
+                &:hover {
+                    color: $cor-principal;
+                }
+            }
+        }
+    }
+
+    &.sn-direita {
+
+        input {
+            text-align: right !important;
+        }
+    }
+
+    &.sn-centro {
+
+        input {
+            text-align: center !important;
+        }
+    }
+
+    &.sn-esquerda {
+
+        input {
+            text-align: left !important;
+        }
+    }
+
+    &.sn-desabilitar,
+    &.sn-somente-leitura {
+        pointer-events: none !important;
+    }
+}

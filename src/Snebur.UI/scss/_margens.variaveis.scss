@@ -1,0 +1,37 @@
+﻿
+@import "_funcoes.scss";
+
+$margem-lateral: 1rem;
+$margem-vertical: 0.35rem;
+$margem-titulo-superior: 1rem;
+$margem-titulo-inferior: 0.5rem;
+
+
+$distancias: (0 :   0,
+              4 :   0.25rem,
+              8 :   0.5rem,
+             16 :   1rem,
+             20 :   1.5rem,
+             24 :   1.25rem,
+             28 :   1.75rem,
+             32 :   2rem,
+             36 :   2.25rem,
+             40 :   2.5rem,
+             44 :   2.75rem,
+             48 :   3rem,
+             60 :   3.75rem,
+             80 :   5rem,
+             96 : 6rem,
+            112 : 7rem,
+            128 : 8rem,
+            144 : 9rem,
+            160 : 10rem,
+            192 : 12rem,
+            224 : 14rem,
+            256 : 16rem );
+
+$posicoes: (esquerda  : left, 
+            superior  : top, 
+             direita  : right, 
+            inferior  : bottom);
+

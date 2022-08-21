@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="sn-carregando_imagens">
+
+        <h4>Carregando imagens...</h4>
+
+        <sn-controle-imagem sn-bind-imagem="{{ImagemAtual}}" class="sn-imagem_atual" ></sn-controle-imagem>
+        <h6 class="sn-progresso_atual">
+            <span sn-bind-texto="{{ImagensCarregada}}"></span>/<span sn-bind-texto="{{TotalImagens}}"></span>
+        </h6>
+        <sn-progresso sn-bind-progresso="{{Progresso}}" class="sn-progressoUploadImagens"></sn-progresso>
+    </div>
+</body>
+</html>

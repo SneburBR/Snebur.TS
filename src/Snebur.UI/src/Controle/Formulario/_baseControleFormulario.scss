@@ -1,0 +1,41 @@
+﻿
+@import "_baseControleFormulario.variaveis.scss";
+
+
+$altura-controle: auto;
+$altura-controle-celular: auto;
+
+$altura-rotulo-flutuante: 1.8em;
+$distancia-rotulo-flutuante: -1.5em;
+$distancia-rotulo: 1.4em;
+
+$tamanho-seta: 0.5em;
+
+sn-mensagem-validacao {
+
+    &:before {
+        content: "";
+        position: relative;
+        position: absolute;
+        width: $tamanho-seta;
+        height: $tamanho-seta;
+        top: -$tamanho-seta;
+        border-left: $tamanho-seta solid transparent;
+        border-right: $tamanho-seta solid transparent;
+        border-bottom: $tamanho-seta solid $cor-falha;
+    }
+
+    position: absolute;
+    box-shadow: 1px 1px 3px 2px #ccc;
+    position: absolute;
+    background-color: $cor-falha;
+    border-radius: 5px;
+    font-size: retornar-rem(12px);
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    background-color: $cor-falha;
+    border: 1px solid $cor-falha;
+    color: white;
+}

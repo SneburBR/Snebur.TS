@@ -1,0 +1,14 @@
+﻿<sn-combobox sn-bind-form="{{Entidade.Categoria}}"
+             sn-bind-lista="{{Categorias}}"
+             sn-pesquisa="CmbCategoria_Pesquisa"
+             sn-tipo="PhtoosApp.Entidades.Categoria">
+
+    <sn-item-selecionado-template>
+        <span sn-bind-texto="{{Nome}}"></span>
+    </sn-item-selecionado-template>
+
+    <sn-item-template>
+        <div class="mdl-typography--title" sn-bind-texto="{{Nome}}"></div>
+        <div sn-bind-texto="{{Descricao}}"></div>
+    </sn-item-template>
+</sn-combobox>

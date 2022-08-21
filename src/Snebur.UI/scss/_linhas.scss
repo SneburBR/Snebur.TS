@@ -1,0 +1,36 @@
+﻿
+@import "_linhas.mixins.scss";
+
+
+.base-altura-linha {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin altura-linha($altura: 0) {
+
+    @extend .base-altura-linha;
+
+    @if $altura > 0 {
+        line-height: $altura;
+        height: $altura;
+    }
+}
+
+@mixin criar-linha($altura-descricao, $altura-valor) {
+    .sn-altura-linha-#{$altura-descricao} {
+        @include altura-linha( $altura-valor);
+    }
+}
+
+
+.sn-linha {
+    @include altura-linha;
+}
+
+/*criar linhas*/
+@each $altura-descricao, $altura-valor in $alturas-linhas {
+
+    @include criar-linha($altura-descricao, $altura-valor);
+}

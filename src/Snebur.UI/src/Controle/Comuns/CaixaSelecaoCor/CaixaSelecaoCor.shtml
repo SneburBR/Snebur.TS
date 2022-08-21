@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body sn-click="BtnMostrarCores_Click">
+
+    <div sn-nome="ElementoVisualizacaoCor"
+        class="fundo-visualziacao">
+        <div sn-nome="ElementoCor"
+            class="visualizacao">
+        </div>
+    </div>
+
+    <sn-botao sn-nome="BotaoIcone">
+    </sn-botao>
+
+    <sn-controle-usuario sn-nome="ControleFlutuanteCores"
+        sn-controle="ControleFlutuanteCores">
+    </sn-controle-usuario>
+
+    <div sn-nome="ElementoVisualizacaoCorNativo"
+        class="input-color-picker-nativo"
+        sn-visibilidade="Oculto">
+
+        <input sn-nome="InputColorNativo" type="color" />
+
+    </div>
+</body>
+</html>

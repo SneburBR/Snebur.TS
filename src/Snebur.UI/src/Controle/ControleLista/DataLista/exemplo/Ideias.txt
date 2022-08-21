@@ -1,0 +1,1 @@
+﻿http://demo.code-abc.com/mysqlicrud/example_00.php

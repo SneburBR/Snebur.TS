@@ -1,0 +1,53 @@
+﻿
+%cheio-absoluto {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+ 
+
+.sn-filtro-imagem {
+     
+    @extend %cheio-absoluto;
+
+    > sobre-posicao {
+        @extend %cheio-absoluto;
+        z-index: 6000;
+        pointer-events: none;
+    }
+
+    > ciano {
+        @extend %cheio-absoluto;
+        z-index: 7000;
+        pointer-events: none;
+    }
+
+
+    > magenta {
+        @extend %cheio-absoluto;
+        z-index: 8000;
+        pointer-events: none;
+    }
+
+    > amarelo {
+        @extend %cheio-absoluto;
+        z-index: 9000;
+        pointer-events: none;
+    }
+
+    > exposicao {
+        @extend %cheio-absoluto;
+        z-index: 10000;
+        pointer-events: none;
+    }
+
+    > exposicao-extra {
+        @extend %cheio-absoluto;
+        z-index: 1100;
+        pointer-events: none;
+    }
+}

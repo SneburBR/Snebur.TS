@@ -1,0 +1,59 @@
+﻿@import "../../scss/mixins.scss";
+@import "../../scss/variaveis.scss";
+
+.sn-janela-abrir-imagens-medidas {
+    min-width: 500px;
+    max-width: 600px;
+    min-height: 185px;
+    max-height: 185px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.sn-carregando_imagens {
+    
+    h4 {
+        position: absolute;
+        left: 35%;
+        top: 0px;
+        font-weight: 400;
+    }
+
+    .sn-progresso_atual {
+        position: absolute;
+        left: 35%;
+        bottom: 10%;
+        font-weight: 400;
+        color: darkblue;
+    }
+
+    .sn-velocidade_upload {
+        position: absolute;
+        right: 5%;
+        bottom: 10%;
+        font-weight: 400;
+        color: darkblue;
+    }
+
+    .sn-progressoUploadImagens {
+        position: absolute;
+        top: 80%;
+        left: 35%;
+        width: 60%;
+    }
+
+    .sn-foto_em_progresso {
+        width: 25%;
+        border: 2px solid grey;
+        position: absolute;
+        display: inline-block;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50% );
+        transform: translateY(calc(-50% + 1px - 1px ));
+    }
+
+    .sn-imagem_atual {
+        position: static;
+    }
+}

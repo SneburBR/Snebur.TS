@@ -1,0 +1,132 @@
+﻿
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Regular.woff2) format('woff2'), url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Material Icons Outlined';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Outlined.woff2) format('woff2'), url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Outlined.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Material Icons Sharp';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Sharp.woff2) format('woff2'), url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Sharp.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Material Icons Round';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Round.woff2) format('woff2'), url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-Round.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Material Icons Two Tone';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-TwoTone.woff2) format('woff2'), url(https://cdn.sigi.com.br/resources/fonts/icons/material/MaterialIcons-TwoTone.woff) format('woff');
+}
+
+sn-icone,
+ap-icone,
+.sn-icone,
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 1.5rem;
+    /*line-height: 1;*/
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    /*direction: ltr;*/
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+    display: inline-flex;
+    /*display: inline;*/
+}
+
+sn-icone,
+ap-icone,
+.sn-icone,
+.material-icons {
+
+    &.sn-tamanho-icone--pequeno {
+        font-size: 1rem;
+    }
+
+    &.sn-tamanho-icone--padrao {
+        font-size: 1.5rem;
+    }
+
+    &.sn-tamanho-icone--medio {
+        font-size: 2rem;
+    }
+
+    &.sn-tamanho-icone--grande {
+        font-size: 3rem;
+    }
+}
+
+.sn-tamanho-icone--pequeno {
+
+    sn-icone,
+    ap-icone,
+    .sn-icone,
+    .material-icons {
+        font-size: 1rem;
+    }
+}
+
+.sn-tamanho-icone--padrao {
+
+    sn-icone,
+    ap-icone,
+    .sn-icone,
+    .material-icons {
+        font-size: 1.5rem;
+    }
+}
+
+.sn-tamanho-icone--medio {
+
+    sn-icone,
+    ap-icone,
+    .sn-icone,
+    .material-icons {
+        font-size: 2rem;
+    }
+}
+
+.sn-tamanho-icone--grande {
+
+    sn-icone,
+    ap-icone,
+    .sn-icone,
+    .material-icons {
+        font-size: 3rem;
+    }
+}
+
+.sn-icone-espelhar {
+
+    ap-icone {
+        transform: scale(-1);
+    }
+}
+
+.sn-icone-90 {
+    ap-icone {
+        transform: rotate(90deg)
+    }
+}

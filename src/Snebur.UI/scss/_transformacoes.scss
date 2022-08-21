@@ -1,0 +1,35 @@
+﻿
+@mixin Scale($valor) {
+    transform: scale($valor);
+}
+
+@mixin Rotate($valor) {
+    transform: rotate($valor);
+}
+
+@for $i from 1 through 9 {
+
+    $valor: $i * 10;
+    $escala: ($valor / 100);
+
+
+    .sn-aumentar-#{$valor} {
+        @include Scale($escala + 1);
+    }
+
+    .sn-diminuir-#{$valor} {
+        @include Scale( (1 - $escala ));
+    }
+}
+
+.sn-rotacionar-90 {
+    @include Rotate(90deg);
+}
+
+.sn-rotacionar-180 {
+    @include Rotate(180deg);
+}
+
+.sn-rotacionar-270 {
+    @include Rotate(-90deg);
+}

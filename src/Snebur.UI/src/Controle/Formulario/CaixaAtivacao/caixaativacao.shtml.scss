@@ -1,0 +1,90 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+
+
+sn-caixa-ativacao,
+.sn-caixa-ativacao {
+    height: auto;
+    width: auto;
+    display: inline-flex;
+
+
+    > conteudo-apresentacao {
+        background-color: #eee;
+        border: 2px solid #ccc;
+        border-radius: 7px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    label[sn-item-elemento=Rotulo],
+    label[sn-item-elemento=MensagemValidacao] {
+        display: none !important;
+    }
+
+    input[sn-item-elemento=ControleInput] {
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 0;
+    }
+
+    ap-bloco-item[sn-nome=BlocoIndicacao] {
+        position: absolute;
+        left: 0;
+        color: white;
+        font-weight: 700;
+        position: relative;
+        border-radius: 5px;
+        background-color: $cor-sucesso;
+        transition-duration: .15s;
+        transition-property: transform background-color;
+
+        ap-texto[sn-nome=TextoAtivado] {
+            position: absolute;
+            opacity: 1;
+            transition-duration: .15s;
+            transition-property: opacity;
+           /* transform: translateX(100%);*/
+        }
+
+
+        ap-texto[sn-nome=TextoDesativado] {
+            position: absolute;
+            opacity: 0;
+            transition-duration: .15s;
+            transition-property: opacity;
+        }
+
+
+        > conteudo-apresentacao {
+            border-radius: 5px;
+        }
+    }
+
+    &.sn-caixa-ativacao-is-ativado--true {
+        ap-bloco-item[sn-nome=BlocoIndicacao] {
+            background-color: $cor-sucesso;
+            transform: translateX(100%);
+        }
+    }
+
+    &.sn-caixa-ativacao-is-ativado--false {
+
+        ap-bloco-item[sn-nome=BlocoIndicacao] {
+            background-color: $cor-falha !important;
+        }
+
+        ap-texto[sn-nome=TextoAtivado] {
+            position: absolute;
+            opacity: 0 !important;
+            /*transform: translateX(100%);*/
+        }
+         
+        ap-texto[sn-nome=TextoDesativado] {
+            position: absolute;
+            opacity: 1 !important;
+        }
+    }
+}

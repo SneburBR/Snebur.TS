@@ -1,0 +1,60 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+$cor-botao-logico: rgba(0, 0, 0, 1);
+$border-radius-botao-logico: 0px;
+
+
+@mixin botao-logico($transparencia-rgba) {
+
+    &:hover,
+    &:focus:not(:active) {
+        background-color: transparentize($transparencia-rgba, .8) !important;
+    }
+
+    &.botao-logico-verdadeiro {
+        background-color: transparentize($transparencia-rgba, .7) !important;
+    }
+}
+
+
+.sn-botao-logico {
+    display: inline-block;
+    display: inline-flex;
+    user-select: none;
+
+    > conteudo-apresentacao {
+        @include botao-logico($cor-botao-logico);
+        border-radius: $border-radius-botao-logico;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    input[type=button] {
+        position: absolute;
+        opacity: 0;
+    }
+}
+
+.sn-botao-logico-verdadeiro-padrao {
+
+    > conteudo-apresentacao {
+        background-color: #aaa !important;
+
+
+        &:hover {
+            background-color: #888 !important;
+        }
+    }
+}
+
+.sn-botao-logico-falso-padrao {
+
+    > conteudo-apresentacao {
+        background-color: #ccc;
+
+        &:hover {
+            background-color: #eee !important;
+        }
+    }
+}

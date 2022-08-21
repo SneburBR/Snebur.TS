@@ -1,0 +1,14 @@
+﻿@import "../../../scss/_cores.variaveis.scss";
+@import "../../../scss/_funcoes.scss";
+
+$cor-rotulo-sem-focus: #aaa;
+$cor-desabilitado: silver;
+$cor-rotulo-valido: $cor-principal;
+
+$tamanho-fonte-rotulo: retornar-em(14px);
+$tamanho-fonte-rotulo-flutuante: retornar-em(13px);
+$tamanho-fonte-validacao: retornar-em(12px);
+$tamanho-fonte-input: retornar-em(14px);
+ 
+$cor-linha-horizontal: silver;
+ 

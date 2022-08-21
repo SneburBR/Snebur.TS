@@ -1,0 +1,105 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+/*$cor-menu-fundo: #808080;*/
+/*$cor-menu-fundo: white;*/
+
+$cor-menu-fundo: #2a2a2a;
+
+$cor-menu-selecionado: #6d6d6d;
+/*$cor-menu-selecionado: red;*/
+/*$cor-menu-texto: #7d7d7d;*/
+
+$cor-menu-texto:#efefef;
+
+/*$cor-menu-texto: rgb(186, 105, 200);*/
+
+$cor-menu-seta: #5664c3;
+$altura-menu: 3rem;
+$margem-padrao: 1rem;
+
+.sn-menu-sanfona {
+
+    .sn-menu-item {
+        font-size: retornar-rem(14px);
+    }
+}
+
+sn-menu {
+
+    color: $cor-menu-texto;
+    background-color: $cor-menu-fundo;
+
+}
+
+.sn-base-menu {
+    cursor: pointer;
+    /*color: $cor-menu-texto;*/
+    position: relative;
+    font-size: retornar-rem(16px);
+
+    .local-menu-corpo {
+        line-height: $altura-menu;
+        height: $altura-menu;
+        background-color: $cor-menu-fundo;
+        vertical-align: middle;
+        white-space: nowrap;
+
+        > * {
+            line-height: $altura-menu;
+            height: $altura-menu;
+            vertical-align: middle;
+        }
+
+        .local-recipiente-icone {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: $margem-padrao;
+        }
+
+        .local-rotulo {
+            margin-left: retornar-rem(10px);
+            text-overflow: ellipsis;
+            /*line-height: $altura-menu;*/
+        }
+
+        .local-icone-seta {
+            float: right;
+            color: $cor-menu-seta;
+            /*line-height: $altura-menu;*/
+        }
+
+        ap-icone,
+        .material-icons {
+            line-height: $altura-menu;
+        }
+
+        &:hover {
+            background-color: darken($cor-menu-fundo, 10%);
+        }
+
+        &.local-is-selecionado {
+            background-color: #444;
+            color: #ccc;
+            background-color: $cor-menu-selecionado;
+            color: white;
+        }
+
+     /*   &.local-is-selecionado-teste-ideraldo {
+            background-color: $cor-menu-selecionado;
+            color: white;
+        }*/
+    }
+}
+
+.menu-cor-fundo {
+    background: $cor-menu-fundo;
+}
+
+.menu-superior-cabecalho {
+    border-bottom: 1px solid #7d7d7d;
+}
+
+.texto-destacado {
+    font-weight: 600;
+}

@@ -1,0 +1,44 @@
+﻿@import "../../../../../scss/_funcoes.scss";
+
+sn-combobox,
+sn-combobox-enum,
+sn-combobox-nn {
+
+    sn-combobox-item-selecionado,
+    .sn-combobox-item-selecionado {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+        height: auto;
+        top: 0.1em;
+        
+        min-height: retornar-em(28px) !important;
+        /*font-size: retornar-em(14px);*/
+        
+
+        .item-template {
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+
+            > contexto-apresentacao {
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        .bloco-botao-fechar {
+            position: absolute !important;
+            right: 0;
+            top: 0;
+
+            sn-botao {
+                top: retornar-em(2px);
+            }
+        }
+    }
+}

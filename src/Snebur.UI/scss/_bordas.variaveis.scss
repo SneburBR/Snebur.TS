@@ -1,0 +1,17 @@
+﻿@import "_cores.variaveis.scss";
+
+$largura-borda-padrao: 0.16rem;
+$cor-borda-padrao: $cor-cinza-300;
+$borda-redonda: .25rem !default;
+$borda-redonda-p: .2rem !default;
+$borda-redonda-g: .3rem !default;
+
+$larguras-borda: (1,2,3,4,5,10,15,20,25, 30,40,50);
+
+$destinos-borda: (tudo, superior,esquerda, direita, inferior);
+
+$destinos-borda-mapeamento: (tudo : '-', 
+                            superior : '-top-', 
+                            inferior :'-bottom-', 
+                            esquerda :'-left-',
+                            direita :'-right-');

@@ -1,0 +1,38 @@
+﻿<div sn-item-elemento="LocalRotuloFlutuante" class="local-rotulo-flutuante"></div>
+<div sn-item-elemento="Caixa" class="caixa-texto">
+
+    <textarea
+        class="input-texto"
+        sn-item-elemento="ControleInput"
+        autocomplete="off"
+        rows="5"
+        style="width: 100%; height: 100%">
+     
+    </textarea>
+    <textarea-espelho sn-nome="ElementoInputEspelho"></textarea-espelho>
+
+    <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+    <div class="linha-horizontal-externa">
+        <div class="linha-horizontal">
+        </div>
+    </div>
+</div>
+<ap-bloco
+    ap-altura="16px"
+    sn-visibilidade="{{IsMostrarContadorCaracteres}}, Origem=thisform">
+    <ap-bloco ap-margem="0px 4px 0px 0px">
+        <ap-texto ap-tipografia="Descricao2" ap-quebrar="NaoQuebrar">
+            <span sn-bind="{{ContadorCaracteres}}, Origem=thisform"></span>&nbsp;restantes
+        </ap-texto>
+    </ap-bloco>
+</ap-bloco>
+
+<div class="mensagem-validacao" sn-item-elemento="MensagemValidacao"></div>
+<sn-controle-usuario
+    sn-nome="CaixaAreaListaSugestao"
+    sn-controle="CaixaAreaListaSugestao"
+    sn-bind-data-source="{{SugestoesFiltrada}}, Origem=thisform">
+</sn-controle-usuario>
+
+
+

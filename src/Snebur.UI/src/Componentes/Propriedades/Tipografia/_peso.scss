@@ -1,0 +1,67 @@
+﻿
+@import "../../../../scss/_tipografias.variaveis.scss";
+
+
+@mixin PesoFonte($peso) {
+    font-weight: $peso !important;
+
+    > conteudo-apresentacao[class*='ap-tipografia--'] {
+        font-weight: $peso !important;
+
+        input {
+            font-weight: $peso !important;
+        }
+    }
+}
+
+.ap-peso-fonte--super-leve {
+    @include PesoFonte($font-super-leve);
+
+    &.ap-peso-fonte--super-leve [class*='ap-tipografia--'] {
+        @include PesoFonte($font-super-leve);
+    }
+}
+
+.ap-peso-fonte--leve {
+    @include PesoFonte($font-leve);
+
+    &.ap-peso-fonte--leve[class*='ap-tipografia--'] {
+        @include PesoFonte($font-leve);
+    }
+}
+
+.ap-peso-fonte--normal {
+    @include PesoFonte($font-normal);
+
+    &.ap-peso-fonte--normal[class*='ap-tipografia--'] {
+        @include PesoFonte($font-normal);
+    }
+}
+
+.ap-peso-fonte--negrito {
+
+    &.ap-peso-fonte--negrito[class*='ap-tipografia--'] {
+        @include PesoFonte($font-negrito);
+    }
+
+    @include PesoFonte($font-negrito);
+}
+
+.ap-peso-fonte--pesado {
+
+    &.ap-peso-fonte--pesado[class*='ap-tipografia--'] {
+        @include PesoFonte($font-pesada);
+    }
+
+    @include PesoFonte($font-pesada);
+}
+
+
+.ap-peso-fonte--super-pesado {
+
+    &.ap-peso-fonte--super-pesado[class*='ap-tipografia--'] {
+        @include PesoFonte($font-super-pesado);
+    }
+
+    @include PesoFonte($font-super-pesado);
+}

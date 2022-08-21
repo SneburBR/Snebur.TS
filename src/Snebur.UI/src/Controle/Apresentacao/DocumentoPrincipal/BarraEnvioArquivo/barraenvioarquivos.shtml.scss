@@ -1,0 +1,33 @@
+﻿@import "../../../../../scss/mixins.scss";
+@import "../../../../../scss/variaveis.scss";
+
+sn-barra-envio-arquivo,
+.sn-barra-envio-arquivos {
+
+    $altura-padrao-barra: 0.3rem;
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $altura-padrao-barra;
+    background-color: rgba(255,0,0,0.8);
+    /*background-color: #FFF;*/
+    z-index: 100000000;
+
+    .sn-progresso-envio-arquivos {
+        height: $altura-padrao-barra;
+        /*border-radius: 3px;*/
+        background-color: rgba(0,255,0,1);
+        position: relative;
+        left: 0;
+        top: 0;
+    }
+
+    .sn-progresso-envio-arquivos-restante {
+        position: relative;
+        height: $altura-padrao-barra;
+        background-color: rgba(255,0,0,0.7);
+        right: 0;
+    }
+}

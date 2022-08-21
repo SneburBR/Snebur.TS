@@ -1,0 +1,23 @@
+﻿
+@mixin Scale($valor) {
+    transform: scale($valor);
+}
+
+@mixin Rotate($valor) {
+    transform: rotate($valor+deg);
+}
+
+@for $i from 1 through 9 {
+
+    $valor: $i * 10;
+    $escala: ($valor) / 100;
+
+
+    .zs-aumentar-#{$valor} {
+        @include Scale($escala + 1);
+    }
+
+    .zs-diminuir-#{$valor} {
+        @include Scale($escala - 1);
+    }
+}

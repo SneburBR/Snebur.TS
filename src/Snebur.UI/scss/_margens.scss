@@ -1,0 +1,100 @@
+﻿@import "_margens.variaveis.scss";
+
+
+
+@mixin criar-margem($prefixo, $sufixo, $posicao, $posicao-valor, $distancia, $distancia-valor) {
+
+    $prefixo-abreviado: str-slice($prefixo, 0,1);
+    $sufixo-abreviado: str-slice($sufixo, 0,1);
+    $posicao-abreviado: str-slice($posicao, 0,1);
+
+    $propriedade-estilo: if($sufixo == interna, padding, margin);
+    $sufixo: ajustar-sufixo($sufixo);
+    $posicao: ajustar-sufixo($posicao);
+    $distancia: ajustar-sufixo($distancia+'');
+    $posicao-valor: ajustar-sufixo($posicao-valor);
+
+    $sufixo-abreviado: ajustar-sufixo($sufixo-abreviado);
+    $posicao-abreviado: ajustar-sufixo($posicao-abreviado);
+
+
+
+    .sn-#{$prefixo-abreviado}#{$sufixo-abreviado}#{$posicao-abreviado}#{$distancia},
+    .sn-#{$prefixo}#{$sufixo}#{$posicao}#{$distancia} {
+
+        @if $posicao == -vertical {
+            #{$propriedade-estilo}-top: $distancia-valor !important;
+            #{$propriedade-estilo}-bottom: $distancia-valor !important;
+        }
+        @else if $posicao == -horizontal {
+            #{$propriedade-estilo}-left: $distancia-valor !important;
+            #{$propriedade-estilo}-right: $distancia-valor !important;
+        }
+        @else {
+            #{$propriedade-estilo}#{$posicao-valor}: $distancia-valor !important;
+        }
+    }
+}
+
+@include criar-margem(margem, '', '', '', 0, 0);
+@include criar-margem(sem-margem, '', '', '', '', 0);
+
+
+@each $distancia, $distancia-valor in $distancias {
+
+    @include criar-margem(margem, '', '', '', $distancia, $distancia-valor);
+    @include criar-margem(margem, '', vertical, vertical, $distancia, $distancia-valor);
+    @include criar-margem(margem, '', horizontal, horizontal, $distancia, $distancia-valor);
+
+
+    @each $posicao, $posicao-valor in $posicoes {
+
+        @include criar-margem(margem, '', $posicao, $posicao-valor, $distancia, $distancia-valor);
+    }
+}
+
+/*margens internas paddings*/
+@include criar-margem(margem, interna, '', '', 0, 0);
+@include criar-margem(sem-margem, interna, '', '', '', 0);
+
+@each $distancia, $distancia-valor in $distancias {
+
+    @include criar-margem(margem, 'interna', '', '', $distancia, $distancia-valor);
+    @include criar-margem(margem, 'interna', vertical, vertical, $distancia, $distancia-valor);
+    @include criar-margem(margem, 'interna', horizontal, horizontal, $distancia, $distancia-valor);
+
+
+    @each $posicao, $posicao-valor in $posicoes {
+
+        @include criar-margem(margem, '', $posicao, $posicao-valor, $distancia, $distancia-valor);
+    }
+}
+
+/*abreviações*/
+
+ 
+
+.sn-margem-titulo {
+    margin-top: $margem-titulo-superior;
+    margin-left: $margem-titulo-inferior;
+}
+
+.sn-centro {
+    text-align: center;
+}
+
+.sn-esquerda {
+    text-align: left;
+}
+
+.sn-direita {
+    text-align: right;
+}
+
+.sn-lado-esquerdo {
+    float: left;
+}
+
+.sn-lado-direito {
+    float: right;
+} 

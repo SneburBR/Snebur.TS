@@ -1,0 +1,48 @@
+﻿
+<label class="rotulo" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+<ap-painel ap-tipo-painel="PilhaVertical" ap-largura="100%">
+    <ap-bloco ap-altura="20px"></ap-bloco>
+    <ap-bloco sn-nome="BlocoItensTemplate" ap-largura="100%" class="bloco-itens-template">
+       
+        <ap-painel sn-item-elemento="Caixa" ap-tipo-painel="PilhaHorizontalCheia" class="caixa">
+            <ap-bloco class="sn-destino-itens-selecionado"  >
+
+                <sn-combobox-nn-itens-selecionado sn-nome="ControleItensSelecionado">
+                </sn-combobox-nn-itens-selecionado>
+
+            </ap-bloco>
+
+            <div sn-item-elemento="BlocoSeta"
+                class="sn-combobox-seta">
+                <seta></seta>
+
+            </div>
+
+       <!--     <ap-bloco sn-nome="BlocoSeta" ap-largura="20px" ap-altura="100%">
+                <ap-bloco class="sn-combobox-seta" ap-alinhamento-vertical="Superior" >
+
+                </ap-bloco>
+            </ap-bloco>-->
+
+        </ap-painel>
+        <ap-bloco ap-altura="1px" ap-cor-fundo="Cinza">
+            <div class="linha-horizontal mostrar-lista"></div>
+        </ap-bloco>
+    </ap-bloco>
+    <ap-bloco sn-nome="BlocoMensagemValidacao">
+        <div class="mensagem-validacao" sn-item-elemento="MensagemValidacao">O campo xxx é requerido</div>
+    </ap-bloco>
+</ap-painel>
+
+<input class="input-texto" sn-item-elemento="ControleInput" type="hidden" style="display: none" />
+
+
+
+<!--
+<sn-combobox-nn-itens-selecionado sn-nome="ControleItensSelecionado" class="sn-combobox-nn-itens-selecionado">
+</sn-combobox-nn-itens-selecionado>
+<input sn-item-elemento="ControleInput" class="mdl-textfield__input sn-combobox-nn-input" type="text" />
+<label sn-item-elemento="Rotulo" class="mdl-textfield__label">Rotulo não encontrado</label>
+<div sn-item-elemento="MensagemValidacao" class="mdl-textfield__error">Mensagem erro</div>
+-->
+

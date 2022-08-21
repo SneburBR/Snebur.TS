@@ -1,0 +1,132 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+sn-controle-imagens,
+sn-controle-imagem {
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    > conteudo-apresentacao {
+        overflow: hidden;
+        display: block;
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+
+        > figure {
+            overflow: hidden;
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            margin: 0;
+            top: 0;
+            left: 0;
+
+
+            > sobre-posicao {
+                overflow: hidden;
+                display: block;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                margin: 0;
+                z-index: 1000;
+
+
+                &.sn-imagem-orientacao--quadrada {
+                    @include centralizar-horizontal-vertical;
+                    position: absolute !important;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-dentro {
+                    @include centralizar-horizontal-vertical;
+                    position: absolute !important;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-cheio {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-fora {
+
+
+                    &.sn-imagem-orientacao--horizontal {
+                        @include centralizar-horizontal;
+                        top: 0 !important;
+                        position: absolute !important;
+                    }
+
+                    &.sn-imagem-orientacao--vertical {
+                        @include centralizar-vertical;
+                        left: 0 !important;
+                        position: absolute !important;
+                    }
+                }
+
+                &.sn-imagem-preenchimento--esticar {
+                    position: absolute !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                }
+            }
+
+
+            > img {
+                position: relative;
+
+                &.sn-imagem-orientacao--quadrada {
+                    @include centralizar-horizontal-vertical;
+                    max-height: 100% !important;
+                    max-width: 100% !important;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-dentro {
+                    @include centralizar-horizontal-vertical;
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-cheio {
+                    max-height: 100%;
+                    max-width: 100%;
+                }
+
+                &.sn-imagem-preenchimento--uniforme-fora {
+
+
+                    &.sn-imagem-orientacao--horizontal {
+                        @include centralizar-horizontal;
+                        height: 100%;
+                    }
+
+                    &.sn-imagem-orientacao--vertical {
+                        @include centralizar-vertical;
+                        width: 100%;
+                    }
+
+                    &.sn-imagem-recipiente--ajustar-largura {
+                        @include centralizar-vertical;
+                        width: 100%;
+                    }
+
+                    &.sn-imagem-recipiente--ajustar-altura {
+                        @include centralizar-horizontal;
+                        height: 100%;
+                    }
+                }
+
+                &.sn-imagem-preenchimento--esticar {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

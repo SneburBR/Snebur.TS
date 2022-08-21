@@ -1,0 +1,18 @@
+﻿
+sn-controle-lista,
+sn-controle-lista-ordenacao {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    sn-itens-colecao {
+        display: block;
+        position: relative;
+        width: 100%;
+
+        sn-item-controle {
+            display: block;
+            position:relative;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+﻿namespace Snebur.Utilidade
+{
+    export class EntidadeUtil
+    {
+        public static RetornarDescricaoEntidade(entidade: d.Entidade): string
+        {
+            const tipoEntidade = entidade.GetType() as r.TipoEntidade;
+            const propriedadeDescricao = tipoEntidade.RetornarPropriedadeDescricao();
+            return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeDescricao);
+        }
+
+        public static RetornarPropriedadeChaveEstrangeira(tipoEntidade: r.TipoEntidade, propriedade: r.Propriedade, ignorarErro: boolean = false): r.Propriedade
+        {
+            const atributoChaveEstrangeira = EntidadeUtil.RetornarAtributoChaveEstrangeira(propriedade, ignorarErro);
+            return tipoEntidade.RetornarPropriedade(atributoChaveEstrangeira.NomePropriedade);
+        }
+
+        public static RetornarAtributoChaveEstrangeira(propriedade: r.Propriedade, ignorarErro = false): d.Atributos.IChaveEstrangeiraAttribute
+        {
+            const atributoChaveEstrangeira = propriedade.Atributos.OfType<Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute>(Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute).SingleOrDefault();
+            if (atributoChaveEstrangeira != null)
+            {
+                return atributoChaveEstrangeira;
+            }
+
+            const atributoChaveEstrangeiraRelacaoUmUm = propriedade.Atributos.OfType<Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute>(Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute).SingleOrDefault();
+            if (atributoChaveEstrangeiraRelacaoUmUm != null)
+            {
+                return atributoChaveEstrangeiraRelacaoUmUm;
+            }
+
+            if (!ignorarErro)
+            {
+                throw new ErroNaoDefinido(`O atributo  ChaveEstrangeira não foi encontrado na propriedade ${propriedade.Nome}  na entidade ${propriedade.TipoDeclarado.Nome}`, this);
+            }
+            return null;
+        }
+
+        public static RetornarIdChaveEstrangeira(entidade: d.Entidade, propriedade: r.Propriedade): number
+        {
+            const valorEntidade = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedade);
+            if (valorEntidade instanceof d.Entidade)
+            {
+                return (valorEntidade as d.Entidade).Id;
+            }
+            else
+            {
+                const propriedadeChaveEstrangeira = EntidadeUtil.RetornarPropriedadeChaveEstrangeira(entidade.GetType() as r.TipoEntidade, propriedade);
+                return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeChaveEstrangeira);
+            }
+        }
+
+        public static RetornarDicionario(entidades: Array<d.Entidade>): DicionarioSimples<d.Entidade>
+        {
+            const dicionario = new DicionarioSimples<d.Entidade>();
+            const len = entidades.length;
+            for (let i = 0; i < len; i++)
+            {
+                const entidade = entidades[i];
+                u.EntidadeUtil.VarrerEntidadeInterno(dicionario, entidade);
+            }
+            return dicionario;
+        }
+
+        private static VarrerEntidadeInterno(dicionario: DicionarioSimples<d.Entidade>, entidade: d.Entidade): void
+        {
+            if (dicionario.ContainsKey(entidade.RetornarIdentificadorReferencia()))
+            {
+                return;
+            }
+            dicionario.Add(entidade.RetornarIdentificadorReferencia(), entidade);
+
+            const propriedades = entidade.GetType().RetornarPropriedades();
+            const propriedadesEntidade = propriedades.Where(x => x.Tipo instanceof r.TipoEntidade).ToList();
+            for (const propriedadeEntidade of propriedadesEntidade)
+            {
+                const entidadeRelacao = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeEntidade.Nome);
+                if (entidadeRelacao instanceof d.Entidade)
+                {
+                    u.EntidadeUtil.VarrerEntidadeInterno(dicionario, entidadeRelacao);
+                }
+            }
+
+            const propriedadesListaEntidades = propriedades.Where(x => x.Tipo instanceof r.TipoListaEntidade).ToList();
+            for (const propriedadeTipoListaEntidade of propriedadesListaEntidades)
+            {
+                const entidadesRelacaoFilho = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeTipoListaEntidade.Nome);
+                for (const entidadeFilho of entidadesRelacaoFilho)
+                {
+                    if (entidadeFilho instanceof d.Entidade)
+                    {
+                        u.EntidadeUtil.VarrerEntidadeInterno(dicionario, entidadeFilho);
+                    }
+                }
+            }
+        }
+
+        public static IsImagem(imagem: d.IImagem): boolean
+        {
+            return imagem instanceof Entidade &&
+                imagem.DimensaoImagemMiniatura instanceof d.Dimensao &&
+                typeof imagem.TotalBytesMiniatura === "number";
+        }
+    }
+}

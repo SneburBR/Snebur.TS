@@ -1,0 +1,20 @@
+﻿
+<ap-bloco >
+    <!--ap-tipo-painel="PilhaHorizontalCheia"-->
+    <ap-bloco  sn-item-elemento="ItemTemplate" class="item-template">
+        <!--DESTINO DO ITEM TEMPLATE-->
+    </ap-bloco>
+
+    <ap-bloco class="bloco-botao-fechar"  sn-nome="BlocoBotaoFechar" ap-largura="20px" ap-margem="4px 0px">
+       
+        <sn-botao sn-click="BtnFechar_Click" 
+            sn-tipo-botao="Icone"
+            ap-cor-texto="SistemaFalha"
+            ap-tamanho-icone="Pequeno"
+            ap-tipografia="Descricao" 
+            ap-icone="Close" ></sn-botao>
+
+    </ap-bloco>
+</ap-bloco>
+
+ 

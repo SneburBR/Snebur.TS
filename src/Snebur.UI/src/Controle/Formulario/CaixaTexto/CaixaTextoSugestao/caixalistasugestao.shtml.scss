@@ -1,0 +1,29 @@
+﻿@import "../../../../../scss/variaveis.scss";
+@import "../../../../../scss/mixins.scss";
+
+
+.sn-controle-sugestoes {
+    border: 1px solid $cor-principal;
+    /*border: 3px solid #fbd242;*/
+    border-top-color: transparent !important;
+    border-top-width: 0;
+    background: white;
+    box-shadow: none;
+    margin-top: -3px;
+
+    hr{
+        background:red;
+        border:1px solid #ccc;
+        margin: 0;
+       padding:0;
+    }
+    .sn-item-sugestao {
+
+        &.sn-item-sugestao-selecionado,
+        &:hover {
+            background-color: #eaeaea;
+        }
+
+        
+    }
+}

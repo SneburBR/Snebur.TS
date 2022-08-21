@@ -1,0 +1,39 @@
+﻿@import "../../../../scss/mixins.scss";
+
+sn-botao-icone-descricao,
+.sn-botao-icone-descricao {
+    cursor: pointer;
+    display: inline-flex;
+    position: relative;
+
+    > conteudo-apresentacao {
+
+        ap-texto[sn-nome=TextoRotuloInterno] {
+            text-align: center;
+
+            > conteudo-apresentacao {
+                text-align: center;
+            }
+        }
+
+
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(150,150,150,0.2);
+        }
+
+        @include responsivo(celular) {
+            &:active,
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+    &:active:hover {
+        > conteudo-apresentacao {
+            /*border: 5px solid transparent !important;*/
+            transform: scale(0.95) !important;
+        }
+    }
+}

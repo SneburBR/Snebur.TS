@@ -1,0 +1,70 @@
+﻿$posicao: relative;
+
+.ap-alinhamento-horizontal--esquerda {
+
+}
+
+.ap-alinhamento-horizontal--centro {
+    transform: translateX(-50%);
+    transform: translateX(calc(-50% + 1px - 1px ));
+    position: $posicao;
+    left: 50%;
+
+    &.ap-alinhamento-vertical--centro {
+        transform: translate( -50%, -50%);
+        transform: translate(calc(-50% + 1px - 1px ), calc(-50% + 1px - 1px ));
+    }
+
+    &.ap-alinhamento-vertical--inferior {
+        transform: translate( -50%, -100%);
+        transform: translate(calc(-50% + 1px - 1px ), calc( -100% + 1px - 1px));
+    }
+}
+
+.ap-alinhamento-horizontal--direita {
+    transform: translateX(-100%);
+    transform: translateX(calc(-100% + 1px - 1px));
+    position: $posicao;
+    left: 100%;
+
+    &.ap-alinhamento-vertical--centro {
+        transform: translate(-100%, -50% );
+        transform: translate(calc(-100% + 1px - 1px), calc(-50% + 1px - 1px ));
+    }
+
+    &.ap-alinhamento-vertical--inferior {
+        transform: translate(-100%, -100%);
+        transform: translate(calc(-100% + 1px - 1px), calc( -100% + 1px - 1px));
+    }
+}
+ 
+.ap-alinhamento-vertical--superior {
+}
+
+.ap-alinhamento-vertical--centro {
+    transform: translateY(-50%);
+    transform: translateY(calc(-50% + 1px - 1px ));
+    position: $posicao;
+    top: 50%;
+}
+
+.ap-alinhamento-vertical--inferior {
+    transform: translateY(-100%);
+    transform: translateY(calc(-100% + 1px - 1px));
+    position: $posicao;
+    top: 100%;
+}
+
+
+ap-alinhamento-vertical--centro-absoluto {
+    transform: translateY(-50%);
+    transform: translateY(calc(-50% + 1px - 1px ));
+    position: absolute;
+    top: 50%;
+}
+
+ap-alinhamento-vertical--inferior-absoluto {
+    transform: translateY(-100%);
+    position: absolute;
+    top: 100%;
+}

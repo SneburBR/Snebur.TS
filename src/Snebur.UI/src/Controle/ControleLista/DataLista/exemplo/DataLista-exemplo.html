@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <meta charset="utf-8" />
+
+</head>
+<body>
+
+    <sn-data-lista sn-bind-lista="{{Pessoas}}" sn-tipo="XXXXX.Entidades.Pessoa"   >
+
+        <sn-cabecalho>
+
+            <sn-botao-novo>
+                <sn-menu>
+                    <sn-menu-item sn-tipo="XXXXX.Entidades.PessoaFisica"> Pessoa Fisica </sn-menu-item>
+                    <sn-menu-item sn-tipo="XXXXX.Entidades.PessoaJuridica"> Pessoa Jurica </sn-menu-item>
+                </sn-menu>
+            </sn-botao-novo>
+
+            <sn-pesquisa></sn-pesquisa>
+        </sn-cabecalho>
+
+        <sn-colunas>
+
+            <sn-coluna-texto sn-bind-texto="{{Nome}}" sn-tiulo="Nome">
+                <sn-coluna-titulo>
+                    <span>{{Titulo}}</span>
+                </sn-coluna-titulo>
+            </sn-coluna-texto>
+
+            <sn-coluna-texto sn-bind-texto="{{SobreNome}}" 
+                             sn-classe-titulo="classe do titulo" 
+                             class="classe da celula"></sn-coluna-texto>
+
+            <sn-coluna-personalizada>
+                <span sn-bind-texto="{{Nome}}" style="font-size:50px"></span>
+            </sn-coluna-personalizada>
+
+            <sn-coluna-checkbox sn-bind-texto=""></sn-coluna-checkbox>
+            <sn-coluna-botao sn-bind-texto=""></sn-coluna-botao>
+            <sn-coluna-combobox sn-bind-texto=""></sn-coluna-combobox>
+
+        </sn-colunas>
+
+        <sn-rodape>
+            <sn-paginacao></sn-paginacao>
+        </sn-rodape>
+    </sn-data-lista>
+
+
+</body>
+</html>

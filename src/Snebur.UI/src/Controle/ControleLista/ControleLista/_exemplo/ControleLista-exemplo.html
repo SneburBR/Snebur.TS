@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+
+    <sn-controle-lista sn-bind-lista="{{Nomes}}">
+
+        <sn-cabecalho>
+            <h1> CABEÇALHO </h1>
+        </sn-cabecalho>
+
+        <sn-item-template class="item" style="font-size:50px">
+            <span sn-bind-texto="{{.}}"></span>
+        </sn-item-template>
+
+        <sn-item-template-separador class="separador">
+            <hr />
+        </sn-item-template-separador>
+
+        <sn-rodape>
+            <h1> FIM </h1>
+        </sn-rodape>
+
+    </sn-controle-lista>
+
+</body>
+</html>

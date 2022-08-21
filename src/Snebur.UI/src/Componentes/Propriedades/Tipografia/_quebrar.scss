@@ -1,0 +1,21 @@
+﻿
+.ap-quebrar--nao-quebrar {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+
+    > conteudo-apresentacao:first-child {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        display: block !important;
+    }
+}
+
+.ap-quebrar--quebrar {
+    white-space: normal !important;
+
+    > conteudo-apresentacao:first-child {
+        white-space: normal !important;
+    }
+}

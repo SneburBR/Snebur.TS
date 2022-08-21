@@ -1,0 +1,44 @@
+﻿@import "../../../../scss/mixins.scss";
+
+sn-controle-flutuante,
+.sn-controle-flutuante {
+    display: block;
+    border: 1px solid #ccc;
+    background-color: white;
+    height: 2rem;
+    position: relative;
+    box-shadow: 2px 2px 5px 0px rgba(110,109,110,1);
+    border-radius: 4px;
+
+    .sn-barra-movimentacao {
+        background-color: #ccc;
+        overflow: hidden;
+
+        &:hover {
+            background-color: #bababa;
+        }
+
+        &:active {
+            background-color: #999;
+            cursor: grabbing;
+        }
+
+        .bloco-botao-fechar {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    &.sn-controle-flutuante-fixado {
+        box-shadow: none !important;
+        border: none;
+        position: relative;
+        display: block;
+        width: 100% !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        height: auto !important;
+    }
+}

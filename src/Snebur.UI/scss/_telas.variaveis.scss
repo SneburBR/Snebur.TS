@@ -1,0 +1,49 @@
+﻿
+
+//se alterar essas constantes precisam ser atualizadas dentro TelaUtil.ts
+
+$limite-maximo-celular: 612px;
+$limite-maximo-tablet: 1024px;
+$limite-maximo-notebook: 1440px;
+
+$limite-maximo-altura-super-pequena: 512px;
+$limite-maximo-altura-pequena: 712px;
+$limite-maximo-altura-media: 900px;
+
+$inicio-tela-tablet: $limite-maximo-celular + 1;
+$inicio-tela-notebook: $limite-maximo-tablet + 1;
+$inicio-tela-desktop: $limite-maximo-notebook + 1;
+
+
+$inicio-altura-pequena: $limite-maximo-altura-super-pequena + 1;
+$inicio-altura-media: $limite-maximo-altura-pequena + 1;
+ 
+//celular
+$tela-celular: "only screen and (max-width: " + $limite-maximo-celular + ")";
+
+//tablet
+/*$tela-tablet: " screen and (max-width:  " + $limite-maximo-tablet + ")  ";*/
+$tela-tablet: " screen and (min-width:  " + $inicio-tela-tablet + ") and (max-width: " + $limite-maximo-tablet + ")";
+
+//notebook
+/*$tela-notebook: " screen and (max-width:  " + $limite-maximo-notebook + ")  ";*/
+$tela-notebook: " screen and (min-width:  " + $inicio-tela-notebook + ") and (max-width: " + $limite-maximo-notebook + ")";
+
+//desktop
+$tela-desktop: "screen and (min-width: " + $inicio-tela-desktop + ")";
+
+
+//super-pequena
+$tela-super-pequena: "only screen and (max-height: " + $limite-maximo-altura-super-pequena + ")";
+
+//pequena
+$tela-pequena: "only screen and (max-height: " + $limite-maximo-altura-pequena + ")";
+
+//media
+$tela-media: " screen and (min-height:  " + $inicio-altura-media + ") and (max-height: " + $limite-maximo-altura-media + ")";
+
+
+
+
+//super-pequena
+$tela-tablet-super-pequena: " screen and (min-width:  " + $inicio-tela-tablet + ") and (max-width: " + $limite-maximo-tablet + ") and  (max-height: " + $limite-maximo-altura-super-pequena + ")";

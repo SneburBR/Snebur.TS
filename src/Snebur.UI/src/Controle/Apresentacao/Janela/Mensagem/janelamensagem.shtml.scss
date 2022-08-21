@@ -1,0 +1,25 @@
+﻿@import "../../../../../scss/variaveis.scss";
+@import "../../../../../scss/mixins.scss";
+
+.sn-janela-mensagem {
+    > conteudo-apresentacao {
+
+        @include responsivo(tablet, desktop) {
+            min-width: retornar-rem(300px);
+            max-width: 80%;
+            max-height: 90%;
+        }
+
+        @include responsivo(tablet) {
+            max-width: 100%;
+            max-height: 90%;
+        }
+        /*min-height: retornar-rem(150px);*/
+        sn-painel-lista[sn-nome=PainelListaBotoes] {
+
+            sn-botao {
+                min-width: retornar-rem(120px)
+            }
+        }
+    }
+}

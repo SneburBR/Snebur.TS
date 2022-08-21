@@ -1,0 +1,10 @@
+﻿<label sn-item-elemento="Rotulo"></label>
+<input sn-item-elemento="ControleInput" type="checkbox" />
+<ap-bloco sn-item-elemento="Caixa" ap-tipo-painel="PilhaHorizontal" ap-largura="150px" ap-altura="20px" sn-click="BtnAtivar_Click" >
+
+   <ap-bloco-item sn-nome="BlocoIndicacao"   ap-largura="75px" ap-altura="100%">
+       <ap-texto sn-nome="TextoDesativado" ap-alinhamento-horizontal="Centro" ap-margem="2px"> Inativo</ap-texto>
+       <ap-texto sn-nome="TextoAtivado" ap-alinhamento-horizontal="Centro" ap-margem="2px"> Ativado</ap-texto>
+   </ap-bloco-item>
+</ap-bloco>
+<span sn-item-elemento="MensagemValidacao" sn-visibilidade="Oculto">Mensagem erro</span>

@@ -1,0 +1,40 @@
+﻿
+.ap-alinhamento-texto--esquerda {
+    text-align: left !important;
+    display: inline-block !important;
+
+    > conteudo-apresentacao {
+        text-align: left !important;
+        display: block !important;
+    }
+}
+
+.ap-alinhamento-texto--centro {
+    text-align: center !important;
+    display: inline-block !important;
+
+    > conteudo-apresentacao {
+        display: block !important;
+        text-align: center !important;
+    }
+}
+
+.ap-alinhamento-texto--direita {
+    text-align: right !important;
+    display: inline-block !important;
+
+    > conteudo-apresentacao {
+        display: block !important;
+        text-align: right !important;
+    }
+}
+
+.ap-alinhamento-texto--justificado {
+    text-align: justify !important;
+    display: inline-block !important;
+
+    > conteudo-apresentacao {
+        text-align: justify !important;
+        display: block !important;
+    }
+}

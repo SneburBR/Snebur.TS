@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="../../../../Css/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+	
+    <ap-painel-vertical>
+
+        <ap-cabecalho sn-nome="PainelCabecalho" ap-altura="32px" ap-altura-linha="32px"  class="sn-barra-movimentacao">
+          
+            <ap-painel sn-nome="PainelBarraMovimentacao" ap-tipo-painel="PilhaHorizontalCheia"  ap-altura="100%" >
+                <ap-bloco>
+                  
+                    <ap-texto sn-nome="TextoTitulo" 
+                        ap-tipografia="SubTitulo"
+                        ap-alinhamento-vertical="Centro"  
+                        ap-margem="16px 0px 0px 0px"  ></ap-texto>
+
+                </ap-bloco>
+
+                <ap-bloco ap-largura="36px" 
+                    class="bloco-botao-fechar" >
+                 
+                    <sn-botao 
+                        sn-nome="BtnFecharControleFlutuante"
+                        sn-tipo-botao="Icone"
+                        ap-icone="Close"
+                        sn-click="BtnFecharControleFlutuante_Click">
+                    </sn-botao>
+
+                </ap-bloco>
+
+            </ap-painel>
+        </ap-cabecalho>
+        <ap-linha sn-item-elemento="ConteudoInterno">
+
+             [[CONTEUDO_INTERNO]]
+
+        </ap-linha>
+    </ap-painel-vertical>
+
+   
+
+
+</body>
+</html>

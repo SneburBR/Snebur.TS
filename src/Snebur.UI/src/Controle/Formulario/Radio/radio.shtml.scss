@@ -1,0 +1,103 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+$margem-vertical: 0.3em;
+$dimensao_marcacao: 1.15em;
+$dimensao_marcacao_borda: $dimensao_marcacao / 8;
+
+
+$cor-desmacado: #bbb;
+$cor-desmacado-hover: #808080;
+/*$margem : retornar-em(24px);*/
+
+sn-radio,
+.sn-radio {
+
+    &:not([class*='ap-tipografia--']) {
+        font-size: 16px;
+    }
+    /*display: inline-flex;*/
+    display: inline-block;
+    position: relative;
+    -ms-user-select: none;
+    user-select: none;
+    /*font-size: 16px;*/
+    > conteudo-apresentacao {
+        padding: $margem-vertical 0 $margem-vertical 0;
+
+        .radio_caixa {
+            cursor: pointer;
+            line-height: $dimensao_marcacao;
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(105%);
+
+                .radio_marcacao {
+                    background-color: $cor-desmacado-hover;
+                }
+            }
+
+
+            .radio_rotulo {
+                /*font-size: 16px;*/
+                display: block;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                padding-left: $dimensao_marcacao + $margem;
+
+                &:empty {
+                    display: none;
+                }
+            }
+
+            .radio_marcacao {
+                position: absolute;
+                height: $dimensao_marcacao;
+                width: $dimensao_marcacao;
+                background-color: $cor-desmacado;
+                border-radius: 50%;
+                /*opacity:0.5;*/
+                &:after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    left: ($dimensao_marcacao - ( $dimensao_marcacao / 3)) / 2;
+                    top: ($dimensao_marcacao - ( $dimensao_marcacao / 3)) / 2;
+                    width: $dimensao_marcacao / 3;
+                    height: $dimensao_marcacao / 3;
+                    border-radius: 50%;
+                    background-color: white;
+                }
+            }
+
+            .radio_input {
+                opacity: 0;
+                position: absolute;
+
+                &:checked + .radio_marcacao {
+                    background-color: $cor-principal;
+                }
+
+                &:checked + .radio_marcacao:after {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &.sn-radio-selecionado {
+
+        .radio_marcacao {
+            background-color: $cor-principal;
+
+            &:after {
+                display: block;
+            }
+        }
+
+        .radio_marcacao:after {
+            display: block !important;
+        }
+    }
+}

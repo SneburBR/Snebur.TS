@@ -1,0 +1,80 @@
+﻿@import "../../../../scss/_telas.mixins.scss";
+
+@mixin BarraRolagem {
+
+    overscroll-behavior: contain;
+
+    /*-webkit-overflow-scrolling: touch;*/
+
+
+    &::-webkit-scrollbar {
+
+        width: 8px;
+        height: 8px;
+
+        @include Responsivo(celular, tablet) {
+            width: 1px;
+            height: 1px;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    padding-right: 8px;
+}
+
+@mixin BarraRolagemVertical {
+    overscroll-behavior-y: contain;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+
+        @include Responsivo(celular, tablet) {
+            width: 1px;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    padding-right: 8px;
+}
+
+
+
+@mixin BarraRolagemHorizontal {
+
+    overscroll-behavior-y: contain;
+
+
+    &::-webkit-scrollbar {
+        height: 8px;
+
+
+        @include Responsivo(celular, tablet) {
+            height: 1px;
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    padding-right: 8px;
+}

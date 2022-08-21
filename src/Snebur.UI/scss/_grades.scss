@@ -1,0 +1,105 @@
+﻿@import "_telas.variaveis.scss";
+@import "_margens.variaveis.scss";
+
+$numero-total-coluns: 12;
+
+.sn-conteudo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $margem-lateral;
+    padding-right: $margem-lateral;
+    
+}
+
+/*flex: 0 0 $largura;*/
+.sn-painel {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width:100%;
+
+}
+/*display: flex;*/
+/*flex-wrap: wrap;*/
+.sn-coluna {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    padding-left: $margem-lateral;
+    padding-right: $margem-lateral;
+}
+
+
+
+sn-quebra-coluna {
+    display:block;
+    width:100% !important;
+    position:relative;
+}
+
+
+@mixin base-coluna {
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    padding-left: $margem-lateral / 2;
+    padding-right: $margem-lateral / 2;
+    min-height:1px;
+
+
+}
+
+.base-coluna {
+    @include base-coluna;
+}
+
+@mixin criar-coluna2($numero-colunas) {
+    width: percentage($numero-colunas / $numero-total-coluns);
+    flex: 0 0 percentage($numero-colunas / $numero-total-coluns);
+}
+
+
+@for $i from 1 through $numero-total-coluns {
+
+    .sn-coluna-#{$i} {
+        @extend .base-coluna;
+        @include criar-coluna2($i);
+    }
+}
+
+@media #{$tela-celular} {
+
+    .coluna-cheia {
+        @include base-coluna;
+        width: 100%;
+    }
+
+
+    @for $i from 1 through $numero-total-coluns {
+        .sn-coluna-#{$i} {
+            @extend .coluna-cheia;
+        }
+    }
+}
+
+@mixin criar-colunas-tela($tela, $prefixo) {
+
+    @media #{$tela} {
+         
+        @for $i from 1 through $numero-total-coluns {
+
+            .sn-coluna-#{$prefixo}-#{$i} {
+                @include base-coluna;
+                @include criar-coluna2($i);
+            }
+        }
+    }
+}
+
+
+@include criar-colunas-tela($tela-celular, celular);
+@include criar-colunas-tela($tela-tablet, tablet);
+@include criar-colunas-tela($tela-notebook, notebook);
+@include criar-colunas-tela($tela-desktop, desktop); 

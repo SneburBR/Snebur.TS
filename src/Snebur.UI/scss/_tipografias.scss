@@ -1,0 +1,213 @@
+﻿@import "_tipografias.variaveis.scss";
+@import "_margens.variaveis.scss";
+@import "_telas.mixins.scss";
+
+:root {
+    --tamanho-fonte-documento: 16px;
+} 
+
+html, body {
+    font-family: $fonte-padrao;
+    font-size: $tamanho-fonte-pixel-inicial;
+    font-weight: map-get($dicionario-font-weight, light);
+}
+
+
+
+input, textarea, select, option {
+    font-family: $tamanho-fonte-padrao;
+}
+
+.sn-texto {
+    font-size: $tamanho-fonte-padrao;
+}
+
+/*#region mostrar padrao*/
+
+.sn-texto-padrao {
+    font-size: $tamanho-fonte-padrao;
+}
+
+
+.sn-altua-linha-texto-padrao {
+    height: $altura-linha-texto-padrao;
+    line-height: $altura-linha-texto-padrao;
+}
+
+.sn-mostrar-padrao {
+    font-size: $tamanho-fonte-padrao;
+    line-height: $altura-linha-texto-padrao;
+    height: $altura-linha-texto-padrao;
+}
+
+/*#endregion*/
+
+/*#region mostrar pequeno*/
+
+.sn-texto-pequeno {
+    font-size: $tamanho-fonte-pequeno;
+}
+
+
+.sn-altua-linha-texto-pequeno {
+    height: $altura-linha-texto-pequeno;
+    line-height: $altura-linha-texto-pequeno;
+}
+
+.sn-mostrar-pequeno {
+    font-size: $tamanho-fonte-pequeno;
+    line-height: $altura-linha-texto-pequeno;
+    height: $altura-linha-texto-pequeno;
+}
+
+/*#endregion*/
+
+/*#region mostrar medio*/
+
+.sn-texto-medio {
+    font-size: $tamanho-fonte-medio;
+}
+
+.sn-altua-linha-texto-medio {
+    height: $altura-linha-texto-medio;
+    line-height: $altura-linha-texto-medio;
+}
+
+.sn-mostrar-medio {
+    font-size: $tamanho-fonte-medio;
+    line-height: $altura-linha-texto-medio;
+    height: $altura-linha-texto-medio;
+}
+
+/*#endregion*/
+
+/*#region mostrar grande*/
+
+.sn-texto-grande {
+    font-size: $tamanho-fonte-grande;
+}
+
+.sn-altua-linha-texto-grande {
+    height: $altura-linha-texto-grande;
+    line-height: $altura-linha-texto-grande;
+}
+
+.sn-mostrar-grande {
+    font-size: $tamanho-fonte-grande;
+    line-height: $altura-linha-texto-grande;
+    height: $altura-linha-texto-grande;
+}
+
+/*#endregion*/
+
+
+/*#region sub-titulo*/
+
+.sn-texto-sub-titulo {
+    font-size: $tamanho-fonte-sub-titulo;
+}
+
+.sn-altua-sub-linha-titulo {
+    height: $altura-linha-sub-tilulo;
+    line-height: $altura-linha-sub-tilulo;
+}
+
+.sn-sub-titulo {
+    font-size: $tamanho-fonte-sub-titulo;
+    line-height: $altura-linha-sub-tilulo;
+    height: $altura-linha-sub-tilulo;
+}
+
+/*#endregion*/
+
+
+/*#region titulo*/
+
+.sn-texto-titulo {
+    font-size: $tamanho-fonte-titulo;
+}
+
+.sn-altua-linha-titulo {
+    height: $altura-linha-tilulo;
+    line-height: $altura-linha-tilulo;
+}
+
+.sn-titulo {
+    font-size: $tamanho-fonte-titulo;
+    line-height: $altura-linha-tilulo;
+    height: $altura-linha-tilulo;
+}
+
+
+
+/*#endregion*/
+
+
+
+
+/*#region estilos*/
+
+.sn-leve,
+.sn-leve[class*='ap-tipografia--'] {
+    font-weight: $font-leve;
+
+    input {
+        font-weight: $font-leve !important;
+    }
+}
+
+.sn-pesado,
+.sn-pesado[class*='ap-tipografia--'] {
+    font-weight: $font-pesada !important;
+
+    input {
+        font-weight: $font-pesada !important;
+    }
+}
+
+.sn-negrito,
+.sn-negrito[class*='ap-tipografia--'] {
+    font-weight: $font-negrito !important;
+
+    > conteudo-apresentacao[class*='ap-tipografia--'] {
+        font-weight: $font-negrito !important;
+    }
+
+    input {
+        font-weight: $font-negrito !important;
+    }
+}
+
+.sn-super-pesada,
+.sn-super-pesada[class*='ap-tipografia--'],
+.sn-super-negrito,
+.sn-super-negrito[class*='ap-tipografia--'] {
+    font-weight: $font-super-pesado !important;
+
+    > conteudo-apresentacao[class*='ap-tipografia--'] {
+        font-weight: $font-super-pesado !important;
+    }
+
+    input {
+        font-weight: $font-super-pesado !important;
+    }
+}
+ 
+/*#endregion*/
+.sn-caixa-alta {
+    text-transform: uppercase
+}
+
+.sn-input-caixa-alta {
+
+    input[type=search],
+    input[type=tel],
+    input[type=text] {
+        text-transform: uppercase;
+    }
+}
+ 
+p {
+    margin: $margem-padrao;
+    font-size: $tamanho-fonte-padrao;
+}

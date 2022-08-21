@@ -1,0 +1,105 @@
+﻿
+@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+.sn-fechar-janela-interno{
+    right: 0;
+}
+
+
+
+/*$alturaBarraAcaoNormal: 32px;
+
+.sn-fundo-fatality {
+    background-color: black;
+    position: absolute;
+    opacity: 0.25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.sn-margem-padrao {
+    padding: 20px;
+}
+
+
+.sn-janela {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .sn-janela-corpo {
+
+        @include box-shadow(2px 2px 5px 0px rgba(110,109,110,1));
+        position: relative;
+        min-width: 100px;
+        max-width: 100%;
+        min-height: 100px;
+        max-height: 100%;
+        background-color: white;
+        display: inline-block;
+        overflow-y: hidden;
+
+        .sn-janela-corpo-interno {
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 100%;
+             
+        }
+
+
+        @mixin barra-acao-normal {
+            position: absolute;
+            width: 100%;
+            height: $alturaBarraAcaoNormal;
+
+            sn-botao {
+                display: inline-block;
+                float: right;
+            }
+        }
+
+        .sn-janela-barra-acao--normal {
+
+            @include barra-acao-normal;
+            background-color: rgba(200,200,200, 0.2);
+        }
+
+        .sn-janela-barra-acao--transparente {
+            @include barra-acao-normal;
+            background-color: transparent;
+        }
+
+        .sn-janela-barra-acao--escura {
+            @include barra-acao-normal;
+            background-color: #454545;
+
+            sn-botao {
+                color: #FFF;
+            }
+        }
+    }
+
+    .sn-janela-centro {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    .sn-janela-maximizar {
+        height: 100% !important;
+        width: 100% !important;
+        left: 0 !important;
+        top: 0 !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+    }
+}*/

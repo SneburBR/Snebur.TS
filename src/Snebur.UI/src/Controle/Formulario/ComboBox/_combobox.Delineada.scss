@@ -1,0 +1,290 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+@import "../_baseControleFormulario.scss";
+@import "_combobox.mixins.scss";
+
+$altura-rotulo-flutuante: 1.4em;
+$distancia-rotulo-flutuante: -1.5em;
+$distancia-rotulo: 1.35em;
+$tamanho-fonte-validacao: retornar-em(14px);
+
+$altura-controle: auto;
+$altura-controle-celular: auto;
+
+$altura-rotulo-flutuante: 0.5em;
+$distancia-rotulo-flutuante: -0.9em;
+$distancia-rotulo: 50%;
+$altura-sem-rotulo: 1.85em;
+
+sn-combobox,
+sn-combobox-enum,
+sn-combobox-nn {
+     
+    &.ap-caixa--delineada {
+        display: inline-flex;
+        min-width: 1em;
+        position: relative;
+        height: 50px auto;
+        z-index: 10;
+        background-color: transparent !important;
+        padding-top: retornar-em(8px);
+        overflow: visible;
+
+        > conteudo-apresentacao {
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: visible;
+        }
+
+        .caixa {
+            cursor: pointer;
+            min-height: 1.2em;
+            width: 100% !important;
+            padding-left: retornar-em(8px);
+            padding-right: retornar-em(8px);
+            padding-top: retornar-em(4px);
+            padding-bottom: retornar-em(4px);
+            border: 1px solid $cor-rotulo-sem-focus;
+            border-radius: 5px;
+            position: relative;
+            overflow: visible !important;
+            width: 100% auto;
+            display: block;
+            overflow: visible;
+            background-color: white;
+            overflow: visible !important;
+
+            > conteudo-apresentacao {
+                overflow: visible !important;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: 1;
+                pointer-events: none;
+                border-radius: 4px;
+                border: 2px solid transparent;
+            }
+
+            .bloco-linha-horizontal,
+            ap-bloco[sn-nome=BlocoEspacoRotuloFlutuante] {
+                display: none !important;
+            }
+
+
+            &:hover {
+                background-color: rgba(#ccc, 0.1);
+                border-color: darken($cor-rotulo-sem-focus, 50%) !important;
+            }
+        }
+
+        &.sn-is-focus {
+            .caixa {
+                background-color: rgba(#ccc, 0.1);
+                border-color: blue !important;
+
+                &::before {
+                    border-color: $cor-principal !important;
+                }
+            }
+        }
+
+        .sn-bloco-item-selecionado {
+
+            > conteudo-apresentacao {
+                min-height: 0.5em !important;
+                height: auto;
+
+                ap-painel {
+
+                    sn-combobox-item-selecionado {
+                        /*display:none;*/
+                        /*background: yellow;*/
+                    }
+                }
+            }
+        }
+
+        .sn-combobox-seta {
+            position: absolute !important;
+            right: 0;
+            width: retornar-em(10px);
+            height: 100%;
+
+            > seta {
+                width: 0px;
+                height: 0px;
+                border-left: 0.3em solid transparent;
+                border-right: 0.3em solid transparent;
+                border-top: 0.3em solid black;
+                top: retornar-em(14px);
+                right: retornar-em(2px);
+                position: absolute !important;
+            }
+        }
+
+        label {
+
+            &.rotulo {
+                position: absolute;
+                left: 0px;
+                pointer-events: none;
+                z-index: 10;
+                top: $distancia-rotulo;
+                transform: translateY(-50%);
+                color: $cor-rotulo-sem-focus;
+                font-size: $tamanho-fonte-rotulo;
+                transition: all 0.1s;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 400;
+                width: calc(100% - retornar-em(20px) );
+                overflow: hidden;
+            }
+        }
+
+        .mensagem-validacao {
+            color: $cor-falha;
+            font-size: $tamanho-fonte-validacao;
+            width: 100%;
+            display: block;
+            position: relative;
+            min-height: 0.8em;
+            white-space: normal;
+            visibility: hidden;
+        }
+
+        .linha-horizontal-externa {
+            position: absolute;
+            height: retornar-em(2px);
+            background-color: $cor-linha-horizontal;
+            width: 100%;
+
+            .linha-horizontal {
+                position: absolute;
+                height: retornar-em(2px);
+                width: 0%;
+                pointer-events: none;
+                display: block;
+                transition: all 0.2s;
+                background-color: transparent;
+            }
+        }
+
+        &.sn-is-valicacao--falha,
+        &.rotulo-flutuante {
+
+            .rotulo {
+                top: -0.5em !important;
+                color: $cor-principal !important;
+                font-size: $tamanho-fonte-rotulo-flutuante !important;
+                background-color: white !important;
+                display: inline !important;
+                width: auto;
+                z-index: 100000;
+                padding: 2px 6px;
+            }
+
+            .linha-horizontal {
+                background-color: $cor-principal;
+                width: 100%;
+                left: 0;
+            }
+        }
+
+        &.sn-sem-rotulo-flutuante,
+        &.sn-is-rotulo-vazio {
+
+            padding-top:0;
+            ap-bloco[sn-nome=BlocoEspacoRotuloFlutuante] {
+                display: none !important;
+            }
+
+            &.sn-is-valicacao--falha,
+            &.rotulo-flutuante {
+
+                .rotulo {
+                    opacity: 0 !important;
+                }
+            }
+        }
+
+        &.sn-is-valicacao--falha {
+
+            .rotulo {
+                color: $cor-falha !important;
+            }
+
+            .caixa {
+                background-color: rgba( $cor-falha, 0.1) !important;
+                border-color: $cor-falha !important;
+
+                &::before {
+                    border-color: $cor-falha !important;
+                }
+            }
+        }
+
+        &.sn-desabilitado {
+
+            .rotulo {
+                color: $cor-desabilitado !important;
+            }
+
+            .linha-horizontal {
+                background-color: $cor-desabilitado !important;
+            }
+        }
+
+        &.sn-somente-leitura {
+            pointer-events: none;
+
+            .linha-horizontal-externa {
+                display: none !important;
+
+                .linha-horizontal {
+                    display: none !important;
+                }
+            }
+        }
+    }
+}
+
+sn-combobox-enum {
+    &.rotulo-flutuante {
+
+        .rotulo {
+            top: retornar-em(5px) !important;
+            color: $cor-principal !important;
+            font-size: $tamanho-fonte-rotulo-flutuante !important;
+        }
+
+        .linha-horizontal {
+            background-color: $cor-principal;
+            width: 100%;
+            left: 0;
+        }
+    }
+
+    &.sn-desabilitado {
+
+        &.rotulo-flutuante {
+
+            .rotulo {
+                color: $cor-rotulo-sem-focus !important;
+            }
+        }
+
+        .linha-horizontal {
+            background-color: $cor-desabilitado !important;
+        }
+    }
+}
+
+@include ComboBoxCor($cor-principal);

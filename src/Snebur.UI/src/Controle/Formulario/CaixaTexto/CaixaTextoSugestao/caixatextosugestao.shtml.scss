@@ -1,0 +1,58 @@
+﻿@import "../../../../../scss/variaveis.scss";
+@import "../../../../../scss/mixins.scss";
+
+.sn-caixa-texto-sugestao,
+sn-caixa-texto-sugestao {
+
+    &.is-caixa-sugestao-aberta {
+        &.ap-caixa--delineada {
+
+           /* border-bottom-color: transparent !important;
+                 
+
+            &.sn-is-focus {
+
+                &:not(.sn-is-valicacao--falha) {
+                    .caixa-texto {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }*/
+
+
+            .caixa-texto {
+                /*border-bottom-color: transparent !important;*/
+
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    z-index: 1;
+                    pointer-events: none;
+                    border-radius: 4px;
+                   /* border: 2px solid transparent;*/
+                }
+            }
+
+            /*&.sn-is-focus {
+                .caixa-texto {
+                    &::before {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }
+
+            &.sn-is-valicacao--falha {
+                .caixa-texto {
+                    &::before {
+                        border-bottom-color: transparent !important;
+                    }
+                }
+            }*/
+        }
+    }
+}

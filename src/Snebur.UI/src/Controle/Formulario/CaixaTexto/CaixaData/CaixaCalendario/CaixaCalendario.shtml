@@ -1,0 +1,139 @@
+﻿1<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body>
+    <ap-painel-vertical>
+        <ap-linha>
+            <ap-painel ap-tipo-painel="PilhaVertical">
+
+                <ap-painel-horizontal class="sn-painel-superior" ap-margem="0px 8px">
+                    <ap-coluna ap-largura="40px">
+
+                        <ap-bloco>
+                            <sn-botao
+                                sn-tipo-botao="Icone"
+                                ap-icone="ArrowBackIos"
+                                ap-tamanho-icone="Pequeno"
+                                ap-margem="16px 4px 0px 0px" 
+                                sn-click="BtnMesAnterior_Click">
+                            </sn-botao>
+                        </ap-bloco>
+
+                    </ap-coluna>
+                    <ap-coluna>
+
+                        <ap-painel 
+                            ap-tipo-painel="PilhaHorizontal" 
+                            ap-alinhamento-horizontal="Centro"
+                            ap-margem="0px -4px 0px 0px">
+
+                            <ap-bloco ap-altura="30px">
+
+                                <sn-combobox
+                                    sn-bind-lista="{{MesesViewModel}}, Origem=this"
+                                    sn-bind="{{MesViewModelSelecionado}}, Origem=this"
+                                    ap-largura="120px"
+                                    sn-is-rotulo-vazio="true"
+                                    sn-permitir-limpar="false"
+                                    sn-is-rotulo-flutuante="false">
+
+                                    <sn-item-template>
+                                        <ap-texto 
+                                            sn-bind="{{Descricao}}" 
+                                            ap-altura-linha="28px" 
+                                            ap-margem="8px 0px" 
+                                            ap-alinhamento-horizontal="Centro"></ap-texto>
+                                    </sn-item-template>
+                                </sn-combobox>
+
+                            </ap-bloco>
+                            <ap-bloco ap-margem="8px 0px" ap-altura="30px" ap-largura="80px">
+
+                                <sn-combobox
+                                    sn-bind-lista="{{Anos}}, Origem=this"
+                                    sn-bind="{{AnoSelecionado}}, Origem=this"
+                                    ap-largura="80px"
+                                    sn-is-rotulo-vazio="true"
+                                    sn-permitir-limpar="false"
+                                    sn-is-rotulo-flutuante="false">
+
+                                    <sn-item-template>
+                                        <ap-texto
+                                            sn-bind="{{.}}"
+                                            ap-altura-linha="28px"
+                                            ap-margem="8px 0px">
+                                        </ap-texto>
+                                    </sn-item-template>
+
+                                </sn-combobox>
+                            </ap-bloco>
+                        </ap-painel>
+
+                    </ap-coluna>
+                    <ap-coluna ap-largura="40px">
+                        <sn-botao sn-tipo-botao="Icone" ap-icone="ArrowForwardIos"
+                            ap-alinhamento-horizontal="Direita"
+                            ap-tamanho-icone="Pequeno"
+                            ap-margem="0px -4px 16px 0px" sn-click="BtnMesPosterior_Click">
+                        </sn-botao>
+                    </ap-coluna>
+                </ap-painel-horizontal>
+
+                <ap-bloco ap-margem="8px 4px">
+                    <sn-painel-lista ap-tipo-painel="Bloco" sn-bind-lista="{{DiasSemanaViewModel}}, Origem=this" class="sn-painel-dias-semana">
+                        <sn-bloco-template ap-largura="14.285%">
+                            <ap-texto sn-bind="{{Descricao}}"
+                                ap-alinhamento-horizontal="Centro" class="sn-dia-semana">
+                            </ap-texto>
+                        </sn-bloco-template>
+                    </sn-painel-lista>
+                </ap-bloco>
+                <ap-bloco ap-margem="8px 4px 0px 8px">
+                    <sn-painel-lista ap-tipo-painel="Bloco" sn-bind-lista="{{DiasMesViewModel}}, Origem=this">
+                        <sn-bloco-template ap-largura="14.285%">
+
+
+                            <ap-bloco sn-bind="{{Dia}}"
+                                ap-alinhamento-horizontal="Centro"
+                                sn-bind-css-classe="{{CssClasse}}"
+                                sn-legenda="{{Legenda}}" sn-click="BtnSelecionarDia_Click">
+                            </ap-bloco>
+                        </sn-bloco-template>
+                    </sn-painel-lista>
+                </ap-bloco>
+
+
+            </ap-painel>
+        </ap-linha>
+
+        <ap-rodape ap-altura="50px" 
+            class="sn-painel-inferior">
+
+            <ap-painel
+                ap-tipo-painel="PilhaHorizontal" 
+                ap-alinhamento-horizontal="Direita">
+                <ap-bloco>
+                    <sn-botao 
+                        sn-tipo-botao="Flat"
+                        sn-click="BtnCancelar_Click"> CANCELAR </sn-botao>
+                </ap-bloco>
+                <ap-bloco ap-margem="8px">
+                    <sn-botao 
+                        ap-cor-fundo="SistemaPrincipal"
+                        ap-cor-texto="Branca" 
+                        sn-click="BtnSelecionada_Click"> OK </sn-botao>
+                </ap-bloco>
+            </ap-painel>
+
+        </ap-rodape>
+    </ap-painel-vertical>
+
+
+
+
+</body>
+</html>

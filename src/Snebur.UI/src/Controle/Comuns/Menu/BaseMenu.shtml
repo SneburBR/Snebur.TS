@@ -1,0 +1,6 @@
+﻿<div sn-nome="ElementoConteudo"  class="local-menu-corpo">
+    <div  class="local-recipiente-icone" sn-item-elemento="RecipienteIcone"></div>
+    <span sn-nome="ElementoRotulo" class="local-rotulo"></span>
+    <i sn-nome="ElementoIconeSeta" class="material-icons local-icone-seta">arrow_drop_down</i>
+</div>
+ 

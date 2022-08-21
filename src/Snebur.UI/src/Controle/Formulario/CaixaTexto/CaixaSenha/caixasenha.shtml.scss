@@ -1,0 +1,33 @@
+﻿@import "../../../../../scss/variaveis.scss";
+@import "../../../../../scss/mixins.scss";
+@import "../../../../../scss/_funcoes.scss";
+@import "../../_baseControleFormulario.scss";
+
+.sn-caixa-senha,
+sn-caixa-senha {
+
+    .visiblidade-olho {
+        top: 0;
+        position: absolute;
+        right: 0;
+        width: 2em;
+        height: 100%;
+        z-index: 10;
+
+        ap-icone {
+            color: $cor-rotulo-sem-focus !important;
+            font-size: 1.4rem !important;
+        }
+    }
+
+    input[type=text] {
+        /*padding-top: 0.25em !important;*/
+        /*padding-bottom: 0.1875em !important;*/
+    }
+
+    input[type=text],
+    input[type=password] {
+        font: large Verdana, sans-serif !important;
+        letter-spacing: 0.1em !important;
+    }
+}

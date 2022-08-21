@@ -1,0 +1,277 @@
+﻿
+@import "../../../../scss/_cores.variaveis.scss";
+@import "../../../../scss/mixins.scss";
+@import "../_baseControleFormulario.scss";
+
+@import "../../../../scss/_tipografias.variaveis.scss";
+@import "../../../Componentes/Propriedades/Tipografia/_tipografia.scss";
+
+$altura-rotulo-flutuante: 1.45em;
+$distancia-rotulo-flutuante: -1.5em;
+$distancia-rotulo: -0.1em;
+$altura-sem-rotulo: 1.85em;
+
+.sn-caixa-texto,
+sn-caixa-senha,
+sn-caixa-senha-simples,
+sn-caixa-numero,
+sn-caixa-moeda,
+sn-caixa-hora,
+sn-caixa-data,
+sn-caixa-cartao-credito,
+sn-caixa-texto {
+
+    &:not([class*='ap-tipografia--']) {
+        font-size: 16px;
+        font-size: var(--tamanho-fonte-documento);
+    }
+
+    &.ap-caixa--padrao {
+        display: inline-flex;
+        min-width: 6.25em;
+        //a largura pode ser atribuida pelo atributo ap-largura
+        position: relative;
+        /*background-color: rgba(255, 216, 0, 0.14);*/
+        height: auto;
+
+        @include Responsivo(celular) {
+            height: auto;
+        }
+
+        conteudo-apresentacao {
+            display: block;
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .local-rotulo-flutuante {
+            width: 100%;
+            height: $altura-rotulo-flutuante;
+            display: block;
+            position: relative;
+            opacity: 0;
+            /*background-color: transparent;*/
+            pointer-events: none;
+        }
+
+        .caixa-texto {
+            position: relative;
+            overflow: visible !important;
+            width: 100%;
+            display: block;
+            overflow: visible;
+            /*height: 1.2rem;*/
+
+            .input-texto {
+                border-radius: 0;
+                outline: none;
+                -webkit-appearance: none;
+                font-size: $tamanho-fonte-input;
+                width: 100%;
+                border: none;
+                background-color: transparent;
+                /*border-bottom: 2px solid silver;*/
+                /*margin-bottom :1px;*/
+            }
+
+            textarea,
+            input {
+                font-family: $fonte-padrao;
+                user-select: auto !important;
+            }
+
+            input[disabled] {
+                background-color: white;
+                color: #ccc;
+            }
+
+            input[readonly] {
+                background-color: #f6f6f6;
+                color: #505050;
+            }
+
+
+            &:not(.sn-desabilitado) {
+
+                input {
+
+                    &:required + .rotulo-caixa-texto {
+                        top: $distancia-rotulo-flutuante;
+                        color: $cor-rotulo-valido;
+                        font-size: $tamanho-fonte-rotulo-flutuante;
+                    }
+
+
+                    &:required:invalid + .rotulo-caixa-texto {
+                        color: $cor-falha;
+                        top: $distancia-rotulo;
+                        color: $cor-rotulo-sem-focus;
+                        font-size: $tamanho-fonte-rotulo;
+                    }
+
+                    &:focus {
+                        /*border-color: $cor-principal !important;*/
+                    }
+
+                    &:focus + .rotulo-caixa-texto {
+                        top: $distancia-rotulo-flutuante !important;
+                        color: $cor-principal !important;
+                        font-size: $tamanho-fonte-rotulo-flutuante !important;
+                    }
+
+                    &:focus + .rotulo-caixa-texto + .linha-horizontal-externa {
+                        .linha-horizontal {
+                            background-color: $cor-principal !important;
+                            width: 100%;
+                            left: 0;
+                        }
+                    }
+
+                    &::placeholder {
+                        color: $cor-rotulo-sem-focus;
+                        font-size: $tamanho-fonte-padrao;
+                        font-weight: 400;
+                        color: transparent;
+                    }
+
+                    &:focus {
+                        &::placeholder {
+                            color: #505050;
+                        }
+                    }
+                }
+            }
+
+            &.sn-is-valicacao--sucesso {
+                .rotulo-caixa-texto {
+                    top: $distancia-rotulo-flutuante;
+                    color: $cor-rotulo-valido;
+                    font-size: $tamanho-fonte-rotulo-flutuante;
+                }
+            }
+
+            .rotulo-caixa-texto {
+                position: absolute;
+                left: 0px;
+                pointer-events: none;
+                z-index: 10;
+                top: $distancia-rotulo;
+                color: $cor-rotulo-sem-focus;
+                font-size: $tamanho-fonte-rotulo;
+                transition: all 0.1s;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-weight: 400;
+            }
+
+            .linha-horizontal-externa {
+                position: relative;
+                height: retornar-em(2px);
+                width: 100%;
+                pointer-events: none;
+                display: block;
+                background-color: $cor-linha-horizontal;
+            }
+
+            .linha-horizontal {
+                position: relative;
+                height: retornar-em(2px);
+                width: 0%;
+                left: 50%;
+                pointer-events: none;
+                display: block;
+                transition: all 0.2s;
+                /*margin-top: -3px;*/
+            }
+
+            &.sn-is-valicacao--falha {
+
+                &:not(.sn-desabilitado) {
+                    color: $cor-falha;
+
+
+                    .linha-horizontal-externa {
+                        background-color: $cor-falha;
+                    }
+
+                    .linha-horizontal {
+                        display: none;
+                    }
+
+                    .rotulo-caixa-texto {
+                        top: $distancia-rotulo-flutuante !important;
+                        color: $cor-falha !important;
+                        font-size: $tamanho-fonte-rotulo-flutuante !important;
+                    }
+
+                    input {
+                        &:focus + .rotulo-caixa-texto {
+                            color: $cor-falha !important;
+                        }
+                    }
+                }
+            }
+
+            &.sn-desabilitado {
+
+
+                .rotulo-caixa-texto {
+                    top: $distancia-rotulo-flutuante !important;
+                    color: #ccc !important;
+                    font-size: $tamanho-fonte-rotulo-flutuante !important;
+                }
+            }
+        }
+
+        .mensagem-validacao {
+            color: $cor-falha;
+            font-size: $tamanho-fonte-validacao;
+            width: 100%;
+            display: none;
+            position: relative;
+            min-height: 0.8em;
+            white-space: normal;
+            visibility: hidden;
+        }
+
+        &.sn-is-valicacao--falha {
+
+            .mensagem-validacao {
+                display: inline;
+                visibility: visible;
+            }
+        }
+
+        &.sn-sem-linha-horizontal {
+            .caixa-texto {
+
+                .linha-horizontal-externa {
+                    display: none;
+                }
+
+                .linha-horizontal {
+                    display: none;
+                }
+            }
+        }
+
+        &.sn-sem-rotulo-flutuante {
+            /*height: $altura-sem-rotulo !important;*/
+        }
+
+        &.sn-password {
+
+            input {
+                padding-top: 0.25em !important;
+                padding-bottom: 0.1875em !important;
+                /*letter-spacing: 0.1em !important;*/
+            }
+            /* input[type=text],
+            input[type=password] {
+                font: large Verdana, sans-serif !important;
+                letter-spacing: 0.1em !important;
+            }*/
+        }
+    }
+}

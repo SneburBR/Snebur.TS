@@ -1,0 +1,176 @@
+﻿@import "_telas.variaveis.scss";
+
+@mixin responsivo($telas...) {
+
+    @each $tela in $telas {
+
+        $encontrado: false;
+
+        @if ($tela == celular ) {
+
+            $encontrado: true;
+
+            @media #{$tela-celular} {
+                @content;
+            }
+        }
+
+        @if ($tela == tablet ) {
+
+            $encontrado: true;
+
+            @media #{$tela-tablet} {
+                @content;
+            }
+        }
+
+        @if ($tela == notebook ) {
+
+            $encontrado: true;
+
+            @media #{$tela-notebook} {
+                @content;
+            }
+        }
+
+        @if ($tela == desktop ) {
+
+            $encontrado: true;
+
+            @media #{$tela-desktop} {
+                @content;
+            }
+        }
+
+        @if ($tela == super-pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-super-pequena} {
+                @content;
+            }
+        }
+
+        @if ($tela == pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-pequena} {
+                @content;
+            }
+        }
+
+        @if ($tela == media ) {
+
+            $encontrado: true;
+
+            @media #{$tela-media} {
+                @content;
+            }
+        }
+
+        @if ( $tela == tablet-super-pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-tablet-super-pequena} {
+                @content;
+            }
+        }
+
+
+
+
+        @if ($encontrado== false) {
+            @warn '#{ $tela } não é suportada.';
+        }
+    }
+}
+
+@mixin Responsivo($telas...) {
+
+    @each $tela in $telas {
+
+        $encontrado: false;
+
+        @if ($tela == celular ) {
+
+            $encontrado: true;
+
+            @media #{$tela-celular} {
+                @content;
+            }
+        }
+
+        @if ($tela == tablet ) {
+
+            $encontrado: true;
+
+            @media #{$tela-tablet} {
+                @content;
+            }
+        }
+
+        @if ($tela == notebook ) {
+
+            $encontrado: true;
+
+            @media #{$tela-notebook} {
+                @content;
+            }
+        }
+
+        @if ($tela == desktop ) {
+
+            $encontrado: true;
+
+            @media #{$tela-desktop} {
+                @content;
+            }
+        }
+
+        @if ($tela == super-pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-super-pequena} {
+                @content;
+            }
+        }
+
+        @if ($tela == pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-pequena} {
+                @content;
+            }
+        }
+
+        @if ($tela == media ) {
+
+            $encontrado: true;
+
+            @media #{$tela-media} {
+                @content;
+            }
+        }
+
+        @if ( $tela == tablet-super-pequena ) {
+
+            $encontrado: true;
+
+            @media #{$tela-tablet-super-pequena} {
+                @content;
+            }
+        }
+
+
+
+
+        @if ($encontrado== false) {
+            @warn '#{ $tela } não é suportada.';
+        }
+    }
+}
+ 

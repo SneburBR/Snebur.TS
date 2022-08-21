@@ -1,0 +1,224 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+
+.sn-tabela,
+sn-data-lista-ordenacao,
+sn-data-lista {
+    /*border: 1px solid rgba(0, 0, 0, 0.12);*/
+    display: block;
+    position: relative;
+    width: 100%;
+
+    ap-bloco-lista-carregando,
+    ap-bloco-lista-vazia {
+        display: block;
+        position: relative;
+    }
+    /*height: 100%;*/
+    .sn-conteudo-tabela {
+        position: relative;
+        width: 100%;
+        /*height: 100%;*/
+        display: block;
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+        border-right: 1px solid rgba(0, 0, 0, 0.12);
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+
+        table {
+            display: table;
+            font-weight: 300;
+            /*line-height: 16px;*/
+            position: relative;
+            text-align: left;
+            white-space: nowrap;
+            width: 100%;
+            max-height: 100%;
+            white-space: nowrap;
+            border-collapse: collapse;
+            /*box-shadow: rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;*/
+        }
+        /*table th:first-child {
+            border-radius: 0px 0 0 0;
+            -moz-border-radius: 6px 0 0 0;
+            -webkit-border-radius: 6px 0 0 0;
+        }
+
+        table th:last-child {
+            border-radius: 0 0px 0 0;
+            -moz-border-radius: 0 0px 0 0;
+            -webkit-border-radius: 0 0px 0 0;
+        }*/
+        tr {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        td, th {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            /*line-height: 16px;*/
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        thead,
+        tbody,
+        tr {
+            display: table;
+            width: 100%;
+            text-align: left;
+            table-layout: fixed;
+            font-weight: 300;
+            /*height: retornar-rem(28px);*/
+            th {
+                line-height: retornar-rem(28px);
+                background-color: #f1f1f1;
+                font-weight: 400;
+            }
+        }
+
+        tbody {
+            display: block;
+            overflow-y: hidden;
+            overflow-x: hidden;
+
+            tr {
+
+                &:not(.sn-linha-datalhes) {
+
+                    &:hover {
+                        background-color: rgba($cor-principal, 0.12);
+                    }
+                }
+            }
+        }
+
+
+        tr {
+
+            &:not(.sn-linha-datalhes) {
+
+
+                &.sn-marcar-linha {
+                    background-color: rgba($cor-principal, 0.2);
+
+                    &:hover {
+                        background-color: rgba($cor-principal, 0.3);
+                    }
+                }
+            }
+        }
+    }
+
+    &.sn-desativar-efeito-hover {
+
+        .sn-div-tabela {
+
+            tbody {
+                tr {
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sn-coluna-centro,
+.sn-centralizar-coluna {
+
+
+    th {
+        text-align: center;
+    }
+
+
+    &th {
+        text-align: center;
+    }
+}
+
+.sn-celula-centro,
+.sn-centralizar-celula {
+    td {
+        text-align: center;
+    }
+
+    &td {
+        text-align: center;
+    }
+}
+
+.sn-coluna-direita {
+
+
+    th {
+        text-align: right;
+    }
+
+
+    &th {
+        text-align: right;
+    }
+}
+
+.sn-celula-centro,
+.sn-centralizar-celula {
+
+    td {
+        text-align: center;
+    }
+
+    &td {
+        text-align: center;
+    }
+}
+
+.sn-celula-direita,
+.sn-centralizar-celula {
+    td {
+        text-align: right;
+    }
+
+    &td {
+        text-align: right;
+    }
+}
+
+
+.sn-tabela,
+sn-data-lista-ordenacao,
+sn-data-lista {
+
+    &.sn-fixa-cabecalho {
+        height: 100% !important;
+
+        .sn-conteudo-tabela {
+            height: 100% !important;
+
+            table {
+                height: 100% !important;
+            }
+
+            tbody {
+                height: 100% !important;
+                overflow-y: auto !important;
+            }
+        }
+    }
+}
+
+.sn-data-lista-div-ordenacao {
+    display: inline;
+}
+
+sn-data-lista {
+
+    td[sn-construtor=CelulaExibirDetalhes],
+    td[sn-construtor=TemplateColunaExibirDetalhes] {
+        width: 1.5rem !important;
+        padding: 0 !important;
+    }
+}

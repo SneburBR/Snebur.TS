@@ -1,0 +1,297 @@
+﻿@import "_cores.variaveis.scss";
+@import "_cores.mixins.scss";
+
+:root {
+    --sistema-principal: blue;
+    --sistema-secundaria: blue;
+}
+ 
+
+.sn-cor-fundo--transparente {
+    background-color: rgba(0,0,0,0);
+}
+
+.sn-cor-texo--transparente {
+    color: rgba(0,0,0,0);
+}
+
+.sn-cor-borda--transparente {
+    border-color: rgba(0,0,0,0);
+}
+
+.sn-cor-fundo--cinza {
+    background-color: #9e9e9e !important;
+}
+
+.sn-cor-fundo--cinza-100 {
+    background-color: $cor-cinza-100 !important;
+}
+
+.sn-cor-fundo--cinza-200 {
+    background-color: $cor-cinza-200 !important;
+}
+
+.sn-cor-fundo--cinza-300 {
+    background-color: $cor-cinza-300 !important;
+}
+
+.sn-cor-fundo--cinza-400 {
+    background-color: $cor-cinza-400 !important;
+}
+
+.sn-cor-fundo--cinza-500 {
+    background-color: $cor-cinza-500 !important;
+}
+
+.sn-cor-fundo--cinza-600 {
+    background-color: $cor-cinza-600 !important;
+}
+
+.sn-cor-fundo--cinza-700 {
+    background-color: $cor-cinza-700 !important;
+}
+
+.sn-cor-fundo--cinza-800 {
+    background-color: $cor-cinza-800 !important;
+}
+
+.sn-cor-fundo--cinza-900 {
+    background-color: $cor-cinza-900 !important;
+}
+
+.sn-cor-fundo--cinza-alpha-10 {
+    background-color: rgba(158, 158, 158, 0.1);
+}
+
+.sn-cor-fundo--cinza-alpha-20 {
+    background-color: rgba(158, 158, 158, 0.2);
+}
+
+.sn-cor-fundo--cinza-alpha-30 {
+    background-color: rgba(158, 158, 158, 0.3);
+}
+
+.sn-cor-fundo--cinza-alpha-40 {
+    background-color: rgba(158, 158, 158, 0.4);
+}
+
+.sn-cor-fundo--cinza-alpha-50 {
+    background-color: rgba(158, 158, 158, 0.5);
+}
+
+.sn-cor-fundo--cinza-alpha-60 {
+    background-color: rgba(158, 158, 158, 0.6);
+}
+
+.sn-cor-fundo--cinza-alpha-70 {
+    background-color: rgba(158, 158, 158, 0.7);
+}
+
+.sn-cor-fundo--cinza-alpha-80 {
+    background-color: rgba(158, 158, 158, 0.8);
+}
+
+.sn-cor-fundo--cinza-alpha-90 {
+    background-color: rgba(158, 158, 158, 0.9);
+}
+
+
+.sn-cor-texto--cinza {
+    color: $cor-cinza !important;
+}
+
+.sn-cor-texto--cinza-100 {
+    color: $cor-cinza-100 !important;
+}
+
+.sn-cor-texto--cinza-200 {
+    color: $cor-cinza-200 !important;
+}
+
+.sn-cor-texto--cinza-300 {
+    color: $cor-cinza-300 !important;
+}
+
+.sn-cor-texto--cinza-400 {
+    color: $cor-cinza-400 !important;
+}
+
+.sn-cor-texto--cinza-500 {
+    color: $cor-cinza-500 !important;
+}
+
+.sn-cor-texto--cinza-600 {
+    color: $cor-cinza-600 !important;
+}
+
+.sn-cor-texto--cinza-700 {
+    color: $cor-cinza-700 !important;
+}
+
+.sn-cor-fundo--cinza-800 {
+    color: $cor-cinza-800 !important;
+}
+
+.sn-cor-texto--cinza-900 {
+    color: $cor-cinza-900 !important;
+}
+
+.sn-cor-texto--cinza-alpha-10 {
+    color: rgba(158, 158, 158, 0.1);
+}
+
+.sn-cor-texto--cinza-alpha-20 {
+    color: rgba(158, 158, 158, 0.2);
+}
+
+.sn-cor-texto--cinza-alpha-30 {
+    color: rgba(158, 158, 158, 0.3);
+}
+
+.sn-cor-texto--cinza-alpha-40 {
+    color: rgba(158, 158, 158, 0.4);
+}
+
+.sn-cor-texto--cinza-alpha-50 {
+    color: rgba(158, 158, 158, 0.5);
+}
+
+.sn-cor-texto--cinza-alpha-60 {
+    color: rgba(158, 158, 158, 0.6);
+}
+
+.sn-cor-texto--cinza-alpha-70 {
+    color: rgba(158, 158, 158, 0.7);
+}
+
+.sn-cor-texto--cinza-alpha-80 {
+    color: rgba(158, 158, 158, 0.8);
+}
+
+.sn-cor-texto--cinza-alpha-90 {
+    color: rgba(158, 158, 158, 0.9);
+}
+
+
+.sn-cor-borda--cinza {
+    border-color: #9e9e9e !important;
+}
+
+.sn-cor-borda--cinza-100 {
+    border-color: $cor-cinza-100 !important;
+}
+
+.sn-cor-borda--cinza-200 {
+    border-color: $cor-cinza-200 !important;
+}
+
+.sn-cor-borda--cinza-300 {
+    border-color: $cor-cinza-300 !important;
+}
+
+.sn-cor-borda--cinza-400 {
+    border-color: $cor-cinza-400 !important;
+}
+
+.sn-cor-borda--cinza-500 {
+    border-color: $cor-cinza-500 !important;
+}
+
+.sn-cor-borda--cinza-600 {
+    border-color: $cor-cinza-600 !important;
+}
+
+.sn-cor-borda--cinza-700 {
+    border-color: $cor-cinza-700 !important;
+}
+
+.sn-cor-borda--cinza-800 {
+    border-color: $cor-cinza-800 !important;
+}
+
+.sn-cor-borda--cinza-900 {
+    border-color: $cor-cinza-900 !important;
+}
+
+.sn-cor-borda--cinza-alpha-10 {
+    border-color: rgba(158, 158, 158, 0.1);
+}
+
+.sn-cor-borda--cinza-alpha-20 {
+    border-color: rgba(158, 158, 158, 0.2);
+}
+
+.sn-cor-borda--cinza-alpha-30 {
+    border-color: rgba(158, 158, 158, 0.3);
+}
+
+.sn-cor-borda--cinza-alpha-40 {
+    border-color: rgba(158, 158, 158, 0.4);
+}
+
+.sn-cor-borda--cinza-alpha-50 {
+    border-color: rgba(158, 158, 158, 0.5);
+}
+
+.sn-cor-borda--cinza-alpha-60 {
+    border-color: rgba(158, 158, 158, 0.6);
+}
+
+.sn-cor-borda--cinza-alpha-70 {
+    border-color: rgba(158, 158, 158, 0.7);
+}
+
+.sn-cor-borda--cinza-alpha-80 {
+    border-color: rgba(158, 158, 158, 0.8);
+}
+
+.sn-cor-borda--cinza-alpha-90 {
+    border-color: rgba(158, 158, 158, 0.9);
+}
+
+
+/*#region cores do fundo*/
+
+@include criar-cor($cor-fundo-padrao, 'padrao', 'fundo', 'background-color');
+
+@each $cor-nome, $cor in $cores-sistema-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'fundo', 'background-color');
+}
+
+
+
+@each $cor-nome, $cor in $cores-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'fundo', 'background-color');
+}
+
+/*#endregion  */
+
+/*#region cores do texto*/
+
+@include criar-cor($cor-texto-padrao, 'padrao', 'texto', 'background-color');
+
+@each $cor-nome, $cor in $cores-sistema-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'texto', 'color');
+}
+
+
+@each $cor-nome, $cor in $cores-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'texto', 'color');
+}
+
+/*#endregion  */
+
+/*#region cores das borda*/
+
+@include criar-cor($cor-texto-padrao, 'padrao', 'borda', 'border-color');
+
+@each $cor-nome, $cor in $cores-sistema-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'borda', 'border-color');
+}
+
+
+@each $cor-nome, $cor in $cores-mapeadas {
+    @include criar-cor($cor, $cor-nome, 'borda', 'border-color');
+}
+
+/*#endregion  */

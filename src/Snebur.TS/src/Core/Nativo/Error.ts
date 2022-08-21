@@ -1,0 +1,5 @@
+﻿
+interface Error
+{
+    //stack: string;
+}

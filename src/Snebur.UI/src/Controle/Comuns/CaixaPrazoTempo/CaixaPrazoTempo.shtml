@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <ap-painel ap-tipo-painel="PilhaVertical">
+
+        <ap-texto sn-nome="TextoRotulo">
+        </ap-texto>
+
+        <ap-painel ap-tipo-painel="[[TIPO-PAINEL]]">
+
+            <ap-bloco>
+
+                <sn-combobox-enum
+                    sn-tipo="d.EnumTipoPrazo"
+                    sn-rotulo="Tipo de prazo"
+                    sn-bind="{{TipoPrazo}}"
+                    sn-permitir-limpar="false">
+                </sn-combobox-enum>
+
+            </ap-bloco>
+            <ap-bloco>
+
+                <sn-caixa-numero sn-bind="{{Prazo}}" 
+                    sn-rotulo="Dias" sn-visibilidade="{{TipoPrazo}}, Converter=this.MostrarControleNumero" 
+                    sn-passo="1">
+
+                </sn-caixa-numero>
+                <sn-caixa-hora sn-bind="{{Tempo}}"
+                    sn-rotulo="Hora" 
+                    sn-visibilidade="{{TipoPrazo}}, Converter=this.MostrarControleHora"></sn-caixa-hora>
+            </ap-bloco>
+
+
+        </ap-painel>
+    </ap-painel>
+
+
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../../../../scss/variaveis.scss";
+
+$largura: retornar-rem(416px);
+$altura: retornar-rem(380px);
+$largura-item-cor: 2rem;
+
+.sn-controle-flutuante-cores {
+    background-color: #fffcfc;
+    width: $largura;
+    height: $altura;
+    position: relative;
+
+    > conteudo-apresentacao {
+        
+        overflow: visible !important;
+
+
+        > ap-painel {
+            overflow: visible !important;
+
+            > conteudo-apresentacao {
+                overflow: visible !important;
+
+                > ap-bloco {
+                    overflow: visible !important;
+                }
+            }
+        }
+    }
+
+
+
+    .sn-borda-preta {
+        border: 2px solid black;
+        padding: 10px;
+    }
+
+    canvas {
+        cursor: crosshair;
+    }
+
+    .fundo-visualziacao {
+        width: $largura-item-cor;
+        height: $largura-item-cor;
+        /*border: 3px solid #ccc;*/
+        background: url(https://cdn.sigi.com.br/resources/images/fundo-transparencia.png);
+        box-sizing: border-box;
+        position: relative;
+    }
+
+    .visualizacao {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: $largura-item-cor;
+        height: $largura-item-cor;
+        /*border: 3px solid #ccc;*/
+        background-color: white;
+        box-sizing: border-box;
+        cursor: pointer
+    }
+}
+
+
+/*deve ficar fora do scopo do classe do  controle para historico por ficar em outro controle*/
+
+.sn-paleta-cores {
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    box-sizing: border-box;
+    
+          
+    .sn-cor-paleta {
+        cursor: pointer;
+        border-style: solid;
+        border-color: white;
+        border-width: 1px;
+        box-sizing: border-box;
+
+        &.sn-is-cor-selecionada,
+        &:hover {
+            border-color: black;
+        }
+    }
+}

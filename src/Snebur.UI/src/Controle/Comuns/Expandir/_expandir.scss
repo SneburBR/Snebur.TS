@@ -1,0 +1,19 @@
+﻿
+sn-expandir {
+    width: 100%;
+    display: block;
+    position: relative;
+
+    sn-expandir-titulo {
+        display: block;
+        position: relative;
+        cursor:pointer;
+    }
+
+
+    sn-expandir-conteudo {
+        position: relative;
+        display: block;
+       
+    }
+}

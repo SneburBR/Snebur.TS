@@ -1,0 +1,442 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+@import "../../../../scss/_telas.mixins.scss";
+@import "_botao.mixins.scss";
+
+$altura-botao-padrao: 1.5rem;
+$altura-minima: 4rem;
+$margem-lateral: 0.25rem;
+$margem-vertical: 0.125rem;
+
+$margem-lateral-interna: 1rem;
+$margem-vertical-interna: 0.5rem;
+$margem-vertical-interna-inferior: 0.35rem;
+
+$margem-lateral-icone: 0.5rem;
+/*$margem-vertical-interna: 0.5rem;*/
+
+$largura-circulo: 5rem;
+$largura-mini-circulo: 1.6rem;
+
+$largura-icone-pequeno: 1.5rem;
+$largura-icone-padrao: 2rem;
+$largura-icone-medio: 2.5rem;
+$largura-icone-grande: 3.0rem;
+
+sn-botao {
+    display: inline-flex;
+    position: relative;
+    border: none;
+    outline: none;
+    overflow: !important;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    -ms-user-select: none;
+    user-select: none;
+
+
+
+    &:not([class*='ap-tipografia--']) {
+        /*font-size: 16px;*/
+        /*font-size: 14px;*/
+        font-size: 0.875rem;
+    }
+
+    input[type=button] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+    }
+
+
+    > conteudo-apresentacao {
+        display: block !important;
+        position: relative;
+        padding-left: $margem-lateral-interna;
+        padding-right: $margem-lateral-interna;
+        padding-top: $margem-vertical-interna;
+        padding-bottom: $margem-vertical-interna-inferior;
+        /*height: auto;
+        width: auto;*/
+        white-space: nowrap;
+        /*color: black;*/
+        align-items: center;
+        align-content: center;
+        vertical-align: middle;
+        text-align: center;
+        overflow: visible !important;
+
+        > a {
+            display: block;
+            position: relative;
+            white-space: nowrap;
+            align-items: center;
+            align-content: center;
+            vertical-align: middle;
+            text-align: center;
+            overflow: visible !important;
+            /*border: 1px solid red;*/
+            color: inherit;
+            text-decoration: inherit;
+
+            &:visited,
+            &:hover,
+            &:active {
+                color: inherit;
+                text-decoration: inherit;
+            }
+        }
+
+        rotulo-botao {
+            display: inline-flex;
+            position: relative;
+            border: 1px dashed transparent;
+
+            &:empty {
+                display: none !important;
+            }
+            //somente sem icone
+        }
+
+        ap-icone {
+            position: relative;
+        }
+
+        ap-icone + rotulo-botao {
+            top: -0.4rem !important;
+            margin-left: $margem-lateral-icone;
+        }
+
+        &.ap-tipografia--descricao {
+
+            ap-icone + rotulo-botao {
+                top: -0.5rem;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            @include Responsivo(desktop, notebook) {
+                filter: brightness(108%);
+            }
+        }
+
+        &:disabled {
+            /*color: $mdc-button-disabled-ink-color;*/
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    &.sn-tipo-botao--normal {
+
+        > conteudo-apresentacao {
+            background-color: $cor-botao-padrao;
+        }
+    }
+
+    &.sn-tipo-botao--circulo {
+
+        @include botao-circulo($largura-circulo);
+    }
+
+    &.sn-tipo-botao--mini-circulo {
+
+        @include botao-circulo($largura-mini-circulo);
+    }
+
+    &.sn-tipo-botao--icone {
+
+        > conteudo-apresentacao {
+            padding: 0.25rem !important;
+            display: inline-flex !important;
+
+
+            ap-icone {
+                display: inline-flex !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                position: relative;
+            }
+        }
+
+        &:active:hover {
+
+            > conteudo-apresentacao {
+
+                ap-icone {
+                    transform: scale(0.9) translateX(-50%) !important;
+                }
+            }
+        }
+
+
+        &.sn-tamanho-icone--pequeno {
+            width: $largura-icone-pequeno;
+
+            @include botao-circulo($largura-icone-pequeno);
+            /* ap-icone {
+                top: retornar-rem(4px);
+                left: retornar-rem(1px)
+            }*/
+        }
+
+        &.sn-tamanho-icone--padrao {
+
+            @include botao-circulo($largura-icone-padrao);
+            /*  ap-icone {
+                top: retornar-rem(3px);
+                left: retornar-rem(0)
+            }*/
+        }
+
+        &.sn-tamanho-icone--medio {
+
+            @include botao-circulo($largura-icone-medio);
+            /*  ap-icone {
+                top: retornar-rem(4px);
+                left: retornar-rem(4px)
+            }*/
+        }
+
+        &.sn-tamanho-icone--grande {
+
+            @include botao-circulo($largura-icone-grande);
+            /* ap-icone {
+                top: retornar-rem(2px);
+                left: retornar-rem(0px);
+            }*/
+        }
+
+
+        > conteudo-apresentacao {
+            background-color: transparent !important;
+
+            @include Responsivo(desktop, notebook) {
+                &:hover {
+                    background-color: rgba(128, 128, 128, 0.10) !important;
+                }
+            }
+        }
+
+        color: black;
+    }
+
+    &.sn-tipo-botao--icone-direita {
+
+        > conteudo-apresentacao {
+            padding: 0.25rem !important;
+        }
+
+        &.sn-tamanho-icone--pequeno {
+
+            @include botao-circulo($largura-icone-pequeno);
+
+            ap-icone {
+                top: retornar-rem(4px);
+                left: retornar-rem(4px)
+            }
+        }
+
+        &.sn-tamanho-icone--padrao {
+
+            @include botao-circulo($largura-icone-padrao);
+
+            ap-icone {
+                top: retornar-rem(3px);
+                left: retornar-rem(3px)
+            }
+        }
+
+        &.sn-tamanho-icone--medio {
+
+            @include botao-circulo($largura-icone-medio);
+
+            ap-icone {
+                top: retornar-rem(4px);
+                left: retornar-rem(4px)
+            }
+        }
+
+        &.sn-tamanho-icone--grande {
+
+            @include botao-circulo($largura-icone-grande);
+
+            ap-icone {
+                top: retornar-rem(2px);
+                left: retornar-rem(0px);
+            }
+        }
+
+
+        > conteudo-apresentacao {
+            background-color: transparent !important;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.10) !important;
+            }
+        }
+
+        color: black;
+    }
+
+    &.sn-tipo-botao--link {
+        padding: 0;
+        height: auto;
+        width: auto;
+
+        > conteudo-apresentacao {
+            background-color: transparent !important;
+            height: auto;
+            width: auto;
+            padding: 0;
+            text-decoration: underline;
+            align-items: baseline;
+            align-content: flex-end;
+            vertical-align: bottom;
+
+            &:activer {
+                color: $cor-principal;
+            }
+
+            &:hover {
+                color: $cor-principal;
+            }
+        }
+    }
+
+    &.sn-tipo-botao--link-destaque {
+        padding: 0;
+        height: auto;
+        width: auto;
+
+        > conteudo-apresentacao {
+            background-color: transparent !important;
+            height: auto;
+            width: auto;
+            padding: 0;
+            align-items: baseline;
+            align-content: flex-end;
+            vertical-align: bottom;
+
+            &:hover {
+
+                rotulo-botao {
+                    text-decoration: underline;
+                    color: $cor-principal;
+                }
+            }
+        }
+    }
+
+    &.sn-tipo-botao--flat {
+        padding: 0;
+
+        > conteudo-apresentacao {
+            background-color: transparent !important;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.30) !important;
+            }
+
+            > ap-icone {
+            }
+        }
+    }
+
+    &.sn-tipo-botao--menu {
+        padding: 0;
+
+        conteudo-apresentacao {
+            background-color: transparent !important;
+            text-align: left;
+            padding-left: $margem-lateral + $margem-lateral-interna;
+            padding-right: $margem-lateral + $margem-lateral-interna;
+            padding-top: $margem-vertical + $margem-vertical-interna;
+            padding-bottom: $margem-vertical+ $margem-vertical-interna;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.30) !important;
+            }
+        }
+    }
+
+    &.sn-tipo-botao--flat-box {
+        /*padding: 0;*/
+        conteudo-apresentacao {
+            background-color: transparent !important;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.15) !important;
+            }
+        }
+    }
+
+    &.sn-esquerda {
+        > conteudo-apresentacao {
+            text-align: left;
+        }
+    }
+
+    &.sn-centro {
+        > conteudo-apresentacao {
+            text-align: center;
+        }
+    }
+
+    &.sn-direita {
+        > conteudo-apresentacao {
+            text-align: right;
+        }
+    }
+
+    &.sn-input-focus {
+
+        rotulo-botao {
+            border: 1px dashed rgba(0,0,0,0.6);
+        }
+    }
+
+
+    &.sn-tipo-botao--normal,
+    &.sn-tipo-botao--circulo,
+    &.sn-tipo-botao--icone-direita,
+    &.sn-tipo-botao--flat-box,
+    &.sn-tipo-botao--flat,
+    &.sn-tipo-botao--menu {
+        transform-box: border-box !important;
+
+        &:active:hover {
+            /*  border-top: 1px solid transparent !important;
+            border-left: 1px solid transparent !important;
+            border-right: -1px solid transparent !important;
+            border-bottom: -1px solid transparent !important;*/
+
+            > conteudo-apresentacao {
+                transform: scale(0.97) !important;
+            }
+        }
+    }
+
+    &.sn-tipo-botao--flat,
+    &.sn-tipo-botao--flat-box,
+    &.sn-tipo-botao--normal {
+        height: retornar-rem(40px);
+
+        > conteudo-apresentacao {
+
+            rotulo-botao {
+                line-height: retornar-rem(25px);
+            }
+
+            border-radius: 4px !important;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿@import "../../../../../scss/_funcoes.scss";
+
+.sn-caixa-quantidade,
+sn-caixa-quantidade {
+
+    sn-botao[sn-nome=BtnDiminuir],
+    sn-botao[sn-nome=BtnAumentar] {
+
+        font-size:inherit !important;
+
+        ap-icone {
+            font-size: retornar-em(13px) !important;
+        }
+    }
+
+    input {
+        width: 100% !important;
+        min-width: 10px !important;
+        font-size: retornar-em(14px) !important;
+        /* não me recordo o motivo pq foi alterado para centro*/
+        /*text-align: center;*/
+        text-align: center;
+    }
+
+    &.sn-direita {
+
+        input {
+            text-align: right !important;
+        }
+    }
+
+    &.sn-centro {
+
+        input {
+            text-align: center !important;
+        }
+    }
+
+    &.sn-esquerda {
+
+        input {
+            text-align: left !important;
+        }
+    }
+}

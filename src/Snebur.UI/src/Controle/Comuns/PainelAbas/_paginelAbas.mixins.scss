@@ -1,0 +1,33 @@
+﻿
+
+
+@mixin PainelAbasCor($cor) {
+
+    sn-painel-abas-horizontal {
+
+        &.ap-painel-aba--padrao {
+            .sn-aba, sn-aba {
+                &:hover {
+                    border-bottom: retornar-rem(3px) solid $cor;
+                    /*filter: brightness(15   0%);*/
+                }
+
+                &.sn-is-aba-selecionada {
+                    border-bottom: retornar-rem(3px) solid #ccc;
+                }
+            }
+        }
+
+        &.ap-painel-aba--material-design {
+            .sn-aba, sn-aba {
+                &.sn-is-aba-selecionada {
+                    border-bottom: retornar-rem(3px) solid rgb(240,240,240);
+                }
+            }
+
+            div[sn-nome=DivMarcador] {
+                background-color: $cor;
+            }
+        }
+    }
+}

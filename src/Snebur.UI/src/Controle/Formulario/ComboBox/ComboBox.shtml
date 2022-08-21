@@ -1,0 +1,73 @@
+﻿<html>
+<body>
+
+    <select sn-nome="CmbComboxNativo"
+        sn-item-elemento="ControleInput"
+        style="position: absolute; top: 0; opacity: 0">
+        <option>1</option>
+    </select>
+
+    <ap-painel
+        ap-tipo-painel="PilhaVertical"
+        sn-item-elemento="Caixa"
+        ap-largura="100%" class="caixa">
+
+        <ap-bloco
+            sn-nome="BlocoEspacoRotuloFlutuante" ap-altura="1em">
+        </ap-bloco>
+
+        <ap-bloco ap-largura="100%" class="sn-bloco-item-selecionado">
+            <ap-painel
+                ap-tipo-painel="PilhaHorizontal" ap-largura="100%">
+
+                <ap-bloco ap-largura="100%">
+                    <sn-combobox-item-selecionado
+                        sn-nome="ControleItemSelecionado"
+                        class="sn-combobox-item-selecionado">
+                    </sn-combobox-item-selecionado>
+                </ap-bloco>
+
+                <div
+                    sn-item-elemento="BlocoSeta"
+                    class="sn-combobox-seta">
+                    <seta></seta>
+                </div>
+
+            </ap-painel>
+        </ap-bloco>
+        <ap-bloco class="bloco-linha-horizontal" ap-altura="2px">
+            <div
+                sn-nome="ElemenotLinhaHorizontal"
+                class="linha-horizontal-externa">
+                <div class="linha-horizontal">
+                </div>
+            </div>
+        </ap-bloco>
+
+        <label class="rotulo" sn-item-elemento="Rotulo"></label>
+
+    </ap-painel>
+    <ap-bloco sn-nome="BlocoMensagemValidacao">
+        <div class="mensagem-validacao"
+            sn-item-elemento="MensagemValidacao">
+        </div>
+    </ap-bloco>
+
+    <!--sn-item-elemento="ControleInput"-->
+    <input class="input-texto"
+        type="hidden"
+        tabindex="-1"
+        style="display: none" />
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+﻿<div sn-item-elemento="LocalRotuloFlutuante" class="local-rotulo-flutuante"></div>
+<div sn-item-elemento="Caixa" class="caixa-texto">
+    
+    <ap-painel ap-tipo-painel="PilhaHorizontalCheia">
+        <ap-bloco>
+            <input  class="input-texto" sn-item-elemento="ControleInput" type="text" required />
+        </ap-bloco>
+        <ap-bloco ap-largura="50px" ap-altura="30px">
+            <img  sn-nome="ElementoImagemBandeira"   class="sn-imagem-centro" 
+                src="//" />
+        </ap-bloco>
+        
+    </ap-painel>
+    
+
+    <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+    <div class="linha-horizontal-externa" >
+        <div class="linha-horizontal">
+        </div>
+    </div>
+    <div class="mensagem-validacao" sn-item-elemento="MensagemValidacao"> </div>
+</div>

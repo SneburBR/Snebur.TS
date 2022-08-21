@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="../../../../../../build/Snebur.Pandeco.AdminParceiro.css" rel="stylesheet" />
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body class="sn-controle-area-lista-sugestoes"  >
+
+    <hr />
+    <sn-painel-lista 
+        sn-nome="PainelLista" 
+        sn-bind-lista="{{.}}"  ap-margem="0px 2px" >
+        <sn-bloco-template class="sn-item-sugestao">
+            <ap-bloco  ap-altura="27px"  ap-margem="8px 2px" 
+                sn-click="BtnSelecionar_Click">
+                <ap-texto 
+                    ap-altura-linha="28px" 
+                    sn-bind="{{.}}, Converter=this.RetornarDescricao"></ap-texto>
+            </ap-bloco>
+        </sn-bloco-template>
+    </sn-painel-lista>
+  
+</body>
+</html>

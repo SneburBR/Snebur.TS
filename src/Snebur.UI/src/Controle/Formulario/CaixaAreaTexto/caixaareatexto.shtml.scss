@@ -1,0 +1,94 @@
+﻿@import "../../../../scss/mixins.scss";
+@import "../baseControleFormulario";
+@import "../../../../scss/variaveis.scss";
+
+$altura-rotulo-flutuante: 1.8rem;
+$distancia-rotulo-flutuante: 0.3rem;
+$distancia-rotulo: 1.4rem;
+
+
+sn-caixa-area-texto {
+    display: inline-flex;
+    font-size: var(--tamanho-fonte-documento);
+    /*font-size: $tamanho-fonte-padrao;*/
+
+    &:not([class*='ap-tipografia--']) {
+        font-size: 16px;
+        font-size: var(--tamanho-fonte-documento);
+    }
+
+    > conteudo-apresentacao {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        textarea {
+            border: 0px solid transparent;
+            width: 100%;
+            height: 100%;
+            resize: none;
+            position: relative;
+            outline: none;
+            font-size: $tamanho-fonte-input;
+            font-family: $fonte-padrao;
+            user-select:auto !important;
+            &:focus {
+                /*background-color: silver;*/
+            }
+        }
+
+        .rotulo {
+            position: absolute;
+            left: 0px;
+            pointer-events: none;
+            z-index: 10;
+            top: $distancia-rotulo;
+            color: $cor-rotulo-sem-focus;
+            font-size: $tamanho-fonte-rotulo;
+            transition: all 0.1s;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: 400;
+            width: calc(100% - 20px);
+            overflow: hidden;
+        }
+
+        .linha-horizontal-externa {
+            position: absolute;
+            height: 2px;
+            background-color: $cor-linha-horizontal;
+            width: 100%;
+
+            .linha-horizontal {
+                position: relative;
+                height: 2px;
+                width: 0%;
+                left: 50%;
+                pointer-events: none;
+                display: block;
+                transition: all 0.2s;
+            }
+        }
+    }
+
+
+    &.sn-is-focus,
+    &.sn-possui-conteudo {
+
+        .rotulo {
+            top: $distancia-rotulo-flutuante;
+            color: $cor-rotulo-valido;
+            font-size: $tamanho-fonte-rotulo-flutuante;
+        }
+
+        .linha-horizontal {
+            width: 100% !important;
+            left: 0 !important;
+            background-color: $cor-principal !important;
+        }
+    }
+
+    &.sn-is-valicacao--falha {
+        background-color: red;
+    }
+}
