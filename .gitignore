@@ -397,7 +397,7 @@ vs-depuracao-porta.info
 tsconfig.json
 bin/
 obj/
-
+.vshistory
 
 Snebur.Dominio.Reflexao.ts
 Snebur.Dominio.Interfaces.ts
@@ -433,4 +433,5 @@ Snebur.Globalizacao.Dominio.Interfaces.ts
 Snebur.Globalizacao.Dominio.Constantes.ts
 Snebur.Globalizacao.Dominio.Classes.ts
 Snebur.Globalizacao.Dominio.Atributos.ts
+
 

@@ -118,19 +118,18 @@
                 const caminho = this.RetornarCaminho();
                 if (caminho !== rota.Caminho)
                 {
-                    
                     const novaRota = rota.ConstruirRota(this, parametros);
 
                     console.log(`Atualizando rota: ${location.pathname}
                                  Nova rota: ${novaRota} `);
 
                     history.pushState({}, "", novaRota);
-
-                    const documentoPrincipal = $Aplicacao.DocumentoPrincipal;
-                    document.title = rota.Titulo ?? documentoPrincipal.Titulo;
-                    this.AtualizarMetaTag("description", rota.Descricao);
-                    this.AtualizarMetaTag("keywords", rota.PalavrasChave);
                 }
+
+                const documentoPrincipal = $Aplicacao.DocumentoPrincipal;
+                document.title = rota.Titulo ?? documentoPrincipal.Titulo;
+                this.AtualizarMetaTag("description", rota.Descricao);
+                this.AtualizarMetaTag("keywords", rota.PalavrasChave);
             }
         }
 
@@ -142,33 +141,7 @@
                 meta.setAttribute("content", content);
             }
         }
-
-        //private RetoronarUrlHistoricoHash(pagina: Pagina, parametros: DicionarioSimples<string>): string
-        //{
-        //    const caminhoPagina = u.ValidacaoUtil.IsDefinido(pagina) ? pagina.GetType().Nome : String.Empty;
-        //    if (!parametros.ContainsKey(u.HistoricoNavegadorUtil.PARAMETRO_PAGINA))
-        //    {
-        //        parametros.Add(u.HistoricoNavegadorUtil.PARAMETRO_PAGINA, caminhoPagina);
-        //    }
-        //    else
-        //    {
-        //        parametros.AtribuirItem(u.HistoricoNavegadorUtil.PARAMETRO_PAGINA, caminhoPagina);
-        //    }
-        //    if ($Aplicacao.ParametrosHistorico?.Count > 0)
-        //    {
-        //        parametros.AddRange($Aplicacao.ParametrosHistorico);
-        //    }
-        //    return u.HistoricoNavegadorUtil.RetornarUrlHistorico(parametros);
-        //}
+         
     }
-
-    //export class NavegadorPrincipalHash extends NavegadorPrincipal
-    //{
-
-    //}
-
-    //export class NavegadorPrincipalRota extends NavegadorPrincipal
-    //{
-
-    //}
+     
 }
