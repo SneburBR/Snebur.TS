@@ -33,7 +33,11 @@
         }
         return null;
     };
-   
 
-     
+    CredencialUsuario.prototype.Equals = function (this: CredencialUsuario, obj: CredencialUsuario)
+    {
+        return (this.IdentificadorUsuario === obj.IdentificadorUsuario ||
+            this.IdentificadorAmigavel.toLowerCase() === obj.IdentificadorAmigavel.toLowerCase()) &&
+            this.Senha === obj.Senha;
+    };
 }

@@ -10,7 +10,7 @@
 
 <body>
     <ap-painel-vertical ap-margem="16px">
-        <ap-cabecalho ap-altura="36px">
+        <ap-cabecalho ap-altura="30px">
             <ap-texto sn-nome="TextoTitulo" sn-item-elemento="Titulo" sn-bind="{{Titulo}}" ap-tipografia="Titulo"> Titulo</ap-texto>
         </ap-cabecalho>
         <ap-linha>

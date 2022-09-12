@@ -145,7 +145,6 @@
             //setTimeout(this.NotificarHtmlCarregado.bind(this), 500);
             $Aplicacao.AdicionarControleCarregado(this);
 
-
             /* movido para ControleApresentacao
              * this.Legenda = this.RetornarValorLegenda();*/
             //this.RetornarValorAtributo(AtributosHtml.Legenda, null);
@@ -303,7 +302,7 @@
 
         //#region ControlesFilho
 
-        protected RetornarControleFilhosInterno(): Array<BaseControle>
+        protected RetornarControleFilhosInterno(): BaseControle[]
         {
             const controlesFilho = new Array<BaseControle>();
             const elementosControleFilho = ElementoControleUtil.RetornarElementosControleFilho(this.Elemento, false);

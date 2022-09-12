@@ -814,7 +814,7 @@
                 throw new ErroNaoDefinido(`O argumento '${nomeArgumento}' não foi definido`);
             }
         }
-          
+
         /**
         * Validar se um argumento (parâmetro ou variável) está definida e se é tipo da instancia do construtor, o argumento ser passada como objeto;
         * @param objetoArgumento objeto da variável. Ex:
@@ -823,21 +823,21 @@
         */
         public static ValidarArgumentoInstanciaDe(objetoArgumento: Partial<object>, construtor: Function)
         {
-            
+
             if (typeof construtor !== "function")
             {
                 throw new Erro("O argumento  'construtor' não é do tipo function");
             }
 
-        
+
 
             if (objetoArgumento instanceof construtor)
             {
                 return;
             }
-            
+
             this.ValidarArgumentoDefinido(objetoArgumento);
-           
+
             const nomeArgumento = this.RetornarNomeArgumento(objetoArgumento);
             const valorArgumento = (objetoArgumento as any)[nomeArgumento];
             if (valorArgumento instanceof construtor)
@@ -1185,6 +1185,19 @@
             if (ValidacaoUtil.IsNumber(angulo))
             {
                 return angulo >= -360 && angulo <= 360;
+            }
+            return false;
+        }
+
+        public static IsIP(ipString: string): boolean
+        {
+            if (!String.IsNullOrWhiteSpace(ipString))
+            {
+                const partes = ipString.split(".");
+                if (partes.length === 4)
+                {
+                    return partes.All(x => ValidacaoUtil.IsNumber(x, true) && ValidacaoUtil.IsByte(parseInt(x)));
+                }
             }
             return false;
         }

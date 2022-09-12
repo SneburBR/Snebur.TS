@@ -98,6 +98,7 @@
 
                 if (!$Aplicacao.IsUsuarioLogado)
                 {
+                    this.NotificarUsuarioAnonimoNaoSuportado();
                     throw new ErroOperacaoInvalida("Quando não é permitido usuário anonimo, a Janela entrar, não pode retornar o resultado até autenticação seja concluída com sucesso", this);
                 }
             }
@@ -107,6 +108,11 @@
             await this.InicializarRotasAsync();
             await this.AntesInicializarDocumentoPrincipalAsync();
             this.InicializarDocumentoPrincipal();
+        }
+
+        protected NotificarUsuarioAnonimoNaoSuportado()
+        {
+             
         }
 
         protected abstract InicializarRotasAsync(): Promise<void>;

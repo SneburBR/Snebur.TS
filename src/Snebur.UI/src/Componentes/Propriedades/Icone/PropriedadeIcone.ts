@@ -33,7 +33,7 @@
                 {
                     return IconeUtil.RetornarIconeEnum(valorDom);
                 }
-                console.error(`O �cone ${valorDom} n�o for encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
+                console.error(`O icone ${valorDom} não for encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
                 return EnumIcone.Warning;
             }
             return EnumIcone.Vazio;

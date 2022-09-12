@@ -4,7 +4,7 @@
     {
         private static readonly IsPreferirLocalStore: boolean = true;
         private static readonly DIAS_EM_CACHE: number = 365 * 2;
-        private static readonly CHAVE_LOCAL_STORAGE = "sigi-cookie";
+        private static readonly CHAVE_LOCAL_STORAGE = "sn-cookie";
 
         private static _idSessaoLocalStore: string = null;
         private static _isNCookieNativoAtivo: boolean = null;

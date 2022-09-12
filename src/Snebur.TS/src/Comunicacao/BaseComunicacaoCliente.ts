@@ -104,6 +104,7 @@
             if (valorResultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
             {
                 u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
+                alert("Reiniciando sessão do usuario");
                 window.location.reload();
                 return;
             }

@@ -241,7 +241,7 @@
                 return rota;
             }
 
-            console.warn(`não foi definido uma rota para a página ${this.___NomeConstrutor}`);
+            console.warn(`ignore: não foi definido uma rota para a página ${this.___NomeConstrutor}`);
 
             const caminho = `${this.Navegador.CaminhoRota}/${this.___NomeConstrutor}`;
             return new Rota({

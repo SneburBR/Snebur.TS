@@ -384,9 +384,14 @@
          */
         protected RetornarHtmlInterno(atributos: DicionarioSimples)
         {
-            if (this.GetType() instanceof r.TipoUIHtml)
+            const tipo = this.GetType();
+            if (tipo instanceof r.BaseTipoUI)
             {
-                return HtmlReferenciaUtil.RetornarHtml(this) + this.HtmlInternoInicial;
+                const tipolHtml = tipo.RetornarTipoUIHtml();
+                if (tipolHtml != null)
+                {
+                    return HtmlReferenciaUtil.RetornarHtml(this) + this.HtmlInternoInicial;
+                }
             }
             return this.HtmlInternoInicial;
         }
@@ -672,7 +677,7 @@
         public IsPosicaoMouseEmCimaDoElemento(posicaoMouse: d.Posicao): boolean;
         public IsPosicaoMouseEmCimaDoElemento(posicaoMouse: d.Posicao, idElemento: string): boolean;
         public IsPosicaoMouseEmCimaDoElemento(posicaoMouse: d.Posicao, elemento: HTMLElement): boolean;
-        public IsPosicaoMouseEmCimaDoElemento(posicaoMouse: d.Posicao , refElemento?: any): boolean
+        public IsPosicaoMouseEmCimaDoElemento(posicaoMouse: d.Posicao, refElemento?: any): boolean
         {
             return this.IsMouseEmCimaDoElemento(posicaoMouse.X, posicaoMouse.Y, refElemento);
         }

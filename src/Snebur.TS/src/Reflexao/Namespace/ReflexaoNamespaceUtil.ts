@@ -82,10 +82,10 @@
 
             if (instancias.length > 1)
             {
-                const descricao = String.Join(",", instancias.Select(x => x.__CaminhoTipo ?? "__tipoDesconhecido"));
+                const descricao = String.Join(", ", instancias.Select(x => x.__CaminhoTipo ?? "__tipoDesconhecido"));
                 const mensagemErro = `Ambiguidade. Foram encontrado mais de uma instancia para o caminho '${caminho}.
-                                     Intancias ${descricao}.
-                                     Utilize caminho completo para evitar ambiguidade`;
+                                      Intancias ${descricao}.
+                                      Utilize caminho completo para evitar ambiguidade`;
 
                 if ($Configuracao.IsDebug)
                 {
@@ -134,7 +134,7 @@
             for (const namespace of GerenciadorNamespace.TodosNamespace)
             {
                 const instancia = namespace.RetornarInstanciaObjeto(caminho);
-                if (instancia != null)
+                if (instancia != null && !instancias.Contains(instancia))
                 {
                     instancias.Add(instancia);
                 }

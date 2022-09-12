@@ -4,6 +4,7 @@
     {
         public static PADRAO: number = 16;
         public static TAMANHO_TOKEN: number = 56;
+
         private static get BytesChave(): Uint8Array
         {
             return new Uint8Array([105, 221, 53, 253, 252, 240, 253, 67, 176, 53, 126, 101, 155, 152, 107, 112]);

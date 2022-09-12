@@ -243,6 +243,8 @@
         //Paginação
         public static readonly MaximoPaginas = new AtributoHtml("sn-maximo-paginas", String);
         public static readonly RegistroPorPagina = new AtributoHtml("sn-registros-por-pagina", String);
+        public static readonly PaginacaoDescricaoItem = new AtributoHtml("sn-paginacao-descricao-item", String);
+        public static readonly PaginacaoDescricaoItens = new AtributoHtml("sn-paginacao-descricao-itens", String);
 
         //DataLista
         public static readonly AtivarOrdenacao = new AtributoHtml("sn-ativar-ordenacao", Boolean);

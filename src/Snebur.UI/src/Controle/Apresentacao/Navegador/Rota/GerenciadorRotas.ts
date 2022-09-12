@@ -129,7 +129,7 @@
                 const caminhoTipo = paginaOuCaminho.__CaminhoTipo;
                 if (!this.DicionarioRotasPagina.ContainsKey(caminhoTipo))
                 {
-                    console.error(`Não existe nenhuma rota configurada para construtor da página '${caminhoTipo}'`);
+                    console.warn(`ignore: Não existe nenhuma rota configurada para construtor da página '${caminhoTipo}'`);
                     return null;
                 }
                 const rotasPagina = this.DicionarioRotasPagina.Item(caminhoTipo);

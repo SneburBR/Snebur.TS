@@ -23,14 +23,14 @@ namespace Snebur
     {
         if (tipo === EnumTipoLog.Erro || ($Configuracao == null || $Configuracao.IsDebug || $Configuracao.IsTeste))
         {
-            let mensagem = data[0];
+            let mensagemOriginal = data[0] as string;
             if (data.length > 2)
             {
-                mensagem = String.Join("", data);
+                mensagemOriginal = String.Join("", data);
             }
 
             const hora = FormatacaoUtil?.FormatarHora(new Date()) ?? "";
-            mensagem = `${hora}: ${mensagem}`;
+            const mensagem = `${hora}: ${mensagemOriginal}`;
 
             if (data?.length > 1)
             {
@@ -40,8 +40,10 @@ namespace Snebur
             {
                 base.bind(this)(mensagem);
             }
+  
 
-            if ($Configuracao != null && $Configuracao.IsDebug && tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
+            if ($Configuracao != null && $Configuracao.IsDebug &&
+                tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
             {
                 const mensagem = String.Join("\r\n", data);
                 alert(mensagem);

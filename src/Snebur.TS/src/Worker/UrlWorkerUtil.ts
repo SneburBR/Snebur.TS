@@ -18,14 +18,15 @@
         public static async RetornarUrlCompletaServicoWorker(urlWorker:string): Promise<string>
         {
             const urlRelativa = UrlUtil.CombinarQueryChaveValor(urlWorker, "v", UrlWorkerUtil.Versao);
-            
-            if ($Configuracao.UrlServicosWorker == null || !ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
+            if ($Configuracao.UrlServicosWorker != null &&
+                !ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
             {
-                throw new Erro("A configuração: UrlServicosWorker não foi definida");
+                return await UrlWorkerUtil.UrlBlobAsync(urlRelativa);
             }
-            return await UrlWorkerUtil.UrlBlobAsync(urlRelativa);
-            /*return urlRelativa;*/
+            console.warn("A configuração: UrlServicosWorker não foi definida ");
+            return urlRelativa;
         }
+
         private static async UrlBlobAsync(urlRelativa: string): Promise<string>
         {
             if (!UrlWorkerUtil.UrlsBlobsWorksCache.ContainsKey(urlRelativa))

@@ -52,7 +52,7 @@
 
             const estiloBotao = new Estilo({
                 position: "absolute",
-                width: "25px",
+                /*width: "25px",*/
                 height: "25px",
                 background: "red",
                 color: "white",
@@ -60,26 +60,32 @@
                 top: "0",
                 cursor: "pointer",
                 pointerEvents: "all",
-                zIndex: "20"
+                zIndex: "20",
+                textAlign: "center",
+                lineHeight: "25px",
+                borderRadius: "5px",
+                padding: "0 10px"
             });
 
             const destino = document.createElement("destino");
             estiloDestino.AplicarEm(destino);
 
-
-            const botaoExpandir = document.createElement("i");
+           
+            const botaoExpandir = document.createElement("span");
             botaoExpandir.addEventListener("click", ConsoleUtil.BtnExpandir_Click.bind(ConsoleUtil));
             botaoExpandir.innerHTML = "&#x25B2;";
 
-            const botaoFechar = document.createElement("i");
+            const botaoFechar = document.createElement("span");
             botaoFechar.addEventListener("click", ConsoleUtil.BtnFechar_Click.bind(ConsoleUtil));
-            botaoFechar.innerHTML = "fechar";
+            botaoFechar.innerHTML = "Fechar";
+            estiloBotao.AplicarEm(botaoFechar);
+
 
             estiloConsole.AplicarEm(elementoConsole);
             estiloBotao.AplicarEm(botaoExpandir);
 
             estiloBotao.right = "60px";
-            estiloBotao.width = "80px";
+            /*estiloBotao.width = "80px";*/
             estiloBotao.AplicarEm(botaoFechar);
 
             elementoConsole.appendChild(destino);
@@ -127,13 +133,27 @@
             delete ConsoleUtil.ElementoBotaoExpandir;
         }
 
+        private static AltertasDisparados = new HashSet<number>();
+
         private static ConsoleUtil_Log(provedcor: any, e: ConsoleLogArgs)
         {
             if (ConsoleUtil._isInicializando)
             {
-                if (e.Tipo === EnumTipoLog.Erro ||
-                    e.Tipo === EnumTipoLog.Alerta)
+                if (e.Tipo === EnumTipoLog.Alerta)
                 {
+                    if (ConsoleUtil.AltertasDisparados.Contains(e.Mensagem.GetHashCode()))
+                    {
+                        return;
+                    }
+                    ConsoleUtil.AltertasDisparados.Add(e.Mensagem.GetHashCode());
+
+                }
+                if (e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta)
+                {
+                    if (e.Mensagem?.Contains("ignore:"))
+                    {
+                        return;
+                    }
 
                     const log = document.createElement("div");
                     log.style.color = ConsoleUtil.RetornarCorLog(e.Tipo);
@@ -151,7 +171,7 @@
                 }
             }
         }
-        
+
 
         private static RetornarCorLog(tipo: EnumTipoLog): string
         {

@@ -14,7 +14,14 @@
         public MaximoPaginas: number;
         public RegistroPorPagina: number = ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO
 
-        protected ControleLista: BaseControleLista;
+        protected readonly ControleLista: BaseControleLista;
+        public DescricaoItem: string = "item";
+        public DescricaoItens: string = "itens";
+
+        public get Pular():number
+        {
+            return (this.PaginaAtual - 1) * this.RegistroPorPagina;
+        }
 
         public get TotalPaginas(): number
         {
@@ -39,6 +46,7 @@
             this.DeclararPropriedade(x => x.IsCarregado, Boolean);
 
             this.ControleLista = this.RetornarControleLista();
+
             if (this.ControleLista instanceof BaseControleLista)
             {
                 this.ControleLista.ControlePaginacao = this;
@@ -54,12 +62,14 @@
 
         protected override Inicializar(): void
         {
-            super.Inicializar();
-
+            this.DescricaoItem = this.RetornarValorAtributo(ui.AtributosHtml.PaginacaoDescricaoItem, "item");
+            this.DescricaoItens = this.RetornarValorAtributo(ui.AtributosHtml.PaginacaoDescricaoItens, "itens");
             this.MaximoPaginas = this.RetornarMaximoPaginas();
             this.Limites.AddRangeNew(this.RetornarNumerosLimite());
             this.RegistroPorPagina = this.Limites.First();
 
+            super.Inicializar();
+              
             if (!(this.RegistroPorPagina > 0))
             {
                 throw new Erro(`O registro por pagina não pode ser inferior a 0 controle ${this.ControleApresentacao.__CaminhoTipo}`);
@@ -208,6 +218,19 @@
                 fim = this.TotalPaginas;
             }
             return fim;
+        }
+
+        private FormatarTotalRegistros(totalPedidos: any, dataSource: any): any
+        {
+            if (typeof totalPedidos === "number")
+            {
+                if (totalPedidos === 0)
+                {
+                    return `Nenhum ${this.DescricaoItem} encontrado`;
+                }
+                return `${totalPedidos} ${totalPedidos === 1 ? this.DescricaoItem : this.DescricaoItens}`;
+            }
+            return String.Empty;
         }
 
         //#endregion
