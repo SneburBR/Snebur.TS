@@ -50,7 +50,11 @@
 
         protected override FinalizarEnviadoSucesso(): void
         {
-            this.Imagem.IsExisteArquivo = true;
+            if (!this.Imagem.IsExisteArquivo)
+            {
+                this.Imagem.IsExisteArquivo = true;
+                this.Imagem.DataHoraFimEnvio = new Date();
+            }
             super.FinalizarEnviadoSucesso();
         }
     }

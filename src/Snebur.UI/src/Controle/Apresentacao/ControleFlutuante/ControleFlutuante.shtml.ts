@@ -282,12 +282,12 @@
 
 
 
-        public Mostrar(args?: HTMLElement | BaseUIElemento): void
+        public Mostrar(args?: HTMLElement | BaseUIElemento | MouseEvent): void
         {
             /*eslint-disable*/
             this.DefinirElementoRelativo(args, arguments);
             /*eslint-enable*/
-             
+
 
             this.TempoAbrirControle = Stopwatch.StartNew();
             if (this.IsAberto)
@@ -337,6 +337,10 @@
             else if (args instanceof BaseUIElemento)
             {
                 this._elementoRelativo = args.Elemento;
+            }
+            else if (args instanceof Event && args.target instanceof HTMLElement)
+            {
+                this._elementoRelativo = args.target;
             }
             else
             {

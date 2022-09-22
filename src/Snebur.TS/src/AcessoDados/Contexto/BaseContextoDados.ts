@@ -324,14 +324,22 @@
             }
 
             const clone = (entidade as Entidade).CloneSomenteId();
+            const tipoEntidade = entidade.GetType();
             clone.Id = entidade.Id;
 
-            const consulta = this.RetornarConsulta(entidade.GetType()).Where(x => x.Id === entidade.Id);
+            const consulta = this.RetornarConsulta(tipoEntidade).
+                Where(x => x.Id === entidade.Id);
             //let propriedades = expressoesPropriedades.Select(x => ExpressaoUtil.RetornarCaminhoPropriedade(x));
             const nomesPropriedades = this.RetornarNomesProprieades(entidade, expressoesOuPropriedades);
             for (const nomePropriedade of nomesPropriedades)
             {
                 //###### o serializador não está serializando o tipo HashSet
+                const propriedade = tipoEntidade.RetornarPropriedade(nomePropriedade);
+                if (propriedade.Tipo instanceof r.TipoBaseDominio ||
+                    propriedade.Tipo instanceof r.BaseTipoLista)
+                {
+                    throw new Erro(`A propriedade ${propriedade.Nome} do ${propriedade.Tipo.Nome} ( Tipo Entidade, baseDominio ou coleções) não são suportado. Utilize esse métodos apenas para propriedades do tipo primário`);
+                }
                 consulta.EstruturaConsulta.PropriedadesAbertas.Add(nomePropriedade);
             }
 

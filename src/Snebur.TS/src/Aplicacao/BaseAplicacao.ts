@@ -227,6 +227,12 @@
                 this._servicoDepuracao.Inicializar();
             }
 
+            if (!ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
+            {
+                console.error("A url dos servico workers não foi definida");
+            }
+            console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
+
             //this.InicializarBlobChecksumWorkerAsync();
 
         }

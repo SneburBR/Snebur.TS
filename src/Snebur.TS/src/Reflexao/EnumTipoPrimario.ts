@@ -2,7 +2,9 @@
 {
     export enum EnumTipoPrimario
     {
-        Desconhecido = 0,
+        Desconhecido = -1,
+
+        void = 0,
 
         Boolean = 1,
 

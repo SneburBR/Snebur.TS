@@ -7,6 +7,7 @@
         private static ElementoBotaoExpandir: HTMLElement;
         private static CSS_CLASS_EXPANDIDO = "sn-expandido";
         private static ALTURA_NORMAL = 50;
+        private static IsExpandido: boolean= false;
 
         public static InicializarVisualizacaoConsole(e: ConsoleLogArgs)
         {
@@ -14,6 +15,12 @@
             {
                 return;
             }
+
+            if (e.Mensagem?.Contains("ignore:"))
+            {
+                return;
+            }
+
             ConsoleUtil.InicializarInterno();
             ConsoleUtil._isInicializando = true;
             ConsoleUtil.ConsoleUtil_Log(ConsoleUtil, e);
@@ -107,6 +114,7 @@
             ConsoleUtil.ElementoConsole.style.height = altura;
             ConsoleUtil.ElementoBotaoExpandir.innerHTML = sentido;
 
+
             if (isExpandir)
             {
                 ConsoleUtil.ElementoConsole.classList.add(ConsoleUtil.CSS_CLASS_EXPANDIDO);
@@ -115,7 +123,7 @@
             {
                 ConsoleUtil.ElementoConsole.classList.remove(ConsoleUtil.CSS_CLASS_EXPANDIDO);
             }
-
+            ConsoleUtil.IsExpandido = isExpandir;
             const destino = ConsoleUtil.ElementoConsole.querySelector("destino");
             destino.lastElementChild?.scrollIntoView({
                 block: "center",
@@ -163,11 +171,15 @@
                     destino.appendChild(log);
                     destino.appendChild(document.createElement("hr"));
 
-                    log.scrollIntoView({
-                        block: "center",
-                        inline: "center",
-                        behavior: "smooth"
-                    });
+                    if (!ConsoleUtil.IsExpandido)
+                    {
+                        log.scrollIntoView({
+                            block: "center",
+                            inline: "center",
+                            behavior: "smooth"
+                        });
+                    }
+                    
                 }
             }
         }

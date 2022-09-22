@@ -47,7 +47,7 @@
             {
                 case EnumFormatacaoVariavelCodigo.CamelCase:
                 case EnumFormatacaoVariavelCodigo.PascalCase:
-                    return nome.split(/(?=[A-Z])/);
+                    return nome.split(/(?=[A-Z0-9])/);
                 case EnumFormatacaoVariavelCodigo.SnakeCase:
                 case EnumFormatacaoVariavelCodigo.UpperCase:
 

@@ -1,4 +1,4 @@
-{
+﻿{
   "compilerOptions": {
     "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.js",
     "allowJs": false,
@@ -180,6 +180,7 @@
     "src/Dominio/TipoComplexo/Medida/Regiao.ts",
     "src/Dominio/TipoComplexo/Navegador.ts",
     "src/Dominio/TipoComplexo/PrazoTempo.ts",
+    "src/Dominio/TipoComplexo/RedeSociais.ts",
     "src/Dominio/TipoComplexo/SistemaOperacional.ts",
     "src/Dominio/ViewModel/ViewModelGenerico.ts",
     "src/Expressao/ExpressaoGropoNao.ts",
@@ -408,6 +409,7 @@
     "src/Dominio/Atributos/Validacao/ValidacaoIndentificador.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoInteiro.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoIntervalo.Partial.ts",
+    "src/Dominio/Atributos/Validacao/ValidacaoIP.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoLongo.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoMoeda.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoNomeCompleto.Partial.ts",
@@ -418,8 +420,10 @@
     "src/Dominio/Atributos/Validacao/ValidacaoSenha.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoSubDominio.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoTelefone.Partial.ts",
+    "src/Dominio/Atributos/Validacao/ValidacaoTextoSomentoNumeros.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoTextoTamanho.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoUF.Partial.ts",
+    "src/Dominio/Atributos/Validacao/ValidacaoUrl.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoVersao.Partial.ts",
     "src/Dominio/Atributos/ValidacaoAsync/ValidacaoCredencial.Partial.ts",
     "src/Dominio/Atributos/ValidacaoAsync/ValidacaoIdenticadorUsuario.Partial.ts",
@@ -492,7 +496,7 @@
   "IsIgnorar": false,
   "IsProjetoApresentacao": false,
   "IsProjetoPublicacao": false,
-  "IsIgnorarNormnalizacaoCompilacao": true,
+  "IsIgnorarNormnalizacaoCompilacao": false,
   "NomesPastaServidor": [
     "Online",
     "WebAdmin",

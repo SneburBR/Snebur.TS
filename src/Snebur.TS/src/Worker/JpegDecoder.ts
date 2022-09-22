@@ -2,7 +2,7 @@
 {
     export class JpegDecoder
     {
-        private readonly UrlWorker = "/workers/Snebur.JpegDecoder.js";
+        private readonly UrlWorkerRelativa = "/workers/Snebur.JpegDecoder.js";
         private readonly Arquivo: Blob;
         private readonly RotacaoExif: number;
 
@@ -12,6 +12,7 @@
         private CallbackProgresso: (progresso: number) => void;
         private ProgresoAtual: number;
         private IdTimeout: number;
+        private UrlWorkerFinal: string;
 
         public constructor(arquivo: Blob, rotacaoExif: number, callbackProgresso: (progresso: number) => void) 
         {
@@ -22,8 +23,8 @@
 
         public async InicializarAsync()
         {
-            const urlWorker = await UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorker);
-            this.Worker = new Worker(urlWorker);
+            this.UrlWorkerFinal = await UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorkerRelativa);
+            this.Worker = new Worker(this.UrlWorkerFinal);
             this.Worker.onmessage = this.Worker_OnError.bind(this);
             this.Worker.onerror = this.Worker_OnMessage.bind(this);
         }
@@ -55,7 +56,7 @@
             let resultado = e.data;
             if (resultado.IsErro && !String.IsNullOrWhiteSpace(resultado.MessagemErro))
             {
-                const mensagem = `Erro no worker ${this.UrlWorker} ${resultado.MessagemErro ?? "Erro desconhecido"}`;
+                const mensagem = `Erro no worker ${this.UrlWorkerFinal} ${resultado.MessagemErro ?? "Erro desconhecido"}`;
                 resultado = new Error(mensagem);
                 LogUtil.Erro(resultado);
             }
@@ -84,7 +85,7 @@
 
         private Worker_OnError(e: ErrorEvent)
         {
-            const mensagem = `Erro worker : '${e.message ?? e.error?.message ?? "erro desconhecido"}' url:  '${this.UrlWorker}', arquivo: ${e.filename} linha ${e.lineno}, coluna ${e.colno}`;
+            const mensagem = `Erro worker : '${e.message ?? e.error?.message ?? "erro desconhecido"}' url:  '${this.UrlWorkerFinal}', arquivo: ${e.filename} linha ${e.lineno}, coluna ${e.colno}`;
             this.Resultado = new Erro(mensagem);
             this.Finalizar();
         }

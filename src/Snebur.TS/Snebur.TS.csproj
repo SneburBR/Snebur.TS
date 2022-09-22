@@ -90,6 +90,7 @@
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTextoSomentoNumeros.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoUrl.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\RedeSociais.ts" />
     <TypeScriptCompile Include="src\Reflexao\Namespace\GerenciadorNamespace.ts" />
     <TypeScriptCompile Include="src\Reflexao\Namespace\BaseNamespace.ts" />
     <TypeScriptCompile Include="src\Aplicacao\UsuarioConectadoAlteradoEventArgs.ts" />

@@ -6,23 +6,34 @@
         private Worker: Worker;
         private Callback: (resultado: any) => void;
         private IdTimeout: number;
-        private readonly UrlWorker: string;
+
+        private readonly UrlWorkerRelativa: string;
+        private UrlWorkerFinal: string;
 
         public constructor(url: string)
         {
-
             if (typeof $Aplicacao.FuncaoNormalizarUrlRelativaWebWorker === "function")
             {
                 url = $Aplicacao.FuncaoNormalizarUrlRelativaWebWorker(url);
             }
-
-            this.UrlWorker = url;
+            this.UrlWorkerRelativa = url;
         }
 
         public async InicializarAsync()
         {
-            const urlWorker = await UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorker);
-            this.Worker = new Worker(urlWorker);
+            this.UrlWorkerFinal = await UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorkerRelativa);
+
+            if (!ValidacaoUtil.IsUrlBlob(this.UrlWorkerFinal))
+            {
+                console.error("Não foi possivel carregar o urlblob do servico worker.");
+                console.error(`Url. ${$Configuracao.UrlServicosWorker}`);
+                console.error(`Configuracao ${JSON.stringify($Configuracao)}`);
+                console.error(`UrlWorkerFINAL : ${this.UrlWorkerFinal}`);
+                alert("FALHA AO INICIAR O SERVICO WORKER");
+                throw new Error("Não foi possivel carregar o urlblob do servico worker.");
+            }
+             
+            this.Worker = new Worker(this.UrlWorkerFinal);
             this.Worker.onmessage = this.Worker_Message.bind(this);
             this.Worker.onerror = this.Worker_Error.bind(this);
         }
@@ -37,17 +48,18 @@
             let retorno = e.data;
             if (retorno.IsErro && !String.IsNullOrWhiteSpace(retorno.MessagemErro))
             {
-                const mensagem = `Erro no worker ${this.UrlWorker} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
+                const mensagem = `Erro no worker ${this.UrlWorkerFinal} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
                 retorno = new Error(mensagem);
                 LogUtil.Erro(retorno);
             }
             this.Worker.terminate();
             this.Finalizar(retorno);
         }
+
         private Worker_Error(e: ErrorEvent): void
         {
             this.Worker.terminate();
-            let mensagem = `Worker ${this.UrlWorker}, linha ${e.lineno}, coluna ${e.colno}`;
+            let mensagem = `Worker: ${this.UrlWorkerFinal}, linha ${e.lineno}, coluna ${e.colno}`;
             mensagem += `\r\n ${e.message ?? e.error?.message ?? "erro desconhecido"}`;
             const erro = new Erro(mensagem);
             LogUtil.Erro(erro);
@@ -63,7 +75,7 @@
             }
             this.IdTimeout = window.setTimeout(() =>
             {
-                const erro = new ErroTimeout(`O timeout do servi�o ${this.UrlWorker}`);
+                const erro = new ErroTimeout(`O timeout do servi�o ${this.UrlWorkerFinal}`);
                 LogUtil.Erro(erro);
                 this.Finalizar(erro);
 
@@ -75,9 +87,8 @@
 
         //#region Carregar url
 
-     
-
         //#endregion
+
         public Finalizar(resultado: Error | any): void
         {
             window.clearTimeout(this.IdTimeout);

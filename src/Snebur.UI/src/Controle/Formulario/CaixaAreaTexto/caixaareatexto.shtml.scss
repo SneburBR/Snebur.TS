@@ -89,6 +89,6 @@ sn-caixa-area-texto {
     }
 
     &.sn-is-valicacao--falha {
-        background-color: red;
+        background-color: $cor-falha;
     }
 }

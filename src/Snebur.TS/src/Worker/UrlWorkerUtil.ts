@@ -18,12 +18,14 @@
         public static async RetornarUrlCompletaServicoWorker(urlWorker:string): Promise<string>
         {
             const urlRelativa = UrlUtil.CombinarQueryChaveValor(urlWorker, "v", UrlWorkerUtil.Versao);
-            if ($Configuracao.UrlServicosWorker != null &&
-                !ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
+            if (!ValidacaoUtil.IsUrlHttp(urlRelativa))
             {
+                if ($Configuracao.UrlServicosWorker == null)
+                {
+                    console.error("A configuração: UrlServicosWorker não foi definida ");
+                }
                 return await UrlWorkerUtil.UrlBlobAsync(urlRelativa);
             }
-            console.warn("A configuração: UrlServicosWorker não foi definida ");
             return urlRelativa;
         }
 
@@ -55,6 +57,9 @@
             {
                 throw new Erro(`Não foi possível carregar o conteúdo do Worker: ${urlCompleta}`, conteudo);
             }
+
+            console.log(`Carregando worker (blob) da url: ${urlCompleta}`);
+
             const blob = new Blob([conteudo], { "type": "application/javascript" });
             const urlBlob = window.URL.createObjectURL(blob);
             UrlWorkerUtil.UrlsBlobsWorksCache.AtribuirItem(urlRelativa, urlBlob);

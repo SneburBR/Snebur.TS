@@ -908,6 +908,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\MenuContexto\BaseMenuContexto.ts" />
     <TypeScriptCompile Include="src\Controle\LazyControle.ts" />
   </ItemGroup>
   <PropertyGroup>

@@ -304,6 +304,10 @@
 
         private WindowInterno_KeyDown(event: KeyboardEvent): void
         {
+            if (!this.IsControleInicializado)
+            {
+                return;
+            }
             if (KeyCodeUtil.IsKeyCodeEsc(event.keyCode))
             {
                 if (this.IsFecharEsc && this.IsMostrarBotaoFechar)
@@ -333,6 +337,10 @@
 
         private WindowInterno_Resize(): void
         {
+            if (!this.IsControleInicializado)
+            {
+                return;
+            }
             this.__camposPrivadosJanela.windowsResizeDepois.Executar();
         }
 
@@ -345,6 +353,10 @@
 
         private WindowsResizeDepois_Executar()
         {
+            if (!this.IsControleInicializado)
+            {
+                return;
+            }
             this.AtualizarPosicoes();
         }
 
@@ -466,6 +478,10 @@
 
         private ElementoInterno_MouseDown(e: MouseEvent): void
         {
+            if (!this.IsControleInicializado)
+            {
+                return;
+            }
             if (e.IsBotaoEsquerdo &&
                 this.IsMouseEmCimaDoElemento(e.pageX, e.pageY, this.ElementoMovimentacao))
             {

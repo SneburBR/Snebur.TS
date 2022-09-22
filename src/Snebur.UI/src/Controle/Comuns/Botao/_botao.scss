@@ -35,8 +35,6 @@ sn-botao {
     -ms-user-select: none;
     user-select: none;
 
-
-
     &:not([class*='ap-tipografia--']) {
         /*font-size: 16px;*/
         /*font-size: 14px;*/
@@ -99,7 +97,7 @@ sn-botao {
             &:empty {
                 display: none !important;
             }
-            //somente sem icone
+            //somente sem ícone
         }
 
         ap-icone {
@@ -300,7 +298,7 @@ sn-botao {
             align-content: flex-end;
             vertical-align: bottom;
 
-            &:activer {
+            &:active {
                 color: $cor-principal;
             }
 
@@ -428,7 +426,7 @@ sn-botao {
     &.sn-tipo-botao--flat,
     &.sn-tipo-botao--flat-box,
     &.sn-tipo-botao--normal {
-        height: retornar-rem(40px);
+        /*height: retornar-rem(40px);*/
 
         > conteudo-apresentacao {
 
