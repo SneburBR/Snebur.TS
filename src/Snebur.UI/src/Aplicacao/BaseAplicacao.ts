@@ -422,7 +422,7 @@
 
         //#region ConfiguracaoColuna
 
-        private static get ConfiguracaoFormularioPadrao(): ap.IConfiguracaoFormulario
+        private static get ConfiguracaoFormularioPadrao(): ap.IConfiguracaoLayout
         {
             return {
                 IsMostrarMensagemValidacaoFlutuante: true,
@@ -432,21 +432,21 @@
 
         private NormalizarConfiguracao(): void
         {
-            $Configuracao.ConfiguracaoFormulario = this.NormalizarConfiguracaoFormulazio();
+            $Configuracao.ConfiguracaoLayout = this.NormalizarConfiguracaoFormulazio();
         }
 
-        private NormalizarConfiguracaoFormulazio(): ap.IConfiguracaoFormulario
+        private NormalizarConfiguracaoFormulazio(): ap.IConfiguracaoLayout
         {
-            if ($Configuracao.ConfiguracaoFormulario == null)
+            if ($Configuracao.ConfiguracaoLayout == null)
             {
                 return BaseAplicacao.ConfiguracaoFormularioPadrao;
             }
 
             u.ReflexaoUtil.Estender(
-                $Configuracao.ConfiguracaoFormulario,
+                $Configuracao.ConfiguracaoLayout,
                 BaseAplicacao.ConfiguracaoFormularioPadrao);
 
-            return $Configuracao.ConfiguracaoFormulario;
+            return $Configuracao.ConfiguracaoLayout;
         }
 
         //#endregion

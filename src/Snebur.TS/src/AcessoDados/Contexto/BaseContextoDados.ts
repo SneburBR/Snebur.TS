@@ -385,25 +385,67 @@
             return retorno;
         }
 
-        public async RecuperarAsync(entidade: Entidade): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>
+            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         {
             if (entidade.Id === 0)
             {
                 throw new Erro("Não é possivel atualizar uma entidade não salva");
             }
-            const consulta = this.RetornarConsulta(entidade.GetType()).Where(x => x.Id === $0, entidade.Id);
+            const consulta = this.RetornarConsulta(entidade.GetType());
+            if (expressoesAbrirRelacao?.length > 0)
+            {
+                for (const expresaoAbrirRelacao of expressoesAbrirRelacao)
+                {
+                    consulta.AbrirRelacao(expresaoAbrirRelacao);
+                }
+            }
+            
+            consulta.Where(x => x.Id === entidade.Id);
             const entidadeRecuperada = await consulta.SingleAsync();
             for (const propriedade of entidade.GetType().RetornarPropriedades())
             {
-                if ((entidade as any)[propriedade.Nome] !== (entidadeRecuperada as any)[propriedade.Nome])
+                if ((entidade as any)[propriedade.Nome] != (entidadeRecuperada as any)[propriedade.Nome])
                 {
                     if (propriedade.Tipo instanceof r.TipoPrimario ||
                         propriedade.Tipo instanceof r.TipoEnum ||
-                        propriedade.Tipo instanceof r.TipoComplexo)
+                        propriedade.Tipo instanceof r.TipoComplexo ||
+                        propriedade.Tipo instanceof d.Entidade)
                     {
                         (entidade as any)[propriedade.Nome] = (entidadeRecuperada as any)[propriedade.Nome];
                     }
                 }
+            }
+        }
+
+        public async AbrirRelacaoAsync<TEntidade extends Entidade>
+            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        {
+            if (entidade.Id === 0)
+            {
+                throw new Erro("Não é possivel atualizar uma entidade não salva");
+            }
+            const tipoEntidade = entidade.GetType();
+            const consulta = this.RetornarConsulta(tipoEntidade);
+            const propriedadesRelacao = new List<r.Propriedade>();
+            if (expressoesAbrirRelacao?.length > 0)
+            {
+                for (const expresaoAbrirRelacao of expressoesAbrirRelacao)
+                {
+                    const propriedade = tipoEntidade.RetornarPropriedade(expresaoAbrirRelacao, false);
+                    if (propriedade.Tipo instanceof r.TipoEntidade)
+                    {
+                        propriedadesRelacao.Add(propriedade);
+                        consulta.AbrirRelacao(expresaoAbrirRelacao);
+                    }
+                }
+            }
+
+            consulta.Where(x => x.Id === entidade.Id);
+            const entidadeRecuperada = await consulta.SingleAsync();
+            for (const propriedade of propriedadesRelacao)
+            {
+                (entidade as any)[propriedade.Nome] = (entidadeRecuperada as any)[propriedade.Nome];
             }
         }
 

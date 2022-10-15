@@ -417,6 +417,7 @@
     "src/Dominio/Atributos/Validacao/ValidacaoPrimeiroNome.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoRequerido.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoRequeridoDebug.Partial.ts",
+    "src/Dominio/Atributos/Validacao/ValidacaoRota.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoSenha.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoSubDominio.Partial.ts",
     "src/Dominio/Atributos/Validacao/ValidacaoTelefone.Partial.ts",

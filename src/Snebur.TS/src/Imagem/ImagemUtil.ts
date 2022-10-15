@@ -9,7 +9,7 @@
 
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }
 
-        public static get ImagemCarregando(): string
+        public static get UrlImagemCarregando(): string
         {
             if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemCarregando))
             {
@@ -18,7 +18,16 @@
             return i.ImagemMemoria.UrlImagemCarregando;
         }
 
-        public static get ImagemPendente(): string
+        public static get UrlImagemSemImagem(): string
+        {
+            if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemSemImagem))
+            {
+                return $Configuracao.UrlImagemSemImagem;
+            }
+            return i.ImagemMemoria.UrlImagemSemImagem;
+        }
+
+        public static get UrlImagemPendente(): string
         {
             if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemPendente))
             {
@@ -27,7 +36,7 @@
             return i.ImagemMemoria.UrlImagemPendente;
         }
 
-        public static get ImagemErro(): string
+        public static get UrlImagemErro(): string
         {
             if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemErro))
             {

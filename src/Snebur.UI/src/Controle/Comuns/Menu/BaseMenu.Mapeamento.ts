@@ -7,7 +7,7 @@
             super.Inicializar();
 
             this.Mapear(x => x.Icone, new PropriedadeIcone(true));
-            this.Mapear(x => x.IconeCategoria, new PropriedadeIcone(true));
+            this.Mapear(x => x.IconeCategoria, new PropriedadeIconeCategoria(true));
             /*this.Mapear(x => x.TamanhoIcone, new PropriedadeTamanhoIcone());*/
         }
     }

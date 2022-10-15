@@ -190,7 +190,7 @@
         {
             if (this.Controle && this.Controle.IsControleInicializado)
             {
-                this.ElementoImagem.UrlImagem = u.ImagemUtil.ImagemErro;
+                this.ElementoImagem.UrlImagem = u.ImagemUtil.UrlImagemErro;
             }
         }
 
@@ -215,12 +215,12 @@
                 }
                 return urlImagemPendente;
             }
-            return u.ImagemUtil.ImagemPendente;
+            return u.ImagemUtil.UrlImagemPendente;
         }
 
         private AtualizarImagemCarregando(): void
         {
-            this.ElementoImagem.UrlImagem = u.ImagemUtil.ImagemCarregando;
+            this.ElementoImagem.UrlImagem = u.ImagemUtil.UrlImagemCarregando;
             //this.CentralizarMiniaturaCarregando();
         }
 

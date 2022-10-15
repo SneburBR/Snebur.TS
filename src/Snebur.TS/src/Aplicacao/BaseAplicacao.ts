@@ -229,7 +229,7 @@
 
             if (!ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
             {
-                console.error("A url dos servico workers não foi definida");
+                console.warn("A url dos servico workers não foi definida");
             }
             console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
 

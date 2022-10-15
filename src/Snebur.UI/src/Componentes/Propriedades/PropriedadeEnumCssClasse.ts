@@ -41,7 +41,8 @@
             {
                 EstiloUtil.RemoverClssClasseComecaCom(elemento, this.PREFIXO_CSS_CLASSE);
 
-                if (this.IsAdicionarClassCssPadrao || (valorEnum !== this.ValorPadraoVazio && valorEnum !== BaseEnumApresentacao.Vazio))
+                if (valorEnum !== BaseEnumApresentacao.Vazio &&
+                    (this.IsAdicionarClassCssPadrao || (valorEnum !== this.ValorPadraoVazio )))
                 {
                     const sufixoCssClasse = this.RetornarSufixoCssClasseEnum(valorEnum);
                     if (!String.IsNullOrEmpty(sufixoCssClasse))

@@ -29,7 +29,7 @@
             }
             return this.RetornarRota();
         }
-         
+
         public get IsPropagarBindDataSource()
         {
             return this._isPropagarBindDataSource;
@@ -197,19 +197,17 @@
         //    this.Navegador.Voltar(isSucesso);
         //}
 
-        public Fechar(isSucesso: boolean)
+        public async FecharAsync(isSucesso: boolean): Promise<any>
         {
             if (this.ControleApresentacaoPai instanceof Janela)
             {
-                this.ControleApresentacaoPai.FecharAsync(isSucesso);
-                return;
+                return this.ControleApresentacaoPai.FecharAsync(isSucesso);
             }
 
             const janela = this.RetornarControlePai(Janela, false, true);
             if (janela instanceof Janela)
             {
-                janela.FecharAsync(isSucesso);
-                return;
+                return janela.FecharAsync(isSucesso);
             }
 
             throw new Erro(`Nenhuma janela pai encontrada para a página ${this.___NomeConstrutor}. `);

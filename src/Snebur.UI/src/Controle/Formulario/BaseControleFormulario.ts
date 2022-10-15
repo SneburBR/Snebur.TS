@@ -745,7 +745,7 @@
 
             this._isMostrarMensagemValidacaoFlutuante = this.RetornarValorAtributoBoolean(
                 AtributosHtml.MensagemValidacaoFlutuante,
-                $Configuracao.ConfiguracaoFormulario.IsMostrarMensagemValidacaoFlutuante);
+                $Configuracao.ConfiguracaoLayout.IsMostrarMensagemValidacaoFlutuante);
 
             if (this._isMostrarMensagemValidacaoFlutuante)
             {

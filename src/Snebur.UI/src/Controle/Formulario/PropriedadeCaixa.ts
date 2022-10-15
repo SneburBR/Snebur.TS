@@ -13,7 +13,7 @@
 
         protected RetornarValorParaAtributo(compronenteApresentacao: ComponenteApresentacao, tipoCaixa: EnumTipoCaixa): string
         {
-            if (tipoCaixa === $Configuracao.ConfiguracaoFormulario.TipoCaixaPadrao)
+            if (tipoCaixa === $Configuracao.ConfiguracaoLayout.TipoCaixaPadrao)
             {
                 return String.Empty;
             }
@@ -24,7 +24,7 @@
         {
             if (String.IsNullOrEmpty(valorDom))
             {
-                return $Configuracao.ConfiguracaoFormulario.TipoCaixaPadrao;
+                return $Configuracao.ConfiguracaoLayout.TipoCaixaPadrao;
             }
             return EnumUtil.RetornarValor(EnumTipoCaixa, valorDom);
         }

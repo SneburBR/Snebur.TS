@@ -4,13 +4,17 @@
     {
         protected override readonly PREFIXO_CSS_CLASSE: string = "ap-icone-categoria--";
         protected override readonly ConstrutorEnum: any = EnumIconeCategoria;
-        protected override readonly ValorPadraoVazio: EnumIconeCategoria = EnumIconeCategoria.Vazio;
+
+        protected override get ValorPadraoVazio(): EnumIconeCategoria
+        {
+            return $Configuracao.ConfiguracaoLayout?.IconeCategoriaPadrao ?? EnumIconeCategoria.Vazio;
+        }
 
         public constructor(
             public readonly IsElementoInterno: boolean)
         {
             super(AtributosHtml.IconeCategoria);
-            this.IsAdicionarClassCssPadrao = false;
+            this.IsAdicionarClassCssPadrao = true;
         }
 
         public override Atualizar(componenteApresentacao: ComponenteApresentacao): void
@@ -35,9 +39,13 @@
         {
             switch (categoria)
             {
+                case EnumIconeCategoria.Vazio:
+
+                    return null;
                 case EnumIconeCategoria.Filled:
 
                     return "filled";
+
                 case EnumIconeCategoria.Outlined:
 
                     return "outlined";

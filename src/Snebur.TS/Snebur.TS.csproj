@@ -88,6 +88,7 @@
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRota.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTextoSomentoNumeros.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoUrl.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\TipoComplexo\RedeSociais.ts" />

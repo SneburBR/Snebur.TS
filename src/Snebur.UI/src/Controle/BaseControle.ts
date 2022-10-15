@@ -7,8 +7,7 @@
 
         /*readonly #camposPrivados = new BaseControleCamposPrivados();*/
         private readonly __camposPrivadosBaseControle = new BaseControleCamposPrivados();
-
-
+         
         protected __isReiniciando: boolean = false;
         protected __isControleCarregado: boolean = false;
         protected __isControleInicializado: boolean = false;
@@ -634,18 +633,18 @@
         public Ocupar(titulo: string, mensagem: string): void;
         public Ocupar(opcao: EnumOpcaoOcupar): void;
         public Ocupar(isOcuparImeditamente: boolean): void;
-        public Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
+        public Ocupar(opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
+        public Ocupar(opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
             {
-                $Aplicacao.DocumentoPrincipal.Ocupar(argumento as any, mensagem, this);
+                $Aplicacao.DocumentoPrincipal.Ocupar(opcaoOcupar as any, mensagem, this);
                 this.IsOcupadoInterno = true;
             }
             else
             {
                 this.OcuparElemento();
             }
-
         }
 
         //public Desocupar(): void;
@@ -725,7 +724,6 @@
             {
                 ElementoUtil.DesabilitarElemento(elemento, false);
             }
-
             this.OcuparElementosFilho();
         }
 
@@ -993,5 +991,11 @@
         public readonly _dicionarioControlesFilho = new DicionarioSimples<BaseControle, number>();
     }
 
+    export interface IControleOcuparDesocuparElemento
+    {
+        OcuparElemento(): void
+        DesocuparElemento(): void
+
+    }
 
 }

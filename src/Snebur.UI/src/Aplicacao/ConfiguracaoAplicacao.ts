@@ -5,13 +5,14 @@
         IsPermitirUsuarioAnonimo?: boolean;
         IsDebugApresentacao?: boolean;
         PrefixosCssClasse?: Array<string>;
-        ConfiguracaoFormulario?: IConfiguracaoFormulario;
+        ConfiguracaoLayout?: IConfiguracaoLayout;
         CaminhoRotaNavegadorPrincipal?: string;
     }
 
-    export interface IConfiguracaoFormulario
+    export interface IConfiguracaoLayout
     {
         TipoCaixaPadrao?: ui.EnumTipoCaixa,
+        IconeCategoriaPadrao?: ui.EnumIconeCategoria,
         IsMostrarMensagemValidacaoFlutuante? : boolean
     }
 }
