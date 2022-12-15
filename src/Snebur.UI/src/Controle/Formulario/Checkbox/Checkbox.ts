@@ -2,6 +2,8 @@
 {
     export class Checkbox extends BaseControleFormulario<boolean> implements IControleSelecionado
     {
+        private static readonly CSS_IS_SELECIONADO = "sn-is-selecionado";
+
         public override get Valor(): boolean
         {
             return this.ElementoInput.checked;
@@ -35,6 +37,7 @@
         protected override Inicializar()
         {
             super.Inicializar();
+            this.AdicionarEventoDom(EnumEventoDom.Change, this.ElementoCheckbox_Change, this.ElementoInput);
         }
 
         protected override DepoisInicializarComponentesApresentacao(): void
@@ -85,15 +88,20 @@
             elementoRotuloPara.htmlFor = this.ElementoInput.id;
         }
 
+        private ElementoCheckbox_Change()
+        {
+            this.AtualizarEstiloChecado(this.Valor);
+        }
+
         private AtualizarEstiloChecado(isChecked: boolean): void
         {
             if (isChecked)
             {
-                this.Elemento.classList.add("sn-is-selecionado");
+                EstiloUtil.AdicionarCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
             }
             else
             {
-                this.Elemento.classList.remove("sn-is-selecionado");
+                EstiloUtil.RemoverCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
             }
         }
         public override Habilitar(): void

@@ -2,7 +2,6 @@
 {
     export class ItemBlocoOrdenacao extends ItemBloco 
     {
-
         //#region Propriedades 
 
         public readonly ObjetoOrdenacao: d.IOrdenacao;
@@ -34,7 +33,8 @@
 
         //#region Inicialização
 
-        public constructor(controlePai: PainelLista<any>,
+        public constructor(
+            controlePai: PainelLista<any>,
             template: BlocoTemplate,
             itemReferencia: any,
             itemBlocoSeperador: ItemBlocoSeparador,
@@ -85,7 +85,7 @@
 
             const elementosAlvo = this.Elemento.querySelectorAll(`*[${AtributosHtml.IsAlvoOrdenacao.Nome}=true]`);
             /*this.Elemento.getElementsByClassName("sn-ordenacao-alvo");*/
-             
+
             if (elementosAlvo.length > 0)
             {
                 for (const elementoAlvo of Util.CopiarArray(elementosAlvo))
@@ -121,6 +121,7 @@
             window.clearTimeout(this.IdentificadorMouseDown);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             window.setTimeout(this.IniciarOrdenacaoMouse.bind(this, e), 100);
+            document.body.style.cursor = "grabbing";
         }
 
         private Elemento_MouseLeave(e: MouseEvent)
@@ -134,7 +135,8 @@
             this.RemoverEventoDom(EnumEventoDom.MouseLeave, this.Elemento_MouseLeave);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
-            this.FinalizarOrdenacaoAsync();
+            this.FinalizarOrdenacaoAsync(e);
+            document.body.style.cursor = "normal";
         }
 
         private IniciarOrdenacaoMouse(e: MouseEvent)
@@ -143,10 +145,11 @@
             {
                 return;
             }
+
             if (this.IsMouseEmCimaDoElemento(e.clientX, e.clientY))
             {
                 this.AdicionarEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
-                this.IniciarOrdenacao(e.clientX, e.clientY);
+                this.IniciarOrdenacao(e.clientX, e.clientY, e);
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
@@ -155,7 +158,7 @@
 
         private Window_MouseMove(e: MouseEvent)
         {
-            this.Movimentar(e.clientX, e.clientY);
+            this.Movimentar(e.clientX, e.clientY, e);
 
             e.stopPropagation();
             e.stopImmediatePropagation();
@@ -163,6 +166,7 @@
             e.cancelBubble = true;
             e.returnValue = false;
         }
+
         //#endregion
 
         //#region Touch
@@ -184,6 +188,7 @@
                 window.clearTimeout(this.IdentificadorTouchStart);
                 this.AdicionarEventoDomGlobal(EnumEventoDom.TouchEnd, this.Window_TouchEnd);
                 this.IniciarOrdenacaoTouch(e);
+                document.body.style.cursor = "grabbing";
             }
         }
 
@@ -197,7 +202,7 @@
                 {
                     //this.AdicionarEventoDomGlobal(EnumEventoDom.TouchMove, this.Window_TouchMove);
                     document.addEventListener("touchmove", this.__Window_TouchMove, { passive: false });
-                    this.IniciarOrdenacao(touch.clientX, touch.clientY);
+                    this.IniciarOrdenacao(touch.clientX, touch.clientY, e);
 
                     e.stopPropagation();
                     e.stopImmediatePropagation();
@@ -216,7 +221,8 @@
 
             this.RemoverEventoDomGlobal(EnumEventoDom.TouchEnd, this.Window_TouchEnd);
             //this.RemoverEventoDomGlobal(EnumEventoDom.TouchMove, this.Window_TouchMove);
-            this.FinalizarOrdenacaoAsync();
+            this.FinalizarOrdenacaoAsync(e);
+            document.body.style.cursor = "normal";
         }
 
         private Window_TouchMove(e: TouchEvent)
@@ -224,7 +230,7 @@
             if (e.touches.length === 1)
             {
                 const touch = e.touches[0];
-                this.Movimentar(touch.clientX, touch.clientY);
+                this.Movimentar(touch.clientX, touch.clientY, e);
 
                 e.stopPropagation();
                 e.stopImmediatePropagation();
@@ -241,17 +247,18 @@
 
         //#region Ordenação 
 
-        private IniciarOrdenacao(posicaoX: number, posicaoY: number)
+        private IniciarOrdenacao(posicaoX: number, posicaoY: number, eventoNativo: TouchEvent | MouseEvent)
         {
             if (!this.IsOrdenacaoAtiva)
             {
-                const regiaoPainel = this.PainelLista.Elemento.getBoundingClientRect();
+                const regiaoPainel = this.PainelLista.ElementoApresentacao.getBoundingClientRect();
+
                 this.ClonarElemento(posicaoX, posicaoY);
                 this.Elemento.style.opacity = "0";
                 this.IsOrdenacaoAtiva = true;
+                document.body.style.cursor = "grabbing";
                 this.AplicarEstiloPainel(regiaoPainel);
-
-
+                 
                 this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
                 this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
 
@@ -259,7 +266,13 @@
                 {
                     regiao.AtivarPosicaoAbosoluta();
                 }
-                this.PainelLista.EventoBlocoOrdenando.Notificar(this, new BlocoOrdenandoEventArgs(this));
+
+                this.PainelLista.EventoBlocoOrdenacaoIniciada.Notificar(this,
+                    new BlocoOrdenacaoEventArgs(
+                        this,
+                        this.ObjetoOrdenacao,
+                        this.ElementoClone,
+                        eventoNativo));
             }
         }
 
@@ -287,7 +300,9 @@
             }
         }
 
-        private Movimentar(posicaoX: number, posicaoY: number)
+        private Movimentar(posicaoX: number,
+            posicaoY: number,
+            eventoNativo: MouseEvent | TouchEvent)
         {
             if (this.IsOrdenacaoAtiva)
             {
@@ -323,6 +338,14 @@
                     this.SimularOrdenacao(blocosCapturados);
                 }
 
+                this.PainelLista.EventoBlocoOrdenacaoMovimentando.Notificar(this,
+                    new BlocoOdernacaoMovimentandoEventArgs(this,
+                        this.ObjetoOrdenacao,
+                        this.ElementoClone,
+                        eventoNativo,
+                        blocosCapturados,
+                    ));
+
                 if ($Configuracao.IsDebug)
                 {
                     const elementoTemp = this.ElementoClone.querySelector("info-temp");
@@ -336,13 +359,13 @@
         }
 
 
-        private async FinalizarOrdenacaoAsync()
+        private async FinalizarOrdenacaoAsync(eventoNativo: MouseEvent | TouchEvent)
         {
             if (this.IsOrdenacaoAtiva)
             {
                 await this.MoverElementoClonadoDestinoAsync();
 
-                this.Ordernar();
+                this.Ordernar(eventoNativo);
                 this.RegioesBlocoOrdenacao?.ForEach(x => x.Dispose());
                 this.RegioesBlocoOrdenacao?.Clear();
                 this.RemoverEstiloPainel();
@@ -353,6 +376,7 @@
                 this.RemoverElementoClonado();
 
                 this.Elemento.style.opacity = "1";
+                document.body.style.cursor = "normal";
                 this.IsOrdenacaoAtiva = false;
             }
         }
@@ -362,7 +386,8 @@
 
             const elementoPainel = this.PainelLista.Elemento;
             const elementoApresentacaoPainel = this.PainelLista.ElementoApresentacao;
-            elementoPainel.classList.add(RegiaoBlocoOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            elementoPainel.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            this.Elemento.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
 
             this.EstiloPainelInicial = new Estilo({
                 width: elementoPainel.style.width,
@@ -385,7 +410,8 @@
 
         private RemoverEstiloPainel(): void
         {
-            this.PainelLista.Elemento.classList.remove(RegiaoBlocoOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            this.PainelLista.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            this.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
             this.EstiloPainelInicial?.AplicarEm(this.PainelLista.Elemento);
             this.EstiloApresentacaoPainelInicial?.AplicarEm(this.PainelLista.ElementoApresentacao);
 
@@ -467,7 +493,7 @@
 
         //#region Ordenação
 
-        private Ordernar(): void
+        private Ordernar(eventoNativo: MouseEvent | TouchEvent): void
         {
             if (this.RegiaoBlocoAtual != null && this.RegiaoBlocoAtual.NovaOrdenacao !== this.ObjetoOrdenacao.Ordenacao)
             {
@@ -479,6 +505,12 @@
                 {
                     throw new ErroNaoImplementado();
                 }
+
+                this.PainelLista.EventoBlocoOrdenacaoAlterado.Notificar(this,
+                    new BlocoOrdenacaoEventArgs(this,
+                        this.ObjetoOrdenacao,
+                        this.ElementoClone,
+                        eventoNativo));
             }
         }
 
@@ -509,7 +541,7 @@
 
             this.ObjetoOrdenacao.Ordenacao = this.RegiaoBlocoAtual.NovaOrdenacao;
             this.SalvarEntidadeOrdenacaoAsync()
-            this.PainelLista.EventoBlocoOrdenacaoAlterado.Notificar(this, new BlocoOrdenacaoAlteradoEventArgs(this, this.ObjetoOrdenacao));
+
         }
 
         //#endregion
@@ -610,7 +642,7 @@
             elementoCloneInterno.style.right = String.Empty;
             elementoCloneInterno.style.bottom = String.Empty;
 
-            let elementoClone = document.createElement("ap-bloco-movimentando");
+            let elementoClone = document.createElement(ConstantesOrdenacao.CSS_CLASS_BLOCO_MOVIMENTANDO);
             elementoClone.className = elementoOrigem.className;
 
             if ($Configuracao.IsDebug && false)
@@ -709,5 +741,11 @@
             this.ObjetoOrdenacao.RemoverManipuladorPropriedadeAlterada(x => x.Ordenacao, this.Ordenacao_Alterada, this);
             super.Dispose();
         }
+    }
+
+    export class ConstantesOrdenacao
+    {
+        public static readonly CSS_CLASS_ORDENACAO_ATIVA = "sn-ordenacao-ativa";
+        public static readonly CSS_CLASS_BLOCO_MOVIMENTANDO = "ap-bloco-movimentando";
     }
 }

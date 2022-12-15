@@ -100,7 +100,7 @@
                 for (let i = 0; i < len; i++)
                 {
                     const classe = partes[i];
-                    if (elemento.classList.contains(classe))
+                    while (elemento.classList.contains(classe))
                     {
                         elemento.classList.remove(classe);
                     }

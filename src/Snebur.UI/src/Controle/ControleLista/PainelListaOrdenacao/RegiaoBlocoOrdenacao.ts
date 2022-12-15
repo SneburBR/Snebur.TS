@@ -2,7 +2,7 @@
 {
     export class RegiaoBlocoOrdenacao
     {
-        public static readonly CSS_CLASS_ORDENACAO_ATIVA = "ordenacao-ativa";
+        
 
         private _ordenacaoDestino: number | null;
 
@@ -38,7 +38,7 @@
             this.RegiaoOrigem = itemBlocoOrdenacao.Elemento.getBoundingClientRect();
             this.RegiaoDestino = this.RegiaoOrigem;
 
-            this.ItemBlocoOrdenacao.Elemento.classList.add(RegiaoBlocoOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            this.ItemBlocoOrdenacao.Elemento.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
             this.OrdenacaoOrigem = itemBlocoOrdenacao.ObjetoOrdenacao.Ordenacao;
         }
 
@@ -79,8 +79,9 @@
             const regiaoDestino = this.RegiaoDestino;
             const elemento = this.ItemBlocoOrdenacao.Elemento;
 
-            const left = (regiaoDestino.left - this.RegiaoPainel.left).ToPixels();
+            const left = (regiaoDestino.left - this.RegiaoPainel.left ).ToPixels();
             const top = (regiaoDestino.top - this.RegiaoPainel.top).ToPixels();
+
             const width = regiaoDestino.width.ToPixels();
             const height = regiaoDestino.height.ToPixels();
 
@@ -99,7 +100,7 @@
         public  Dispose(): void
         {
             this.RemoverPosicaoAsoluta();
-            this.ItemBlocoOrdenacao.Elemento.classList.remove(RegiaoBlocoOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            this.ItemBlocoOrdenacao.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
 
             /*eslint-disable*/
             let _this = this as any;

@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:02
+//Data : quinta-feira, 15 de dezembro de 2022
+//Hora : 15:58:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -425,6 +425,8 @@ namespace Snebur.Dominio
         Svg = 5000,
         Swf = 5100,
         Tar = 5200,
+        Txt = 5210,
+        Text = 5220,
         Tif = 5300,
         Tiff = 5400,
         Ts = 5500,
@@ -502,7 +504,9 @@ namespace Snebur.Dominio
     (EnumMimeType as any).Rotulos["Svg"] = "Scalable Vector Graphics (SVG)";
     (EnumMimeType as any).Rotulos["Swf"] = "Small web format (SWF) or Adobe Flash document";
     (EnumMimeType as any).Rotulos["Tar"] = "Tape Archive (TAR)";
-    (EnumMimeType as any).Rotulos["Tif"] = "Tagged Image File Format (TIFF)";
+    (EnumMimeType as any).Rotulos["Txt"] = "Tagged Image File Format (TIFF)";
+    (EnumMimeType as any).Rotulos["Text"] = "Text/Plain (TXT)";
+    (EnumMimeType as any).Rotulos["Tif"] = "Text/Plain (TEXT)";
     (EnumMimeType as any).Rotulos["Tiff"] = "Tagged Image File Format (TIFF)";
     (EnumMimeType as any).Rotulos["Ts"] = "Typescript file";
     (EnumMimeType as any).Rotulos["Ttf"] = "TrueType Font";

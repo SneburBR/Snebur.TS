@@ -129,7 +129,7 @@
                     throw new Erro(`O caminho para o atalho '${atalho}' para namespace não foi definido`);
                 }
 
-                if (atalho !== atalho.toLocaleLowerCase())
+                if (atalho[0] !== atalho[0].toLocaleLowerCase())
                 {
                     throw new Erro(`O atalho '${at}' para o namepsace '${caminho}' ser lowercase`);
                 }

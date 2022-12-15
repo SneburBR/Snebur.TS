@@ -1,12 +1,13 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:02
+//Data : quinta-feira, 15 de dezembro de 2022
+//Hora : 15:58:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
 //@Dominios dependentes: []
 namespace Snebur.Reflexao
 {
+	export const __$tipoTipoPrimario_void = new Snebur.Reflexao.TipoPrimario("void", Snebur.Reflexao.EnumTipoPrimario.void);
 	export const __$tipoTipoPrimario_Boolean = new Snebur.Reflexao.TipoPrimario("Boolean", Snebur.Reflexao.EnumTipoPrimario.Boolean);
 	export const __$tipoTipoPrimario_String = new Snebur.Reflexao.TipoPrimario("String", Snebur.Reflexao.EnumTipoPrimario.String);
 	export const __$tipoTipoPrimario_Integer = new Snebur.Reflexao.TipoPrimario("Integer", Snebur.Reflexao.EnumTipoPrimario.Integer);
@@ -23,6 +24,7 @@ namespace Snebur.Reflexao
 	export const __$tipoTipoPrimario_Byte = new Snebur.Reflexao.TipoPrimario("Byte", Snebur.Reflexao.EnumTipoPrimario.Byte);
 	
 	//Lista de tipos primarios
+	export let __$tipoListaTipoPrimario_void = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_void);
 	export let __$tipoListaTipoPrimario_Boolean = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Boolean);
 	export let __$tipoListaTipoPrimario_String = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_String);
 	export let __$tipoListaTipoPrimario_Integer = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Integer);
@@ -40,6 +42,7 @@ namespace Snebur.Reflexao
 	
 	//Adicionar os tipos
 	//Adicionar  Tipos primarios
+	$Reflexao.Tipos.Adicionar("void",__$tipoTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("Boolean",__$tipoTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("String",__$tipoTipoPrimario_String);
 	$Reflexao.Tipos.Adicionar("Integer",__$tipoTipoPrimario_Integer);
@@ -55,6 +58,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Char",__$tipoTipoPrimario_Char);
 	$Reflexao.Tipos.Adicionar("Byte",__$tipoTipoPrimario_Byte);
 	
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_void",__$tipoListaTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Boolean",__$tipoListaTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_String",__$tipoListaTipoPrimario_String);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Integer",__$tipoListaTipoPrimario_Integer);
@@ -656,6 +660,7 @@ namespace Snebur.Reflexao
 	export const __$tipoBaseDominioSnebur_Dominio_FiltroImagem = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.FiltroImagem, "FiltroImagem", "Snebur.Dominio","Snebur.Dominio.FiltroImagem, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, false);
 	export const __$tipoBaseDominioSnebur_Dominio_BaseListaTipoComplexo = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.BaseListaTipoComplexo, "BaseListaTipoComplexo", "Snebur.Dominio","Snebur.Dominio.BaseListaTipoComplexo`1, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, true);
 	export const __$tipoBaseDominioSnebur_Dominio_BaseMedidaTipoComplexo = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.BaseMedidaTipoComplexo, "BaseMedidaTipoComplexo", "Snebur.Dominio","Snebur.Dominio.BaseMedidaTipoComplexo, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, true);
+	export const __$tipoBaseDominioSnebur_Dominio_RedeSociais = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.RedeSociais, "RedeSociais", "Snebur.Dominio","Snebur.Dominio.RedeSociais, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, false);
 	export const __$tipoBaseDominioSnebur_Dominio_PrazoTempo = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.PrazoTempo, "PrazoTempo", "Snebur.Dominio","Snebur.Dominio.PrazoTempo, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, false);
 	export const __$tipoBaseDominioSnebur_Dominio_Cor = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.Cor, "Cor", "Snebur.Dominio","Snebur.Dominio.Cor, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, false);
 	export const __$tipoBaseDominioSnebur_Dominio_Localizacao = new Snebur.Reflexao.TipoComplexo(Snebur.Dominio.Localizacao, "Localizacao", "Snebur.Dominio","Snebur.Dominio.Localizacao, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo, false);
@@ -675,6 +680,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaBaseDominio_Snebur_Dominio_BaseTipoComplexo = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseTipoComplexo", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.BaseTipoComplexo, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_BaseTipoComplexo);
 	export const __$tipoListaBaseDominio_Snebur_Dominio_FiltroImagem = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroImagem", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.FiltroImagem, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_FiltroImagem);
 	export const __$tipoListaBaseDominio_Snebur_Dominio_BaseMedidaTipoComplexo = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseMedidaTipoComplexo", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.BaseMedidaTipoComplexo, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_BaseMedidaTipoComplexo);
+	export const __$tipoListaBaseDominio_Snebur_Dominio_RedeSociais = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RedeSociais", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.RedeSociais, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_RedeSociais);
 	export const __$tipoListaBaseDominio_Snebur_Dominio_PrazoTempo = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_PrazoTempo", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.PrazoTempo, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_PrazoTempo);
 	export const __$tipoListaBaseDominio_Snebur_Dominio_Cor = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_Cor", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.Cor, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_Cor);
 	export const __$tipoListaBaseDominio_Snebur_Dominio_Localizacao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_Localizacao", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.Localizacao, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_Localizacao);
@@ -695,6 +701,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.FiltroImagem",__$tipoBaseDominioSnebur_Dominio_FiltroImagem);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.BaseListaTipoComplexo",__$tipoBaseDominioSnebur_Dominio_BaseListaTipoComplexo);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.BaseMedidaTipoComplexo",__$tipoBaseDominioSnebur_Dominio_BaseMedidaTipoComplexo);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.RedeSociais",__$tipoBaseDominioSnebur_Dominio_RedeSociais);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.PrazoTempo",__$tipoBaseDominioSnebur_Dominio_PrazoTempo);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Cor",__$tipoBaseDominioSnebur_Dominio_Cor);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Localizacao",__$tipoBaseDominioSnebur_Dominio_Localizacao);
@@ -714,6 +721,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.BaseTipoComplexo",__$tipoListaBaseDominio_Snebur_Dominio_BaseTipoComplexo);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.FiltroImagem",__$tipoListaBaseDominio_Snebur_Dominio_FiltroImagem);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.BaseMedidaTipoComplexo",__$tipoListaBaseDominio_Snebur_Dominio_BaseMedidaTipoComplexo);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.RedeSociais",__$tipoListaBaseDominio_Snebur_Dominio_RedeSociais);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.PrazoTempo",__$tipoListaBaseDominio_Snebur_Dominio_PrazoTempo);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.Cor",__$tipoListaBaseDominio_Snebur_Dominio_Cor);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.Localizacao",__$tipoListaBaseDominio_Snebur_Dominio_Localizacao);
@@ -735,6 +743,7 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.FiltroImagem.__CaminhoTipo = "Snebur.Dominio.FiltroImagem";
 	Snebur.Dominio.BaseListaTipoComplexo.__CaminhoTipo = "Snebur.Dominio.BaseListaTipoComplexo";
 	Snebur.Dominio.BaseMedidaTipoComplexo.__CaminhoTipo = "Snebur.Dominio.BaseMedidaTipoComplexo";
+	Snebur.Dominio.RedeSociais.__CaminhoTipo = "Snebur.Dominio.RedeSociais";
 	Snebur.Dominio.PrazoTempo.__CaminhoTipo = "Snebur.Dominio.PrazoTempo";
 	Snebur.Dominio.Cor.__CaminhoTipo = "Snebur.Dominio.Cor";
 	Snebur.Dominio.Localizacao.__CaminhoTipo = "Snebur.Dominio.Localizacao";
@@ -785,11 +794,15 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.Atributos.ValidacaoDataExpiracaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataExpiracaoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoDataPublicacaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataPublicacaoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoEmailOuTelefoneAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoEmailOuTelefoneAttribute";
+	Snebur.Dominio.Atributos.ValidacaoIPAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoIPAttribute";
 	Snebur.Dominio.Atributos.ValidacaoPalavraTamanhoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoPalavraTamanhoAttribute";
+	Snebur.Dominio.Atributos.ValidacaoRotaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoRotaAttribute";
 	Snebur.Dominio.Atributos.ValidacaoPrimeiroNomeAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoPrimeiroNomeAttribute";
 	Snebur.Dominio.Atributos.ValidacaoNomeCompletoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoNomeCompletoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoFlagsEnumRequeridoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoFlagsEnumRequeridoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoRequeridoDebugAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoRequeridoDebugAttribute";
+	Snebur.Dominio.Atributos.ValidacaoTextoSomentoNumerosAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoTextoSomentoNumerosAttribute";
+	Snebur.Dominio.Atributos.ValidacaoUrlAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoUrlAttribute";
 	Snebur.Dominio.Atributos.ValidacaoVersaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoVersaoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoCepAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoCepAttribute";
 	Snebur.Dominio.Atributos.ValidacaoCnpjAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoCnpjAttribute";
@@ -1072,6 +1085,35 @@ namespace Snebur.Reflexao
 	__$propriedade_Snebur_Dominio_BaseListaTipoComplexo_Json.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,32767));
 	
 	__$tipoBaseDominioSnebur_Dominio_BaseListaTipoComplexo.Propriedades.Add(__$propriedade_Snebur_Dominio_BaseListaTipoComplexo_Json);
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_Facebook = new Snebur.Reflexao.Propriedade("Facebook", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_Facebook.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_Instagram = new Snebur.Reflexao.Propriedade("Instagram", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_Instagram.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_Twitter = new Snebur.Reflexao.Propriedade("Twitter", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_Twitter.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_WhatsApp = new Snebur.Reflexao.Propriedade("WhatsApp", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_WhatsApp.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_LinkedIn = new Snebur.Reflexao.Propriedade("LinkedIn", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_LinkedIn.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_Youtube = new Snebur.Reflexao.Propriedade("Youtube", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_Youtube.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	export const __$propriedade_Snebur_Dominio_RedeSociais_Github = new Snebur.Reflexao.Propriedade("Github", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_RedeSociais, true);
+	__$propriedade_Snebur_Dominio_RedeSociais_Github.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
+	
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_Facebook);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_Instagram);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_Twitter);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_WhatsApp);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_LinkedIn);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_Youtube);
+	__$tipoBaseDominioSnebur_Dominio_RedeSociais.Propriedades.Add(__$propriedade_Snebur_Dominio_RedeSociais_Github);
 	
 	export const __$propriedade_Snebur_Dominio_PrazoTempo_Prazo = new Snebur.Reflexao.Propriedade("Prazo", __$tipoTipoPrimario_Double, __$tipoBaseDominioSnebur_Dominio_PrazoTempo, false);
 	

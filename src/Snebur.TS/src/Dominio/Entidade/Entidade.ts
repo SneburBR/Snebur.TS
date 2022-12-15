@@ -198,6 +198,11 @@
 
                 for (const propriedade of propriedades)
                 {
+                    if (propriedade.IsSomenteLeitura)
+                    {
+                        continue;
+                    }
+
                     const valorPropriedade = referencia[propriedade.Nome];
                     const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieadede);
                     (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;

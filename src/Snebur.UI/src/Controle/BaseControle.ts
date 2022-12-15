@@ -7,7 +7,7 @@
 
         /*readonly #camposPrivados = new BaseControleCamposPrivados();*/
         private readonly __camposPrivadosBaseControle = new BaseControleCamposPrivados();
-         
+
         protected __isReiniciando: boolean = false;
         protected __isControleCarregado: boolean = false;
         protected __isControleInicializado: boolean = false;
@@ -261,7 +261,7 @@
             ////para evitar que o evento seja chamado mais de uma vez
             //this.EventoCarregado.Clear();
         }
-         
+
         protected override HtmlCarregado(): void
         {
             super.HtmlCarregado();
@@ -441,8 +441,7 @@
 
         protected NomearElementos(): void
         {
-            if (/*this.DicionarioElementosSnebur.ContainsKey(AtributosHtml.NomeElemento.Nome) ||
-                */this.DicionarioElementosSnebur.ContainsKey(AtributosHtml.Nome.Nome))
+            if (this.DicionarioElementosSnebur.ContainsKey(AtributosHtml.Nome.Nome))
             {
                 const elementos = new List<Element>();
                 /*elementos.AddRange(this.DicionarioElementosSnebur.TryItem(AtributosHtml.NomeElemento.Nome));*/
@@ -462,17 +461,11 @@
 
                 for (const elemento of elementos)
                 {
-                    //if (!ControleUtil.IsElementoControle(elemento) && !ComponenteApresentacaoUtil.IsComponenteApresentacao(elemento))
-                    //{
                     if (String.IsNullOrEmpty(elemento.id))
                     {
                         elemento.id = ui.ElementoUtil.RetornarNovoIDElemento(this);
                     }
-
                     this.AtribuirNomeObjeto(elemento, elemento);
-                    //}
-
-                    //this.DefinirPropridadeNomeElemento(nomeElemento, elemento.id);
                 }
             }
         }

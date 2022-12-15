@@ -26,7 +26,7 @@
         {
             if (typeof this._isSomenteLeitura === "undefined")
             {
-                this._isSomenteLeitura = this.Atributos.OfType<at.SomenteLeituraAttribute>(at.SomenteLeituraAttribute) != null;
+                this._isSomenteLeitura = this.Atributos.OfType<at.SomenteLeituraAttribute>(at.SomenteLeituraAttribute).Count > 0;
             }
             return this._isSomenteLeitura;
         }

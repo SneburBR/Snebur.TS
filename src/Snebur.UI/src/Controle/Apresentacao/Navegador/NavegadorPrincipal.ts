@@ -18,7 +18,7 @@
         {
             super.Inicializar();
 
-            console.warn("Rota do navegador principal" + this.CaminhoRota);
+            console.log("Rota do navegador principal" + this.CaminhoRota);
 
             const identificadorNavegador = this.RetornarValorAtributo(AtributosHtml.IdentificadorNavegador, null);
             if (!String.IsNullOrWhiteSpace(identificadorNavegador) &&
@@ -141,7 +141,7 @@
                 meta.setAttribute("content", content);
             }
         }
-         
+
     }
-     
+
 }

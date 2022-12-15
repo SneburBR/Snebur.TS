@@ -1,17 +1,22 @@
 ﻿
 body {
     user-select: none !important;
-
     /*input {
         user-select: none !important;
     }*/
 }
 
+.ap-bloco-movimentando,
+.sn-ordenacao-ativa {
+    cursor: grabbing !important;
+}
+
 sn-painel-lista-ordenacao {
     user-select: none !important;
 
-    &.ordenacao-ativa {
-        /*border: 1px solid red !important;*/
+
+    &.sn-ordenacao-ativa {
+        cursor: grabbing !important;
     }
 
     *[sn-is-alvo-ordenacao=true],
@@ -25,7 +30,7 @@ sn-painel-lista-ordenacao {
 
     ap-bloco-ordenacao {
 
-        &.ordenacao-ativa {
+        &.sn-ordenacao-ativa {
             /*outline: 1px solid blue !important;*/
             transition-duration: 0.15s;
             transition-property: all;

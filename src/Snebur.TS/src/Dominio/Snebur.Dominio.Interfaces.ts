@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:03
+//Data : quinta-feira, 15 de dezembro de 2022
+//Hora : 15:58:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -71,6 +71,11 @@ namespace Snebur.Dominio
     export interface IIdentificador
     {
         readonly Identificador : string;
+    }
+    export interface IPrecoTempo
+    {
+        Prazo : number;
+        TipoPrazo : Snebur.Dominio.EnumTipoPrazo;
     }
     export interface IArea extends Snebur.Dominio.IMargem,Snebur.Dominio.IDimensao 
     {
@@ -379,6 +384,11 @@ namespace Snebur.Serializacao
 {
     export interface IBaseDominio
     {
+    }
+    export interface IBaseDominioControladorPropriedade extends Snebur.Serializacao.IBaseDominio 
+    {
+        DestivarControladorPropriedadeAlterada() : void;
+        AtivarControladorPropriedadeAlterada() : void;
     }
 }
 namespace Snebur.Servicos

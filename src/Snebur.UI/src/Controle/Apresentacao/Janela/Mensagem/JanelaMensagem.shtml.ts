@@ -57,6 +57,7 @@
             {
                 const mensagem = `A mensagem ${JanelaMensagem._janelaAtual.Titulo} ${JanelaMensagem._janelaAtual.Mensagem} está aberta.
                                   Para evitar esse erro. await JanelaMensagem.AguardarFecharMensagemAsync() antes do construtor new JanelaMensagem `;
+
                 if ($Configuracao.IsDebug)
                 {
                     throw new Erro(mensagem);

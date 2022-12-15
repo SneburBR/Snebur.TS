@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:02
+//Data : quinta-feira, 15 de dezembro de 2022
+//Hora : 15:58:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -423,16 +423,16 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        private _tipoNullableRequerido : boolean = false;
+        private _isTipoNullableRequerido : boolean = false;
     
-        public get TipoNullableRequerido(): boolean 
+        public get IsTipoNullableRequerido(): boolean 
         {
-            return this._tipoNullableRequerido;
+            return this._isTipoNullableRequerido;
         }
 
-        public set TipoNullableRequerido(value: boolean)  
+        public set IsTipoNullableRequerido(value: boolean)  
         {
-            this.NotificarValorPropriedadeAlterada("TipoNullableRequerido", this._tipoNullableRequerido, this._tipoNullableRequerido = value);
+            this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
         }
         //#endregion
     
@@ -847,6 +847,24 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
+    export class ValidacaoIPAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        public static MensagemValidacao : string = "O ip {0} é invalido."; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ValidacaoIPAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
     export class ValidacaoPalavraTamanhoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
@@ -898,6 +916,24 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
+    export class ValidacaoRotaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        public static MensagemValidacao : string = "Rota invalida"; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ValidacaoRotaAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
     export class ValidacaoPrimeiroNomeAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
@@ -928,6 +964,42 @@ namespace Snebur.Dominio.Atributos
         //#region Construtor
     
         public constructor(inicializador?: Partial<ValidacaoNomeCompletoAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class ValidacaoTextoSomentoNumerosAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        public static MensagemValidacao : string = "A campo {0} é invalido (somente números)."; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ValidacaoTextoSomentoNumerosAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class ValidacaoUrlAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        public static MensagemValidacao : string = "A url {0} é invalido."; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ValidacaoUrlAttribute>) 
         {
             super(inicializador);
             this.Inicializar();

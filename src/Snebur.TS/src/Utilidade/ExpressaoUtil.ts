@@ -104,6 +104,12 @@
         {
             const nomePropriedade = this.NormalizarNomePropriedadeInterno(nomePropriedadeOuExpressao);
             ValidacaoUtil.ValidarArgumentoDefinido({ nomePropriedadeOuExpressao });
+
+            if (nomePropriedade.Contains("."))
+            {
+                throw new Erro(`"O caminho '${nomePropriedade}' com mais de um nivél não é suportado`);
+
+            }
             if (nomePropriedade.EndsWith("?"))
             {
                 return nomePropriedade.substring(0, nomePropriedade.length - 1);

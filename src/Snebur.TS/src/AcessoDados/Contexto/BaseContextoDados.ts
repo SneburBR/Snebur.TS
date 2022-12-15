@@ -418,8 +418,21 @@
             }
         }
 
+        public async AbrirColecaoAsync<TEntidade extends Entidade>
+            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade[])[]): Promise<void>
+        {
+            this.AbrirRelacaoOuColecaoAsync(entidade,  expressoesAbrirRelacao);
+
+        }
+
         public async AbrirRelacaoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        {
+            this.AbrirRelacaoOuColecaoAsync(entidade,   expressoesAbrirRelacao);
+        }
+
+        public async AbrirRelacaoOuColecaoAsync<TEntidade extends Entidade>
+            (entidade: TEntidade,  expressoesAbrirRelacao: ((value: TEntidade) => any)[]): Promise<void>
         {
             if (entidade.Id === 0)
             {
@@ -437,6 +450,12 @@
                     {
                         propriedadesRelacao.Add(propriedade);
                         consulta.AbrirRelacao(expresaoAbrirRelacao);
+                    }
+
+                    if (propriedade.Tipo instanceof r.TipoListaEntidade)
+                    {
+                        propriedadesRelacao.Add(propriedade);
+                        consulta.AbrirColecao(expresaoAbrirRelacao);
                     }
                 }
             }

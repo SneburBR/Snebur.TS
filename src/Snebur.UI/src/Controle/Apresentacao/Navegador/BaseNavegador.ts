@@ -501,6 +501,7 @@
                 }
                 else
                 {
+                    pagina.EventoAntesDescarregar.Notificar(pagina, EventArgs.Empty);
                     pagina.OcultarElemento();
                 }
             }

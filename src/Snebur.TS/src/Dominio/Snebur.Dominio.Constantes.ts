@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:03
+//Data : quinta-feira, 15 de dezembro de 2022
+//Hora : 15:58:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -21,8 +21,10 @@ namespace Snebur
         public static readonly SENHA : string = "Senha";
         public static readonly IDENTIFICADOR_PROPRIETARIO : string = "IdentificadorProprietario";
         public static readonly NOME_ASSEMBLY_APLICACAO : string = "NomeAssemblyAplicacao";
-        public static readonly IDENTIFICADOR_SESSAO_USUARIO : string = "IdentificadorSessaoUsuario";
         public static readonly ORIGIN : string = "Origin";
+        public static readonly TOKEN : string = "Token";
+        public static readonly MANIPULADOR : string = "Manipulador";
+        public static readonly NOME_APLICACAO_WEB : string = "NomeArquivoWeb";
     }
 }
 namespace Snebur.Imagem

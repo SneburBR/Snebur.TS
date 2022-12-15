@@ -5,7 +5,7 @@ namespace Snebur.UI
     {
         private static readonly CSS_CLASS_SELECIONADO = "sn-is-cor-selecionada";
         private static readonly CSS_CLASS_PALETA_CORES = "sn-paleta-cores";
-        private static readonly CHAVE_LOCAL_STORAGE_HISTORICO: string = "sigix_historico_paleta";
+        private static readonly CHAVE_LOCAL_STORAGE_HISTORICO: string = "fotoalbum_historico_paleta";
 
         private _corSelecionada: d.Cor = Cores.Transparente;
         private _elementoDestinoHistoricoPersonalizado: HTMLElement;
@@ -420,7 +420,7 @@ namespace Snebur.UI
 
         private RemoverCor_Click(e: UIEvent)
         {
-            this.CorSelecionada = Cores.Transparente;
+            this.CorSelecionada = this.ControleCaixaSelecaoCor.CorPadrao;
         }
 
         private SelecionarCor_Click(cor: d.Cor, e: MouseEvent)

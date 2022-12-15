@@ -109,7 +109,8 @@
                 return document.cookie;
             }
 
-            const localStoreItemString = localStorage.getItem(CookieUtil.ChaveLocalStorage + "-" + chave);
+            chave = `${CookieUtil.ChaveLocalStorage}-${chave}`;
+            const localStoreItemString = localStorage.getItem(chave);
             if (localStoreItemString != null)
             {
                 try
@@ -154,7 +155,9 @@
                 idSessaoLocalStorage: CookieUtil.IdSessaoLocalStorage,
                 Expiracao: expireDate.getTime()
             };
-            localStorage.setItem(CookieUtil.ChaveLocalStorage + "-" + chave, JSON.stringify(localStoreItem));
+
+            chave = `${CookieUtil.ChaveLocalStorage}-${chave}`;
+            localStorage.setItem(chave, JSON.stringify(localStoreItem));
         }
 
         private static CheckCookieAtivo(): boolean

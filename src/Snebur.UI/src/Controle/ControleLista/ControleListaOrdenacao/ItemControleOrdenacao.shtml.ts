@@ -4,6 +4,8 @@ namespace Snebur.UI
 
     export class ItemControleOrdenacao extends ItemControle
     {
+        private static readonly ITEM_MOVENDO = "sn-item-movimentando";
+
         private ItemControleMouseEmCima: ItemControleOrdenacao = null;
 
         private ElementoClone: HTMLElement;
@@ -642,11 +644,12 @@ namespace Snebur.UI
                 cursor: "grabbing"
             });
 
-            const elementoClone = document.createElement("sn-item-movimentando");
+            const elementoClone = document.createElement(ItemControleOrdenacao.ITEM_MOVENDO);
             elementoClone.className = elementoOrigem.className;
             estilo.AplicarEm(elementoClone);
             elementoClone.innerHTML = elementoOrigem.outerHTML;
             elementoClone.classList.add("sn-item-lista-clone");
+            elementoClone.classList.add(ItemControleOrdenacao.ITEM_MOVENDO);
             document.body.appendChild(elementoClone);
 
             return this.NormalizarOpcoesElementoClonagem(elementoClone);

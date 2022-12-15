@@ -140,7 +140,7 @@
         {
             return this._eventoDesabilitarAlterado ?? (this._eventoDesabilitarAlterado = new Evento(this));
         }
-         
+
         //#endregion
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement | string, componenteApresentacaoPai: ComponenteApresentacao);
@@ -478,15 +478,18 @@
 
         //#region Nomear elementos
 
-        protected AtribuirNomeObjeto(objeto: ComponenteApresentacao | Element, elemento: Element)
+        protected AtribuirNomeObjeto(
+            objeto: ComponenteApresentacao | Element,
+            elemento: Element,
+            destino: ComponenteApresentacao = this)
         {
             const nome = this.RetornarNomeInterno(elemento);
             if (!String.IsNullOrEmpty(nome))
             {
-                if (this.DicionariosObjetosNomeados.ContainsKey(nome))
+                if (destino.DicionariosObjetosNomeados.ContainsKey(nome))
                 {
-                    const itemJaNomeado = this.DicionariosObjetosNomeados.Item(nome);
-                    if (this.IsObjetoNomeadoDiferente(objeto, itemJaNomeado))
+                    const itemJaNomeado = destino.DicionariosObjetosNomeados.Item(nome);
+                    if (destino.IsObjetoNomeadoDiferente(objeto, itemJaNomeado))
                     {
                         throw new Error(`O nome ${nome} do objeto deve ser único no escopo da apresentação`);
                     }
@@ -495,10 +498,10 @@
                     {
                         if ($Configuracao.IsDebug)
                         {
-                            throw new Error(`Item ja nomerado, isso pode acontecer, porem deve ser evitado ${nome}`);
+                            throw new Error(`Item '${nome}' ja nomerado, isso pode acontecer, porem deve ser evitado`);
                         }
                         //substituir nome
-                        this.DicionariosObjetosNomeados.AtribuirItem(nome, objeto);
+                        destino.DicionariosObjetosNomeados.AtribuirItem(nome, objeto);
                     }
                 }
                 else
@@ -507,8 +510,24 @@
                     {
                         objeto.Nome = nome;
                     }
-                    (this as any)[nome] = objeto;
-                    this.DicionariosObjetosNomeados.Add(nome, objeto);
+
+                    if ((destino as any)[nome] != null)
+                    {
+                        if ($Configuracao.IsDebug)
+                        {
+                            throw new Error(`Item  '${destino}'.'${nome}' ja nomeado, isso pode acontecer, porem deve ser evitado `);
+                        }
+                        return;
+                    }
+                    (destino as any)[nome] = objeto;
+                    destino.DicionariosObjetosNomeados.Add(nome, objeto);
+                }
+
+                if (this === destino &&
+                    (this as any) !== this.ControleApresentacao &&
+                    this instanceof BaseControleLista)
+                {
+                    this.AtribuirNomeObjeto(objeto, elemento, this.ControleApresentacao);
                 }
             }
         }
@@ -537,7 +556,7 @@
 
         protected RetornarNomeInterno(elemento: Element): string
         {
-            if (!$Configuracao.IsDebug)
+            if ($Configuracao.IsDebug)
             {
                 const nome = ElementoUtil.RetornarValorAtributo(elemento, "sn-nome-elemento");
                 if (!String.IsNullOrEmpty(nome))
