@@ -122,6 +122,12 @@
             this.Elemento.style.left = this.PosicaoX.ToPixels();
             this.Elemento.style.top = this.PosicaoY.ToPixels();
         }
+
+        public Resetar()
+        {
+            this._posicaoX = null;
+            this._posicaoY = null;
+        }
     }
 
 }

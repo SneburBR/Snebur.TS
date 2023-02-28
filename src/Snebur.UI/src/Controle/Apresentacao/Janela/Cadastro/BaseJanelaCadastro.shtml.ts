@@ -304,9 +304,12 @@
             {
                 if ($Configuracao.IsDebug)
                 {
-                    let mensagem = resultadoSalvar.MensagemErro + "</br>";
-                    mensagem = String.Join("<br>", resultadoSalvar.ErrosValidacao.Select(x => x.Mensagem));
-                    throw new Erro(mensagem);
+                    const mensagem = `Serviços dados: ${this.Contexto.URLServico} <br />
+                                      ${resultadoSalvar.MensagemErro} <br />
+                                      ${String.Join("<br />", resultadoSalvar.ErrosValidacao.Select(x => x.Mensagem))}`;
+
+                    alert(mensagem);
+                    /*throw new Erro(mensagem);*/
                 }
 
                 const tituloErro = "Erro ao salvar";

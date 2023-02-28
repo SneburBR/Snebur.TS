@@ -209,6 +209,10 @@
             this.ValidarEntidades(entidades);
 
             const resultado = await this.ServicoDados.SalvarAsync(entidades);
+            if (!resultado.IsSucesso)
+            {
+                console.error(resultado.MensagemErro);
+            }
             this.AtualizarEntidadesDepoisSalvar(entidades, resultado);
             return resultado;
 

@@ -792,7 +792,7 @@
             this.AtualizarCssClassePossuiConteudo();
         }
 
-        protected ElementoInput_Click(e: FocusEvent): void
+        protected ElementoInput_Click(e: Event): void
         {
             this.IsGanhoPrimeiroFocusUsuario = true;
         }

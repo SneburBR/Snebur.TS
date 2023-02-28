@@ -85,6 +85,22 @@
 
             this.Grupo = this.RetornarGrupoRadio();
             this.IsSelecionado = this.RetornarValorAtributoBoolean(AtributosHtml.Selecionado, false);
+         
+        }
+
+        protected override ElementoInput_Change(e:Event)
+        {
+            super.ElementoInput_Change(e);
+            if (this._isSelecioando !== this.ElementoInput.checked)
+            {
+                this.IsSelecionado = this.ElementoInput.checked;
+            }
+        }
+
+        protected override ElementoInput_Click(e: Event)
+        {
+            super.ElementoInput_Click(e);
+            this.IsSelecionado = !this.ElementoInput.checked;
         }
 
         protected override AtualizarRotulo(): void

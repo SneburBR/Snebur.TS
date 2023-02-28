@@ -229,7 +229,7 @@
         public override Dispose(): void
         {
             JanelaMensagem._janelaAtual = null;
-            this.ControlePai.ControlesFilho?.Remove(this);
+            this.ControlePai?.ControlesFilho?.Remove(this);
             super.Dispose();
         }
 

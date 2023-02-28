@@ -392,7 +392,7 @@
         {
             if ($Configuracao.IsDebug && !this.OpcoesControleFlutuante.IsMostrarPainelAcoes)
             {
-                if (!this.PainelBarraMovimentacao.IsVisivel)
+                if (!this.PainelBarraMovimentacao?.IsVisivel)
                 {
                     console.error(`O controle flutuante não pode ser movimento, pois a barra de ações não está ativo,
                                    SobreEscreva o método RetornarElementoAlvoMovimentacao ou ative a propriedade
@@ -407,6 +407,11 @@
 
         //#region Métodos privados
 
+        public async ResetarPosicaoAsync()
+        {
+            this.Movimentacao.Resetar();
+            this.AtualizarPosicaoAsync("resetando posicao");
+        }
         public async AtualizarPosicaoAsync(origem?: string, tentativa: number = 0)
         {
 

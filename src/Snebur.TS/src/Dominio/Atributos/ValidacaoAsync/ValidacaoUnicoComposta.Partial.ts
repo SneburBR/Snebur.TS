@@ -40,7 +40,7 @@
             {
                 valorPropriedadeFiltro = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeFiltro.Nome, false);
                 if ((typeof valorPropriedadeFiltro === "string" && valorPropriedadeFiltro.trim().length > 1) ||
-                    typeof valorPropriedadeFiltro === "number" && valorPropriedadeFiltro > 0)
+                    typeof valorPropriedadeFiltro === "number" && valorPropriedadeFiltro > 0 )
                 {
                     consulta.FiltroGrupoE.Filtros.Add(a.ConsultaUtil.RetornarNovoFiltroPropriedade(propriedadeFiltro, a.EnumOperadorFiltro.Igual, valorPropriedadeFiltro));
                 }

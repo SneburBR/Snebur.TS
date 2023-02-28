@@ -61,7 +61,8 @@
                 }
             }
 
-            let controles = this.ControlesFilho.OfType(BaseControleFormulario).Where(x => !x.IsIgnorarValidacao);
+            const controlesFumulario = this.ControlesFilho.OfType(BaseControleFormulario);
+            let controles = controlesFumulario.Where(x => !x.IsIgnorarValidacao);
             if (isSomenteControlesVisiveis)
             {
                 controles = controles.Where(x => x.IsVisivel).ToList();
