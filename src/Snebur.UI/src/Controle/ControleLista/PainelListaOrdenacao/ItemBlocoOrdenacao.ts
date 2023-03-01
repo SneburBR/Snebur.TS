@@ -597,7 +597,7 @@
 
             if (contador > elementos.length)
             {
-                throw new Erro(`não foi possivel ordenar os elementos`);
+                throw new Erro(`não foi possível ordenar os elementos`);
             }
         }
         //#endregion

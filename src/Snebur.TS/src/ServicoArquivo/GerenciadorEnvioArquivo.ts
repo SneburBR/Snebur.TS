@@ -356,7 +356,7 @@
         {
             if (!(imagem.Id > 0))
             {
-                throw new ErroOperacaoInvalida("Não é possivel enviar uma imagem não salva (id==0)", this);
+                throw new ErroOperacaoInvalida("Não é possível enviar uma imagem não salva (id==0)", this);
             }
             if (!u.ValidacaoUtil.IsDefinido(imagem.OrigemImagem))
             {

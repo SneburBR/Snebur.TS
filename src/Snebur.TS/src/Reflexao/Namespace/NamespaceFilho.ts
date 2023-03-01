@@ -25,7 +25,7 @@
             const instancia = this.NamespacePai.Instancia[this.Nome];
             if (instancia == null)
             {
-                throw new Erro(`Não foi possivel encontrar a instancia do namespace ${this.Caminho}`);
+                throw new Erro(`Não foi possível encontrar a instancia do namespace ${this.Caminho}`);
             }
             return instancia;
         }

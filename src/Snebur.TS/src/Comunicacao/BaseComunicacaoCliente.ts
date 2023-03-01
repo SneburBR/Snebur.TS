@@ -148,17 +148,26 @@
                 }
             }
 
-            if ($Configuracao.IsDebug &&
-                this.URLServico !== this.UrlServicoDebug &&
-                !String.IsNullOrEmpty(this.UrlServicoDebug))
-            {
-                console.warn("Alterando a UrlServico para DEBUG");
-                this._urlServico = this.UrlServicoDebug;
-            }
+            this.TentarUtilizarUrlServicoDebug(tentativa);
+
+            
 
             this.TentarNovamente(nomeMetodo, isErroInternoServidor, argumentos, tentativa + 1);
         }
 
+        private TentarUtilizarUrlServicoDebug(tentativa: number)
+        {
+
+            if (($Configuracao.IsDebug || ($Configuracao.IsTeste && tentativa > 3)) &&
+                this.URLServico !== this.UrlServicoDebug &&
+                !String.IsNullOrEmpty(this.UrlServicoDebug))
+            {
+                console.error("Alterando a UrlServico para DEBUG");
+                alert("Alterando o UrlServico para DEBUG, Desenvolvimento");
+                this._urlServico = this.UrlServicoDebug;
+            }
+
+        }
         //#endregion
 
         //#region Chamar Sync

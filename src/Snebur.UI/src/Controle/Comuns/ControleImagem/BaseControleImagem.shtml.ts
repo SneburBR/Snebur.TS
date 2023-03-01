@@ -256,7 +256,7 @@
                     return "ajustar-altura";
                 }
 
-                throw new Erro("Não possivel desctar a ajuste do recipiente da imagem");
+                throw new Erro("Não possível desctar a ajuste do recipiente da imagem");
             }
             return String.Empty;
         }

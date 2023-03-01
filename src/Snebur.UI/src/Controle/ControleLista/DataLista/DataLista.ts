@@ -196,7 +196,7 @@
 
         //#region Métodos públicos
 
-        public MarcarLinha(item: TItem, isParaScroll: boolean = true)
+        public MarcarLinha(item: TItem, isRolarScroll: boolean = true)
         {
             if (this.IsControleInicializado && this.IsMarcarItem)
             {
@@ -205,7 +205,8 @@
                     if (Util.IsIgual(linha.ItemReferencia, item))
                     {
                         linha.MarcarLinha();
-                        if (isParaScroll)
+
+                        if (isRolarScroll)
                         {
                             linha.Elemento.scrollIntoView({
                                 block: "center",

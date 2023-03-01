@@ -25,12 +25,12 @@
 
             if (!ValidacaoUtil.IsUrlBlob(this.UrlWorkerFinal))
             {
-                console.error("Não foi possivel carregar o urlblob do servico worker.");
+                console.error("Não foi possível carregar o urlblob do servico worker.");
                 console.error(`Url. ${$Configuracao.UrlServicosWorker}`);
                 console.error(`Configuracao ${JSON.stringify($Configuracao)}`);
                 console.error(`UrlWorkerFINAL : ${this.UrlWorkerFinal}`);
                 alert("FALHA AO INICIAR O SERVICO WORKER");
-                throw new Error("Não foi possivel carregar o urlblob do servico worker.");
+                throw new Error("Não foi possível carregar o urlblob do servico worker.");
             }
              
             this.Worker = new Worker(this.UrlWorkerFinal);

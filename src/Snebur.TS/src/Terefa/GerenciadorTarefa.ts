@@ -339,7 +339,7 @@
 
         //private Tarefas_TarefaInserida(provedor: any, e: InserirItemEventArgs<TTarefa>): void
         //{
-        //    throw new Erro("Não é possivel inserir (numa posição especifica) objetos na fila, utilize o método adicionar");
+        //    throw new Erro("Não é possível inserir (numa posição especifica) objetos na fila, utilize o método adicionar");
         //    //let posicao = e.Posicao;
         //    //var fila = this.RetornarFila(e.Item.Prioridade);
         //    //if (posicao > fila.length)

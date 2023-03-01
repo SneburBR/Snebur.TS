@@ -327,5 +327,14 @@
             }
             return url;
         }
+
+        public static NormalizarHash(hash: string): string
+        {
+            if (!hash.trim().startsWith("#"))
+            {
+                return "#" + hash;
+            }
+            return hash;
+        }
     }
 }

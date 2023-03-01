@@ -93,7 +93,7 @@
                 catch (erro)
                 {
                     const erroTipado = u.ConverterUtil.ParaErro(erro);
-                    const mensagem = `Não foi possivel retornar o resultado chamada: ${erroTipado.message}`;
+                    const mensagem = `Não foi possível retornar o resultado chamada: ${erroTipado.message}`;
                     resultadoChamada = this.RetornarResultadoChamadaErro(new ErroComunicacao(mensagem, this.Url, this.XmlHttp.status, this, erroTipado));
                 }
                 return resultadoChamada;

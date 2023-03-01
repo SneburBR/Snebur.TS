@@ -394,7 +394,7 @@
         {
             if (entidade.Id === 0)
             {
-                throw new Erro("Não é possivel atualizar uma entidade não salva");
+                throw new Erro("Não é possível atualizar uma entidade não salva");
             }
             const consulta = this.RetornarConsulta(entidade.GetType());
             if (expressoesAbrirRelacao?.length > 0)
@@ -440,7 +440,7 @@
         {
             if (entidade.Id === 0)
             {
-                throw new Erro("Não é possivel atualizar uma entidade não salva");
+                throw new Erro("Não é possível atualizar uma entidade não salva");
             }
             const tipoEntidade = entidade.GetType();
             const consulta = this.RetornarConsulta(tipoEntidade);

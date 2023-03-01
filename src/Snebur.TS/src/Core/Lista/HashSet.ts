@@ -26,7 +26,7 @@
         {
             if (typeof item === "undefined")
             {
-                throw new Erro("Não é possivel adicionar um item nulo ou não defino no HashSet");
+                throw new Erro("Não é possível adicionar um item nulo ou não defino no HashSet");
             }
             const chave = this.RetornarChave(item);
             if (this.Dicionario.ContainsKey(chave))

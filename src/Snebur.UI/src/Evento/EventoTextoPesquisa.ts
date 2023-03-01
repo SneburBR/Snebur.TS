@@ -37,7 +37,7 @@
                 return this.ControlePai.ControleInput.ElementoInput;
             }
 
-            throw new Erro("Não possivel encontrar o elemeto input dentro do controle {0}", this.ControlePai.___NomeConstrutor);
+            throw new Erro("Não possível encontrar o elemeto input dentro do controle {0}", this.ControlePai.___NomeConstrutor);
 
         }
 

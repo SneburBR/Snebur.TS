@@ -66,7 +66,7 @@
                 const navegador = $Aplicacao.DocumentoPrincipal.RetornarNavegador(this.IdentificadorNavegador);
                 if (navegador == null)
                 {
-                    throw new Erro(`Não foi possivel encontrar o navegador do identificador ${this.IdentificadorNavegador}`);
+                    throw new Erro(`Não foi possível encontrar o navegador do identificador ${this.IdentificadorNavegador}`);
                 }
                 return navegador;
             }

@@ -161,7 +161,7 @@
             {
                 if (tentativa > 5)
                 {
-                    throw new Erro("Não foi possivel retornar um binario da url" + url);
+                    throw new Erro("Não foi possível retornar um binario da url" + url);
                 }
                 return this.RetornarBase64FromUrlAsync(url, tentativa + 1);
             }

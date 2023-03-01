@@ -165,7 +165,7 @@
 
             if (!(this.Buffer instanceof ArrayBuffer))
             {
-                this.FinalizarTarefa(new ErroEnviarPacote("Não foi possivel carregar o ArrayBuffer(bytes) do arquivo"));
+                this.FinalizarTarefa(new ErroEnviarPacote("Não foi possível carregar o ArrayBuffer(bytes) do arquivo"));
                 return;
             }
             this.Checksum = await Snebur.WebWorker.Checksum.RetornarChecksumAsync(this.Buffer) as string;

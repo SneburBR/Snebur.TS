@@ -140,7 +140,7 @@
                     if (namespaceAtalho.Caminho !== caminho)
                     {
                         throw new Erro(`Já existe um atalho '${atalho}' para o namepsace '${namespaceAtalho.Caminho}'.
-                                        Não foi possivel adicionor o atalho para '${caminho}'`);
+                                        Não foi possível adicionor o atalho para '${caminho}'`);
                     }
                     return;
                 }

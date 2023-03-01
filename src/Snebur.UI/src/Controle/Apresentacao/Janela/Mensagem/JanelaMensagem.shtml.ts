@@ -210,7 +210,7 @@
                 return EnumResultadoOpcaoMensagem.Sim;
             }
 
-            throw new Erro("Não é possivel definiar o botão ok");
+            throw new Erro("Não é possível definiar o botão ok");
         }
 
         private RetornarOpcoes(opcoesOuBotoes?: ui.EnumBotoesJanelaMensagem | List<BotaoMensagemViewModel>): EnumBotoesJanelaMensagem

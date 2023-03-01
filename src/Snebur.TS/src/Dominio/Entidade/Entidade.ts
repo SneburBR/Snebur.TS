@@ -19,7 +19,7 @@
         {
             if (this._id > 0 && this._id !== value)
             {
-                throw new ErroOperacaoInvalida("Não possivel sobreescrever um id ja existente");
+                throw new ErroOperacaoInvalida("Não possível sobreescrever um id ja existente");
             }
 
             const isNotificarEntidadeSalva = (this._id === 0 && value > 0);
@@ -122,7 +122,7 @@
                 if (isSomenteLeitura &&
                     antigoValor instanceof Dimensao && !antigoValor.IsEmpty)
                 {
-                    throw new Erro("Não é possivel atualizar um valor somente leitura");
+                    throw new Erro("Não é possível atualizar um valor somente leitura");
                 }
             }
 
