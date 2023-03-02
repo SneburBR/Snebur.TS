@@ -104,6 +104,7 @@
         {
             const resultadoErro = new ResultadoChamadaErroCliente();
             resultadoErro.Erro = erro;
+            resultadoErro.StatusCode = this.XmlHttp.status;
             resultadoErro.MensagemErro = `Erro chamar o servido Status ${this.XmlHttp.status} \n Url:${this.Url}`;
             return resultadoErro;
         }
@@ -117,6 +118,8 @@
             return urlRequisicao;
         }
     }
+
+  
 
 
 }

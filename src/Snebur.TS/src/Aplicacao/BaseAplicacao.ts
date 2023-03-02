@@ -24,7 +24,7 @@
         public readonly Globalizacao: g.Globalizacao;
         public readonly ContextosDados = new DicionarioSimples<Snebur.AcessoDados.BaseContextoDados>();
         public readonly ServicosArquivo = new DicionarioSimples<Snebur.ServicoArquivo.ServicoArquivo>();
-  
+
         public get GerenciadorServioArquivoPadrao(): sa.GerenciadorEnvioArquivo
         {
             return this._gerenciadorServioArquivoPadrao;
@@ -154,12 +154,13 @@
         }
 
         //public DocumentoPrincipal: any;
+
         //#endregion
 
         //#region Eventos conexão
 
         public readonly EventoConexaoRestabelecida = new Evento(this);
-        public readonly EventoFalhaConexao = new Evento(this);
+        public readonly EventoFalhaConexao = new Evento < Snebur.Comunicacao.FalhaConexaoEventArgs>(this);
         public readonly EventoUsuarioConectadoAlterado = new Evento<UsuarioConectadoAlteradoEventArgs>(this);
         public readonly EventoUsuarioSaiu = new Evento(this);
 
@@ -372,12 +373,7 @@
 
         }
         //#endregion
-
-       
     }
-
-
-
 
     export class VersaoDepedencia extends Snebur.ObjetoControladorPropriedade
     {
@@ -392,8 +388,7 @@
             this.Versao = versao;
         }
     }
-
-
+     
     const __Global_Error = function (e: ErrorEvent | PromiseRejectionEvent)
     {
         e.stopImmediatePropagation();
@@ -410,4 +405,6 @@
 
         u.ErroUtil.NotificarErroGlobal(e, erroInterno);
     };
+
+
 }

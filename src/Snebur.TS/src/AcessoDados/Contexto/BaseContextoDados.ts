@@ -1,6 +1,6 @@
 ﻿namespace Snebur.AcessoDados
 {
-    export abstract class BaseContextoDados extends Snebur.BaseServico implements IServicoDados,  IDisposable
+    export abstract class BaseContextoDados extends Snebur.BaseServico implements IServicoDados, IDisposable
     {
         private readonly ServicoDados: ServicoDadosCliente;
         private readonly NamespaceEntidades: string;
@@ -11,7 +11,7 @@
             return this.RetornarCredencialServico();
         }
 
-        protected get IsAtualizandoPropriedades():boolean
+        protected get IsAtualizandoPropriedades(): boolean
         {
             return this._isAtualizandoPropriedades;
         }
@@ -207,8 +207,17 @@
             }
 
             this.ValidarEntidades(entidades);
+            const tempo = Stopwatch.StartNew();
 
             const resultado = await this.ServicoDados.SalvarAsync(entidades);
+
+            if (tempo.ElapsedMilliseconds > 7000)
+            {
+                console.warn(`Lentidão no serviço dados para salvar, Tempo: ${tempo.TotalSeconds}s
+                             Total entidades: ${entidades.Count}
+                             Tipos: ${String.Join(",", entidades.Select(x => x.___NomeConstrutor).Distinct())}`);
+            }
+
             if (!resultado.IsSucesso)
             {
                 console.error(resultado.MensagemErro);
@@ -283,13 +292,13 @@
             }
             const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
             return this.ServicoDados.ExcluirAsync(entidadesClonada, relacoesEmCascata);
-             
+
         }
-         
+
         //#endregion
 
         //#region Recuperar Propriedades
-         
+
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<ResultadoSalvar>
@@ -404,7 +413,7 @@
                     consulta.AbrirRelacao(expresaoAbrirRelacao);
                 }
             }
-            
+
             consulta.Where(x => x.Id === entidade.Id);
             const entidadeRecuperada = await consulta.SingleAsync();
             for (const propriedade of entidade.GetType().RetornarPropriedades())
@@ -425,18 +434,18 @@
         public async AbrirColecaoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade[])[]): Promise<void>
         {
-            this.AbrirRelacaoOuColecaoAsync(entidade,  expressoesAbrirRelacao);
+            this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
 
         }
 
         public async AbrirRelacaoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         {
-            this.AbrirRelacaoOuColecaoAsync(entidade,   expressoesAbrirRelacao);
+            this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
         }
 
         public async AbrirRelacaoOuColecaoAsync<TEntidade extends Entidade>
-            (entidade: TEntidade,  expressoesAbrirRelacao: ((value: TEntidade) => any)[]): Promise<void>
+            (entidade: TEntidade, expressoesAbrirRelacao: ((value: TEntidade) => any)[]): Promise<void>
         {
             if (entidade.Id === 0)
             {

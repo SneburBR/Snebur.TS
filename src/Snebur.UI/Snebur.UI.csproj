@@ -884,6 +884,7 @@
     <Content Include="src\Controle\Formulario\ComboBox\_combobox.Delineada.scss" />
     <Content Include="src\Componentes\Propriedades\Icone\_icone-categoria.scss" />
     <None Include="packages.config" />
+    <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\_falha-conexao.scss" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

@@ -596,7 +596,16 @@
         }
 
         //#endregion
+
+        public  static RetornarNovoElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string = "", className: string = ""): HTMLElementTagNameMap[K]
+        {
+            const e = document.createElement(tag);
+            e.innerHTML = innerHTML;
+            e.className = className;
+            return e;
+        }
     }
+
     export interface IClientRect
     {
         width: number;

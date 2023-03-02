@@ -150,9 +150,12 @@
 
             this.TentarUtilizarUrlServicoDebug(tentativa);
 
-            
-
-            this.TentarNovamente(nomeMetodo, isErroInternoServidor, argumentos, tentativa + 1);
+            this.TentarNovamente(
+                resultadoChamada,
+                nomeMetodo,
+                isErroInternoServidor,
+                argumentos,
+                tentativa + 1);
         }
 
         private TentarUtilizarUrlServicoDebug(tentativa: number)
@@ -191,11 +194,23 @@
 
         //#region Tentar novamente
 
-        private async TentarNovamente(nomeMetodo: string, isErroInternoServidor: boolean, argumentos: IArguments, tentativa: number)
+        private async TentarNovamente(
+            resultadoChamada: ResultadoChamadaErro,
+            nomeMetodo: string,
+            isErroInternoServidor: boolean,
+            argumentos: IArguments,
+            tentativa: number)
         {
             if (!isErroInternoServidor && !BaseComunicacaoCliente.IsExisteFalhaConexao)
             {
-                $Aplicacao.EventoFalhaConexao.Notificar(this, EventArgs.Empty);
+                const args = new FalhaConexaoEventArgs(
+                    resultadoChamada,
+                    this.RetornarNomeManipulador(),
+                    nomeMetodo,
+                    tentativa);
+
+                $Aplicacao.EventoFalhaConexao.Notificar(this, args);
+
                 BaseComunicacaoCliente.IsExisteFalhaConexao = true;
                 await u.InternetUtil.AguardarConexaoInternerAsync();
             }
@@ -539,5 +554,17 @@
         protected abstract RetornarCredencialServico(): Snebur.Seguranca.CredencialServico;
 
         //#endregion
+    }
+
+    export class FalhaConexaoEventArgs extends EventArgs
+    {
+        public constructor(
+            public readonly ResultadoChamadaErro: ResultadoChamadaErro,
+            public readonly Servico: string,
+            public readonly Metodo: string,
+            public readonly Tentativa: number)
+        {
+            super();
+        }
     }
 }

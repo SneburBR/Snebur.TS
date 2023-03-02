@@ -1,6 +1,5 @@
 ﻿namespace Snebur.UI
 {
-    //https://developers.google.com/search/docs/advanced/javascript/dynamic-rendering
     export class NavegadorPrincipal extends BaseNavegador
     {
         public static readonly IDENTIFICADOR = "NavegadorPrincipal";

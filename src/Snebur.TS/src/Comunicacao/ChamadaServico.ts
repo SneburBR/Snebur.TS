@@ -79,4 +79,6 @@
             (this as any).XmlHttp = null;
         }
     }
+
+   
 }

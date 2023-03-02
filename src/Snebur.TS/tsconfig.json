@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -134,11 +134,11 @@
     "src/AcessoDados/ConsultaEntidade/BaseConsultaEntidade.ts",
     "src/AcessoDados/Contexto/BaseContextoDados.ts",
     "src/Aplicacao/BaseAplicacao.ts",
+    "src/Comunicacao/BaseChamadaServico.ts",
     "src/Comunicacao/BaseComunicacaoCliente.ts",
     "src/AcessoDados/ServicoRegrasNegocio/ServicoRegrasNegocioCliente.ts",
     "src/Comunicacao/ServicoArquivo/ServicoLogServicoArquivo.ts",
     "src/Comunicacao/Usuario/BaseServicoUsuarioCliente.ts",
-    "src/Comunicacao/Utilidade/BaseChamadaServico.ts",
     "src/Dominio/BaseDominio.ts",
     "src/Dominio/Entidade/Entidade.ts",
     "src/Dominio/TipoComplexo/BaseTipoComplexo.ts",

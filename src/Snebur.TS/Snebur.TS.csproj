@@ -128,7 +128,7 @@
     <TypeScriptCompile Include="src\Comunicacao\Usuario\BaseServicoUsuarioCliente.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Usuario\IServicoUsuario.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\AjaxUtil.ts" />
-    <TypeScriptCompile Include="src\Comunicacao\Utilidade\BaseChamadaServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\BaseChamadaServico.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\JsonUtil.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\PacoteUtil.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\Base64Binary.d.ts" />
