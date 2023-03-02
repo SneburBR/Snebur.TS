@@ -35,6 +35,9 @@
 
                     return String.Join("_", partes.Select(x => x.toUpperCase()));
 
+                case EnumFormatacaoVariavelCodigo.HtmlCss:
+
+                    return String.Join("-", partes.Select(x => x.toLowerCase()));
                 default:
 
                     throw new Erro("Formatação não suportada");
@@ -47,11 +50,17 @@
             {
                 case EnumFormatacaoVariavelCodigo.CamelCase:
                 case EnumFormatacaoVariavelCodigo.PascalCase:
+
                     return nome.split(/(?=[A-Z0-9])/);
+
                 case EnumFormatacaoVariavelCodigo.SnakeCase:
                 case EnumFormatacaoVariavelCodigo.UpperCase:
 
                     return nome.split("_");
+
+                case EnumFormatacaoVariavelCodigo.HtmlCss:
+
+                    return nome.split("-");
 
                 default:
 
@@ -66,5 +75,6 @@
         CamelCase,
         SnakeCase,
         UpperCase,
+        HtmlCss,
     }
 }

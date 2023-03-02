@@ -58,7 +58,7 @@
             await JanelaMensagem.AguardarFecharMensagemAsync();
 
             const janela = new JanelaMensagem(controlePai, titulo, mensagem, opcoes);
-            return await  janela.MostrarAsync();
+            return await janela.MostrarAsync();
         }
 
         //public static async MostrarMensagemPersonalizadaAsync(controlePai: BaseControle, titulo: string, mensagem: string,
@@ -242,12 +242,14 @@
             }
         }
 
-        public static MostrarMensagemNaoImplementaoAsync(controlePai: BaseControle = $Aplicacao.DocumentoPrincipal)
+        public static async MostrarMensagemNaoImplementaoAsync(controlePai: BaseControle = $Aplicacao.DocumentoPrincipal): Promise<boolean>
         {
-           return MensagemUtil.MostrarMensagemAsync(controlePai,
+            await MensagemUtil.MostrarMensagemAsync(controlePai,
                 "Não disponível",
                 "Recurso não está  implementado ou disponível",
                 EnumBotoesJanelaMensagem.OkEntendi);
+
+            return true;
 
         }
     }

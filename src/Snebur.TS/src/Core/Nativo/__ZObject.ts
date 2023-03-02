@@ -103,16 +103,20 @@ namespace Snebur
                             return this;
                         }
 
-                        if ($Reflexao.IsCriarNovoTipoGenerico(caminhoTipo, this))
+                        if (!$Reflexao.Tipos.ContainsKey(caminhoTipo))
                         {
-                            $Reflexao.AdicionarNovoTipoGenerico(caminhoTipo, this);
-                            caminhoTipo = this.__CaminhoTipo;
+                            if ($Reflexao.IsCriarNovoTipoGenerico(caminhoTipo, this))
+                            {
+                                $Reflexao.AdicionarNovoTipoGenerico(caminhoTipo, this);
+                                caminhoTipo = this.__CaminhoTipo;
+                            }
                         }
-
+                         
                         if ($Reflexao.Tipos.ContainsKey(caminhoTipo))
                         {
                             return $Reflexao.Tipos.Item(caminhoTipo);
                         }
+                        
 
                         throw new Erro(`O tipo não foi encontrado ${caminhoTipo}`);
                     }

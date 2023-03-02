@@ -2,6 +2,7 @@
 {
     export class GerenciadorRotas
     {
+        private static TodasRotasConstrutorPagina = new DicionarioSimples<IPaginaConstrutor>();
         private static RotasNavegador = new DicionarioSimples<RotasNavegador>();
 
         public static IsExisteRota(identificadorNavegador: string, caminho: string): boolean
@@ -12,6 +13,11 @@
                 return rotasNavegador.IsExisteRota(caminho);
             }
             return false;
+        }
+
+        public static IsExisteRotaConstrutorPagina(construtorPagina: IPaginaConstrutor)
+        {
+            return GerenciadorRotas.TodasRotasConstrutorPagina.ContainsKey(construtorPagina.__CaminhoTipo);
         }
 
         public static RetornarRota(identificadorNavegador: string, caminho: string): Rota
@@ -38,6 +44,8 @@
 
             const rotasNavegador = GerenciadorRotas.RetornarRodasNavegador(identificadorNavegador);
             rotasNavegador.AdicionarRota(rota);
+
+            GerenciadorRotas.TodasRotasConstrutorPagina.Add(rota.ConstrutorPagina.__CaminhoTipo, rota.ConstrutorPagina);
         }
 
         public static RetornarRodasNavegador(identificadorNavegador: string = NavegadorPrincipal.IDENTIFICADOR)
@@ -46,6 +54,7 @@
             {
                 identificadorNavegador = NavegadorPrincipal.IDENTIFICADOR;
             }
+
             if (!GerenciadorRotas.RotasNavegador.ContainsKey(identificadorNavegador))
             {
                 GerenciadorRotas.RotasNavegador.Add(identificadorNavegador, new RotasNavegador(identificadorNavegador));

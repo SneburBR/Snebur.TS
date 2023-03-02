@@ -63,12 +63,19 @@
             if (caminho != null)
             {
                 const rota = GerenciadorRotas.RetornarRota(this.IdentificadorNavegador, caminho);
-                if (rota != null && !this.PaginaAtual?.Rota?.Equals(rota))
+                if (rota == null || rota.IsIgnorarRotaRecarregar)
                 {
-                    console.log(`Navegando para a rota ${rota.Caminho}`);
-                    this.Navegar(rota.ConstrutorPagina, rota.Parametros);
-                    return true;
+                    return false;
                 }
+
+                if (this.PaginaAtual?.Rota?.Equals(rota))
+                {
+                    return false;
+                }
+
+                console.log(`Navegando para a rota ${rota.Caminho}`);
+                this.Navegar(rota.ConstrutorPagina, rota.Parametros);
+                return true;
             }
             return false;
         }

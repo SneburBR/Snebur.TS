@@ -8,6 +8,7 @@
         public readonly PalavrasChave: string;
         public readonly Descricao: string;
         public Parametros: any;
+        public IsIgnorarRotaRecarregar: boolean = false;
 
         public constructor(partial: Partial<Rota>)
         {
@@ -105,7 +106,7 @@
             return false;
         }
 
-        public IsParametrosIgual(parametros: any):boolean
+        public IsParametrosIgual(parametros: any): boolean
         {
             if (this.Parametros == null &&
                 parametros == null)
