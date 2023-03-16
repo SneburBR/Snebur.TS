@@ -237,5 +237,25 @@
                 }
             }
         }
+
+        public static async SalvarArquivoAsync(
+            urlArquivo: string,
+            nomeArquivo: string,
+            mimeType: EnumMimeType,
+            isTokenRequerido:boolean,
+            callbackProcesso: (e: ProgressoEventArgs) => void)
+        {
+            const token = isTokenRequerido ? GuidUtil.RetornarNovoGuid() : null;
+
+            const byfferImagemGabaritoEstrutura = await AjaxUtil.RetornarBufferArrayAsync(
+                urlArquivo,
+                token, (ev: ProgressoEventArgs) =>
+            {
+                callbackProcesso(ev);
+            });
+            const enumMimeType = MimeTypeUtil.RetornarMimeType(mimeType);
+            const blob = new Blob([byfferImagemGabaritoEstrutura], { type: enumMimeType });
+            Salvar.SalvarComo(blob, nomeArquivo);
+        }
     }
 }

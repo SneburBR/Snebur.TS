@@ -254,7 +254,11 @@
                     const entidadesRemovidas = ((lista as any) as IListaEntidades).EntidadesRemovida?.Where(x => x.Id > 0);
                     if (entidadesRemovidas?.length > 0)
                     {
-                        console.error(" BUG CONHECIDO: as Relações NN possui um bug quando uma ou mais entidade é removida o sistema salvando está alteração. \r\n A correção desse BUG depende de uma modificação na biblioteca Newtonsoft.Json alterando o código fonte original");
+                        const tiposEntidade = String.Join(", ", entidadesRemovidas.Select(x => x.GetType().Nome).Distinct());
+
+                        console.error(` BUG CONHECIDO: as Relações NN possui um bug quando uma ou mais entidade é removida o sistema salvando está alteração. 
+                                        A correção desse BUG depende de uma modificação na biblioteca Newtonsoft.Json alterando o código fonte original
+                                        Tipos da entidades: ${tiposEntidade}`);
                         //sb.Append(",", this.IsIdentar);
                         //sb.Append(`${tab}"${JsonSerializar.NOME_PROPRIEDADE_PROTEGIDA_ENTIDADES_REMOVIDAS}" : ${this.RetornarValoresListaSerializado(entidadesRemovidas)}`);
                     }
@@ -362,6 +366,7 @@
 
                     return u.ConverterUtil.ParaBoolean(valorPrimario).ToString().toLowerCase();
 
+                case (r.EnumTipoPrimario.Byte):
                 case (r.EnumTipoPrimario.Integer):
                 case (r.EnumTipoPrimario.Long):
                 case (r.EnumTipoPrimario.EnumValor):

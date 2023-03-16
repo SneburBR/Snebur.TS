@@ -434,14 +434,14 @@
         public async AbrirColecaoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade[])[]): Promise<void>
         {
-            this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
+            await this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
 
         }
 
         public async AbrirRelacaoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         {
-            this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
+            await this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
         }
 
         public async AbrirRelacaoOuColecaoAsync<TEntidade extends Entidade>
@@ -474,7 +474,9 @@
             }
 
             consulta.Where(x => x.Id === entidade.Id);
+
             const entidadeRecuperada = await consulta.SingleAsync();
+
             for (const propriedade of propriedadesRelacao)
             {
                 (entidade as any)[propriedade.Nome] = (entidadeRecuperada as any)[propriedade.Nome];

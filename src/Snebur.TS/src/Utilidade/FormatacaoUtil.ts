@@ -1282,12 +1282,22 @@
 
         //#region Outros
 
-        public static QuebrarLinhasHtml(texto: string)
+        public static FormatarEspacosHtml(texto: string)
+        {
+            return texto.replace(" ", "&nbsp;").
+                replace("\t", "&nbsp;".repeat(4));
+        }
+
+        public static QuebrarLinhasHtml(texto: string, isFormatarEspaco: boolean = false)
         {
             if (!String.IsNullOrEmpty(texto))
             {
                 const linhas = TextoUtil.RetornarLinhas(texto);
-                return String.Join("<br/>", linhas.Select(x => "<span>" + x + "</span>"));
+                if (isFormatarEspaco)
+                {
+                    return String.Join("<br/>", linhas.Select(x => `<span> ${ FormatacaoUtil.FormatarEspacosHtml(x)} </span>`));
+                }
+                return String.Join("<br/>", linhas.Select(x => `<span> ${x} </span>`));
             }
             return String.Empty;
 

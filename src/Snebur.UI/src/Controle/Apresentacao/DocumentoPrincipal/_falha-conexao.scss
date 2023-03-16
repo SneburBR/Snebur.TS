@@ -1,12 +1,60 @@
 ﻿
 sn-falha-conexao {
-    border-right-color: deeppink !important;
-    border-right-width: 20px;
+    border: none !important;
+    display: block;
+    background-color: rgba(255,255,255,0.3) !important;
+    z-index: 2147483647 !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: fixed;
 
-    .sn-falha-conexao-titulo {
+
+    .sn-falha-conexao-recipiente-mensagem {
+        border: 1px solid silver !important;
+        border-radius: 10px;
+        padding: 1rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 500px;
+        max-width: 100%;
+        height: auto;
+        max-height: 100%;
+        transform: translate(-50%, -50%);
+        background-color: white,
     }
 
-    .sn-falha-conexao-mensagem{
+    .sn-falha-conexao-titulo {
+        font-size: 1.7rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 1;
+    }
 
+    .sn-falha-conexao-mensagem {
+        display: block;
+        padding-top: 1rem !important;
+        font-size: 1rem !important;
+        line-height: 1.5;
+        padding-bottom: 1rem !important;
+    }
+
+    .sn-falha-conexao-tentativa {
+        display: inline;
+    }
+
+    .sn-falha-conexao-tempo-sem-conexao {
+        display: inline;
+        text-transform: lowercase;
+        position: absolute;
+        right: 0;
+        padding-right: 1rem;
+        /*font-size: 0.8rem !important;*/
+    }
+
+    .sn-falha-conexao-botao-debug {
+        margin-left: 20px;
     }
 }

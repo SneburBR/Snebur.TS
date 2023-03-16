@@ -32,13 +32,13 @@
         public readonly JanelasCarregada = new List<Janela>();
         public readonly EventoJanelaCarregada = new Evento(this);
         public readonly EventoJanelaDescarregada = new Evento(this);
-
-        private ElementoFalhaConexao: HTMLElement;
-
+         
         public get Titulo(): string
         {
             return this._titulo;
         }
+
+        private readonly GerenciadorFalhaConexao: GerenciadorFalhaConexao;
 
         public constructor(elemento?: HTMLElement)
         {
@@ -48,15 +48,13 @@
             /*            this.EventoTelaAlterada.AddHandler(this.Tela_Alterada, this);*/
             this.IsAdicionarElementoConteudoApresentacao = false;
             this._titulo = document.title;
+            this.GerenciadorFalhaConexao = new GerenciadorFalhaConexao();
         }
 
         protected override Inicializar()
         {
             super.Inicializar();
-
-            $Aplicacao.EventoFalhaConexao.AddHandler(this.Aplicacao_FalhaConexao, this);
-            $Aplicacao.EventoConexaoRestabelecida.AddHandler(this.Aplicacao_ConexaoRestabelecida, this);
-
+             
             this.EventoJanelaCarregada.AddHandler(this.DocumentoPrincipal_JanelaCarregada, this);
             this.EventoJanelaDescarregada.AddHandler(this.DocumentoPrincipal_JanelaDescarregada, this);
 
@@ -176,109 +174,8 @@
             this.JanelasCarregada.Remove(janela);
         }
         //#endregion
-
-        //#region Falha de conexão
-
-        private Aplicacao_FalhaConexao(
-            provedor: any,
-            args: Snebur.Comunicacao.FalhaConexaoEventArgs)
-        {
-            if (this.ElementoFalhaConexao == null)
-            {
-                this.AdicionarElementoFalhaConexao(args);
-            }
-            this.AtualizarFalhaConexao(args);
-
-            //this.Ocupar(EnumOpcaoOcupar.MostrarJanelaOcupadoImediatamente);
-            //this.TituloOcupado("Falha de conexão");
-            //this.MensagemOcupado("Tentando reconectar...");
-        }
-
-
-        private async Aplicacao_ConexaoRestabelecida()
-        {
-            this.ElementoFalhaConexao.remove();
-            this.ElementoFalhaConexao = null;
-            /*await this.DesocuparAsync();*/
-        }
-
-        protected AdicionarElementoFalhaConexao(args: c.FalhaConexaoEventArgs)
-        {
-            const elemento = document.createElement("sn-falha-conexao");
-            elemento.className = "sn-falha-conexao";
-
-            const recipienteMensagem = document.createElement("div");
-            recipienteMensagem.className = "sn-falha-conexao-recipiente-mensagem";
-
-            const estilo = new Estilo({
-                position: "fixed",
-                zIndex: "2147483648",
-                left: "0",
-                right: "0",
-                top: "0",
-                bottom: "0",
-                backgroundColor: "rgba(255,255,255,0.5)",
-                border: "10px solid blue",
-                display:"block"
-            });
-             
-            const estiloRecipienteMensagem = new Estilo({
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                width: "600",
-                maxWidth: "100%",
-                height: "auto",
-                maxHeight: "100%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: "white",
-                border: "10px solid red"
-            });
-
-            estilo.AplicarEm(elemento);
-            estiloRecipienteMensagem.AplicarEm(recipienteMensagem);
-             
-            const titulo = ElementoUtil.RetornarNovoElemento("h4", "Falha de conexão", "sn-falha-conexao-titulo");
-            const mensagem = ElementoUtil.RetornarNovoElemento("h6", "Falha de conexão", "sn-falha-conexao-mensagem");
-
-            recipienteMensagem.appendChild(titulo);
-            recipienteMensagem.appendChild(mensagem);
-
-            elemento.appendChild(recipienteMensagem);
-            (elemento as any).Stopwatch = Stopwatch.StartNew();
-            document.body.appendChild(elemento);
-        }
-
-        private AtualizarFalhaConexao(args: c.FalhaConexaoEventArgs)
-        {
-            const elemento = this.ElementoFalhaConexao;
-            const elementoMensagem = elemento?.querySelector("sn-falha-conexao-mensagem");
-            if (elemento == null || elementoMensagem == null)
-            {
-                return;
-            }
-
-            const stopwatch = (elemento as any).Stopwatch as Stopwatch;
-            const sb = new StringBuilder();
-            sb.AppendLine("Aguardando restabelecer conexão.");
-            sb.AppendLine(`Tentativa: ${args.Tentativa}`);
-            if (stopwatch instanceof Stopwatch)
-            {
-                sb.AppendLine(`Tempo transcorrido: ${stopwatch.TotalSeconds}s`);
-            }
-            
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
-            {
-                sb.AppendLine(`Serviço: ${args.Servico}`);
-                sb.AppendLine(`Operação: ${args.Metodo}`);
-                sb.AppendLine(`StatusCode: ${args.ResultadoChamadaErro.StatusCode}`);
-                sb.AppendLine(`MensagemErro: ${args.ResultadoChamadaErro.MensagemErro}`);
-            }
-            elementoMensagem.innerHTML = sb.ToHtml();
-  
-        }
-        //#endregion
          
+
         protected override RetornarElementoDestino(): HTMLElement
         {
             return document.body;

@@ -29,11 +29,13 @@
 
     export class ItemDicionarioAlteradoEventArgs<T = any> extends ItemAlteradoEventArgs
     {
-        public constructor(public readonly Chave: any,
+        public constructor(
+            public readonly Chave: any,
             item: T,
-            acaoItemAlterado: EnumAcaoItemAlterado, posicao?: number)
+            acaoItemAlterado: EnumAcaoItemAlterado,
+            posicao?: number)
         {
-            super(item, posicao);
+            super(item, acaoItemAlterado, posicao);
         }
     }
 

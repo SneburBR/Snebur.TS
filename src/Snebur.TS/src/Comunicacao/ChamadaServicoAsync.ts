@@ -162,7 +162,7 @@ namespace Snebur.Comunicacao
                     default: {
 
 
-                        const mensagem = `Erro ReadyState servido, url: ${this.Url},  Código ${this.XmlHttp.status}`;
+                        const mensagem = `Erro ReadyState servidor, url: ${this.Url},  Código ${this.XmlHttp.status}`;
                         if ($Configuracao.IsDebug)
                         {
                             LogUtil.Erro(mensagem);

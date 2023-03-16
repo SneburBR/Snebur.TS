@@ -39,6 +39,7 @@
                     return ConverterUtil.ParaBoolean(valor);
 
                 case (r.EnumTipoPrimario.EnumValor):
+                case (r.EnumTipoPrimario.Byte):
                 case (r.EnumTipoPrimario.Long):
                 case (r.EnumTipoPrimario.Integer):
 

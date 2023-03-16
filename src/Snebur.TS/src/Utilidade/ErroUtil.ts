@@ -55,7 +55,8 @@
                 }
             }
 
-            throw new ErroGlobal(sb.ToString(), erroInterno);
+            console.error(sb.ToString());
+            /*throw new ErroGlobal(sb.ToString(), erroInterno);*/
         }
 
         public static RetornarErro(erro: any): Error

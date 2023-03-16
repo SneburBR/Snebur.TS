@@ -1,18 +1,20 @@
 ﻿
 snebur-console {
+   
     background: rgba(255,255,255,0.5);
     color: white;
     position: fixed;
     display: block;
     margin-bottom: 4px;
     margin-top: 4px;
+    font-family: 'Lucida Console' !important;
+    z-index: 2147483648;
 
 
     &.sn-expandido {
         padding: 20px;
         background-color: white !important;
         user-select: text !important;
-        pointer-events:all !important;
-
+        pointer-events: all !important;
     }
 }

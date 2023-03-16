@@ -201,7 +201,7 @@
             });
         }
 
-        public FindAsync(id:number): Promise<TEntidade>
+        public FindAsync(id: number): Promise<TEntidade>
         {
             return this.Where(x => x.Id === id).SingleOrDefaultAsync();
         }

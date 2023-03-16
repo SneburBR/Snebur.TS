@@ -54,6 +54,8 @@
             return descricao;
         }
 
+        public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum]): string
+        public static RetornarRotulo(construtorEnum: any, valor: number): string
         public static RetornarRotulo(construtorEnum: any, valor: number): string
         {
             //pegar o valor do atributo description na globalização

@@ -149,11 +149,14 @@
         {
             if (typeof document !== "undefined")
             {
-                const url = document.URL;
-                const appCordova = (url.indexOf("http://") === -1) && (url.indexOf("https://") === -1);
-                return (appCordova) ? Snebur.Dominio.EnumTipoAplicacao.ApacheCordova : Snebur.Dominio.EnumTipoAplicacao.Web;
+                return Snebur.Dominio.EnumTipoAplicacao.Typescript;
+                //throw new Error("Aplicação Node não suportada, nunca testada ");
+                //const url = document.URL;
+                //const appCordova = (url.indexOf("http://") === -1) && (url.indexOf("https://") === -1);
+                //return (appCordova) ? Snebur.Dominio.EnumTipoAplicacao.Typescript;
             }
-            return Snebur.Dominio.EnumTipoAplicacao.Desconhecido;
+            throw new Error("Aplicação Node não suportada, nunca testada ");
+            /*return Snebur.Dominio.EnumTipoAplicacao.Desconhecido;*/
         }
 
         private static RetornarIdioma(): string
@@ -362,4 +365,3 @@
     }
 }
 
- 

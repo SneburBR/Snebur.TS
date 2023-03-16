@@ -17,9 +17,7 @@
             }
             this.Partes.Add(texto);
         }
-
-
-
+         
         //public AppendFormat(texto: string, ...args: string[]): void
         //{
         //    this.Partes.Add(String.Format(texto, ...args));
@@ -42,7 +40,7 @@
 
         public ToHtml(): string
         {
-            const partes = this.Partes.Select(x => x.replace(" ", "&nbsp;").replace("\t", "&nbsp;".repeat(4)));
+            const partes = this.Partes.Select(x => FormatacaoUtil.FormatarEspacosHtml(x));
             return partes.join("<br />");
         }
 

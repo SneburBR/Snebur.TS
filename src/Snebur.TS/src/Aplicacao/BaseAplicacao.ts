@@ -176,6 +176,8 @@
 
         public async Inicializar() 
         {
+            this.InicializarConfiguracoes();
+
             r.GerenciadorNamespace.Inicializar();
             this.GerenciadorErros();
             $Reflexao.Inicializar();
@@ -236,6 +238,20 @@
 
             //this.InicializarBlobChecksumWorkerAsync();
 
+        }
+
+        private InicializarConfiguracoes()
+        {
+            if (Snebur.$Configuracao == null)
+            {
+                throw new Error("O objeto configuração $Configuracao não foi definido");
+            }
+            Object.defineProperty(Snebur.$Configuracao, "IsDebugOuTeste", {
+                get: function ()
+                {
+                    return Snebur.$Configuracao.IsDebug || Snebur.$Configuracao.IsTeste;
+                }
+            });
         }
 
         //#endregion

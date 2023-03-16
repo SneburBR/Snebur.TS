@@ -105,7 +105,7 @@
                 delete this.__Obetos[chave];
                 this._length -= 1;
 
-                this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, item, EnumAcaoItemAlterado.Adicionado));
+                this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, item, EnumAcaoItemAlterado.Removido));
                 return true;
             }
             return false;

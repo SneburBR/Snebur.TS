@@ -274,17 +274,21 @@
         {
             if (this.IsControleInicializado && ValidacaoUtil.IsDefinido(itemReferencia))
             {
-                const linhaItem = this.LinhasColecao.Linhas.Where(x => x.ItemReferencia === itemReferencia).FirstOrDefault();
-                linhaItem.Elemento.scrollIntoView({
-                    block: "center",
-                    inline: "center",
-                    behavior: "smooth"
-                });
-
-                if (isMarcarLinha)
+                const linhaItem = this.LinhasColecao.Linhas.Where(x => (x.ItemReferencia as any)?.Equals(itemReferencia)).FirstOrDefault();
+                if (linhaItem != null)
                 {
-                    linhaItem.MarcarLinha();
+                    linhaItem.Elemento.scrollIntoView({
+                        block: "center",
+                        inline: "center",
+                        behavior: "smooth"
+                    });
+
+                    if (isMarcarLinha)
+                    {
+                        linhaItem.MarcarLinha();
+                    }
                 }
+               
             }
         }
 

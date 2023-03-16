@@ -56,7 +56,6 @@
         public static Desempenho(mensagem: string, totalMilesegundos: number): void
         public static Desempenho(mensagem: string, tempo: Stopwatch | number): void
         {
-
             // throw new Erro("Não implementado");
         }
 

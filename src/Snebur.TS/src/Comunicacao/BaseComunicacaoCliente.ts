@@ -32,7 +32,7 @@
 
             if (!u.ValidacaoUtil.IsUrlServico(urlServico))
             {
-                throw new Erro("O url do serviço é invalida", this);
+                throw new Erro("O URL do serviço é invalida", this);
             }
 
             this._urlServico = urlServico;
@@ -104,7 +104,10 @@
             if (valorResultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
             {
                 u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
-                alert("Reiniciando sessão do usuario");
+                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                {
+                    alert("Reiniciando sessão do usuário");
+                }
                 window.location.reload();
                 return;
             }
@@ -143,14 +146,13 @@
             {
                 if (isErroInternoServidor && tentativa > BaseComunicacaoCliente.MAXIMA_TENTATIVA)
                 {
-                    alert(mensagem);
                     throw new Error(mensagem);
                 }
             }
 
             this.TentarUtilizarUrlServicoDebug(tentativa);
 
-            this.TentarNovamente(
+            this.TentarNovamenteAsync(
                 resultadoChamada,
                 nomeMetodo,
                 isErroInternoServidor,
@@ -160,16 +162,26 @@
 
         private TentarUtilizarUrlServicoDebug(tentativa: number)
         {
-
             if (($Configuracao.IsDebug || ($Configuracao.IsTeste && tentativa > 3)) &&
                 this.URLServico !== this.UrlServicoDebug &&
                 !String.IsNullOrEmpty(this.UrlServicoDebug))
             {
-                console.error("Alterando a UrlServico para DEBUG");
-                alert("Alterando o UrlServico para DEBUG, Desenvolvimento");
+                this.UsarUrlServicoDEBUG();
+            }
+        }
+
+        public UsarUrlServicoDEBUG()
+        {
+            if (this._urlServico !== this.UrlServicoDebug)
+            {
+                const mensagem = `A URL serviço '${this.RetornarNomeManipulador()}' foi alterada para modo DEBUG,
+                               UrlServicoDEBUG : '${this.UrlServicoDebug}'`;
+
+                console.error(mensagem);
+                alert(mensagem);
+
                 this._urlServico = this.UrlServicoDebug;
             }
-
         }
         //#endregion
 
@@ -194,27 +206,29 @@
 
         //#region Tentar novamente
 
-        private async TentarNovamente(
+        private async TentarNovamenteAsync(
             resultadoChamada: ResultadoChamadaErro,
             nomeMetodo: string,
             isErroInternoServidor: boolean,
             argumentos: IArguments,
             tentativa: number)
         {
+            const args = new FalhaConexaoEventArgs(
+                resultadoChamada,
+                this.URLServico,
+                this.RetornarNomeManipulador(),
+                nomeMetodo,
+                tentativa);
+
+            $Aplicacao.EventoFalhaConexao.Notificar(this, args);
+
             if (!isErroInternoServidor && !BaseComunicacaoCliente.IsExisteFalhaConexao)
             {
-                const args = new FalhaConexaoEventArgs(
-                    resultadoChamada,
-                    this.RetornarNomeManipulador(),
-                    nomeMetodo,
-                    tentativa);
-
-                $Aplicacao.EventoFalhaConexao.Notificar(this, args);
-
                 BaseComunicacaoCliente.IsExisteFalhaConexao = true;
                 await u.InternetUtil.AguardarConexaoInternerAsync();
             }
-            await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(BaseComunicacaoCliente.TEMPO_ESPERAR_FALHA));
+
+            await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(BaseComunicacaoCliente.TEMPO_ESPERAR_FALHA * Math.min(tentativa, 10)));
             this.ChamarServicoInternoAsync(nomeMetodo, argumentos, tentativa);
         }
 
@@ -560,6 +574,7 @@
     {
         public constructor(
             public readonly ResultadoChamadaErro: ResultadoChamadaErro,
+            public readonly UrlServico: string,
             public readonly Servico: string,
             public readonly Metodo: string,
             public readonly Tentativa: number)

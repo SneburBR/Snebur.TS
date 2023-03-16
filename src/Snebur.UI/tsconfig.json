@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.UI.js",
+    "outFile": "build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.d.ts",
+    "../Snebur.TS/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
@@ -197,6 +197,7 @@
     "src/Componentes/Texto/Texto.ts",
     "src/Comum/MostrarOcultarElementoDepois.ts",
     "src/Controle/Apresentacao/DocumentoPrincipal/BarraEnvioArquivo/BarraEnvioArquivos.shtml.ts",
+    "src/Controle/Apresentacao/DocumentoPrincipal/GerenciadorFalhaConexao.ts",
     "src/Controle/Apresentacao/Janela/ArrastarJanela.ts",
     "src/Controle/Apresentacao/Janela/Cadastro/JanelaCadastroAutomatico.ts",
     "src/Controle/Apresentacao/Janela/Mensagem/JanelaMensagem.shtml.ts",
@@ -458,7 +459,7 @@
     "build"
   ],
   "PrioridadeProjeto": 1,
-  "UrlDesenvolvimento": "http://apresentacao.snebur.localhost",
+  "UrlDesenvolvimento": "http://ui-snebur.localhost",
   "IsIgnorar": false,
   "Depedencias": {
     "Snebur": "../Snebur.TS/build/Snebur.d.ts"

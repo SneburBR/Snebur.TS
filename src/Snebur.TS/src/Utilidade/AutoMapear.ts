@@ -25,6 +25,11 @@ namespace Snebur.Utilidade
                 if (propriedadeOrigem instanceof r.Propriedade)
                 {
                     let valorOrigem = u.ReflexaoUtil.RetornarValorPropriedade(origem, propriedadeOrigem);
+                    if (valorOrigem instanceof Evento)
+                    {
+                        continue;
+                    }
+
                     if (valorOrigem instanceof d.BaseTipoComplexo)
                     {
                         valorOrigem = valorOrigem.Clone();

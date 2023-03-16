@@ -101,7 +101,7 @@ namespace Snebur.UI
 
         private Elemento_MouseDown(e: MouseEvent)
         {
-
+            this.RemoverElementoClone();
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.ElementoClone_Window_MouseUp);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseMove, this.ElementoClone_Window_MouseMove);
 

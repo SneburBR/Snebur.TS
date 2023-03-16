@@ -4,6 +4,7 @@
     {
         IsDebug: boolean;
         IsTeste?: boolean;
+        readonly IsDebugOuTeste?: boolean;
         IsNaoAlertarErro?: boolean;
         IsDesativarServicoDepuracao?: boolean;
         IsProtegerUrl?: boolean;

@@ -245,7 +245,7 @@
                     const mensagem = "Deseja salvar as alterações antes de sair?";
 
                     const resultadoMensagem = await MensagemUtil.MostrarMensagemPersonalizadaAsync(this,
-                        "Existem alterações não salva",
+                        "Existem alterações não salvas",
                         mensagem,
                         EnumResultadoOpcaoMensagem.Cancelar,
                         EnumResultadoOpcaoMensagem.Nao,

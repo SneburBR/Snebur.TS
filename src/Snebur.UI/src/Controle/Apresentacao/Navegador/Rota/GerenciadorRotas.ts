@@ -45,7 +45,10 @@
             const rotasNavegador = GerenciadorRotas.RetornarRodasNavegador(identificadorNavegador);
             rotasNavegador.AdicionarRota(rota);
 
-            GerenciadorRotas.TodasRotasConstrutorPagina.Add(rota.ConstrutorPagina.__CaminhoTipo, rota.ConstrutorPagina);
+            if (!GerenciadorRotas.TodasRotasConstrutorPagina.ContainsKey(rota.ConstrutorPagina.__CaminhoTipo))
+            {
+                GerenciadorRotas.TodasRotasConstrutorPagina.Add(rota.ConstrutorPagina.__CaminhoTipo, rota.ConstrutorPagina);
+            }
         }
 
         public static RetornarRodasNavegador(identificadorNavegador: string = NavegadorPrincipal.IDENTIFICADOR)
