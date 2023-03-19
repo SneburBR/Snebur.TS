@@ -110,6 +110,10 @@
 
         private ElementoImagemInterno_Carregada(e: UIEvent): void
         {
+            if ($Aplicacao.IsExisteFalhaConexao)
+            {
+                return;
+            }
             this.OrientacaoImagem = this.RetornarOrientacaoImagem();
             this.AtualizarPreenchimentoImagem();
             this.EventoImagemCarregada.Notificar(this, EventArgs.Empty);

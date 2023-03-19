@@ -164,6 +164,10 @@
         public readonly EventoUsuarioConectadoAlterado = new Evento<UsuarioConectadoAlteradoEventArgs>(this);
         public readonly EventoUsuarioSaiu = new Evento(this);
 
+        public get IsExisteFalhaConexao()
+        {
+            return c.BaseComunicacaoCliente.IsExisteFalhaConexao;
+        }
         //#endregion
 
         //#region Inicializar

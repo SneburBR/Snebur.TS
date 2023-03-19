@@ -177,156 +177,106 @@
             funcaoClonarValorProprieadede?: FuncaoClonarPropriedade):
             TEntidade
         {
-            const tipoEntidade = this.GetType() as r.TipoEntidade;
+            const ajudante = new AjudanteClonaEntidade(this);
+            return ajudante.Clonar(opcoes, funcaoClonarValorProprieadede) as TEntidade;
 
-            const entidadeClonada = new tipoEntidade.Construtor() as TEntidade;
-            entidadeClonada.DesativarNotificacaoPropriedadeAlterada();
+            //const tipoEntidade = this.GetType() as r.TipoEntidade;
 
-            if (!opcoes.HasFlag(EnumOpcaoClonarEntidade.NaoClonarId))
-            {
-                entidadeClonada.Id = this.Id;
-            }
+            //const entidadeClonada = new tipoEntidade.Construtor() as TEntidade;
+            //entidadeClonada.DesativarNotificacaoPropriedadeAlterada();
 
-            (entidadeClonada as any as IEntidadeClonada).___IsEntidadeClonada = true;
+            //if (!opcoes.HasFlag(EnumOpcaoClonarEntidade.NaoClonarId))
+            //{
+            //    entidadeClonada.Id = this.Id;
+            //}
 
-            const referencia = this as any;
+            //(entidadeClonada as any as IEntidadeClonada).___IsEntidadeClonada = true;
 
-            if (opcoes.HasFlag(EnumOpcaoClonarEntidade.Tudo))
-            {
-                const propriedades = tipoEntidade.RetornarPropriedades(false);
-                propriedades.Remove(tipoEntidade.PropriedadeChavePrimaria);
+            //const referencia = this as any;
 
-                for (const propriedade of propriedades)
-                {
-                    if (propriedade.IsSomenteLeitura)
-                    {
-                        continue;
-                    }
+            //if (opcoes === EnumOpcaoClonarEntidade.Tudo)
+            //{
+            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
+            //    propriedades.Remove(tipoEntidade.PropriedadeChavePrimaria);
 
-                    const valorPropriedade = referencia[propriedade.Nome];
-                    const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieadede);
-                    (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;
-                }
-                entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
-                return entidadeClonada as TEntidade;
-            }
+            //    for (const propriedade of propriedades)
+            //    {
+            //        if (propriedade.IsSomenteLeitura)
+            //        {
+            //            continue;
+            //        }
 
-            if (opcoes.HasFlag(EnumOpcaoClonarEntidade.ChavesEstrangeira))
-            {
-                const propriedadesChavaEstrangeira = tipoEntidade.PropriedadesChaveEstrangeiras;
+            //        const valorPropriedade = referencia[propriedade.Nome];
+            //        const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieadede);
+            //        (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;
+            //    }
+            //    entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
+            //    return entidadeClonada as TEntidade;
+            //}
 
-                for (const propriedadeChaveEstrangeira of propriedadesChavaEstrangeira)
-                {
-                    (entidadeClonada as any)[propriedadeChaveEstrangeira.Nome] = referencia[propriedadeChaveEstrangeira.Nome];
-                }
-            }
+            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesTiposComplexo))
+            //{
+            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
+            //    for (const propriedade of propriedades)
+            //    {
+            //        if (propriedade.Tipo instanceof r.TipoComplexo)
+            //        {
+            //            const valorPropriedade = referencia[propriedade.Nome];
+            //            if (valorPropriedade instanceof d.BaseTipoComplexo)
+            //            {
+            //                (entidadeClonada as any)[propriedade.Nome] = valorPropriedade.Clone();
+            //            }
 
-            if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesTiposPrimario))
-            {
-                const propriedades = tipoEntidade.RetornarPropriedades(false);
-                for (const propriedade of propriedades)
-                {
-                    if (propriedade.Tipo.IsTipoPrimario &&
-                        propriedade.Nome !== "__NomeTipoEntidade")
-                    {
-                        const valorPropriedade = referencia[propriedade.Nome];
-                        (entidadeClonada as any)[propriedade.Nome] = valorPropriedade;
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
-            entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
-            if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesAlteradas) && this.__PropriedadesAlteradas.Count > 0)
-            {
-                (entidadeClonada as any).__propriedadesAlteradas__ = this.__PropriedadesAlteradas;
+            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.ChavesEstrangeira))
+            //{
+            //    const propriedadesChavaEstrangeira = tipoEntidade.PropriedadesChaveEstrangeiras;
+            //    for (const propriedadeChaveEstrangeira of propriedadesChavaEstrangeira)
+            //    {
+            //        (entidadeClonada as any)[propriedadeChaveEstrangeira.Nome] = referencia[propriedadeChaveEstrangeira.Nome];
+            //    }
+            //}
 
-                for (const propriedadeAlterada of this.__PropriedadesAlteradas.Valores)
-                {
-                    (entidadeClonada as any)[propriedadeAlterada.NomePropriedade] = referencia[propriedadeAlterada.NomePropriedade];
-                }
-            }
-            return entidadeClonada as TEntidade;
+            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesTiposPrimario))
+            //{
+            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
+            //    for (const propriedade of propriedades)
+            //    {
+            //        if (propriedade.Tipo.IsTipoPrimario &&
+            //            propriedade.Nome !== "__NomeTipoEntidade")
+            //        {
+            //            const valorPropriedade = referencia[propriedade.Nome];
+            //            (entidadeClonada as any)[propriedade.Nome] = valorPropriedade;
+            //        }
+            //    }
+            //}
+             
+            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesAlteradas) &&
+            //    this.__PropriedadesAlteradas.Count > 0)
+            //{
+            //    const propriedadesAlteradas = new DicionarioSimples<d.PropriedadeAlterada>();
+            //    for (const chave of this.__PropriedadesAlteradas.Chaves)
+            //    {
+            //        const propriedadeAlterada = this.__PropriedadesAlteradas.Item(chave);
+            //        propriedadesAlteradas.Add(chave, propriedadeAlterada.Clone());
+
+            //        const propriedade = this.GetType().RetornarPropriedade(propriedadeAlterada.NomePropriedade, true);
+            //        if (propriedade != null)
+            //        {
+            //            (entidadeClonada as any)[propriedade.Nome] = referencia[propriedade.Nome];
+            //        }
+            //    }
+
+            //    (entidadeClonada as any).__propriedadesAlteradas__ = propriedadesAlteradas;
+            //}
+            //entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
+            //return entidadeClonada as TEntidade;
         }
 
-        private RetornarValorPropriedadeClonado(opcoes: EnumOpcaoClonarEntidade, propriedade: r.Propriedade, valorPropriedade: any, funcaoClonarValorProprieade: FuncaoClonarPropriedade): any
-        {
-            if (typeof funcaoClonarValorProprieade === "function")
-            {
-                const valor = funcaoClonarValorProprieade(propriedade, valorPropriedade);
-                if (valor !== undefined)
-                {
-                    return valor;
-                }
-            }
-            return this.ClonarValorPropriedade(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieade);
-        }
-
-        private ClonarValorPropriedade(opcoes: EnumOpcaoClonarEntidade, propriedade: r.Propriedade, valorPropriedade: any, funcaoClonarValorProprieade: FuncaoClonarPropriedade): any
-        {
-            if (valorPropriedade instanceof Entidade)
-            {
-                if ((valorPropriedade as any as IEntidadeClonada).___IsEntidadeClonada)
-                {
-                    return valorPropriedade;
-                }
-                return valorPropriedade.Clonar(opcoes, funcaoClonarValorProprieade);
-            }
-
-            if (valorPropriedade instanceof Array)
-            {
-                const lista = valorPropriedade;
-                const novoLista = this.RetornarNovaLista(valorPropriedade);
-                for (let i = 0; i < valorPropriedade.length; i++)
-                {
-                    let item = lista[i];
-                    if (item instanceof Entidade)
-                    {
-                        item = this.RetornarValorPropriedadeClonado(opcoes, propriedade, item, funcaoClonarValorProprieade);
-                    }
-                    novoLista.Add(item);
-                }
-                return novoLista;
-            }
-
-            if (valorPropriedade instanceof BaseTipoComplexo)
-            {
-                return valorPropriedade.Clone();
-            }
-            return valorPropriedade;
-        }
-
-        private RetornarNovaLista(lista: Array<any>): Array<any>  
-        {
-            switch (lista.TipoLista)
-            {
-                case EnumTipoLista.Array:
-
-                    return new Array<any>();
-
-                case EnumTipoLista.List:
-
-                    return new List<any>();
-
-                case EnumTipoLista.ListaObservacao:
-
-                    return new ListaObservacao<any>();
-
-                case EnumTipoLista.ListaObservacaoIndexada: {
-
-                    const expressaoChave = (lista as any)["ExpressaoChave"];
-                    return new ListaObservacaoIndexada<any>(expressaoChave);
-                }
-                case EnumTipoLista.ListaEntidades:
-
-                    return new ListaEntidades<any>();
-
-                case EnumTipoLista.ListaEntidadesIndexada:
-
-                    return new ListaEntidadesIndexada<any>();
-
-            }
-            throw new Erro("Method not implemented.");
-        }
+      
 
         //#endregion
         protected RetornarValorChaveEstrangeira(nomePropriedade: string, nomePropriedadeRelacao: string, idChaveEstrangeira: number): number

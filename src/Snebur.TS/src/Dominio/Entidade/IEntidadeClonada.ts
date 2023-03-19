@@ -2,7 +2,6 @@
 {
     export interface IEntidadeClonada extends IEntidade
     {
-        ___IsEntidadeClonada: boolean;
-        ___IsSalvarApenasPropriedades: boolean;
+        ___is_entidade_clonada__: boolean;
     }
 }

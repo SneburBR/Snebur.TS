@@ -3,57 +3,22 @@
     export class PropriedadeAlterada extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.IPropriedadeAlterada 
     {
         public readonly NomePropriedade: string;
+        public readonly NomePropriedadeTipoComplexo: string;
         public AntigoValor: any;
         public NovoValor: any;
 
-        //#region Propriedades
-
-        //private _nomePropriedade: string = null;
-
-
-        //public get NomePropriedade(): string
-        //{
-        //    return this._nomePropriedade;
-        //}
-
-        //public set NomePropriedade(value: string)
-        //{
-        //    this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
-        //}
-
-        //public get AntigoValor(): any
-        //{
-        //    return this._antigoValor;
-        //}
-
-        //public set AntigoValor(value: any)
-        //{
-        //    if (value === undefined)
-        //    {
-        //        throw new Erro("antigo valor");
-        //    }
-        //    this.NotificarValorPropriedadeAlterada("AntigoValor", this._antigoValor, this._antigoValor = value);
-        //}
-
-        //public get NovoValor(): any
-        //{
-        //    return this._novoValor;
-        //}
-
-        //public set NovoValor(value: any)
-        //{
-        //    this.NotificarValorPropriedadeAlterada("NovoValor", this._novoValor, this._novoValor = value);
-        //}
-
-        //#endregion
-
         //#region Construtor
 
-        public constructor(nomePropriedade: string, antigoValor: any, novoValor: any)
+        public constructor(
+            nomePropriedade: string,
+            antigoValor: any, novoValor: any,
+            nomePropriedadeTipoComplexo: string)
         {
             super();
+
             this.Inicializar();
             this.NomePropriedade = nomePropriedade;
+            this.NomePropriedadeTipoComplexo = nomePropriedadeTipoComplexo ?? null;
             this.AntigoValor = antigoValor;
             this.NovoValor = novoValor;
 
@@ -72,6 +37,19 @@
             //this._novoValor = novoValor;
         }
         //#endregion
+
+        public Clone(): PropriedadeAlterada
+        {
+            return new PropriedadeAlterada(
+                this.NomePropriedade,
+                this.AntigoValor,
+                this.NovoValor,
+                this.NomePropriedadeTipoComplexo);
+        }
+
+        public override ToString()
+        {
+            return `${this.NomePropriedade} Antigo: ${this.AntigoValor}, novo: ${this.NovoValor}`;
+        }
     }
 }
-

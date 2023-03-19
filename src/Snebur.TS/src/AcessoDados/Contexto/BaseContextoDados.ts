@@ -41,97 +41,6 @@
             }
         }
 
-        //#region IServicoDados
-
-        //public Ping(): boolean
-        //{
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-        //}
-
-        //public RetornarDataHora(): Date
-        //{
-
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-        //    //return this.ServicoDados.RetornarDataHora(utc);
-        //}
-        //public RetornarDataHoraUTC(): Date
-        //{
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-        //}
-
-        //public RetornarValorScalar<T>(estruturaConsulta: EstruturaConsulta): T
-        //{
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-
-        //    //return this.ServicoDados.RetornarValorScalar(estruturaConsulta);
-        //}
-
-        //public RetornarResultadoConsulta(estruturaConsulta: EstruturaConsulta): ResultadoConsulta
-        //{
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-
-        //    //return this.ServicoDados.RetornarResultadoConsulta(estruturaConsulta);
-        //}
-
-        //public Salvar(entidade: d.IEntidade): ResultadoSalvar
-        //public Salvar(entidade: d.Entidade): ResultadoSalvar
-        //public Salvar(entidades: Array<d.Entidade>): ResultadoSalvar
-        //public Salvar(entidades: ListaEntidades<d.Entidade>): ResultadoSalvar
-        //public Salvar<TEntidade>(entidades: Array<TEntidade>): ResultadoSalvar
-        //public Salvar<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): ResultadoSalvar
-        //public Salvar(...entidades: Array<d.Entidade>): ResultadoSalvar
-        //public Salvar(parametro: any): ResultadoSalvar
-        //{
-
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-
-        //    //var entidades = this.RetornarEntidades(arguments);
-        //    //if (entidades.length === 0)
-        //    //{
-        //    //    throw new ErroNaoDefinido("Nenhum entidade foi passa nos parametros", this);
-        //    //}
-
-        //    //this.ValidarEntidades(entidades);
-        //    //var resultadoSalvar = this.ServicoDados.Salvar(entidades);
-
-        //    //if (!resultadoSalvar.Sucesso)
-        //    //{
-        //    //    throw new Erro(String.Format("Erro ao salvar {0}", resultadoSalvar.MensagemErro), this);
-        //    //}
-        //    //this.AtualizarEntidadesDepoisSalvar(entidades, resultadoSalvar);
-        //    //return resultadoSalvar;
-        //}
-
-        //public Excluir(entidade: d.Entidade): ResultadoExcluir
-        //public Excluir(entidade: d.Entidade, relacoesEmCascata: string): ResultadoExcluir
-        //public Excluir(entidades: Array<d.Entidade>): ResultadoExcluir
-        //public Excluir(entidades: Array<d.Entidade>, relacoesEmCascata: string): ResultadoExcluir
-        //public Excluir(entidades: ListaEntidades<d.Entidade>): ResultadoExcluir
-        //public Excluir(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string): ResultadoExcluir
-        //public Excluir<TEntidade>(entidades: Array<TEntidade>): ResultadoExcluir
-        //public Excluir<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string): ResultadoExcluir
-        //public Excluir<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): ResultadoExcluir
-        //public Excluir<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>, relacoesEmCascata: string): ResultadoExcluir
-        //public Excluir(parametro: any, relacoesEmCascata: string = ""): ResultadoExcluir
-        //{
-
-        //    throw new Erro("Chamadas síncronas obsoletas, utilizar Async");
-
-        //    //var entidades = this.RetornarEntidades(arguments);
-        //    //if (entidades.length === 0)
-        //    //{
-        //    //    throw new ErroNaoDefinido("Nenhum entidade foi passa nos parâmetros", this);
-        //    //}
-        //    //var resultadoExcluir = this.ServicoDados.Excluir(entidades, relacoesEmCascata);
-        //    //if (!resultadoExcluir.Sucesso)
-        //    //{
-        //    //    throw new Erro(String.Format("Erro ao excluir {0}", resultadoExcluir.MensagemErro), this);
-        //    //}
-        //    //return resultadoExcluir;
-        //}
-
-        //#endregion
-
         //#region IServicoDadosAsync
 
         public PingAsync(): Promise<boolean>
@@ -159,35 +68,6 @@
             return this.ServicoDados.RetornarValorScalarAsync(estruturaConsulta);
         }
 
-        //public __RetornarValorScalarInternoAsync(estruturaConsulta: EstruturaConsulta, callback: CallbackResultado<any> | null): void
-        //{
-        //    this.ServicoDados.__RetornarValorScalarInternoAsync(estruturaConsulta, callback);
-        //}
-
-        //public __RetornarResultadoConsultaInternoAsync(estruturaConsulta: EstruturaConsulta, callback: CallbackResultado<ResultadoConsulta> | null): void
-        //{
-        //    this.ServicoDados.__RetornarResultadoConsultaInternoAsync(estruturaConsulta, callback);
-        //}
-
-        //protected __SalvarInternoAsync(entidade: d.IEntidade, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync(entidade: d.Entidade, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync(entidades: Array<d.Entidade>, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync(entidades: ListaEntidades<d.Entidade>, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync<TEntidade>(entidades: Array<TEntidade>, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>, callback?: CallbackResultado<ResultadoSalvar>): void
-        //protected __SalvarInternoAsync(parametro: any, callback: CallbackResultado<ResultadoSalvar> = null): void
-        //{
-        //    /*eslint-disable*/
-        //    let entidades = this.RetornarEntidades(arguments);
-        //    /*eslint-enable*/
-        //    if (entidades.length === 0)
-        //    {
-        //        throw new ErroNaoDefinido("Nenhum entidade foi passa nos parâmetros", this);
-        //    }
-        //    this.ValidarEntidades(entidades);
-        //    this.ServicoDados.__SalvarInternoAsync(entidades, this.CallbackSalvarAsync.bind(this, entidades, callback));
-        //}
-
         public async SalvarAsync(...entidades: d.Entidade[]): Promise<ResultadoSalvar>
         public async SalvarAsync(...entidades: d.IEntidade[]): Promise<ResultadoSalvar>
         public async SalvarAsync(entidade: d.Entidade): Promise<ResultadoSalvar>
@@ -199,8 +79,59 @@
         public async SalvarAsync(parametro: any): Promise<ResultadoSalvar>
         {
             /*eslint-disable*/
-            let entidades = this.RetornarEntidades(arguments);
+            const entidades = this.RetornarEntidades(arguments);
             /*eslint-enable*/
+            if ($Configuracao.IsDebug)
+            {
+                const entidadesClonas = entidades.Where(x => (x as any as IEntidadeClonada).___is_entidade_clonada__ === true)
+                if (entidadesClonas.Count > 0)
+                {
+                    console.error("Utilizar o SalvarAvando para salvar entidades clonadas");
+                }
+            }
+
+            const resultado = await this.SalvarInternoAsync(entidades);
+            const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades);
+            ajudante.Normalizar(resultado);
+            return resultado;
+
+            //return new Promise<ResultadoSalvar>(resolver =>
+            //{
+            //    this.__SalvarInternoAsync(entidades, function (resultado: ResultadoSalvar)
+            //    {
+            //        if (!resultado.IsSucesso && $Configuracao.IsDebug)
+            //        {
+            //            throw new Erro("Não foi possível salvar " + resultado.MensagemErro);
+            //        }
+            //        resolver(resultado);
+            //    });
+            //});
+        }
+
+        public async SalvarAvancadoAsync(
+            argsEntidades: List<Entidade> | Entidade,
+            argsEntidadesAlbum?: List<Entidade> | Entidade)
+        {
+            const entidades = this.RetornarEntidades(argsEntidades);
+            const entidadesAlvo = this.RetornarEntidades(argsEntidadesAlbum);
+            const resultado = await this.SalvarInternoAsync(entidades);
+
+            if (entidadesAlvo.Any(x => x.Id === 0))
+            {
+                throw new Erro("Somente entidades com Id > 0 podem ser alvo de atualização");
+            }
+
+            const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades, entidadesAlvo);
+            ajudante.Normalizar(resultado);
+            return resultado;
+
+        }
+
+        private async SalvarInternoAsync(entidades: d.Entidade[])
+        {
+
+            /*eslint-enable*/
+
             if (entidades.length === 0)
             {
                 throw new ErroNaoDefinido("Nenhum entidade foi passa nos parâmetros", this);
@@ -220,22 +151,11 @@
 
             if (!resultado.IsSucesso)
             {
-                console.error(resultado.MensagemErro);
+                const descricaoEntidades = String.Join("\r\n", entidades.Select(x => `${x.__IdentificadorEntidade} - ${u.EntidadeUtil.RetornarDescricaoEntidade(x)}`));
+                console.error(`Falha salvar entidades : ${resultado.MensagemErro}
+                               ${descricaoEntidades}`);
             }
-            this.AtualizarEntidadesDepoisSalvar(entidades, resultado);
             return resultado;
-
-            //return new Promise<ResultadoSalvar>(resolver =>
-            //{
-            //    this.__SalvarInternoAsync(entidades, function (resultado: ResultadoSalvar)
-            //    {
-            //        if (!resultado.IsSucesso && $Configuracao.IsDebug)
-            //        {
-            //            throw new Erro("Não foi possível salvar " + resultado.MensagemErro);
-            //        }
-            //        resolver(resultado);
-            //    });
-            //});
         }
 
         //public __ExcluirInternoAsync(entidade: d.Entidade, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
@@ -306,13 +226,12 @@
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(argumentoEntidades: TEntidade, ...expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Promise<ResultadoSalvar>
         {
             const entidades = this.RetornarEntidades(argumentoEntidades);
-            const entidadesClonada = new List<IEntidadeClonada>();
+            const entidadesClonada = new List<Entidade>();
             for (const entidade of entidades)
             {
                 const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(entidade as TEntidade, expressoesOuPropriedades);
-                const clone = entidade.CloneSomenteId() as any as IEntidadeClonada;
+                const clone = entidade.CloneSomenteId();
                 clone.Id = entidade.Id;
-                clone.___IsSalvarApenasPropriedades = true;
                 for (const nomePropriedade of nomesPropriedades)
                 {
                     //var nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressão);
@@ -321,7 +240,7 @@
                 entidadesClonada.Add(clone);
             }
             this._isAtualizandoPropriedades = true;
-            const resultado = await this.SalvarAsync(entidadesClonada);
+            const resultado = await this.SalvarAvancadoAsync(entidadesClonada, []);
             this._isAtualizandoPropriedades = false;
             return resultado;
         }
@@ -518,10 +437,12 @@
         protected RetornarEntidades(parametro: any): Array<d.Entidade>
         {
             const entidades = new Array<d.Entidade>();
+
             if (parametro instanceof d.Entidade)
             {
                 entidades.Add(parametro);
             }
+
             if (u.ValidacaoUtil.IsArray(parametro))
             {
                 const len = (parametro as Array<any>).length;
@@ -550,45 +471,46 @@
         //    callback(resultadoExcluir);
         //}
 
-        private AtualizarEntidadesDepoisSalvar(entidades: Array<d.Entidade>, resultadoSalvar: ResultadoSalvar): void
-        {
-            const dicionarioEntidades = u.EntidadeUtil.RetornarDicionario(entidades);
-            for (const itemEntidade of dicionarioEntidades.Valores)
-            {
-                itemEntidade.__PropriedadesAlteradas.Clear();
-            }
+        //private AtualizarEntidadesDepoisSalvar(entidades: Array<d.Entidade>, resultadoSalvar: ResultadoSalvar): void
+        //{
+        //    const dicionarioEntidades = u.EntidadeUtil.RetornarDicionario(entidades);
+        //    for (const itemEntidade of dicionarioEntidades.Valores)
+        //    {
+        //        itemEntidade.__PropriedadesAlteradas.Clear();
+        //    }
 
-            const len = resultadoSalvar.EntidadesSalvas.length;
-            for (let i = 0; i < len; i++)
-            {
-                const entidadeSalvada = resultadoSalvar.EntidadesSalvas[i];
-                if (dicionarioEntidades.ContainsKey(entidadeSalvada.IdentificadorUnicoEntidade))
-                {
-                    const entidade = dicionarioEntidades.Item(entidadeSalvada.IdentificadorUnicoEntidade);
-                    const tipo = entidade.GetType();
-                    if (entidade.Id === 0)
-                    {
-                        entidade.Id = entidadeSalvada.Id;
-                    }
+        //    const len = resultadoSalvar.EntidadesSalvas.length;
+        //    for (let i = 0; i < len; i++)
+        //    {
+        //        const entidadeSalvada = resultadoSalvar.EntidadesSalvas[i];
+        //        const entidadeXXX = this.Retornar
+        //        if (dicionarioEntidades.ContainsKey(entidadeSalvada.IdentificadorUnicoEntidade))
+        //        {
+        //            const entidade = dicionarioEntidades.Item(entidadeSalvada.IdentificadorUnicoEntidade);
+        //            const tipo = entidade.GetType();
+        //            if (entidade.Id === 0)
+        //            {
+        //                entidade.Id = entidadeSalvada.Id;
+        //            }
 
-                    for (let p = 0; p < entidadeSalvada.PropriedadesComputada.length; p++)
-                    {
-                        const propriedadeComputada = entidadeSalvada.PropriedadesComputada[p];
-                        let valorPropriedade = propriedadeComputada.Valor;
-                        const propriedade = tipo.RetornarPropriedade(propriedadeComputada.NomePropriedade);
-                        if (propriedade instanceof r.Propriedade)
-                        {
-                            if (propriedade.Tipo instanceof r.TipoPrimario)
-                            {
-                                const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
-                                valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
-                            }
-                            (entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
-                        }
-                    }
-                }
-            }
-        }
+        //            for (let p = 0; p < entidadeSalvada.PropriedadesComputada.length; p++)
+        //            {
+        //                const propriedadeComputada = entidadeSalvada.PropriedadesComputada[p];
+        //                let valorPropriedade = propriedadeComputada.Valor;
+        //                const propriedade = tipo.RetornarPropriedade(propriedadeComputada.NomePropriedade);
+        //                if (propriedade instanceof r.Propriedade)
+        //                {
+        //                    if (propriedade.Tipo instanceof r.TipoPrimario)
+        //                    {
+        //                        const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
+        //                        valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
+        //                    }
+        //                    (entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         private ValidarEntidades(entidades: List<d.Entidade>): void
         {

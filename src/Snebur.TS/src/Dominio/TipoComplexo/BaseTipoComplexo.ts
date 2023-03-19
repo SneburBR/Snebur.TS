@@ -42,7 +42,11 @@
             if (this.__Entidade instanceof d.Entidade)
             {
                 const caminhoPropriedade = `${this.__NomePropriedadeEntidade}_${nomePropriedade}`;
-                (this.__Entidade as any as IObjetoControladorPropriedade).NotificarValorPropriedadeAlterada(caminhoPropriedade, antigoValor, novoValor);
+                (this.__Entidade as any as IObjetoControladorPropriedade).
+                    NotificarValorPropriedadeAlterada(caminhoPropriedade,
+                    antigoValor,
+                    novoValor,
+                    this.__NomePropriedadeEntidade);
                 //super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
             }
             super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);

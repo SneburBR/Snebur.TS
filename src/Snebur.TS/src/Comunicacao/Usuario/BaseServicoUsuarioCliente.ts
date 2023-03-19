@@ -7,6 +7,36 @@ namespace Snebur.Comunicacao
 
 //#region Automatico
 		//async
+		public IsExisteInformacaoIpAsync() : Promise<boolean>
+		{
+			return new Promise<boolean>(resolver =>
+			{
+				this.__IsExisteInformacaoIpInternoAsync(  function(resultado: boolean)
+				{
+					resolver(resultado);
+				});
+			});
+		}
+		private __IsExisteInformacaoIpInternoAsync(callback: CallbackResultado<boolean>): void
+		{
+			this.ChamarServicoAsync("IsExisteInformacaoIpAsync", arguments);
+		}
+		//async
+		public AtualizarInformacaoIpAsync(ipInformacao : Snebur.Dominio.DadosIPInformacao) : Promise<void>
+		{
+			return new Promise<void>(resolver =>
+			{
+				this.__AtualizarInformacaoIpInternoAsync(ipInformacao ,  function(resultado: void)
+				{
+					resolver(resultado);
+				});
+			});
+		}
+		private __AtualizarInformacaoIpInternoAsync(ipInformacao : Snebur.Dominio.DadosIPInformacao, callback: CallbackResultado<void>): void
+		{
+			this.ChamarServicoAsync("AtualizarInformacaoIpAsync", arguments);
+		}
+		//async
 		public ExisteIdentificadorUsuarioAsync(identificadorUsuario : string) : Promise<Snebur.Comunicacao.ResultadoExisteIdentificadoUsuario>
 		{
 			return new Promise<Snebur.Comunicacao.ResultadoExisteIdentificadoUsuario>(resolver =>

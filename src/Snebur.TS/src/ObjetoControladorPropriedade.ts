@@ -16,7 +16,7 @@
         {
             if (this instanceof Entidade)
             {
-                return ((this as any) as IEntidadeClonada).___IsEntidadeClonada;
+                return ((this as any) as IEntidadeClonada).___is_entidade_clonada__;
             }
             return false;
         }
@@ -330,8 +330,8 @@
         }
 
         protected NotificarValorPropriedadeAlterada(nomePropriedade: string, valor: any): void;
-        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
-        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any): void
+        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any, nomePropriedadeTipoComplexo?: string): void;
+        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeTipoComplexo?: string): void
         {
             if (typeof antigoValor === "undefined" && typeof novoValor === "undefined")
             {
@@ -366,7 +366,11 @@
                 }
                 else
                 {
-                    propriedadeAlterada = new d.PropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
+                    propriedadeAlterada = new d.PropriedadeAlterada(
+                        nomePropriedade,
+                        antigoValor,
+                        novoValor,
+                        nomePropriedadeTipoComplexo);
 
                     if (!u.Util.IsIgual(antigoValor, novoValor) || this.IsEntidadeClonada)
                     {
@@ -455,7 +459,7 @@
             this.__IsControladorPropriedadesAlteradaAtivo = true;
         }
 
-        public DesativarNotificacaoPropriedadeAlterada(): void
+        protected DesativarNotificacaoPropriedadeAlterada(): void
         {
             this.IsNotificacaoAlteracaoPropriedadeAtiva = false;
         }
@@ -492,7 +496,12 @@
                 const eventoPropriedade = this.__EventosNotificarPropriedadeAlterada.Item(nomePropriedade);
                 const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
                 const valorPropriedade = (this as any)[nomePropriedade];
-                const propriedadeAlterada = new d.PropriedadeAlterada(nomePropriedade, valorPropriedade, valorPropriedade);
+                const propriedadeAlterada = new d.PropriedadeAlterada(
+                    nomePropriedade,
+                    valorPropriedade,
+                    valorPropriedade,
+                    null);
+
                 eventoPropriedade.Notificar(this, new PropriedadeAlteradaEventArgs(propriedade, propriedadeAlterada));
             }
         }
@@ -564,6 +573,7 @@
         NotificarValorPropriedadeAlterada(nomePropriedade: string, valor: any): void;
         NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
         NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any): void;
+        NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeTipoComplexo?: string): void;
 
         AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;
         RemoverManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;

@@ -96,7 +96,7 @@
                 throw new ErroNaoSuportado("O tipo não suportado", this);
             }
             const baseDominio: d.BaseDominio = new (tipoEspecializado.Construtor as any);
-            baseDominio.DesativarNotificacaoPropriedadeAlterada();
+            (baseDominio as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
 
             if ((objeto as IBaseDominioReferencia).__IdentificadorUnico != null)
             {
