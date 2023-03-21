@@ -102,6 +102,7 @@ namespace Snebur.UI
         private Elemento_MouseDown(e: MouseEvent)
         {
             this.RemoverElementoClone();
+
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.ElementoClone_Window_MouseUp);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseMove, this.ElementoClone_Window_MouseMove);
 
@@ -109,6 +110,8 @@ namespace Snebur.UI
             this.PageYInicial = e.pageY;
             document.documentElement.style.cursor = "grab";
             e.preventDefault();
+
+
         }
 
 
@@ -134,7 +137,7 @@ namespace Snebur.UI
                 this.ElementoClone.style.left = x.ToPixels();
                 this.ElementoClone.style.top = y.ToPixels();
 
-                this.ControleListaOrdenacao.EventoMovendoControle.Notificar(this.ControleListaOrdenacao, new ItemControleMovendoEventArgs(this, e));
+                this.ControleListaOrdenacao.EventoMovendoControle.Notificar(this.ControleListaOrdenacao, new ItemControleMovendoEventArgs(this, this.ElementoClone, e));
 
                 document.documentElement.style.cursor = "grabbing";
             }
@@ -149,6 +152,9 @@ namespace Snebur.UI
                     this.AdicionarElementoClone(e);
                     this.Elemento.style.opacity = "0";
                     this.AdicionarEventosMouseMoveGlobal();
+
+                    this.ControleListaOrdenacao.EventoMovimentacaoIniciada.
+                        Notificar(this.ControleListaOrdenacao, new ItemControleMovendoEventArgs(this, this.ElementoClone, e));
                 }
             }
         }
@@ -160,13 +166,14 @@ namespace Snebur.UI
             this.ItensColecao.IsMovendoItemControle = false;
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.ElementoClone_Window_MouseMove);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseUp, this.ElementoClone_Window_MouseUp);
-            this.RemoverElementoClone();
+            this.RemoverElementoClone(e);
             this.RemoverEventosMouseMoveGlobal();
 
             if (this.IsControleInicializado)
             {
                 this.Elemento.style.opacity = "1";
             }
+
         }
 
         private IsEventosMouseMoveGlobalAdicionado: boolean = false;
@@ -695,7 +702,7 @@ namespace Snebur.UI
             return null;
         }
 
-        private RemoverElementoClone()
+        private RemoverElementoClone(e?: MouseEvent)
         {
             if (this.ElementoClone instanceof HTMLElement)
             {
@@ -704,11 +711,19 @@ namespace Snebur.UI
                     return;
                 }
 
+                if (e != null)
+                {
+                    this.ControleListaOrdenacao.EventoMovimentacaoFinalizada.
+                        Notificar(this.ControleListaOrdenacao, new ItemControleMovendoEventArgs(this, this.ElementoClone, e));
+                }
+
                 this.ElementoClone.remove();
                 //EstiloUtil.RemoverCssClasse(this.ElementoClone, "sn-item-lista-clone");
                 //EstiloUtil.RemoverCssClasse(this.Elemento, "sn-item-lista-elemento-movendo");
                 this.ElementoClone = null;
                 delete this.ElementoClone;
+
+
             }
         }
 

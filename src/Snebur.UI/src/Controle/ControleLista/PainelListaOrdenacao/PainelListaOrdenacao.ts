@@ -16,6 +16,7 @@
 
         public readonly EventoBlocoOrdenacaoIniciada = new Evento<BlocoOrdenacaoEventArgs>(this);
         public readonly EventoBlocoOrdenacaoAlterado = new Evento<BlocoOrdenacaoEventArgs>(this);
+        public readonly EventoBlocoOrdenacaoFinalizada = new Evento<BlocoOrdenacaoEventArgs>(this);
         public readonly EventoBlocoOrdenacaoMovimentando = new Evento<BlocoOdernacaoMovimentandoEventArgs>(this);
          
         public MetodoSalvarEntidadesOrdenada: (entidades: List<d.IOrdenacao>) => void
@@ -37,11 +38,11 @@
 
             if (this.BlocoTemplateSeparador != null)
             {
-                throw new Erro(`O painel lista ordenação suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
+                throw new Erro(`O painel lista ordenação não suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
             }
         }
 
-        //#region Ordenacao 
+        //#region Ordenação 
 
         private RetornarMetodoSalvarEntidadesOrdenada(): (entidades: List<d.IOrdenacao>) => void
         {

@@ -16,8 +16,11 @@
 
         public IsSensibilidadeVertical: boolean = false;
 
-        public readonly EventoMovendoControle: Evento<ItemControleMovendoEventArgs>;
-        public readonly EventoOrdenacaoAlterada: Evento<ItemControleOrdenacaoAlteradoEventArgs>;
+        public readonly EventoMovimentacaoIniciada = new Evento<ItemControleMovendoEventArgs>(this);
+        public readonly EventoMovimentacaoFinalizada = new Evento<ItemControleMovendoEventArgs>(this);
+
+        public readonly EventoMovendoControle = new Evento<ItemControleMovendoEventArgs>(this);
+        public readonly EventoOrdenacaoAlterada = new Evento<ItemControleOrdenacaoAlteradoEventArgs>(this);
 
         public MetodoSalvarEntidadesOrdenada: (entidades: List<d.IOrdenacao>) => void
 
@@ -27,8 +30,6 @@
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-            this.EventoMovendoControle = new Evento<ItemControleMovendoEventArgs>(this);
-            this.EventoOrdenacaoAlterada = new Evento<ItemControleOrdenacaoAlteradoEventArgs>(this);
             this.CssClasseControle = "sn-controle-lista-ordenacao";
         }
 

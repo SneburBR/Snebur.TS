@@ -36,13 +36,41 @@ namespace Snebur.UI
                 }
             }
             return null;
-       }
+        }
+
+        public get ClientX(): number
+        {
+            return this.EventoNativo instanceof MouseEvent ?
+                this.EventoNativo.clientX :
+                this.EventoNativo.touches[0].clientX;
+        }
+
+        public get ClientY(): number
+        {
+            return this.EventoNativo instanceof MouseEvent ?
+                this.EventoNativo.clientY :
+                this.EventoNativo.touches[0].clientX;
+        }
+
+        public get PageX(): number
+        {
+            return this.EventoNativo instanceof MouseEvent ?
+                this.EventoNativo.pageX :
+                this.EventoNativo.touches[0].pageX;
+        }
+
+        public get PageY(): number
+        {
+            return this.EventoNativo instanceof MouseEvent ?
+                this.EventoNativo.pageY :
+                this.EventoNativo.touches[0].pageY;
+        }
 
         public constructor(bloco: TItemBloco,
             referencia: d.IOrdenacao,
             elementoClonado: HTMLElement,
             eventoNativo: MouseEvent | TouchEvent,
-            regiosBlocosCapturados: List<RegiaoBlocoPorcentagem>     )
+            regiosBlocosCapturados: List<RegiaoBlocoPorcentagem>)
         {
             super(bloco, referencia, elementoClonado, eventoNativo);
 

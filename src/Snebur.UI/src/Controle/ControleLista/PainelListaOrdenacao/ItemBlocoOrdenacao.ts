@@ -258,7 +258,7 @@
                 this.IsOrdenacaoAtiva = true;
                 document.body.style.cursor = "grabbing";
                 this.AplicarEstiloPainel(regiaoPainel);
-                 
+
                 this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
                 this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
 
@@ -296,7 +296,9 @@
             }
             else
             {
-                throw new Erro("Não testando ainda");
+                /*return itensBloco.OrderBy(x => x.ObjetoOrdenacao.Ordenacao);*/
+                return itensBloco.OrderByDescending(x => x.ObjetoOrdenacao.Ordenacao);
+                /*throw new Erro("Não testando ainda");*/
             }
         }
 
@@ -378,6 +380,13 @@
                 this.Elemento.style.opacity = "1";
                 document.body.style.cursor = "normal";
                 this.IsOrdenacaoAtiva = false;
+
+                this.PainelLista.EventoBlocoOrdenacaoFinalizada.Notificar(this,
+                    new BlocoOrdenacaoEventArgs(
+                        this,
+                        this.ObjetoOrdenacao,
+                        this.ElementoClone,
+                        eventoNativo));
             }
         }
 
@@ -447,11 +456,12 @@
                 }
                 else
                 {
-                    throw new ErroNaoImplementado();
+                    return this.RetornarNovaOrdenacaoDecrescente(blocosCapturados);
                 }
             }
             return this.ObjetoOrdenacao.Ordenacao;
         }
+
 
         private RetornarNovaOrdenacaoCrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
         {
@@ -489,6 +499,11 @@
             }
         }
 
+        private RetornarNovaOrdenacaoDecrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
+        {
+            throw new Error("Method not implemented.");
+        }
+
         //#endregion
 
         //#region Ordenação
@@ -503,7 +518,7 @@
                 }
                 else
                 {
-                    throw new ErroNaoImplementado();
+                    this.OrdernarDecrescente();
                 }
 
                 this.PainelLista.EventoBlocoOrdenacaoAlterado.Notificar(this,
@@ -513,6 +528,7 @@
                         eventoNativo));
             }
         }
+      
 
         private OrdernarCrescente(): void
         {
@@ -544,6 +560,10 @@
 
         }
 
+        private OrdernarDecrescente()
+        {
+            throw new Error("Method not implemented.");
+        }
         //#endregion
 
         //#region Salvar entidade

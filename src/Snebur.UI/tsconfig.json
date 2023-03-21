@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "build/Snebur.UI.js",
+    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "../Snebur.TS/build/Snebur.d.ts",
+    "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
