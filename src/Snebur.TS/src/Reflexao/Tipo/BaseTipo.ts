@@ -130,7 +130,7 @@
                 return this.TodasPropriedades.Valores;
             }
         }
-
+ 
         public RetornarPropriedade<T>(expressaoPropriedade: (value: T) => any): Propriedade
         public RetornarPropriedade<T>(expressaoPropriedade: (value: T) => any, nullSeNaoExiste: boolean): Propriedade
         public RetornarPropriedade(nomePropriedade: string): Propriedade

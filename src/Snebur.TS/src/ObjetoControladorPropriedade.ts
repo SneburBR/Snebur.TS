@@ -10,6 +10,7 @@
 
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
+        private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = false;
         private static readonly __EventosProtegidos = [ObjetoControladorPropriedade.__NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO];
 
         private get IsEntidadeClonada(): boolean
@@ -35,7 +36,7 @@
             return (this.__PropriedadesAlteradas.Count > 0);
         }
 
-        protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;
+        /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
 
         private _propriedadesValidacoes: DicionarioSimples<PropriedadeValidacoes>;
 
@@ -48,7 +49,10 @@
             return this._propriedadesValidacoes;
         }
 
-        private IsNotificacaoAlteracaoPropriedadeAtiva: boolean = true;
+        protected get IsNotificacaoAlteracaoPropriedadeAtiva(): boolean
+        {
+            return this.__isNotificacaoAlteracaoPropriedadeAtiva;
+        }
 
         public constructor()
         {
@@ -397,36 +401,7 @@
             }
         }
 
-        protected NotificarValorPropriedadeAlteradaRelacao(nomePropriedade: string, antigoValor: any, novoValor: any): void
-        {
-            this.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
 
-            if (this instanceof d.Entidade)
-            {
-                if (!u.Util.IsIgual(antigoValor, novoValor))
-                {
-                    const tipoEntidade = this.GetType() as r.TipoEntidade;
-                    const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
-                    const propriedadeChaveEstrageira = u.EntidadeUtil.RetornarPropriedadeChaveEstrangeira(tipoEntidade, propriedade);
-
-                    if (novoValor instanceof d.Entidade)
-                    {
-                        const nomePropriedadePrivada = "_" + u.TextoUtil.FormatarPrimeiraLetraMinuscula(propriedadeChaveEstrageira.Nome);
-                        const antigoValorChaveEstrangeira = (this as any)[nomePropriedadePrivada] as number;
-                        const novoValorChaveEstrangeira = novoValor.Id;
-                        if (antigoValorChaveEstrangeira !== novoValorChaveEstrangeira)
-                        {
-                            (this as any)[propriedadeChaveEstrageira.Nome] = novoValorChaveEstrangeira;
-                            //propriedadeChaveEstrageira.SetValue(this, novoValorChaveEstrangeira);
-                            if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
-                            {
-                                this.NotificarValorPropriedadeAlterada(propriedadeChaveEstrageira.Nome, antigoValorChaveEstrangeira, novoValorChaveEstrangeira);
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         public AdicionarManipuladorPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
         public AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
@@ -455,13 +430,13 @@
 
         protected AtivarNotificacaoPropriedadeAlterada(): void
         {
-            this.IsNotificacaoAlteracaoPropriedadeAtiva = true;
-            this.__IsControladorPropriedadesAlteradaAtivo = true;
+            this.__isNotificacaoAlteracaoPropriedadeAtiva = true;
+            /*this.__IsControladorPropriedadesAlteradaAtivo = true;*/
         }
 
         protected DesativarNotificacaoPropriedadeAlterada(): void
         {
-            this.IsNotificacaoAlteracaoPropriedadeAtiva = false;
+            this.__isNotificacaoAlteracaoPropriedadeAtiva = false;
         }
 
         protected RemoverTodosHandlersPropriedadeAlterada(): void
@@ -564,7 +539,7 @@
 
     export interface IObjetoControladorPropriedade
     {
-        __IsControladorPropriedadesAlteradaAtivo: boolean;
+        /*__IsControladorPropriedadesAlteradaAtivo: boolean;*/
 
         NotificarPropriedadeAlterada(nomePropriedade: string, valor: any): void;
         NotificarPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;

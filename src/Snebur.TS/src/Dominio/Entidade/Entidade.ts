@@ -148,18 +148,90 @@
             //super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, )
 
         }
-        //#region IEquals
 
-        public override Equals(obj: any): boolean
+        protected NotificarValorPropriedadeAlteradaRelacao(nomePropriedade: string, antigoValor: any, novoValor: any): void
         {
-            if (obj instanceof Entidade)
+            this.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
+
+            if (this instanceof d.Entidade)
             {
-                return this.__IdentificadorEntidade === (obj as Entidade).__IdentificadorEntidade;
+                if (!u.Util.IsIgual(antigoValor, novoValor))
+                {
+                    const tipoEntidade = this.GetType() as r.TipoEntidade;
+                    const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
+                    const propriedadeChaveEstrageira = u.EntidadeUtil.RetornarPropriedadeChaveEstrangeira(tipoEntidade, propriedade);
+
+                    if (novoValor instanceof d.Entidade)
+                    {
+                        const nomePropriedadePrivada = "_" + u.TextoUtil.FormatarPrimeiraLetraMinuscula(propriedadeChaveEstrageira.Nome);
+                        const antigoValorChaveEstrangeira = (this as any)[nomePropriedadePrivada] as number;
+                        const novoValorChaveEstrangeira = novoValor.Id;
+                        if (antigoValorChaveEstrangeira !== novoValorChaveEstrangeira)
+                        {
+                            (this as any)[propriedadeChaveEstrageira.Nome] = novoValorChaveEstrangeira;
+                            //propriedadeChaveEstrageira.SetValue(this, novoValorChaveEstrangeira);
+                            if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
+                            {
+                                this.NotificarValorPropriedadeAlterada(propriedadeChaveEstrageira.Nome, antigoValorChaveEstrangeira, novoValorChaveEstrangeira);
+                            }
+                        }
+                    }
+                }
             }
-            return super.Equals(obj);
+        }
+
+        protected NotificarValorPropriedadeAlteradaChaveEstrangeiraAlterada(
+            nomePropriedade: string,
+            antigoValor: any,
+            novoValor: any): void
+        {
+
+            this.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
+
+            if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
+            {
+                if (!u.Util.IsIgual(antigoValor, novoValor))
+                {
+                    const tipoEntidade = this.GetType() as r.TipoEntidade;
+                    const propriedadeChaveEstrangeira = this.GetType().RetornarPropriedade(nomePropriedade);
+
+                    const propriedadeRelacao = u.EntidadeUtil.RetornarPropriedadeRelacao(tipoEntidade, propriedadeChaveEstrangeira);
+                    const entidadeRelacao = (this as any)[propriedadeRelacao.Nome];
+                    if (entidadeRelacao instanceof Entidade)
+                    {
+                        if (entidadeRelacao.Id !== novoValor)
+                        {
+                            console.WarmDebug(`A propriedade chave estrageira alterada ${this.GetType().Nome}.${nomePropriedade} = ${novoValor ?? "null"}
+                                               Propriedade da relação {} foi atribuído valor null.
+                                               ${this.GetType().Nome}.${propriedadeRelacao.Nome} = null`);
+
+                            (this as any)[propriedadeRelacao.Nome] = null;
+                        }
+                    }
+                }
+            }
         }
 
         //os o id da chave primaria, e id das chave estrangeiras, e todoas as propriedades alteradas
+        protected RetornarValorChaveEstrangeira(nomePropriedade: string, nomePropriedadeRelacao: string, idChaveEstrangeira: number): number
+        {
+            const relacaoChaveEstrangeira = (this as any)[nomePropriedadeRelacao];
+            if (relacaoChaveEstrangeira instanceof Entidade)
+            {
+                return relacaoChaveEstrangeira.Id;
+            }
+            return idChaveEstrangeira;
+        }
+
+        public RetornarValorPropriedadeIsAtivo(isAtivo: boolean)
+        {
+            if (this.GetTypeTipado().IsImplementaIAtivo &&
+                this.GetTypeTipado().IsImplementaIDeletado)
+            {
+                return isAtivo && !(this as any as IDeletado).IsDeletado;
+            }
+            return isAtivo;
+        }
 
         //#region Clonar
 
@@ -177,140 +249,21 @@
             funcaoClonarValorProprieadede?: FuncaoClonarPropriedade):
             TEntidade
         {
-            const ajudante = new AjudanteClonaEntidade(this);
-            return ajudante.Clonar(opcoes, funcaoClonarValorProprieadede) as TEntidade;
-
-            //const tipoEntidade = this.GetType() as r.TipoEntidade;
-
-            //const entidadeClonada = new tipoEntidade.Construtor() as TEntidade;
-            //entidadeClonada.DesativarNotificacaoPropriedadeAlterada();
-
-            //if (!opcoes.HasFlag(EnumOpcaoClonarEntidade.NaoClonarId))
-            //{
-            //    entidadeClonada.Id = this.Id;
-            //}
-
-            //(entidadeClonada as any as IEntidadeClonada).___IsEntidadeClonada = true;
-
-            //const referencia = this as any;
-
-            //if (opcoes === EnumOpcaoClonarEntidade.Tudo)
-            //{
-            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
-            //    propriedades.Remove(tipoEntidade.PropriedadeChavePrimaria);
-
-            //    for (const propriedade of propriedades)
-            //    {
-            //        if (propriedade.IsSomenteLeitura)
-            //        {
-            //            continue;
-            //        }
-
-            //        const valorPropriedade = referencia[propriedade.Nome];
-            //        const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieadede);
-            //        (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;
-            //    }
-            //    entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
-            //    return entidadeClonada as TEntidade;
-            //}
-
-            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesTiposComplexo))
-            //{
-            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
-            //    for (const propriedade of propriedades)
-            //    {
-            //        if (propriedade.Tipo instanceof r.TipoComplexo)
-            //        {
-            //            const valorPropriedade = referencia[propriedade.Nome];
-            //            if (valorPropriedade instanceof d.BaseTipoComplexo)
-            //            {
-            //                (entidadeClonada as any)[propriedade.Nome] = valorPropriedade.Clone();
-            //            }
-
-            //        }
-            //    }
-            //}
-
-            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.ChavesEstrangeira))
-            //{
-            //    const propriedadesChavaEstrangeira = tipoEntidade.PropriedadesChaveEstrangeiras;
-            //    for (const propriedadeChaveEstrangeira of propriedadesChavaEstrangeira)
-            //    {
-            //        (entidadeClonada as any)[propriedadeChaveEstrangeira.Nome] = referencia[propriedadeChaveEstrangeira.Nome];
-            //    }
-            //}
-
-            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesTiposPrimario))
-            //{
-            //    const propriedades = tipoEntidade.RetornarPropriedades(false);
-            //    for (const propriedade of propriedades)
-            //    {
-            //        if (propriedade.Tipo.IsTipoPrimario &&
-            //            propriedade.Nome !== "__NomeTipoEntidade")
-            //        {
-            //            const valorPropriedade = referencia[propriedade.Nome];
-            //            (entidadeClonada as any)[propriedade.Nome] = valorPropriedade;
-            //        }
-            //    }
-            //}
-             
-            //if (opcoes.HasFlag(EnumOpcaoClonarEntidade.PropriedadesAlteradas) &&
-            //    this.__PropriedadesAlteradas.Count > 0)
-            //{
-            //    const propriedadesAlteradas = new DicionarioSimples<d.PropriedadeAlterada>();
-            //    for (const chave of this.__PropriedadesAlteradas.Chaves)
-            //    {
-            //        const propriedadeAlterada = this.__PropriedadesAlteradas.Item(chave);
-            //        propriedadesAlteradas.Add(chave, propriedadeAlterada.Clone());
-
-            //        const propriedade = this.GetType().RetornarPropriedade(propriedadeAlterada.NomePropriedade, true);
-            //        if (propriedade != null)
-            //        {
-            //            (entidadeClonada as any)[propriedade.Nome] = referencia[propriedade.Nome];
-            //        }
-            //    }
-
-            //    (entidadeClonada as any).__propriedadesAlteradas__ = propriedadesAlteradas;
-            //}
-            //entidadeClonada.AtivarNotificacaoPropriedadeAlterada();
-            //return entidadeClonada as TEntidade;
+            return AjudanteClonarEntidade.Clonar(this, opcoes, funcaoClonarValorProprieadede) as TEntidade;
         }
-
-      
 
         //#endregion
-        protected RetornarValorChaveEstrangeira(nomePropriedade: string, nomePropriedadeRelacao: string, idChaveEstrangeira: number): number
+
+
+        //#region IEquals
+
+        public override Equals(obj: any): boolean
         {
-            const relacaoChaveEstrangeira = (this as any)[nomePropriedadeRelacao];
-            if (relacaoChaveEstrangeira instanceof Entidade)
+            if (obj instanceof Entidade)
             {
-                return relacaoChaveEstrangeira.Id;
+                return this.__IdentificadorEntidade === (obj as Entidade).__IdentificadorEntidade;
             }
-            return idChaveEstrangeira;
-        }
-
-        public override toString(): string
-        {
-            if (this.Id > 0)
-            {
-                const nome = TextoUtil.RemoverAcentos(TextoUtil.RetornarSomentesLetrasNumeros(u.ConverterUtil.ParaString((this as any)["Nome"])));
-                return this.___NomeConstrutor + ".Id." + this._id + "." + nome;
-            }
-            return super.toString();
-        }
-
-        //public ToStringHashCode(): string
-        //{
-        //    if (this.Id === 0)
-        //    {
-        //        throw new Erro("Não é possível gerar um hash para entidades não salva");
-        //    }
-        //    return this.__IdentificadorEntidade;
-        //}
-
-        private GetTypeTipado(): r.TipoEntidade  
-        {
-            return super.GetType() as r.TipoEntidade;
+            return super.Equals(obj);
         }
 
         public override GetHashCode(): number
@@ -330,19 +283,25 @@
             return this.__IdentificadorEntidade.GetHashCode();
         }
 
-        //#region IAtivo
+        //#endregion
 
-        public RetornarValorPropriedadeIsAtivo(isAtivo: boolean)
+
+        public override toString(): string
         {
-            if (this.GetTypeTipado().IsImplementaIAtivo &&
-                this.GetTypeTipado().IsImplementaIDeletado)
+            if (this.Id > 0)
             {
-                return isAtivo && !(this as any as IDeletado).IsDeletado;
+                const nome = TextoUtil.RemoverAcentos(TextoUtil.RetornarSomentesLetrasNumeros(u.ConverterUtil.ParaString((this as any)["Nome"])));
+                return this.___NomeConstrutor + ".Id." + this._id + "." + nome;
             }
-            return isAtivo;
+            return super.toString();
+        }
+        
+        private GetTypeTipado(): r.TipoEntidade  
+        {
+            return super.GetType() as r.TipoEntidade;
         }
 
-        //#endregion
+         
     }
 
     export declare type FuncaoClonarPropriedade = (propriedade: r.Propriedade, valorPropriedade: Entidade) => any | undefined;

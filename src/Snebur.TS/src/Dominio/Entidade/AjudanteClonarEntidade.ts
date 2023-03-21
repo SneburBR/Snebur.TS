@@ -1,26 +1,119 @@
 ﻿namespace Snebur.Dominio
 {
-    export class AjudanteClonaEntidade
+    export class AjudanteClonarEntidade
     {
-        private readonly TipoEntidade: r.TipoEntidade;
-        public constructor(
-            private readonly EntidadeOrigem: Entidade)
+        private static Gerenciador: GerenciadorCloneEntidade = null;
+        private static __isClonando: boolean = false;
+
+        public static Clonar<TEntidade extends Entidade>(
+            entidadeOrigem: d.Entidade,
+            opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
+            funcaoClonarValorProprieadede?: FuncaoClonarPropriedade): TEntidade
         {
-            this.TipoEntidade = this.EntidadeOrigem.GetType() as r.TipoEntidade;
+            if (AjudanteClonarEntidade.__isClonando)
+            {
+                return AjudanteClonarEntidade.Gerenciador.Clonar(
+                    entidadeOrigem,
+                    opcoes) as any as TEntidade;
+            }
+
+            AjudanteClonarEntidade.__isClonando = true;
+
+            /*const descricaoEntidade = ` ${entidadeOrigem.__IdentificadorEntidade} ${u.EntidadeUtil.RetornarDescricaoEntidade(entidadeOrigem)}`;*/
+            /*console.WarmDebug(` Iniciando clone  entidade: ${descricaoEntidade}   ( novo gerenciador_ `);*/
+             
+
+            AjudanteClonarEntidade.Gerenciador = new GerenciadorCloneEntidade();
+            const entidadeClonada = AjudanteClonarEntidade.Gerenciador.Clonar(entidadeOrigem, opcoes, funcaoClonarValorProprieadede);
+
+            /*console.WarmDebug(` Finalizado clone entidade ${descricaoEntidade} -  ${AjudanteClonarEntidade.Gerenciador.Stopwatch.TotalSeconds}s  (Gerenciador dispensado)`);*/
+
+            AjudanteClonarEntidade.Gerenciador.Dispose();
+            AjudanteClonarEntidade.Gerenciador = null;
+            delete AjudanteClonarEntidade.Gerenciador;
+            AjudanteClonarEntidade.__isClonando = false;
+
+            return entidadeClonada as any  as TEntidade;
+        }
+    }
+
+    class GerenciadorCloneEntidade implements Snebur.IDisposable
+    {
+        private __isDepensado: boolean = false;
+        private readonly EntidadesClonas = new DicionarioEntidade<Entidade, IEntidadeClonada>();
+        public readonly Stopwatch = Stopwatch.StartNew();
+        private readonly Clonadores = new List<ClonadorEntidade>();
+
+        public Clonar (entidadeOrigem: d.Entidade,
+            opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
+            funcaoClonarValorProprieadede?: FuncaoClonarPropriedade): IEntidadeClonada
+        {
+            if (this.__isDepensado)
+            {
+                throw new Erro("O gerenciador do clone de entidade foi dispensado");
+            }
+
+            if (this.EntidadesClonas.ContainsKey(entidadeOrigem))
+            {
+                return this.EntidadesClonas.Item(entidadeOrigem);
+            }
+
+            const clonador = new ClonadorEntidade(entidadeOrigem, opcoes, funcaoClonarValorProprieadede);
+            this.Clonadores.Add(clonador);
+            this.EntidadesClonas.Add(entidadeOrigem, clonador.EntidadeClonada);
+            clonador.Clonar();
+            return clonador.EntidadeClonada;
+        }
+         
+        public Dispose(): void
+        {
+            for (const clonador of this.Clonadores)
+            {
+                clonador.Dispose();
+            }
+            this.Clonadores.Clear();
+            this.EntidadesClonas.Clear();
+            this.DispensarInterno();
+            this.__isDepensado = true;
         }
 
-        public Clonar<TEntidade extends Entidade>(
-            opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
-            funcaoClonarValorProprieadede?: FuncaoClonarPropriedade): Entidade
+        private DispensarInterno(this: any)
         {
-            const tipoEntidade = this.TipoEntidade;
-            const entidadeClonada = new tipoEntidade.Construtor() as Entidade;
+            delete this.EntidadesClonas;
+            delete this.Clonadores;
+        }
 
-            (entidadeClonada as any as IEntidadeClonada).___is_entidade_clonada__ = true;
+    }
 
+    class ClonadorEntidade implements Snebur.IDisposable
+    {
+        private PropriedadesClonadas = new HashSet<r.Propriedade>();
+        private readonly TipoEntidade: r.TipoEntidade;
+        public readonly EntidadeClonada: IEntidadeClonada;
+
+
+        constructor(
+            private readonly EntidadeOrigem: d.Entidade,
+            private readonly Opcoes: EnumOpcaoClonarEntidade,
+            private readonly FuncaoClonarValorProprieadede: FuncaoClonarPropriedade)
+        {
+
+            this.TipoEntidade = this.EntidadeOrigem.GetType() as r.TipoEntidade;
+            const entidadeClonada = (new this.TipoEntidade.Construtor() as any) as IEntidadeClonada;
+
+            entidadeClonada.___is_entidade_clonada__ = true;
             (entidadeClonada as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+            this.EntidadeClonada = entidadeClonada;
 
-            const referencia = this.EntidadeOrigem as any;
+        }
+
+        public Clonar(): void
+        {
+
+            const tipoEntidade = this.TipoEntidade;
+            const entidadeClonada = this.EntidadeClonada;
+            const opcoes = this.Opcoes;
+            const origemReferencia = this.EntidadeOrigem as any;
 
             if (opcoes === EnumOpcaoClonarEntidade.Tudo)
             {
@@ -29,13 +122,13 @@
 
                 for (const propriedade of propriedades)
                 {
-                    if (propriedade.IsSomenteLeitura)
+                    if (!this.IsPodeClonarPropriedade(propriedade))
                     {
                         continue;
                     }
 
-                    const valorPropriedade = referencia[propriedade.Nome];
-                    const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieadede);
+                    const valorPropriedade = origemReferencia[propriedade.Nome];
+                    const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade);
                     (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;
                 }
             }
@@ -47,8 +140,14 @@
                 {
                     if (propriedade.Tipo instanceof r.TipoComplexo)
                     {
-                        const valorPropriedade = referencia[propriedade.Nome];
-                        if (valorPropriedade instanceof d.BaseTipoComplexo)
+                        if (!this.IsPodeClonarPropriedade(propriedade))
+                        {
+                            continue;
+                        }
+
+                        const valorPropriedade = origemReferencia[propriedade.Nome];
+                        const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade);
+                        if (valorPropriedaeClonado instanceof d.BaseTipoComplexo)
                         {
                             (entidadeClonada as any)[propriedade.Nome] = valorPropriedade.Clone();
                         }
@@ -61,7 +160,14 @@
                 const propriedadesChavaEstrangeira = tipoEntidade.PropriedadesChaveEstrangeiras;
                 for (const propriedadeChaveEstrangeira of propriedadesChavaEstrangeira)
                 {
-                    (entidadeClonada as any)[propriedadeChaveEstrangeira.Nome] = referencia[propriedadeChaveEstrangeira.Nome];
+                    if (!this.IsPodeClonarPropriedade(propriedadeChaveEstrangeira))
+                    {
+                        continue;
+                    }
+
+                    const valorPropriedade = origemReferencia[propriedadeChaveEstrangeira.Nome];
+                    const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedadeChaveEstrangeira, valorPropriedade);
+                    (entidadeClonada as any)[propriedadeChaveEstrangeira.Nome] = valorPropriedaeClonado;
                 }
             }
 
@@ -73,8 +179,14 @@
                     if (propriedade.Tipo.IsTipoPrimario &&
                         !propriedade.Nome.startsWith("_"))
                     {
-                        const valorPropriedade = referencia[propriedade.Nome];
-                        (entidadeClonada as any)[propriedade.Nome] = valorPropriedade;
+                        if (!this.IsPodeClonarPropriedade(propriedade))
+                        {
+                            continue;
+                        }
+
+                        const valorPropriedade = origemReferencia[propriedade.Nome];
+                        const valorPropriedaeClonado = this.RetornarValorPropriedadeClonado(opcoes, propriedade, valorPropriedade);
+                        (entidadeClonada as any)[propriedade.Nome] = valorPropriedaeClonado;
                     }
                 }
             }
@@ -91,7 +203,12 @@
                     const propriedade = this.GetType().RetornarPropriedade(propriedadeAlterada.NomePropriedade, true);
                     if (propriedade != null)
                     {
-                        (entidadeClonada as any)[propriedade.Nome] = referencia[propriedade.Nome];
+                        if (!this.IsPodeClonarPropriedade(propriedade))
+                        {
+                            continue;
+                        }
+
+                        (entidadeClonada as any)[propriedade.Nome] = origemReferencia[propriedade.Nome];
                     }
                 }
 
@@ -108,23 +225,25 @@
             }
 
             (entidadeClonada as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
-            return entidadeClonada as TEntidade;
+            /*     return entidadeClonada as TEntidade;*/
         }
 
-        private RetornarValorPropriedadeClonado(opcoes: EnumOpcaoClonarEntidade, propriedade: r.Propriedade, valorPropriedade: any, funcaoClonarValorProprieade: FuncaoClonarPropriedade): any
+        private RetornarValorPropriedadeClonado(opcoes: EnumOpcaoClonarEntidade,
+            propriedade: r.Propriedade,
+            valorPropriedade: any): any
         {
-            if (typeof funcaoClonarValorProprieade === "function")
+            if (typeof this.FuncaoClonarValorProprieadede === "function")
             {
-                const valor = funcaoClonarValorProprieade(propriedade, valorPropriedade);
+                const valor = this.FuncaoClonarValorProprieadede(propriedade, valorPropriedade);
                 if (valor !== undefined)
                 {
                     return valor;
                 }
             }
-            return this.ClonarValorPropriedade(opcoes, propriedade, valorPropriedade, funcaoClonarValorProprieade);
+            return this.ClonarValorPropriedade(opcoes, propriedade, valorPropriedade);
         }
 
-        private ClonarValorPropriedade(opcoes: EnumOpcaoClonarEntidade, propriedade: r.Propriedade, valorPropriedade: any, funcaoClonarValorProprieade: FuncaoClonarPropriedade): any
+        private ClonarValorPropriedade(opcoes: EnumOpcaoClonarEntidade, propriedade: r.Propriedade, valorPropriedade: any): any
         {
             if (valorPropriedade instanceof Entidade)
             {
@@ -132,7 +251,7 @@
                 {
                     return valorPropriedade;
                 }
-                return valorPropriedade.Clonar(opcoes, funcaoClonarValorProprieade);
+                return valorPropriedade.Clonar(opcoes, this.FuncaoClonarValorProprieadede);
             }
 
             if (valorPropriedade instanceof Array)
@@ -144,7 +263,7 @@
                     let item = lista[i];
                     if (item instanceof Entidade)
                     {
-                        item = this.RetornarValorPropriedadeClonado(opcoes, propriedade, item, funcaoClonarValorProprieade);
+                        item = this.RetornarValorPropriedadeClonado(opcoes, propriedade, item);
                     }
                     novoLista.Add(item);
                 }
@@ -189,6 +308,51 @@
 
             }
             throw new Erro("Method not implemented.");
+        }
+
+        private IsPodeClonarPropriedade(propriedade: r.Propriedade)
+        {
+            //está assim para parar nos breakpoint
+            //VisualStudio fica muito lento ao aplicar condições nos breakpoints
+
+            if (propriedade.IsSomenteLeitura)
+            {
+                return false;
+            }
+
+            if (this.PropriedadesClonadas.Contains(propriedade))
+            {
+                return false;
+            }
+            //apenas para breakpoint
+            if (propriedade.Nome.startsWith("_"))
+            {
+                return false;
+            }
+            //apenas para breakpoint
+            if (propriedade.Nome.startsWith("__"))
+            {
+                return false;
+            }
+            this.PropriedadesClonadas.Add(propriedade);
+            return true;
+        }
+
+        public Dispose()
+        {
+            this.PropriedadesClonadas.Clear();
+            this.DipensarInterno();
+        }
+
+        private DipensarInterno(this: any)
+        {
+            this.PropriedadesClonadas = undefined;
+            this.TipoEntidade = undefined;
+            this.EntidadeClonada = undefined;
+
+            delete this.PropriedadesClonadas;
+            delete this.TipoEntidade;
+            delete this.EntidadeClonada;
         }
     }
 }

@@ -6,6 +6,12 @@ interface Console
     baseInfo(...data: any[]): void;
     baseError(...data: any[]): void;
     baseWarm(...data: any[]): void;
+
+    LogDebug(...data: any[]): void;
+    InfoDebug(...data: any[]): void;
+    ErrorDebug(...data: any[]): void;
+    WarmDebug(...data: any[]): void;
+
     EventoLog: Snebur.Evento<Snebur.ConsoleLogArgs>;
 }
 
@@ -24,9 +30,22 @@ namespace Snebur
         let __contadorAlertasErro = 0;
         let __identificadorTimeoutAlertaErro: number = -1;
 
-        const CallBase = function (this: Window, tipo: EnumTipoLog, base: (...data: any[]) => void, ...data: any[])
+        const CallBase = function (
+            this: Window,
+            isDebug: boolean,
+            tipo: EnumTipoLog,
+            base: (...data: any[]) => void, ...data: any[])
         {
-            if (tipo === EnumTipoLog.Erro || ($Configuracao == null || $Configuracao.IsDebug || $Configuracao.IsTeste))
+            if (  isDebug )
+            {
+                if (Snebur.$Configuracao != null &&
+                    Snebur.$Configuracao.IsDebug !== true)
+                {
+                    return;
+                }
+            }
+
+            if (tipo === EnumTipoLog.Erro || (Snebur.$Configuracao == null || Snebur.$Configuracao.IsDebug || Snebur.$Configuracao.IsTeste))
             {
                 let mensagemOriginal = data[0] as string;
                 if (data.length > 2)
@@ -72,18 +91,27 @@ namespace Snebur
             }
         };
 
+       
+
         console.baseLog = console.log;
         console.baseInfo = console.info;
         console.baseError = console.error;
         console.baseWarm = console.warn;
 
-        console.log = CallBase.bind(console, EnumTipoLog.Log, console.baseLog);
-        console.info = CallBase.bind(console, EnumTipoLog.Info, console.baseInfo);
-        console.warn = CallBase.bind(console, EnumTipoLog.Alerta, console.baseWarm);
-        console.error = CallBase.bind(console, EnumTipoLog.Erro, console.baseError);
+        console.log = CallBase.bind(console, false, EnumTipoLog.Log, console.baseLog);
+        console.info = CallBase.bind(console, false, EnumTipoLog.Info, console.baseInfo);
+        console.warn = CallBase.bind(console, false, EnumTipoLog.Alerta, console.baseWarm);
+        console.error = CallBase.bind(console, false, EnumTipoLog.Erro, console.baseError);
+
+        console.LogDebug = CallBase.bind(console, true, EnumTipoLog.Log, console.baseLog);
+        console.InfoDebug = CallBase.bind(console, true, EnumTipoLog.Info, console.baseInfo);
+        console.WarmDebug = CallBase.bind(console, true, EnumTipoLog.Alerta, console.baseWarm);
+        console.ErrorDebug = CallBase.bind(console, true, EnumTipoLog.Erro, console.baseError);
+
+
 
     })();
-    
+
 
 }
 

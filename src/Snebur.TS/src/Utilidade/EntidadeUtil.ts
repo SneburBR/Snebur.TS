@@ -5,13 +5,20 @@
         public static RetornarDescricaoEntidade(entidade: d.Entidade): string
         {
             const tipoEntidade = entidade.GetType() as r.TipoEntidade;
-            const propriedadeDescricao = tipoEntidade.RetornarPropriedadeDescricao();
-            return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeDescricao);
+            const propriedadeDescricao = tipoEntidade.RetornarPropriedadeDescricao(true);
+            if (propriedadeDescricao != null)
+            {
+                return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeDescricao);
+            }
+            return `${entidade.Id} ${entidade.GetType()}`;
         }
 
-        public static RetornarPropriedadeChaveEstrangeira(tipoEntidade: r.TipoEntidade, propriedade: r.Propriedade, ignorarErro: boolean = false): r.Propriedade
+        public static RetornarPropriedadeChaveEstrangeira(
+            tipoEntidade: r.TipoEntidade,
+            propriedadeRelacao: r.Propriedade,
+            isIgnorarErro: boolean = false): r.Propriedade
         {
-            const atributoChaveEstrangeira = EntidadeUtil.RetornarAtributoChaveEstrangeira(propriedade, ignorarErro);
+            const atributoChaveEstrangeira = EntidadeUtil.RetornarAtributoChaveEstrangeira(propriedadeRelacao, isIgnorarErro);
             return tipoEntidade.RetornarPropriedade(atributoChaveEstrangeira.NomePropriedade);
         }
 
@@ -36,18 +43,42 @@
             return null;
         }
 
-        public static RetornarIdChaveEstrangeira(entidade: d.Entidade, propriedade: r.Propriedade): number
+        public static RetornarIdChaveEstrangeira(entidade: d.Entidade, propriedadeRelacao: r.Propriedade): number
         {
-            const valorEntidade = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedade);
+            const valorEntidade = u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeRelacao);
             if (valorEntidade instanceof d.Entidade)
             {
                 return (valorEntidade as d.Entidade).Id;
             }
             else
             {
-                const propriedadeChaveEstrangeira = EntidadeUtil.RetornarPropriedadeChaveEstrangeira(entidade.GetType() as r.TipoEntidade, propriedade);
+                const propriedadeChaveEstrangeira = EntidadeUtil.RetornarPropriedadeChaveEstrangeira(entidade.GetType() as r.TipoEntidade, propriedadeRelacao);
                 return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeChaveEstrangeira);
             }
+        }
+
+        public static RetornarPropriedadeRelacao(
+            tipoEntidade: r.TipoEntidade,
+            propriedadeChaveEstrangeira: r.Propriedade,
+            isIgnorarErro: boolean = false): r.Propriedade
+        {
+            const propriedades = tipoEntidade.RetornarPropriedades();
+            for (const propriedade of propriedades)
+            {
+                if (propriedade.Tipo instanceof r.TipoEntidade)
+                {
+                    const atributoChaveEstrageira = propriedade.Atributos.OfType(at.ChaveEstrangeiraAttribute).SingleOrDefault();
+                    if (atributoChaveEstrageira?.NomePropriedade === propriedadeChaveEstrangeira.Nome)
+                    {
+                        return propriedade;
+                    }
+                }
+            }
+            if (isIgnorarErro)
+            {
+                return null;
+            }
+            throw new Erro(`A propriedade relação da chave estrangeira ${propriedadeChaveEstrangeira.Nome} na entidade ${tipoEntidade.Nome} não foi encontrada`);
         }
 
         public static RetornarDicionario(entidades: Array<d.Entidade>): DicionarioSimples<d.Entidade>
