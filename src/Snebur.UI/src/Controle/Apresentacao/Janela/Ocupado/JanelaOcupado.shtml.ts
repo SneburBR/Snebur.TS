@@ -72,13 +72,17 @@
 
         public override Dispose()
         {
-            if (($Aplicacao.DocumentoPrincipal as any).__JanelaOcupado != null && this.ControleApresentacao !== this)
+            if (Snebur.$Aplicacao.DocumentoPrincipal.IsOcupado)
             {
-                const nomeApresentacao = this.ControleApresentacao.___NomeConstrutor;
-                if (!String.IsNullOrWhiteSpace(nomeApresentacao))
-                {
-                    console.warn(`Atenção, O controle ${nomeApresentacao} foi dispensado sem desocupar.`);
-                }
+                const nomeApresentacao = this.ControleApresentacaoPai?.___NomeConstrutor ?? this.ControlePai.Nome;
+                const mensagem = `Atenção, O controle ${nomeApresentacao} está sendo  dispensado sem desocupar.
+                                   Caso queria dispensar um controle e manter o sistema ocupado.
+                                   $Aplicacao.Ocupar();
+                                   $Aplicacao.DocumentoPrincipal.Ocupar()`;
+
+                u.DebugUtil.ThrowAndContinue(mensagem);
+
+                Snebur.$Aplicacao.DocumentoPrincipal.DesocuparAsync();
             }
             super.Dispose();
         }

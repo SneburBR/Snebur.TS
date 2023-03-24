@@ -13,6 +13,7 @@ namespace Snebur.Nativo
     export interface IEvent
     {
         BaseStopPropagation: () => void;
+        BaseStopImmediatePropagation: () => void;
         IsCancelado?: boolean;
     }
 

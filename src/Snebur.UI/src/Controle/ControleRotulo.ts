@@ -34,7 +34,7 @@
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-            this.ControlePai.EventoDataSourceAlterado.AddHandler(this.ControlePai_DataSourceAlterado, this);
+            this.ControlePai.EventoDataSourceAlterado?.AddHandler(this.ControlePai_DataSourceAlterado, this);
         }
 
         private ControlePai_DataSourceAlterado(provedor: any, e: EventArgs): void

@@ -8,7 +8,9 @@
         // public CallbackEventListener: EventListener;
         private __CallbackEventListenerInterno: EventListener;
 
-        public constructor(controlePai: BaseControle, elemento: HTMLElement, atributo: AtributoHtml, nomeEventoDom: string)
+        public constructor(controlePai: BaseControle, elemento: HTMLElement,
+            atributo: AtributoHtml,
+            nomeEventoDom: string)
         {
             super(controlePai, elemento);
 

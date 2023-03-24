@@ -67,6 +67,26 @@
             this.EventoTelaAlterada.AddHandler(this.DocumentoPrincipalInterno_TelaAlterada, this);
             window.focus();
             document.documentElement.focus();
+
+            if (Snebur.$Configuracao.IsDebug)
+            {
+                this.AdicionarEventoDomGlobal(EnumEventoDom.KeyDown, this.Document_KeyDown_Debug, this);
+            }
+        }
+
+        private Document_KeyDown_Debug(e: KeyboardEvent)
+        {
+            if (!e.ctrlKey)
+            {
+                if (e.keyCode === EnumKeyCode.F5)
+                {
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    e.preventDefault();
+                    return false;
+                }
+            }
+            return true;
         }
 
         private DocumentoPrincipalInterno_TelaAlterada(): void

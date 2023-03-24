@@ -67,9 +67,10 @@
 
         public get Nome(): string
         {
-            return this._nome;
+            return this._nome ??
+                this.Elemento.getAttribute(AtributosHtml.Nome.Nome);
         }
-        public set Nome(value: string)
+        protected set Nome(value: string)
         {
             /*eslint-disable*/
             if (this._nome != null && this._nome != value)

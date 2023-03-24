@@ -5,17 +5,48 @@
     export class Evento<TEventArgs extends EventArgs = EventArgs> implements IDisposable
     {
         private _isAtivado: boolean = true;
+        private _isDispensado: boolean = false;
 
-        protected readonly Manipuladores = new List<Snebur.Core.ManipuladorEvento<TEventArgs>>();
+        protected readonly _manipuladores = new List<Snebur.Core.ManipuladorEvento<TEventArgs>>();
+        private _eventoManipuladoresAlterado_DEBUG: Evento<ItemAlteradoEventArgs>;
+        protected _manipuladores_DEBUG: ListaObservacao<Snebur.Core.ManipuladorEvento<TEventArgs>>;
+
+        protected get Manipuladores(): List<Snebur.Core.ManipuladorEvento<TEventArgs>>
+        {
+            if (Snebur.$Configuracao?.IsDebug &&
+                !Array.isArray(this.Provedor))
+            {
+                if (this._manipuladores_DEBUG == null)
+                {
+                    this._manipuladores_DEBUG = new ListaObservacao<Snebur.Core.ManipuladorEvento<TEventArgs>>();
+                    this._manipuladores_DEBUG.EventoItemAlterado.AddHandler(this.Manipuladores_ItemAlterado, this);
+                }
+                return this._manipuladores_DEBUG;
+            }
+            return this._manipuladores;
+        }
+
+        public get EventoManipuladoresAlterado_DEBUG(): Evento<ItemAlteradoEventArgs>
+        {
+            if (this._eventoManipuladoresAlterado_DEBUG == null && Snebur.$Configuracao.IsDebug)
+            {
+                this._eventoManipuladoresAlterado_DEBUG = new Evento<ItemAlteradoEventArgs>(this);
+            }
+            return this._eventoManipuladoresAlterado_DEBUG;
+        }
+       
+        public get IsDispensado(): boolean
+        {
+            return this._isDispensado;
+        }
+
         protected readonly Provedor: any;
-
-        public IsDispensado: boolean = false;
 
         public constructor(provedor: any)
         {
             this.Provedor = provedor;
         }
-
+         
         public AddHandler(manipulador: (provedor: any, e: TEventArgs) => void, objetoBind: any): void
         {
             if (this.IsDispensado)
@@ -68,7 +99,7 @@
             if (!this.IsDispensado && this._isAtivado)
             {
                 const manipuadores = this.Manipuladores.ToList(true);
-                for (const manipuladorEvento of manipuadores )
+                for (const manipuladorEvento of manipuadores)
                 {
                     let manipulador = manipuladorEvento.Manipulador;
                     if (manipuladorEvento.ObjetoBind != null)
@@ -118,6 +149,10 @@
             this._isAtivado = false;
         }
 
+        private Manipuladores_ItemAlterado(provedor: any, e: ItemAlteradoEventArgs)
+        {
+            this.EventoManipuladoresAlterado_DEBUG.Notificar(provedor, e);
+        }
 
         //#region IDispensar 
 
@@ -128,9 +163,8 @@
                 this.Manipuladores.Clear();
                 delete (this as any).Manipuladores;
             }
-            this.IsDispensado = true;
+            this._isDispensado = true;
         }
         //#endregil
     }
 }
- 

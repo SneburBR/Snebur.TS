@@ -86,7 +86,7 @@
                 const entidadesClonas = entidades.Where(x => (x as any as IEntidadeClonada).___is_entidade_clonada__ === true)
                 if (entidadesClonas.Count > 0)
                 {
-                    console.error("Utilizar o SalvarAvando para salvar entidades clonadas");
+                    console.warn("Utilizar o SalvarAvando para salvar entidades clonadas");
                 }
             }
 
@@ -107,13 +107,14 @@
             //    });
             //});
         }
+    
 
         public async SalvarAvancadoAsync(
             argsEntidades: List<Entidade> | Entidade,
-            argsEntidadesAlbum?: List<Entidade> | Entidade)
+            argsEntidadesAlvos?: List<Entidade> | Entidade)
         {
             const entidades = this.RetornarEntidades(argsEntidades);
-            const entidadesAlvo = this.RetornarEntidades(argsEntidadesAlbum);
+            const entidadesAlvo = this.RetornarEntidades(argsEntidadesAlvos);
             const resultado = await this.SalvarInternoAsync(entidades);
 
             if (entidadesAlvo.Any(x => x.Id === 0))

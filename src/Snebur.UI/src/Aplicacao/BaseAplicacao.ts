@@ -60,6 +60,7 @@
 
             //####################### erro global desativado ########################################
 
+
             //window.addEventListener("error", this.Aplicacao_Error.bind(this));
             //document.addEventListener("error", this.Aplicacao_Error.bind(this));
             //window.onerror = this.Aplicacao_Error.bind(this);
@@ -104,7 +105,7 @@
             }
 
             console.log(" ANTES DE CARREGAR O DOCUMENTO PRINCIPAL");
-           
+
             await this.InicializarRotasAsync();
             await this.AntesInicializarDocumentoPrincipalAsync();
             this.InicializarDocumentoPrincipal();
@@ -112,7 +113,7 @@
 
         protected NotificarUsuarioAnonimoNaoSuportado()
         {
-             
+
         }
 
         protected abstract InicializarRotasAsync(): Promise<void>;
@@ -451,6 +452,21 @@
 
         //#endregion
 
+
+        //#region Ocupar
+
+
+        public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null): void
+        {
+            this.DocumentoPrincipal.Ocupar(argumento, mensagem)
+        }
+
+        public override DesocuparAsync(): Promise<void>
+        {
+            return this.DocumentoPrincipal?.DesocuparAsync();
+        }
+
+        //#endregion Desocupar
         //#region histórico
 
         //public override AtivarObservacaoHistorico()
@@ -479,6 +495,13 @@ namespace Snebur.Aplicacao
 
         /**Parâmetros adicionais do histórico */
         readonly ParametrosHistorico?: DicionarioSimples<string>;
+
+        Ocupar(): void;
+        Ocupar(titulo: string, mensagem: string): void;
+        Ocupar(opcao: EnumOpcaoOcupar): void;
+        Ocupar(isOcuparImeditamente: boolean): void;
+        Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): void;
+        DesocuparAsync(): Promise<void>
 
         RetornarBarraEnvio(documentoPrincipal: ui.DocumentoPrincipal): ui.BarraEnvioArquivos;
         AdicionarControleCarregado(controle: ui.BaseControle): void;

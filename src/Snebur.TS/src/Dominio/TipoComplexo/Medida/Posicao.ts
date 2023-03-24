@@ -41,6 +41,8 @@
         {
             return this.X === 0 && this.Y === 0;
         }
+
+        
         //#endregion
 
         //#region Construtor
@@ -176,7 +178,7 @@
 
         public override toString(): string
         {
-            return this.___NomeConstrutor + "_" + this.X.toString() + "x" + this.Y.toString();
+            return this.___NomeConstrutor + "_X_" + this.X.toString() + "_Y_" + this.Y.toString();
         }
 
     }

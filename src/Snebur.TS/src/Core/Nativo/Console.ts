@@ -39,7 +39,7 @@ namespace Snebur
             if (  isDebug )
             {
                 if (Snebur.$Configuracao != null &&
-                    Snebur.$Configuracao.IsDebug !== true)
+                    Snebur.$Configuracao.IsDebugOuTeste !== true)
                 {
                     return;
                 }
@@ -53,7 +53,7 @@ namespace Snebur
                     mensagemOriginal = String.Join("", data);
                 }
 
-                const hora = FormatacaoUtil?.FormatarHora(new Date()) ?? "";
+                const hora = FormatacaoUtil?.FormatarHora(new Date(), false, true) ?? "";
                 const mensagem = `${hora}: ${mensagemOriginal}`;
 
                 if (data?.length > 1)
@@ -80,7 +80,6 @@ namespace Snebur
                         const mensagem = String.Join("\r\n", data);
                         alert(mensagem);
                     }
-
                 }
 
                 if (console.EventoLog != null)

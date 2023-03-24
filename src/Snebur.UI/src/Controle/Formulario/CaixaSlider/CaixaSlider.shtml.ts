@@ -11,7 +11,7 @@
         public Passo: number;
         public PassoLargo: number;
         public LarguraTextoValor: string;
-         
+
         public override get Valor(): number
         {
             return parseFloat(this.ElementoInput.value).ToDecimal();
@@ -160,13 +160,13 @@
         protected override ElementoInput_Change(e?: Event)
         {
             const novoValor = parseFloat(this.ElementoInput.value).ToDecimal();
-            if (this._valor !== novoValor)
-            {
-                this._valor = novoValor;
-                this.AlterarValorPropriedade();
-                this.NotificarAlteracaoConcluido(this.Valor, e);
-                this.AtualizarTextoValor();
-            }
+            //if (this._valor !== novoValor)
+            //{
+            this._valor = novoValor;
+            this.AlterarValorPropriedade();
+            this.NotificarAlteracaoConcluido(this.Valor, e);
+            this.AtualizarTextoValor();
+            /*}*/
         }
 
         private ElementoInput_Input(e: Event)

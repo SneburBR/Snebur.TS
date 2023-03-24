@@ -1,8 +1,8 @@
-﻿namespace Snebur.UI
-{
-    export class BaseControleComum extends BaseControle
-    {
+﻿//namespace Snebur.UI
+//{
+//    export class BaseControleComum extends BaseControle
+//    {
 
         
-    }
-}
+//    }
+//}

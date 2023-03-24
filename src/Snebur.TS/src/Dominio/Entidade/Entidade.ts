@@ -182,6 +182,7 @@
 
         protected NotificarValorPropriedadeAlteradaChaveEstrangeiraAlterada(
             nomePropriedade: string,
+            nomePropriedadeRelacao: string,
             antigoValor: any,
             novoValor: any): void
         {
@@ -192,20 +193,19 @@
             {
                 if (!u.Util.IsIgual(antigoValor, novoValor))
                 {
-                    const tipoEntidade = this.GetType() as r.TipoEntidade;
-                    const propriedadeChaveEstrangeira = this.GetType().RetornarPropriedade(nomePropriedade);
-
-                    const propriedadeRelacao = u.EntidadeUtil.RetornarPropriedadeRelacao(tipoEntidade, propriedadeChaveEstrangeira);
-                    const entidadeRelacao = (this as any)[propriedadeRelacao.Nome];
+                    //const tipoEntidade = this.GetType() as r.TipoEntidade;
+                    //const propriedadeChaveEstrangeira = this.GetType().RetornarPropriedade(nomePropriedade);
+                    //const propriedadeRelacao = u.EntidadeUtil.RetornarPropriedadeRelacao(tipoEntidade, propriedadeChaveEstrangeira);
+                    const entidadeRelacao = (this as any)[nomePropriedadeRelacao];
                     if (entidadeRelacao instanceof Entidade)
                     {
                         if (entidadeRelacao.Id !== novoValor)
                         {
-                            console.WarmDebug(`A propriedade chave estrageira alterada ${this.GetType().Nome}.${nomePropriedade} = ${novoValor ?? "null"}
+                            console.WarmDebug(`A propriedade chave estrangeira alterada ${this.GetType().Nome}.${nomePropriedade} = ${novoValor ?? "null"}
                                                Propriedade da relação {} foi atribuído valor null.
-                                               ${this.GetType().Nome}.${propriedadeRelacao.Nome} = null`);
+                                               ${this.GetType().Nome}.${nomePropriedadeRelacao} = null`);
 
-                            (this as any)[propriedadeRelacao.Nome] = null;
+                            (this as any)[nomePropriedadeRelacao] = null;
                         }
                     }
                 }

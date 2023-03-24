@@ -182,7 +182,8 @@
 
             window.EventoStopPropagation?.AddHandler(this.Window_StopProgration, this);
             this.AdicionarEventoDomGlobal(EnumEventoDom.Resize, this.Window_Resize, this);
-            this.EventoTelaAlterada.AddHandler(this.ControleFlutuante_TelaAlterada, this);
+            this.EventoTelaAlterada?.AddHandler(this.ControleFlutuante_TelaAlterada, this);
+            this.JanelaPai?.EventoPosicaoAlterada.AddHandler(this.JanelaPai_PosicaoAlterada, this);
             this.JanelaPai?.EventoPosicaoAlterada.AddHandler(this.JanelaPai_PosicaoAlterada, this);
             ThreadUtil.ExecutarAsync(this.ManipularScrollsGlobal.bind(this), 200);
         }
@@ -373,7 +374,11 @@
             {
                 this._isAberto = false;
                 super.OcultarElemento();
-                this.EventoFechou?.Notificar(this, new FechouControleFlutanteEventArgs(this, isSucesso));
+
+                if (!this.IsReiniciando)
+                {
+                    this.EventoFechou?.Notificar(this, new FechouControleFlutanteEventArgs(this, isSucesso));
+                }
                 this.RemoverEventoDomGlobal(ui.EnumEventoDom.MouseDown, this.Window_MouseDown);
             }
         }
@@ -831,6 +836,7 @@
 
         public override ReInicializar(): void
         {
+            this.__isReiniciando = true;
             const isAberto = this.IsAberto;
             if (isAberto && this.OpcoesControleFlutuante.IsFlutuante)
             {
@@ -851,10 +857,15 @@
 
         public override Dispose(): void
         {
+            if (this.IsReiniciando)
+            {
+                return;
+            }
             this.JanelaPai?.EventoPosicaoAlterada.RemoveHandler(this.JanelaPai_PosicaoAlterada, this);
 
             this._isAberto = false;
             window.EventoStopPropagation?.AddHandler(this.Window_StopProgration, this);
+            
             super.Dispose();
             // ElementoUtil.RemoverElemento(this.RetornarElementoDestino(), this.IDElemento);
         }

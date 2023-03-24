@@ -667,7 +667,10 @@
             return `${data.Day} de ${this.FormatarMes(data.Month).toLowerCase()}`;
         }
 
-        public static FormatarHora(tempoOuData: TimeSpan | Date, isHoraDia: boolean = false, isSegundos: boolean = false)
+        public static FormatarHora(tempoOuData: Date | TimeSpan):string
+        public static FormatarHora(tempoOuData: Date , isHoraDia: false, isSegundos?: boolean):string
+        public static FormatarHora(tempoOuData: TimeSpan, isHoraDia: boolean, isSegundos?: boolean): string
+        public static FormatarHora(tempoOuData: TimeSpan | Date, isHoraDia: boolean = false, isSegundos: boolean = false): string
         {
             if (tempoOuData instanceof Date)
             {
@@ -699,6 +702,11 @@
 
                 const hora = this.FormatarNumero(totalHoras, "00");
                 const minutos = this.FormatarNumero(tempoOuData.Minutes, "00");
+                if (isSegundos)
+                {
+                    const segundos = FormatacaoUtil.FormatarNumero(tempoOuData.Seconds, "00");
+                    return `${hora}:${minutos}:${segundos}`;
+                }
                 return `${hora}:${minutos}`;
             }
             return "00:00";

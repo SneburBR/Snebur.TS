@@ -829,8 +829,6 @@
                 throw new Erro("O argumento  'construtor' não é do tipo function");
             }
 
-
-
             if (objetoArgumento instanceof construtor)
             {
                 return;
