@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 29 de julho de 2022
-//Hora : 11:26:21
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 14:51:17
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False

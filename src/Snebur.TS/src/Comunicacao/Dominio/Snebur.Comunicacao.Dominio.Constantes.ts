@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 29 de julho de 2022
-//Hora : 11:26:21
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 14:51:17
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False
@@ -12,7 +12,8 @@ namespace Snebur.Comunicacao
     {
         public static readonly TOKEN : string = "Token";
         public static readonly MANIPULADOR : string = "Manipulador";
-        public static readonly ORIGEM : string = "Origin";
+        public static readonly ORIGIN : string = "Origin";
         public static readonly NOME_APLICACAO_WEB : string = "NomeArquivoWeb";
+        public static readonly NOME_ASSEMBLY_APLICACAO : string = "NomeAssemblyAplicacao";
     }
 }

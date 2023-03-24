@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : quinta-feira, 15 de dezembro de 2022
-//Hora : 15:58:01
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 17:29:32
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -22,7 +22,7 @@ namespace Snebur.Comunicacao
             return this._isSucesso;
         }
 
-        public set IsSucesso(value: boolean)  
+        public set IsSucesso(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
@@ -32,7 +32,7 @@ namespace Snebur.Comunicacao
             return this._limiteTentantivaAtingido;
         }
 
-        public set LimiteTentantivaAtingido(value: number)  
+        public set LimiteTentantivaAtingido(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("LimiteTentantivaAtingido", this._limiteTentantivaAtingido, this._limiteTentantivaAtingido = value);
         }
@@ -42,7 +42,7 @@ namespace Snebur.Comunicacao
             return this._tempoRestante;
         }
 
-        public set TempoRestante(value: number)  
+        public set TempoRestante(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("TempoRestante", this._tempoRestante, this._tempoRestante = value);
         }
@@ -52,7 +52,7 @@ namespace Snebur.Comunicacao
             return this._mensagemErro;
         }
 
-        public set MensagemErro(value: string)  
+        public set MensagemErro(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
@@ -80,7 +80,7 @@ namespace Snebur.Comunicacao
             return this._isSucesso;
         }
 
-        public set IsSucesso(value: boolean)  
+        public set IsSucesso(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
@@ -90,7 +90,7 @@ namespace Snebur.Comunicacao
             return this._resultado;
         }
 
-        public set Resultado(value: Snebur.Dominio.EnumResultadoAutenticacao)  
+        public set Resultado(value: Snebur.Dominio.EnumResultadoAutenticacao) 
         {
             this.NotificarValorPropriedadeAlterada("Resultado", this._resultado, this._resultado = value);
         }
@@ -100,7 +100,7 @@ namespace Snebur.Comunicacao
             return this._isAlterarSenhaProximoAcesso;
         }
 
-        public set IsAlterarSenhaProximoAcesso(value: boolean)  
+        public set IsAlterarSenhaProximoAcesso(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsAlterarSenhaProximoAcesso", this._isAlterarSenhaProximoAcesso, this._isAlterarSenhaProximoAcesso = value);
         }
@@ -110,7 +110,7 @@ namespace Snebur.Comunicacao
             return this._tempoEsperar;
         }
 
-        public set TempoEsperar(value: number)  
+        public set TempoEsperar(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
         }
@@ -137,7 +137,7 @@ namespace Snebur.Comunicacao
             return this._nome;
         }
 
-        public set Nome(value: string)  
+        public set Nome(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
         }
@@ -147,7 +147,7 @@ namespace Snebur.Comunicacao
             return this._isExiste;
         }
 
-        public set IsExiste(value: boolean)  
+        public set IsExiste(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsExiste", this._isExiste, this._isExiste = value);
         }
@@ -196,7 +196,7 @@ namespace Snebur.Comunicacao
             return this._isUsuarioEncontrado;
         }
 
-        public set IsUsuarioEncontrado(value: boolean)  
+        public set IsUsuarioEncontrado(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
         }
@@ -206,7 +206,7 @@ namespace Snebur.Comunicacao
             return this._estado;
         }
 
-        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha)  
+        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha) 
         {
             this.NotificarValorPropriedadeAlterada("Estado", this._estado, this._estado = value);
         }
@@ -234,7 +234,7 @@ namespace Snebur.Comunicacao
             return this._isUsuarioEncontrado;
         }
 
-        public set IsUsuarioEncontrado(value: boolean)  
+        public set IsUsuarioEncontrado(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
         }
@@ -244,7 +244,7 @@ namespace Snebur.Comunicacao
             return this._estado;
         }
 
-        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha)  
+        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha) 
         {
             this.NotificarValorPropriedadeAlterada("Estado", this._estado, this._estado = value);
         }
@@ -254,7 +254,7 @@ namespace Snebur.Comunicacao
             return this._tempoEsperar;
         }
 
-        public set TempoEsperar(value: number)  
+        public set TempoEsperar(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
         }
@@ -272,65 +272,6 @@ namespace Snebur.Comunicacao
 }
 namespace Snebur.Dominio
 {
-    export class NovoUsuario extends Snebur.Dominio.BaseDominio
-    {
-        //#region Propriedades
-    
-        private _nome : string = null;
-        private _email : string = null;
-        private _telefone : string = null;
-        private _senha : string = null;
-    
-        public get Nome(): string 
-        {
-            return this._nome;
-        }
-
-        public set Nome(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
-        }
-    
-        public get Email(): string 
-        {
-            return this._email;
-        }
-
-        public set Email(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("Email", this._email, this._email = value);
-        }
-    
-        public get Telefone(): string 
-        {
-            return this._telefone;
-        }
-
-        public set Telefone(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("Telefone", this._telefone, this._telefone = value);
-        }
-    
-        public get Senha(): string 
-        {
-            return this._senha;
-        }
-
-        public set Senha(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<NovoUsuario>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
     export class InformacaoSessao extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.IInformacaoSessao, Snebur.Dominio.IIdentificadorAplicacao 
     {
         //#region Propriedades
@@ -353,7 +294,7 @@ namespace Snebur.Dominio
             return this._identificadorAplicacaoGuid;
         }
 
-        public set IdentificadorAplicacaoGuid(value: string)  
+        public set IdentificadorAplicacaoGuid(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorAplicacaoGuid", this._identificadorAplicacaoGuid, this._identificadorAplicacaoGuid = value);
         }
@@ -363,7 +304,7 @@ namespace Snebur.Dominio
             return this._identificadorAplicacao;
         }
 
-        public set IdentificadorAplicacao(value: string)  
+        public set IdentificadorAplicacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorAplicacao", this._identificadorAplicacao, this._identificadorAplicacao = value);
         }
@@ -373,7 +314,7 @@ namespace Snebur.Dominio
             return this._cultura;
         }
 
-        public set Cultura(value: string)  
+        public set Cultura(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Cultura", this._cultura, this._cultura = value);
         }
@@ -383,7 +324,7 @@ namespace Snebur.Dominio
             return this._idioma;
         }
 
-        public set Idioma(value: string)  
+        public set Idioma(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Idioma", this._idioma, this._idioma = value);
         }
@@ -393,7 +334,7 @@ namespace Snebur.Dominio
             return this._plataforma;
         }
 
-        public set Plataforma(value: Snebur.Dominio.EnumPlataforma)  
+        public set Plataforma(value: Snebur.Dominio.EnumPlataforma) 
         {
             this.NotificarValorPropriedadeAlterada("Plataforma", this._plataforma, this._plataforma = value);
         }
@@ -403,7 +344,7 @@ namespace Snebur.Dominio
             return this._tipoAplicacao;
         }
 
-        public set TipoAplicacao(value: Snebur.Dominio.EnumTipoAplicacao)  
+        public set TipoAplicacao(value: Snebur.Dominio.EnumTipoAplicacao) 
         {
             this.NotificarValorPropriedadeAlterada("TipoAplicacao", this._tipoAplicacao, this._tipoAplicacao = value);
         }
@@ -413,7 +354,7 @@ namespace Snebur.Dominio
             return this._resolucao;
         }
 
-        public set Resolucao(value: Snebur.Dominio.Dimensao)  
+        public set Resolucao(value: Snebur.Dominio.Dimensao) 
         {
             this.NotificarValorPropriedadeAlteradaTipoCompleto("Resolucao", this._resolucao, this._resolucao = value.Clone());
         }
@@ -423,7 +364,7 @@ namespace Snebur.Dominio
             return this._userAgent;
         }
 
-        public set UserAgent(value: string)  
+        public set UserAgent(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("UserAgent", this._userAgent, this._userAgent = value);
         }
@@ -433,7 +374,7 @@ namespace Snebur.Dominio
             return this._navegador;
         }
 
-        public set Navegador(value: Snebur.Dominio.Navegador)  
+        public set Navegador(value: Snebur.Dominio.Navegador) 
         {
             this.NotificarValorPropriedadeAlteradaTipoCompleto("Navegador", this._navegador, this._navegador = value.Clone());
         }
@@ -443,7 +384,7 @@ namespace Snebur.Dominio
             return this._sistemaOperacional;
         }
 
-        public set SistemaOperacional(value: Snebur.Dominio.SistemaOperacional)  
+        public set SistemaOperacional(value: Snebur.Dominio.SistemaOperacional) 
         {
             this.NotificarValorPropriedadeAlteradaTipoCompleto("SistemaOperacional", this._sistemaOperacional, this._sistemaOperacional = value.Clone());
         }
@@ -453,7 +394,7 @@ namespace Snebur.Dominio
             return this._versaoAplicacao;
         }
 
-        public set VersaoAplicacao(value: string)  
+        public set VersaoAplicacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("VersaoAplicacao", this._versaoAplicacao, this._versaoAplicacao = value);
         }
@@ -463,7 +404,7 @@ namespace Snebur.Dominio
             return this._nomeComputador;
         }
 
-        public set NomeComputador(value: string)  
+        public set NomeComputador(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeComputador", this._nomeComputador, this._nomeComputador = value);
         }
@@ -472,6 +413,65 @@ namespace Snebur.Dominio
         //#region Construtor
     
         public constructor(inicializador?: Partial<InformacaoSessao>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class NovoUsuario extends Snebur.Dominio.BaseDominio
+    {
+        //#region Propriedades
+    
+        private _nome : string = null;
+        private _email : string = null;
+        private _telefone : string = null;
+        private _senha : string = null;
+    
+        public get Nome(): string 
+        {
+            return this._nome;
+        }
+
+        public set Nome(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
+        }
+    
+        public get Email(): string 
+        {
+            return this._email;
+        }
+
+        public set Email(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Email", this._email, this._email = value);
+        }
+    
+        public get Telefone(): string 
+        {
+            return this._telefone;
+        }
+
+        public set Telefone(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Telefone", this._telefone, this._telefone = value);
+        }
+    
+        public get Senha(): string 
+        {
+            return this._senha;
+        }
+
+        public set Senha(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<NovoUsuario>) 
         {
             super(inicializador);
             this.Inicializar();
@@ -497,7 +497,7 @@ namespace Snebur.Dominio
             return this._ip;
         }
 
-        public set IP(value: string)  
+        public set IP(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IP", this._ip, this._ip = value);
         }
@@ -507,7 +507,7 @@ namespace Snebur.Dominio
             return this._mascaraIp4;
         }
 
-        public set MascaraIp4(value: string)  
+        public set MascaraIp4(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("MascaraIp4", this._mascaraIp4, this._mascaraIp4 = value);
         }
@@ -517,7 +517,7 @@ namespace Snebur.Dominio
             return this._cidade;
         }
 
-        public set Cidade(value: string)  
+        public set Cidade(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Cidade", this._cidade, this._cidade = value);
         }
@@ -527,7 +527,7 @@ namespace Snebur.Dominio
             return this._codigoPostal;
         }
 
-        public set CodigoPostal(value: string)  
+        public set CodigoPostal(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("CodigoPostal", this._codigoPostal, this._codigoPostal = value);
         }
@@ -537,7 +537,7 @@ namespace Snebur.Dominio
             return this._hostname;
         }
 
-        public set Hostname(value: string)  
+        public set Hostname(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Hostname", this._hostname, this._hostname = value);
         }
@@ -547,7 +547,7 @@ namespace Snebur.Dominio
             return this._localizacao;
         }
 
-        public set Localizacao(value: Snebur.Dominio.Localizacao)  
+        public set Localizacao(value: Snebur.Dominio.Localizacao) 
         {
             this.NotificarValorPropriedadeAlteradaTipoCompleto("Localizacao", this._localizacao, this._localizacao = value.Clone());
         }
@@ -557,7 +557,7 @@ namespace Snebur.Dominio
             return this._pais;
         }
 
-        public set Pais(value: string)  
+        public set Pais(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Pais", this._pais, this._pais = value);
         }
@@ -567,7 +567,7 @@ namespace Snebur.Dominio
             return this._provedorInternet;
         }
 
-        public set ProvedorInternet(value: string)  
+        public set ProvedorInternet(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("ProvedorInternet", this._provedorInternet, this._provedorInternet = value);
         }
@@ -577,7 +577,7 @@ namespace Snebur.Dominio
             return this._regiao;
         }
 
-        public set Regiao(value: string)  
+        public set Regiao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Regiao", this._regiao, this._regiao = value);
         }
@@ -606,7 +606,7 @@ namespace Snebur.Dominio
             return this._nomeTipoEntidade;
         }
 
-        public set NomeTipoEntidade(value: string)  
+        public set NomeTipoEntidade(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
         }
@@ -616,7 +616,7 @@ namespace Snebur.Dominio
             return this._nomePropriedade;
         }
 
-        public set NomePropriedade(value: string)  
+        public set NomePropriedade(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
@@ -626,7 +626,7 @@ namespace Snebur.Dominio
             return this._nomeTipoValidacao;
         }
 
-        public set NomeTipoValidacao(value: string)  
+        public set NomeTipoValidacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoValidacao", this._nomeTipoValidacao, this._nomeTipoValidacao = value);
         }
@@ -636,7 +636,7 @@ namespace Snebur.Dominio
             return this._mensagem;
         }
 
-        public set Mensagem(value: string)  
+        public set Mensagem(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Mensagem", this._mensagem, this._mensagem = value);
         }
@@ -662,7 +662,7 @@ namespace Snebur.Dominio
             return this._identificadorSessaoUsuario;
         }
 
-        public set IdentificadorSessaoUsuario(value: string)  
+        public set IdentificadorSessaoUsuario(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorSessaoUsuario", this._identificadorSessaoUsuario, this._identificadorSessaoUsuario = value);
         }
@@ -691,7 +691,7 @@ namespace Snebur.Seguranca
             return this._identificadorUsuario;
         }
 
-        public set IdentificadorUsuario(value: string)  
+        public set IdentificadorUsuario(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorUsuario", this._identificadorUsuario, this._identificadorUsuario = value);
         }
@@ -701,7 +701,7 @@ namespace Snebur.Seguranca
             return this._senha;
         }
 
-        public set Senha(value: string)  
+        public set Senha(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
         }
@@ -738,7 +738,7 @@ namespace Snebur.Seguranca
             return this._nome;
         }
 
-        public set Nome(value: string)  
+        public set Nome(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
         }
@@ -748,7 +748,7 @@ namespace Snebur.Seguranca
             return this._identificadorAmigavel;
         }
 
-        public set IdentificadorAmigavel(value: string)  
+        public set IdentificadorAmigavel(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorAmigavel", this._identificadorAmigavel, this._identificadorAmigavel = value);
         }

@@ -22,7 +22,8 @@
             return this.RetornarCredencialServico();
         }
 
-        protected readonly OpcoesClonarEntidades: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.ChavesEstrangeira |
+        protected readonly OpcoesClonarEntidades: EnumOpcaoClonarEntidade =
+            EnumOpcaoClonarEntidade.ChavesEstrangeira |
             EnumOpcaoClonarEntidade.PropriedadesAlteradas |
             EnumOpcaoClonarEntidade.PropriedadesTiposPrimario;
 

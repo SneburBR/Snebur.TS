@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 29 de julho de 2022
-//Hora : 11:26:21
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 14:51:17
 //@Namespace: Snebur.AcessoDados
 //@PrioridadeDominio: 2
 //@Globalizar: False
@@ -28,117 +28,117 @@ namespace Snebur.Reflexao
 	
 	//BaseDominio
 	export const __$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.BaseAcessoDados, "BaseAcessoDados", "Snebur.AcessoDados","Snebur.AcessoDados.BaseAcessoDados, Snebur.AcessoDados",__$tipoBaseDominioSnebur_Dominio_BaseDominio, true);
-	export const __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.BaseRelacaoAberta, "BaseRelacaoAberta", "Snebur.AcessoDados","Snebur.AcessoDados.BaseRelacaoAberta, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, true);
+	export const __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ConsultaFiltroColecao, "ConsultaFiltroColecao", "Snebur.AcessoDados","Snebur.AcessoDados.ConsultaFiltroColecao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.EstruturaConsulta, "EstruturaConsulta", "Snebur.AcessoDados","Snebur.AcessoDados.EstruturaConsulta, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_BaseFiltro = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.BaseFiltro, "BaseFiltro", "Snebur.AcessoDados","Snebur.AcessoDados.BaseFiltro, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, true);
-	export const __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ConsultaFiltroColecao, "ConsultaFiltroColecao", "Snebur.AcessoDados","Snebur.AcessoDados.ConsultaFiltroColecao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_Ordenacao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.Ordenacao, "Ordenacao", "Snebur.AcessoDados","Snebur.AcessoDados.Ordenacao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.BaseRelacaoAberta, "BaseRelacaoAberta", "Snebur.AcessoDados","Snebur.AcessoDados.BaseRelacaoAberta, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, true);
 	export const __$tipoBaseDominioSnebur_AcessoDados_Resultado = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.Resultado, "Resultado", "Snebur.AcessoDados","Snebur.AcessoDados.Resultado, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, true);
 	export const __$tipoBaseDominioSnebur_AcessoDados_EntidadeSalva = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.EntidadeSalva, "EntidadeSalva", "Snebur.AcessoDados","Snebur.AcessoDados.EntidadeSalva, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_PropriedadeComputada = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.PropriedadeComputada, "PropriedadeComputada", "Snebur.AcessoDados","Snebur.AcessoDados.PropriedadeComputada, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaColecao, "RelacaoAbertaColecao", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaEntidade, "RelacaoAbertaEntidade", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroPropriedadeIn, "FiltroPropriedadeIn", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroPropriedadeIn, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroIds = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroIds, "FiltroIds", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroIds, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.BaseFiltroGrupo, "BaseFiltroGrupo", "Snebur.AcessoDados","Snebur.AcessoDados.BaseFiltroGrupo, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, true);
+	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroIds = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroIds, "FiltroIds", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroIds, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroPropriedade, "FiltroPropriedade", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroPropriedade, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroPropriedadeIn, "FiltroPropriedadeIn", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroPropriedadeIn, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoE = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroGrupoE, "FiltroGrupoE", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroGrupoE, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoNAO = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroGrupoNAO, "FiltroGrupoNAO", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroGrupoNAO, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoOU = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.FiltroGrupoOU, "FiltroGrupoOU", "Snebur.AcessoDados","Snebur.AcessoDados.FiltroGrupoOU, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoExcluir, "ResultadoExcluir", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaColecao, "RelacaoAbertaColecao", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaEntidade, "RelacaoAbertaEntidade", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoConsulta, "ResultadoConsulta", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoConsulta, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoExcluir, "ResultadoExcluir", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoSalvar, "ResultadoSalvar", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoSalvar, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
 	
 	//ListaBaseDominio
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_BaseAcessoDados = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseAcessoDados", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.BaseAcessoDados, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseRelacaoAberta", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.BaseRelacaoAberta, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ConsultaFiltroColecao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ConsultaFiltroColecao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_EstruturaConsulta = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_EstruturaConsulta", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.EstruturaConsulta, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseFiltro", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.BaseFiltro, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ConsultaFiltroColecao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ConsultaFiltroColecao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_Ordenacao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_Ordenacao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.Ordenacao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_Ordenacao);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseRelacaoAberta", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.BaseRelacaoAberta, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_Resultado = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_Resultado", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.Resultado, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_Resultado);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_EntidadeSalva = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_EntidadeSalva", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.EntidadeSalva, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_EntidadeSalva);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_PropriedadeComputada = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_PropriedadeComputada", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.PropriedadeComputada, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_PropriedadeComputada);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaColecao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaEntidade", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroPropriedadeIn", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroPropriedadeIn, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroIds = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroIds", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroIds, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroIds);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltroGrupo = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_BaseFiltroGrupo", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.BaseFiltroGrupo, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroIds = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroIds", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroIds, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroIds);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedade = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroPropriedade", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroPropriedade, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroPropriedadeIn", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroPropriedadeIn, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoE = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroGrupoE", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroGrupoE, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoE);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoNAO = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroGrupoNAO", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroGrupoNAO, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoNAO);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoOU = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_FiltroGrupoOU", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.FiltroGrupoOU, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoOU);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoExcluir", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaColecao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaEntidade", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoConsulta = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoConsulta", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoConsulta, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoExcluir", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoSalvar = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoSalvar", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoSalvar, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar);
 	
 	//Adicionar BasesDominio
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.BaseAcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.BaseRelacaoAberta",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ConsultaFiltroColecao",__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.EstruturaConsulta",__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.BaseFiltro",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltro);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ConsultaFiltroColecao",__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.Ordenacao",__$tipoBaseDominioSnebur_AcessoDados_Ordenacao);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.BaseRelacaoAberta",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.Resultado",__$tipoBaseDominioSnebur_AcessoDados_Resultado);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.EntidadeSalva",__$tipoBaseDominioSnebur_AcessoDados_EntidadeSalva);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.PropriedadeComputada",__$tipoBaseDominioSnebur_AcessoDados_PropriedadeComputada);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroPropriedadeIn",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroIds",__$tipoBaseDominioSnebur_AcessoDados_FiltroIds);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.BaseFiltroGrupo",__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroIds",__$tipoBaseDominioSnebur_AcessoDados_FiltroIds);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroPropriedade",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroPropriedadeIn",__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroGrupoE",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoE);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroGrupoNAO",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoNAO);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.FiltroGrupoOU",__$tipoBaseDominioSnebur_AcessoDados_FiltroGrupoOU);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoExcluir",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoConsulta",__$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoExcluir",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoSalvar",__$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar);
 	
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseAcessoDados",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseAcessoDados);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseRelacaoAberta",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ConsultaFiltroColecao",__$tipoListaBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.EstruturaConsulta",__$tipoListaBaseDominio_Snebur_AcessoDados_EstruturaConsulta);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseFiltro",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ConsultaFiltroColecao",__$tipoListaBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.Ordenacao",__$tipoListaBaseDominio_Snebur_AcessoDados_Ordenacao);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseRelacaoAberta",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.Resultado",__$tipoListaBaseDominio_Snebur_AcessoDados_Resultado);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.EntidadeSalva",__$tipoListaBaseDominio_Snebur_AcessoDados_EntidadeSalva);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.PropriedadeComputada",__$tipoListaBaseDominio_Snebur_AcessoDados_PropriedadeComputada);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroPropriedadeIn",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroIds",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroIds);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseFiltroGrupo",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltroGrupo);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroIds",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroIds);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroPropriedade",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedade);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroPropriedadeIn",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroGrupoE",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoE);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroGrupoNAO",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoNAO);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.FiltroGrupoOU",__$tipoListaBaseDominio_Snebur_AcessoDados_FiltroGrupoOU);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoExcluir",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoConsulta",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoConsulta);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoExcluir",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoSalvar",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoSalvar);
 	
 	//Associar caminhos BaseDominio
 	
 	Snebur.AcessoDados.BaseAcessoDados.__CaminhoTipo = "Snebur.AcessoDados.BaseAcessoDados";
-	Snebur.AcessoDados.BaseRelacaoAberta.__CaminhoTipo = "Snebur.AcessoDados.BaseRelacaoAberta";
+	Snebur.AcessoDados.ConsultaFiltroColecao.__CaminhoTipo = "Snebur.AcessoDados.ConsultaFiltroColecao";
 	Snebur.AcessoDados.EstruturaConsulta.__CaminhoTipo = "Snebur.AcessoDados.EstruturaConsulta";
 	Snebur.AcessoDados.BaseFiltro.__CaminhoTipo = "Snebur.AcessoDados.BaseFiltro";
-	Snebur.AcessoDados.ConsultaFiltroColecao.__CaminhoTipo = "Snebur.AcessoDados.ConsultaFiltroColecao";
 	Snebur.AcessoDados.Ordenacao.__CaminhoTipo = "Snebur.AcessoDados.Ordenacao";
+	Snebur.AcessoDados.BaseRelacaoAberta.__CaminhoTipo = "Snebur.AcessoDados.BaseRelacaoAberta";
 	Snebur.AcessoDados.Resultado.__CaminhoTipo = "Snebur.AcessoDados.Resultado";
 	Snebur.AcessoDados.EntidadeSalva.__CaminhoTipo = "Snebur.AcessoDados.EntidadeSalva";
 	Snebur.AcessoDados.PropriedadeComputada.__CaminhoTipo = "Snebur.AcessoDados.PropriedadeComputada";
-	Snebur.AcessoDados.RelacaoAbertaColecao.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaColecao";
-	Snebur.AcessoDados.RelacaoAbertaEntidade.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaEntidade";
-	Snebur.AcessoDados.FiltroPropriedadeIn.__CaminhoTipo = "Snebur.AcessoDados.FiltroPropriedadeIn";
-	Snebur.AcessoDados.FiltroIds.__CaminhoTipo = "Snebur.AcessoDados.FiltroIds";
 	Snebur.AcessoDados.BaseFiltroGrupo.__CaminhoTipo = "Snebur.AcessoDados.BaseFiltroGrupo";
+	Snebur.AcessoDados.FiltroIds.__CaminhoTipo = "Snebur.AcessoDados.FiltroIds";
 	Snebur.AcessoDados.FiltroPropriedade.__CaminhoTipo = "Snebur.AcessoDados.FiltroPropriedade";
+	Snebur.AcessoDados.FiltroPropriedadeIn.__CaminhoTipo = "Snebur.AcessoDados.FiltroPropriedadeIn";
 	Snebur.AcessoDados.FiltroGrupoE.__CaminhoTipo = "Snebur.AcessoDados.FiltroGrupoE";
 	Snebur.AcessoDados.FiltroGrupoNAO.__CaminhoTipo = "Snebur.AcessoDados.FiltroGrupoNAO";
 	Snebur.AcessoDados.FiltroGrupoOU.__CaminhoTipo = "Snebur.AcessoDados.FiltroGrupoOU";
-	Snebur.AcessoDados.ResultadoExcluir.__CaminhoTipo = "Snebur.AcessoDados.ResultadoExcluir";
+	Snebur.AcessoDados.RelacaoAbertaColecao.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaColecao";
+	Snebur.AcessoDados.RelacaoAbertaEntidade.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaEntidade";
 	Snebur.AcessoDados.ResultadoConsulta.__CaminhoTipo = "Snebur.AcessoDados.ResultadoConsulta";
+	Snebur.AcessoDados.ResultadoExcluir.__CaminhoTipo = "Snebur.AcessoDados.ResultadoExcluir";
 	Snebur.AcessoDados.ResultadoSalvar.__CaminhoTipo = "Snebur.AcessoDados.ResultadoSalvar";
 	
 	//Atributos
@@ -181,24 +181,12 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseAcessoDados_FalhaAutenticacao);
 	__$tipoBaseDominioSnebur_AcessoDados_BaseAcessoDados.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseAcessoDados_Comandos);
 	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	export const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao = new Snebur.Reflexao.Propriedade("Relacao", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao, true);
 	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade = new Snebur.Reflexao.Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	export const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta = new Snebur.Reflexao.Propriedade("EstruturaConsulta", __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao, true);
 	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName = new Snebur.Reflexao.Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
-	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado = new Snebur.Reflexao.Propriedade("NomeTipoDeclarado", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
-	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName = new Snebur.Reflexao.Propriedade("TipoDeclaradoAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
-	
-	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas = new Snebur.Reflexao.Propriedade("PropriedadesAbertas",  new Snebur.Reflexao.TipoHashSet(__$tipoTipoPrimario_String), __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
-	
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade);
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade);
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName);
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado);
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName);
-	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas);
+	__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao);
+	__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta);
 	
 	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_NomeTipoEntidade = new Snebur.Reflexao.Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, true);
 	
@@ -255,19 +243,31 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_PropriedadesAbertas);
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_ContarRegistros);
 	
-	export const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao = new Snebur.Reflexao.Propriedade("Relacao", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao, true);
-	
-	export const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta = new Snebur.Reflexao.Propriedade("EstruturaConsulta", __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao, true);
-	
-	__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao);
-	__$tipoBaseDominioSnebur_AcessoDados_ConsultaFiltroColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta);
-	
 	export const __$propriedade_Snebur_AcessoDados_Ordenacao_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_Ordenacao, true);
 	
 	export const __$propriedade_Snebur_AcessoDados_Ordenacao_SentidoOrdenacaoEnum = new Snebur.Reflexao.Propriedade("SentidoOrdenacaoEnum", __$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao, __$tipoBaseDominioSnebur_AcessoDados_Ordenacao, false);
 	
 	__$tipoBaseDominioSnebur_AcessoDados_Ordenacao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_Ordenacao_CaminhoPropriedade);
 	__$tipoBaseDominioSnebur_AcessoDados_Ordenacao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_Ordenacao_SentidoOrdenacaoEnum);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade = new Snebur.Reflexao.Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado = new Snebur.Reflexao.Propriedade("NomeTipoDeclarado", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName = new Snebur.Reflexao.Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName = new Snebur.Reflexao.Propriedade("TipoDeclaradoAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas = new Snebur.Reflexao.Propriedade("PropriedadesAbertas",  new Snebur.Reflexao.TipoHashSet(__$tipoTipoPrimario_String), __$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, true);
+	
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas);
 	
 	export const __$propriedade_Snebur_AcessoDados_Resultado_IsSucesso = new Snebur.Reflexao.Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
 	
@@ -296,24 +296,13 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_AcessoDados_PropriedadeComputada.Propriedades.Add(__$propriedade_Snebur_AcessoDados_PropriedadeComputada_NomePropriedade);
 	__$tipoBaseDominioSnebur_AcessoDados_PropriedadeComputada.Propriedades.Add(__$propriedade_Snebur_AcessoDados_PropriedadeComputada_Valor);
 	
-	export const __$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta = new Snebur.Reflexao.Propriedade("EstruturaConsulta", __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao, true);
+	export const __$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros = new Snebur.Reflexao.Propriedade("Filtros", __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro, __$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo, true);
 	
-	__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta);
-	
-	export const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn, true);
-	
-	export const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista = new Snebur.Reflexao.Propriedade("Lista", __$tipoListaTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn, true);
-	
-	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade);
-	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista);
+	__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros);
 	
 	export const __$propriedade_Snebur_AcessoDados_FiltroIds_Ids = new Snebur.Reflexao.Propriedade("Ids", __$tipoListaTipoPrimario_Long, __$tipoBaseDominioSnebur_AcessoDados_FiltroIds, true);
 	
 	__$tipoBaseDominioSnebur_AcessoDados_FiltroIds.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroIds_Ids);
-	
-	export const __$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros = new Snebur.Reflexao.Propriedade("Filtros", __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro, __$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo, true);
-	
-	__$tipoBaseDominioSnebur_AcessoDados_BaseFiltroGrupo.Propriedades.Add(__$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros);
 	
 	export const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade, true);
 	
@@ -327,6 +316,17 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_TipoPrimarioEnum);
 	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_Operador);
 	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedade.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_Valor);
+	
+	export const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade = new Snebur.Reflexao.Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn, true);
+	
+	export const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista = new Snebur.Reflexao.Propriedade("Lista", __$tipoListaTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn, true);
+	
+	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade);
+	__$tipoBaseDominioSnebur_AcessoDados_FiltroPropriedadeIn.Propriedades.Add(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista);
+	
+	export const __$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta = new Snebur.Reflexao.Propriedade("EstruturaConsulta", __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao, true);
+	
+	__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao.Propriedades.Add(__$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta);
 	
 	export const __$propriedade_Snebur_AcessoDados_ResultadoConsulta_Entidades = new Snebur.Reflexao.Propriedade("Entidades", __$tipoListaEntidade_Snebur_Dominio_Entidade, __$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta, true);
 	

@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : quinta-feira, 15 de dezembro de 2022
-//Hora : 15:58:01
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 17:29:32
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -118,6 +118,17 @@ namespace Snebur.Arquivo
     (EnumTipoArquivo as any).Rotulos["doc"] = "doc";
     (EnumTipoArquivo as any).Rotulos["txt"] = "txt";
 
+    export enum EnumTipoXFG
+    {
+        Jpg = 1,
+        Bmp = 2,
+        XXX = 3,
+    }
+    (EnumTipoXFG as any).Rotulos = {};
+    (EnumTipoXFG as any).Rotulos["Jpg"] = "Jpg";
+    (EnumTipoXFG as any).Rotulos["Bmp"] = "Bmp";
+    (EnumTipoXFG as any).Rotulos["XXX"] = "XXX";
+
 }
 namespace Snebur.Comparer
 {
@@ -197,6 +208,19 @@ namespace Snebur.Dne
 }
 namespace Snebur.Dominio
 {
+    export enum EnunFlagAlteracaoPropriedade
+    {
+        None = 0,
+        NotificarNovoCadastro = 2,
+        VerificarAlteracaoNoBanco = 4,
+        AtualizarDataHoraFimAlteracao = 8,
+    }
+    (EnunFlagAlteracaoPropriedade as any).Rotulos = {};
+    (EnunFlagAlteracaoPropriedade as any).Rotulos["None"] = "None";
+    (EnunFlagAlteracaoPropriedade as any).Rotulos["NotificarNovoCadastro"] = "NotificarNovoCadastro";
+    (EnunFlagAlteracaoPropriedade as any).Rotulos["VerificarAlteracaoNoBanco"] = "VerificarAlteracaoNoBanco";
+    (EnunFlagAlteracaoPropriedade as any).Rotulos["AtualizarDataHoraFimAlteracao"] = "AtualizarDataHoraFimAlteracao";
+
     export enum EnumTipoDesbloqueio
     {
         Tudo = 1,
@@ -226,18 +250,18 @@ namespace Snebur.Dominio
     (EnumOrientacao as any).Rotulos["Horizontal"] = "Horizontal";
     (EnumOrientacao as any).Rotulos["Vertical"] = "Vertical";
 
-    export enum EnumResultadoValidacaoCredencial
+    export enum EnumTipoJuros
     {
-        Sucesso = 1,
-        UsuarioNaoExiste = 2,
-        SenhaIncorreta = 3,
-        MaximoTentativaAtingido = 4,
+        SemJuros = 0,
+        Simples = 1,
+        Composto = 2,
+        Amortizado = 3,
     }
-    (EnumResultadoValidacaoCredencial as any).Rotulos = {};
-    (EnumResultadoValidacaoCredencial as any).Rotulos["Sucesso"] = "Sucesso";
-    (EnumResultadoValidacaoCredencial as any).Rotulos["UsuarioNaoExiste"] = "UsuarioNaoExiste";
-    (EnumResultadoValidacaoCredencial as any).Rotulos["SenhaIncorreta"] = "SenhaIncorreta";
-    (EnumResultadoValidacaoCredencial as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
+    (EnumTipoJuros as any).Rotulos = {};
+    (EnumTipoJuros as any).Rotulos["SemJuros"] = "SemJuros";
+    (EnumTipoJuros as any).Rotulos["Simples"] = "Simples";
+    (EnumTipoJuros as any).Rotulos["Composto"] = "Composto";
+    (EnumTipoJuros as any).Rotulos["Amortizado"] = "Amortizado";
 
     export enum EnumEstadoCodigoRecuperarSenha
     {
@@ -259,6 +283,21 @@ namespace Snebur.Dominio
     (EnumEstadoCodigoRecuperarSenha as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
     (EnumEstadoCodigoRecuperarSenha as any).Rotulos["SenhaRecuperada"] = "SenhaRecuperada";
     (EnumEstadoCodigoRecuperarSenha as any).Rotulos["TempoMaximoTentativaExpirado"] = "TempoMaximoTentativaExpirado";
+
+    export enum EnumEstadoServicoArquivo
+    {
+        Aguardando = 0,
+        EnvioIniciado = 1,
+        EnviadoArquivos = 2,
+        EnvioPendente = 3,
+        EnvioConcluido = 4,
+    }
+    (EnumEstadoServicoArquivo as any).Rotulos = {};
+    (EnumEstadoServicoArquivo as any).Rotulos["Aguardando"] = "Aguardando";
+    (EnumEstadoServicoArquivo as any).Rotulos["EnvioIniciado"] = "EnvioIniciado";
+    (EnumEstadoServicoArquivo as any).Rotulos["EnviadoArquivos"] = "EnviadoArquivos";
+    (EnumEstadoServicoArquivo as any).Rotulos["EnvioPendente"] = "EnvioPendente";
+    (EnumEstadoServicoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
 
     export enum EnumEstadoUsuario
     {
@@ -287,6 +326,36 @@ namespace Snebur.Dominio
     (EnumResultadoAutenticacao as any).Rotulos["SenhaInvalida"] = "SenhaInvalida";
     (EnumResultadoAutenticacao as any).Rotulos["MaximoTentativa"] = "MaximoTentativa";
     (EnumResultadoAutenticacao as any).Rotulos["UsuarioBloqueado"] = "UsuarioBloqueado";
+
+    export enum EnumResultadoValidacaoCredencial
+    {
+        Sucesso = 1,
+        UsuarioNaoExiste = 2,
+        SenhaIncorreta = 3,
+        MaximoTentativaAtingido = 4,
+    }
+    (EnumResultadoValidacaoCredencial as any).Rotulos = {};
+    (EnumResultadoValidacaoCredencial as any).Rotulos["Sucesso"] = "Sucesso";
+    (EnumResultadoValidacaoCredencial as any).Rotulos["UsuarioNaoExiste"] = "UsuarioNaoExiste";
+    (EnumResultadoValidacaoCredencial as any).Rotulos["SenhaIncorreta"] = "SenhaIncorreta";
+    (EnumResultadoValidacaoCredencial as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
+
+    export enum EnumEstadoArquivo
+    {
+        Novo = 1,
+        Enviando = 2,
+        EnvioConcluido = 3,
+        ArquivoDeletado = 4,
+        Pendente = 5,
+        ChecksumInvalido = 6,
+    }
+    (EnumEstadoArquivo as any).Rotulos = {};
+    (EnumEstadoArquivo as any).Rotulos["Novo"] = "Novo";
+    (EnumEstadoArquivo as any).Rotulos["Enviando"] = "Enviando";
+    (EnumEstadoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
+    (EnumEstadoArquivo as any).Rotulos["ArquivoDeletado"] = "ArquivoDeletado";
+    (EnumEstadoArquivo as any).Rotulos["Pendente"] = "Pendente";
+    (EnumEstadoArquivo as any).Rotulos["ChecksumInvalido"] = "ChecksumInvalido";
 
     export enum EnumAparenciaFonte
     {
@@ -335,213 +404,56 @@ namespace Snebur.Dominio
     (EnumFormatoArquivoFonte as any).Rotulos["Svg"] = "Svg";
     (EnumFormatoArquivoFonte as any).Rotulos["Eot"] = "Eot";
 
-    export enum EnumRotacaoImagem
+    export enum EnumEfeitoImagem
     {
-        Normal = 0,
-        Rotacao90 = 90,
-        Rotacao180 = 180,
-        Rotacao270 = 270,
-        Rotacao360 = 360,
-        Rotacao90AntiHorario = -90,
-        Rotacao180AntiHorario = -180,
-        Rotacao270AntiHorario = -270,
-        Rotacao360AntiHorario = -360,
+        Desconhecido = -1,
+        Nenhum = 0,
+        PretoBranco = 1,
+        Sepia = 2,
+        Cancum = 3,
+        Moscou = 4,
+        Dubai = 5,
+        Paris = 6,
+        Chicago = 7,
+        Veneza = 8,
+        Cairo = 9,
+        Acapulco = 10,
+        Fortaleza = 11,
+        Pequim = 12,
+        Atenas = 13,
+        Manaus = 14,
+        Rio = 15,
+        Sydney = 16,
+        Vancouver = 17,
+        SaoPaulo = 18,
+        Jaipur = 19,
+        Medellin = 20,
+        Londres = 21,
     }
-    (EnumRotacaoImagem as any).Rotulos = {};
-    (EnumRotacaoImagem as any).Rotulos["Normal"] = "Normal";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao90"] = "Rotacao90";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao180"] = "Rotacao180";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao270"] = "Rotacao270";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao360"] = "Rotacao360";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao90AntiHorario"] = "Rotacao90AntiHorario";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao180AntiHorario"] = "Rotacao180AntiHorario";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao270AntiHorario"] = "Rotacao270AntiHorario";
-    (EnumRotacaoImagem as any).Rotulos["Rotacao360AntiHorario"] = "Rotacao360AntiHorario";
-
-    export enum EnumTipoPrazo
-    {
-        DiasUteis = 0,
-        DiasCorrido = 1,
-        Horas = 2,
-    }
-    (EnumTipoPrazo as any).Rotulos = {};
-    (EnumTipoPrazo as any).Rotulos["DiasUteis"] = "Dias úteis";
-    (EnumTipoPrazo as any).Rotulos["DiasCorrido"] = "Dias corridos";
-    (EnumTipoPrazo as any).Rotulos["Horas"] = "Horas";
-
-    export enum EnumMimeType
-    {
-        Desconhecido = 0,
-        Aac = 100,
-        Abw = 200,
-        Ai = 300,
-        Arc = 400,
-        Avi = 500,
-        Azw = 600,
-        Bin = 700,
-        Bz = 800,
-        Bmp = 900,
-        Bz2 = 1000,
-        Cdr = 1100,
-        Config = 1200,
-        Csh = 1300,
-        Css = 1400,
-        Csv = 1500,
-        Dll = 1600,
-        Doc = 1700,
-        Eot = 1800,
-        Epub = 1900,
-        Exe = 2000,
-        Gif = 2100,
-        Htm = 2200,
-        Html = 2300,
-        Ico = 2400,
-        Ics = 2500,
-        Jar = 2600,
-        Jpeg = 2700,
-        Jpg = 2800,
-        Js = 2900,
-        Json = 3000,
-        Mid = 3100,
-        Midi = 3200,
-        Mpeg = 3300,
-        Mpkg = 3400,
-        Odp = 3500,
-        Ods = 3600,
-        Odt = 3700,
-        Oga = 3800,
-        Ogv = 3900,
-        Ogx = 4000,
-        Otf = 4100,
-        Png = 4200,
-        Pdf = 4300,
-        Pdb = 4250,
-        Ppt = 4400,
-        Ps = 4500,
-        Psd = 4600,
-        Rar = 4700,
-        Rtf = 4800,
-        Sh = 4900,
-        Svg = 5000,
-        Swf = 5100,
-        Tar = 5200,
-        Txt = 5210,
-        Text = 5220,
-        Tif = 5300,
-        Tiff = 5400,
-        Ts = 5500,
-        Ttf = 5600,
-        Vsd = 5700,
-        Wasm = 5750,
-        Wav = 5800,
-        Weba = 5900,
-        Webm = 6000,
-        Webp = 6100,
-        Woff = 6200,
-        Woff2 = 6300,
-        Xhtml = 6400,
-        Xls = 6500,
-        Xlsx = 6600,
-        Xml = 6700,
-        Xul = 6800,
-        Zip = 6900,
-        _3gp = 7000,
-        _3g2 = 7100,
-        _7z = 7200,
-    }
-    (EnumMimeType as any).Rotulos = {};
-    (EnumMimeType as any).Rotulos["Desconhecido"] = "Desconhecido";
-    (EnumMimeType as any).Rotulos["Aac"] = "Arquivo de audio AAC";
-    (EnumMimeType as any).Rotulos["Abw"] = "Documento AbiWord";
-    (EnumMimeType as any).Rotulos["Ai"] = "Abode Illustrator";
-    (EnumMimeType as any).Rotulos["Arc"] = "Documento Arquivado (varios arquivos embutidos)";
-    (EnumMimeType as any).Rotulos["Avi"] = "Arquivo de audio e vídeo Intercalar AVI";
-    (EnumMimeType as any).Rotulos["Azw"] = "Formato eBook do Amazon Kindle";
-    (EnumMimeType as any).Rotulos["Bin"] = "Qualquer tipo de dados binários";
-    (EnumMimeType as any).Rotulos["Bz"] = "Arquivo compactado BZip";
-    (EnumMimeType as any).Rotulos["Bmp"] = "Windows OS/2 Bitmap Graphics";
-    (EnumMimeType as any).Rotulos["Bz2"] = "Arquivo compactado BZip2";
-    (EnumMimeType as any).Rotulos["Cdr"] = "Corel Draw";
-    (EnumMimeType as any).Rotulos["Config"] = "Configuração de aplicação";
-    (EnumMimeType as any).Rotulos["Csh"] = "Script C-Shell";
-    (EnumMimeType as any).Rotulos["Css"] = "Cascading Style Sheets (CSS)";
-    (EnumMimeType as any).Rotulos["Csv"] = "Valores separados por vírgula (CSV)";
-    (EnumMimeType as any).Rotulos["Dll"] = "Arquivo DLL do windows";
-    (EnumMimeType as any).Rotulos["Doc"] = "Microsoft Word";
-    (EnumMimeType as any).Rotulos["Eot"] = "MS Embedded OpenType fonts";
-    (EnumMimeType as any).Rotulos["Epub"] = "Publicação eletrônica (EPUB)";
-    (EnumMimeType as any).Rotulos["Exe"] = "Graphics Interchange Format (GIF)";
-    (EnumMimeType as any).Rotulos["Gif"] = "Arquivo Executável do Windows";
-    (EnumMimeType as any).Rotulos["Htm"] = "HyperText Markup Language (HTML)";
-    (EnumMimeType as any).Rotulos["Html"] = "HyperText Markup Language (HTML)";
-    (EnumMimeType as any).Rotulos["Ico"] = "Icon format";
-    (EnumMimeType as any).Rotulos["Ics"] = "iCalendar format";
-    (EnumMimeType as any).Rotulos["Jar"] = "Java Archive (JAR)";
-    (EnumMimeType as any).Rotulos["Jpeg"] = "JPEG images";
-    (EnumMimeType as any).Rotulos["Jpg"] = "JPEG images";
-    (EnumMimeType as any).Rotulos["Js"] = "JavaScript (ECMAScript)";
-    (EnumMimeType as any).Rotulos["Json"] = "JSON format";
-    (EnumMimeType as any).Rotulos["Mid"] = "Musical Instrument Digital Interface (MIDI)";
-    (EnumMimeType as any).Rotulos["Midi"] = "Musical Instrument Digital Interface (MIDI)";
-    (EnumMimeType as any).Rotulos["Mpeg"] = "MPEG Video";
-    (EnumMimeType as any).Rotulos["Mpkg"] = "Apple Installer Package";
-    (EnumMimeType as any).Rotulos["Odp"] = "OpenDocument presentation document";
-    (EnumMimeType as any).Rotulos["Ods"] = "OpenDocument spreadsheet document";
-    (EnumMimeType as any).Rotulos["Odt"] = "OpenDocument text document";
-    (EnumMimeType as any).Rotulos["Oga"] = "OGG audio";
-    (EnumMimeType as any).Rotulos["Ogv"] = "OGG video";
-    (EnumMimeType as any).Rotulos["Ogx"] = "OGG";
-    (EnumMimeType as any).Rotulos["Otf"] = "OpenType font";
-    (EnumMimeType as any).Rotulos["Png"] = "Portable Network Graphics";
-    (EnumMimeType as any).Rotulos["Pdf"] = "Adobe Portable Document Format (PDF)";
-    (EnumMimeType as any).Rotulos["Pdb"] = "Arquivo de depuração .NET";
-    (EnumMimeType as any).Rotulos["Ppt"] = "Microsoft PowerPoint";
-    (EnumMimeType as any).Rotulos["Ps"] = "Adobe Photoshop";
-    (EnumMimeType as any).Rotulos["Psd"] = "Adobe Photoshop";
-    (EnumMimeType as any).Rotulos["Rar"] = "RAR archive";
-    (EnumMimeType as any).Rotulos["Rtf"] = "Rich Text Format (RTF)";
-    (EnumMimeType as any).Rotulos["Sh"] = "Bourne shell script";
-    (EnumMimeType as any).Rotulos["Svg"] = "Scalable Vector Graphics (SVG)";
-    (EnumMimeType as any).Rotulos["Swf"] = "Small web format (SWF) or Adobe Flash document";
-    (EnumMimeType as any).Rotulos["Tar"] = "Tape Archive (TAR)";
-    (EnumMimeType as any).Rotulos["Txt"] = "Tagged Image File Format (TIFF)";
-    (EnumMimeType as any).Rotulos["Text"] = "Text/Plain (TXT)";
-    (EnumMimeType as any).Rotulos["Tif"] = "Text/Plain (TEXT)";
-    (EnumMimeType as any).Rotulos["Tiff"] = "Tagged Image File Format (TIFF)";
-    (EnumMimeType as any).Rotulos["Ts"] = "Typescript file";
-    (EnumMimeType as any).Rotulos["Ttf"] = "TrueType Font";
-    (EnumMimeType as any).Rotulos["Vsd"] = "Microsoft Visio";
-    (EnumMimeType as any).Rotulos["Wasm"] = "Web Embedding - WebAssembly";
-    (EnumMimeType as any).Rotulos["Wav"] = "Waveform Audio Format";
-    (EnumMimeType as any).Rotulos["Weba"] = "WEBM audio";
-    (EnumMimeType as any).Rotulos["Webm"] = "WEBM video";
-    (EnumMimeType as any).Rotulos["Webp"] = "WEBP image";
-    (EnumMimeType as any).Rotulos["Woff"] = "Web Open Font Format (WOFF)";
-    (EnumMimeType as any).Rotulos["Woff2"] = "Web Open Font Format (WOFF)";
-    (EnumMimeType as any).Rotulos["Xhtml"] = "XHTML";
-    (EnumMimeType as any).Rotulos["Xls"] = "Microsoft Excel";
-    (EnumMimeType as any).Rotulos["Xlsx"] = "Microsoft Excel";
-    (EnumMimeType as any).Rotulos["Xml"] = "XML";
-    (EnumMimeType as any).Rotulos["Xul"] = "XUL";
-    (EnumMimeType as any).Rotulos["Zip"] = "ZIP archive";
-    (EnumMimeType as any).Rotulos["_3gp"] = "3GPP audio/video container";
-    (EnumMimeType as any).Rotulos["_3g2"] = "3GPP2 audio/video container";
-    (EnumMimeType as any).Rotulos["_7z"] = "7-zip archive";
-
-    export enum EnumEstadoServicoArquivo
-    {
-        Aguardando = 0,
-        EnvioIniciado = 1,
-        EnviadoArquivos = 2,
-        EnvioPendente = 3,
-        EnvioConcluido = 4,
-    }
-    (EnumEstadoServicoArquivo as any).Rotulos = {};
-    (EnumEstadoServicoArquivo as any).Rotulos["Aguardando"] = "Aguardando";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioIniciado"] = "EnvioIniciado";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnviadoArquivos"] = "EnviadoArquivos";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioPendente"] = "EnvioPendente";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
+    (EnumEfeitoImagem as any).Rotulos = {};
+    (EnumEfeitoImagem as any).Rotulos["Desconhecido"] = "Desconhecido";
+    (EnumEfeitoImagem as any).Rotulos["Nenhum"] = "Nenhum";
+    (EnumEfeitoImagem as any).Rotulos["PretoBranco"] = "Preto e branco";
+    (EnumEfeitoImagem as any).Rotulos["Sepia"] = "Sépia";
+    (EnumEfeitoImagem as any).Rotulos["Cancum"] = "Cancún";
+    (EnumEfeitoImagem as any).Rotulos["Moscou"] = "Moscou";
+    (EnumEfeitoImagem as any).Rotulos["Dubai"] = "Dubai";
+    (EnumEfeitoImagem as any).Rotulos["Paris"] = "Paris";
+    (EnumEfeitoImagem as any).Rotulos["Chicago"] = "Chicago";
+    (EnumEfeitoImagem as any).Rotulos["Veneza"] = "Veneza";
+    (EnumEfeitoImagem as any).Rotulos["Cairo"] = "Cairo";
+    (EnumEfeitoImagem as any).Rotulos["Acapulco"] = "Acapulco";
+    (EnumEfeitoImagem as any).Rotulos["Fortaleza"] = "Fortaleza";
+    (EnumEfeitoImagem as any).Rotulos["Pequim"] = "Pequim";
+    (EnumEfeitoImagem as any).Rotulos["Atenas"] = "Atenas";
+    (EnumEfeitoImagem as any).Rotulos["Manaus"] = "Manaus";
+    (EnumEfeitoImagem as any).Rotulos["Rio"] = "Rio";
+    (EnumEfeitoImagem as any).Rotulos["Sydney"] = "Sydney";
+    (EnumEfeitoImagem as any).Rotulos["Vancouver"] = "Vancouver";
+    (EnumEfeitoImagem as any).Rotulos["SaoPaulo"] = "São Paulo";
+    (EnumEfeitoImagem as any).Rotulos["Jaipur"] = "Jaipur";
+    (EnumEfeitoImagem as any).Rotulos["Medellin"] = "Medellín";
+    (EnumEfeitoImagem as any).Rotulos["Londres"] = "Londres";
 
     export enum EnumFormatoImagem
     {
@@ -564,22 +476,28 @@ namespace Snebur.Dominio
     (EnumFormatoImagem as any).Rotulos["GIF"] = "GIF";
     (EnumFormatoImagem as any).Rotulos["HEIC"] = "HEIC";
 
-    export enum EnumEstadoArquivo
+    export enum EnumRotacaoImagem
     {
-        Novo = 1,
-        Enviando = 2,
-        EnvioConcluido = 3,
-        ArquivoDeletado = 4,
-        Pendente = 5,
-        ChecksumInvalido = 6,
+        Normal = 0,
+        Rotacao90 = 90,
+        Rotacao180 = 180,
+        Rotacao270 = 270,
+        Rotacao360 = 360,
+        Rotacao90AntiHorario = -90,
+        Rotacao180AntiHorario = -180,
+        Rotacao270AntiHorario = -270,
+        Rotacao360AntiHorario = -360,
     }
-    (EnumEstadoArquivo as any).Rotulos = {};
-    (EnumEstadoArquivo as any).Rotulos["Novo"] = "Novo";
-    (EnumEstadoArquivo as any).Rotulos["Enviando"] = "Enviando";
-    (EnumEstadoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
-    (EnumEstadoArquivo as any).Rotulos["ArquivoDeletado"] = "ArquivoDeletado";
-    (EnumEstadoArquivo as any).Rotulos["Pendente"] = "Pendente";
-    (EnumEstadoArquivo as any).Rotulos["ChecksumInvalido"] = "ChecksumInvalido";
+    (EnumRotacaoImagem as any).Rotulos = {};
+    (EnumRotacaoImagem as any).Rotulos["Normal"] = "Normal";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao90"] = "Rotacao90";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao180"] = "Rotacao180";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao270"] = "Rotacao270";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao360"] = "Rotacao360";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao90AntiHorario"] = "Rotacao90AntiHorario";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao180AntiHorario"] = "Rotacao180AntiHorario";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao270AntiHorario"] = "Rotacao270AntiHorario";
+    (EnumRotacaoImagem as any).Rotulos["Rotacao360AntiHorario"] = "Rotacao360AntiHorario";
 
     export enum EnumTamanhoImagem
     {
@@ -680,75 +598,204 @@ namespace Snebur.Dominio
 
     export enum EnumTipoAplicacao
     {
-        Web = 1,
-        ApacheCordova = 2,
+        Typescript = 1,
+        Web_AspNet = 2,
         DotNet_WebService = 3,
         DotNet_WindowService = 4,
         DotNet_Wpf = 5,
         DotNet_UnitTest = 6,
         ExtensaoVisualStudio = 7,
+        AspNetCore_WebService = 8,
+        MaiuNet = 9,
+        DotNet_Console = 10,
         Desconhecido = 99,
     }
     (EnumTipoAplicacao as any).Rotulos = {};
-    (EnumTipoAplicacao as any).Rotulos["Web"] = "Web";
-    (EnumTipoAplicacao as any).Rotulos["ApacheCordova"] = "ApacheCordova";
+    (EnumTipoAplicacao as any).Rotulos["Typescript"] = "Typescript";
+    (EnumTipoAplicacao as any).Rotulos["Web_AspNet"] = "Web_AspNet";
     (EnumTipoAplicacao as any).Rotulos["DotNet_WebService"] = "DotNet_WebService";
     (EnumTipoAplicacao as any).Rotulos["DotNet_WindowService"] = "DotNet_WindowService";
     (EnumTipoAplicacao as any).Rotulos["DotNet_Wpf"] = "DotNet_Wpf";
     (EnumTipoAplicacao as any).Rotulos["DotNet_UnitTest"] = "DotNet_UnitTest";
     (EnumTipoAplicacao as any).Rotulos["ExtensaoVisualStudio"] = "ExtensaoVisualStudio";
+    (EnumTipoAplicacao as any).Rotulos["AspNetCore_WebService"] = "AspNetCore_WebService";
+    (EnumTipoAplicacao as any).Rotulos["MaiuNet"] = "MaiuNet";
+    (EnumTipoAplicacao as any).Rotulos["DotNet_Console"] = "DotNet_Console";
     (EnumTipoAplicacao as any).Rotulos["Desconhecido"] = "Desconhecido";
 
-    export enum EnumEfeitoImagem
+    export enum EnumTipoPrazo
     {
-        Desconhecido = -1,
-        Nenhum = 0,
-        PretoBranco = 1,
-        Sepia = 2,
-        Cancum = 3,
-        Moscou = 4,
-        Dubai = 5,
-        Paris = 6,
-        Chicago = 7,
-        Veneza = 8,
-        Cairo = 9,
-        Acapulco = 10,
-        Fortaleza = 11,
-        Pequim = 12,
-        Atenas = 13,
-        Manaus = 14,
-        Rio = 15,
-        Sydney = 16,
-        Vancouver = 17,
-        SaoPaulo = 18,
-        Jaipur = 19,
-        Medellin = 20,
-        Londres = 21,
+        DiasUteis = 0,
+        DiasCorrido = 1,
+        Horas = 2,
     }
-    (EnumEfeitoImagem as any).Rotulos = {};
-    (EnumEfeitoImagem as any).Rotulos["Desconhecido"] = "Desconhecido";
-    (EnumEfeitoImagem as any).Rotulos["Nenhum"] = "Nenhum";
-    (EnumEfeitoImagem as any).Rotulos["PretoBranco"] = "Preto e branco";
-    (EnumEfeitoImagem as any).Rotulos["Sepia"] = "Sépia";
-    (EnumEfeitoImagem as any).Rotulos["Cancum"] = "Cancún";
-    (EnumEfeitoImagem as any).Rotulos["Moscou"] = "Moscou";
-    (EnumEfeitoImagem as any).Rotulos["Dubai"] = "Dubai";
-    (EnumEfeitoImagem as any).Rotulos["Paris"] = "Paris";
-    (EnumEfeitoImagem as any).Rotulos["Chicago"] = "Chicago";
-    (EnumEfeitoImagem as any).Rotulos["Veneza"] = "Veneza";
-    (EnumEfeitoImagem as any).Rotulos["Cairo"] = "Cairo";
-    (EnumEfeitoImagem as any).Rotulos["Acapulco"] = "Acapulco";
-    (EnumEfeitoImagem as any).Rotulos["Fortaleza"] = "Fortaleza";
-    (EnumEfeitoImagem as any).Rotulos["Pequim"] = "Pequim";
-    (EnumEfeitoImagem as any).Rotulos["Atenas"] = "Atenas";
-    (EnumEfeitoImagem as any).Rotulos["Manaus"] = "Manaus";
-    (EnumEfeitoImagem as any).Rotulos["Rio"] = "Rio";
-    (EnumEfeitoImagem as any).Rotulos["Sydney"] = "Sydney";
-    (EnumEfeitoImagem as any).Rotulos["Vancouver"] = "Vancouver";
-    (EnumEfeitoImagem as any).Rotulos["SaoPaulo"] = "São Paulo";
-    (EnumEfeitoImagem as any).Rotulos["Jaipur"] = "Jaipur";
-    (EnumEfeitoImagem as any).Rotulos["Medellin"] = "Medellín";
-    (EnumEfeitoImagem as any).Rotulos["Londres"] = "Londres";
+    (EnumTipoPrazo as any).Rotulos = {};
+    (EnumTipoPrazo as any).Rotulos["DiasUteis"] = "Dias úteis";
+    (EnumTipoPrazo as any).Rotulos["DiasCorrido"] = "Dias corridos";
+    (EnumTipoPrazo as any).Rotulos["Horas"] = "Horas";
+
+    export enum EnumMimeType
+    {
+        Desconhecido = 0,
+        Aac = 100,
+        Abw = 200,
+        Ai = 300,
+        Arc = 400,
+        Avi = 500,
+        Azw = 600,
+        Bin = 700,
+        Bz = 800,
+        Bmp = 900,
+        Bz2 = 1000,
+        Cdr = 1100,
+        Config = 1200,
+        Csh = 1300,
+        Css = 1400,
+        Csv = 1500,
+        Dll = 1600,
+        Doc = 1700,
+        Eot = 1800,
+        Eps = 1850,
+        Epub = 1900,
+        Exe = 2000,
+        Gif = 2100,
+        Htm = 2200,
+        Html = 2300,
+        Ico = 2400,
+        Ics = 2500,
+        Jar = 2600,
+        Jpeg = 2700,
+        Jpg = 2800,
+        Js = 2900,
+        Json = 3000,
+        Mid = 3100,
+        Midi = 3200,
+        Mpeg = 3300,
+        Mpkg = 3400,
+        Odp = 3500,
+        Ods = 3600,
+        Odt = 3700,
+        Oga = 3800,
+        Ogv = 3900,
+        Ogx = 4000,
+        Otf = 4100,
+        Png = 4200,
+        Pdf = 4300,
+        Pdb = 4250,
+        Ppt = 4400,
+        Ps = 4500,
+        Psb = 4550,
+        Psd = 4600,
+        Rar = 4700,
+        Rtf = 4800,
+        Sh = 4900,
+        Svg = 5000,
+        Swf = 5100,
+        Tar = 5200,
+        Txt = 5210,
+        Text = 5220,
+        Tif = 5300,
+        Tiff = 5400,
+        Ts = 5500,
+        Ttf = 5600,
+        Vsd = 5700,
+        Wasm = 5750,
+        Wav = 5800,
+        Weba = 5900,
+        Webm = 6000,
+        Webp = 6100,
+        Woff = 6200,
+        Woff2 = 6300,
+        Xhtml = 6400,
+        Xls = 6500,
+        Xlsx = 6600,
+        Xml = 6700,
+        Xul = 6800,
+        Zip = 6900,
+        _3gp = 7000,
+        _3g2 = 7100,
+        _7z = 7200,
+    }
+    (EnumMimeType as any).Rotulos = {};
+    (EnumMimeType as any).Rotulos["Desconhecido"] = "Desconhecido";
+    (EnumMimeType as any).Rotulos["Aac"] = "Arquivo de audio AAC";
+    (EnumMimeType as any).Rotulos["Abw"] = "Documento AbiWord";
+    (EnumMimeType as any).Rotulos["Ai"] = "Abode Illustrator";
+    (EnumMimeType as any).Rotulos["Arc"] = "Documento Arquivado (varios arquivos embutidos)";
+    (EnumMimeType as any).Rotulos["Avi"] = "Arquivo de audio e vídeo Intercalar AVI";
+    (EnumMimeType as any).Rotulos["Azw"] = "Formato eBook do Amazon Kindle";
+    (EnumMimeType as any).Rotulos["Bin"] = "Qualquer tipo de dados binários";
+    (EnumMimeType as any).Rotulos["Bz"] = "Arquivo compactado BZip";
+    (EnumMimeType as any).Rotulos["Bmp"] = "Windows OS/2 Bitmap Graphics";
+    (EnumMimeType as any).Rotulos["Bz2"] = "Arquivo compactado BZip2";
+    (EnumMimeType as any).Rotulos["Cdr"] = "Corel Draw";
+    (EnumMimeType as any).Rotulos["Config"] = "Configuração de aplicação";
+    (EnumMimeType as any).Rotulos["Csh"] = "Script C-Shell";
+    (EnumMimeType as any).Rotulos["Css"] = "Cascading Style Sheets (CSS)";
+    (EnumMimeType as any).Rotulos["Csv"] = "Valores separados por vírgula (CSV)";
+    (EnumMimeType as any).Rotulos["Dll"] = "Arquivo DLL do windows";
+    (EnumMimeType as any).Rotulos["Doc"] = "Microsoft Word";
+    (EnumMimeType as any).Rotulos["Eot"] = "MS Embedded OpenType fonts";
+    (EnumMimeType as any).Rotulos["Eps"] = "Eps";
+    (EnumMimeType as any).Rotulos["Epub"] = "Publicação eletrônica (EPUB)";
+    (EnumMimeType as any).Rotulos["Exe"] = "Graphics Interchange Format (GIF)";
+    (EnumMimeType as any).Rotulos["Gif"] = "Arquivo Executável do Windows";
+    (EnumMimeType as any).Rotulos["Htm"] = "HyperText Markup Language (HTML)";
+    (EnumMimeType as any).Rotulos["Html"] = "HyperText Markup Language (HTML)";
+    (EnumMimeType as any).Rotulos["Ico"] = "Icon format";
+    (EnumMimeType as any).Rotulos["Ics"] = "iCalendar format";
+    (EnumMimeType as any).Rotulos["Jar"] = "Java Archive (JAR)";
+    (EnumMimeType as any).Rotulos["Jpeg"] = "JPEG images";
+    (EnumMimeType as any).Rotulos["Jpg"] = "JPEG images";
+    (EnumMimeType as any).Rotulos["Js"] = "JavaScript (ECMAScript)";
+    (EnumMimeType as any).Rotulos["Json"] = "JSON format";
+    (EnumMimeType as any).Rotulos["Mid"] = "Musical Instrument Digital Interface (MIDI)";
+    (EnumMimeType as any).Rotulos["Midi"] = "Musical Instrument Digital Interface (MIDI)";
+    (EnumMimeType as any).Rotulos["Mpeg"] = "MPEG Video";
+    (EnumMimeType as any).Rotulos["Mpkg"] = "Apple Installer Package";
+    (EnumMimeType as any).Rotulos["Odp"] = "OpenDocument presentation document";
+    (EnumMimeType as any).Rotulos["Ods"] = "OpenDocument spreadsheet document";
+    (EnumMimeType as any).Rotulos["Odt"] = "OpenDocument text document";
+    (EnumMimeType as any).Rotulos["Oga"] = "OGG audio";
+    (EnumMimeType as any).Rotulos["Ogv"] = "OGG video";
+    (EnumMimeType as any).Rotulos["Ogx"] = "OGG";
+    (EnumMimeType as any).Rotulos["Otf"] = "OpenType font";
+    (EnumMimeType as any).Rotulos["Png"] = "Portable Network Graphics";
+    (EnumMimeType as any).Rotulos["Pdf"] = "Adobe Portable Document Format (PDF)";
+    (EnumMimeType as any).Rotulos["Pdb"] = "Arquivo de depuração .NET";
+    (EnumMimeType as any).Rotulos["Ppt"] = "Microsoft PowerPoint";
+    (EnumMimeType as any).Rotulos["Ps"] = "Adobe Photoshop";
+    (EnumMimeType as any).Rotulos["Psb"] = "Adobe Photoshop";
+    (EnumMimeType as any).Rotulos["Psd"] = "Adobe Photoshop";
+    (EnumMimeType as any).Rotulos["Rar"] = "RAR archive";
+    (EnumMimeType as any).Rotulos["Rtf"] = "Rich Text Format (RTF)";
+    (EnumMimeType as any).Rotulos["Sh"] = "Bourne shell script";
+    (EnumMimeType as any).Rotulos["Svg"] = "Scalable Vector Graphics (SVG)";
+    (EnumMimeType as any).Rotulos["Swf"] = "Small web format (SWF) or Adobe Flash document";
+    (EnumMimeType as any).Rotulos["Tar"] = "Tape Archive (TAR)";
+    (EnumMimeType as any).Rotulos["Txt"] = "Tagged Image File Format (TIFF)";
+    (EnumMimeType as any).Rotulos["Text"] = "Text/Plain (TXT)";
+    (EnumMimeType as any).Rotulos["Tif"] = "Text/Plain (TEXT)";
+    (EnumMimeType as any).Rotulos["Tiff"] = "Tagged Image File Format (TIFF)";
+    (EnumMimeType as any).Rotulos["Ts"] = "Typescript file";
+    (EnumMimeType as any).Rotulos["Ttf"] = "TrueType Font";
+    (EnumMimeType as any).Rotulos["Vsd"] = "Microsoft Visio";
+    (EnumMimeType as any).Rotulos["Wasm"] = "Web Embedding - WebAssembly";
+    (EnumMimeType as any).Rotulos["Wav"] = "Waveform Audio Format";
+    (EnumMimeType as any).Rotulos["Weba"] = "WEBM audio";
+    (EnumMimeType as any).Rotulos["Webm"] = "WEBM video";
+    (EnumMimeType as any).Rotulos["Webp"] = "WEBP image";
+    (EnumMimeType as any).Rotulos["Woff"] = "Web Open Font Format (WOFF)";
+    (EnumMimeType as any).Rotulos["Woff2"] = "Web Open Font Format (WOFF)";
+    (EnumMimeType as any).Rotulos["Xhtml"] = "XHTML";
+    (EnumMimeType as any).Rotulos["Xls"] = "Microsoft Excel";
+    (EnumMimeType as any).Rotulos["Xlsx"] = "Microsoft Excel";
+    (EnumMimeType as any).Rotulos["Xml"] = "XML";
+    (EnumMimeType as any).Rotulos["Xul"] = "XUL";
+    (EnumMimeType as any).Rotulos["Zip"] = "ZIP archive";
+    (EnumMimeType as any).Rotulos["_3gp"] = "3GPP audio/video container";
+    (EnumMimeType as any).Rotulos["_3g2"] = "3GPP2 audio/video container";
+    (EnumMimeType as any).Rotulos["_7z"] = "7-zip archive";
 
     export enum EnumPreenchimentoImagem
     {
@@ -839,19 +886,6 @@ namespace Snebur.Dominio
     (EnumDiaSemana as any).Rotulos["QuintaFeira"] = "Quinta-feira";
     (EnumDiaSemana as any).Rotulos["SextaFeira"] = "Sexta-feira";
     (EnumDiaSemana as any).Rotulos["Sabado"] = "Sábado";
-
-    export enum EnumTipoJuros
-    {
-        SemJuros = 0,
-        Simples = 1,
-        Composto = 2,
-        Amortizado = 3,
-    }
-    (EnumTipoJuros as any).Rotulos = {};
-    (EnumTipoJuros as any).Rotulos["SemJuros"] = "SemJuros";
-    (EnumTipoJuros as any).Rotulos["Simples"] = "Simples";
-    (EnumTipoJuros as any).Rotulos["Composto"] = "Composto";
-    (EnumTipoJuros as any).Rotulos["Amortizado"] = "Amortizado";
 
 }
 namespace Snebur.Dominio.Atributos
@@ -1007,6 +1041,15 @@ namespace Snebur.Imagem
 }
 namespace Snebur.Servicos
 {
+    export enum EnumTipoLogDesempenho
+    {
+        LentidaoServicoComunicacao = 1,
+        Renderizador = 2,
+    }
+    (EnumTipoLogDesempenho as any).Rotulos = {};
+    (EnumTipoLogDesempenho as any).Rotulos["LentidaoServicoComunicacao"] = "LentidaoServicoComunicacao";
+    (EnumTipoLogDesempenho as any).Rotulos["Renderizador"] = "Renderizador";
+
     export enum EnumTipoLogSeguranca
     {
         TokenExpirado = 1,
@@ -1063,15 +1106,6 @@ namespace Snebur.Servicos
     (EnumTipoLogSeguranca as any).Rotulos["AplicacaoNaoAutorizada"] = "AplicacaoNaoAutorizada";
     (EnumTipoLogSeguranca as any).Rotulos["AcessoArquivoSuspeito"] = "AcessoArquivoSuspeito";
     (EnumTipoLogSeguranca as any).Rotulos["ArquivoVersaoPublicacaoNaoEncontrado"] = "ArquivoVersaoPublicacaoNaoEncontrado";
-
-    export enum EnumTipoLogDesempenho
-    {
-        LentidaoServicoComunicacao = 1,
-        Renderizador = 2,
-    }
-    (EnumTipoLogDesempenho as any).Rotulos = {};
-    (EnumTipoLogDesempenho as any).Rotulos["LentidaoServicoComunicacao"] = "LentidaoServicoComunicacao";
-    (EnumTipoLogDesempenho as any).Rotulos["Renderizador"] = "Renderizador";
 
 }
 namespace Snebur.UI

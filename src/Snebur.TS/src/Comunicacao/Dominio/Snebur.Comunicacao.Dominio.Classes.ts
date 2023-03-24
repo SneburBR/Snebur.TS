@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 29 de julho de 2022
-//Hora : 11:26:21
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 14:51:17
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False
@@ -23,17 +23,28 @@ namespace Snebur.Comunicacao
     {
         //#region Propriedades
     
+        private _identificadorProprietario : string = null;
         private _credencialServico : Snebur.Seguranca.CredencialServico = null;
         private _credencialUsuario : Snebur.Seguranca.CredencialUsuario = null;
         private _credencialAvalista : Snebur.Seguranca.CredencialUsuario = null;
         private _urlOrigem : string = null;
+    
+        public get IdentificadorProprietario(): string 
+        {
+            return this._identificadorProprietario;
+        }
+
+        public set IdentificadorProprietario(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("IdentificadorProprietario", this._identificadorProprietario, this._identificadorProprietario = value);
+        }
     
         public get CredencialServico(): Snebur.Seguranca.CredencialServico 
         {
             return this._credencialServico;
         }
 
-        public set CredencialServico(value: Snebur.Seguranca.CredencialServico)  
+        public set CredencialServico(value: Snebur.Seguranca.CredencialServico) 
         {
             this.NotificarValorPropriedadeAlterada("CredencialServico", this._credencialServico, this._credencialServico = value);
         }
@@ -43,7 +54,7 @@ namespace Snebur.Comunicacao
             return this._credencialUsuario;
         }
 
-        public set CredencialUsuario(value: Snebur.Seguranca.CredencialUsuario)  
+        public set CredencialUsuario(value: Snebur.Seguranca.CredencialUsuario) 
         {
             this.NotificarValorPropriedadeAlterada("CredencialUsuario", this._credencialUsuario, this._credencialUsuario = value);
         }
@@ -53,7 +64,7 @@ namespace Snebur.Comunicacao
             return this._credencialAvalista;
         }
 
-        public set CredencialAvalista(value: Snebur.Seguranca.CredencialUsuario)  
+        public set CredencialAvalista(value: Snebur.Seguranca.CredencialUsuario) 
         {
             this.NotificarValorPropriedadeAlterada("CredencialAvalista", this._credencialAvalista, this._credencialAvalista = value);
         }
@@ -63,7 +74,7 @@ namespace Snebur.Comunicacao
             return this._urlOrigem;
         }
 
-        public set UrlOrigem(value: string)  
+        public set UrlOrigem(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("UrlOrigem", this._urlOrigem, this._urlOrigem = value);
         }
@@ -93,7 +104,7 @@ namespace Snebur.Comunicacao
             return this._cabecalho;
         }
 
-        public set Cabecalho(value: Snebur.Comunicacao.Cabecalho)  
+        public set Cabecalho(value: Snebur.Comunicacao.Cabecalho) 
         {
             this.NotificarValorPropriedadeAlterada("Cabecalho", this._cabecalho, this._cabecalho = value);
         }
@@ -103,7 +114,7 @@ namespace Snebur.Comunicacao
             return this._informacaoSessaoUsuario;
         }
 
-        public set InformacaoSessaoUsuario(value: Snebur.Dominio.InformacaoSessaoUsuario)  
+        public set InformacaoSessaoUsuario(value: Snebur.Dominio.InformacaoSessaoUsuario) 
         {
             this.NotificarValorPropriedadeAlterada("InformacaoSessaoUsuario", this._informacaoSessaoUsuario, this._informacaoSessaoUsuario = value);
         }
@@ -113,7 +124,7 @@ namespace Snebur.Comunicacao
             return this._operacao;
         }
 
-        public set Operacao(value: string)  
+        public set Operacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Operacao", this._operacao, this._operacao = value);
         }
@@ -123,7 +134,7 @@ namespace Snebur.Comunicacao
             return this._dataHora;
         }
 
-        public set DataHora(value: Date)  
+        public set DataHora(value: Date) 
         {
             this.NotificarValorPropriedadeAlterada("DataHora", this._dataHora, this._dataHora = value);
         }
@@ -133,7 +144,7 @@ namespace Snebur.Comunicacao
             return this._async;
         }
 
-        public set Async(value: boolean)  
+        public set Async(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("Async", this._async, this._async = value);
         }
@@ -143,7 +154,7 @@ namespace Snebur.Comunicacao
             return this._parametros;
         }
 
-        public set Parametros(value: Array<Snebur.Comunicacao.ParametroChamada>)  
+        public set Parametros(value: Array<Snebur.Comunicacao.ParametroChamada>) 
         {
             this.NotificarValorPropriedadeAlterada("Parametros", this._parametros, this._parametros = value);
         }
@@ -170,7 +181,7 @@ namespace Snebur.Comunicacao
             return this._nome;
         }
 
-        public set Nome(value: string)  
+        public set Nome(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
         }
@@ -180,7 +191,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoParametro;
         }
 
-        public set NomeTipoParametro(value: string)  
+        public set NomeTipoParametro(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoParametro", this._nomeTipoParametro, this._nomeTipoParametro = value);
         }
@@ -190,7 +201,7 @@ namespace Snebur.Comunicacao
             return this._assemblyQualifiedName;
         }
 
-        public set AssemblyQualifiedName(value: string)  
+        public set AssemblyQualifiedName(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("AssemblyQualifiedName", this._assemblyQualifiedName, this._assemblyQualifiedName = value);
         }
@@ -216,7 +227,7 @@ namespace Snebur.Comunicacao
             return this._assemblyQualifiedName;
         }
 
-        public set AssemblyQualifiedName(value: string)  
+        public set AssemblyQualifiedName(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("AssemblyQualifiedName", this._assemblyQualifiedName, this._assemblyQualifiedName = value);
         }
@@ -226,7 +237,7 @@ namespace Snebur.Comunicacao
             return this._nomeMetodo;
         }
 
-        public set NomeMetodo(value: string)  
+        public set NomeMetodo(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeMetodo", this._nomeMetodo, this._nomeMetodo = value);
         }
@@ -254,7 +265,7 @@ namespace Snebur.Comunicacao
             return this._nomeServico;
         }
 
-        public set NomeServico(value: string)  
+        public set NomeServico(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeServico", this._nomeServico, this._nomeServico = value);
         }
@@ -264,7 +275,7 @@ namespace Snebur.Comunicacao
             return this._dataHora;
         }
 
-        public set DataHora(value: Date)  
+        public set DataHora(value: Date) 
         {
             this.NotificarValorPropriedadeAlterada("DataHora", this._dataHora, this._dataHora = value);
         }
@@ -274,7 +285,7 @@ namespace Snebur.Comunicacao
             return this._operacao;
         }
 
-        public set Operacao(value: string)  
+        public set Operacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Operacao", this._operacao, this._operacao = value);
         }
@@ -284,7 +295,7 @@ namespace Snebur.Comunicacao
             return this._tempoOperacao;
         }
 
-        public set TempoOperacao(value: number)  
+        public set TempoOperacao(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("TempoOperacao", this._tempoOperacao, this._tempoOperacao = value);
         }
@@ -309,7 +320,7 @@ namespace Snebur.Comunicacao
             return this._urlVisualizarImagem;
         }
 
-        public set UrlVisualizarImagem(value: string)  
+        public set UrlVisualizarImagem(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("UrlVisualizarImagem", this._urlVisualizarImagem, this._urlVisualizarImagem = value);
         }
@@ -335,7 +346,7 @@ namespace Snebur.Comunicacao
             return this._isSucesso;
         }
 
-        public set IsSucesso(value: boolean)  
+        public set IsSucesso(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
@@ -345,7 +356,7 @@ namespace Snebur.Comunicacao
             return this._mensagemErro;
         }
 
-        public set MensagemErro(value: string)  
+        public set MensagemErro(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
@@ -370,7 +381,7 @@ namespace Snebur.Comunicacao
             return this._baseDominio;
         }
 
-        public set BaseDominio(value: Snebur.Dominio.BaseDominio)  
+        public set BaseDominio(value: Snebur.Dominio.BaseDominio) 
         {
             this.NotificarValorPropriedadeAlterada("BaseDominio", this._baseDominio, this._baseDominio = value);
         }
@@ -379,17 +390,6 @@ namespace Snebur.Comunicacao
         //#region Construtor
     
         public constructor(inicializador?: Partial<ParametroChamadaBaseDominio>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class ParametroChamadaNulo extends Snebur.Comunicacao.ParametroChamada
-    {
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<ParametroChamadaNulo>) 
         {
             super(inicializador);
             this.Inicializar();
@@ -409,7 +409,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoEnum;
         }
 
-        public set NomeTipoEnum(value: string)  
+        public set NomeTipoEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEnum", this._nomeTipoEnum, this._nomeTipoEnum = value);
         }
@@ -419,7 +419,7 @@ namespace Snebur.Comunicacao
             return this._namespaceEnum;
         }
 
-        public set NamespaceEnum(value: string)  
+        public set NamespaceEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NamespaceEnum", this._namespaceEnum, this._namespaceEnum = value);
         }
@@ -429,7 +429,7 @@ namespace Snebur.Comunicacao
             return this._valor;
         }
 
-        public set Valor(value: number)  
+        public set Valor(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
@@ -454,6 +454,17 @@ namespace Snebur.Comunicacao
         }
         //#endregion
     }
+    export class ParametroChamadaNulo extends Snebur.Comunicacao.ParametroChamada
+    {
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ParametroChamadaNulo>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
     export class ParametroChamadaTipoPrimario extends Snebur.Comunicacao.ParametroChamada
     {
         //#region Propriedades
@@ -466,7 +477,7 @@ namespace Snebur.Comunicacao
             return this._valor;
         }
 
-        public set Valor(value: any)  
+        public set Valor(value: any) 
         {
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
@@ -476,7 +487,7 @@ namespace Snebur.Comunicacao
             return this._tipoPrimarioEnum;
         }
 
-        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario)  
+        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario) 
         {
             this.NotificarValorPropriedadeAlterada("TipoPrimarioEnum", this._tipoPrimarioEnum, this._tipoPrimarioEnum = value);
         }
@@ -504,7 +515,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoBaseDominio;
         }
 
-        public set NomeTipoBaseDominio(value: string)  
+        public set NomeTipoBaseDominio(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoBaseDominio", this._nomeTipoBaseDominio, this._nomeTipoBaseDominio = value);
         }
@@ -514,7 +525,7 @@ namespace Snebur.Comunicacao
             return this._nomeNamespaceTipoBaseDominio;
         }
 
-        public set NomeNamespaceTipoBaseDominio(value: string)  
+        public set NomeNamespaceTipoBaseDominio(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeNamespaceTipoBaseDominio", this._nomeNamespaceTipoBaseDominio, this._nomeNamespaceTipoBaseDominio = value);
         }
@@ -524,7 +535,7 @@ namespace Snebur.Comunicacao
             return this._basesDominio;
         }
 
-        public set BasesDominio(value: Array<Snebur.Dominio.BaseDominio>)  
+        public set BasesDominio(value: Array<Snebur.Dominio.BaseDominio>) 
         {
             this.NotificarValorPropriedadeAlterada("BasesDominio", this._basesDominio, this._basesDominio = value);
         }
@@ -552,7 +563,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoEnum;
         }
 
-        public set NomeTipoEnum(value: string)  
+        public set NomeTipoEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEnum", this._nomeTipoEnum, this._nomeTipoEnum = value);
         }
@@ -562,7 +573,7 @@ namespace Snebur.Comunicacao
             return this._namespaceEnum;
         }
 
-        public set NamespaceEnum(value: string)  
+        public set NamespaceEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NamespaceEnum", this._namespaceEnum, this._namespaceEnum = value);
         }
@@ -572,7 +583,7 @@ namespace Snebur.Comunicacao
             return this._valores;
         }
 
-        public set Valores(value: Array<number>)  
+        public set Valores(value: Array<number>) 
         {
             this.NotificarValorPropriedadeAlterada("Valores", this._valores, this._valores = value);
         }
@@ -599,7 +610,7 @@ namespace Snebur.Comunicacao
             return this._lista;
         }
 
-        public set Lista(value: Array<any>)  
+        public set Lista(value: Array<any>) 
         {
             this.NotificarValorPropriedadeAlterada("Lista", this._lista, this._lista = value);
         }
@@ -609,7 +620,7 @@ namespace Snebur.Comunicacao
             return this._tipoPrimarioEnum;
         }
 
-        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario)  
+        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario) 
         {
             this.NotificarValorPropriedadeAlterada("TipoPrimarioEnum", this._tipoPrimarioEnum, this._tipoPrimarioEnum = value);
         }
@@ -624,45 +635,6 @@ namespace Snebur.Comunicacao
         }
         //#endregion
     }
-    export class ResultadoSessaoUsuarioInvalida extends Snebur.Comunicacao.ResultadoChamada
-    {
-        //#region Propriedades
-    
-        private _estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario = 0;
-        private _identificadorSessaoUsuario : string = "892f55ef-8ec7-49d5-aad9-55f6fbb7bf32";
-    
-        public get EstadoSessaoUsuario(): Snebur.Dominio.EnumEstadoSessaoUsuario 
-        {
-            return this._estadoSessaoUsuario;
-        }
-
-        public set EstadoSessaoUsuario(value: Snebur.Dominio.EnumEstadoSessaoUsuario)  
-        {
-            this.NotificarValorPropriedadeAlterada("EstadoSessaoUsuario", this._estadoSessaoUsuario, this._estadoSessaoUsuario = value);
-        }
-    
-        public get IdentificadorSessaoUsuario(): string 
-        {
-            return this._identificadorSessaoUsuario;
-        }
-
-        public set IdentificadorSessaoUsuario(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("IdentificadorSessaoUsuario", this._identificadorSessaoUsuario, this._identificadorSessaoUsuario = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor( estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario ,  identificadorSessaoUsuario : string ) 
-        {
-            super();
-            this.Inicializar();
-            this._estadoSessaoUsuario = estadoSessaoUsuario;
-            this._identificadorSessaoUsuario = identificadorSessaoUsuario;
-        }
-        //#endregion
-    }
     export class ResultadoChamadaBaseDominio extends Snebur.Comunicacao.ResultadoChamada
     {
         //#region Propriedades
@@ -674,7 +646,7 @@ namespace Snebur.Comunicacao
             return this._baseDominio;
         }
 
-        public set BaseDominio(value: Snebur.Dominio.BaseDominio)  
+        public set BaseDominio(value: Snebur.Dominio.BaseDominio) 
         {
             this.NotificarValorPropriedadeAlterada("BaseDominio", this._baseDominio, this._baseDominio = value);
         }
@@ -702,7 +674,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoEnum;
         }
 
-        public set NomeTipoEnum(value: string)  
+        public set NomeTipoEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEnum", this._nomeTipoEnum, this._nomeTipoEnum = value);
         }
@@ -712,7 +684,7 @@ namespace Snebur.Comunicacao
             return this._namespaceEnum;
         }
 
-        public set NamespaceEnum(value: string)  
+        public set NamespaceEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NamespaceEnum", this._namespaceEnum, this._namespaceEnum = value);
         }
@@ -722,7 +694,7 @@ namespace Snebur.Comunicacao
             return this._valor;
         }
 
-        public set Valor(value: number)  
+        public set Valor(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
@@ -743,13 +715,14 @@ namespace Snebur.Comunicacao
     
         private _mensagemErro : string = null;
         private _erro : any = null;
+        private _statusCode : number = 0;
     
         public get MensagemErro(): string 
         {
             return this._mensagemErro;
         }
 
-        public set MensagemErro(value: string)  
+        public set MensagemErro(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
@@ -759,9 +732,19 @@ namespace Snebur.Comunicacao
             return this._erro;
         }
 
-        public set Erro(value: any)  
+        public set Erro(value: any) 
         {
             this.NotificarValorPropriedadeAlterada("Erro", this._erro, this._erro = value);
+        }
+    
+        public get StatusCode(): number 
+        {
+            return this._statusCode;
+        }
+
+        public set StatusCode(value: number) 
+        {
+            this.NotificarValorPropriedadeAlterada("StatusCode", this._statusCode, this._statusCode = value);
         }
         //#endregion
     
@@ -784,7 +767,7 @@ namespace Snebur.Comunicacao
             return this._assemblyQualifiedName;
         }
 
-        public set AssemblyQualifiedName(value: string)  
+        public set AssemblyQualifiedName(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("AssemblyQualifiedName", this._assemblyQualifiedName, this._assemblyQualifiedName = value);
         }
@@ -810,7 +793,7 @@ namespace Snebur.Comunicacao
             return this._valor;
         }
 
-        public set Valor(value: any)  
+        public set Valor(value: any) 
         {
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
@@ -820,7 +803,7 @@ namespace Snebur.Comunicacao
             return this._tipoPrimarioEnum;
         }
 
-        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario)  
+        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario) 
         {
             this.NotificarValorPropriedadeAlterada("TipoPrimarioEnum", this._tipoPrimarioEnum, this._tipoPrimarioEnum = value);
         }
@@ -843,6 +826,45 @@ namespace Snebur.Comunicacao
         {
             super(inicializador);
             this.Inicializar();
+        }
+        //#endregion
+    }
+    export class ResultadoSessaoUsuarioInvalida extends Snebur.Comunicacao.ResultadoChamada
+    {
+        //#region Propriedades
+    
+        private _estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario = 0;
+        private _identificadorSessaoUsuario : string = "00000000-0000-0000-0000-000000000000";
+    
+        public get EstadoSessaoUsuario(): Snebur.Dominio.EnumEstadoSessaoUsuario 
+        {
+            return this._estadoSessaoUsuario;
+        }
+
+        public set EstadoSessaoUsuario(value: Snebur.Dominio.EnumEstadoSessaoUsuario) 
+        {
+            this.NotificarValorPropriedadeAlterada("EstadoSessaoUsuario", this._estadoSessaoUsuario, this._estadoSessaoUsuario = value);
+        }
+    
+        public get IdentificadorSessaoUsuario(): string 
+        {
+            return this._identificadorSessaoUsuario;
+        }
+
+        public set IdentificadorSessaoUsuario(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("IdentificadorSessaoUsuario", this._identificadorSessaoUsuario, this._identificadorSessaoUsuario = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor( estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario ,  identificadorSessaoUsuario : string ) 
+        {
+            super();
+            this.Inicializar();
+            this._estadoSessaoUsuario = estadoSessaoUsuario;
+            this._identificadorSessaoUsuario = identificadorSessaoUsuario;
         }
         //#endregion
     }
@@ -870,7 +892,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoBaseDominio;
         }
 
-        public set NomeTipoBaseDominio(value: string)  
+        public set NomeTipoBaseDominio(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoBaseDominio", this._nomeTipoBaseDominio, this._nomeTipoBaseDominio = value);
         }
@@ -880,7 +902,7 @@ namespace Snebur.Comunicacao
             return this._nomeNamespaceTipoBaseDominio;
         }
 
-        public set NomeNamespaceTipoBaseDominio(value: string)  
+        public set NomeNamespaceTipoBaseDominio(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeNamespaceTipoBaseDominio", this._nomeNamespaceTipoBaseDominio, this._nomeNamespaceTipoBaseDominio = value);
         }
@@ -890,7 +912,7 @@ namespace Snebur.Comunicacao
             return this._basesDominio;
         }
 
-        public set BasesDominio(value: Array<Snebur.Dominio.BaseDominio>)  
+        public set BasesDominio(value: Array<Snebur.Dominio.BaseDominio>) 
         {
             this.NotificarValorPropriedadeAlterada("BasesDominio", this._basesDominio, this._basesDominio = value);
         }
@@ -918,7 +940,7 @@ namespace Snebur.Comunicacao
             return this._nomeTipoEnum;
         }
 
-        public set NomeTipoEnum(value: string)  
+        public set NomeTipoEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEnum", this._nomeTipoEnum, this._nomeTipoEnum = value);
         }
@@ -928,7 +950,7 @@ namespace Snebur.Comunicacao
             return this._namespaceEnum;
         }
 
-        public set NamespaceEnum(value: string)  
+        public set NamespaceEnum(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NamespaceEnum", this._namespaceEnum, this._namespaceEnum = value);
         }
@@ -938,7 +960,7 @@ namespace Snebur.Comunicacao
             return this._valores;
         }
 
-        public set Valores(value: Array<number>)  
+        public set Valores(value: Array<number>) 
         {
             this.NotificarValorPropriedadeAlterada("Valores", this._valores, this._valores = value);
         }
@@ -965,7 +987,7 @@ namespace Snebur.Comunicacao
             return this._valores;
         }
 
-        public set Valores(value: Array<any>)  
+        public set Valores(value: Array<any>) 
         {
             this.NotificarValorPropriedadeAlterada("Valores", this._valores, this._valores = value);
         }
@@ -975,7 +997,7 @@ namespace Snebur.Comunicacao
             return this._tipoPrimarioEnum;
         }
 
-        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario)  
+        public set TipoPrimarioEnum(value: Snebur.Reflexao.EnumTipoPrimario) 
         {
             this.NotificarValorPropriedadeAlterada("TipoPrimarioEnum", this._tipoPrimarioEnum, this._tipoPrimarioEnum = value);
         }
@@ -1002,7 +1024,7 @@ namespace Snebur.Comunicacao
             return this._namespaceGlobalizacao;
         }
 
-        public set NamespaceGlobalizacao(value: string)  
+        public set NamespaceGlobalizacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NamespaceGlobalizacao", this._namespaceGlobalizacao, this._namespaceGlobalizacao = value);
         }
@@ -1012,7 +1034,7 @@ namespace Snebur.Comunicacao
             return this._jsonBase54;
         }
 
-        public set JsonBase54(value: string)  
+        public set JsonBase54(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("JsonBase54", this._jsonBase54, this._jsonBase54 = value);
         }
@@ -1021,43 +1043,6 @@ namespace Snebur.Comunicacao
         //#region Construtor
     
         public constructor(inicializador?: Partial<DominioGlobalizacao>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class TelaGlobalizacao extends Snebur.Dominio.BaseViewModel
-    {
-        //#region Propriedades
-    
-        private _namespaceGlobalizacao : string = null;
-        private _jsonBase54 : string = null;
-    
-        public get NamespaceGlobalizacao(): string 
-        {
-            return this._namespaceGlobalizacao;
-        }
-
-        public set NamespaceGlobalizacao(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("NamespaceGlobalizacao", this._namespaceGlobalizacao, this._namespaceGlobalizacao = value);
-        }
-    
-        public get JsonBase54(): string 
-        {
-            return this._jsonBase54;
-        }
-
-        public set JsonBase54(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("JsonBase54", this._jsonBase54, this._jsonBase54 = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<TelaGlobalizacao>) 
         {
             super(inicializador);
             this.Inicializar();
@@ -1078,7 +1063,7 @@ namespace Snebur.Comunicacao
             return this._jsonIdiomaBase64;
         }
 
-        public set JsonIdiomaBase64(value: string)  
+        public set JsonIdiomaBase64(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("JsonIdiomaBase64", this._jsonIdiomaBase64, this._jsonIdiomaBase64 = value);
         }
@@ -1088,7 +1073,7 @@ namespace Snebur.Comunicacao
             return this._jsonCulturaBase64;
         }
 
-        public set JsonCulturaBase64(value: string)  
+        public set JsonCulturaBase64(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("JsonCulturaBase64", this._jsonCulturaBase64, this._jsonCulturaBase64 = value);
         }
@@ -1098,7 +1083,7 @@ namespace Snebur.Comunicacao
             return this._dominios;
         }
 
-        public set Dominios(value: Array<Snebur.Comunicacao.DominioGlobalizacao>)  
+        public set Dominios(value: Array<Snebur.Comunicacao.DominioGlobalizacao>) 
         {
             this.NotificarValorPropriedadeAlterada("Dominios", this._dominios, this._dominios = value);
         }
@@ -1108,7 +1093,7 @@ namespace Snebur.Comunicacao
             return this._telas;
         }
 
-        public set Telas(value: Array<Snebur.Comunicacao.TelaGlobalizacao>)  
+        public set Telas(value: Array<Snebur.Comunicacao.TelaGlobalizacao>) 
         {
             this.NotificarValorPropriedadeAlterada("Telas", this._telas, this._telas = value);
         }
@@ -1117,6 +1102,43 @@ namespace Snebur.Comunicacao
         //#region Construtor
     
         public constructor(inicializador?: Partial<ResultadoGlobalizacao>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class TelaGlobalizacao extends Snebur.Dominio.BaseViewModel
+    {
+        //#region Propriedades
+    
+        private _namespaceGlobalizacao : string = null;
+        private _jsonBase54 : string = null;
+    
+        public get NamespaceGlobalizacao(): string 
+        {
+            return this._namespaceGlobalizacao;
+        }
+
+        public set NamespaceGlobalizacao(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("NamespaceGlobalizacao", this._namespaceGlobalizacao, this._namespaceGlobalizacao = value);
+        }
+    
+        public get JsonBase54(): string 
+        {
+            return this._jsonBase54;
+        }
+
+        public set JsonBase54(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("JsonBase54", this._jsonBase54, this._jsonBase54 = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<TelaGlobalizacao>) 
         {
             super(inicializador);
             this.Inicializar();
@@ -1140,7 +1162,7 @@ namespace Snebur.Comunicacao.Mensageiro
             return this._remetente;
         }
 
-        public set Remetente(value: Snebur.Dominio.BaseDominio)  
+        public set Remetente(value: Snebur.Dominio.BaseDominio) 
         {
             this.NotificarValorPropriedadeAlterada("Remetente", this._remetente, this._remetente = value);
         }
@@ -1150,7 +1172,7 @@ namespace Snebur.Comunicacao.Mensageiro
             return this._destinatario;
         }
 
-        public set Destinatario(value: Snebur.Dominio.BaseDominio)  
+        public set Destinatario(value: Snebur.Dominio.BaseDominio) 
         {
             this.NotificarValorPropriedadeAlterada("Destinatario", this._destinatario, this._destinatario = value);
         }
@@ -1160,7 +1182,7 @@ namespace Snebur.Comunicacao.Mensageiro
             return this._nomeRecurso;
         }
 
-        public set NomeRecurso(value: string)  
+        public set NomeRecurso(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeRecurso", this._nomeRecurso, this._nomeRecurso = value);
         }
@@ -1170,7 +1192,7 @@ namespace Snebur.Comunicacao.Mensageiro
             return this._valorParametro;
         }
 
-        public set ValorParametro(value: Snebur.Dominio.BaseDominio)  
+        public set ValorParametro(value: Snebur.Dominio.BaseDominio) 
         {
             this.NotificarValorPropriedadeAlterada("ValorParametro", this._valorParametro, this._valorParametro = value);
         }

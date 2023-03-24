@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : quinta-feira, 15 de dezembro de 2022
-//Hora : 15:58:01
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 17:29:32
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -14,6 +14,8 @@ namespace Snebur.Comunicacao
     }
     export interface IServicoUsuario extends Snebur.Comunicacao.IBaseServico 
     {
+        IsExisteInformacaoIpAsync() : Promise<boolean>;
+        AtualizarInformacaoIpAsync(ipInformacao : Snebur.Dominio.DadosIPInformacao) : Promise<void>;
         ExisteIdentificadorUsuarioAsync(identificadorUsuario : string) : Promise<Snebur.Comunicacao.ResultadoExisteIdentificadoUsuario>;
         ValidarCredencialAsync(credencial : Snebur.Seguranca.CredencialUsuario) : Promise<Snebur.Dominio.EnumResultadoValidacaoCredencial>;
         SessaoUsuarioAtivaAsync(credencial : Snebur.Seguranca.CredencialUsuario,identificadorSessaoUsuario : string) : Promise<boolean>;
@@ -50,18 +52,76 @@ namespace Snebur.Dominio
         MensagemErro : string;
         NumeroTentativa : number;
     }
+    export interface IAlteracaoPropriedade extends Snebur.Dominio.IAtividadeUsuario,Snebur.Dominio.IEntidade 
+    {
+        DataHoraFimAlteracao? : Date;
+    }
     export interface IAlteracaoPropriedadeGenerica extends Snebur.Dominio.IAtividadeUsuario,Snebur.Dominio.IEntidade 
     {
         IdEntidade : number;
         NomeTipoEntidade : string;
         NomePropriedade : string;
-        TipoPrimario : Snebur.Reflexao.EnumTipoPrimario;
+        TipoPrimario? : Snebur.Reflexao.EnumTipoPrimario | null;
+        IsTipoComplexo : boolean;
         ValorPropriedadeAntigo : string;
         ValorPropriedadeAlterada : string;
         DataHoraFimAlteracao? : Date;
     }
+    export interface IAtivo extends Snebur.Dominio.IEntidade 
+    {
+        IsAtivo : boolean;
+    }
+    export interface ICongelado extends Snebur.Dominio.IEntidade 
+    {
+        IsCongelado : boolean;
+    }
+    export interface IDeletado extends Snebur.Dominio.IEntidade 
+    {
+        IsDeletado : boolean;
+        DataHoraDeletado? : Date;
+        SessaoUsuarioDeletado_Id? : number;
+        SessaoUsuarioDeletado : Snebur.Dominio.ISessaoUsuario;
+    }
+    export interface IEntidade
+    {
+        Id : number;
+        readonly __NomeTipoEntidade : string;
+        readonly __IdentificadorEntidade : string;
+        readonly __PropriedadesAlteradas : DicionarioSimples<Snebur.Dominio.PropriedadeAlterada>;
+    }
+    export interface IEntidadeIdentificadorProprietario extends Snebur.Dominio.IEntidade,Snebur.Dominio.IIdentificadorProprietario 
+    {
+    }
+    export interface IIdentificadorProprietario
+    {
+        IdentificadorProprietario : string;
+    }
     export interface INormalizarIdentificadorProprietario
     {
+    }
+    export interface IOrdenacao
+    {
+        Ordenacao? : number;
+    }
+    export interface IOrdenacaoEntidade extends Snebur.Dominio.IEntidade,Snebur.Dominio.IOrdenacao 
+    {
+    }
+    export interface ISelecionado
+    {
+        IsSelecionado : boolean;
+    }
+    export interface IArrastar
+    {
+        Posicao : Snebur.Dominio.Posicao;
+    }
+    export interface ICaminhoTipo
+    {
+        readonly __CaminhoTipo : string;
+    }
+    export interface ICredencial
+    {
+        IdentificadorUsuario : string;
+        Senha : string;
     }
     export interface ICredencialUsuario extends Snebur.Dominio.ICredencial 
     {
@@ -72,40 +132,9 @@ namespace Snebur.Dominio
     {
         readonly Identificador : string;
     }
-    export interface IPrecoTempo
+    export interface IIdentificadorAplicacao
     {
-        Prazo : number;
-        TipoPrazo : Snebur.Dominio.EnumTipoPrazo;
-    }
-    export interface IArea extends Snebur.Dominio.IMargem,Snebur.Dominio.IDimensao 
-    {
-        Margem? : Snebur.Dominio.Margem;
-        Dimensao? : Snebur.Dominio.Dimensao;
-        CalcularRegiao?(dimensaoRecipiente : Snebur.Dominio.Dimensao) : Snebur.Dominio.Regiao;
-    }
-    export interface IRegiao extends Snebur.Dominio.IPosicao,Snebur.Dominio.IDimensao 
-    {
-        readonly Posicao? : Snebur.Dominio.Posicao;
-        readonly Dimensao? : Snebur.Dominio.Dimensao;
-    }
-    export interface IFiltroImagem
-    {
-        Exposicao? : number;
-        Magenta? : number;
-        Ciano? : number;
-        Amarelo? : number;
-        Contraste? : number;
-        Brilho? : number;
-        Sepia? : number;
-        Saturacao? : number;
-        PretoBranco? : number;
-        Inverter? : number;
-        Matriz? : number;
-        Desfoque? : number;
-    }
-    export interface ICongelado extends Snebur.Dominio.IEntidade 
-    {
-        IsCongelado : boolean;
+        IdentificadorAplicacao : string;
     }
     export interface IIPInformacao
     {
@@ -132,149 +161,6 @@ namespace Snebur.Dominio
         AntigoValor : any;
         NovoValor : any;
     }
-    export interface IDocumento extends Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
-    {
-    }
-    export interface IArquivoDeletada
-    {
-        Imagem_Id : number;
-        DataHoraCadastro : Date;
-        DataHoraArquivoDeletado : Date;
-    }
-    export interface IMedia extends Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
-    {
-    }
-    export interface IPerfilIcc
-    {
-        Nome : string;
-        Checksum : string;
-        DataHoraCadastro? : Date;
-        TotalBytes : number;
-    }
-    export interface IEntidadeSeguranca extends Snebur.Dominio.IEntidade 
-    {
-    }
-    export interface ILogServicoArquivo extends Snebur.Dominio.IEntidade 
-    {
-        EstadoServicoArquivo : Snebur.Dominio.EnumEstadoServicoArquivo;
-        IndetificadorLog : string;
-        SessaoUsuario : Snebur.Dominio.ISessaoUsuario;
-        DataHoraInicio? : Date;
-        DataHoraUltimaAtividade? : Date;
-        DataHoraFim? : Date;
-        TotalBytesEnviado : number;
-        TotalArquivosLocal : number;
-        TotalArquivosEnviado : number;
-        ProgressoEnvioArquivo : number;
-        VelocidadeEnvio : number;
-    }
-    export interface IInformacaoSessao extends Snebur.Dominio.IIdentificadorAplicacao 
-    {
-        Cultura : string;
-        Idioma : string;
-        Plataforma : Snebur.Dominio.EnumPlataforma;
-        TipoAplicacao : Snebur.Dominio.EnumTipoAplicacao;
-        Resolucao : Snebur.Dominio.Dimensao;
-        UserAgent : string;
-        Navegador : Snebur.Dominio.Navegador;
-        SistemaOperacional : Snebur.Dominio.SistemaOperacional;
-        VersaoAplicacao : string;
-        NomeComputador : string;
-    }
-    export interface IBorda
-    {
-        Cor : Snebur.Dominio.Cor;
-        CorRgba : string;
-        IsInterna : boolean;
-        Afastamento : number;
-        Espessura : number;
-        Arredondamento : number;
-    }
-    export interface IDimensao
-    {
-        Largura : number;
-        Altura : number;
-    }
-    export interface ICor
-    {
-        readonly Red : number;
-        readonly Green : number;
-        readonly Blue : number;
-        readonly AlphaDecimal : number;
-        Rgba : string;
-    }
-    export interface IMargem
-    {
-        Esquerda? : number;
-        Superior? : number;
-        Direita? : number;
-        Inferior? : number;
-    }
-    export interface IPosicao
-    {
-        X : number;
-        Y : number;
-    }
-    export interface ITipoComplexo
-    {
-    }
-    export interface IAlteracaoPropriedade extends Snebur.Dominio.IAtividadeUsuario,Snebur.Dominio.IEntidade 
-    {
-        DataHoraFimAlteracao? : Date;
-    }
-    export interface IAtivo extends Snebur.Dominio.IEntidade 
-    {
-        IsAtivo : boolean;
-    }
-    export interface IDeletado extends Snebur.Dominio.IEntidade 
-    {
-        IsDeletado : boolean;
-        DataHoraDeletado? : Date;
-        SessaoUsuarioDeletado_Id? : number;
-        SessaoUsuarioDeletado : Snebur.Dominio.ISessaoUsuario;
-    }
-    export interface IEntidade
-    {
-        Id : number;
-        readonly __NomeTipoEntidade : string;
-        readonly __IdentificadorEntidade : string;
-        readonly __PropriedadesAlteradas : DicionarioSimples<Snebur.Dominio.PropriedadeAlterada>;
-    }
-    export interface IEntidadeIdentificadorProprietario extends Snebur.Dominio.IEntidade,Snebur.Dominio.IIdentificadorProprietario 
-    {
-    }
-    export interface IIdentificadorProprietario
-    {
-        IdentificadorProprietario : string;
-    }
-    export interface IOrdenacao
-    {
-        Ordenacao? : number;
-    }
-    export interface IOrdenacaoEntidade extends Snebur.Dominio.IEntidade,Snebur.Dominio.IOrdenacao 
-    {
-    }
-    export interface ISelecionado
-    {
-        IsSelecionado : boolean;
-    }
-    export interface IArrastar
-    {
-        Posicao : Snebur.Dominio.Posicao;
-    }
-    export interface ICaminhoTipo
-    {
-        readonly __CaminhoTipo : string;
-    }
-    export interface ICredencial
-    {
-        IdentificadorUsuario : string;
-        Senha : string;
-    }
-    export interface IIdentificadorAplicacao
-    {
-        IdentificadorAplicacao : string;
-    }
     export interface IArquivo extends Snebur.Dominio.IEntidade 
     {
         NomeArquivo : string;
@@ -293,6 +179,9 @@ namespace Snebur.Dominio
         MimeType : Snebur.Dominio.EnumMimeType;
     }
     export interface IAudio extends Snebur.Dominio.IMedia,Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
+    {
+    }
+    export interface IDocumento extends Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
     {
     }
     export interface IImagem extends Snebur.Dominio.IMedia,Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
@@ -314,7 +203,40 @@ namespace Snebur.Dominio
         DimensaoImagemImpressao : Snebur.Dominio.Dimensao;
         FormatoImagem : Snebur.Dominio.EnumFormatoImagem;
     }
+    export interface IArquivoDeletada
+    {
+        Imagem_Id : number;
+        DataHoraCadastro : Date;
+        DataHoraArquivoDeletado : Date;
+    }
+    export interface IMedia extends Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
+    {
+    }
+    export interface IPerfilIcc
+    {
+        Nome : string;
+        Checksum : string;
+        DataHoraCadastro? : Date;
+        TotalBytes : number;
+    }
     export interface IVideo extends Snebur.Dominio.IMedia,Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
+    {
+    }
+    export interface ILogServicoArquivo extends Snebur.Dominio.IEntidade 
+    {
+        EstadoServicoArquivo : Snebur.Dominio.EnumEstadoServicoArquivo;
+        IndetificadorLog : string;
+        SessaoUsuario : Snebur.Dominio.ISessaoUsuario;
+        DataHoraInicio? : Date;
+        DataHoraUltimaAtividade? : Date;
+        DataHoraFim? : Date;
+        TotalBytesEnviado : number;
+        TotalArquivosLocal : number;
+        TotalArquivosEnviado : number;
+        ProgressoEnvioArquivo : number;
+        VelocidadeEnvio : number;
+    }
+    export interface IEntidadeSeguranca extends Snebur.Dominio.IEntidade 
     {
     }
     export interface IAtividadeUsuario extends Snebur.Dominio.IEntidade 
@@ -329,6 +251,19 @@ namespace Snebur.Dominio
     export interface IIdentificadorSessaoUsuario
     {
         IdentificadorSessaoUsuario : string;
+    }
+    export interface IInformacaoSessao extends Snebur.Dominio.IIdentificadorAplicacao 
+    {
+        Cultura : string;
+        Idioma : string;
+        Plataforma : Snebur.Dominio.EnumPlataforma;
+        TipoAplicacao : Snebur.Dominio.EnumTipoAplicacao;
+        Resolucao : Snebur.Dominio.Dimensao;
+        UserAgent : string;
+        Navegador : Snebur.Dominio.Navegador;
+        SistemaOperacional : Snebur.Dominio.SistemaOperacional;
+        VersaoAplicacao : string;
+        NomeComputador : string;
     }
     export interface ISessaoUsuario extends Snebur.Dominio.IEntidade,Snebur.Dominio.IInformacaoSessao,Snebur.Dominio.IIdentificadorAplicacao,Snebur.Dominio.IIdentificadorSessaoUsuario,Snebur.Dominio.IIdentificadorProprietario 
     {
@@ -353,19 +288,87 @@ namespace Snebur.Dominio
         IsAlterarSenhaProximoAcesso : boolean;
         readonly Estado : Snebur.Dominio.EnumEstadoUsuario;
     }
+    export interface IFiltroImagem
+    {
+        Exposicao? : number;
+        Magenta? : number;
+        Ciano? : number;
+        Amarelo? : number;
+        Contraste? : number;
+        Brilho? : number;
+        Sepia? : number;
+        Saturacao? : number;
+        PretoBranco? : number;
+        Inverter? : number;
+        Matriz? : number;
+        Desfoque? : number;
+    }
+    export interface IArea extends Snebur.Dominio.IMargem,Snebur.Dominio.IDimensao 
+    {
+        Margem? : Snebur.Dominio.Margem;
+        Dimensao? : Snebur.Dominio.Dimensao;
+        CalcularRegiao?(dimensaoRecipiente : Snebur.Dominio.Dimensao) : Snebur.Dominio.Regiao;
+    }
+    export interface IBorda
+    {
+        Cor : Snebur.Dominio.Cor;
+        CorRgba : string;
+        IsInterna : boolean;
+        Afastamento : number;
+        Espessura : number;
+        Arredondamento : number;
+    }
+    export interface ICor
+    {
+        readonly Red : number;
+        readonly Green : number;
+        readonly Blue : number;
+        readonly AlphaDecimal : number;
+        Rgba : string;
+    }
+    export interface IDimensao
+    {
+        Largura : number;
+        Altura : number;
+    }
+    export interface IMargem
+    {
+        Esquerda? : number;
+        Superior? : number;
+        Direita? : number;
+        Inferior? : number;
+    }
+    export interface IPosicao
+    {
+        X : number;
+        Y : number;
+    }
+    export interface IPrecoTempo
+    {
+        Prazo : number;
+        TipoPrazo : Snebur.Dominio.EnumTipoPrazo;
+    }
+    export interface IRegiao extends Snebur.Dominio.IPosicao,Snebur.Dominio.IDimensao 
+    {
+        readonly Posicao? : Snebur.Dominio.Posicao;
+        readonly Dimensao? : Snebur.Dominio.Dimensao;
+    }
+    export interface ITipoComplexo
+    {
+    }
 }
 namespace Snebur.Dominio.Atributos
 {
+    export interface IChaveEstrangeiraAttribute
+    {
+        readonly NomePropriedade : string;
+    }
     export interface IIgnorarAlerta
     {
         readonly IgnorarAlerta : boolean;
     }
     export interface IValidacaoCondicional
     {
-    }
-    export interface IChaveEstrangeiraAttribute
-    {
-        readonly NomePropriedade : string;
     }
 }
 namespace Snebur.IO

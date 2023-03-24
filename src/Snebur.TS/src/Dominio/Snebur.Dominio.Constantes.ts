@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : quinta-feira, 15 de dezembro de 2022
-//Hora : 15:58:01
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 17:29:32
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -25,6 +25,7 @@ namespace Snebur
         public static readonly TOKEN : string = "Token";
         public static readonly MANIPULADOR : string = "Manipulador";
         public static readonly NOME_APLICACAO_WEB : string = "NomeArquivoWeb";
+        public static readonly IDENTIFICADOR_SESSAO_USUARIO : string = "IdentificadorSessaoUsuario";
     }
 }
 namespace Snebur.Imagem

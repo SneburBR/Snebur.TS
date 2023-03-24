@@ -8,9 +8,14 @@
         //readonly #EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
         //static readonly #__EventosProtegidos = [ObjetoControladorPropriedade.__NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO];
 
+
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
-        private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = false;
+
+        
+        private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = true;
+        /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
+
         private static readonly __EventosProtegidos = [ObjetoControladorPropriedade.__NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO];
 
         private get IsEntidadeClonada(): boolean

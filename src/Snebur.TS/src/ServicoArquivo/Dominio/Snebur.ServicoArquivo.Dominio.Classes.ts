@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 29 de julho de 2022
-//Hora : 11:26:21
+//Data : sexta-feira, 24 de março de 2023
+//Hora : 14:51:17
 //@Namespace: Snebur.ServicoArquivo
 //@PrioridadeDominio: 2
 //@Globalizar: False
@@ -22,7 +22,7 @@ namespace Snebur.ServicoArquivo
             return this._id;
         }
 
-        public set Id(value: number)  
+        public set Id(value: number) 
         {
             this.NotificarValorPropriedadeAlterada("Id", this._id, this._id = value);
         }
@@ -32,7 +32,7 @@ namespace Snebur.ServicoArquivo
             return this._isSucesso;
         }
 
-        public set IsSucesso(value: boolean)  
+        public set IsSucesso(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
@@ -42,7 +42,7 @@ namespace Snebur.ServicoArquivo
             return this._mensagemErro;
         }
 
-        public set MensagemErro(value: string)  
+        public set MensagemErro(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
@@ -52,7 +52,7 @@ namespace Snebur.ServicoArquivo
             return this._tipoErroServicoArquivo;
         }
 
-        public set TipoErroServicoArquivo(value: Snebur.ServicoArquivo.EnumTipoErroServicoArquivo)  
+        public set TipoErroServicoArquivo(value: Snebur.ServicoArquivo.EnumTipoErroServicoArquivo) 
         {
             this.NotificarValorPropriedadeAlterada("TipoErroServicoArquivo", this._tipoErroServicoArquivo, this._tipoErroServicoArquivo = value);
         }
