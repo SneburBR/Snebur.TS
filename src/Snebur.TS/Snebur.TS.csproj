@@ -451,6 +451,7 @@
     <TypeScriptCompile Include="src\Utilidade\CriptografiaUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\DataFeriadoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\DataHoraUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DebugUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\DescontoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\DesenvovedorUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\EmailUtil.ts" />
