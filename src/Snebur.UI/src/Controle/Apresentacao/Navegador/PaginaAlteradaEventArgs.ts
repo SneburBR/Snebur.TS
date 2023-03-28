@@ -17,9 +17,15 @@ namespace Snebur.UI
 
     export class AntesNavegarEventArgs extends EventArgs
     {
+        private _isCancelarNavegacao: boolean = false;
         public readonly PaginaAtual: Pagina;
         public readonly ProximaPagina: IPaginaConstrutor | Pagina | typeof Pagina;
         public readonly Parametros: DicionarioSimples;
+
+        public get IsCancelarNavegacao(): boolean
+        {
+            return this._isCancelarNavegacao;
+        }
 
         public get Pagina(): Pagina
         {
@@ -29,12 +35,18 @@ namespace Snebur.UI
             }
             return this.PaginaAtual;
         }
+
         public constructor(paginaAtual: Pagina, refProximaPagina: IPaginaConstrutor | Pagina | typeof Pagina, parametros: DicionarioSimples)
         {
             super();
             this.PaginaAtual = paginaAtual;
             this.ProximaPagina = refProximaPagina;
             this.Parametros = parametros;
+        }
+
+        public CancelarNavegacao()
+        {
+            this._isCancelarNavegacao = true;
         }
     }
 

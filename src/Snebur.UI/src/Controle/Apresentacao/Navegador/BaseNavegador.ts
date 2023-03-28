@@ -5,7 +5,7 @@
         private _paginaAtual: Pagina;
         private _isManterCache: boolean;
 
-        public abstract readonly  IdentificadorNavegador: string;
+        public abstract readonly IdentificadorNavegador: string;
         /*public IsNavegadorPrincipal: boolean;*/
         public IsPropagarBindDataSource: boolean = true;
 
@@ -40,7 +40,7 @@
         }
 
         public abstract readonly CaminhoRota: string;
-        public abstract readonly IsHistoricoAtivo: boolean  ;
+        public abstract readonly IsHistoricoAtivo: boolean;
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement) 
         {
@@ -52,7 +52,7 @@
             super.Inicializar();
 
             this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.PropagarBindDataSource, true));
-            
+
             /*this.IsNavegadorPrincipal = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.NavegadorPrincipal, false));*/
 
             this._isManterCache = this.RetornarValorAtributoBoolean(AtributosHtml.IsManterCache, null);
@@ -187,11 +187,13 @@
         {
 
             const parametros = this.RetornarParametros(expressaoParametrosOuChave, valor);
-            this.Parametros = parametros;
+            const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
+            if (argsAntesNavegar.IsCancelarNavegacao)
+            {
+                return;
+            }
             const paginaAtual = this.PaginaAtual;
-
-            this.NotificarEventoAntesNavegar(refPagina, parametros);
-
+            this.Parametros = parametros;
             const novaPagina = this.RetornarPagina(refPagina, parametros);
 
             if (!this.ControlesFilho.Contains(novaPagina))
@@ -297,6 +299,12 @@
             isSalvarHistoricoVoltar: boolean = true,
             isSalvarHistoricoNavegador: boolean = true): void
         {
+            const parametros = this.RetornarParametros(expressoesParametrosOuChave, valor);
+            const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
+            if (argsAntesNavegar.IsCancelarNavegacao)
+            {
+                return;
+            }
 
             if (this.IsMantarCache &&
                 PaginaUtil.IsMesmoTipo(this.PaginaAtual, refPagina, expressoesParametrosOuChave))
@@ -304,9 +312,7 @@
                 return;
             }
 
-            const parametros = this.RetornarParametros(expressoesParametrosOuChave, valor);
             this.Parametros = parametros;
-            this.NotificarEventoAntesNavegar(refPagina, parametros);
 
             const paginaAtual = this.PaginaAtual;
             if (paginaAtual instanceof Pagina)
@@ -648,9 +654,11 @@
 
         //#region EventoPaginaAltera
 
-        private NotificarEventoAntesNavegar(refProximaPagina: IPaginaConstrutor | Pagina | typeof Pagina, parametros: DicionarioSimples<any>): void
+        private NotificarEventoAntesNavegar(refProximaPagina: IPaginaConstrutor | Pagina | typeof Pagina, parametros: DicionarioSimples<any>): AntesNavegarEventArgs
         {
-            this.EventoAntesNavegar.Notificar(this, new AntesNavegarEventArgs(this.PaginaAtual, refProximaPagina, parametros));
+            const args = new AntesNavegarEventArgs(this.PaginaAtual, refProximaPagina, parametros);
+            this.EventoAntesNavegar.Notificar(this, args);
+            return args;
         }
 
         public NotificarEventoPaginaAlterada(): void

@@ -121,6 +121,7 @@
         //public static readonly NomeElemento = new AtributoHtml("sn-nome-elemento", String);
         public static readonly Construtor = new AtributoHtml("sn-construtor", String);
         public static readonly Tipo = new AtributoHtml("sn-tipo", String);
+        public static readonly TipoItem = new AtributoHtml("sn-tipo-item", String);
         public static readonly Titulo = new AtributoHtml("sn-titulo", String);
         public static readonly Legenda = new AtributoHtml("sn-legenda", String);
         public static readonly Mensagem = new AtributoHtml("sn-mensagem", String);
@@ -298,6 +299,7 @@
         public static readonly BindFormulario = new AtributoHtml("sn-bind-form", String);
         public static readonly BindDataSource = new AtributoHtml("sn-bind-data-source", String);
         public static readonly BindLista = new AtributoHtml("sn-bind-lista", String);
+        /*public static readonly BindItems = new AtributoHtml("sn-bind-itens", String);*/
         public static readonly BindImagem = new AtributoHtml("sn-bind-imagem", String);
         public static readonly BindProgresso = new AtributoHtml("sn-bind-progresso", String);
         public static readonly BindItensSelecionado = new AtributoHtml("sn-bind-itens-selecionado", String);

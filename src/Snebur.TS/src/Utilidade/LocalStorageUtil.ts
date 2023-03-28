@@ -34,5 +34,31 @@ namespace Snebur.Utilidade
             }
             return null;
         }
+
+        public static LogTotalBytesUsados()
+        {
+            let total = 0;
+            for (let i = 0; i < localStorage.length; i++)
+            {
+                const chave = localStorage.key(i);
+                const conteudo = localStorage.getItem(chave);
+                const bytes = conteudo?.length ?? 0;
+                console.warn(`LocalStorage : ${chave} - ${bytes} `);
+                total += bytes;
+            }
+            console.warn(`LocalStorage TOTAL: ${total} `);
+
+        }
+        public static RetornarTotalBytesUsados(): number
+        {
+            let total = 0;
+            for (let i = 0; i < localStorage.length; i++)
+            {
+                const chave = localStorage.key(i);
+                const conteudo = localStorage.getItem(chave);
+                total += conteudo?.length ?? 0;
+            }
+            return total;
+        }
     }
 }

@@ -62,7 +62,7 @@
                 if (constrolesNaoSuportado.Count > 0)
                 {
                     const descricao = String.Join(", ", constrolesNaoSuportado.Select(x => x.GetType().Nome));
-                    throw new Error(`Os componentes ${descricao} não são suportado pelo PainelHorizontal pagina ${this.ControleApresentacao.Nome}`);
+                    console.error(`Os componentes ${descricao} não são suportado pelo PainelHorizontal pagina ${this.ControleApresentacao.Nome}`);
                 }
             }
         }

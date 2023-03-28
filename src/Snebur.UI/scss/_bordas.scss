@@ -3,8 +3,7 @@
 @import "_funcoes.scss";
 
 
-%borda-padrao { 
-
+%borda-padrao {
 }
 
 %borda-cor-padrao {
@@ -24,7 +23,7 @@
         @error "o destino da borda '" + $destino +"'  não é suportado";
     }
 }
- 
+
 
 .sn-borda {
     @include borda($largura-borda-padrao, $cor-borda-padrao, tudo);
@@ -88,4 +87,16 @@
     border-width: 0;
     border-style: none;
     border-color: transparent;
+}
+
+.sn-border-radius-5 {
+    > conteudo-apresentacao {
+        border-radius: 5px;
+    }
+}
+
+.sn-border-radius-10 {
+    > conteudo-apresentacao {
+        border-radius: 10px;
+    }
 }

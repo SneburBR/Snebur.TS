@@ -100,7 +100,7 @@
         protected override ElementoInput_Click(e: Event)
         {
             super.ElementoInput_Click(e);
-            this.IsSelecionado = !this.ElementoInput.checked;
+            this.IsSelecionado = this.ElementoInput.checked;
         }
 
         protected override AtualizarRotulo(): void
