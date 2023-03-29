@@ -193,7 +193,7 @@
 
         private NotificarErroTimeout(): void
         {
-            const mensagem = `O tempo limite foi atingido ${u.FormatacaoUtil.FormatarDecimal(this.Timeout.TotalSeconds.ToString())} segundos ao executar a tarefa`;
+            const mensagem = `O tempo limite foi atingido ${u.FormatacaoUtil.FormatarDecimal(this.Timeout.TotalSeconds)} segundos ao executar a tarefa`;
             const erroTimeout = new ErroTimeout(mensagem, this);
             this.FinalizarTarefa(erroTimeout);
         }

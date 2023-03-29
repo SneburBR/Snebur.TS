@@ -10,7 +10,7 @@
             return zip.generate({ type: "uint8array" }) as Uint8Array;
         }
 
-        public static DecompactarTexto(bytes: ArrayBuffer, nomeArquivo: string): string
+        public static DecompactarTexto(bytes: ArrayBuffer | Uint8Array, nomeArquivo: string): string
         {
             const zip = new JSZip();
             zip.load(bytes);

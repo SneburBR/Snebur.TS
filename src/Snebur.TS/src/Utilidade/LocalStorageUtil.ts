@@ -43,12 +43,13 @@ namespace Snebur.Utilidade
                 const chave = localStorage.key(i);
                 const conteudo = localStorage.getItem(chave);
                 const bytes = conteudo?.length ?? 0;
-                console.warn(`LocalStorage : ${chave} - ${bytes} `);
+                console.warn(`LocalStorage : ${chave} - ${FormatacaoUtil.FormatarBytes(bytes)} `);
                 total += bytes;
             }
-            console.warn(`LocalStorage TOTAL: ${total} `);
+            console.warn(`LocalStorage TOTAL: ${FormatacaoUtil.FormatarBytes(total)} `);
 
         }
+
         public static RetornarTotalBytesUsados(): number
         {
             let total = 0;
@@ -59,6 +60,15 @@ namespace Snebur.Utilidade
                 total += conteudo?.length ?? 0;
             }
             return total;
+        }
+
+        public static ClearAll()
+        {
+            for (let i = 0; i < localStorage.length; i++)
+            {
+                const chave = localStorage.key(i);
+                localStorage.removeItem(chave);
+            }
         }
     }
 }

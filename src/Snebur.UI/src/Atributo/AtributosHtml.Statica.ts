@@ -200,7 +200,8 @@
         //public static AnimacaoOrdenacaoSimples = new AtributoHtml("sn-animacao-ordenacao-simples", Boolean);
         public static readonly SentidoOrdenacao = new AtributoHtml("sn-sentido-ordenacao", Snebur.Dominio.EnumSentidoOrdenacao);
         public static readonly EntidadeOrdenacao = new AtributoHtml("sn-entidade-ordenacao", String);
-        public static readonly IsAlvoOrdenacao = new AtributoHtml("sn-is-alvo-ordenacao", String);
+        public static readonly IsAlvoOrdenacao = new AtributoHtml("sn-is-alvo-ordenacao", Boolean);
+        public static readonly IsElementoPrincipalAlvoOrdenacao = new AtributoHtml("sn-is-elemento-principal-alvo-ordenacao", Boolean);
 
         public static readonly CssClassElementoClonado = new AtributoHtml("sn-css-class-elemento-clonado", String);
         public static readonly FuncaoNormalizarElementoClonado = new AtributoHtml("sn-funcao-normalizar-elemento-clonado", String);

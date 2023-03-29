@@ -110,12 +110,8 @@ namespace Snebur.UI
             this.PageYInicial = e.pageY;
             document.documentElement.style.cursor = "grab";
             e.preventDefault();
-
-
         }
-
-
-
+         
         private ElementoClone_Window_MouseMove(e: MouseEvent): void
         {
             if (this.ElementoClone instanceof HTMLElement)
@@ -657,6 +653,7 @@ namespace Snebur.UI
             elementoClone.innerHTML = elementoOrigem.outerHTML;
             elementoClone.classList.add("sn-item-lista-clone");
             elementoClone.classList.add(ItemControleOrdenacao.ITEM_MOVENDO);
+            elementoClone.style.setProperty("cursor", "grabbing", "important");
             document.body.appendChild(elementoClone);
 
             return this.NormalizarOpcoesElementoClonagem(elementoClone);

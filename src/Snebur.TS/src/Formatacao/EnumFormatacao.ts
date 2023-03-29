@@ -80,6 +80,8 @@
 
         Dimensao = "dimensao",
 
+        DimensaoCm = "dimensaocm",
+
         DimensaoPixels = "dimensaopixels",
 
         CpfCnpj = "cpfcnpj",

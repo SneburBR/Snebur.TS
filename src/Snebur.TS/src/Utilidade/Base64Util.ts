@@ -100,13 +100,20 @@
             return bytes;
         }
 
+        public static ArrayBufferParaBase64(buffer: ArrayBuffer): string
+        {
+            return Base64Util.BytesParaBase64(new Uint8Array(buffer));
+        }
+
         public static BytesParaBase64(bytes: Uint8Array): string
         {
-            const CHUNK_SIZE = 0x8000; //arbitrary number
-            let index = 0;
+            const CHUNK_SIZE = 0x8000;
             const length = bytes.length;
+
+            let index = 0;
             let result: string = "";
-            let slice;
+            let slice: Uint8Array;
+
             while (index < length)
             {
                 slice = bytes.subarray(index, Math.min(index + CHUNK_SIZE, length));

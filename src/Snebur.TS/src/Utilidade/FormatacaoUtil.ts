@@ -184,6 +184,10 @@
 
                     return FormatacaoUtil.FormatarDimensao(valor);
 
+                case EnumFormatacao.DimensaoCm:
+
+                    return FormatacaoUtil.FormatarDimensao(valor, true);
+
                 case EnumFormatacao.DimensaoPixels:
 
                     return FormatacaoUtil.FormatarDimensaoPixels(valor);
@@ -667,8 +671,8 @@
             return `${data.Day} de ${this.FormatarMes(data.Month).toLowerCase()}`;
         }
 
-        public static FormatarHora(tempoOuData: Date | TimeSpan):string
-        public static FormatarHora(tempoOuData: Date , isHoraDia: false, isSegundos?: boolean):string
+        public static FormatarHora(tempoOuData: Date | TimeSpan): string
+        public static FormatarHora(tempoOuData: Date, isHoraDia: false, isSegundos?: boolean): string
         public static FormatarHora(tempoOuData: TimeSpan, isHoraDia: boolean, isSegundos?: boolean): string
         public static FormatarHora(tempoOuData: TimeSpan | Date, isHoraDia: boolean = false, isSegundos: boolean = false): string
         {
@@ -794,6 +798,7 @@
                     const formatacaoMinutos = tempo.Minutes === 1 ? "1 minuto" : `${tempo.Minutes} minutos`;
                     partes.Add(formatacaoMinutos);
                 }
+
                 if (isSegundos && tempo.TotalSeconds > 0 && tempo.Seconds > 0)
                 {
                     const formatacaoSegundos = tempo.Minutes === 1 ? "1 segundo" : `${tempo.Seconds} segundos`;
@@ -945,23 +950,57 @@
             return this.FormatarDecimal(valor, isUsarPonto, isFormatarParteInteira, casasDecimal);
         }
 
-        public static FormatarDecimal(refValor: number | string,
+        public static FormatarDecimal(valor: number | string,
             isUsarPonto: boolean = false,
             isFormatarParteInteira: boolean = false,
             casasDecimal: number = 2): string
         {
-            const [parteInteira, parteDecimalFormatada, isNegativo] = FormatacaoUtil.RetornarParteInteiraDecimal(refValor, casasDecimal);
-            const parteInteiraFormatada = isFormatarParteInteira ?
-                FormatacaoUtil.FormatarParteInterira(parteInteira, !isUsarPonto) :
-                parteInteira;
-
-            const ponteiro = (isUsarPonto) ? "." : ",";
-            const resultado = `${parteInteiraFormatada}${ponteiro}${parteDecimalFormatada}`;
-            if (isNegativo)
+            if (valor == null)
             {
-                return "-" + resultado;
+                valor = 0;
             }
-            return resultado;
+
+            if (typeof valor === "string")
+            {
+                valor = parseFloat(valor);
+            }
+
+            if (!ValidacaoUtil.IsNumber(valor))
+            {
+                console.error(`Falha FormatarDecimal valor ${valor} é invalido`);
+                valor = 0;
+            }
+
+            if (!isFormatarParteInteira)
+            {
+                const resultado = valor.toFixed(casasDecimal);
+                if (isUsarPonto)
+                {
+                    return resultado;
+                }
+                return resultado.replace(".", ",");
+            }
+
+            if (casasDecimal > 0)
+            {
+                const partes = valor.toFixed(casasDecimal).split(".");
+                if (partes.length === 2)
+                {
+                    const parteInteira = partes[0];
+                    const decimal = partes[1];
+                    const parteInteiraFormatada = FormatacaoUtil.FormatarParteInterira(parteInteira, !isUsarPonto);
+                    const ponteiro = (isUsarPonto) ? "." : ",";
+                    const resultado = `${parteInteiraFormatada}${ponteiro}${decimal}`;
+                    if (valor < 0)
+                    {
+                        return "-" + resultado;
+                    }
+                    return resultado;
+                }
+            }
+
+            const parteInteira = Math.round(valor).ToString();
+            return FormatacaoUtil.FormatarParteInterira(parteInteira, !isUsarPonto);
         }
 
         private static FormatarParteInterira(parteInteira: string, isUsarPonto: boolean): string
@@ -982,53 +1021,56 @@
             return parteInteiraFormatada;
         }
 
-        private static RetornarParteInteiraDecimal(refValor: number | string, casasDecimal: number): [string, string, boolean]
-        {
-            if (typeof refValor === "number" && !isNaN(refValor))
-            {
-                const valor = refValor.ToDecimal(casasDecimal);
-                let inteira = valor < 0 ? Math.ceil(valor) : Math.floor(valor);
-                let decimal = valor - inteira;
-
-                inteira = Math.abs(inteira);
-                decimal = Math.abs(decimal);
-
-                const parteDecimalFormatada = FormatacaoUtil.FormatarParteDecimal(decimal, casasDecimal);
-                const isNegativo = valor < 0;
-                return [inteira.toString(), parteDecimalFormatada, isNegativo];
-            }
+        //private static RetornarParteInteiraDecimal(valor: number, casasDecimal: number): [string, string, boolean]
+        //{
+        //    if (typeof valor === "number" && !isNaN(valor))
+        //    {
 
 
-            const valor = u.ConverterUtil.ParaString(refValor);
-            const isNegativo = (valor.trim().charAt(0) === "-");
-            let posicaoUltimoPonto = Math.max(valor.lastIndexOf("."), valor.lastIndexOf(","));
+        //        const valorString = valor.toFixed(casasDecimal);
+        //        const partes = valorString.split(".");
+        //        let inteira = partes[]
+        //        let decimal = valor - inteira;
 
-            if (posicaoUltimoPonto === -1)
-            {
-                posicaoUltimoPonto = valor.length;
-            }
+        //        inteira = Math.abs(inteira);
+        //        decimal = Math.abs(decimal);
 
-            let parteInteira = TextoUtil.RetornarSomenteNumeros(valor.substring(0, posicaoUltimoPonto));
-            let parteDecimal = TextoUtil.RetornarSomenteNumeros(valor.substring(posicaoUltimoPonto, valor.length));
-
-            if (String.IsNullOrEmpty(parteInteira))
-            {
-                parteInteira = "0";
-            }
-
-            if (String.IsNullOrEmpty(parteDecimal))
-            {
-                parteDecimal = "0";
-            }
-
-            const temp = parseFloat(`1.${parteDecimal}`).ToDecimal(casasDecimal);
-            const decimal = (temp - Math.floor(temp));
-
-            const decimalFormatado = FormatacaoUtil.FormatarParteDecimal(decimal, casasDecimal);
-            return [parteInteira, decimalFormatado, isNegativo];
+        //        const parteDecimalFormatada = FormatacaoUtil.FormatarParteDecimal(decimal, casasDecimal);
+        //        const isNegativo = valor < 0;
+        //        return [inteira.toString(), parteDecimalFormatada, isNegativo];
+        //    }
 
 
-        }
+        //    const valor = u.ConverterUtil.ParaString(valor);
+        //    const isNegativo = (valor.trim().charAt(0) === "-");
+        //    let posicaoUltimoPonto = Math.max(valor.lastIndexOf("."), valor.lastIndexOf(","));
+
+        //    if (posicaoUltimoPonto === -1)
+        //    {
+        //        posicaoUltimoPonto = valor.length;
+        //    }
+
+        //    let parteInteira = TextoUtil.RetornarSomenteNumeros(valor.substring(0, posicaoUltimoPonto));
+        //    let parteDecimal = TextoUtil.RetornarSomenteNumeros(valor.substring(posicaoUltimoPonto, valor.length));
+
+        //    if (String.IsNullOrEmpty(parteInteira))
+        //    {
+        //        parteInteira = "0";
+        //    }
+
+        //    if (String.IsNullOrEmpty(parteDecimal))
+        //    {
+        //        parteDecimal = "0";
+        //    }
+
+        //    const temp = parseFloat(`1.${parteDecimal}`).ToDecimal(casasDecimal);
+        //    const decimal = (temp - Math.floor(temp));
+
+        //    const decimalFormatado = FormatacaoUtil.FormatarParteDecimal(decimal, casasDecimal);
+        //    return [parteInteira, decimalFormatado, isNegativo];
+
+
+        //}
 
         private static FormatarParteDecimal(decimal: number, casasDecimal: number): string
         {
@@ -1077,20 +1119,36 @@
 
         public static FormatarMoeda(valor: number, isSinal?: boolean, isNaoFormatarValorNullo: boolean = false): string
         {
-            if (valor === null && isNaoFormatarValorNullo)
+            if (valor == null)
             {
-                return String.Empty;
-            }
-            let formatacaoDecimal = this.FormatarDecimal(valor, false, true);
-            const negativo = (formatacaoDecimal.trim().charAt(0) === "-");
-
-            if (negativo)
-            {
-                formatacaoDecimal = formatacaoDecimal.substring(1, formatacaoDecimal.length);
+                if (isNaoFormatarValorNullo)
+                {
+                    return String.Empty;
+                }
+                valor = 0;
             }
 
-            const sinal = (negativo) ? "-" : isSinal ? "+" : "";
-            return `${sinal}R$ ${formatacaoDecimal}`;
+            if (typeof valor === "string")
+            {
+                valor = parseFloat(valor);
+            }
+
+            if (!ValidacaoUtil.IsNumber(valor))
+            {
+                console.error(`Erro FormatarMoeda. O valor ${valor} não é suportado`);
+                valor = 0;
+            }
+            return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" });
+
+            //let formatacaoDecimal = this.FormatarDecimal(valor, false, true);
+            //const negativo = (formatacaoDecimal.trim().charAt(0) === "-");
+            //if (negativo)
+            //{
+            //    formatacaoDecimal = formatacaoDecimal.substring(1, formatacaoDecimal.length);
+            //}
+
+            //const sinal = (negativo) ? "-" : isSinal ? "+" : "";
+            //return `${sinal}R$ ${formatacaoDecimal}`;
         }
 
         public static FormatarSimNao(valor: string): string
@@ -1216,13 +1274,19 @@
             return parseFloat(resultado);
         }
 
-        public static FormatarDimensao(valor: any): string
+        public static FormatarDimensao(valor: any, isCm:boolean = false): string
         {
+            const cmd = isCm ? "cm" : "";
             if (valor instanceof Dimensao)
             {
-                return `${valor.Largura.toFixed(1)} x ${valor.Altura.toFixed(1)}`;
+                if (ValidacaoUtil.IsInteger(valor.Largura) &&
+                    ValidacaoUtil.IsInteger(valor.Altura))
+                {
+                    return `${valor.Largura.toFixed(0)} x ${valor.Altura.toFixed(0)} ${cmd}`;
+                }
+                return `${valor.Largura.toFixed(1)} x ${valor.Altura.toFixed(1)} ${cmd}`;
             }
-            return "0 x 0";
+            return `0 x 0 ${cmd}`;
         }
 
         public static FormatarDimensaoPixels(valor: any)
@@ -1303,7 +1367,7 @@
                 const linhas = TextoUtil.RetornarLinhas(texto);
                 if (isFormatarEspaco)
                 {
-                    return String.Join("<br/>", linhas.Select(x => `<span> ${ FormatacaoUtil.FormatarEspacosHtml(x)} </span>`));
+                    return String.Join("<br/>", linhas.Select(x => `<span> ${FormatacaoUtil.FormatarEspacosHtml(x)} </span>`));
                 }
                 return String.Join("<br/>", linhas.Select(x => `<span> ${x} </span>`));
             }
@@ -1360,7 +1424,7 @@
             return prazo?.Descricao ?? String.Empty;
         }
 
-        public static FormatarPeso(valor: any): string
+        public static FormatarPeso(valor: number): string
         {
             if (ValidacaoUtil.IsNumber(valor, true))
             {

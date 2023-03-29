@@ -29,6 +29,7 @@
             return this._elementoClone;
         }
 
+        private IsElementoExisteAlvo: boolean = false;
         //#endregion
 
         //#region Inicialização
@@ -85,8 +86,8 @@
 
             const elementosAlvo = this.Elemento.querySelectorAll(`*[${AtributosHtml.IsAlvoOrdenacao.Nome}=true]`);
             /*this.Elemento.getElementsByClassName("sn-ordenacao-alvo");*/
-
-            if (elementosAlvo.length > 0)
+            this.IsElementoExisteAlvo = elementosAlvo.length > 0;
+            if (this.IsElementoExisteAlvo)
             {
                 for (const elementoAlvo of Util.CopiarArray(elementosAlvo))
                 {
@@ -97,19 +98,36 @@
                     }
                 }
             }
-            else
-            {
-                this.AdicionarEventoDom(EnumEventoDom.MouseDown, this.Elemento_MouseDown, this.Elemento, this, { passive: true, capture: true });
-                this.AdicionarEventoDom(EnumEventoDom.TouchStart, this.Elemento_TouchStart, this);
-            }
+            //else
+            //{
+            this.AdicionarEventoDom(EnumEventoDom.MouseDown, this.Elemento_MouseDown, this.Elemento, this, { passive: true, capture: true });
+            this.AdicionarEventoDom(EnumEventoDom.TouchStart, this.Elemento_TouchStart, this);
+            /*}*/
         }
 
-        //#region Mouse 
+        //#region Mouse
+
+        private get IsCapturarElementoPrincipal()
+        {
+            return this.Elemento.getAttribute(AtributosHtml.IsElementoPrincipalAlvoOrdenacao.Nome) === "true";
+        }
 
         private async Elemento_MouseDown(e: MouseEvent)
         {
-            await ThreadUtil.QuebrarAsync();
+            if (!e.IsBotaoEsquerdo)
+            {
+                return;
+            }
 
+            if (this.IsElementoExisteAlvo)
+            {
+                if (!this.IsCapturarElementoPrincipal)
+                {
+                    return;
+                }
+            }
+
+            await ThreadUtil.QuebrarAsync();
             this.AdicionarEventoDom(EnumEventoDom.MouseLeave, this.Elemento_MouseLeave);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             this.IdentificadorMouseDown = window.setTimeout(this.IniciarOrdenacaoMouse.bind(this, e), 100);
@@ -118,10 +136,21 @@
 
         private ElementoAlvo_MouseDown(e: MouseEvent)
         {
+            if (!e.IsBotaoEsquerdo)
+            {
+                return;
+            }
+
             window.clearTimeout(this.IdentificadorMouseDown);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
-            window.setTimeout(this.IniciarOrdenacaoMouse.bind(this, e), 100);
+            /*window.setTimeout(this.IniciarOrdenacaoMouse.bind(this, e), 100);*/
             document.body.style.cursor = "grabbing";
+
+            this.IniciarOrdenacaoMouse(e);
+
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
         }
 
         private Elemento_MouseLeave(e: MouseEvent)
@@ -528,7 +557,7 @@
                         eventoNativo));
             }
         }
-      
+
 
         private OrdernarCrescente(): void
         {

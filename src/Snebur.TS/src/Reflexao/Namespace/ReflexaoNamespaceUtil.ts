@@ -84,7 +84,7 @@
             {
                 const descricao = String.Join(", ", instancias.Select(x => x.__CaminhoTipo ?? "__tipoDesconhecido"));
                 const mensagemErro = `Ambiguidade. Foram encontrado mais de uma instancia para o caminho '${caminho}.
-                                      Intancias ${descricao}.
+                                      Instancias ${descricao}.
                                       Utilize caminho completo para evitar ambiguidade`;
 
                 if ($Configuracao.IsDebug)
