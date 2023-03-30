@@ -116,15 +116,17 @@
         public static async SairAsync(isRecerregar: boolean = true)
         {
             /*u.CookieUtil.Clear();*/
-            LocalStorageUtil.ClearAll();
             const identificadorSessaoUsuario = $Aplicacao.IdentificadorSessaoUsuario;
-            u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
             await $Aplicacao.ServicoUsuario?.FinalizarSessaoUsuarioAsync(identificadorSessaoUsuario);
-            const documentoPrincipal = (window.top !== window.self) ? window.parent.document : window.document;
+
+            LocalStorageUtil.ClearAll();
+            SessionStorageUtil.ClearAll();
+            u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
             $Aplicacao.EventoUsuarioSaiu.Notificar($Aplicacao, EventArgs.Empty);
 
             if (isRecerregar)
             {
+                const documentoPrincipal = (window.top !== window.self) ? window.parent.document : window.document;
                 documentoPrincipal.location.reload();
             }
         }

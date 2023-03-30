@@ -637,28 +637,6 @@
                 {
                     return "ontem";
                 }
-
-                const futuro = data > hoje;
-                if (futuro)
-                {
-                    for (let dia = 1; dia <= 7; dia++)
-                    {
-                        if (data.Day === hoje.AddDays(dia).Day)
-                        {
-                            return `${FormatacaoUtil.FormatarDiaSemana(data.DayOfWeek).toLowerCase()}`;
-                        }
-                    }
-                }
-                else
-                {
-                    for (let dia = -1; dia >= -7; dia--)
-                    {
-                        if (data.Day === hoje.AddDays(dia).Day)
-                        {
-                            return `${FormatacaoUtil.FormatarDiaSemana(data.DayOfWeek).toLowerCase()} passada`;
-                        }
-                    }
-                }
             }
 
             if (data.Year !== hoje.Year)
@@ -816,7 +794,7 @@
             const descricao = FormatacaoUtil.FormatarNomeMesInterno(mes);
             if (isAbreviado)
             {
-                return descricao.substr(0, 3);
+                return descricao.substring(0, 3);
             }
             return descricao;
         }
@@ -898,7 +876,7 @@
                 case EnumTipoFormatacaoDiaSemana.Parcial:
                     return descricao.split("-").First();
                 case EnumTipoFormatacaoDiaSemana.Abreviado:
-                    return descricao.substr(0, 3);
+                    return descricao.substring(0, 3);
                 case EnumTipoFormatacaoDiaSemana.Letra:
                     return descricao[0];
                 default:

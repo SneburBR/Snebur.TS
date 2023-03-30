@@ -71,4 +71,16 @@ namespace Snebur.Utilidade
             }
         }
     }
+
+    export class SessionStorageUtil
+    {
+        public static ClearAll()
+        {
+            for (let i = 0; i < sessionStorage.length; i++)
+            {
+                const chave = sessionStorage.key(i);
+                sessionStorage.removeItem(chave);
+            }
+        }
+    }
 }
