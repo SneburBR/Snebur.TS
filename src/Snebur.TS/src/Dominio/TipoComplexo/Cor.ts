@@ -1,8 +1,7 @@
 ﻿
 namespace Snebur.Dominio 
 {
-
-
+     
     export class Cor extends Snebur.Dominio.BaseTipoComplexo implements Snebur.Dominio.ICaminhoTipo, Snebur.Dominio.ICaminhoTipo, IEquals 
     {
         public static readonly COR_TRANSPARENTE: string = "rgba(0,0,0,0.0)";

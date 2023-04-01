@@ -321,6 +321,7 @@
     "src/Controle/ControleRotulo.Mapeamento.ts",
     "src/Controle/Comuns/Botao/Botao.Mapeamento.ts",
     "src/Controle/Comuns/BotaoIconeDescricao/BotaoIconeDescricao.Mapeamento.ts",
+    "src/Controle/Comuns/PainelAbas/Aba.Mapeamento.ts",
     "src/Controle/Formulario/BaseControleFormulario.Mapeamento.ts",
     "src/Controle/ControleUsuario.ts",
     "src/Controle/EventoDom.ts",

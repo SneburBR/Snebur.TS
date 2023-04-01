@@ -269,15 +269,15 @@
         {
             if (typeof valor === "number")
             {
-                switch (valor)
-                {
-                    case EnumVisibilidade.Visivel:
-                    case EnumVisibilidade.Invisivel:
-                    case EnumVisibilidade.Oculto:
-
-                        console.error("Analisar esse situação, do converter: RUBENS");
-                        return true;
-                }
+                return EnumUtil.IsDefindo(EnumVisibilidade, valor);
+                //switch (valor)
+                //{
+                //    case EnumVisibilidade.Visivel:
+                //    case EnumVisibilidade.Invisivel:
+                //    case EnumVisibilidade.Oculto:
+        
+                //        return true;
+                //}
             }
             return false;
         }

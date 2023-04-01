@@ -417,6 +417,7 @@
       <DependentUpon>MenuSanfona.shtml</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\Aba.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\Aba.Mapeamento.ts" />
     <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\PainelAbas.Mapeamento.ts" />
     <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\PainelAbasHorizontal.shtml.ts">
       <DependentUpon>PainelAbasHorizontal.shtml</DependentUpon>
@@ -786,8 +787,8 @@
     <Content Include="src\Controle\Comuns\Menu\MenuSanfona.shtml.scss">
       <DependentUpon>MenuSanfona.shtml</DependentUpon>
     </Content>
-    <Content Include="src\Controle\Comuns\PainelAbas\_paginelAbas.mixins.scss" />
-    <Content Include="src\Controle\Comuns\PainelAbas\_paginelAbas.scss" />
+    <Content Include="src\Controle\Comuns\PainelAbas\_painelAbas.mixins.scss" />
+    <Content Include="src\Controle\Comuns\PainelAbas\_painelAbas.scss" />
     <Content Include="src\Controle\Comuns\ProgressoCirculo\_progressoCirculo.scss" />
     <Content Include="src\Controle\Comuns\ProgressoCirculo\ProgressoCirculo.shtml.scss">
       <DependentUpon>ProgressoCirculo.shtml</DependentUpon>

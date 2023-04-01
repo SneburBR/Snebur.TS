@@ -4,7 +4,9 @@
     {
         private static _elementoSelecionarArquivo: HTMLInputElement;
 
-        public static SelecionarArquivoAsync(isMultiSelecao: boolean, accept: EnumAccept | string): Promise<SnBlob[]>
+        public static SelecionarArquivoAsync(
+            isMultiSelecao: boolean,
+            accept: EnumAccept | string): Promise<SnBlob[]>
         {
             return new Promise<SnBlob[]>(resolver =>
             {

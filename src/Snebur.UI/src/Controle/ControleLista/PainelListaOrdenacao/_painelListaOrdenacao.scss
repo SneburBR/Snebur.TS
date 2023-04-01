@@ -21,19 +21,45 @@ sn-painel-lista-ordenacao {
 
     *[sn-is-alvo-ordenacao=true],
     .sn-ordenacao-alvo {
+      
         cursor: grab !important;
         background-color: transparent;
         z-index: 10000 !important;
         pointer-events: all !important;
+
+        &:active {
+            cursor: grabbing !important;
+        }
         /*border: 1px solid black;*/
     }
-
+     
     ap-bloco-ordenacao {
+
+        &:not(.sn-alvo-global-desativado) {
+            cursor: grab;
+        }
+
+        &:active {
+            cursor: grabbing !important;
+        }
+
 
         &.sn-ordenacao-ativa {
             /*outline: 1px solid blue !important;*/
             transition-duration: 0.15s;
             transition-property: all;
         }
+    }
+}
+
+
+.sn-painel-lista-ordenacao-item-clone-clonado {
+
+    &:hover {
+        cursor: grab;
+    }
+
+    &:active {
+        cursor: grabbing !important;
     }
 }

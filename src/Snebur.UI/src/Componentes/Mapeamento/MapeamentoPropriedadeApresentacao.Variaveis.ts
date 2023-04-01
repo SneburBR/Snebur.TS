@@ -27,5 +27,6 @@
 
     $MapeamentosPropriedades.Add(BaseControleFormulario.GetType().Nome, new BaseControleFormularioMapeamento());
     $MapeamentosPropriedades.Add(PainelAbasHorizontal.GetType().Nome, new PainelAbasMapeamento());
+    $MapeamentosPropriedades.Add(Aba.GetType().Nome, new AbaMapeamento());
     $MapeamentosPropriedades.Add(BaseNavegador.GetType().Nome, new NavegadorMapeamento());
 }

@@ -35,28 +35,8 @@ namespace Snebur
         };
     }
 
-    //Object.defineProperty(window, "nameof", {
-    //    value: function (o: any)
-    //    {
-    //        if (typeof o === "string")
-    //        {
-    //            let inicio = o.lastIndexOf('.');
-    //            if (inicio > 0)
-    //            {
-    //                return o.substring(inicio + 1);
-    //            }
-    //            return o;
-    //        }
-
-    //        if ($Configuracao.IsDebug)
-    //        {
-    //            throw new Erro("O valor do argumento não é do tipo String, verifique se a extensão está ativa e atualize os projetos se os projetos");
-    //        }
-    //        return o?.toString() ?? 'não definido';
-    //    },
-    //    writable: false,
-    //    configurable: false,
-    //    enumerable: false,
-    //});
-
+    export function Init<T>(obj: T, init?: Partial<T>)
+    {
+        Object.assign(obj, init);
+    }
 }

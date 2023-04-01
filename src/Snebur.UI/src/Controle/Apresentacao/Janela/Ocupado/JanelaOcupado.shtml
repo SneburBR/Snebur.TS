@@ -7,11 +7,11 @@
 </head>
 <body 
     ap-largura="400px"
-    ap-largura--celular="100%" >
+    ap-largura--celular="100%" 
+    class="sn-janela-ocupado" >
 
     <ap-painel ap-tipo-painel="PilhaVertical" 
-       
-        class="sn-janela-ocupado">
+        class="sn-janela-ocupado-painel">
         <ap-bloco ap-margem="0px 16px 0px 8px">
             <ap-texto class="titulo-janela-ocupado" sn-bind="{{Titulo}}"></ap-texto>
         </ap-bloco>

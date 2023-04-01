@@ -455,7 +455,11 @@
                 const novaPagina = new (refPagina as IPaginaConstrutor)(this);
                 if (!(novaPagina instanceof Pagina))
                 {
-                    throw new Erro(`A construtor ${(novaPagina as Function).constructor.name} não herda de Snebur.UI.Pagina`);
+                    throw new Erro(`o construtor ${(novaPagina as Function).constructor.name} não herda de Snebur.UI.Pagina`);
+                }
+                if (this.IsPropagarBindDataSource)
+                {
+                    novaPagina["_dataSource"] = this.DataSource;
                 }
                 return novaPagina;
             }

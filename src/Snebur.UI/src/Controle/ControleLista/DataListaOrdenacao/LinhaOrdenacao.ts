@@ -48,7 +48,7 @@
 
             this.PageXInicial = e.pageX;
             this.PageYInicial = e.pageY;
-            document.documentElement.style.cursor = "grab";
+            EstiloUtil.DefinirCursorGlogal("grab");
         }
 
         private Window_MouseMove(e: MouseEvent)
@@ -59,7 +59,7 @@
                 {
                     this.ElementoClone.style.left = (e.pageX - this.DiferencaX).toString() + "px";
                     this.ElementoClone.style.top = (e.pageY - this.DiferencaY).toString() + "px";
-                    document.documentElement.style.cursor = "grabbing";
+                    EstiloUtil.DefinirCursorGlogal("grabbing");
                 }
                 else
                 {
@@ -177,7 +177,7 @@
             this.LinhasColecao.IsMovendoLinha = false;
             this.Elemento.style.opacity = "1";
 
-            document.documentElement.style.cursor = "";
+            EstiloUtil.DefinirCursorGlogal("auto");
 
             /*eslint-disable*/
             if (this.LinhasColecao.LinhaReferenciaDestino == this && this.LinhasColecao.LinhaMovendo instanceof LinhaOrdenacao)

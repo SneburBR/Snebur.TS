@@ -1,9 +1,9 @@
 ﻿@import "../../../../scss/_cores.variaveis.scss";
 @import "../../../../scss/_funcoes.scss";
-@import "_paginelAbas.mixins.scss";
+@import "_painelAbas.mixins.scss";
+
 $altura-aba: 3rem;
 $expresura-marcacao: retornar-rem(3px);
-
 
 sn-painel-abas-horizontal {
 
@@ -37,13 +37,10 @@ sn-painel-abas-horizontal {
             }
 
             &:hover {
-                /*border-bottom: retornar-rem(3px) solid $cor-principal;*/
                 cursor: pointer;
-                /*filter: brightness(15   0%);*/
             }
 
             &.sn-is-aba-selecionada {
-                /*border-bottom: retornar-rem(3px) solid $cor-principal;*/
                 cursor: pointer;
             }
         }
@@ -53,21 +50,26 @@ sn-painel-abas-horizontal {
         }
     }
 
+
+
+    ap-cabecalho[sn-nome=Cabecalho] {
+        background-color: transparent !important;
+    }
+
     &.ap-painel-aba--material-design {
         display: block;
         width: 100%;
         height: 100%;
 
         ap-cabecalho[sn-nome=Cabecalho] {
-            background-color: transparent;
+            background-color: transparent !important;
+           
         }
 
         ap-painel[sn-nome=PainelAbasInterno] {
         }
 
         .sn-aba, sn-aba {
-            /*padding-left: 5px;
-         padding-right: 5px;*/
             display: block;
             height: $altura-aba;
             position: relative;
@@ -84,17 +86,13 @@ sn-painel-abas-horizontal {
             }
 
             &:hover {
-                /*border-bottom: $expresura-marcacao solid #ccc;*/
                 cursor: pointer;
                 color: black;
-                /*filter: brightness(15   0%);*/
             }
 
             &.sn-is-aba-selecionada {
-                /*border-bottom: retornar-rem(3px) solid $cor-principal;*/
                 border-bottom: $expresura-marcacao solid rgb(240,240,240);
                 cursor: pointer;
-                /*color: $cor-principal;*/
             }
         }
 
@@ -106,6 +104,14 @@ sn-painel-abas-horizontal {
             bottom: 0;
             transition-property: left;
             transition-duration: 0.35s;
+        }
+    }
+
+    &[sn-is-abas-cheia=false] {
+
+        .sn-aba, sn-aba {
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
     }
 }

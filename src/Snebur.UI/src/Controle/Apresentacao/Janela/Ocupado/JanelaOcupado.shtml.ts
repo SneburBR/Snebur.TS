@@ -3,13 +3,8 @@
     export class JanelaOcupado extends Snebur.UI.Janela
     {
         public override readonly IsMostrarFundoJanela = ui.TelaUtil.IsCelular;
-        private readonly BlocoLoader: ui.BaseControle;
-        private readonly BlocoProgresso: ui.BaseControle;
-
-        public ViewModel: JanelaOcupadoViewModel;
+        public readonly ViewModel: JanelaOcupadoViewModel;
         private IsVisivelBlocoProgresso: boolean = false;
-
-        private readonly BarraProgresso: Progresso;
 
         public get Progresso(): number
         {
@@ -87,4 +82,16 @@
             super.Dispose();
         }
     }
+
+    //#region Elementos da apresentação - código gerado automaticamente #
+
+    export interface JanelaOcupado
+    {
+        readonly BlocoLoader: ui.Bloco;
+        readonly BlocoProgresso: ui.Bloco;
+        readonly BarraProgresso: ui.Progresso;
+    }
+
+    //#endregion
+
 }

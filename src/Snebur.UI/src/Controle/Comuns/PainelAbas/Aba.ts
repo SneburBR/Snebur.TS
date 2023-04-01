@@ -1,14 +1,24 @@
 ﻿namespace Snebur.UI
 {
-    export class Aba extends BaseControle
+    export class Aba extends ControleRotulo
     {
+
         private static readonly TipograficaPadrao = EnumUtil.RetornarDescricao(EnumTipografia, EnumTipografia.SubTitulo2);
         private static readonly CSS_CLASSE_SELECIONADA = "sn-is-aba-selecionada";
 
         public static readonly TAG_ABA: string = "sn-aba";
 
         public ConstrutorPagina: IPaginaConstrutor;
-        public Rotulo: string;
+        /* public Rotulo: string;*/
+
+        public override get Rotulo(): string
+        {
+            return super.Rotulo;
+        }
+        public override set Rotulo(value:string)
+        {
+            super.Rotulo = value;
+        }
 
         public get PainelAbasHorizontal(): PainelAbasHorizontal
         {
@@ -24,15 +34,15 @@
         {
             super.HtmlCarregado();
 
-            this.Rotulo = this.RetornarValorAtributo(AtributosHtml.Rotulo);
-            if (!String.IsNullOrEmpty(this.Rotulo))
-            {
-                this.ElementoApresentacao.innerHTML = this.Rotulo;
-            }
-            else
-            {
-                this.Rotulo = this.ElementoApresentacao.innerHTML;
-            }
+            //this.Rotulo = this.RetornarValorAtributo(AtributosHtml.Rotulo);
+            //if (!String.IsNullOrEmpty(this.Rotulo))
+            //{
+            //    this.ElementoApresentacao.innerHTML = this.Rotulo;
+            //}
+            //else
+            //{
+            //    this.Rotulo = this.ElementoApresentacao.innerHTML;
+            //}
 
             if (!this.Elemento.hasAttribute(AtributosHtml.Tipografia.Nome))
             {
@@ -50,6 +60,11 @@
         public override Inicializar(): void
         {
             super.Inicializar();
+        }
+
+        protected RetornarElementoRotulo(): HTMLElement
+        {
+            return this.ElementoApresentacao;
         }
 
         private RetornarConstrutorPagina(): IPaginaConstrutor

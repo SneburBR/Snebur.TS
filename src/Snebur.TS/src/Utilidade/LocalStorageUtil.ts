@@ -43,10 +43,10 @@ namespace Snebur.Utilidade
                 const chave = localStorage.key(i);
                 const conteudo = localStorage.getItem(chave);
                 const bytes = conteudo?.length ?? 0;
-                console.warn(`LocalStorage : ${chave} - ${FormatacaoUtil.FormatarBytes(bytes)} `);
+                console.LogDebug(`LocalStorage : ${chave} - ${FormatacaoUtil.FormatarBytes(bytes)} `);
                 total += bytes;
             }
-            console.warn(`LocalStorage TOTAL: ${FormatacaoUtil.FormatarBytes(total)} `);
+            console.LogDebug(`LocalStorage TOTAL: ${FormatacaoUtil.FormatarBytes(total)} `);
 
         }
 

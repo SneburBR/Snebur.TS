@@ -97,6 +97,7 @@
                         this.AdicionarEventoDom(EnumEventoDom.TouchStart, this.ElementoAlvo_TouchStart, elementoAlvo, this);
                     }
                 }
+                EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-alvo-global-desativado");
             }
             //else
             //{
@@ -144,7 +145,7 @@
             window.clearTimeout(this.IdentificadorMouseDown);
             this.AdicionarEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             /*window.setTimeout(this.IniciarOrdenacaoMouse.bind(this, e), 100);*/
-            document.body.style.cursor = "grabbing";
+            EstiloUtil.DefinirCursorGlogal("grabbing");
 
             this.IniciarOrdenacaoMouse(e);
 
@@ -165,7 +166,7 @@
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
             this.FinalizarOrdenacaoAsync(e);
-            document.body.style.cursor = "normal";
+            EstiloUtil.DefinirCursorGlogal("auto");
         }
 
         private IniciarOrdenacaoMouse(e: MouseEvent)
@@ -194,6 +195,7 @@
             e.preventDefault();
             e.cancelBubble = true;
             e.returnValue = false;
+
         }
 
         //#endregion
@@ -217,7 +219,7 @@
                 window.clearTimeout(this.IdentificadorTouchStart);
                 this.AdicionarEventoDomGlobal(EnumEventoDom.TouchEnd, this.Window_TouchEnd);
                 this.IniciarOrdenacaoTouch(e);
-                document.body.style.cursor = "grabbing";
+                EstiloUtil.DefinirCursorGlogal("grabbing");
             }
         }
 
@@ -251,7 +253,7 @@
             this.RemoverEventoDomGlobal(EnumEventoDom.TouchEnd, this.Window_TouchEnd);
             //this.RemoverEventoDomGlobal(EnumEventoDom.TouchMove, this.Window_TouchMove);
             this.FinalizarOrdenacaoAsync(e);
-            document.body.style.cursor = "normal";
+            EstiloUtil.DefinirCursorGlogal("auto");
         }
 
         private Window_TouchMove(e: TouchEvent)
@@ -285,7 +287,7 @@
                 this.ClonarElemento(posicaoX, posicaoY);
                 this.Elemento.style.opacity = "0";
                 this.IsOrdenacaoAtiva = true;
-                document.body.style.cursor = "grabbing";
+                EstiloUtil.DefinirCursorGlogal("grabbing");
                 this.AplicarEstiloPainel(regiaoPainel);
 
                 this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
@@ -335,6 +337,11 @@
             posicaoY: number,
             eventoNativo: MouseEvent | TouchEvent)
         {
+            if (this.RegioesBlocoOrdenacao == null)
+            {
+                return;
+            }
+
             if (this.IsOrdenacaoAtiva)
             {
                 const posicaoMoventando = this.ElementoClone.getBoundingClientRect();
@@ -407,7 +414,7 @@
                 this.RemoverElementoClonado();
 
                 this.Elemento.style.opacity = "1";
-                document.body.style.cursor = "normal";
+                EstiloUtil.DefinirCursorGlogal("auto");
                 this.IsOrdenacaoAtiva = false;
 
                 this.PainelLista.EventoBlocoOrdenacaoFinalizada.Notificar(this,
@@ -715,7 +722,7 @@
             }
             estilo.AplicarEm(elementoClone);
             elementoClone.appendChild(elementoCloneInterno);
-            elementoClone.classList.add("sn-item-lista-clone");
+            elementoClone.classList.add("sn-painel-lista-ordenacao-item-clone-clonado");
 
             document.body.appendChild(elementoClone);
             return elementoClone;

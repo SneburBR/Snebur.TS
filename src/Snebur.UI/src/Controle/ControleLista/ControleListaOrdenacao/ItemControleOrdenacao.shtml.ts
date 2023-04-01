@@ -108,7 +108,7 @@ namespace Snebur.UI
 
             this.PageXInicial = e.pageX;
             this.PageYInicial = e.pageY;
-            document.documentElement.style.cursor = "grab";
+            EstiloUtil.DefinirCursorGlogal("grabbing");
             e.preventDefault();
         }
          
@@ -135,7 +135,7 @@ namespace Snebur.UI
 
                 this.ControleListaOrdenacao.EventoMovendoControle.Notificar(this.ControleListaOrdenacao, new ItemControleMovendoEventArgs(this, this.ElementoClone, e));
 
-                document.documentElement.style.cursor = "grabbing";
+                EstiloUtil.DefinirCursorGlogal("grabbing");
             }
             else
             {
@@ -157,7 +157,7 @@ namespace Snebur.UI
 
         private ElementoClone_Window_MouseUp(e: MouseEvent): void
         {
-            document.documentElement.style.cursor = "";
+            EstiloUtil.DefinirCursorGlogal("auto");
 
             this.ItensColecao.IsMovendoItemControle = false;
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.ElementoClone_Window_MouseMove);

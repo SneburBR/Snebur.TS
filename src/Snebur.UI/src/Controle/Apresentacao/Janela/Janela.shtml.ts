@@ -514,7 +514,7 @@
                 this.AtualizarPosicao(this.PosicaoXInicial, this.PosicaoYInicial);
                 this.__camposPrivadosJanela.isMovimentou = true;
 
-                document.body.style.cursor = "grabbing";
+                EstiloUtil.DefinirCursorGlogal("grabbing");
 
                 this.Window_MouseMove(e);
             }
@@ -557,7 +557,7 @@
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
 
-            document.body.style.cursor = "";
+            EstiloUtil.DefinirCursorGlogal("auto");
         }
 
         private AtualizarPosicoesLimite(): void
