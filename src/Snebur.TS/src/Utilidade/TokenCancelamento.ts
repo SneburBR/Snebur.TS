@@ -1,4 +1,4 @@
-﻿namespace Snebur.Utilidade
+﻿namespace Snebur
 {
     export class TokenCancelamento
     {

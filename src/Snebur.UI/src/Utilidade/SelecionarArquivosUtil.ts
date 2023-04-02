@@ -4,7 +4,25 @@
     {
         private static _elementoSelecionarArquivo: HTMLInputElement;
 
-        public static SelecionarArquivoAsync(
+        public static SelecionarArquivoAsync( isMultiSelecao: false, accept: EnumAccept | string): Promise<SnBlob>
+        public static SelecionarArquivoAsync( isMultiSelecao: true, accept: EnumAccept | string): Promise<SnBlob[]>
+        public static SelecionarArquivoAsync(isMultiSelecao: boolean, accept: EnumAccept | string): Promise<SnBlob[]>
+        public static async SelecionarArquivoAsync( isMultiSelecao: boolean, accept: EnumAccept | string): Promise<SnBlob[] |SnBlob>
+        {
+            const arquivos = SelecionarArquivosUtil.SelecionarArquivosInternoAsync(isMultiSelecao, accept);
+            if (isMultiSelecao)
+            {
+                return arquivos;
+            }
+            return (await arquivos).FirstOrDefault();
+        }
+
+        public static SelecionarArquivosAsync(isMultiSelecao: boolean,accept: EnumAccept | string): Promise<SnBlob[]>
+        {
+            return SelecionarArquivosUtil.SelecionarArquivosInternoAsync(isMultiSelecao, accept);
+        }
+
+        private static SelecionarArquivosInternoAsync(
             isMultiSelecao: boolean,
             accept: EnumAccept | string): Promise<SnBlob[]>
         {

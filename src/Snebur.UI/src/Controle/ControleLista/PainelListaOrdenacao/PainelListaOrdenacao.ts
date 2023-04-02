@@ -15,9 +15,9 @@
         private CaminhoEntidadeOrdenacao: string;
 
         public readonly EventoBlocoOrdenacaoIniciada = new Evento<BlocoOrdenacaoEventArgs>(this);
-        public readonly EventoBlocoOrdenacaoAlterado = new Evento<BlocoOrdenacaoEventArgs>(this);
-        public readonly EventoBlocoOrdenacaoFinalizada = new Evento<BlocoOrdenacaoEventArgs>(this);
+        public readonly EventoBlocoOrdenacaoAlterada = new Evento<BlocoOrdenacaoEventArgs>(this);
         public readonly EventoBlocoOrdenacaoMovimentando = new Evento<BlocoOdernacaoMovimentandoEventArgs>(this);
+        public readonly EventoBlocoOrdenacaoFinalizada = new Evento<BlocoOrdenacaoEventArgs>(this);
          
         public MetodoSalvarEntidadesOrdenada: (entidades: List<d.IOrdenacao>) => void
 

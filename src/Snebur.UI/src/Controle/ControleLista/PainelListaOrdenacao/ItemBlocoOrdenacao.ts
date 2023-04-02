@@ -557,7 +557,7 @@
                     this.OrdernarDecrescente();
                 }
 
-                this.PainelLista.EventoBlocoOrdenacaoAlterado.Notificar(this,
+                this.PainelLista.EventoBlocoOrdenacaoAlterada.Notificar(this,
                     new BlocoOrdenacaoEventArgs(this,
                         this.ObjetoOrdenacao,
                         this.ElementoClone,

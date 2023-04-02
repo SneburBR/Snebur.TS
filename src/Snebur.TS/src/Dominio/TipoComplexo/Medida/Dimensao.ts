@@ -14,7 +14,7 @@
 
         public set Largura(value: number)  
         {
-            if (value < 0 ||isNaN(value))
+            if (value < 0 || isNaN(value))
             {
                 throw new Erro("A dimensão não suporta valores negativo ou NaN");
             }
@@ -63,7 +63,7 @@
             return (this.Largura > 0 && this.Altura > 0);
         }
 
-        
+
 
         public get TotalMegaPixels(): number
         {
@@ -189,17 +189,18 @@
          */
         public IsProporcional(dimensao: d.Dimensao): boolean;
         public IsProporcional(dimensao: d.Dimensao, sensibilidade: number): boolean;
-        public IsProporcional(dimensao: d.Dimensao, sensibilidade: number = 0): boolean
+        public IsProporcional(dimensao: d.Dimensao, sensibilidade: number = 0.1): boolean
         {
-            if (!this.IsEmpty && !dimensao.IsEmpty)
+            if (dimensao != null)
             {
+                if (this.IsEmpty || dimensao.IsEmpty)
+                {
+                    return false;
+                }
+
                 const scalarX = (this.Largura / dimensao.Largura).ToDecimal();
                 const scalarY = (this.Altura / dimensao.Altura).ToDecimal();
-                return u.Util.IgualSensivel(scalarX, scalarY, 0.15);
-            }
-            if (this.IsEmpty && dimensao.IsEmpty)
-            {
-                return true;
+                return u.Util.IgualSensivel(scalarX, scalarY, sensibilidade);
             }
             return false;
         }
@@ -210,7 +211,7 @@
             const alturaPixels = MedidaUtil.RetornarPixelsVisualizacao(this.Altura, dpi);
             return new Dimensao(larguraPixels, alturaPixels);
         }
-         
+
         /**Converter dimensão para impressão, padrão 300dpi */
         public ParaImpressao(): Dimensao
         {
@@ -338,7 +339,7 @@
             return new Posicao(x, y);
         }
 
-        public Inverter():Dimensao
+        public Inverter(): Dimensao
         {
             return new Dimensao(this.Altura, this.Largura);
         }

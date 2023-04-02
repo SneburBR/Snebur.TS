@@ -16,7 +16,7 @@
         {
             const isMultiSelecacao = this.RetornarValorAtributoBoolean(AtributosHtml.Multiselecao, false);
             const accept = this.RetornarValorAtributo(AtributosHtml.Accept, String.Empty);
-            const arquivos = await SelecionarArquivosUtil.SelecionarArquivoAsync(isMultiSelecacao, accept);
+            const arquivos = await SelecionarArquivosUtil.SelecionarArquivosAsync(isMultiSelecacao, accept);
 
             if (arquivos.length > 0)
             {

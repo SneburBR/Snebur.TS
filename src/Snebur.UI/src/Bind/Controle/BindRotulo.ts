@@ -12,10 +12,6 @@ namespace Snebur.UI
         public ValorPropriedadeAlterado(antigoValor: any, novoValor: any): void
         {
             const rotulo = u.ConverterUtil.ParaString(novoValor);
-            if (rotulo === "páginas" || rotulo === "lâminas" || rotulo === "teste")
-            {
-                const xxxx = "";
-            }
             ((this.Controle as any) as ControleRotulo).Rotulo = rotulo;
         }
     }
