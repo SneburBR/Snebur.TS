@@ -1271,9 +1271,9 @@
         {
             if (valor instanceof Dimensao)
             {
-                return `${valor.Largura.toFixed(0)} x ${valor.Altura.toFixed(0)}`;
+                return `${valor.Largura.toFixed(0)} x ${valor.Altura.toFixed(0)} px`;
             }
-            return "0 x 0";
+            return "0 x 0 px";
         }
 
         public static FormatarBytes(totalBytes: number): string;

@@ -579,6 +579,15 @@
             document.body.style.cursor = cursor;
         }
 
+        public static LimparPosicoes(elementoImagem:HTMLElement)
+        {
+            elementoImagem.style.left = "";
+            elementoImagem.style.right = ""; 
+            elementoImagem.style.top = ""; 
+            elementoImagem.style.bottom = ""; 
+            elementoImagem.style.width = ""; 
+            elementoImagem.style.height = ""; 
+        }
     }
 
     export enum EnumEstiloHtml

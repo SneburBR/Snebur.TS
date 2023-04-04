@@ -31,6 +31,17 @@ namespace Snebur.Utilidade
             return (medidaEmPixel * 300) / u.MedidaUtil.RetornarPixelsImpressao(medidaEmCentimetros);
         }
 
+        public static RetornarDpiDimensaoVisualizacao(dimensaoCm: IDimensao, dimensaoPixels: IDimensao, isPrefeirMenor:boolean= true): number
+        {
+            const dpiX = MedidaUtil.RetornarDpiVisualizacao(dimensaoCm.Largura, dimensaoPixels.Largura);
+            const dpiY = MedidaUtil.RetornarDpiVisualizacao(dimensaoCm.Altura, dimensaoPixels.Altura);
+            if (dimensaoPixels)
+            {
+                return Math.min(dpiX, dpiY).ToDecimal(1);
+            }
+            return Math.max(dpiX, dpiY).ToDecimal(1);
+        }
+
         public static RetornarDimensaoImpressao(dimensaoEmCentimetros: IDimensao): d.Dimensao
         {
             return new d.Dimensao(

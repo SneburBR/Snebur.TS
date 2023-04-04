@@ -97,7 +97,7 @@
          * @param obj
          * @param isAceitarString
          */
-        public static IsNumber(obj: number | string): obj is number;
+        public static IsNumber(obj: number | string | any): obj is number;
         public static IsNumber(obj: number | string, isAceitarString: false): obj is number;
         public static IsNumber(obj: number | string, isAceitarString: true): obj is number | string;
         public static IsNumber(obj: number | string, isAceitarString: boolean): obj is number | string
@@ -167,7 +167,7 @@
             return false;
         }
 
-        public static IsDate(obj: Date | string): obj is Date;
+        public static IsDate(obj: Date | string | any): obj is Date;
         public static IsDate(obj: Date | string, isAceitarString: false): obj is Date;
         public static IsDate(obj: Date | string, isAceitarString: boolean): boolean;
         public static IsDate(obj: Date | string, isAceitarString: boolean = false): boolean

@@ -88,6 +88,7 @@
     <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRota.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTextoSomentoNumeros.Partial.ts" />
@@ -440,6 +441,7 @@
     <TypeScriptCompile Include="src\Utilidade\AutoMapear.ts" />
     <TypeScriptCompile Include="src\Utilidade\BaralhoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\Base64Util.ts" />
+    <TypeScriptCompile Include="src\Utilidade\BuscaUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ByteUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\CaminhoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\CartaoCreditoUtil.ts" />

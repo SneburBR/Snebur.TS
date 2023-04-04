@@ -223,7 +223,7 @@
             {
                 return DimensaoUtil.RetornarOrientacao(dimensaoOuOrientacao);
             }
-            throw new Erro(`A (dimens�o ou orienta��o) n�o foi definida ou � invalida`);
+            throw new Erro(`A (dimensão ou orientacao) n�o foi definida ou � invalida`);
         }
 
         public static IsDimensao(obj: any): obj is d.IDimensao
@@ -251,6 +251,23 @@
         public static IsDimensaoDiferente(dimensao1: IDimensao, dimensao2: IDimensao): boolean
         {
             return !DimensaoUtil.IsDimensaoIgual(dimensao1, dimensao2);
+        }
+
+     
+        public static ProporcaoSimplificada(largura: number, altura: number): IDimensao
+        {
+            // Encontrar o maior divisor comum usando o algoritmo de Euclides
+            function mdc(a: number, b: number): number
+            {
+                return b === 0 ? a : mdc(b, a % b);
+            }
+            const divisorComum = mdc(largura, altura);
+            const proporcaoLargura = largura / divisorComum;
+            const proporcaoAltura = altura / divisorComum;
+            return {
+                Largura: proporcaoLargura,
+                Altura: proporcaoAltura
+            };
         }
     }
 }

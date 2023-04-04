@@ -57,9 +57,13 @@ namespace Snebur.Nativo
 
         DicionarioGroupBy<TChave extends number | string | Objeto>(expressaoChave: (value: T) => TChave): Snebur.DicionarioTipado<any, Array<T>>;
 
-        OrderBy(expressao: (value: T) => any): T[];
+        OrderBy(expressao: (value: T) => string | number | Date): T[];
 
-        OrderByDescending(expressao: (value: T) => any): T[];
+        OrderByDescending(expressao: (value: T) => string | number | Date): T[];
+
+        NaturalOrderBy(expressao: (value: T) => string): T[];
+
+        NaturalOrderByDescending(expressao: (value: T) => string): T[];
 
         OrderByRandow(): T[];
        
@@ -68,6 +72,9 @@ namespace Snebur.Nativo
 
         Min(): T | null;
         Min<TResultado = number | Date | TimeSpan>(expressao: (value: T) => TResultado): TResultado | null;
+
+        FindMostSimilarity(expressao: (value: T) => string, busca: string): ResultadoSimilaridade<T>;
+        FindMostSimilarity(expressao: (value: T) => string[], busca: string): ResultadoSimilaridade<T>;
 
         MaxObjeto(expressao: (value: T) => number | Date | TimeSpan): T | null;
 
@@ -114,6 +121,7 @@ namespace Snebur.Nativo
         Distinct(): Array<T>;
 
         Add(item: T): number;
+        AddIsTrue(item: T, isAdd:boolean): number;
 
         AddRange(itens: Array<T>): void;
         AddRangeAsync(items: Array<T>): Promise<void>;
@@ -192,9 +200,6 @@ namespace Snebur.Nativo
 
         GetHashCode(): number;
     }
-
-
-
 }
 
 namespace Snebur

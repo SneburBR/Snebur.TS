@@ -11,7 +11,7 @@
         private static readonly ABRE_BODY = "<body";
         private static readonly FECHA_BODY = "</body>";
 
-        private static TEMPO_ATUALIZAR_HTML_DECODIFICADO = 2000;
+        private static TEMPO_ATUALIZAR_HTML_DECODIFICADO = 5000;
 
         public static CONTEUDO_INTERNO: string = "[[CONTEUDO_INTERNO]]";
 
@@ -44,10 +44,13 @@
                     }
                 }
             }
-
-            htmlReferencia.HtmlDecodificado = HtmlReferenciaUtil.RetornarHtmlDecodificado(htmlReferencia);
-            htmlReferencia.IsHtmlDecodificado = true;
-            htmlReferencia.DataHoraDecodificado = new Date();
+            const htmlDecodificado = HtmlReferenciaUtil.RetornarHtmlDecodificado(htmlReferencia);
+            if (htmlReferencia != null)
+            {
+                htmlReferencia.HtmlDecodificado = htmlDecodificado;
+                htmlReferencia.IsHtmlDecodificado = true;
+                htmlReferencia.DataHoraDecodificado = new Date();
+            }
             return htmlReferencia.HtmlDecodificado;
         }
 
@@ -109,9 +112,18 @@
             {
                 return u.Base64Util.Decode(htmlReferencia.Html);
             }
-            else
+            try
             {
                 return HtmlReferenciaUtil.RetornarConteudoHtml(htmlReferencia);
+            }
+            catch (erro)
+            {
+                if (htmlReferencia.IsHtmlDecodificado)
+                {
+                    console.warn(erro);
+                    return htmlReferencia.HtmlDecodificado;
+                }
+                throw erro;
             }
         }
 
@@ -134,7 +146,7 @@
             }
             catch (erro)
             {
-                console.error(`Não foi possível carregar a url ${url} - ${erro} `);
+                console.error(`Não foi possível carregar a URL ${url} - ${erro} `);
                 return u.Base64Util.Decode(htmlReferencia.Html);
             }
 

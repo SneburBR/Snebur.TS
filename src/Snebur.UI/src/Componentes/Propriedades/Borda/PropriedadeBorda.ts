@@ -27,10 +27,10 @@
 
         private RetornarCorBorda(margemUnidadeComprimento: MargemUnidadeComprimento): string
         {
-            if (margemUnidadeComprimento.ExisteMargem)
-            {
-                return "red";
-            }
+            //if (margemUnidadeComprimento.ExisteMargem)
+            //{
+            //    return "silver";
+            //}
             return String.Empty;
 
         }

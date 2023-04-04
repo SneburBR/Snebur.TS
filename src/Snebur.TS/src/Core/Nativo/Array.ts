@@ -68,20 +68,20 @@ namespace Snebur
                 resultado.push(objeto);
             }
         }
-        resultado.__isQuery = true;
+      /*  resultado.__isQuery = true;*/
         return resultado;
     };
 
-    Array.prototype.ToList = function (this: Array<any>, nova?: boolean)
+    Array.prototype.ToList = function (this: Array<any>, isNova?: boolean)
     {
-        if (this.__isQuery)
-        {
-            this.__isQuery = false;
-            return this;
+        //if (this.__isQuery === true)
+        //{
+        //    this.__isQuery = false;
+        //    return this;
+        //}
 
-        }
-
-        if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this)|| u.ConverterUtil.ParaBoolean(nova) /*|| lista.__isQuery*/)
+        if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this) ||
+            u.ConverterUtil.ParaBoolean(isNova) /*|| lista.__isQuery*/)
         {
             let novaLista = new Array<any>();
             let len = this.length;
@@ -134,7 +134,7 @@ namespace Snebur
                 retorno.Add(item);
             }
         }
-        retorno.__isQuery = true;
+       /* retorno.__isQuery = true;*/
         return retorno;
     }
 
@@ -149,7 +149,7 @@ namespace Snebur
                 retorno.Add(item);
             }
         }
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     }
 
@@ -163,7 +163,7 @@ namespace Snebur
                 retorno.Add(item);
             }
         }
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     };
 
@@ -183,7 +183,7 @@ namespace Snebur
     Array.prototype.Select = function (this:Array<any>, funcaoMapear: any)
     {
         let retorno = this.map(funcaoMapear) as Array<any>;
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     };
 
@@ -206,14 +206,14 @@ namespace Snebur
                 retorno.AddRange(colecao);
             }
         }
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno as any;
     };
 
     Array.prototype.Where = function (this: Array<any>, funcaoFiltrar)
     {
         let retorno = this.filter(funcaoFiltrar) as Array<any>;
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     };
 
@@ -276,9 +276,8 @@ namespace Snebur
         };
 
         let retorno = (this as Array<any>).ToList(true).sort(ordenacaoCrenscente) as Array<any>;
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
-
     });
 
     Array.prototype.OrderByDescending = function (this: Array<any>, funcaoOrdenacao)
@@ -297,6 +296,7 @@ namespace Snebur
             {
                 return 1;
             }
+
             if (!u.ValidacaoUtil.IsDefinido(valorB))
             {
                 return 1;
@@ -335,9 +335,27 @@ namespace Snebur
         };
 
         let retorno = (this as Array<any>).ToList(true).sort(ordenacaoDecrenscente) as Array<any>;
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     };
+      
+    Array.prototype.NaturalOrderBy = (function (this: Array<any>, funcaoOrdenacao)
+    {
+        const retorno = this.ToList(true).sort((a, b) =>
+        {
+            let valorA = funcaoOrdenacao(a);
+            let valorB = funcaoOrdenacao(b);
+            return naturalSort(valorA, valorB);
+        });
+        /*retorno.__isQuery = true;*/
+        return retorno;
+    });
+
+    Array.prototype.NaturalOrderByDescending = (function (this: Array<any>, funcaoOrdenacao)
+    {
+        return this.NaturalOrderBy(funcaoOrdenacao).reverse();
+        
+    });
 
     Array.prototype.Sum = (function (this: Array<any>, expressao?: Function)
     {
@@ -400,7 +418,7 @@ namespace Snebur
                     u.ValidacaoUtil.IsDate(valorPropriedade) ||
                     valorPropriedade instanceof TimeSpan))
                 {
-                    let mensagem = `O tipo não é suportado. Expressao '${expressao.toString()}', Tipo: '${u.ReflexaoUtil.RetornarNomeTipo(valorPropriedade)}'`;
+                    let mensagem = `O tipo não é suportado. Expressão '${expressao.toString()}', Tipo: '${u.ReflexaoUtil.RetornarNomeTipo(valorPropriedade)}'`;
                     throw new ErroNaoSuportado(mensagem, this);
                 }
             }
@@ -666,7 +684,7 @@ namespace Snebur
             return lista.indexOf(valor) === index;
         }
         let resultado = this.filter(___Unico) as Array<any>;
-        resultado.__isQuery = true;
+        /*resultado.__isQuery = true;*/
         return resultado;
     });
 
@@ -800,14 +818,14 @@ namespace Snebur
             lista[contador] = lista[posicaoAleatoria];
             lista[posicaoAleatoria] = temp;
         }
-        lista.__isQuery = true;
+        /*lista.__isQuery = true;*/
         return lista;
     }
 
     Array.prototype.Reverse = function (this: Array<any>)
     {
         let retorno = (this as Array<any>).reverse();
-        retorno.__isQuery = true;
+        /*retorno.__isQuery = true;*/
         return retorno;
     };
 
@@ -842,5 +860,5 @@ namespace Snebur
 
 interface Array<T> 
 {
-    __isQuery?: boolean;
+    /*__isQuery?: boolean;*/
 }

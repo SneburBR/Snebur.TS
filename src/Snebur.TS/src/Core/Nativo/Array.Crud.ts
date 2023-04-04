@@ -79,6 +79,15 @@
         return ultimo;
     }
 
+    Array.prototype.AddIsTrue = (function (item: any, isAdd: boolean): number
+    {
+        if (isAdd)
+        {
+           return this.Add(item);
+        }
+        return -1;
+    });
+
     Array.prototype.Add = (function (item)
     {
         let lista = this as Array<any>;
@@ -198,7 +207,7 @@
             {
                 this.__isLimpandoListaNova = false;
             }
-            ListaObservacao.ListaNovaAlerada(this, true,  isDefinirListaNova);
+            ListaObservacao.ListaNovaAlerada(this, true, isDefinirListaNova);
         }
         else
         {

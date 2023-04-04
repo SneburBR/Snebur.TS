@@ -24,6 +24,7 @@
             {
                 throw new Erro(`Não foi encontrada a instancia para o namespace raiz ${this.Nome}`);
             }
+
             const instanciaGlobal = (globalThis as any)[this.Nome];
             if (instanciaGlobal != null &&
                 instanciaGlobal !== instanciaEval)

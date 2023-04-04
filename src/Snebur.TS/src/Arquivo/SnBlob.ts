@@ -205,6 +205,10 @@
             return this.Blob.text();
         }
 
+        public override toString(): string
+        {
+            return `SnBlob-${this.name}-${this.size}b`;
+        }
         //#endregion
 
         public override Dispose(): void

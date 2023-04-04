@@ -19,7 +19,7 @@
 
     }
 
-    export type TipoItemLista = string | number | Date | object | Snebur.Objeto | d.IEntidade;
+    export type TipoItemLista = string | number | Date | object | Snebur.Objeto | d.IEntidade | { [key: string]: any };
 
     export class DicionarioSimples<TItem = any, TChave extends string | number = string> extends BaseDicionario<TChave, TItem>
     {
@@ -111,7 +111,7 @@
             return false;
         }
 
-        public Remover(chave: TChave ): boolean
+        public Remover(chave: TChave): boolean
         {
             const item = this.__Obetos[chave];
             if (item === undefined)
@@ -252,7 +252,7 @@
             }
         }
 
-        public Remove(chave: TChave):boolean
+        public Remove(chave: TChave): boolean
         {
             return this.Remover(chave);
         }

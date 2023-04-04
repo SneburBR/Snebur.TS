@@ -55,7 +55,7 @@
             const elementoApresentacao = componenteApresentacao.ElementoApresentacao;
             const cor = this.RetornarCor(componenteApresentacao);
             EstiloUtil.RemoverClssClasseComecaCom(elementoApresentacao, this.PrefixoCor);
-            (elementoApresentacao.style as any)[this.NomePropriedadeEstiloDom] = String.Empty;
+            (elementoApresentacao as any)[this.NomePropriedadeEstiloDom] = String.Empty;
 
             if (ValidacaoUtil.IsDefinido(cor))
             {
