@@ -88,6 +88,12 @@
     <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
+    <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequiscao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\Requisicao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Utilidade\NormalizarResultadoChamada.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRota.Partial.ts" />
@@ -107,8 +113,8 @@
     <TypeScriptCompile Include="src\Comum\ProgressoEventArgs.ts" />
     <TypeScriptCompile Include="src\Comum\TimeoutManager.ts" />
     <TypeScriptCompile Include="src\Comunicacao\BaseComunicacaoCliente.ts" />
-    <TypeScriptCompile Include="src\Comunicacao\ChamadaServico.ts" />
-    <TypeScriptCompile Include="src\Comunicacao\ChamadaServicoAsync.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\ChamadaServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\ChamadaServicoAsync.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Dominio\ResultadoChamadaErro.Partial.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Classes.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Constantes.ts" />

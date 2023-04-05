@@ -1,7 +1,7 @@
 ﻿namespace Snebur.Comunicacao
 {
 
-    export abstract class BaseChamadaServico extends Snebur.Objeto
+    export abstract class BaseChamadaServico extends Snebur.Objeto implements IDisposable
     {
         protected Tk: string;
 
@@ -11,9 +11,10 @@
 
         //protected abstract RetornarNomeManipulador(): string;
 
-        public constructor(url: string,
+        public constructor(
+            protected readonly Requisicao: Requisicao,
+            url: string,
             nomeManipulador: string,
-            conteudo: string,
             credencial: Snebur.Seguranca.CredencialServico,
             isAsync: boolean,
             token: string)
@@ -22,12 +23,13 @@
 
             if (!u.ValidacaoUtil.IsDefinido(url))
             {
-                throw new ErroNaoDefinido("A url não foi definida", this);
+                throw new ErroNaoDefinido("A URL não foi definida", this);
             }
-            if (!u.ValidacaoUtil.IsDefinido(conteudo))
-            {
-                throw new ErroNaoDefinido("A conteudo não foi definido", this);
-            }
+
+            //if (!u.ValidacaoUtil.IsDefinido(conteudo))
+            //{
+            //    throw new ErroNaoDefinido("A conteúdo não foi definido", this);
+            //}
             if (!u.ValidacaoUtil.IsDefinido(credencial))
             {
                 throw new ErroNaoDefinido("A credencial não foi definida", this);
@@ -36,7 +38,6 @@
             const urlRequisicao = this.RetornarUrlRequisicao(url, token);
 
             this.Url = urlRequisicao;
-            //this.Conteudo = conteudo;
             this.Credencial = credencial;
             this.Tk = token;
 
@@ -102,10 +103,18 @@
 
         protected RetornarResultadoChamadaErro(erro: Error): ResultadoChamadaErro
         {
-            const resultadoErro = new ResultadoChamadaErroCliente();
+            const resultadoErro = new ResultadoChamadaErroCliente(this.Requisicao);
             resultadoErro.Erro = erro;
             resultadoErro.StatusCode = this.XmlHttp.status;
             resultadoErro.MensagemErro = `Erro chamar o servido Status ${this.XmlHttp.status} \n Url:${this.Url}`;
+            return resultadoErro;
+        }
+
+        protected RetornarResultadoChamadaTimeout(): ResultadoChamadaTimeoutCliente
+        {
+            const resultadoErro = new ResultadoChamadaErroCliente(this.Requisicao);
+            resultadoErro.StatusCode = this.XmlHttp.status;
+            resultadoErro.MensagemErro = `Erro de timeout ao chamar o servido Status ${this.XmlHttp.status} \n Url:${this.Url}`;
             return resultadoErro;
         }
 
@@ -117,9 +126,14 @@
 
             return urlRequisicao;
         }
+
+        public override Dispose()
+        {
+            delete (this as any).Requisicao;
+            delete (this as any).Url;
+            delete (this as any).XmlHttp;
+            delete (this as any).Credencial;
+        }
     }
-
-  
-
 
 }

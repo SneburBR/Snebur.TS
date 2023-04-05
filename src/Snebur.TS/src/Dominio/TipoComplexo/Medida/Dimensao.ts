@@ -63,8 +63,6 @@
             return (this.Largura > 0 && this.Altura > 0);
         }
 
-
-
         public get TotalMegaPixels(): number
         {
             return (this.Largura * this.Altura) / (1024 * 1024);
@@ -74,6 +72,17 @@
         {
             return this.Largura * this.Altura;
         }
+
+        public get Proporcao(): number
+        {
+            return (this.Largura / this.Altura).ToDecimal(2);
+        }
+
+        public get ProporcaoSimplificada(): IDimensao
+        {
+            return DimensaoUtil.ProporcaoSimplificada(this.Largura, this.Altura);
+        }
+
         //#endregion
 
         //#region Construtor
@@ -182,12 +191,13 @@
                 this.Largura < dimensao.Largura;
         }
 
+     
 
         /**
          * Verifica se dimensão é proporcional
          * @param dimensao sensibilidade para a comparação, padrão =0
          */
-        public IsProporcional(dimensao: d.Dimensao): boolean;
+         public IsProporcional(dimensao: d.Dimensao): boolean;
         public IsProporcional(dimensao: d.Dimensao, sensibilidade: number): boolean;
         public IsProporcional(dimensao: d.Dimensao, sensibilidade: number = 0.1): boolean
         {
@@ -198,9 +208,9 @@
                     return false;
                 }
 
-                const scalarX = (this.Largura / dimensao.Largura).ToDecimal();
-                const scalarY = (this.Altura / dimensao.Altura).ToDecimal();
-                return u.Util.IgualSensivel(scalarX, scalarY, sensibilidade);
+                //const scalarX = (this.Largura / dimensao.Largura).ToDecimal();
+                //const scalarY = (this.Altura / dimensao.Altura).ToDecimal();
+                return u.Util.IgualSensivel(this.Proporcao, dimensao.Proporcao, sensibilidade);
             }
             return false;
         }
@@ -355,8 +365,15 @@
 
         public ToInteiro(): Dimensao
         {
-            return new Dimensao(parseInt(this.Largura),
+            return new Dimensao(
+                parseInt(this.Largura),
                 parseInt(this.Altura));
+        }
+
+        public ToProporcaoSimplificadaString(): string
+        {
+            const proporcao = this.ProporcaoSimplificada;
+            return `${proporcao.Largura}:${proporcao.Altura}`;
         }
 
     }

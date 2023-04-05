@@ -1,6 +1,4 @@
-﻿
-
-namespace Snebur.Core
+﻿namespace Snebur.Core
 {
     export class ManipuladorEvento<TEventArgs = EventArgs> implements IEquals
     {

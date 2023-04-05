@@ -2,12 +2,12 @@
 {
     export abstract class BaseComunicacaoCliente extends Snebur.BaseServico implements IBaseServico
     {
-        private static MAXIMA_TENTATIVA: number = 3;
-        private static readonly TEMPO_ESPERAR_FALHA = 2;
-        public static IsExisteFalhaConexao = false;
+        private static readonly TIMEOUT_PADRAO = 120000;
 
         private _urlServico: string;
+        protected _timeoutRequisicao: number = BaseComunicacaoCliente.TIMEOUT_PADRAO;
         public readonly UrlServicoDebug: string;
+
 
         protected IsNormalizarParametros: boolean = true;
         protected IsNaoClonarEntidades: boolean = false;
@@ -22,6 +22,13 @@
             return this.RetornarCredencialServico();
         }
 
+        public get Timeout():number
+        {
+            return this._timeoutRequisicao;
+        }
+
+        private readonly Gerenciador: GerenciadorRequiscao
+        
         protected readonly OpcoesClonarEntidades: EnumOpcaoClonarEntidade =
             EnumOpcaoClonarEntidade.ChavesEstrangeira |
             EnumOpcaoClonarEntidade.PropriedadesAlteradas |
@@ -31,6 +38,7 @@
         {
             super();
 
+            this.Gerenciador = GerenciadorRequiscao.Instancia;
             if (!u.ValidacaoUtil.IsUrlServico(urlServico))
             {
                 throw new Erro("O URL do serviço é invalida", this);
@@ -40,17 +48,27 @@
             this.UrlServicoDebug = urlServicoDebug;
         }
 
-        // #region Chamar Async
+        //#region Chamar Async
 
-        protected ChamarServicoAsync(nomeMetodo: string, argumentos: IArguments): void
+        protected ChamarServicoAsync(
+            nomeMetodo: string,
+            argumentos: IArguments): void
         {
-            this.ChamarServicoInternoAsync(nomeMetodo, argumentos, 0);
+            this.TentarChamarServicoInternoAsync(nomeMetodo, argumentos);
         }
 
-        private async ChamarServicoInternoAsync(
+        private async TentarChamarServicoInternoAsync(nomeMetodo: string, argumentos: IArguments)
+        { 
+            const resultado = await this.ChamarServicoInternoAsync(
+                nomeMetodo,
+                argumentos);
+
+            let x = "";
+        }
+
+        protected async ChamarServicoInternoAsync(
             nomeMetodo: string,
-            argumentos: IArguments,
-            tentativa: number) 
+            argumentos: IArguments): Promise<any>
         {
             const metodo: Function = (this as any)[nomeMetodo] as Function;
             const callback: Function = argumentos[(argumentos.length - 1)];
@@ -60,115 +78,33 @@
             {
                 throw new ErroNaoDefinido("Método não definido ou nome invalido " + nomeMetodo, this);
             }
-            if (!u.ValidacaoUtil.IsFunction(callback))
-            {
-                throw new ErroNaoDefinido("Callback não definido nos argumentos", this);
-            }
+
+            //if (!u.ValidacaoUtil.IsFunction(callback))
+            //{
+            //    throw new ErroNaoDefinido("Callback não definido nos argumentos", this);
+            //}
 
             const parametros = this.RetornarParametros(nomeMetodo, metodo, argumentos, true);
-
             const contrato = this.RetornarContratoChamada(nomeMetodo, parametros, true);
             const nomeManipualdor = this.RetornarNomeManipulador();
             const jsonConteudo = u.JsonUtil.Serializar(contrato);
             const credencial = this.CredencialServico;
-            const urlServidor = this.URLServico;
+            const pacote = PacoteUtil.CompactarPacote(jsonConteudo);
 
-            const token = await s.Token.RetornarTokenAsync();
-
-            const chamadaServico = new ChamadaServicoAsync(
-                urlServidor,
+            const requisicao = new Requisicao(
+                this,
                 nomeManipualdor,
-                jsonConteudo,
-                credencial, token);
-
-            const resultadoChamada = await chamadaServico.ChamarAsync();
-            /*const callback: Function = argumentos[(argumentos.length - 1)];*/
-            if (resultadoChamada instanceof ResultadoChamadaErro)
-            {
-                this.NotificarErroChamada(
-                    nomeMetodo,
-                    argumentos,
-                    chamadaServico,
-                    resultadoChamada,
-                    tentativa);
-
-                return;
-            }
-
-            if (BaseComunicacaoCliente.IsExisteFalhaConexao)
-            {
-                BaseComunicacaoCliente.IsExisteFalhaConexao = false;
-                $Aplicacao.EventoConexaoRestabelecida.Notificar(this, EventArgs.Empty);
-            }
-
-            const valorResultadoChamada = this.RetornarValorResultadoChamda(resultadoChamada);
-            if (valorResultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
-            {
-                u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
-                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
-                {
-                    alert("Reiniciando sessão do usuário");
-                }
-                window.location.reload();
-                return;
-            }
-
-            callback(valorResultadoChamada);
-            return valorResultadoChamada;
-        }
-
-        private NotificarErroChamada(
-            nomeMetodo: string,
-            argumentos: IArguments,
-            chamarServico: ChamadaServicoAsync,
-            resultadoChamada: ResultadoChamadaErro,
-            tentativa: number): void
-        {
-
-            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor;
-
-            const sb = new StringBuilder();
-            sb.AppendLine(`Erro interno no servidor (Status) ${chamarServico.HttpStatus}, tratamento do erro não implementado`);
-            sb.AppendLine("Url: " + this.URLServico);
-            sb.AppendLine("Serviço: " + this.RetornarNomeManipulador());
-            sb.AppendLine("Operação: " + nomeMetodo);
-            sb.AppendLine();
-
-            const linhas = TextoUtil.RetornarLinhas(resultadoChamada.MensagemErro);
-            for (const linha of linhas)
-            {
-                sb.AppendLine(linha);
-            }
-
-            const mensagem = sb.ToString();
-            console.error(mensagem);
-
-            if (!$Configuracao.IsDebug)
-            {
-                if (isErroInternoServidor && tentativa > BaseComunicacaoCliente.MAXIMA_TENTATIVA)
-                {
-                    throw new Error(mensagem);
-                }
-            }
-
-            this.TentarUtilizarUrlServicoDebug(tentativa);
-
-            this.TentarNovamenteAsync(
-                resultadoChamada,
                 nomeMetodo,
-                isErroInternoServidor,
-                argumentos,
-                tentativa + 1);
-        }
+                credencial,
+                pacote);
 
-        private TentarUtilizarUrlServicoDebug(tentativa: number)
-        {
-            if (($Configuracao.IsDebug || ($Configuracao.IsTeste && tentativa > 3)) &&
-                this.URLServico !== this.UrlServicoDebug &&
-                !String.IsNullOrEmpty(this.UrlServicoDebug))
+            const resultado = await this.Gerenciador.ExecutarAsync(requisicao);
+
+            if (u.ValidacaoUtil.IsFunction(callback))
             {
-                this.UsarUrlServicoDEBUG();
+                callback(resultado);
             }
+            return resultado;
         }
 
         public UsarUrlServicoDEBUG()
@@ -179,118 +115,22 @@
                                UrlServicoDEBUG : '${this.UrlServicoDebug}'`;
 
                 console.error(mensagem);
-                alert(mensagem);
-
                 this._urlServico = this.UrlServicoDebug;
             }
         }
-        //#endregion
-
-        //#region Chamar Sync
-
-        protected ChamarServico<TResultado>(nomeMetodo: string, argumentos: IArguments): TResultado
-        {
-            throw new Erro("Chamada sincronizas obsoletas usar async", this);
-
-            //let metodo: Function = (this as any)[nomeMetodo] as Function;
-            //let nomesParametros = this.RetornarNomeParametros(metodo, false);
-            //let parametros = this.RetornarParametros(nomesParametros, argumentos);
-            //let contratoChamada = this.RetornarContratoChamada(nomeMetodo, parametros, false);
-            //let jsonConteudo = u.JsonUtil.Serializar(contratoChamada);
-            //let nomeManipualdor = this.RetornarNomeManipulador();
-            //let chamarServico = new ChamadaServico(this.URLServico, nomeManipualdor, jsonConteudo, this.CredencialServico);
-            //let resultadoChamada = chamarServico.Chamar();
-            //return this.RetornarValorResultadoChamda(resultadoChamada);
-        }
-
-        // #endregion
-
-        //#region Tentar novamente
-
-        private async TentarNovamenteAsync(
-            resultadoChamada: ResultadoChamadaErro,
-            nomeMetodo: string,
-            isErroInternoServidor: boolean,
-            argumentos: IArguments,
-            tentativa: number)
-        {
-            const args = new FalhaConexaoEventArgs(
-                resultadoChamada,
-                this.URLServico,
-                this.RetornarNomeManipulador(),
-                nomeMetodo,
-                tentativa);
-
-            $Aplicacao.EventoFalhaConexao.Notificar(this, args);
-
-            if (!isErroInternoServidor && !BaseComunicacaoCliente.IsExisteFalhaConexao)
-            {
-                BaseComunicacaoCliente.IsExisteFalhaConexao = true;
-                await u.InternetUtil.AguardarConexaoInternerAsync();
-            }
-
-            await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(BaseComunicacaoCliente.TEMPO_ESPERAR_FALHA * Math.min(tentativa, 10)));
-            this.ChamarServicoInternoAsync(nomeMetodo, argumentos, tentativa);
-        }
 
         //#endregion
+
 
         //// #region Resultado da chamada
-
-        private RetornarValorResultadoChamda(resultadoChamada: ResultadoChamada): any
+         
+        protected ChamarServico<T>(
+            nomeMetodo: string,
+            argumentos: IArguments):T
         {
-            if (resultadoChamada instanceof ResultadoChamadaVazio)
-            {
-                return null;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaTipoPrimario)
-            {
-                const resultadoChamadaTipoPrimario: ResultadoChamadaTipoPrimario = resultadoChamada;
-                return u.ConverterUtil.ParaTipoPrimario(resultadoChamadaTipoPrimario.Valor, resultadoChamadaTipoPrimario.TipoPrimarioEnum);
-            }
-
-            if (resultadoChamada instanceof ResultadoChamadaBaseDominio)
-            {
-                const resultadoChamadaBaseDominio: ResultadoChamadaBaseDominio = resultadoChamada;
-                return resultadoChamadaBaseDominio.BaseDominio;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaLista)
-            {
-                return this.RetornarValorResultadoChamadaLista(resultadoChamada);
-            }
-
-            if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
-            {
-                u.SessaoUsuarioUtil.SairAsync();
-                return;
-            }
-            throw new ErroNaoSuportado("Resultado chamada não suportado", this);
+            throw new Erro("Chamadas síncronas estão obsoletas");
         }
-
-        private RetornarValorResultadoChamadaLista(resultadoChamada: ResultadoChamadaLista): any
-        {
-            if (resultadoChamada instanceof ResultadoChamadaListaTipoPrimario)
-            {
-                //var resultadoChamdaListaTipoPrimario: ResultadoChamadaListaTipoPrimario = resultadoChamada;
-                const lista = new Array<any>();
-                const valores = resultadoChamada.Valores;
-                const len = valores.length;
-
-                for (let i = 0; i < len; i++)
-                {
-                    const valor = valores[i];
-                    const valorTipado = u.ConverterUtil.ParaTipoPrimario(valor, resultadoChamada.TipoPrimarioEnum);
-                    lista.Add(valorTipado);
-                }
-                return lista;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaListaBaseDominio)
-            {
-                return resultadoChamada.BasesDominio;
-            }
-            throw new ErroNaoSuportado("Resultado chamada lista não suportado", this);
-        }
-
+         
         // #endregion
 
         // #region  Retornar parâmetros da chamada
@@ -433,6 +273,7 @@
             parametroChamada.BasesDominio = parametro.Valor as ListaObservacao<d.BaseDominio>;
             return parametroChamada;
         }
+
         // #endregion
 
         //#region Parâmetros da operação
@@ -511,6 +352,7 @@
             }
             return valorParametro;
         }
+
         //#endregion
 
         //#region Cabeçalho
@@ -529,10 +371,7 @@
 
         //#region IBaseServico 
 
-        public Ping(): boolean
-        {
-            return this.ChamarServico<boolean>("Ping", arguments);
-        }
+
 
         //public RetornarDataHoraUTC(): Date
         //{

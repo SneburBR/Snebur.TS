@@ -1,16 +1,22 @@
-﻿namespace Snebur.Utilidade
+﻿namespace Snebur
 {
     export class DebugUtil
     {
         public static ThrowAndContinue(mensagem: string)
         {
+           
+            console.error(mensagem);
             try
             {
-                throw new Erro(mensagem);
+                if ($Configuracao.IsDebug)
+                {
+                    throw new Erro(mensagem);
+                }
             }
-            catch (err)
+            /*eslint-disable*/
+            catch 
             {
-                console.error(err);
+
             }
         }
     }

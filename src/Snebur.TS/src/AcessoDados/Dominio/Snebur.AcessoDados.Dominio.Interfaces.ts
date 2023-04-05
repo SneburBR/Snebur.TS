@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 24 de março de 2023
-//Hora : 14:51:17
+//Data : sábado, 1 de abril de 2023
+//Hora : 17:56:38
 //@Namespace: Snebur.AcessoDados
 //@PrioridadeDominio: 2
 //@Globalizar: False
@@ -12,8 +12,8 @@ namespace Snebur.AcessoDados
     {
         RetornarValorScalarAsync(estruturaConsulta : Snebur.AcessoDados.EstruturaConsulta) : Promise<any>;
         RetornarResultadoConsultaAsync(estruturaConsulta : Snebur.AcessoDados.EstruturaConsulta) : Promise<Snebur.AcessoDados.ResultadoConsulta>;
-        SalvarAsync(entidades : Array<Snebur.Dominio.Entidade>) : Promise<Snebur.AcessoDados.ResultadoSalvar>;
-        ExcluirAsync(entidades : Array<Snebur.Dominio.Entidade>,relacoesEmCascata : string) : Promise<Snebur.AcessoDados.ResultadoExcluir>;
+        SalvarAsync(entidades : Array<Snebur.Dominio.IEntidade>) : Promise<Snebur.AcessoDados.ResultadoSalvar>;
+        ExcluirAsync(entidades : Array<Snebur.Dominio.IEntidade>,relacoesEmCascata : string) : Promise<Snebur.AcessoDados.ResultadoExcluir>;
         RetornarDataHoraAsync() : Promise<Date>;
         RetornarDataHoraUTCAsync() : Promise<Date>;
     }

@@ -10,20 +10,22 @@ namespace Snebur.Comunicacao
 
         //#region IServicoUsuario
 
-        public NotificarInicioEnvio(totalArquivos: number, totalBytes: number): string
-        {
-            return this.ChamarServico<string>("NotificarInicioEnvio", arguments);
-        }
+        //public NotificarInicioEnvio(
+        //    totalArquivos: number,
+        //    totalBytes: number): string
+        //{
+        //    return this.ChamarServico<string>("NotificarInicioEnvio", arguments);
+        //}
 
-        public NotificarProgressoEnvioArquivo(identificadorLog: string, progresso: number, bytesEnvidos: number): boolean
-        {
-            return this.ChamarServico<boolean>("NotificarProgressoEnvioArquivo", arguments);
-        }
+        //public NotificarProgressoEnvioArquivo(identificadorLog: string, progresso: number, bytesEnvidos: number): boolean
+        //{
+        //    return this.ChamarServico<boolean>("NotificarProgressoEnvioArquivo", arguments);
+        //}
 
-        public NotificarFimEnvio(identificadorLog: string, totalBytesEnviado: number): boolean
-        {
-            return this.ChamarServico<boolean>("NotificarProgressoEnvioArquivo", arguments);
-        }
+        //public NotificarFimEnvio(identificadorLog: string, totalBytesEnviado: number): boolean
+        //{
+        //    return this.ChamarServico<boolean>("NotificarProgressoEnvioArquivo", arguments);
+        //}
 
         //Async
 

@@ -47,7 +47,7 @@ namespace Snebur
             return this.__camposPrivados.__hashCode;
         }
 
-        public DispensarObjeto<TThis extends this>(expressaoObjeto: (value: TThis) => HTMLElement | Objeto): void
+        public DispensarObjeto<TThis extends this>(expressaoObjeto: (value: TThis) => HTMLElement | Objeto | Array<any>): void
         {
             const nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressaoObjeto);
             const valorObjeto = (this as any)[nomePropriedade];
@@ -64,15 +64,18 @@ namespace Snebur
                     objetoIDisposable.remove();
                 }
 
+                if (Array.isArray(objetoIDisposable))
+                {
+                    objetoIDisposable.Clear();
+                }
                 (this as any)[nomePropriedade] = undefined;
                 delete (this as any)[nomePropriedade];
             }
         }
+        
 
         //#region Timeouts 
-
-
-
+         
         protected SetTimeout(acao: Function, timeout: number = 0): number
         {
             if (!this.__camposPrivados.__IdentificadoresTimeout)

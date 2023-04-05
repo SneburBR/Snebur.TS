@@ -1199,6 +1199,12 @@
             }
             return false;
         }
+
+        public static IsValorProgressoValido(valor: number): boolean
+        {
+            return ValidacaoUtil.IsNumber(valor) &&
+                valor >= 0 && valor <= 100;
+        }
     }
 
     export enum EnumUF

@@ -153,6 +153,8 @@
             return this._isNavegadorSuportarOrientacaoExif;
         }
 
+        public readonly ProgressoOcupadoAtual: number = 0;
+
         //public DocumentoPrincipal: any;
 
         //#endregion
@@ -164,9 +166,9 @@
         public readonly EventoUsuarioConectadoAlterado = new Evento<UsuarioConectadoAlteradoEventArgs>(this);
         public readonly EventoUsuarioSaiu = new Evento(this);
 
-        public get IsExisteFalhaConexao()
+        public get IsExisteFalhaRequisicao()
         {
-            return c.BaseComunicacaoCliente.IsExisteFalhaConexao;
+            return c.GerenciadorRequiscao.Instancia.IsExisteFalhaRequisicao;
         }
         //#endregion
 
@@ -236,7 +238,7 @@
 
             if (!ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
             {
-                console.warn("A url dos servico workers não foi definida");
+                console.warn("A URL dos serviço workers não foi definida");
             }
             console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
 
