@@ -455,10 +455,35 @@
 
         //#region Ocupar
 
+        public override get IsOcupado():boolean
+        {
+            return this.DocumentoPrincipal?.IsOcupado ?? false;
+        }
+
+        public override get ProgressoOcupadoAtual(): number
+        {
+            super.IsOcupado
+            return this.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
+        }
 
         public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null): void
         {
-            this.DocumentoPrincipal.Ocupar(argumento, mensagem)
+            this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
+        }
+         
+        public override TituloOcupado(titulo: string): void
+        {
+            return this.DocumentoPrincipal?.TituloOcupado(titulo);
+        }
+
+        public override MensagemOcupado(mensagem: string): void
+        {
+            return this.DocumentoPrincipal?.MensagemOcupado(mensagem);
+        }
+
+        public override ProgressoOcupado(progresso: number): void
+        {
+            return this.DocumentoPrincipal?.ProgressoOcupado(progresso);
         }
 
         public override DesocuparAsync(): Promise<void>
@@ -496,11 +521,15 @@ namespace Snebur.Aplicacao
         /**Parâmetros adicionais do histórico */
         readonly ParametrosHistorico?: DicionarioSimples<string>;
 
+        readonly IsOcupado: boolean;
         Ocupar(): void;
         Ocupar(titulo: string, mensagem: string): void;
         Ocupar(opcao: EnumOpcaoOcupar): void;
         Ocupar(isOcuparImeditamente: boolean): void;
         Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): void;
+        MensagemOcupado(mensagem: string): void;
+        TituloOcupado(mensagem: string): void;
+        ProgressoOcupado(progresso: number): void;
         DesocuparAsync(): Promise<void>
 
         RetornarBarraEnvio(documentoPrincipal: ui.DocumentoPrincipal): ui.BarraEnvioArquivos;

@@ -190,7 +190,11 @@
             switch (tipo)
             {
                 case EnumTipoLog.Alerta:
-                    return "orange";
+                    return "darkorange";
+
+                case EnumTipoLog.Info:
+
+                    return "blue";
 
                 case EnumTipoLog.Erro:
                     return "red";

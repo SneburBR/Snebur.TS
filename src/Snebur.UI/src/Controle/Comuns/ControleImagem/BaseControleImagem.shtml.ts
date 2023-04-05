@@ -2,7 +2,6 @@
 {
     export abstract class BaseControleImagem extends Snebur.UI.BaseControle
     {
-
         private static readonly PREFIXO_CSS_PREENCHIMENTO_IMAGEM = "sn-imagem-preenchimento--";
         private static readonly PREFIXO_CSS_ORIENTACAO_IMAGEM = "sn-imagem-orientacao--";
         private static readonly PREFIXO_CSS_RECIPIENTE_IMAGEM = "sn-imagem-recipiente--";
@@ -110,7 +109,7 @@
 
         private ElementoImagemInterno_Carregada(e: UIEvent): void
         {
-            if ($Aplicacao.IsExisteFalhaConexao)
+            if ($Aplicacao.IsExisteFalhaRequisicao)
             {
                 return;
             }
@@ -184,7 +183,7 @@
 
         //#endregion
 
-        //#region Css sufixo
+        //#region CSS sufixo
 
         private RetornarCssSufixoClassePreenchimento(): string
         {
@@ -260,7 +259,7 @@
                     return "ajustar-altura";
                 }
 
-                throw new Erro("Não possível desctar a ajuste do recipiente da imagem");
+                throw new Erro("Não possível detectar a ajuste do recipiente da imagem");
             }
             return String.Empty;
         }

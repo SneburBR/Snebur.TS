@@ -53,6 +53,8 @@
         {
             return this.___isOcupado;
         }
+
+
         //se renomeado alterar em ui.DocumentoPrincipal
         private set IsOcupadoInterno(value: boolean)
         {
@@ -620,7 +622,12 @@
 
         //#endregion
 
-        //#region Ocupar e desocupar 
+        //#region Ocupar e desocupar
+
+        public get ProgressoOcupadoAtual(): number
+        {
+            return $Aplicacao.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
+        }
 
         public Ocupar(): void;
         public Ocupar(titulo: string, mensagem: string): void;

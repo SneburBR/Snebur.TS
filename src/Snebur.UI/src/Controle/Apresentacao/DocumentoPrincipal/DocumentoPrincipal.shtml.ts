@@ -218,7 +218,39 @@
         }
         //#endregion
 
+        //#region Focus
+        public override Focus(): void
+        {
+            if (this.IsControleInicializado)
+            {
+                this.Elemento.focus();
+            }
+        }
+
+        public DesfocarTudo(): void
+        {
+            if (this.IsControleInicializado)
+            {
+                document.documentElement.blur();
+                window.blur();
+                setTimeout(() =>
+                {
+                    if (this.ElementoApresentacao instanceof HTMLElement)
+                    {
+                        this.ElementoApresentacao.blur();
+                    }
+                });
+            }
+        }
+
+        //#endregion
+
         //#region Ocupar
+
+        public override get ProgressoOcupadoAtual()
+        {
+            return this.__JanelaOcupado?.Progresso ?? 0;
+        }
 
         public override Ocupar(): void;
         public override Ocupar(titulo: string, mensagem: string): void;
@@ -280,11 +312,7 @@
             }
             return [EnumOpcaoOcupar.Padrao, null];
         }
-
-        //public override async DesocuparAsync(): Promise<void>
-        //{
-        //    await this.DesocuparAsync();
-        //}
+         
 
         public override DesocuparAsync(): Promise<void>
         {
@@ -300,8 +328,6 @@
 
         private readonly CallbacksDesocupar = new List<Function>();
 
-        //private Desocupar(): void;
-        //private Desocupar(callback: Function): void;
         private DesocuparInterno(callback: Function = null): void
         {
             window.clearTimeout(this.__IdentificadorTimeoutMostrarJanelaOcupado);
@@ -358,32 +384,7 @@
             }
             super.DesocuparElemento();
         }
-
-        public override Focus(): void
-        {
-            if (this.IsControleInicializado)
-            {
-                this.Elemento.focus();
-            }
-        }
-
-        public DesfocarTudo(): void
-        {
-            if (this.IsControleInicializado)
-            {
-                document.documentElement.blur();
-                window.blur();
-                //this.ElementoSelecionarArquivo.focus();
-                setTimeout(() =>
-                {
-                    if (this.ElementoApresentacao instanceof HTMLElement)
-                    {
-                        this.ElementoApresentacao.blur();
-                    }
-                });
-            }
-        }
-
+         
         private MostrarJanelaOcupado(titulo: string, mensagem: string, baseControleOrigem: BaseControle): void
         {
             //janela pode ser sido dispensar por outro controle, no evento Dispose
