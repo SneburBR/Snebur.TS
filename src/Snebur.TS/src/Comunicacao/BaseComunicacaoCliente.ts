@@ -334,7 +334,7 @@
                 {
                     if (valorParametro.Id > 0)
                     {
-                        return valorParametro.Clonar(this.OpcoesClonarEntidades);
+                        return valorParametro.Clone(this.OpcoesClonarEntidades);
                     }
                 }
 

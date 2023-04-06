@@ -75,7 +75,7 @@
                                    $Aplicacao.Ocupar();
                                    $Aplicacao.DocumentoPrincipal.Ocupar()`;
 
-                u.DebugUtil.ThrowAndContinue(mensagem);
+                DebugUtil.ThrowAndContinue(mensagem);
 
                 Snebur.$Aplicacao.DocumentoPrincipal.DesocuparAsync();
             }

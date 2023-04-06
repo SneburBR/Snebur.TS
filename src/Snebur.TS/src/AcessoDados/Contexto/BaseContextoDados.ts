@@ -4,6 +4,7 @@
     {
         private readonly ServicoDados: ServicoDadosCliente;
         private readonly NamespaceEntidades: string;
+        private _isSalvando: boolean;
         private _isAtualizandoPropriedades: boolean;
 
         private get CredencialServico(): s.CredencialServico
@@ -14,6 +15,11 @@
         protected get IsAtualizandoPropriedades(): boolean
         {
             return this._isAtualizandoPropriedades;
+        }
+
+        public get IsSalvando(): boolean
+        {
+            return this._isSalvando;
         }
 
         public override readonly URLServico: string;
@@ -83,17 +89,25 @@
             /*eslint-enable*/
             if ($Configuracao.IsDebug)
             {
-                const entidadesClonas = entidades.Where(x => (x as any as IEntidadeClonada).___is_entidade_clonada__ === true)
+                const entidadesClonas = entidades.Where(x => (x as any as IEntidadeClonada).___is_entidade_clonada__ === true);
                 if (entidadesClonas.Count > 0)
                 {
                     console.warn("Utilizar o SalvarAvando para salvar entidades clonadas");
                 }
             }
+            if (entidades.Count > 0)
+            {
+                const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades);
+                const resultado = await this.TrySalvarInternoAsync(entidades);
+                ajudante.Normalizar(resultado);
+                return resultado;
+            }
 
-            const resultado = await this.SalvarInternoAsync(entidades);
-            const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades);
-            ajudante.Normalizar(resultado);
-            return resultado;
+            return new ResultadoSalvar({
+                IsSucesso: true
+            });
+
+
 
             //return new Promise<ResultadoSalvar>(resolver =>
             //{
@@ -107,7 +121,7 @@
             //    });
             //});
         }
-    
+
 
         public async SalvarAvancadoAsync(
             argsEntidades: List<Entidade> | Entidade,
@@ -115,22 +129,61 @@
         {
             const entidades = this.RetornarEntidades(argsEntidades);
             const entidadesAlvo = this.RetornarEntidades(argsEntidadesAlvos);
-            const resultado = await this.SalvarInternoAsync(entidades);
 
             if (entidadesAlvo.Any(x => x.Id === 0))
             {
                 throw new Erro("Somente entidades com Id > 0 podem ser alvo de atualização");
             }
 
-            const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades, entidadesAlvo);
-            ajudante.Normalizar(resultado);
-            return resultado;
+            if (entidades.Count > 0)
+            {
+                const ajudante = new AjudanteNormalizarEntidadesSalvas(entidades, entidadesAlvo);
+                const resultado = await this.TrySalvarInternoAsync(entidades);
+                ajudante.Normalizar(resultado);
+                return resultado;
+            }
 
+            return new ResultadoSalvar({
+                IsSucesso: true
+            });
+        }
+
+        
+        private async TrySalvarInternoAsync(entidades: d.Entidade[]): Promise<a.ResultadoSalvar>
+        {
+            while (this._isSalvando)
+            {
+                await ThreadUtil.EsperarAsync(200);
+            }
+            this._isSalvando = true;
+            try
+            {
+                return await this.SalvarInternoAsync(entidades);
+            }
+            catch (err)
+            {
+                const descricaoEntidades = String.Join(", ", entidades.Select(x => u.EntidadeUtil.RetornarDescricaoEntidade(x)));
+                const mensagemErro = `Falha o salvar entidades ${descricaoEntidades}
+                                      Erro: ${err}`;
+
+                if ($Configuracao.IsDebugOuTeste)
+                {
+                    throw new Erro(mensagemErro, err);
+                }
+
+                return new a.ResultadoSalvar({
+                    IsSucesso: false,
+                    MensagemErro: mensagemErro
+                });
+            }
+            finally
+            {
+                this._isSalvando = false;
+            }
         }
 
         private async SalvarInternoAsync(entidades: d.Entidade[])
         {
-
             /*eslint-enable*/
 
             if (entidades.length === 0)
@@ -284,7 +337,8 @@
             }
         }
 
-        private RetornarNomesProprieades<TEntidade extends IEntidade | Entidade>(entidade: TEntidade,
+        private RetornarNomesProprieades<TEntidade extends IEntidade | Entidade>(
+            entidade: TEntidade,
             expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Array<string>
         {
             const retorno = new Array<string>();
@@ -338,7 +392,7 @@
             const entidadeRecuperada = await consulta.SingleAsync();
             for (const propriedade of entidade.GetType().RetornarPropriedades())
             {
-                if ((entidade as any)[propriedade.Nome] != (entidadeRecuperada as any)[propriedade.Nome])
+                if ((entidade as any)[propriedade.Nome] !== (entidadeRecuperada as any)[propriedade.Nome])
                 {
                     if (propriedade.Tipo instanceof r.TipoPrimario ||
                         propriedade.Tipo instanceof r.TipoEnum ||

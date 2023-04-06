@@ -82,7 +82,7 @@
         {
             if (valorParametro instanceof d.Entidade)
             {
-                return valorParametro.Clonar(EnumOpcaoClonarEntidade.ChavesEstrangeira |
+                return valorParametro.Clone(EnumOpcaoClonarEntidade.ChavesEstrangeira |
                     EnumOpcaoClonarEntidade.PropriedadesAlteradas);
 
             }

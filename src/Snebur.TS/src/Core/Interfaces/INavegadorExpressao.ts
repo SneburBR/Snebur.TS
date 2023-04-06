@@ -1,5 +1,4 @@
-﻿
-interface INavegadorExpressao
+﻿interface INavegadorExpressao
 {
     NomeNavegador: string;
     Expressao: RegExp;

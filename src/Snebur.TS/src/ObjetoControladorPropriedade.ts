@@ -12,7 +12,7 @@
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
 
-        
+
         private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = true;
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
 
@@ -342,18 +342,18 @@
         protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any, nomePropriedadeTipoComplexo?: string): void;
         protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeTipoComplexo?: string): void
         {
-            if (typeof antigoValor === "undefined" && typeof novoValor === "undefined")
+            if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
             {
-                antigoValor = (this as any)[nomePropriedade];
-            }
+                if (typeof antigoValor === "undefined" && typeof novoValor === "undefined")
+                {
+                    antigoValor = (this as any)[nomePropriedade];
+                }
 
-            if (typeof novoValor === "undefined")
-            {
-                novoValor = antigoValor;
-            }
+                if (typeof novoValor === "undefined")
+                {
+                    novoValor = antigoValor;
+                }
 
-            if ((this.IsNotificacaoAlteracaoPropriedadeAtiva))
-            {
                 const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
                 let propriedadeAlterada = this.__PropriedadesAlteradas.TryItem(nomePropriedade);
 
@@ -383,8 +383,9 @@
 
                     if (!u.Util.IsIgual(antigoValor, novoValor) || this.IsEntidadeClonada)
                     {
-                        if ((propriedade && propriedade.Tipo instanceof r.TipoPrimario) ||
-                            (propriedade && propriedade.Tipo instanceof r.TipoEnum))
+                        if (propriedade != null &&
+                            (propriedade.Tipo instanceof r.TipoPrimario ||
+                            propriedade.Tipo instanceof r.TipoEnum))
                         {
                             this.__PropriedadesAlteradas.Add(nomePropriedade, propriedadeAlterada);
                         }

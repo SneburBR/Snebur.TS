@@ -80,6 +80,7 @@ namespace Snebur
     export import UrlUtil = Snebur.Utilidade.UrlUtil;
     export import ImagemUtil = Snebur.Utilidade.ImagemUtil;
     export import ListaUtil = Snebur.Utilidade.ListaUtil;
+    export import DebugUtil = Snebur.Utilidade.DebugUtil;
 
     export import ArquivoUtil = Snebur.Utilidade.ArquivoUtil;
     export import CaminhoUtil = Snebur.Utilidade.CaminhoUtil;

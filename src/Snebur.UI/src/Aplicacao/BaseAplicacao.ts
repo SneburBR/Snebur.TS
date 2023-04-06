@@ -462,7 +462,6 @@
 
         public override get ProgressoOcupadoAtual(): number
         {
-            super.IsOcupado
             return this.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
         }
 

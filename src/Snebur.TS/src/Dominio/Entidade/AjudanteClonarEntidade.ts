@@ -251,7 +251,7 @@
                 {
                     return valorPropriedade;
                 }
-                return valorPropriedade.Clonar(opcoes, this.FuncaoClonarValorProprieadede);
+                return valorPropriedade.Clone(opcoes, this.FuncaoClonarValorProprieadede);
             }
 
             if (valorPropriedade instanceof Array)

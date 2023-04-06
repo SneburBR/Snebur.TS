@@ -94,6 +94,7 @@
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\Requisicao.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\NormalizarResultadoChamada.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IClone.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRota.Partial.ts" />

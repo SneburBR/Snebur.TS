@@ -6,6 +6,7 @@
 
         private readonly Fila = new List<RequisicaoResolver>();
         private _requisicaoAtual: RequisicaoResolver
+        private readonly CallbackIncrementarTotalFinal = new List<Function>();
 
         public get IsExisteFalhaRequisicao(): boolean
         {
@@ -14,7 +15,7 @@
 
         public get IsExisteRequisicoesAtivas(): boolean
         {
-            return this.Fila.length > 0 || this._requisicaoAtual!= null;
+            return this.Fila.length > 0 || this._requisicaoAtual != null;
         }
 
         public get TotalRequisicoesFila(): number
@@ -31,6 +32,7 @@
                     Resolver: resolver
                 });
                 this.MostrarAlertaRequisicaoAguardandoNaFila(requisicao);
+                this.IncrimentarTotalFinal();
                 this.ExecutarProximaRequisicaoAsync();
             });
         }
@@ -43,7 +45,6 @@
             }
 
             let totalFila = this.Fila.length;
-            let c = 0;
             let ultimoProgresso = $Aplicacao.ProgressoOcupadoAtual;
 
             if (!ValidacaoUtil.IsValorProgressoValido(ultimoProgresso))
@@ -52,22 +53,30 @@
                 ultimoProgresso = 0;
             }
 
+            const incrementarTotalFinal = function()
+            {
+                totalFila += 1;
+            };
+
+            this.CallbackIncrementarTotalFinal.Add(incrementarTotalFinal);
             while (this.Fila.length > 0)
             {
                 console.WarmDebug(`Existe ainda ( ${this.Fila.length} requisições na fila`);
                 if (progressHandler != null)
                 {
-                    c += 1;
                     if (totalFila < this.Fila.length)
                     {
-                        totalFila = this.Fila.length;
+                        console.error("Gerenciador de requisições: totalFila < this.Fila.length");
                     }
-                    const progresso = ((totalFila - this.Fila.length) / totalFila) * 100;
+
+                    const executadas = (totalFila - this.Fila.length);
+                    const progresso = (executadas / totalFila) * 100;
                     ultimoProgresso = Math.max(ultimoProgresso, progresso);
-                    progressHandler(new ProgressoEventArgs(ultimoProgresso, `Fila ${c}/${totalFila}`));
+                    progressHandler(new ProgressoEventArgs(ultimoProgresso, `Fila ${executadas}/${totalFila}`));
                 }
                 await ThreadUtil.EsperarAsync(350);
             }
+            this.CallbackIncrementarTotalFinal.Remove(incrementarTotalFinal);
         }
 
         private async ExecutarProximaRequisicaoAsync()
@@ -105,6 +114,14 @@
                 {
                     console.warn(`A requisição ${requisicao.toString()} está na fila n ${this.Fila.length}`);
                 }
+            }
+        }
+
+        private IncrimentarTotalFinal()
+        {
+            for (const callback of this.CallbackIncrementarTotalFinal)
+            {
+                callback();
             }
         }
 

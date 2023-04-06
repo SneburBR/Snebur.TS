@@ -153,7 +153,7 @@
             return this._isNavegadorSuportarOrientacaoExif;
         }
 
-        public readonly ProgressoOcupadoAtual: number = 0;
+        public abstract readonly ProgressoOcupadoAtual: number
 
         //public DocumentoPrincipal: any;
 

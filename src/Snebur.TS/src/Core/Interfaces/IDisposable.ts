@@ -4,5 +4,12 @@
     {
         Dispose(): void;
     }
+
+    export interface IDisposableAsync
+    {
+        DisposeAsync(): Promise<void>;
+    }
+
+   
 }
 

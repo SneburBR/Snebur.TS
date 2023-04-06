@@ -158,7 +158,7 @@ namespace Snebur.Comunicacao
                 if (!(resultadoChamada instanceof ResultadoChamadaTimeoutCliente))
                 {
                     const mensagem = `O chamada retornou o resultado ${resultadoChamada.GetType().Nome} em ${this._stopwatch.TotalSeconds}s.
-                                      Porém depois que timeout foi atingido para requisição ${this.Requisicao.toString()}`
+                                      Porém depois que timeout foi atingido para requisição ${this.Requisicao.toString()}`;
 
                     DebugUtil.ThrowAndContinue(mensagem);
                 }

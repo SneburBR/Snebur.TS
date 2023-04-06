@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export abstract class BaseDicionario<TChave extends TipoItemLista = string, TItem = any> implements ITipo<Snebur.Reflexao.TipoDicionario>
+    export abstract class BaseDicionario<TChave extends TipoItemLista = string, TItem = any> implements ITipo<Snebur.Reflexao.TipoDicionario>, IClone<BaseDicionario<TChave, TItem>>
     {
         private __hashCode: number;
 
@@ -17,6 +17,8 @@
             return this.__hashCode;
         }
 
+        public abstract Clone(): BaseDicionario<TItem, TChave>;
+        public abstract Clone(isClonarItens: boolean): BaseDicionario<TItem, TChave>;
     }
 
     export type TipoItemLista = string | number | Date | object | Snebur.Objeto | d.IEntidade | { [key: string]: any };
@@ -443,6 +445,29 @@
             return this.__RetornarTipo();
         }
         //#endregion
+
+        public override Clone(isClonarItens: boolean = false): DicionarioSimples<TItem, TChave>
+        {
+            const clone = new DicionarioSimples<TItem, TChave>();
+            for (const chave of this.Chaves)
+            {
+                const item = this.RetornarItem(this.Item(chave), isClonarItens);
+                clone.Add(chave, item);
+            }
+            return clone;
+        }
+
+        private RetornarItem<TItem>(item: TItem, isClonarItens: boolean): any
+        {
+            if (isClonarItens)
+            {
+                if (typeof (item as IClone).Clone === "function")
+                {
+                    return (item as IClone).Clone();
+                }
+            }
+            return item
+        }
     }
 
     DicionarioSimples.__CaminhoTipo = "TipoDicionario";

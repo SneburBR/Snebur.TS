@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Dominio
 {
-    export abstract class Entidade extends BaseDominio implements IEntidade, IEquals
+    export abstract class Entidade extends BaseDominio implements IEntidade, IEquals, IClone<Entidade>
     {
         private _entidadeHashCode: number;
 
@@ -115,7 +115,7 @@
 
         public override NotificarValorPropriedadeAlteradaTipoCompleto(nomePropriedade: string, antigoValor: BaseTipoComplexo, novoValor: BaseTipoComplexo)
         {
-            if ($Configuracao.IsDebug)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
                 const isSomenteLeitura = propriedade.Atributos.OfType(at.SomenteLeituraAttribute).SingleOrDefault() instanceof at.SomenteLeituraAttribute;
@@ -241,11 +241,12 @@
             {
                 throw new Erro("O entidade clona deve ter um id maior que zero", this);
             }
-            return this.Clonar(EnumOpcaoClonarEntidade.SomenteId);
+            return this.Clone(EnumOpcaoClonarEntidade.SomenteId);
         }
 
         /**@param {funcaoClonarValorProprieade} Funcao opcional para clonar tudo, o valor propriedade, retorna o valor propriedade clonado, se undefined o valor será clonado para método padrao */
-        public Clonar<TEntidade extends this = this>(opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
+        public Clone<TEntidade extends this = this>(
+            opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
             funcaoClonarValorProprieadede?: FuncaoClonarPropriedade):
             TEntidade
         {

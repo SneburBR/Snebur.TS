@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Dominio
 {
-    export abstract class BaseTipoComplexo extends Snebur.Dominio.BaseDominio implements   Snebur.Dominio.ICaminhoTipo
+    export abstract class BaseTipoComplexo extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.ICaminhoTipo, IClone<BaseTipoComplexo>
     {
         //#region Construtor
 
@@ -31,7 +31,7 @@
 
         //#endregion
 
-        public abstract Clone<TClone extends this =this>(): TClone;
+        public abstract Clone<TClone extends this = this>(): TClone;
         public abstract Clone(): BaseTipoComplexo;
 
         public abstract override Equals<TIgual extends this = this>(obj: TIgual): boolean;
@@ -44,9 +44,9 @@
                 const caminhoPropriedade = `${this.__NomePropriedadeEntidade}_${nomePropriedade}`;
                 (this.__Entidade as any as IObjetoControladorPropriedade).
                     NotificarValorPropriedadeAlterada(caminhoPropriedade,
-                    antigoValor,
-                    novoValor,
-                    this.__NomePropriedadeEntidade);
+                        antigoValor,
+                        novoValor,
+                        this.__NomePropriedadeEntidade);
                 //super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
             }
             super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
@@ -59,8 +59,16 @@
                 const antigoValor = propriedade.RetornarValor(objetoAntigo);
                 const novoValor = propriedade.RetornarValor(this);
                 const caminhoPropriedade = `${this.__NomePropriedadeEntidade}_${propriedade.Nome}`;
-                (this.__Entidade as any as IObjetoControladorPropriedade).NotificarValorPropriedadeAlterada(caminhoPropriedade, antigoValor, novoValor);
+
+                const entidadeObservacao = (this.__Entidade as any as IObjetoControladorPropriedade);
+                entidadeObservacao.NotificarValorPropriedadeAlterada(
+                    caminhoPropriedade,
+                    antigoValor,
+                    novoValor,
+                    propriedade.Nome);
             }
         }
     }
+
+    
 }
