@@ -71,11 +71,11 @@
             this.Callback = callback;
             if (this.IdTimeout > 0)
             {
-                throw new Erro("J� existe gerenciador timeout atingido");
+                throw new Erro("Já existe gerenciador timeout atingido");
             }
             this.IdTimeout = window.setTimeout(() =>
             {
-                const erro = new ErroTimeout(`O timeout do servi�o ${this.UrlWorkerFinal}`);
+                const erro = new ErroTimeout(`O timeout do serviço ${this.UrlWorkerFinal}`);
                 LogUtil.Erro(erro);
                 this.Finalizar(erro);
 

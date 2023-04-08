@@ -60,10 +60,10 @@
                     break;
                 case EnumRotacaoImagem.Normal:
                 case EnumRotacaoImagem.Rotacao360:
-                    //n�o faz nada
+                    //não faz nada
                     break;
                 default:
-                    throw new Erro("Rota��o da imagem n�o suportada");
+                    throw new Erro("Rotação da imagem não suportada");
             }
 
 

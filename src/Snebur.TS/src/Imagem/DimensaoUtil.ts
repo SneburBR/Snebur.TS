@@ -205,7 +205,7 @@
 
                 default:
 
-                    throw new Erro("Orienta��o n�o suportada");
+                    throw new Erro("Orientação não suportada");
             }
 
         }
@@ -223,7 +223,7 @@
             {
                 return DimensaoUtil.RetornarOrientacao(dimensaoOuOrientacao);
             }
-            throw new Erro(`A (dimensão ou orientacao) n�o foi definida ou � invalida`);
+            throw new Erro(`A (dimensão ou orientação) não foi definida ou é invalida`);
         }
 
         public static IsDimensao(obj: any): obj is d.IDimensao

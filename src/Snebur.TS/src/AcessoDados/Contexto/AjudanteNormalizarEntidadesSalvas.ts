@@ -43,10 +43,10 @@
             if (dicionarEntidades.ContainsKey(resultadoEntidadeSalvada.IdentificadorUnicoEntidade))
             {
                 const entidadeInfo = dicionarEntidades.Item(resultadoEntidadeSalvada.IdentificadorUnicoEntidade);
-                const tipo = entidadeInfo.Entiade.GetType();
-                if (entidadeInfo.Entiade.Id === 0)
+                const tipo = entidadeInfo.Entidade.GetType();
+                if (entidadeInfo.Entidade.Id === 0)
                 {
-                    entidadeInfo.Entiade.Id = resultadoEntidadeSalvada.Id;
+                    entidadeInfo.Entidade.Id = resultadoEntidadeSalvada.Id;
                 }
 
                 for (const propriedadeComputada of resultadoEntidadeSalvada.PropriedadesComputada)
@@ -60,7 +60,7 @@
                             const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
                             valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
                         }
-                        (entidadeInfo.Entiade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
+                        (entidadeInfo.Entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
                     }
                 }
             }
@@ -74,9 +74,9 @@
         public readonly DescricaoPropriedades: string;
 
         public constructor(
-            public readonly Entiade: d.Entidade)
+            public readonly Entidade: d.Entidade)
         {
-            this.PopriedadesAlteradasSalvas = this.Entiade.__PropriedadesAlteradas?.Clone(true) ?? null;
+            this.PopriedadesAlteradasSalvas = this.Entidade.__PropriedadesAlteradas?.Clone(true) ?? null;
             if (this.PopriedadesAlteradasSalvas != null)
             {
                 this.DescricaoPropriedades = String.Join("--", this.PopriedadesAlteradasSalvas?.Valores.Select(x => x.toString()));
@@ -100,38 +100,35 @@
              */
 
             const propriedadesSalvas = this.PopriedadesAlteradasSalvas;
-            const propriedadesCliente = this.Entiade.__PropriedadesAlteradas;
+            const propriedadesCliente = this.Entidade.__PropriedadesAlteradas;
 
             for (const chave of propriedadesSalvas.Chaves)
             {
                 if (propriedadesCliente.ContainsKey(chave))
                 {
                     const propriedadeSalva = propriedadesSalvas.Item(chave);
-                    const propriedadeCliente = this.Entiade.__PropriedadesAlteradas.Item(chave);
+                    const propriedadeCliente = this.Entidade.__PropriedadesAlteradas.Item(chave);
 
                     const isNovoValorIgual = propriedadeSalva.NovoValor === propriedadeCliente.NovoValor;
                     if (isNovoValorIgual)
                     {
-                        const valorPropriedadeEntidade = u.ReflexaoUtil.RetornarValorPropriedade(this.Entiade, propriedadeCliente.CaminhoPropriedade);
+                        const valorPropriedadeEntidade = u.ReflexaoUtil.RetornarValorPropriedade(this.Entidade, propriedadeCliente.CaminhoPropriedade);
                         if (valorPropriedadeEntidade !== propriedadeSalva.NovoValor)
                         {
-                            DebugUtil.ThrowAndContinue("Valores PropriedadeAltera cliente e salva  igual. Porém o valor da propriedade na entidade é diferente da propriedade alterada salva");
+                            console.warn(`A propriedade ${this.Entidade}.${propriedadeCliente.CaminhoPropriedade}
+                                          Valores diferentes do cliente e salva  igual. Isso pode acontecer em propriedades computadas no servidor.
+                                          Ex. DataHoraServidor`);
                             continue;
                         }
                         propriedadesCliente.Remove(chave);
                     }
                 }
             }
-
-            if (this.Entiade.__PropriedadesAlteradas.Count > 0)
-            {
-                DebugUtil.ThrowAndContinue("Bing houve alteração");
-            }
         }
 
         public toString(): string
         {
-            return `${this.Entiade.toString()}_${this.DescricaoPropriedades}`;
+            return `${this.Entidade.toString()}_${this.DescricaoPropriedades}`;
         }
 
     }

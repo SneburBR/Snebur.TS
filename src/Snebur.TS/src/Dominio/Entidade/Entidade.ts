@@ -41,6 +41,11 @@
 
         public readonly __IsSomenteLeitura: boolean = false;
 
+        public override get __IsMontarValorAntigoInicial(): boolean
+        {
+            return true;
+        }
+
         public get __NomeTipoEntidade(): string
         {
             return this.GetType().Nome;

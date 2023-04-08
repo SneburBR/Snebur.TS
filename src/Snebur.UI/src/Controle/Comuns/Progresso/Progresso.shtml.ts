@@ -40,7 +40,7 @@
         }
     }
 
-	//#region Elementos da apresenta��o - c�digo gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
 	export interface Progresso
 	{

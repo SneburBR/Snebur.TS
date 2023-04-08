@@ -1,9 +1,5 @@
-﻿
-
-namespace Snebur.Comunicacao
+﻿namespace Snebur.Comunicacao
 {
-
-
     //#region Proteger chamada
 
     const _0019276d = "(function () { return (function (c) { this.a(c); }); })();";
@@ -21,7 +17,10 @@ namespace Snebur.Comunicacao
     export class ChamadaServicoAsync extends BaseChamadaServico 
     {
         private _httpStatus: number = -1;
-        private readonly TIMEOUT = 1800000;
+        private _isDispensado: boolean = false;
+        private _idTimeout: number;
+        private _stopwatch: Stopwatch;
+        private _isTimeouotAtigindo: boolean = false;
 
         /*private readonly Pacote: Uint8Array;*/
         private Resolver: (resultadoChamada: ResultadoChamada) => void;
@@ -35,11 +34,7 @@ namespace Snebur.Comunicacao
         {
             return this._httpStatus;
         }
-
-        private _idTimeout: number;
-        private _stopwatch: Stopwatch;
-        private _isTimeouotAtigindo: boolean = false;
-
+         
         public constructor(
             requisicao: Requisicao,
             url: string,
@@ -146,9 +141,14 @@ namespace Snebur.Comunicacao
 
         private FinalizarChamarAsync(resultadoChamada: ResultadoChamada)
         {
+            if (this._isDispensado)
+            {
+                return;
+            }
+
             if (this._isTimeouotAtigindo)
             {
-                 
+   
                 if ($Configuracao.IsDebug &&
                     resultadoChamada instanceof ResultadoChamadaTimeoutCliente)
                 {
@@ -162,8 +162,6 @@ namespace Snebur.Comunicacao
 
                     DebugUtil.ThrowAndContinue(mensagem);
                 }
-
-
             }
 
             window.clearTimeout(this._idTimeout);
@@ -218,23 +216,39 @@ namespace Snebur.Comunicacao
 
         private XmlHttp_Error(event: Event)
         {
+            if (this._isDispensado)
+            {
+                console.warn("XmlHttp_Error: A chamada de requisição já foi dispensada");
+                return;
+            }
             const mensagem = "Erro serviço OnError  " + this.Url;
             if ($Configuracao.IsDebug)
             {
                 LogUtil.Erro(mensagem);
             }
-            const erro = new ErroComunicacao(mensagem, this.Url, this.XmlHttp.status, this);
+
+            const erro = new ErroComunicacao(mensagem, this.Url, this.HttpStatus, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }
 
         private XmlHttp_Abort(event: Event)
         {
+            if (this._isDispensado)
+            {
+                console.warn("XmlHttp_Abort: A chamada de requisição já foi dispensada");
+                return;
+            }
             const erro = new ErroComunicacao("Erro serviço OnAbort", this.Url, this.XmlHttp.status, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }
 
         private XmlHttp_Timeout(event: ProgressEvent)
         {
+            if (this._isDispensado)
+            {
+                console.warn("XmlHttp_Timeout: A chamada de requisição já foi dispensada");
+                return;
+            }
             const erro = new ErroComunicacao("Erro serviço time out", this.Url, this.XmlHttp.status, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }
@@ -244,10 +258,11 @@ namespace Snebur.Comunicacao
 
         private Xmlhttp_Load(event: Event)
         {
-            if ($Configuracao.IsDebug)
-            {
-                //console.log("lod");
-            }
+            //if (this._isDispensado)
+            //{
+            //    console.log("Xmlhttp_Load: A chamada de requisição já foi dispensada");
+            //    return;
+            //}
         }
 
         private XmlHttp_LoadStart(event: Event)
@@ -287,27 +302,32 @@ namespace Snebur.Comunicacao
 
         public override Dispose()
         {
-            super.Dispose();
+            if (!this._isDispensado)
+            {
+                super.Dispose();
 
-            this.Resolver = null;
+                this.Resolver = null;
 
-            this.XmlHttp_ReadyStateChange = null;
-            this.Xmlhttp_Load = null;
-            this.XmlHttp_Abort = null;
-            this.XmlHttp_Error = null;
-            this.XmlHttp_Timeout = null;
-            this.XmlHttp_LoadStart = null;
-            this.XmlHttp_LoadEnd = null;
-            this.XmlHttp_Progress = null;
+                this.XmlHttp_ReadyStateChange = null;
+                this.Xmlhttp_Load = null;
+                this.XmlHttp_Abort = null;
+                this.XmlHttp_Error = null;
+                this.XmlHttp_Timeout = null;
+                this.XmlHttp_LoadStart = null;
+                this.XmlHttp_LoadEnd = null;
+                this.XmlHttp_Progress = null;
 
-            (this as any).Pacote = null;
-            delete (this as any).Pacote;
+                (this as any).Pacote = null;
+                delete (this as any).Pacote;
 
-            (Snebur as any)[this.Tk] = undefined;
-            delete (Snebur as any)[this.Tk];
+                (Snebur as any)[this.Tk] = undefined;
+                delete (Snebur as any)[this.Tk];
 
-            this.Tk = undefined;
-            delete this.Tk;
+                this.Tk = undefined;
+                delete this.Tk;
+                this._isDispensado = true;
+            }
+           
         }
     }
 

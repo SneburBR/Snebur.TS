@@ -4,11 +4,10 @@
     {
 
         //#region Propriedades 
-
-   
-
+         
         private __InicializarPropriedades?: Partial<Entidade>
 
+       
         //#endregion
 
         //#region Construtor

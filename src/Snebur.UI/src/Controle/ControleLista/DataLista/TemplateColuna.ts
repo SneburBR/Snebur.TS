@@ -36,7 +36,7 @@
         {
             if (this._coluna != null)
             {
-                throw new Erro("A coluna j� esta definida");
+                throw new Erro("A coluna já esta definida");
             }
             this._coluna = coluna;
         }

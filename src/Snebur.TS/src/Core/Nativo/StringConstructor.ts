@@ -64,13 +64,13 @@ namespace Snebur
     {
         if (typeof char !== "string")
         {
-            console.error("String.IsCharWhiteSpace, O argumento char n�o foi definido ou � invalido");
+            console.error("String.IsCharWhiteSpace, O argumento char não foi definido ou é invalido");
             return false;
         }
 
         if (char.length > 1)
         {
-            console.error("String.IsCharWhiteSpace, O argumento char n�o � uma string com mais de um car�cter");
+            console.error("String.IsCharWhiteSpace, O argumento char não é uma string com mais de um carácter");
             return false;
         }
 

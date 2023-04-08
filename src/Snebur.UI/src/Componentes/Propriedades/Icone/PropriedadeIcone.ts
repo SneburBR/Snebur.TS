@@ -77,7 +77,7 @@
 
                 if (elementosIcones.length > 1)
                 {
-                    console.warn (`Mais de um elemento �cone foi encontrado em ${componenteApresentacao.ControleApresentacao.___NomeConstrutor}
+                    console.warn (`Mais de um elemento Ícone foi encontrado em ${componenteApresentacao.ControleApresentacao.___NomeConstrutor}
                                   OuterHTML: ${componenteApresentacao.Elemento.outerHTML.substring(0,255)}`);
                 }
                 return elementosIcones.item(0) as HTMLElement;

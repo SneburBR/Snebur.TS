@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 24 de março de 2023
-//Hora : 17:29:32
+//Data : sábado, 8 de abril de 2023
+//Hora : 20:16:02
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -88,6 +88,7 @@ namespace Snebur.Dominio
         readonly __NomeTipoEntidade : string;
         readonly __IdentificadorEntidade : string;
         readonly __PropriedadesAlteradas : DicionarioSimples<Snebur.Dominio.PropriedadeAlterada>;
+        RetornarIdentificadorReferencia() : string;
     }
     export interface IEntidadeIdentificadorProprietario extends Snebur.Dominio.IEntidade,Snebur.Dominio.IIdentificadorProprietario 
     {
@@ -362,6 +363,11 @@ namespace Snebur.Dominio.Atributos
     export interface IChaveEstrangeiraAttribute
     {
         readonly NomePropriedade : string;
+    }
+    export interface IBaseValorPadrao
+    {
+        readonly IsTipoNullableRequerido : boolean;
+        readonly IsValorPadraoOnUpdate : boolean;
     }
     export interface IIgnorarAlerta
     {

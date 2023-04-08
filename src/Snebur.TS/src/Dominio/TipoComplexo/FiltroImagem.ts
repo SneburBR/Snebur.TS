@@ -186,7 +186,7 @@
         {
             if (value !== null)
             {
-                u.ValidacaoUtil.ValidarIntervalo(value, 0, 200, "Satura��o");
+                u.ValidacaoUtil.ValidarIntervalo(value, 0, 200, "Saturacao");
             }
             const antigoValor = this._saturacao;
             this.NotificarValorPropriedadeAlterada("Saturacao", this._saturacao, this._saturacao = (value === FiltroImagem.SATURACAO_PADRAO) ? null : value);

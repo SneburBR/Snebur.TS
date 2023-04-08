@@ -17,12 +17,12 @@
             if ($Configuracao.IsDebug || $Configuracao.IsTeste)
             {
                 let estilo = "color:red;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
-                console.log("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
-                console.log("%cMAINTHREAD TOTAL OPERAÇÕES 1s: " + totalOpacoes, estilo);
+                console.LogDebug("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
+                console.LogDebug("%cMAINTHREAD TOTAL OPERAÇÕES 1s: " + totalOpacoes, estilo);
 
                 estilo = "color:blue;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
-                console.log("%cWORKER TEMPO : " + worker.Tempo + " ms", estilo);
-                console.log("%cWORKER TOTAL OPERAÇÕES 1s: " + worker.Total, estilo);
+                console.LogDebug("%cWORKER TEMPO : " + worker.Tempo + " ms", estilo);
+                console.LogDebug("%cWORKER TOTAL OPERAÇÕES 1s: " + worker.Total, estilo);
 
                 if (u.SistemaUtil.IsAndroidOrIOS)
                 {

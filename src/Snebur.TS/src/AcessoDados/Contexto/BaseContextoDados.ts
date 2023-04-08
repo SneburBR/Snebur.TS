@@ -196,7 +196,7 @@
 
             const resultado = await this.ServicoDados.SalvarAsync(entidades);
 
-            if (tempo.ElapsedMilliseconds > 7000)
+            if (tempo.ElapsedMilliseconds > 5000)
             {
                 console.warn(`Lentidão no serviço dados para salvar, Tempo: ${tempo.TotalSeconds}s
                              Total entidades: ${entidades.Count}

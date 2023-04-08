@@ -46,7 +46,8 @@
                     NotificarValorPropriedadeAlterada(caminhoPropriedade,
                         antigoValor,
                         novoValor,
-                        this.__NomePropriedadeEntidade);
+                        this.__NomePropriedadeEntidade,
+                        nomePropriedade);
                 //super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
             }
             super.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
@@ -65,10 +66,11 @@
                     caminhoPropriedade,
                     antigoValor,
                     novoValor,
+                    this.__NomePropriedadeEntidade,
                     propriedade.Nome);
             }
         }
     }
 
-    
+
 }

@@ -30,7 +30,7 @@
                 {
                     return $HtmlReferencias.Item(tipoUIHtml.CaminhoTipo);
                 }
-                throw new Erro(`N�o foi encontrado a referencia para o tipohtml ${tipoUIHtml.Nome}`);
+                throw new Erro(`não foi encontrado a referencia para o tipohtml ${tipoUIHtml.Nome}`);
             }
             return null;
         }

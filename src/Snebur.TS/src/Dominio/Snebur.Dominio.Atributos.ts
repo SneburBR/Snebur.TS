@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sexta-feira, 24 de março de 2023
-//Hora : 17:29:32
+//Data : sábado, 8 de abril de 2023
+//Hora : 20:16:01
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -271,8 +271,34 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
-    export class PropriedadeIdentificadorProprietarioAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
+    export class PropriedadeIdentificadorProprietarioAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
+        //#region Propriedades
+    
+        private _isTipoNullableRequerido : boolean = false;
+        private _isValorPadraoOnUpdate : boolean = false;
+    
+        public get IsTipoNullableRequerido(): boolean 
+        {
+            return this._isTipoNullableRequerido;
+        }
+
+        public set IsTipoNullableRequerido(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
+        }
+    
+        public get IsValorPadraoOnUpdate(): boolean 
+        {
+            return this._isValorPadraoOnUpdate;
+        }
+
+        public set IsValorPadraoOnUpdate(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
+        }
+        //#endregion
+    
         //#region Construtor
     
         public constructor(inicializador?: Partial<PropriedadeIdentificadorProprietarioAttribute>) 
@@ -397,49 +423,80 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
-    export class ValorPadraoDataHoraServidorAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute
+    export class ValorPadraoDataHoraServidorAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
         //#region Propriedades
     
-        private _dataHoraUTC : boolean = false;
-        private _permitirAtualizacao : boolean = false;
+        private _isDataHoraUTC : boolean = false;
+        private _isAceitarAtualizacao : boolean = false;
+        private _isValorPadraoOnUpdate : boolean = false;
+        private _isTipoNullableRequerido : boolean = false;
     
-        public get DataHoraUTC(): boolean 
+        public get IsDataHoraUTC(): boolean 
         {
-            return this._dataHoraUTC;
+            return this._isDataHoraUTC;
         }
 
-        public set DataHoraUTC(value: boolean) 
+        public set IsDataHoraUTC(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("DataHoraUTC", this._dataHoraUTC, this._dataHoraUTC = value);
+            this.NotificarValorPropriedadeAlterada("IsDataHoraUTC", this._isDataHoraUTC, this._isDataHoraUTC = value);
         }
     
-        public get PermitirAtualizacao(): boolean 
+        public get IsAceitarAtualizacao(): boolean 
         {
-            return this._permitirAtualizacao;
+            return this._isAceitarAtualizacao;
         }
 
-        public set PermitirAtualizacao(value: boolean) 
+        public set IsAceitarAtualizacao(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("PermitirAtualizacao", this._permitirAtualizacao, this._permitirAtualizacao = value);
+            this.NotificarValorPropriedadeAlterada("IsAceitarAtualizacao", this._isAceitarAtualizacao, this._isAceitarAtualizacao = value);
+        }
+    
+        public get IsValorPadraoOnUpdate(): boolean 
+        {
+            return this._isValorPadraoOnUpdate;
+        }
+
+        public set IsValorPadraoOnUpdate(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
+        }
+    
+        public get IsTipoNullableRequerido(): boolean 
+        {
+            return this._isTipoNullableRequerido;
+        }
+
+        public set IsTipoNullableRequerido(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
         }
         //#endregion
     
         //#region Construtor
     
-        public constructor( dataHoraUTC : boolean ,  permitirAtualizacao : boolean ) 
+        public constructor() 
         {
             super();
-            this._dataHoraUTC = dataHoraUTC;
-            this._permitirAtualizacao = permitirAtualizacao;
         }
         //#endregion
     }
-    export class ValorPadraoIPAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute
+    export class ValorPadraoIPAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
         //#region Propriedades
     
+        private _isValorPadraoOnUpdate : boolean = false;
         private _isTipoNullableRequerido : boolean = false;
+    
+        public get IsValorPadraoOnUpdate(): boolean 
+        {
+            return this._isValorPadraoOnUpdate;
+        }
+
+        public set IsValorPadraoOnUpdate(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
+        }
     
         public get IsTipoNullableRequerido(): boolean 
         {

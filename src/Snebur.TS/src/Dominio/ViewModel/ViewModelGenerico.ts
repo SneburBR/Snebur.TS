@@ -72,7 +72,7 @@ namespace Snebur
             const nomeConstrutor = valorPropriedade.constructor?.name as string;
             if (nomeConstrutor?.toLowerCase().EndsWith("viewmodel"))
             {
-                throw new Erro(`O construtor ${nomeConstrutor} n�o est� herdando de Snebur.Dominio.BaseViewModel`);
+                throw new Erro(`O construtor ${nomeConstrutor} não está herdando de Snebur.Dominio.BaseViewModel`);
             }
 
             return new ViewModelGenerico(valorPropriedade);

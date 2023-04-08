@@ -58,7 +58,7 @@
                 throw new Erro(`Não foi possível carregar o conteúdo do Worker: ${urlCompleta}`, conteudo);
             }
 
-            console.log(`Carregando worker (blob) da url: ${urlCompleta}`);
+            console.LogDebug(`Carregando worker (blob) da URL: ${urlCompleta}`);
 
             const blob = new Blob([conteudo], { "type": "application/javascript" });
             const urlBlob = window.URL.createObjectURL(blob);

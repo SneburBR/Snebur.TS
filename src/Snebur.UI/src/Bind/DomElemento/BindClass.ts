@@ -19,7 +19,7 @@
 
             if (this.CssClass == null)
             {
-                console.error(`O bind class � invalido, Ex: 'sn-bind-class=sn-is-selecionado=<b>{{IsSelecionado}}</b>&sn-is-deletado=<b>{{IsDeletado}}</b>'`);
+                console.error(`O bind class é invalido, Ex: 'sn-bind-class=sn-is-selecionado=<b>{{IsSelecionado}}</b>&sn-is-deletado=<b>{{IsDeletado}}</b>'`);
             }
         }
 

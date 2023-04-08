@@ -89,6 +89,7 @@
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
     <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
+    <TypeScriptCompile Include="src\Comum\LazyValue.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequiscao.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />

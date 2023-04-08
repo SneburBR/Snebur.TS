@@ -59,6 +59,11 @@
             return this.__isNotificacaoAlteracaoPropriedadeAtiva;
         }
 
+        public get __IsMontarValorAntigoInicial(): boolean
+        {
+            return false;
+        }
+
         public constructor()
         {
             super();
@@ -339,8 +344,9 @@
         }
 
         protected NotificarValorPropriedadeAlterada(nomePropriedade: string, valor: any): void;
-        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any, nomePropriedadeTipoComplexo?: string): void;
-        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeTipoComplexo?: string): void
+        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
+        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any, nomePropriedadeEntidade: string, nomePropriedadeTipoComplexo: string): void;
+        protected NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeEntidade?: string, nomePropriedadeTipoComplexo?: string): void
         {
             if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
             {
@@ -364,7 +370,7 @@
                         this.__PropriedadesAlteradas.Remove(nomePropriedade);
                     }
 
-                    if (!(this instanceof Entidade))
+                    if (!this.__IsMontarValorAntigoInicial)
                     {
                         if (propriedadeAlterada.AntigoValor !== antigoValor)
                         {
@@ -375,17 +381,18 @@
                 }
                 else
                 {
-                    propriedadeAlterada = new d.PropriedadeAlterada(
+                    propriedadeAlterada = d.PropriedadeAlterada.Create(
                         nomePropriedade,
                         antigoValor,
                         novoValor,
+                        nomePropriedadeEntidade,
                         nomePropriedadeTipoComplexo);
 
                     if (!u.Util.IsIgual(antigoValor, novoValor) || this.IsEntidadeClonada)
                     {
                         if (propriedade != null &&
                             (propriedade.Tipo instanceof r.TipoPrimario ||
-                            propriedade.Tipo instanceof r.TipoEnum))
+                                propriedade.Tipo instanceof r.TipoEnum))
                         {
                             this.__PropriedadesAlteradas.Add(nomePropriedade, propriedadeAlterada);
                         }
@@ -477,11 +484,11 @@
                 const eventoPropriedade = this.__EventosNotificarPropriedadeAlterada.Item(nomePropriedade);
                 const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
                 const valorPropriedade = (this as any)[nomePropriedade];
+
                 const propriedadeAlterada = new d.PropriedadeAlterada(
                     nomePropriedade,
                     valorPropriedade,
-                    valorPropriedade,
-                    null);
+                    valorPropriedade);
 
                 eventoPropriedade.Notificar(this, new PropriedadeAlteradaEventArgs(propriedade, propriedadeAlterada));
             }
@@ -553,8 +560,7 @@
 
         NotificarValorPropriedadeAlterada(nomePropriedade: string, valor: any): void;
         NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
-        NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any): void;
-        NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any, nomePropriedadeTipoComplexo?: string): void;
+        NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any, nomePriporiedadeEntidade: string, nomePropriedadeTipoComplexo: string): void;
 
         AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;
         RemoverManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;

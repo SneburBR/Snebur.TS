@@ -68,8 +68,5 @@
             stop.Start();
             return stop;
         }
-
-
-
     }
 }

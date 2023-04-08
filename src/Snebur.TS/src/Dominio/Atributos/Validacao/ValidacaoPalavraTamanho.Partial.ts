@@ -33,7 +33,7 @@
             return u.GlobalizacaoUil.RetornarMensagemValidacao(atributo, ValidacaoPalavraTamanhoAttribute.IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO, palavraInvalida, atributo.TamanhoMaximo.ToString());
         }
 
-        throw new ErroOperacaoInvalida("O tamanho m�ximo e minimo, ambos n�o podem ser 0 'zero'", this);
+        throw new ErroOperacaoInvalida("O tamanho máximo e minimo, ambos não podem ser 0 'zero'", this);
     };
 
     ValidacaoPalavraTamanhoAttribute.prototype.IsValido = function (this: ValidacaoPalavraTamanhoAttribute, paiPropriedade: Snebur.Dominio.BaseDominio, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): boolean

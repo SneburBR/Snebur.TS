@@ -2,7 +2,7 @@
 {
     export class Requisicao extends BaseRequisicao
     {
-        private static MAXIMA_TENTATIVA: number = 35;
+        private static MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR: number = 10;
         private static readonly TEMPO_ESPERAR_FALHA = 2;
         private readonly UrlServicoDebug: string;
         private URLServico: string
@@ -33,6 +33,17 @@
 
         public async ExecutarAsync(): Promise<any>
         {
+            const resultado = await this.ExecutarInternoAsync();
+            if (this.Gerencaidor.IsExisteFalhaRequisicao)
+            {
+                this.Gerencaidor.NotificarFalhaRequisicao();
+                $Aplicacao.EventoConexaoRestabelecida.Notificar(this, EventArgs.Empty);
+            }
+            return this.RetornarValorResultado(resultado);
+        }
+
+        private async ExecutarInternoAsync(): Promise<any>
+        {
             if ($Configuracao.IsDebug)
             {
                 await ThreadUtil.EsperarAsync(500);
@@ -56,16 +67,11 @@
                 this.NotificarErroRequisicao(
                     chamadaServico,
                     resultadoChamada);
-                return;
-            }
 
-            if (this.Gerencaidor.IsExisteFalhaRequisicao)
-            {
-                this.Gerencaidor.NotificarFalhaRequisicao();
-                $Aplicacao.EventoConexaoRestabelecida.Notificar(this, EventArgs.Empty);
-            }
 
-            return this.RetornarValorResultado(resultadoChamada);
+                return await this.TentarNovamenteAsync(resultadoChamada);
+            }
+            return resultadoChamada;
         }
 
         private TentarUtilizarUrlServicoDebug()
@@ -85,7 +91,7 @@
             if (this.URLServico !== this.UrlServicoDebug)
             {
                 const mensagem = `A URL serviço '${this.NomeManipualdor}' foi alterada para modo DEBUG,
-                               UrlServicoDEBUG : '${this.UrlServicoDebug}'`;
+                                  UrlServicoDEBUG : '${this.UrlServicoDebug}'`;
 
                 console.error(mensagem);
                 alert(mensagem);
@@ -119,7 +125,7 @@
             if (!$Configuracao.IsDebug)
             {
                 if (isErroInternoServidor &&
-                    this.Tentativa > Requisicao.MAXIMA_TENTATIVA)
+                    this.Tentativa > Requisicao.MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR)
                 {
                     throw new Error(mensagem);
                 }
@@ -129,16 +135,20 @@
 
             this.Tentativa += 1;
 
-            this.TentarNovamenteAsync(
-                resultadoChamada,
-                isErroInternoServidor);
+
         }
 
 
         private async TentarNovamenteAsync(
-            resultadoChamada: ResultadoChamadaErro,
-            isErroInternoServidor: boolean)
+            resultadoChamada: ResultadoChamadaErro)
         {
+            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor;
+
+            if (isErroInternoServidor)
+            {
+                console.error(`ERRO INTERNO NO SERVIDOR: ${resultadoChamada.MensagemErro}`);
+            }
+
             const args = new FalhaConexaoEventArgs(
                 resultadoChamada,
                 this.URLServico,
@@ -155,7 +165,7 @@
             }
 
             await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this.Tentativa, 10)));
-            this.ExecutarAsync();
+            return await this.ExecutarInternoAsync();
         }
 
 

@@ -98,7 +98,7 @@
 
                 if (this.IdTimeout > 0)
                 {
-                    throw new Erro("J� existe gerenciador timeout atingido");
+                    throw new Erro("Já existe gerenciador timeout atingido");
                 }
 
                 this.IdTimeout = window.setTimeout(() =>

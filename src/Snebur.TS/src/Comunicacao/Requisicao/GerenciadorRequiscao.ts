@@ -20,7 +20,7 @@
 
         public get TotalRequisicoesFila(): number
         {
-            return this.Fila.length;
+            return this.Fila.length + (this._requisicaoAtual != null ? 1 : 0);
         }
 
         public ExecutarAsync(requisicao: Requisicao): Promise<any>
@@ -31,7 +31,7 @@
                     Requisicao: requisicao,
                     Resolver: resolver
                 });
-                this.MostrarAlertaRequisicaoAguardandoNaFila(requisicao);
+                this.GerarLogRequisicaoAguardandoNaFila(requisicao);
                 this.IncrimentarTotalFinal();
                 this.ExecutarProximaRequisicaoAsync();
             });
@@ -39,7 +39,7 @@
 
         public async AguardarFilaRequisicoesAsync(progressHandler: (e: ProgressoEventArgs) => void = null): Promise<void>
         {
-            if (this.Fila.length === 0)
+            if (!this.IsExisteRequisicoesAtivas)
             {
                 return;
             }
@@ -53,15 +53,15 @@
                 ultimoProgresso = 0;
             }
 
-            const incrementarTotalFinal = function()
+            const incrementarTotalFinal = function ()
             {
                 totalFila += 1;
             };
 
             this.CallbackIncrementarTotalFinal.Add(incrementarTotalFinal);
-            while (this.Fila.length > 0)
+            while (this.IsExisteRequisicoesAtivas)
             {
-                console.WarmDebug(`Existe ainda ( ${this.Fila.length} requisições na fila`);
+                console.WarmDebug(`Existe ainda ( ${this.TotalRequisicoesFila} requisições na fila`);
                 if (progressHandler != null)
                 {
                     if (totalFila < this.Fila.length)
@@ -104,7 +104,7 @@
             this._isExisteFalhaRequisicao = true;
         }
 
-        private MostrarAlertaRequisicaoAguardandoNaFila(requisicao: Requisicao)
+        private GerarLogRequisicaoAguardandoNaFila(requisicao: Requisicao)
         {
             if (this._requisicaoAtual != null &&
                 this._requisicaoAtual.Requisicao !== requisicao &&
@@ -112,7 +112,7 @@
             {
                 if ($Configuracao.IsDebugOuTeste)
                 {
-                    console.warn(`A requisição ${requisicao.toString()} está na fila n ${this.Fila.length}`);
+                    console.log(`A requisição ${requisicao.toString()} está na fila n ${this.Fila.length}`);
                 }
             }
         }
