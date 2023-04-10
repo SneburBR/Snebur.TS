@@ -6,6 +6,7 @@
         public static readonly PASSO_PADRAO: number = 1;
 
         private _passo: number;
+        private _isSalvarOrdenacaoAutomaticamente: boolean = true;
 
         public get Passo(): number
         {
@@ -18,9 +19,13 @@
         public readonly EventoBlocoOrdenacaoAlterada = new Evento<BlocoOrdenacaoEventArgs>(this);
         public readonly EventoBlocoOrdenacaoMovimentando = new Evento<BlocoOdernacaoMovimentandoEventArgs>(this);
         public readonly EventoBlocoOrdenacaoFinalizada = new Evento<BlocoOrdenacaoEventArgs>(this);
-         
+
         public MetodoSalvarEntidadesOrdenada: (entidades: List<d.IOrdenacao>) => void
 
+        public get IsSalvarOrdenacaoAutomaticamente(): boolean
+        {
+            return this._isSalvarOrdenacaoAutomaticamente;
+        }
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
@@ -32,7 +37,9 @@
             super.Inicializar();
 
             this.CaminhoEntidadeOrdenacao = this.RetornarValorAtributo(AtributosHtml.EntidadeOrdenacao, null);
-            this._passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, ControleListaOrdenacao.PASSO_PADRAO));
+
+            this._passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, ControleListaOrdenacao.PASSO_PADRAO);
+            this._isSalvarOrdenacaoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.IsSalvarOrdenacaoAutomaticamente, true);
             this.SentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();
 
@@ -79,5 +86,5 @@
         }
         //#endregion
     }
-     
+
 }

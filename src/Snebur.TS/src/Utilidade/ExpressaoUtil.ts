@@ -76,7 +76,7 @@
 
             let expressaoTexto = expressaoFuncao.toString();
             expressaoTexto = expressaoTexto.replace("\n", "");
-             
+
             const len = ex.OperadorUtil.MetodosOperador.length;
             for (let i = 0; i < len; i++)
             {
@@ -98,7 +98,16 @@
             return expressaoTexto;
         }
 
-
+        public static RetornarNomePropriedade(nomePropriedadeOuExpressao: string | Function): string
+        {
+            const caminhoPropriedade = this.NormalizarNomePropriedadeInterno(nomePropriedadeOuExpressao);
+            const posicao = caminhoPropriedade.lastIndexOf(".");
+            if (posicao > 0)
+            {
+                return this.NormalizarNomePropriedade(caminhoPropriedade.substring(posicao + 1));
+            }
+            return this.NormalizarNomePropriedade(caminhoPropriedade);
+        }
 
         public static NormalizarNomePropriedade(nomePropriedadeOuExpressao: string | Function): string
         {
@@ -107,7 +116,7 @@
 
             if (nomePropriedade.Contains("."))
             {
-                throw new Erro(`"O caminho '${nomePropriedade}' com mais de um nivél não é suportado`);
+                throw new Erro(`"O caminho '${nomePropriedade}' com mais de um nível não é suportado`);
 
             }
             if (nomePropriedade.EndsWith("?"))
@@ -126,7 +135,6 @@
 
             if (typeof nomePropriedadeOuExpressao === "string")
             {
-
                 return nomePropriedadeOuExpressao.trim();
             }
 

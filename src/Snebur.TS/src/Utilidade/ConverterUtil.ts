@@ -157,6 +157,7 @@
                 }
                 return valor;
             }
+
             if (!u.ValidacaoUtil.IsDefinido(valor))
             {
                 return 0;
@@ -164,14 +165,14 @@
 
             if (u.ValidacaoUtil.IsString(valor))
             {
-                if ((valor as string).length === 0)
+                if (String.IsNullOrWhiteSpace(valor))
                 {
                     return 0;
                 }
+
                 valor = TextoUtil.RetornarSomenteNumeros(valor, false, true);
                 valor = this.NormalizarPontosVirgula(valor);
                 valor = parseFloat(valor);
-
             }
 
             if (typeof valor === "boolean")
@@ -690,7 +691,6 @@
 
             }
             return valor;
-
         }
 
         //#region Converter cores

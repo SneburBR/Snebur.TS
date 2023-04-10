@@ -44,10 +44,10 @@
 
         private async ExecutarInternoAsync(): Promise<any>
         {
-            if ($Configuracao.IsDebug)
-            {
-                await ThreadUtil.EsperarAsync(500);
-            }
+            //if ($Configuracao.IsDebug)
+            //{
+            //    await ThreadUtil.EsperarAsync(500);
+            //}
 
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(

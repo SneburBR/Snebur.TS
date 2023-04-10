@@ -199,6 +199,7 @@
         public static readonly SensibilidadeVertical = new AtributoHtml("sn-sensibilidade-vertical", Boolean);
         //public static AnimacaoOrdenacaoSimples = new AtributoHtml("sn-animacao-ordenacao-simples", Boolean);
         public static readonly SentidoOrdenacao = new AtributoHtml("sn-sentido-ordenacao", Snebur.Dominio.EnumSentidoOrdenacao);
+        public static readonly IsSalvarOrdenacaoAutomaticamente = new AtributoHtml("sn-is-salvar-ordenacao-automaticamente", Boolean);
         public static readonly EntidadeOrdenacao = new AtributoHtml("sn-entidade-ordenacao", String);
         public static readonly IsAlvoOrdenacao = new AtributoHtml("sn-is-alvo-ordenacao", Boolean);
         public static readonly IsElementoPrincipalAlvoOrdenacao = new AtributoHtml("sn-is-elemento-principal-alvo-ordenacao", Boolean);

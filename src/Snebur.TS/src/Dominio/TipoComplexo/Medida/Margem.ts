@@ -16,7 +16,7 @@
 
         public set Esquerda(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Esquerda", this._esquerda, this._esquerda = value);
+            this.NotificarPropriedadeAlterada("Esquerda", this._esquerda, this._esquerda = value.ToDecimal(3));
         }
 
         public get Superior(): number 
@@ -26,7 +26,7 @@
 
         public set Superior(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Superior", this._superior, this._superior = value);
+            this.NotificarPropriedadeAlterada("Superior", this._superior, this._superior = value.ToDecimal(3));
         }
 
         public get Direita(): number 
@@ -36,7 +36,7 @@
 
         public set Direita(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Direita", this._direita, this._direita = value);
+            this.NotificarPropriedadeAlterada("Direita", this._direita, this._direita = value.ToDecimal(3));
         }
 
         public get Inferior(): number 
@@ -46,12 +46,12 @@
 
         public set Inferior(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Inferior", this._inferior, this._inferior = value);
+            this.NotificarPropriedadeAlterada("Inferior", this._inferior, this._inferior = value.ToDecimal(3));
         }
 
         public get Media(): number
         {
-            return (this.Superior + this.Inferior + this.Direita + this.Esquerda) / 4;
+            return ((this.Superior + this.Inferior + this.Direita + this.Esquerda) / 4).ToDecimal(3);
         }
 
         //#endregion
@@ -102,10 +102,10 @@
             }
 
 
-            this._esquerda = u.ConverterUtil.ParaNumero(esquerda);
-            this._superior = u.ConverterUtil.ParaNumero(superior);
-            this._direita = u.ConverterUtil.ParaNumero(direita);
-            this._inferior = u.ConverterUtil.ParaNumero(inferior);
+            this.Esquerda = u.ConverterUtil.ParaNumero(esquerda);
+            this.Superior = u.ConverterUtil.ParaNumero(superior);
+            this.Direita = u.ConverterUtil.ParaNumero(direita);
+            this.Inferior = u.ConverterUtil.ParaNumero(inferior);
         }
 
         public Clone(): Margem

@@ -109,13 +109,15 @@
                     const propriedadeSalva = propriedadesSalvas.Item(chave);
                     const propriedadeCliente = this.Entidade.__PropriedadesAlteradas.Item(chave);
 
-                    const isNovoValorIgual = propriedadeSalva.NovoValor === propriedadeCliente.NovoValor;
+                    const isNovoValorIgual = propriedadeSalva.NovoValor === propriedadeCliente.NovoValor &&
+                        propriedadeSalva.AntigoValor === propriedadeCliente.AntigoValor;
+
                     if (isNovoValorIgual)
                     {
                         const valorPropriedadeEntidade = u.ReflexaoUtil.RetornarValorPropriedade(this.Entidade, propriedadeCliente.CaminhoPropriedade);
                         if (valorPropriedadeEntidade !== propriedadeSalva.NovoValor)
                         {
-                            console.warn(`A propriedade ${this.Entidade}.${propriedadeCliente.CaminhoPropriedade}
+                            console.LogDebug(`A propriedade ${this.Entidade}.${propriedadeCliente.CaminhoPropriedade}
                                           Valores diferentes do cliente e salva  igual. Isso pode acontecer em propriedades computadas no servidor.
                                           Ex. DataHoraServidor`);
                             continue;

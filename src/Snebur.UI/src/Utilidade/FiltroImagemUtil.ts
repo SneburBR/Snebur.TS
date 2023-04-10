@@ -20,15 +20,14 @@
         private static readonly FILTRO_DESFOQUE: string = "blur";
 
         public static Aplicar(elementoRecipiente: HTMLElement,
-            filtroImagemOuEfeitoImagem: d.FiltroImagem | i.EfeitoImagem,
-            sobrePosicao?: i.SobrePosicao): void
+            filtroImagemOuEfeitoImagem: d.FiltroImagem | i.EfeitoImagem = new d.FiltroImagem(),
+            sobrePosicao: i.SobrePosicao = null): void
         {
 
             const filtroImagem = filtroImagemOuEfeitoImagem instanceof i.EfeitoImagem ?
                 filtroImagemOuEfeitoImagem.Filtro : filtroImagemOuEfeitoImagem as d.FiltroImagem;
 
             sobrePosicao = filtroImagemOuEfeitoImagem instanceof i.EfeitoImagem ? filtroImagemOuEfeitoImagem.SobrePosicao : sobrePosicao;
-
 
             const listaFiltros = new List<string>();
             /*const filtroImagem = filtroImagemOuFiltroConhecido instanceof i.FiltroImagemConhecido ? filtroImagemOuFiltroConhecido.Filtro : filtroImagemOuFiltroConhecido;*/
@@ -80,7 +79,7 @@
             elementoMagenta?.remove();
             elementoAmarelo?.remove();
         }
-     
+
 
         private static AdicionarCssFiltro(filtros: List<string>, filtro: EnumFiltroCss, valor: number, escala: number = 1): void
         {
@@ -217,10 +216,11 @@
 
         //#region SobrePosição 
 
-        private static AplicarSobrePosicao(elementoRecipiente: HTMLElement,
+        private static AplicarSobrePosicao(
+            elementoRecipiente: HTMLElement,
             sobrePosicao: i.SobrePosicao): void
         {
-           
+
             let elementoSobrePosicao = FiltroImagemUtil.RetornarElementoFiltro(elementoRecipiente, FiltroImagemUtil.TAG_ELEMENTO_SOBREPOSICAO) as HTMLElement;
             if (sobrePosicao instanceof imagem.SobrePosicao)
             {

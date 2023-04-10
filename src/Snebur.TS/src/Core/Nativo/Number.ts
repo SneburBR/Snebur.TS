@@ -15,7 +15,7 @@ namespace Snebur
     });
 
 
-    Number.prototype.replace = function (this:number, searchValue: any, replaceValue: any)
+    Number.prototype.replace = function (this: number, searchValue: any, replaceValue: any)
     {
         const _str = this.toString();
         return _str.replace(searchValue, replaceValue);
@@ -108,18 +108,40 @@ namespace Snebur
         return this.ToAbsoluto() * -1;
     };
 
+    //por questão de performance, object são mais rápidos q potencia
+    //const __multplicadoresDecimal__: { [key: number]: number, } = {
+
+    //    1: 10,
+    //    2: 100,
+    //    3: 1000,
+    //    4: 10000,
+    //    5: 100000,
+    //    6: 1000000,
+    //    7: 10000000,
+    //    8: 100000000,
+    //};
+
     Number.prototype.ToDecimal = function (this: number, casas: number = 2): number
     {
-        let multiplicador = 100;
-        if (casas !== 2)
+        //Foi feito assim por motivo de performance, if são 40% mais rápidos q usar objects e 100% mais q usar Math.pow
+        if (casas === 1)
         {
-            let temp = "1";
-            for (let i = 0; i < casas; i++)
-            {
-                temp += "0";
-            }
-            multiplicador = parseInt(temp);
+            return Math.round(this * 10) / 10;
         }
+        if (casas === 2)
+        {
+            return Math.round(this * 100) / 100;
+        }
+        if (casas === 3)
+        {
+            return Math.round(this * 1000) / 1000;
+        }
+        if (casas === 4)
+        {
+            return Math.round(this * 10000) / 10000;
+        }
+        const multiplicador = Math.pow(10, casas);
+        /*const multiplicador = __multplicadoresDecimal__[casas];*/
         return Math.round(this * multiplicador) / multiplicador;
     };
 

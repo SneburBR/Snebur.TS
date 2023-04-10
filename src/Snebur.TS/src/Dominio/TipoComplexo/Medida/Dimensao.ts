@@ -18,7 +18,7 @@
             {
                 throw new Erro("A dimensão não suporta valores negativo ou NaN");
             }
-            this.NotificarValorPropriedadeAlterada("Largura", this._largura, this._largura = value.ToDecimal());
+            this.NotificarValorPropriedadeAlterada("Largura", this._largura, this._largura = value.ToDecimal(3));
         }
 
         public get Altura(): number 
@@ -32,7 +32,7 @@
             {
                 throw new Erro("A dimensão não suporta valores negativo");
             }
-            this.NotificarValorPropriedadeAlterada("Altura", this._altura, this._altura = value);
+            this.NotificarValorPropriedadeAlterada("Altura", this._altura, this._altura = value.ToDecimal(3));
         }
 
         public get Orientacao(): d.EnumOrientacao

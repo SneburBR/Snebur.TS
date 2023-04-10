@@ -14,7 +14,7 @@
 
         public set X(value: number)  
         {
-            this.NotificarPropriedadeAlterada("X", this._x, this._x = value);
+            this.NotificarPropriedadeAlterada("X", this._x, this._x = value.ToDecimal(3));
         }
 
         public get Y(): number 
@@ -24,7 +24,7 @@
 
         public set Y(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Y", this._y, this._y = value);
+            this.NotificarPropriedadeAlterada("Y", this._y, this._y = value.ToDecimal(3));
         }
 
         public get XImpressao(): number

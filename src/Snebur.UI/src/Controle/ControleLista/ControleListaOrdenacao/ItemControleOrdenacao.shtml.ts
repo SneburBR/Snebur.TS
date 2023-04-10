@@ -290,9 +290,13 @@ namespace Snebur.UI
                     }
                 }
 
-                const entidadesSalvar = new List<d.IOrdenacao>();
-                entidadesSalvar.Add(this.EntidadeOrdenacao);
-                this.SalvarEntidadesOrdenada(entidadesSalvar.ToList<d.IOrdenacaoEntidade>());
+                if (this.ControleListaOrdenacao.IsSalvarOrdenacaoAutomaticamente)
+                {
+                    const entidadesSalvar = new List<d.IOrdenacao>();
+                    entidadesSalvar.Add(this.EntidadeOrdenacao);
+                    this.SalvarEntidadesOrdenada(entidadesSalvar.ToList<d.IOrdenacaoEntidade>());
+                }
+             
                 this.OrdenarItensControle();
 
                 //let destinoItemControle = controleMouseEmCima.RetornarDestinoItemControle(e);

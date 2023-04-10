@@ -302,33 +302,37 @@
             elemento.style.zIndex = zindexTipado.ToString();
         }
 
-        public static RetornarValorNumericoPixel(pixel: string): number
+        public static RetornarValorNumericoPixel(pixelString: string): number
         {
-            if (String.IsNullOrWhiteSpace(pixel))
+            if (String.IsNullOrWhiteSpace(pixelString))
             {
                 return 0;
             }
             else
             {
-                return u.ConverterUtil.ParaNumero(pixel.replace("px", ""));
+                /*return u.ConverterUtil.ParaNumero(pixel.replace("px", ""));*/
+                const pixels = parseInt(pixelString);
+                return isNaN(pixels) ? 0 : pixels;
             }
         }
 
-        public static RetornarValorNumericoRem(rems: string): number
+        public static RetornarValorNumericoRem(remsString: string): number
         {
-            if (String.IsNullOrWhiteSpace(rems))
+            if (String.IsNullOrWhiteSpace(remsString))
             {
                 return 0;
             }
             else
             {
-                return u.ConverterUtil.ParaNumero(rems.replace("rem", ""));
+                /*return u.ConverterUtil.ParaNumero(rems.replace("rem", ""));*/
+                const rems = parseFloat(remsString);
+                return isNaN(rems) ? 0 : rems;
             }
         }
 
         public static FormatarValorPixel(valor: number): string
         {
-            return `${valor.toString()}px`;
+            return `${valor}px`;
         }
 
         public static Ocultar(elemento: HTMLElement): void;
@@ -357,7 +361,6 @@
             {
                 elemento.classList.remove(classe);
             }
-
         }
 
         private static ValidarCssClasse(classe: string): void
@@ -409,7 +412,7 @@
 
                 default:
 
-                    throw new Erro("O estilo html não é suportado");
+                    throw new Erro("O estilo HTML não é suportado");
             }
 
         }
@@ -587,6 +590,20 @@
             elementoImagem.style.bottom = ""; 
             elementoImagem.style.width = ""; 
             elementoImagem.style.height = ""; 
+        }
+
+        public static RetornarRotacao(transform: string):number
+        {
+            if (String.IsNullOrWhiteSpace(transform))
+            {
+                return 0;
+            }
+            const match = transform.match(/rotate\(([-\d.]+)deg\)/);
+            if (!match || match.length < 2)
+            {
+                return 0;
+            }
+            return parseFloat(match[1]);
         }
     }
 

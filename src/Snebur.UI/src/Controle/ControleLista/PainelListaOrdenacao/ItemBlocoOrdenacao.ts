@@ -606,7 +606,8 @@
 
         private SalvarEntidadeOrdenacaoAsync()
         {
-            if (this.ObjetoOrdenacao instanceof Entidade)
+            if (this.ObjetoOrdenacao instanceof Entidade &&
+                this.PainelLista.IsSalvarOrdenacaoAutomaticamente)
             {
                 const contexto = $Aplicacao.RetornarContextoDados(this.ObjetoOrdenacao.GetType() as r.TipoEntidade);
                 contexto.SalvarPropriedadesAsync(this.ObjetoOrdenacao, x => (x as IOrdenacao).Ordenacao);
@@ -615,7 +616,7 @@
 
         //#endregion
 
-        //#region Ordenacao Elementos
+        //#region Ordenação Elementos
 
         private OrdenarElementos(): void
         {

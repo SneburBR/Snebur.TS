@@ -4,14 +4,8 @@
     {
         private static readonly __NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO = "EventoControleDispensado";
 
-        //readonly #__propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
-        //readonly #EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
-        //static readonly #__EventosProtegidos = [ObjetoControladorPropriedade.__NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO];
-
-
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
-
 
         private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = true;
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
@@ -31,6 +25,7 @@
         {
             return this.__propriedadesAlteradas__;
         }
+
         //public set __PropriedadesAlteradas(value: DicionarioSimples<d.PropriedadeAlterada>)
         //{
         //    //nao faz nada
@@ -350,6 +345,12 @@
         {
             if (this.IsNotificacaoAlteracaoPropriedadeAtiva)
             {
+                //if (antigoValor === novoValor)
+                //{
+                //    this.NotificarPropriedadeAlteraSimples(nomePropriedade);
+                //    return;
+                //}
+
                 if (typeof antigoValor === "undefined" && typeof novoValor === "undefined")
                 {
                     antigoValor = (this as any)[nomePropriedade];
@@ -365,12 +366,14 @@
 
                 if (propriedadeAlterada instanceof d.PropriedadeAlterada)
                 {
-                    if (u.Util.IsIgual(propriedadeAlterada.AntigoValor, novoValor) && !this.IsEntidadeClonada)
+                    if (this.__IsMontarValorAntigoInicial)
                     {
-                        this.__PropriedadesAlteradas.Remove(nomePropriedade);
+                        if (u.Util.IsIgual(propriedadeAlterada.AntigoValor, novoValor) && !this.IsEntidadeClonada)
+                        {
+                            this.__PropriedadesAlteradas.Remove(nomePropriedade);
+                        }
                     }
-
-                    if (!this.__IsMontarValorAntigoInicial)
+                    else
                     {
                         if (propriedadeAlterada.AntigoValor !== antigoValor)
                         {
@@ -479,6 +482,11 @@
 
         private NotificarPropriedadeAlteraSimples(nomePropriedade: string): void
         {
+            if (!this.IsNotificacaoAlteracaoPropriedadeAtiva)
+            {
+                return;
+            }
+
             if (this.__EventosNotificarPropriedadeAlterada.Existe(nomePropriedade))
             {
                 const eventoPropriedade = this.__EventosNotificarPropriedadeAlterada.Item(nomePropriedade);

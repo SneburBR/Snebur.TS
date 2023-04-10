@@ -374,7 +374,10 @@
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             const posicaoElemento = elemento.getBoundingClientRect();
 
-            if (posicaoElemento.left === 0 && posicaoElemento.top === 0 && posicaoElemento.width === 0 && posicaoElemento.height === 0)
+            if (posicaoElemento.left === 0 &&
+                posicaoElemento.top === 0 &&
+                posicaoElemento.width === 0 &&
+                posicaoElemento.height === 0)
             {
                 return {
                     left: EstiloUtil.RetornarValorNumericoPixel(elemento.style.left),

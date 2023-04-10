@@ -6,10 +6,16 @@
         public static readonly PASSO_PADRAO: number = 1;
 
         private _passo: number;
+        private _isSalvarOrdenacaoAutomaticamente: boolean = true;
 
         public get Passo(): number
         {
             return this._passo;
+        }
+
+        public get IsSalvarOrdenacaoAutomaticamente(): boolean
+        {
+            return this._isSalvarOrdenacaoAutomaticamente;
         }
 
         public CaminhoEntidadeOrdenacao: string;
@@ -42,15 +48,10 @@
             this.CaminhoEntidadeOrdenacao = this.RetornarValorAtributo(AtributosHtml.EntidadeOrdenacao, null);
             this.IsSensibilidadeVertical = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.SensibilidadeVertical));
 
-            const passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, 0));
-            this._passo = passo > 0 ? passo : ControleListaOrdenacao.PASSO_PADRAO;
+            this._passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, ControleListaOrdenacao.PASSO_PADRAO);
+            this._isSalvarOrdenacaoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.IsSalvarOrdenacaoAutomaticamente, true);
+            this.SentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
 
-            let sentido = u.EnumUtil.RetornarValor(d.EnumSentidoOrdenacao, this.RetornarValorAtributo(AtributosHtml.SentidoOrdenacao));
-            if (sentido == null)
-            {
-                sentido = d.EnumSentidoOrdenacao.Crescente;
-            }
-            this.SentidoOrdenacao = sentido;
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();
         }
 

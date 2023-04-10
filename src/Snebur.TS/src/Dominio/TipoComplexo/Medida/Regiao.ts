@@ -14,7 +14,7 @@
 
         public set X(value: number)  
         {
-            this.NotificarPropriedadeAlterada("X", this._x, this._x = value);
+            this.NotificarPropriedadeAlterada("X", this._x, this._x = value.ToDecimal(3));
         }
 
         public get Y(): number 
@@ -24,7 +24,7 @@
 
         public set Y(value: number)  
         {
-            this.NotificarPropriedadeAlterada("Y", this._y, this._y = value);
+            this.NotificarPropriedadeAlterada("Y", this._y, this._y = value.ToDecimal(3));
         }
 
         public get Largura(): number 
@@ -34,7 +34,7 @@
 
         public set Largura(value: number)  
         {
-            this.NotificarValorPropriedadeAlterada("Largura", this._largura, this._largura = value);
+            this.NotificarValorPropriedadeAlterada("Largura", this._largura, this._largura = value.ToDecimal(3));
         }
 
         public get Altura(): number 
@@ -44,7 +44,7 @@
 
         public set Altura(value: number)  
         {
-            this.NotificarValorPropriedadeAlterada("Altura", this._altura, this._altura = value);
+            this.NotificarValorPropriedadeAlterada("Altura", this._altura, this._altura = value.ToDecimal(3));
         }
 
         public get Posicao(): d.Posicao

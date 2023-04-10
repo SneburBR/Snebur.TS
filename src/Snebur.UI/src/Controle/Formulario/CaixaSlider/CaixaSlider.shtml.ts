@@ -23,7 +23,7 @@
             {
                 this._valor = decimal;
                 this.ElementoInput.value = decimal.toString();
-                this.NotificarAlteracaoConcluido(decimal, null);
+                 
                 //foi alterado para caixa de ferramenta de ajuste estava zerando
                 //this.NotificarAlteracaoConcluido(decimal, null);
                 if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer)
@@ -32,6 +32,7 @@
                 }
                 else
                 {
+                    /*this.NotificarAlteracaoConcluido(decimal, null);*/
                     this.ElementoInput.dispatchEvent(new Event("change"));
                 }
                 this.AlterarValorPropriedade();
