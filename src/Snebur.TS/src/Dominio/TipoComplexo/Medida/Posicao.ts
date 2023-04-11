@@ -71,6 +71,7 @@
                 }
             }
         }
+       
         //#endregion
 
         public RetornarXVisualizacao(dpiVisualziacao: number): number
@@ -180,6 +181,5 @@
         {
             return this.___NomeConstrutor + "_X_" + this.X.toString() + "_Y_" + this.Y.toString();
         }
-
     }
 }

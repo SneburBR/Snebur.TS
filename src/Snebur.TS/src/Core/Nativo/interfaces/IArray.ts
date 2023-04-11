@@ -16,7 +16,7 @@ namespace Snebur.Nativo
     {
         readonly length: number;
 
-        item(index: number): T | null;
+        /*item(index: number): T | null;*/
 
         [index: number]: T;
 
