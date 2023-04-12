@@ -2,7 +2,6 @@
 {
     export class Borda extends Snebur.Dominio.BaseTipoComplexo implements Snebur.Dominio.ICaminhoTipo, Snebur.Dominio.IBorda
     {
-
         private _corRgba: string = Cor.COR_TRANSPARENTE;
         private _espessura: number = 0.5;
         private _arredondamento: number = 0;
@@ -67,8 +66,7 @@
         {
             this.CorRgba = value.Rgba;
         }
-
-
+         
         public get ExisteBorda(): boolean
         {
             return !this.Cor.IsTransparente || this.Arredondamento > 0;
@@ -86,7 +84,6 @@
             this.Espessura = espessura;
             this.Arredondamento = arredondamento;
         }
-
 
         public Clone(): Borda
         {

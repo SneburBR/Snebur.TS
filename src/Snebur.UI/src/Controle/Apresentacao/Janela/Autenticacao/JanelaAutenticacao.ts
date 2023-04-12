@@ -24,11 +24,7 @@
 
         //#region estilos 
 
-        //protected RetornarCssClasseConteudoJanela(): string
-        //{
-        //    return String.Format("{0} sn-base-janela-autenticacao-conteudo", super.RetornarCssClasseConteudoJanela());
-        //}
-
+      
         //#endregion
     }
 }

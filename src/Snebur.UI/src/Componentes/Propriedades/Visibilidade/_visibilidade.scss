@@ -11,6 +11,7 @@
 
 .ap-visibilidade--invisivel {
     visibility: hidden;
+    opacity: 0 !important;
 }
 
 @include Responsivo(desktop) {

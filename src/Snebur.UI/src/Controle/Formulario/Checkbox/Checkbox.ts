@@ -56,32 +56,7 @@
                 this.ElementoInput.checked = isChecked;
             }
         }
-
-        //protected  AtualizarRotulo(): void
-        //{
-
-        //    let elementoRotulo = this.ElementoRotulo;
-        //    let isRotuloVazio = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.RotuloVazio));
-        //    if (isRotuloVazio)
-        //    {
-        //        elementoRotulo.style.visibility = "hidden";
-        //        elementoRotulo.style.display=  "unset";
-        //    }
-        //    else
-        //    {
-        //        let rotulo = this.RetornarRotulo();
-        //        elementoRotulo.innerHTML = rotulo;
-        //    }
-
-        //    //super.AtualizarRotulo();
-
-
-
-        //    //var elementoRotulo = ElementoUtil.RetornarElemento(this.IDElementoRotulo) as HTMLSpanElement;
-        //    //elementoRotulo.innerHTML = String.Format("{0}", u.ConverterUtil.ParaString(this.CaminhoBind));
-        //    //delete (elementoRotulo as any);
-        //}
-
+         
         protected override VinalizarRotuloInput(): void
         {
             const elementoRotuloPara = this.ElementoCaixa as HTMLLabelElement;

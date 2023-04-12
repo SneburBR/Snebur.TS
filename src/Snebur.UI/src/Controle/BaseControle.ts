@@ -54,7 +54,6 @@
             return this.___isOcupado;
         }
 
-
         //se renomeado alterar em ui.DocumentoPrincipal
         private set IsOcupadoInterno(value: boolean)
         {
@@ -808,7 +807,7 @@
 
         //#endregion
 
-        //#reigon Ocultar e Mostrar elemento
+        //#region Ocultar e Mostrar elemento
 
         //public override OcultarElemento()
         //{

@@ -55,9 +55,7 @@
         {
             return this.NormalizarIntervalo(valor, Number.Int64MinValue, Number.Int64MaxValue);
         }
-
-
-
+         
         public static NormalizarIntervalo(valor: number, minimo: number, maximo: number): number
         {
             if (valor < minimo)

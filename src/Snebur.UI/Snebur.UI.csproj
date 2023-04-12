@@ -660,7 +660,6 @@
     <TypeScriptCompile Include="src\Utilidade\ComponenteApresentacaoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ConsoleUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ControleUtil.ts" />
-    <TypeScriptCompile Include="src\Utilidade\cormdlutil.ts" />
     <TypeScriptCompile Include="src\Utilidade\CorUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\DebugUIInfo.ts" />
     <TypeScriptCompile Include="src\Utilidade\EfeitoImagemUtil.ts" />

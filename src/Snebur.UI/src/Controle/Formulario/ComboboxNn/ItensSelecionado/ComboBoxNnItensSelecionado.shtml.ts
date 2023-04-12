@@ -29,14 +29,6 @@
         protected override Inicializar()
         {
             super.Inicializar();
-            //EstiloUtil.AdicionarCssClasse(this.ControleLista.IDElementoItensColecao, "sn-combobox-nn-itens-selecionado-colecao");
-
-            //var itens = new Lista<string>();
-            //for (var i = 0; i < 10; i++)
-            //{
-            //    itens.Add(String.Format("{0} Item", i.toString()));
-            //}
-            //this.ControleLista.Lista = itens;
         }
 
         protected override HtmlCarregado(): void

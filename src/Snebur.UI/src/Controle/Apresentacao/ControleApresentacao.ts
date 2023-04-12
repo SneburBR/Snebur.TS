@@ -89,7 +89,7 @@
             }
         }
          
-        //#reigon Ocultar 
+        //#region Ocultar 
 
         public override OcultarElemento()
         {

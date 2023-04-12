@@ -152,7 +152,7 @@
         }
         //#endregion
 
-        //#reigon IDisposable
+        //#region IDisposable
 
         public IDisposable(): void
         {

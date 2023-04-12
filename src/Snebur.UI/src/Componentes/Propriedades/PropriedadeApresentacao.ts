@@ -27,12 +27,7 @@
             super();
 
             this.Atributo = atributo;
-
-            //if (!atributo.Nome.StartsWith(PREFIXO_ATRIBUTO_APRESENTACAO))
-            //{
-            //    throw new Erro(String.Format("O atributo {0}  não é suportado", atributo.Nome));
-            //}
-
+ 
             this.DicionarioNomesAtributoResponsivo.Add(this.Atributo.Nome, new NomesAtributoApresentacaoResponsivo(this.Atributo));
             this.AtributosOpcionais.AddRange(atributosOpcional);
 

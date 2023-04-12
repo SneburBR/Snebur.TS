@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.UI.js",
+    "outFile": "build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.d.ts",
+    "../Snebur.TS/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
@@ -437,7 +437,6 @@
     "src/Mascara/Bkp/MascaraHora.Bkp.ts",
     "src/Mascara/Bkp/MascaraTelefone.Bkp.ts",
     "src/Reflexao/TipoBaseViewModel.ts",
-    "src/Utilidade/cormdlutil.ts",
     "src/Utilidade/MaterialDesignerUtil.ts",
     "src/Componentes/Propriedades/PropriedadeApresentacaoAlteradaEventArgs.ts",
     "src/Controle/Apresentacao/ControleFlutuante/FechouControleFlutanteEventArgs.ts",
