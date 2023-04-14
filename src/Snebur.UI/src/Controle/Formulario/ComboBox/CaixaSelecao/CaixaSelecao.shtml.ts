@@ -162,7 +162,11 @@
                 if (isSelecionado)
                 {
                     isJaSelecionado = true;
-                    itemBloco.Elemento.scrollIntoView();
+                    itemBloco.Elemento.scrollIntoView({
+                        block: "center",
+                        inline: "center",
+                        behavior: "smooth"
+                    });
                 }
 
                 EstiloUtil.AtualizarCssClass(itemBloco.Elemento,

@@ -394,7 +394,6 @@ namespace Snebur.UI
                 //linha.appendChild(td);
             }
 
-
             tabela.appendChild(linha);
             ui.ElementoUtil.LimparElementosFilho(elementoDestino);
             elementoDestino.appendChild(tabela);
@@ -449,14 +448,14 @@ namespace Snebur.UI
         {
             //this.Fechar(true);
         }
-
+         
         private SelecionarElemento(cor: d.Cor)
         {
             const seletor = `td[data-cor="${cor}"]`;
-            const elementosPaletaCores = document.querySelectorAll(`.${ControleFlutuanteCores.CSS_CLASS_PALETA_CORES}`) as Element[];
+            const elementosPaletaCores = document.querySelectorAll(`.${ControleFlutuanteCores.CSS_CLASS_PALETA_CORES}`) as any as Element[];
             for (const elementoPaletaCores of elementosPaletaCores)
             {
-                const elementosSelecioando = elementoPaletaCores.querySelectorAll(`.${ControleFlutuanteCores.CSS_CLASS_SELECIONADO}`) as Element[];
+                const elementosSelecioando = elementoPaletaCores.querySelectorAll(`.${ControleFlutuanteCores.CSS_CLASS_SELECIONADO}`) as any as Element[];
                 for (const elemento of elementosSelecioando)
                 {
                     elemento.classList.remove(ControleFlutuanteCores.CSS_CLASS_SELECIONADO);
@@ -536,23 +535,23 @@ namespace Snebur.UI
     }
 
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface ControleFlutuanteCores
-	{
-		readonly PainelSugestaoCores: ui.Painel;
-		readonly ElementoRotuloSugestaoCor: ui.Texto;
-		readonly ElementoDestinoSugestaoCores: ui.Bloco;
-		readonly BtnBotaoAtualizar: ui.Botao;
-		readonly ElementoDestinoPaleta: ui.Bloco;
-		readonly ElementoGrupoOpacidade: ui.Painel;
-		readonly ControleOpacidade: ui.CaixaSlider;
-		readonly ElementoVisualizacao: HTMLDivElement;
-		readonly ElementoRotuloHistorico: ui.Texto;
-		readonly ElementoDestinoHistoricoInterno: HTMLDivElement;
-		readonly BtnFecharInterno: ui.Botao;
-	}
+    export interface ControleFlutuanteCores
+    {
+        readonly PainelSugestaoCores: ui.Painel;
+        readonly ElementoRotuloSugestaoCor: ui.Texto;
+        readonly ElementoDestinoSugestaoCores: ui.Bloco;
+        readonly BtnBotaoAtualizar: ui.Botao;
+        readonly ElementoDestinoPaleta: ui.Bloco;
+        readonly ElementoGrupoOpacidade: ui.Painel;
+        readonly ControleOpacidade: ui.CaixaSlider;
+        readonly ElementoVisualizacao: HTMLDivElement;
+        readonly ElementoRotuloHistorico: ui.Texto;
+        readonly ElementoDestinoHistoricoInterno: HTMLDivElement;
+        readonly BtnFecharInterno: ui.Botao;
+    }
 
-	//#endregion
+    //#endregion
 
 }

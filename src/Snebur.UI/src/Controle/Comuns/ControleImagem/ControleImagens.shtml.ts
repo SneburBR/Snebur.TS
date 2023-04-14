@@ -23,6 +23,15 @@
             this.IndiceAtual = 0;
             this.IniciarExibicaoImagens();
         }
+
+        private get IsCarregarProximaImagem()
+        {
+            if (this.DicionarioControlesFilho.Valores.Any(x => x instanceof ui.Janela))
+            {
+                return false;
+            }
+            return true;
+        }
         //#endregion
 
         //#endregion
@@ -62,6 +71,10 @@
         {
             if (this.IsControleInicializado)
             {
+                if (!this.IsCarregarProximaImagem)
+                {
+                    return;
+                }
                 if (this.IndiceAtual > (this.Imagens.Count - 1))
                 {
                     this.IndiceAtual = 0;

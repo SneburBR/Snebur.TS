@@ -305,7 +305,8 @@
                         {
                             itemBloco.Elemento.scrollIntoView({
                                 block: "center",
-                                inline: "center"
+                                inline: "center",
+                                behavior: "smooth"
                             });
                         }
                     }
@@ -334,11 +335,7 @@
 
             if (itemBloco instanceof ItemBloco)
             {
-                itemBloco.Elemento.scrollIntoView({
-                    block: "center",
-                    inline: "center",
-                    behavior: "smooth"
-                });
+                ElementoUtil.ScrollTo(itemBloco.Elemento);
             }
         }
     }

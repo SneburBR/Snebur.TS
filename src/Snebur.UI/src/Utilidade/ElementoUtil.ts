@@ -612,6 +612,15 @@
         {
             return ` <span class="${classCss}""> ${conteudo} </span> `;
         }
+
+        public static ScrollTo(elemento: HTMLElement)
+        {
+            elemento.scrollIntoView({
+                block: "center",
+                inline: "center",
+                behavior: "smooth"
+            });
+        }
     }
 
     export interface IClientRect

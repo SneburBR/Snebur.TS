@@ -964,8 +964,8 @@
             delete this.___isOcupado;
             delete this.IsOcupadoInterno;
             delete this.__isControleCarregado;
-            delete this.__isControleInicializado;
             delete (this as any).__classesCssControle;
+            this.__isControleInicializado = false;
         }
 
         protected RemoverElementoControle(): void
