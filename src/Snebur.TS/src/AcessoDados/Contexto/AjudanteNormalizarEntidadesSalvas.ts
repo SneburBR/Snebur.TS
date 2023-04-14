@@ -42,8 +42,12 @@
         {
             if (dicionarEntidades.ContainsKey(resultadoEntidadeSalvada.IdentificadorUnicoEntidade))
             {
+
                 const entidadeInfo = dicionarEntidades.Item(resultadoEntidadeSalvada.IdentificadorUnicoEntidade);
-                const tipo = entidadeInfo.Entidade.GetType();
+                const entidade = (entidadeInfo.Entidade as any as IObjetoControladorPropriedade);
+                entidade.DesativarNotificacaoPropriedadeAlterada();
+
+                const tipo = entidade.GetType();
                 if (entidadeInfo.Entidade.Id === 0)
                 {
                     entidadeInfo.Entidade.Id = resultadoEntidadeSalvada.Id;
@@ -60,9 +64,12 @@
                             const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
                             valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
                         }
-                        (entidadeInfo.Entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
+                        
+                        (entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
+                        
                     }
                 }
+                entidade.AtivarNotificacaoPropriedadeAlterada();
             }
         }
     }
@@ -118,8 +125,8 @@
                         if (valorPropriedadeEntidade !== propriedadeSalva.NovoValor)
                         {
                             console.LogDebug(`A propriedade ${this.Entidade}.${propriedadeCliente.CaminhoPropriedade}
-                                          Valores diferentes do cliente e salva  igual. Isso pode acontecer em propriedades computadas no servidor.
-                                          Ex. DataHoraServidor`);
+                                              Valores diferentes do cliente e salva  igual. Isso pode acontecer em propriedades computadas no servidor.
+                                              Ex. DataHoraServidor`);
                             continue;
                         }
                         propriedadesCliente.Remove(chave);

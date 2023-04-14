@@ -101,7 +101,7 @@
                     const entidadesClonas = entidades.Where(x => (x as any as IEntidadeClonada).___is_entidade_clonada__ === true);
                     if (entidadesClonas.Count > 0)
                     {
-                        console.warn("Utilizar o SalvarAvando para salvar entidades clonadas");
+                        console.warn("Utilizar o SalvarAvancadoAsync para salvar entidades clonadas");
                     }
                 }
 
