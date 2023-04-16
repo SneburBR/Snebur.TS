@@ -305,7 +305,7 @@
             {
                 if (!ignorarValorNaoAtribuido)
                 {
-                    throw new Erro(`Não foi possível atribuir valor para propriedade ${caminhoPropriedade} pois ela não está definida`, this);
+                    console.error(`Não foi possível atribuir valor para propriedade ${caminhoPropriedade} pois ela não está definida em ${obj?.GetType().Nome}`, this);
                 }
             }
         }

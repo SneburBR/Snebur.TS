@@ -215,6 +215,11 @@
                 }
                 return urlImagemPendente;
             }
+
+            if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemSemImagem))
+            {
+                return $Configuracao.UrlImagemSemImagem;
+            }
             return u.ImagemUtil.UrlImagemPendente;
         }
 

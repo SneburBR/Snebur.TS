@@ -113,6 +113,7 @@
             {
                 return;
             }
+
             this.OrientacaoImagem = this.RetornarOrientacaoImagem();
             this.AtualizarPreenchimentoImagem();
             this.EventoImagemCarregada.Notificar(this, EventArgs.Empty);
