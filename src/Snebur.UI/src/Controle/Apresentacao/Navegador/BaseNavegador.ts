@@ -51,7 +51,7 @@
         {
             super.Inicializar();
 
-            this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.PropagarBindDataSource, true));
+            this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsPropagarBindDataSource, true));
 
             /*this.IsNavegadorPrincipal = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.NavegadorPrincipal, false));*/
 
@@ -457,6 +457,7 @@
                 {
                     throw new Erro(`o construtor ${(novaPagina as Function).constructor.name} não herda de Snebur.UI.Pagina`);
                 }
+
                 if (this.IsPropagarBindDataSource)
                 {
                     novaPagina["_dataSource"] = this.DataSource;

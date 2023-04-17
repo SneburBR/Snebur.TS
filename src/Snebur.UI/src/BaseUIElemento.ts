@@ -97,7 +97,16 @@
 
         //#region DataSource
 
-        protected _dataSource: any = undefined;
+        private ___dataSource__: any = undefined;
+
+        protected get _dataSource(): any
+        {
+            return this.___dataSource__;
+        }
+        protected set _dataSource(value: any)
+        {
+            this.___dataSource__ = value;
+        }
 
         public readonly EventoDataSourceAntesAlterar: Evento;
         public readonly EventoDataSourceAlterado: Evento;

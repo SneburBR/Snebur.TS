@@ -216,7 +216,7 @@
                 return urlImagemPendente;
             }
 
-            if (u.ValidacaoUtil.IsUrl($Configuracao.UrlImagemSemImagem))
+            if (u.ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem))
             {
                 return $Configuracao.UrlImagemSemImagem;
             }

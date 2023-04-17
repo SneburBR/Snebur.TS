@@ -339,7 +339,7 @@
         /*public static readonly NavegadorPrincipal = new AtributoHtml("sn-navegador-principal", Boolean);*/
         public static readonly IdentificadorNavegador = new AtributoHtml("sn-identificador-navegador", String);
         public static readonly PaginaInicial = new AtributoHtml("sn-pagina-inicial", String);
-        public static readonly PropagarBindDataSource = new AtributoHtml("sn-is-propagar-bind-data-source", Boolean);
+        public static readonly IsPropagarBindDataSource = new AtributoHtml("sn-is-propagar-bind-data-source", Boolean);
         public static readonly IsManterCache = new AtributoHtml("sn-is-manter-cache", Boolean);
 
         //HTML - Nativos

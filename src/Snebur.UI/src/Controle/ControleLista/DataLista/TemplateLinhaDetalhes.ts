@@ -14,7 +14,7 @@
         {
             super.Inicializar();
             this.Tipo = this.RetornarTipoInterno();
-            this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.PropagarBindDataSource, true));
+            this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsPropagarBindDataSource, true));
             this.IsAdicionarElementoConteudoApresentacao = false;
         }
 
