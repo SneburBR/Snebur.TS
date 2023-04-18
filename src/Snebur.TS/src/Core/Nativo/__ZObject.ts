@@ -171,7 +171,7 @@ namespace Snebur
         "_identificadorUnico": true,
         "null": true
     };
-
+ 
     Object.defineProperty(Object, "assign", {
         value: function assign(destino: any, origens: any)
         {

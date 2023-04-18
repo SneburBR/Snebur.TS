@@ -65,7 +65,7 @@
 
             if (!u.CharUtil.IsUpper(nome[0]))
             {
-                throw new Erro(`O nome do namespace '${nome}' deve iniciar com letra maisucula`);
+                throw new Erro(`O nome do namespace '${nome}' deve iniciar com letra maiúscula`);
             }
             this._namespacePai = namespacePai;
             this.Nome = nome;
@@ -137,7 +137,7 @@
         {
             if (seguimentos == null || seguimentos.length === 0)
             {
-                throw new Erro("O segumentos do namespace não foram definido");
+                throw new Erro("O seguimentos do namespace não foram definido");
             }
 
             const nomeNamespace = seguimentos.First();

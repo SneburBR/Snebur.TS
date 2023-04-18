@@ -115,7 +115,7 @@
                 return EnumTipoUnidade.Em;
             }
 
-            console.warn(`A descrição ${valorNormalizado} não é suportada`);
+            console.warn(`A medida ${valorNormalizado} não é suportada. Ex formatação 'px'' faltando`);
             return EnumTipoUnidade.Pixel;
         }
 
