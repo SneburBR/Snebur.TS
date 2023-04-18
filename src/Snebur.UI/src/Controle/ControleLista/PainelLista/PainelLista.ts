@@ -52,6 +52,30 @@
             return true;
         }
 
+        public get OrientacaoPainel(): EnumOrientacao
+        {
+            switch (this.TipoPainel)
+            {
+                case EnumTipoPainel.PilhaHorizontal:
+                case EnumTipoPainel.PilhaHorizontalCheia:
+                case EnumTipoPainel.PilhaHorizontalEmLinha:
+                case EnumTipoPainel.BlocoVertical:
+
+                    return EnumOrientacao.Horizontal;
+
+                case EnumTipoPainel.PilhaVertical:
+                case EnumTipoPainel.PilhaVerticalCheia:
+                case EnumTipoPainel.Bloco:
+                case EnumTipoPainel.Vazio:
+
+                    return EnumOrientacao.Vertical;
+
+                default:
+
+                    throw new Erro("Tipo de painel não suportado: " + EnumTipoPainel[this.TipoPainel]);
+            }
+        }
+
         public readonly EventoItemBlocoCarregado = new Evento<ItemEventArgs<TItemBloco>>(this);
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)

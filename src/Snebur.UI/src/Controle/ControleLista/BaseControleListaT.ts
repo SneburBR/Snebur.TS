@@ -11,6 +11,7 @@
         public __FuncaoRetornarConsulta: FuncaoConsulta;
         public __FuncaoRetornarConsultaAsync: FuncaoConsultaAsync;
         public __FuncaoNormalizar: FuncaoNormalizar;
+        protected _sentidoOrdenacao: EnumSentidoOrdenacao;
 
         public __FuncaoRetornarViewModelAsync: (item: T) => Promise<Entidade | BaseViewModel>;
 
@@ -19,7 +20,8 @@
 
         public Pesquisa: string = String.Empty;
         public CaminhoPropriedadeOrdenacao: string;
-        public SentidoOrdenacao: d.EnumSentidoOrdenacao;
+
+     
         public RelacoesAberta: string;
         public IsConsultarTipoAutomaticamente: boolean = false;
 
@@ -76,6 +78,11 @@
         {
             return this.RetornarEstadoControleLista();
 
+        }
+
+        public get SentidoOrdenacao(): d.EnumSentidoOrdenacao
+        {
+            return this._sentidoOrdenacao;
         }
 
         public abstract get IsMarcarItem(): boolean;
@@ -245,7 +252,7 @@
         public OrdenacaoLista(caminhoPropriedade: string, sentido: d.EnumSentidoOrdenacao): void
         {
             this.CaminhoPropriedadeOrdenacao = caminhoPropriedade;
-            this.SentidoOrdenacao = sentido;
+            this._sentidoOrdenacao = sentido;
             this.AtualizarListaConsultaAsync();
         }
 
@@ -533,10 +540,12 @@
 
         //#region Virtualização
 
-        public RetornarElementoScrollVirtulizacao(): HTMLElement
-        {
-            return this.Elemento;
-        }
+        //public RetornarElementoScrollVirtulizacao(): HTMLElement
+        //{
+        //    return this.Elemento;
+        //}
+
+
         //#endregion
 
         //#region Métodos privados

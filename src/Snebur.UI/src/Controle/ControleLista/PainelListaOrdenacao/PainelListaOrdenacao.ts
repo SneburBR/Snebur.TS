@@ -1,12 +1,14 @@
 ﻿namespace Snebur.UI
 {
-    //é preciso deixar a mesma linha para exetençao pode organizar os arquivos na sequencia das heranças
+    //é preciso deixar a mesma linha para extensão pode organizar os arquivos na sequencia das heranças
     export class PainelListaOrdenacao<TItem extends TipoItemLista = Snebur.Objeto> extends PainelLista<TItem, ItemBlocoOrdenacao>
     {
         public static readonly PASSO_PADRAO: number = 1;
 
         private _passo: number;
         private _isSalvarOrdenacaoAutomaticamente: boolean = true;
+        private _isCloneGlobal: boolean = true;
+        private _elementoScroll: HTMLElement;
 
         public get Passo(): number
         {
@@ -27,6 +29,20 @@
             return this._isSalvarOrdenacaoAutomaticamente;
         }
 
+        public get IsCloneGlobal(): boolean
+        {
+            return this._isCloneGlobal;
+        }
+
+        public get ElementoScroll(): HTMLElement
+        {
+            if (this._elementoScroll == null)
+            {
+                this._elementoScroll = this.RetornarElementoScroll();
+            }
+            return this._elementoScroll;
+        }
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
@@ -40,7 +56,8 @@
 
             this._passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, ControleListaOrdenacao.PASSO_PADRAO);
             this._isSalvarOrdenacaoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.IsSalvarOrdenacaoAutomaticamente, true);
-            this.SentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
+            this._isCloneGlobal = this.RetornarValorAtributoBoolean(AtributosHtml.IsCloneGlobal, true);
+            this._sentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();
 
             if (this.BlocoTemplateSeparador != null)
@@ -84,7 +101,17 @@
             return item as d.IOrdenacao;
 
         }
+
         //#endregion
+
+        private RetornarElementoScroll(): HTMLElement
+        {
+            if (this.OrientacaoPainel === EnumOrientacao.Horizontal)
+            {
+                return ScrollUtil.RetornarElementoScrollHorizontalPai(this.ElementoApresentacao);
+            }
+            return ScrollUtil.RetornarElementoScrollHorizontalPai(this.ElementoApresentacao);
+        }
     }
 
 }

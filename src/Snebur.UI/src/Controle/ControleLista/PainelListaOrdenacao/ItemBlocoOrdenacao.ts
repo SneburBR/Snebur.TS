@@ -589,11 +589,11 @@
                     }
                     break;
                 }
+                /*eslint-enable*/
             }
 
             this.ObjetoOrdenacao.Ordenacao = this.RegiaoBlocoAtual.NovaOrdenacao;
-            this.SalvarEntidadeOrdenacaoAsync()
-
+            this.SalvarEntidadeOrdenacaoAsync();
         }
 
         private OrdernarDecrescente()
@@ -620,27 +620,27 @@
 
         private OrdenarElementos(): void
         {
-            let itensBloco = this.RetornarItensBlocoOrdenados();
-
+            const itensBloco = this.RetornarItensBlocoOrdenados();
             this.OrdenarElementosInterno(itensBloco, 0);
         }
+
         private OrdenarElementosInterno(itensBloco: List<ItemBlocoOrdenacao>, contador: number)
         {
-            let elementos = Util.CopiarArray(this.PainelLista.ElementoApresentacao.childNodes).
-                OfType(HTMLElement).Where(x => x.tagName == "AP-BLOCO-ORDENACAO");
+            const elementos = Util.CopiarArray(this.PainelLista.ElementoApresentacao.childNodes).
+                OfType(HTMLElement).Where(x => x.tagName === "AP-BLOCO-ORDENACAO");
 
 
-            if (itensBloco.length != elementos.length)
+            if (itensBloco.length !== elementos.length)
             {
                 throw new Erro(`O painel lista ordenação suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
             }
 
             for (let i = 0; i < itensBloco.length; i++)
             {
-                let itemBloco = itensBloco[i];
-                let elemento = elementos[i];
+                const itemBloco = itensBloco[i];
+                const elemento = elementos[i];
 
-                if (itemBloco.Elemento != elemento)
+                if (itemBloco.Elemento !== elemento)
                 {
                     itemBloco.Elemento.parentElement.insertBefore(
                         itemBloco.Elemento,
@@ -673,14 +673,15 @@
 
         private RetornarElementoClone(posicaoX: number, posicaoY: number): HTMLElement
         {
-            let elementoOrigem = this.Elemento;
-            let posicoes = elementoOrigem.getBoundingClientRect();
+            const elementoOrigem = this.Elemento;
+            const posicoes = elementoOrigem.getBoundingClientRect();
             //let offset = ui.ElementoUtil.RetornarOffset(this.Elemento);
             this.DiferencaX = posicaoX - posicoes.left;
             this.DiferencaY = posicaoY - posicoes.top;
 
-            let estilo = new Estilo({
-                position: "absolute",
+
+            const estilo = new Estilo({
+                position: "fixed",
                 display: "block",
                 width: posicoes.width.ToPixels(),
                 height: posicoes.height.ToPixels(),
@@ -691,41 +692,54 @@
                 cursor: "grabbing",
             });
 
-            let elementoCloneInterno = elementoOrigem.cloneNode(true) as HTMLElement;
-            CloneElementoUtil.CopiarEstilosComputados(elementoOrigem, elementoCloneInterno);
+            const elementoCloneInterno = elementoOrigem.cloneNode(true) as HTMLElement;
+
+            if (this.PainelLista.IsCloneGlobal)
+            {
+                CloneElementoUtil.CopiarEstilosComputados(elementoOrigem, elementoCloneInterno);
+            }
+             
             elementoCloneInterno.style.position = "relative";
             elementoCloneInterno.style.left = String.Empty;
             elementoCloneInterno.style.top = String.Empty;
             elementoCloneInterno.style.right = String.Empty;
             elementoCloneInterno.style.bottom = String.Empty;
 
-            let elementoClone = document.createElement(ConstantesOrdenacao.CSS_CLASS_BLOCO_MOVIMENTANDO);
+            const elementoClone = document.createElement(ConstantesOrdenacao.CSS_CLASS_BLOCO_MOVIMENTANDO);
             elementoClone.className = elementoOrigem.className;
 
-            if ($Configuracao.IsDebug && false)
-            {
+            //if ($Configuracao.IsDebug)
+            //{
+            //    const estiloTemp = new Estilo(estilo);
+            //    estiloTemp.top = "50%";
+            //    estiloTemp.left = "50%";
+            //    estiloTemp.transform = "translate(-50%, -50%)";
+            //    estiloTemp.color = "yellow";
+            //    estiloTemp.fontSize = "30px";
+            //    estiloTemp.background = "black";
+            //    estiloTemp.width = "auto";
+            //    estiloTemp.height = "auto";
+            //    const elementoTemo = document.createElement("info-temp");
 
-                let estiloTemp = new Estilo(estilo);
-                estiloTemp.top = "50%";
-                estiloTemp.left = "50%";
-                estiloTemp.transform = "translate(-50%, -50%)";
-                estiloTemp.color = "yellow";
-                estiloTemp.fontSize = "30px";
-                estiloTemp.background = "black";
-                estiloTemp.width = "auto";
-                estiloTemp.height = "auto";
-                let elementoTemo = document.createElement("info-temp");
-                estiloTemp.AplicarEm(elementoTemo);
-                elementoTemo.innerHTML = "0%"
-                elementoClone.appendChild(elementoTemo);
-                estilo.border = "2px solid red";
+            //    estiloTemp.AplicarEm(elementoTemo);
+            //    elementoTemo.innerHTML = "0%";
+            //    elementoClone.appendChild(elementoTemo);
+            //    estilo.border = "2px solid red";
+            //}
 
-            }
             estilo.AplicarEm(elementoClone);
             elementoClone.appendChild(elementoCloneInterno);
             elementoClone.classList.add("sn-painel-lista-ordenacao-item-clone-clonado");
 
-            document.body.appendChild(elementoClone);
+            if (this.PainelLista.IsCloneGlobal)
+            {
+                document.body.appendChild(elementoClone);
+            }
+            else
+            {
+                const destino = this.RetornarElementoDestino();
+                destino.appendChild(elementoClone);
+            }
             return elementoClone;
         }
 
@@ -734,48 +748,45 @@
             let elementoAtual = this.Elemento;
             while (elementoAtual != null)
             {
-                let backgroundColor = window.getComputedStyle(elementoAtual).getPropertyValue("background-color");
-                if (!String.IsNullOrWhiteSpace(backgroundColor) && backgroundColor != "transparent")
+                const backgroundColor = window.getComputedStyle(elementoAtual).getPropertyValue("background-color");
+                if (!String.IsNullOrWhiteSpace(backgroundColor) && backgroundColor !== "transparent")
                 {
                     return backgroundColor;
                 }
                 elementoAtual = elementoAtual.parentElement;
             }
 
-            let backgroundColor = window.getComputedStyle(document.body).getPropertyValue("background-color");
-            if (!String.IsNullOrWhiteSpace(backgroundColor) && backgroundColor != "transparent")
+            const backgroundColor = window.getComputedStyle(document.body).getPropertyValue("background-color");
+            if (!String.IsNullOrWhiteSpace(backgroundColor) && backgroundColor !== "transparent")
             {
                 return backgroundColor;
             }
             return String.Empty;
         }
 
-        private MoverElementoClonadoDestinoAsync(): Promise<void> | void
+        private async MoverElementoClonadoDestinoAsync(): Promise<void>  
         {
             if (!(this.ElementoClone instanceof HTMLElement))
             {
                 return;
             }
 
-            let elementoDestino = this.RetornarDestinoElementoClone();
-            let elementoClone = this.ElementoClone;
+            const elementoDestino = this.RetornarDestinoElementoClone();
+            const elementoClone = this.ElementoClone;
 
-            return new Promise<void>(async resolver =>
-            {
-                let estilo = new Estilo({
-                    transitionDuration: "0.15s",
-                    transitionProperty: "all"
-                });
 
-                estilo.AplicarEm(elementoClone);
-                await ThreadUtil.QuebrarAsync();
-                let posicao = elementoDestino.getBoundingClientRect();
-                elementoClone.style.left = posicao.left.ToPixels();
-                elementoClone.style.top = posicao.top.ToPixels();
-                await ThreadUtil.EsperarAsync(150);
-                resolver();
+            const estilo = new Estilo({
+                transitionDuration: "0.15s",
+                transitionProperty: "all"
             });
 
+            estilo.AplicarEm(elementoClone);
+            await ThreadUtil.QuebrarAsync();
+
+            const posicao = elementoDestino.getBoundingClientRect();
+            elementoClone.style.left = posicao.left.ToPixels();
+            elementoClone.style.top = posicao.top.ToPixels();
+            await ThreadUtil.EsperarAsync(150);
         }
 
         private RemoverElementoClonado()
