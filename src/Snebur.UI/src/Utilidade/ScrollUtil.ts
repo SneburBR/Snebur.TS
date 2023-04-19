@@ -43,11 +43,11 @@
             return elementosScroll;
         }
 
-        public static RetornarElementoScrollVerticalPai(elemento: HTMLElement, ignorarErro: boolean = false): HTMLElement
+        public static RetornarElementoScrollVerticalPai(elemento: HTMLElement, isIgnorarErro: boolean = false): HTMLElement
         {
             if (!(elemento instanceof HTMLElement))
             {
-                if (ignorarErro)
+                if (isIgnorarErro)
                 {
                     return null;
                 }
@@ -58,7 +58,7 @@
             {
                 return elemento;
             }
-            return ScrollUtil.RetornarElementoScrollVerticalPai(elemento.parentElement, ignorarErro);
+            return ScrollUtil.RetornarElementoScrollVerticalPai(elemento.parentElement, isIgnorarErro);
         }
 
         public static IsScrollHorizontalNoFim(elemento: HTMLElement): boolean
@@ -76,10 +76,14 @@
             return elemento.scrollWidth > elemento.clientWidth;
         }
 
-        public static RetornarElementoScrollHorizontalPai(elemento: HTMLElement): HTMLElement
+        public static RetornarElementoScrollHorizontalPai(elemento: HTMLElement, isIgnorarErro: boolean = false): HTMLElement
         {
             if (!(elemento instanceof HTMLElement))
             {
+                if (isIgnorarErro)
+                {
+                    return null;    
+                }
                 throw new Erro("O elemento scroll pai não foi encontrado");
             }
 
@@ -87,7 +91,7 @@
             {
                 return elemento;
             }
-            return ScrollUtil.RetornarElementoScrollHorizontalPai(elemento.parentElement);
+            return ScrollUtil.RetornarElementoScrollHorizontalPai(elemento.parentElement, isIgnorarErro);
         }
     }
 

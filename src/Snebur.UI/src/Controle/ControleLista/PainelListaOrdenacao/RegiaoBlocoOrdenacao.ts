@@ -2,16 +2,12 @@
 {
     export class RegiaoBlocoOrdenacao
     {
-        
-
         private _ordenacaoDestino: number | null;
+        private _regiaoOrigem: DOMRect;
 
         public readonly IndiceOrigem: number;
         public readonly ItemBlocoOrdenacao: ItemBlocoOrdenacao;
-
         public readonly RegiaoPainel: DOMRect;
-        public readonly RegiaoOrigem: DOMRect;
-
         public readonly OrdenacaoOrigem: number;
 
         private RegiaoDestino: DOMRect;
@@ -28,18 +24,26 @@
             return this.OrdenacaoOrigem;
         }
 
-        public constructor(regiaoPainel: DOMRect,
+        public get RegiaoOrigem(): DOMRect
+        {
+            return this._regiaoOrigem;
+            /*return this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();*/
+        }
+
+        public constructor(
+            regiaoPainel: DOMRect,
             itemBlocoOrdenacao: ItemBlocoOrdenacao,
             indice: number)
         {
             this.IndiceOrigem = indice;
             this.ItemBlocoOrdenacao = itemBlocoOrdenacao;
             this.RegiaoPainel = regiaoPainel;
-            this.RegiaoOrigem = itemBlocoOrdenacao.Elemento.getBoundingClientRect();
+            this._regiaoOrigem = itemBlocoOrdenacao.Elemento.getBoundingClientRect();
             this.RegiaoDestino = this.RegiaoOrigem;
 
             this.ItemBlocoOrdenacao.Elemento.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
             this.OrdenacaoOrigem = itemBlocoOrdenacao.ObjetoOrdenacao.Ordenacao;
+            /*this.AtivarPosicaoAbosoluta();*/
         }
 
         public AtivarPosicaoAbosoluta(): void
@@ -79,7 +83,7 @@
             const regiaoDestino = this.RegiaoDestino;
             const elemento = this.ItemBlocoOrdenacao.Elemento;
 
-            const left = (regiaoDestino.left - this.RegiaoPainel.left ).ToPixels();
+            const left = (regiaoDestino.left - this.RegiaoPainel.left).ToPixels();
             const top = (regiaoDestino.top - this.RegiaoPainel.top).ToPixels();
 
             const width = regiaoDestino.width.ToPixels();
@@ -97,7 +101,7 @@
             estilo.AplicarEm(elemento);
         }
 
-        public  Dispose(): void
+        public Dispose(): void
         {
             this.RemoverPosicaoAsoluta();
             this.ItemBlocoOrdenacao.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);

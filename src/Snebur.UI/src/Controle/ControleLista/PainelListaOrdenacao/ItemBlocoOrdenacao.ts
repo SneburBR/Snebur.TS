@@ -309,6 +309,8 @@
 
         private RetornarRegioesBloco(regiaoPainel: DOMRect): List<RegiaoBlocoOrdenacao>
         {
+            this.DispensarRegioesBlocoOrdenacao();
+             
             const itensBloco = this.RetornarItensBlocoOrdenados();
             const regioesBlocoOrdenados = new List<RegiaoBlocoOrdenacao>();
             for (const [itemBloco, indice] of itensBloco.ToTupleItemIndex())
@@ -333,7 +335,8 @@
             }
         }
 
-        private Movimentar(posicaoX: number,
+        private Movimentar(
+            posicaoX: number,
             posicaoY: number,
             eventoNativo: MouseEvent | TouchEvent)
         {
@@ -344,12 +347,13 @@
 
             if (this.IsOrdenacaoAtiva)
             {
-                const posicaoMoventando = this.ElementoClone.getBoundingClientRect();
+                const elementoClone = this.ElementoClone;
+                const posicaoMoventando = elementoClone.getBoundingClientRect();
                 const estilo = new Estilo({
                     left: (posicaoX - this.DiferencaX).ToPixels(),
                     top: (posicaoY - this.DiferencaY).ToPixels(),
                 });
-                estilo.AplicarEm(this.ElementoClone);
+                estilo.AplicarEm(elementoClone);
 
                 const blocosCapturados = new List<RegiaoBlocoPorcentagem>();
                 for (const regiao of this.RegioesBlocoOrdenacao)
@@ -359,7 +363,10 @@
                         regiao.OrdenacaoDestino = null;
                     }
 
-                    const porcentagem = ElementoAreaUtil.RetornarPorcentagemAreaSobreRegiao(posicaoMoventando, regiao.RegiaoOrigem);
+                    const porcentagem = ElementoAreaUtil.RetornarPorcentagemAreaSobreRegiao(
+                        posicaoMoventando,
+                        regiao.RegiaoOrigem);
+
                     if (porcentagem > 0)
                     {
                         blocosCapturados.Add({
@@ -379,7 +386,7 @@
                 this.PainelLista.EventoBlocoOrdenacaoMovimentando.Notificar(this,
                     new BlocoOdernacaoMovimentandoEventArgs(this,
                         this.ObjetoOrdenacao,
-                        this.ElementoClone,
+                        elementoClone,
                         eventoNativo,
                         blocosCapturados,
                     ));
@@ -404,26 +411,27 @@
                 await this.MoverElementoClonadoDestinoAsync();
 
                 this.Ordernar(eventoNativo);
-                this.RegioesBlocoOrdenacao?.ForEach(x => x.Dispose());
-                this.RegioesBlocoOrdenacao?.Clear();
-                this.RemoverEstiloPainel();
-
-                delete this.RegioesBlocoOrdenacao;
-                delete this.RegiaoBlocoAtual;
-
-                this.RemoverElementoClonado();
-
-                this.Elemento.style.opacity = "1";
-                EstiloUtil.DefinirCursorGlogal("auto");
-                this.IsOrdenacaoAtiva = false;
-
-                this.PainelLista.EventoBlocoOrdenacaoFinalizada.Notificar(this,
-                    new BlocoOrdenacaoEventArgs(
-                        this,
-                        this.ObjetoOrdenacao,
-                        this.ElementoClone,
-                        eventoNativo));
             }
+
+            this.DispensarRegioesBlocoOrdenacao();
+            this.RemoverEstiloPainel();
+
+            delete this.RegioesBlocoOrdenacao;
+            delete this.RegiaoBlocoAtual;
+
+            this.RemoverElementoClonado();
+
+            this.Elemento.style.opacity = "1";
+            EstiloUtil.DefinirCursorGlogal("auto");
+            this.IsOrdenacaoAtiva = false;
+
+            this.PainelLista.EventoBlocoOrdenacaoFinalizada.Notificar(this,
+                new BlocoOrdenacaoEventArgs(
+                    this,
+                    this.ObjetoOrdenacao,
+                    this.ElementoClone,
+                    eventoNativo));
+
         }
 
         private AplicarEstiloPainel(regiaoPainel: DOMRect): void
@@ -698,7 +706,7 @@
             {
                 CloneElementoUtil.CopiarEstilosComputados(elementoOrigem, elementoCloneInterno);
             }
-             
+
             elementoCloneInterno.style.position = "relative";
             elementoCloneInterno.style.left = String.Empty;
             elementoCloneInterno.style.top = String.Empty;
@@ -802,10 +810,17 @@
             return this.Elemento;
         }
 
+        private DispensarRegioesBlocoOrdenacao(): void
+        {
+            this.RegioesBlocoOrdenacao?.ForEach(x => x.Dispose());
+            this.RegioesBlocoOrdenacao?.Clear();
+        }
+         
         //#endregion
 
         public override Dispose(): void
         {
+            this.DispensarRegioesBlocoOrdenacao();
             this.ObjetoOrdenacao.RemoverManipuladorPropriedadeAlterada(x => x.Ordenacao, this.Ordenacao_Alterada, this);
             super.Dispose();
         }
