@@ -2,7 +2,10 @@
 {
     export class AbrirImagemLocal extends BaseAbrirImagemLocal 
     {
-         private readonly TamanhosImagem: List<d.EnumTamanhoImagem>;
+        private static readonly TIMEOUT = 90 * 1000;
+        private IdTimeout: number;
+        private readonly TamanhosImagem: List<d.EnumTamanhoImagem>;
+        private _isAbriuIcone: boolean;
 
         public constructor(origemImagemLocal: sa.OrigemImagemLocal, tamanhosImagem: List<d.EnumTamanhoImagem>)
         {
@@ -12,9 +15,33 @@
 
         public CarergarImagemAsync(): Promise<DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
+            this.IdTimeout = window.setTimeout(this.ResolverTimeout.bind(this), AbrirImagemLocal.TIMEOUT);
             return new Promise<DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>>(this.CarregarImagem_Promise.bind(this));
         }
 
+        private ResolverTimeout()
+        {
+            console.error("Timeout abrir imagem local " + this.OrigemImagemLocal.ArquivoLocal?.name);
+            this.Resolver(null);
+        }
+
+        protected override Resolver(args: any)
+        {
+            window.clearTimeout(this.IdTimeout);
+            if (args == null)
+            {
+                if (this._isAbriuIcone)
+                {
+                    super.Resolver(args);
+                    throw new Erro("Falha ao abrir ícone " +  this.ArquivoLocal?.name);
+                }
+                this._isAbriuIcone = true;
+                this.CarregarImagemLocalInterno(this.ArquivoLocal.UrlIcone);
+                return;
+            }
+            super.Resolver(args);
+        }
+        
         private async CarregarImagem_Promise(resolver: (resultado: boolean) => void)
         {
             this.FuncaoResolver = resolver;
@@ -38,7 +65,10 @@
             const imagemAtual: HTMLImageElement | HTMLCanvasElement = this.ImagemLocal;
             for (const tamanhoImagem of this.TamanhosImagem)
             {
-                const dimensaoApresentacao = u.ImagemUtil.RetornarDimensagemImagem(imagemAtual.naturalWidth, imagemAtual.naturalHeight, tamanhoImagem);
+                const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
+                    imagemAtual.naturalWidth,
+                    imagemAtual.naturalHeight,
+                    tamanhoImagem);
 
                 const [canvas, imagemData] = super.RetornarImagemData(imagemAtual, dimensaoApresentacao);
                 const blob = await this.RetornarBlobAsync(canvas, imagemData);
@@ -56,9 +86,10 @@
             switch (this.OrigemImagemLocal.FormatoImagem)
             {
                 case d.EnumFormatoImagem.JPEG:
+                case d.EnumFormatoImagem.GIF:
 
                     return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Jpeg, 0.87);
-                    //return Snebur.WebWorker.SalvarJpeg.RetornarBlobAsync(imagemData, this.Qualidade);
+                //return Snebur.WebWorker.SalvarJpeg.RetornarBlobAsync(imagemData, this.Qualidade);
 
                 case d.EnumFormatoImagem.PNG:
 
@@ -68,7 +99,9 @@
 
                 default:
 
-                    throw new ErroNaoSuportado("O formato do imagem não é suportado");
+                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
+
+                /*throw new ErroNaoSuportado("O formato do imagem não é suportado");*/
             }
         }
 

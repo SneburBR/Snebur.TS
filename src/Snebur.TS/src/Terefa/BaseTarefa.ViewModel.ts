@@ -73,7 +73,7 @@
         }
         //#region Métodos públicos 
 
-        public IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>): void
+        public async IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>)
         {
             this.CallbackTarefaConcluida = callback;
 
@@ -83,7 +83,8 @@
             }
 
             this.Estado = EnumEstadoTarefa.Executando;
-            setTimeout(this.ExecutarAsync.bind(this));
+            await ThreadUtil.QuebrarAsync();
+            await this.ExecutarAsync();
         }
 
         public EnviarAsync(): Promise<void>

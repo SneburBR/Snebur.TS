@@ -24,7 +24,7 @@
 
         public get ControleApresentacaoPai(): ControleApresentacao
         {
-            return this.RetornarControlePai(ControleApresentacao, false);
+            return this.RetornarControlePai(ControleApresentacao, false, true);
         }
 
         public get IDElemento(): string

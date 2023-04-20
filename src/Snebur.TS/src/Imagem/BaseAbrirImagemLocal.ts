@@ -10,12 +10,17 @@
         protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO;
         protected readonly OrigemImagemLocal: sa.OrigemImagemLocal;
         protected readonly ArquivoLocal: SnBlob;
-        protected readonly UrlBlobLocal: string;
+        /*protected readonly UrlBlobLocal: string;*/
         protected ImagemLocal: HTMLImageElement;
-         
+
         protected set Erro(value: Erro)
         {
             this.OrigemImagemLocal.ErroAbrirImagem = value;
+        }
+
+        public get IsIcone(): boolean
+        {
+            return this.OrigemImagemLocal.Imagem?.IsIcone;
         }
 
         protected FuncaoResolver: (resultado: any) => void;
@@ -23,32 +28,52 @@
         public constructor(origemImagemLocal: sa.OrigemImagemLocal)
         {
             this.OrigemImagemLocal = origemImagemLocal;
-
             this.ArquivoLocal = this.OrigemImagemLocal.ArquivoLocal;
-            this.UrlBlobLocal = window.URL.createObjectURL(this.ArquivoLocal.Blob);
         }
 
         protected CarregarImagemLocal()
         {
-            this.ImagemLocal = new Image();
-            this.ImagemLocal.onload = this.ImagemOriginalLocal_Carregada.bind(this);
-            this.ImagemLocal.onerror = this.ImagemOriginalLocal_Erro.bind(this);
-            this.ImagemLocal.onabort = this.ImagemOriginalLocal_Erro.bind(this);
-            this.ImagemLocal.src = this.UrlBlobLocal;
+            const url = this.IsIcone ? this.ArquivoLocal.UrlIcone : this.ArquivoLocal.UrlBlob;
+            this.CarregarImagemLocalInterno(url);
+        }
+
+        protected CarregarImagemLocalInterno(url: string)
+        {
+            window.clearTimeout(this.IdentificadorTimeoutAbirImagemOriginal);
+
+            const novoImagem = new Image();
+            novoImagem.onload = this.ImagemOriginalLocal_Carregada.bind(this);
+            novoImagem.onerror = this.ImagemOriginalLocal_Erro.bind(this);
+            novoImagem.onabort = this.ImagemOriginalLocal_Erro.bind(this);
+            novoImagem.crossOrigin = "Anonymous";
+            
             this.IdentificadorTimeoutAbirImagemOriginal = setTimeout(this.ImagemOriginalLocal_Timeout.bind(this), this.TEMPO_TIMEOUT_IMAGEM_ORIGINAL);
+            this.ImagemLocal = novoImagem;
+            this.ImagemLocal.src = url;
         }
 
         protected ImagemOriginalLocal_Erro(e: ErrorEvent): void
         {
+            window.clearTimeout(this.IdentificadorTimeoutAbirImagemOriginal);
+            const msgErro = `Falha ao abrir imagem local:
+                             Arquivo:${this.ArquivoLocal?.name} 
+                             Erro: ${e.error} `;
+            console.warn(msgErro);
+
+            this.Erro = new Erro(msgErro, e.error);
             this.IsErro = true;
-            this.Erro = new Erro("Erro ao abrir imagem", e.error);
             this.Resolver(null);
         }
 
         protected ImagemOriginalLocal_Timeout()
         {
             this.IsErro = true;
-            this.Erro = new ErroTimeout("O tempo máximo para abrir a imagem original foi atingido");
+            const msgErro = `O tempo máximo para abrir a imagem original foi atingido:
+                             Arquivo: ${this.ArquivoLocal?.name} 
+                             Erro: Timeout`;
+            console.error(msgErro);
+
+            this.Erro = new ErroTimeout(msgErro);
             this.Resolver(null);
         }
 
@@ -57,22 +82,39 @@
             window.clearTimeout(this.IdentificadorTimeoutAbirImagemOriginal);
         }
 
-        protected RetornarImagemData(imagem: HTMLImageElement , dimensao: IDimensao): [HTMLCanvasElement, ImageData]
+        protected RetornarImagemData(imagem: HTMLImageElement, dimensao: IDimensao): [HTMLCanvasElement, ImageData]
         {
             const canvas = document.createElement("canvas");
             canvas.width = dimensao.Largura;
             canvas.height = dimensao.Altura;
             const contexto = canvas.getContext("2d");
-            contexto.drawImage(this.ImagemLocal, 0, 0, dimensao.Largura, dimensao.Altura);
+            contexto.drawImage(imagem, 0, 0, dimensao.Largura, dimensao.Altura);
             const imageData = contexto.getImageData(0, 0, canvas.width, canvas.height);
             return [canvas, imageData];
-        } 
+        }
+
+        protected RetornarCanvas(imagem: HTMLImageElement, dimensao: IDimensao): HTMLCanvasElement
+        {
+            const canvas = document.createElement("canvas");
+            canvas.width = dimensao.Largura;
+            canvas.height = dimensao.Altura;
+            const contexto = canvas.getContext("2d");
+            contexto.drawImage(imagem, 0, 0, dimensao.Largura, dimensao.Altura);
+            return canvas;
+        }
 
         protected Resolver(args: any): void
         {
+            window.clearTimeout(this.IdentificadorTimeoutAbirImagemOriginal);
+
             this.Dispose();
-            this.FuncaoResolver(args);
-            delete this.FuncaoResolver;
+
+            if (this.FuncaoResolver != null)
+            {
+                this.FuncaoResolver(args);
+                this.FuncaoResolver = null;
+                delete this.FuncaoResolver;
+            }
         }
 
         public Dispose(): void
@@ -82,8 +124,7 @@
                 this.ImagemLocal.onload = null;
                 this.ImagemLocal.onerror = null;
                 this.ImagemLocal.src = u.ImagemUtil.ImagemVaziaBase64;
-
-                window.URL.revokeObjectURL(this.UrlBlobLocal);
+                this.ArquivoLocal.RevokeUrlBlob();
                 delete this.ImagemLocal;
             }
         }

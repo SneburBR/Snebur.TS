@@ -15,7 +15,7 @@
         {
             return new InformacaoImagemWorker().RetornarResultadoAsync(blob.Blob) as Promise<IInformacaoImagem>;
         }
-         
+
         protected override NormalizarResultado(arquivo: Blob, resultado: IInformacaoImagem, argumento: any): Promise<IInformacaoImagem> | IInformacaoImagem
         {
             if (resultado instanceof Error)
@@ -29,9 +29,7 @@
                     FormatoImagem: EnumFormatoImagem.Desconhecido,
                     NomeArquivo: (arquivo as File)?.name ?? "[blob]"
                 };
-
             }
-
 
             resultado.TotalBytes = arquivo.size;
             resultado.Tamanho = FormatacaoUtil.FormatarBytes(arquivo.size);
@@ -41,9 +39,8 @@
                 return resultado;
             }
 
-
             resultado.FormatoImagem = this.RetornarFormatoImagem(arquivo, resultado);
-            resultado.IsImagem = resultado.FormatoImagem !== EnumFormatoImagem.Desconhecido;
+            resultado.IsImagem = ImagemUtil.IsFormatoImagemSuportado(resultado.FormatoImagem);
 
             const rotacao = this.RetornarRotacaoExif(arquivo, resultado.FormatoImagem, resultado.Orientacao);
             const dimensao = this.NormalizarDimensao(resultado.Largura, resultado.Altura, rotacao);
@@ -86,9 +83,26 @@
                         return d.EnumFormatoImagem.GIF;
                     case "image/bmp":
                         return d.EnumFormatoImagem.BMP;
+
                     case "image/tif":
                     case "image/tiff":
+
                         return d.EnumFormatoImagem.TIFF;
+                    case "image/webp":
+
+                        return d.EnumFormatoImagem.WEBP;
+
+                    case "image/svg+xml":
+
+                        return d.EnumFormatoImagem.SVG;
+
+                    case "image/avif":
+
+                        return d.EnumFormatoImagem.AVIF;
+
+                    case "image/apng":
+                        return d.EnumFormatoImagem.APNG;
+
                 }
             }
             return u.ImagemUtil.RetornarFormatoImagem(arquivo);

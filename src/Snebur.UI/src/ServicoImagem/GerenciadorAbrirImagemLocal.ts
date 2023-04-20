@@ -25,11 +25,11 @@ namespace Snebur.UI
             return tarefa.Imagem.__IdentificadorEntidade;
         }
 
-        public override IniciarAsync(): void
-        public override IniciarAsync(): void
-        public override IniciarAsync(callback: CallbackResultado<t.ResultadoTarefaFinalizadaEventArgs> = null): void
+        public override IniciarAsync(): Promise<void>
+        public override IniciarAsync(): Promise<void>
+        public override async IniciarAsync(callback: CallbackResultado<t.ResultadoTarefaFinalizadaEventArgs> = null)
         {
-            super.IniciarAsync(callback);
+            await super.IniciarAsync(callback);
         }
 
         public AbrirImagemVirtualizacao(imagem: d.IImagem): void

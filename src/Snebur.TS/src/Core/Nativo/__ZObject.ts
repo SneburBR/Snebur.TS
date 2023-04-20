@@ -180,7 +180,7 @@ namespace Snebur
                 throw new TypeError("Somente objeto podem ser assinados");
             }
 
-            const objectoDestino = Object(destino);
+       
             for (let index = 1; index < arguments.length; index++)
             {
                 /*eslint-disable*/
@@ -197,14 +197,14 @@ namespace Snebur
                                 const valor = proximaOrigem[proprieade];
                                 if ((typeof valor !== "function"))
                                 {
-                                    objectoDestino[proprieade] = valor;
+                                    destino[proprieade] = valor;
                                 }
                             }
                         }
                     }
                 }
             }
-            return objectoDestino;
+            return destino;
         },
         writable: false,
         configurable: false,

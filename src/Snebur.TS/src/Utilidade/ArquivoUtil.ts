@@ -79,6 +79,7 @@
             {
                 return EnumUtil.RetornarValor(EnumMimeType, extensao);
             }
+            console.error("MimeType desconhecido " + nomeArquivo);
             return EnumMimeType.Desconhecido;
         }
 

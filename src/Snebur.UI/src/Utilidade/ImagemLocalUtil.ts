@@ -290,7 +290,7 @@
                     const extensao = ArquivoUtil.RetornarExtensaoArquivo(this.Arquivo.name);
                     if (!String.IsNullOrWhiteSpace(extensao))
                     {
-                        const url = `${$Configuracao.UrlIcone}=${extensao}`;
+                        const url = `${$Configuracao.UrlIcone}${extensao}`;
                         this.Imagem.src = url;
                         return;
                     }

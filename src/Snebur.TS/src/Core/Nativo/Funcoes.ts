@@ -37,6 +37,12 @@ namespace Snebur
 
     export function Init<T>(obj: T, init?: Partial<T>)
     {
-        Object.assign(obj, init);
+        if (init != null)
+        {
+            for (const key of Object.keys(init))
+            {
+                (obj as any)[key] = (init as any)[key];
+            }
+        }
     }
 }

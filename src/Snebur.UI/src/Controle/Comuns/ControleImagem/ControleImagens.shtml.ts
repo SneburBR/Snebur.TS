@@ -26,9 +26,18 @@
 
         private get IsCarregarProximaImagem()
         {
-            if (this.DicionarioControlesFilho.Valores.Any(x => x instanceof ui.Janela))
+            let controlePai = this.ControleApresentacaoPai;
+            while (controlePai != null)
             {
-                return false;
+                if (controlePai.DicionarioControlesFilho.Valores.Any(x => x instanceof ui.Janela))
+                {
+                    return false;
+                }
+                if (controlePai === this.ControleApresentacaoPai)
+                {
+                    break;
+                }
+                controlePai = this.ControleApresentacaoPai;
             }
             return true;
         }
@@ -91,7 +100,7 @@
                 }
 
                 const urlImagemServidor = u.ImagemUtil.RetornarUrlImagem(imagem, this.TamanhoImagem);
-                this.ElementoImagem.src = urlImagemServidor;
+                this.ElementoImagem.UrlImagem = urlImagemServidor;
 
                 this.IndiceAtual += 1;
                 this.IdentificadorTimeout = window.setTimeout(this.ProximaImagem.bind(this), TimeSpan.FromSeconds(10).TotalMilliseconds);

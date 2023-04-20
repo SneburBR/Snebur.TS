@@ -77,9 +77,9 @@
 
         //#region Métodos públicos
 
-        public override IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>)
+        public override async IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>)
         {
-            super.IniciarAsync(callback);
+            await super.IniciarAsync(callback);
         }
 
         protected AdicionarTarefa(tarefa: TTarefa): void
@@ -149,7 +149,7 @@
 
         //#endregion
 
-        //#region Métodos sobreescritos
+        //#region Métodos sobre escritos
 
         public override PausarTarefa(): void
         {
@@ -173,7 +173,7 @@
             return new ProgressoGerenciadorTarefaEventArgs(progresso, this.Fila.Count, this.Executando.Count) as TProgressoGerenciadorTarefaEventArgs;
         }
 
-        //#enregion
+        //#endregion
 
         //#region Métodos privados
 
@@ -324,31 +324,7 @@
             }
             this.Progresso = progresso;
         }
-
-        //public Tarefas_TarefaAdicionado(provedor: any, e: ItemEventArgs<TTarefa>): void
-        //{
-        //    let fila = this.RetornarFila(e.Item.Prioridade);
-        //    fila.Add(e.Item);
-        //}
-
-        //private Tarefas_TarefaRemovida(provedor: any, e: ItemEventArgs<TTarefa>): void
-        //{
-        //    let fila = this.RetornarFila(e.Item.Prioridade);
-        //    fila.Remove(e.Item);
-        //}
-
-        //private Tarefas_TarefaInserida(provedor: any, e: InserirItemEventArgs<TTarefa>): void
-        //{
-        //    throw new Erro("Não é possível inserir (numa posição especifica) objetos na fila, utilize o método adicionar");
-        //    //let posicao = e.Posicao;
-        //    //var fila = this.RetornarFila(e.Item.Prioridade);
-        //    //if (posicao > fila.length)
-        //    //{
-        //    //    posicao = fila.length - 1;
-        //    //}
-        //    //fila.Insert(e.Posicao, e.Item);
-        //}
-
+         
         private RetornarErro(): Erro
         {
             if (this.TarefasComErros.Count > 0)

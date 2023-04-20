@@ -268,7 +268,9 @@
                 this.RemoverTarefa(tarefaImpressao);
                 this.Fila.Remove(tarefaImpressao);
                 const imagem = tarefaImpressao.Imagem;
-                this.EnviarImagemImpressao(imagem, dimensaoImpressao, isProcessarImagem);
+                this.EnviarImagemImpressao(imagem,
+                    dimensaoImpressao,
+                    isProcessarImagem);
             }
             else
             {
@@ -303,7 +305,12 @@
         {
             this.ValidarImagemTamanhoDimensao(imagem, tamanhoImagem, dimensaoImpressao);
 
-            const novaTarefaEnviarImagem = this.RetornarNovaTarefaEnviarImagem(imagem, tamanhoImagem, dimensaoImpressao, isProcessarImagem);
+            const novaTarefaEnviarImagem = this.RetornarNovaTarefaEnviarImagem(
+                imagem,
+                tamanhoImagem,
+                dimensaoImpressao,
+                isProcessarImagem);
+
             switch (tamanhoImagem)
             {
                 case EnumTamanhoImagem.Miniatura:

@@ -12,7 +12,7 @@
         Tamanho?: string;
         Orientacao?: number;
         IsHeic?: boolean;
-        IsIcone?: boolean;
+        /*IsIcone?: boolean;*/
         Url?: string;
    }
 }

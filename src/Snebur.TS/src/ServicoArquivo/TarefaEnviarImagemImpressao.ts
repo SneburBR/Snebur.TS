@@ -10,7 +10,8 @@
             return this.DimensaoImpressao;
         }
 
-        public constructor(gerenciador: GerenciadorEnvioArquivo, imagem: d.IImagem,
+        public constructor(gerenciador: GerenciadorEnvioArquivo,
+            imagem: d.IImagem,
             dimensaoImpressao: d.Dimensao,
             isProcessarImagem: boolean)
         {
@@ -28,16 +29,20 @@
 
         protected override async IniciarEnvioAsync()
         {
-           
+
             super.IniciarEnvioAsync();
         }
 
-        protected RetornarBufferAsync(): Promise<ArrayBuffer>
+        protected async RetornarBufferAsync(): Promise<ArrayBuffer>
         {
             if (this.IsProcessarImagem)
             {
                 const abrirImagem = new i.AbrirImagemImpressao(this.OrigemImagem, this.DimensaoImpressao);
-                return abrirImagem.RetornarArrayBufferAsync();
+                const bytes = await abrirImagem.RetornarArrayBufferAsync();
+                if (bytes?.byteLength > 1024)
+                {
+                    return bytes;
+                }
             }
             return ArquivoUtil.RetornarBufferArrayAsync(this.OrigemImagem.ArquivoLocal);
         }

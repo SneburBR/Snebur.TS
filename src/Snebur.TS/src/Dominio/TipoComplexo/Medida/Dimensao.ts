@@ -175,7 +175,7 @@
          * verifica se ambos do lados são menor
          * @param dimensao
          */
-        public Menor(dimensao: d.Dimensao): boolean
+        public Menor(dimensao: IDimensao): boolean
         {
             return this.Altura < dimensao.Altura &&
                 this.Largura < dimensao.Largura;
@@ -191,26 +191,27 @@
                 this.Largura < dimensao.Largura;
         }
 
-     
+
 
         /**
          * Verifica se dimensão é proporcional
          * @param dimensao sensibilidade para a comparação, padrão =0
          */
-         public IsProporcional(dimensao: d.Dimensao): boolean;
-        public IsProporcional(dimensao: d.Dimensao, sensibilidade: number): boolean;
-        public IsProporcional(dimensao: d.Dimensao, sensibilidade: number = 0.1): boolean
+        public IsProporcional(dimensao: IDimensao): boolean;
+        public IsProporcional(dimensao: IDimensao, sensibilidade: number): boolean;
+        public IsProporcional(dimensao: IDimensao, sensibilidade: number = 0.1): boolean
         {
             if (dimensao != null)
             {
-                if (this.IsEmpty || dimensao.IsEmpty)
+                if (this.IsEmpty || dimensao.Largura === 0 || dimensao.Altura === 0)
                 {
                     return false;
                 }
 
                 //const scalarX = (this.Largura / dimensao.Largura).ToDecimal();
                 //const scalarY = (this.Altura / dimensao.Altura).ToDecimal();
-                return u.Util.IgualSensivel(this.Proporcao, dimensao.Proporcao, sensibilidade);
+                const proporcao = (dimensao.Largura / dimensao.Altura).ToDecimal(2);
+                return u.Util.IgualSensivel(this.Proporcao, proporcao, sensibilidade);
             }
             return false;
         }
@@ -376,5 +377,9 @@
             return `${proporcao.Largura}:${proporcao.Altura}`;
         }
 
+        public static get Empty(): Dimensao
+        {
+            return new Dimensao(0, 0);
+        }
     }
 }

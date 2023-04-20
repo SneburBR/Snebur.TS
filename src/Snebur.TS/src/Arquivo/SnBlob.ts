@@ -2,6 +2,7 @@
 {
     export class SnBlob extends Snebur.Objeto
     {
+
         private _informacaoImagem: IInformacaoImagem;
         private _isDispensado: boolean = false;
         private _urlBlob: string = null;
@@ -55,10 +56,25 @@
             return this._urlBlob;
         }
 
+        public get UrlIcone(): string
+        {
+            return $Configuracao.UrlIcone + this.Extensao;
+        }
+
         public get Type(): string
         {
             this.ValidarSeDispensado();
             return this._blob.type;
+        }
+
+        public get Extensao(): string
+        {
+            return ArquivoUtil.RetornarExtensaoArquivo(this.name);
+        }
+
+        public get MimeType(): EnumMimeType
+        {
+            return ArquivoUtil.RetornarMineTypeEnum(this.name);
         }
 
         public constructor(blob: Blob)
@@ -90,7 +106,7 @@
             return this._blob.stream();
         }
 
-        private TextoAsync(): Promise<string>
+        public async TextoAsync(): Promise<string>
         {
             this.ValidarSeDispensado();
             return this._blob.text();
@@ -109,7 +125,6 @@
             if (this._checksum != null)
             {
                 return this._checksum;
-
             }
 
             const checksum = await w.Checksum.RetornarChecksumAsync(this._blob);
@@ -119,6 +134,7 @@
             }
             return checksum;
         }
+
 
         public RevogarUrlBlob(): void
         {
@@ -211,16 +227,22 @@
         }
         //#endregion
 
+        public RevokeUrlBlob()
+        {
+            if (this._urlBlob != null)
+            {
+                window.URL.revokeObjectURL(this._urlBlob);
+            }
+            this._urlBlob = null;
+            delete this._urlBlob;
+        }
+
         public override Dispose(): void
         {
 
             if (!this._isDispensado)
             {
-                if (this._urlBlob != null)
-                {
-                    window.URL.revokeObjectURL(this._urlBlob);
-                }
-                delete this._urlBlob;
+                this.RevokeUrlBlob();
                 delete this._blob;
                 this._isDispensado = true;
             }
