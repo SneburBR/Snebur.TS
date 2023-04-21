@@ -46,7 +46,7 @@
             novoImagem.onerror = this.ImagemOriginalLocal_Erro.bind(this);
             novoImagem.onabort = this.ImagemOriginalLocal_Erro.bind(this);
             novoImagem.crossOrigin = "Anonymous";
-            
+
             this.IdentificadorTimeoutAbirImagemOriginal = setTimeout(this.ImagemOriginalLocal_Timeout.bind(this), this.TEMPO_TIMEOUT_IMAGEM_ORIGINAL);
             this.ImagemLocal = novoImagem;
             this.ImagemLocal.src = url;
@@ -103,6 +103,34 @@
             return canvas;
         }
 
+        protected RetornarBlobAsync(
+            canvas: HTMLCanvasElement,
+            isWebP: boolean,
+            qualidade: number): Promise<Blob>
+        {
+
+            if (isWebP)
+            {
+                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Webp, qualidade);
+            }
+
+            switch (this.OrigemImagemLocal.FormatoImagem)
+            {
+                case d.EnumFormatoImagem.JPEG:
+                case d.EnumFormatoImagem.GIF:
+                case d.EnumFormatoImagem.WEBP:
+                case d.EnumFormatoImagem.BMP:
+
+                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Jpeg, qualidade);
+
+                default:
+
+                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, qualidade);
+
+                /*throw new ErroNaoSuportado("O formato do imagem não é suportado");*/
+            }
+        }
+
         protected Resolver(args: any): void
         {
             window.clearTimeout(this.IdentificadorTimeoutAbirImagemOriginal);
@@ -126,6 +154,8 @@
                 this.ImagemLocal.src = u.ImagemUtil.ImagemVaziaBase64;
                 this.ArquivoLocal.RevokeUrlBlob();
                 delete this.ImagemLocal;
+                delete (this as any).OrigemImagemLocal;
+                delete (this as any).ArquivoLocal;
             }
         }
     }

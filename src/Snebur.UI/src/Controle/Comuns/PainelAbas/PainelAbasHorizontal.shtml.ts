@@ -121,14 +121,16 @@ namespace Snebur.UI
         {
             const posicaoAtual = this.Abas.indexOf(this.AbaAtual);
             const posicao = this.Abas.indexOf(aba);
+            if (posicaoAtual !== posicao)
+            {
+                const sentidoAtual = posicao >= posicaoAtual ?
+                    EnumSentidoAnimacao.Avancar :
+                    EnumSentidoAnimacao.Voltar;
 
-            const sentidoAtual = posicao >= posicaoAtual ?
-                EnumSentidoAnimacao.Avancar :
-                EnumSentidoAnimacao.Voltar;
-
-            await this.Navegador.NavegarAnimadoAsync(aba.ConstrutorPagina,
-                sentidoAtual,
-                parametros);
+                await this.Navegador.NavegarAnimadoAsync(aba.ConstrutorPagina,
+                    sentidoAtual,
+                    parametros);
+            }
         }
 
         private Navegador_AntesNavegar(provedor: any, e: AntesNavegarEventArgs): void

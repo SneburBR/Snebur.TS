@@ -205,14 +205,27 @@
             return [null, null];
         }
 
-        public EnviarArquivo(entidadeArquivo: d.IArquivo): void 
+        public EnviarArquivo(entidadeArquivo: d.IArquivo): TarefaEnviarArquivo 
         {
+            if (entidadeArquivo.Id === 0)
+            {
+                throw new Erro("O arquivo deve ser salvo antes de enviar");
+            }
+
             if (!this.DicionarioTarefas.ContainsKey(entidadeArquivo.__IdentificadorEntidade))
             {
-                const tarefa = new TarefaEnviarArquivo(this, entidadeArquivo);
-                this.Arquivos.Add(tarefa);
-                this.AdicionarTarefa(tarefa);
+                const novaTarefa = new TarefaEnviarArquivo(this, entidadeArquivo);
+                this.Arquivos.Add(novaTarefa);
+                this.AdicionarTarefa(novaTarefa);
+                return novaTarefa;
             }
+
+            const tarefa = this.DicionarioTarefas.Item(entidadeArquivo.__IdentificadorEntidade);
+            if (!(tarefa instanceof TarefaEnviarArquivo))
+            {
+                throw new Erro(`Tarefa da entidade ${entidadeArquivo.__IdentificadorEntidade} não é do tipo TarefaEnviarArquivo`);
+            }
+            return tarefa;
         }
 
         public EnviarImagemApresentacao(imagem: d.IImagem): void
@@ -485,7 +498,8 @@
 
         //#region Envios Async
 
-        public async EnviarImagemApresentacaoAsync(imagem: d.IImagem, callbackProgresso?: Action1<ProgressoEventArgs>): Promise<void>
+        public async EnviarImagemApresentacaoAsync(imagem: d.IImagem,
+            callbackProgresso?: Action1<ProgressoEventArgs>): Promise<void>
         {
             const tamanhosApresentacao = u.ImagemUtil.TamanhosImagemApresentacao;
             const total = tamanhosApresentacao.Count;
@@ -493,6 +507,17 @@
             {
                 const tamanhoApresentacao = tamanhosApresentacao[index];
                 const tarefa = new TarefaEnviarImagemApresentacao(this, imagem, tamanhoApresentacao);
+                if (typeof callbackProgresso === "function")
+                {
+                    tarefa.EventoProgresso.AddHandler((obj: any, e: ProgressoEventArgs) =>
+                    {
+                        const parcial = index + (e.Progresso / 100);
+                        const processoParcial = u.NormalizacaoUtil.NormalizarProgresso((parcial / total) * 100);
+                        callbackProgresso(new ProgressoEventArgs(processoParcial));
+                    }, 
+                    this);
+                }
+                
                 await tarefa.EnviarAsync();
 
                 if (typeof callbackProgresso === "function")

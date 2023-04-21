@@ -5,7 +5,6 @@
         private static readonly TIMEOUT = 90 * 1000;
         private IdTimeout: number;
         private readonly DimensaoImpressao: d.Dimensao;
-        protected readonly QualidadeImpressao: number = u.ImagemUtil.QUALIDADE_JPEG_IMPRESSAO;
 
         public constructor(origemImagemLocal: sa.OrigemImagemLocal, dimensaoImpressao: d.Dimensao)
         {
@@ -25,7 +24,7 @@
 
         private ResolverTimeout()
         {
-            console.error("Timeout abrir imagem impressão " + this.OrigemImagemLocal.ArquivoLocal?.name);
+            console.error("Timeout abrir imagem impressão " + this.ArquivoLocal?.name);
             this.Resolver(null);
         }
 
@@ -34,28 +33,20 @@
             window.clearTimeout(this.IdTimeout);
             super.Resolver(args);
         }
-      
+
         protected override async ImagemOriginalLocal_Carregada(e: Event)
         {
             super.ImagemOriginalLocal_Carregada(e);
-            if ($Configuracao.IsDebug)
-            {
-                DebugUtil.ThrowAndContinue("Teste Resolver null timeout");
-                
-                return;
-            }
-
             const dimensao = this.NormalizarDimensao(this.ImagemLocal, this.DimensaoImpressao);
             const canvas = this.RetornarCanvas(this.ImagemLocal, dimensao);
             if (this.OrigemImagemLocal.FormatoImagem === d.EnumFormatoImagem.JPEG)
             {
                 const contexto = canvas.getContext("2d");
                 const imageData = contexto.getImageData(0, 0, canvas.width, canvas.height);
-              
+
                 try
                 {
-
-                    const bytes = await Snebur.WebWorker.SalvarJpeg.RetornarBytesAsync(imageData, this.QualidadeImpressao);
+                    const bytes = await Snebur.WebWorker.SalvarJpeg.RetornarBytesAsync(imageData, u.ImagemUtil.QUALIDADE_JPEG_IMPRESSAO);
                     const bufferArray = this.RetornarArrayButter(bytes);
                     this.Resolver(bufferArray);
                     return;
@@ -64,17 +55,17 @@
                 {
                     console.error(err);
                 }
-                 
+
             }
-            const blobcanvas = await canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
-            if (blobcanvas != null)
+
+            const blob = await this.RetornarBlobAsync(canvas, false, u.ImagemUtil.QUALIDADE_JPEG_IMPRESSAO / 100);
+            if (blob != null)
             {
-                const bytes = await u.ArquivoUtil.RetornarBufferArrayAsync(blobcanvas);
+                const bytes = await u.ArquivoUtil.RetornarBufferArrayAsync(blob);
                 const bufferArray = this.RetornarArrayButter(bytes);
                 this.Resolver(bufferArray);
                 return;
             }
-
             this.Resolver(null);
         }
 
@@ -89,7 +80,7 @@
             return dimensao;
         }
 
-       
+
 
         private RetornarArrayButter(bytes: Uint8Array | ArrayBuffer | null): ArrayBuffer | null
         {

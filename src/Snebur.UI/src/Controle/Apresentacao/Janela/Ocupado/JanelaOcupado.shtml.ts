@@ -69,6 +69,7 @@
         {
             if (Snebur.$Aplicacao.DocumentoPrincipal.IsOcupado)
             {
+                
                 const nomeApresentacao = this.ControleApresentacaoPai?.___NomeConstrutor ?? this.ControlePai.Nome;
                 const mensagem = `Atenção, O controle ${nomeApresentacao} está sendo  dispensado sem desocupar.
                                    Caso queria dispensar um controle e manter o sistema ocupado.

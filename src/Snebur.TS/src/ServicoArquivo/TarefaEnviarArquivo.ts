@@ -19,5 +19,11 @@
         {
             return u.ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);
         }
+
+        protected override FinalizarEnviadoSucesso(): void
+        {
+            super.FinalizarEnviadoSucesso();
+            this.EntidadeArquivo.IsExisteArquivo = true;
+        }
     }
 }

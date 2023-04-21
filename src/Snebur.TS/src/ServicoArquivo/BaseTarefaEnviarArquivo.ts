@@ -8,7 +8,7 @@
         protected static TAMANHO_PACOTE_DEBUG: number = 32 * 1024;
 
         protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_PRODUCAO: number = 0;
-        protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_DEBUG: number = 200;
+        protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_DEBUG: number = 500;
 
         private _tamanhoPacote: number = null;
         private _tempoEsperarEnvioProximoPacote: number = null;
@@ -18,6 +18,8 @@
         private _descricaoEstado: string;
         private _checksum: string;
         private _totalBytes: number;
+
+        private IsEnviandoPacote = false;
 
         public get NomeArquivo(): string
         {
@@ -176,7 +178,7 @@
         {
             if (!String.IsNullOrWhiteSpace(this.Checksum))
             {
-                this.EnviarProximoPacote();
+                this.EnviarProximoPacoteAsync();
             }
             else
             {
@@ -200,21 +202,25 @@
 
         private IniciarEnvio()
         {
+            this.IsEnviandoPacote = false;
             this.TotalBytesEnviado = 0;
             this.TotalBytes = this.Buffer.byteLength;
             this.TotalPartes = Math.ceil(this.TotalBytes / this.TamanhoPacote);
-            this.EnviarProximoPacote();
+            this.EnviarProximoPacoteAsync();
         }
 
-        private IsEnviandoPacote = false;
-        private EnviarProximoPacote(): void
+       
+        private async EnviarProximoPacoteAsync()
         {
+            const tempoEsperaEnviarProximoPacote = this.TempoEsperarEnvioProximoPacote;
+            await ThreadUtil.EsperarAsync(tempoEsperaEnviarProximoPacote);
+
             if (this.IsEnviandoPacote)
             {
                 console.error("já existe um pacote sendo enviado ");
                 return;
             }
-            this.IsEnviandoPacote = true;
+       
 
             if (this.Estado === t.EnumEstadoTarefa.Pausada ||
                 this.Estado === t.EnumEstadoTarefa.Cancelada ||
@@ -229,10 +235,12 @@
             }
             if (!(this.Buffer instanceof ArrayBuffer))
             {
+                
                 this.Reiniciar();
                 return;
             }
 
+           
             const inicio = (this.ParteAtual - 1) * this.TamanhoPacote;
             let fim = inicio + this.TamanhoPacote;
             if (fim > this.TotalBytes)
@@ -245,12 +253,12 @@
             const parametros = this.RetornarParametros(checksumPacote);
             const url = u.UrlUtil.RetornarURL(this.URLEnviarArquivo, [new ParChaveValorSimples("State", u.RandomUtil.RetornarRandom().toString())]);
             const enviador = new EnviarPacote(url, pacote, parametros);
+            this.IsEnviandoPacote = true;
+            const resultado = await enviador.EnviarAsync();
+            this.IsEnviandoPacote = false;
 
-            enviador.Enviar(this.EnviarPacote_Resultado.bind(this, pacote.byteLength));
-        }
+            const tamanhoPacote = pacote.byteLength;
 
-        private async EnviarPacote_Resultado(tamanhoPacote: number, resultado: sa.EnumResultadoEnvioPacote)
-        {
             this.IsEnviandoPacote = false;
             switch (resultado)
             {
@@ -260,7 +268,6 @@
                     break;
 
                 case (sa.EnumResultadoEnvioPacote.ReiniciarEnvio):
-
 
                     console.error(this.toString() + " Reiniciar envio ");
                     this.ParteAtual = 1;
@@ -273,7 +280,8 @@
                     const p = this.Progresso;
                     this.Progresso = p;
                     this.Tentativa += 1;
-                    setTimeout(this.EnviarProximoPacote.bind(this), this.IntervaloProximaTentiva.TotalMilliseconds);
+                    await ThreadUtil.EsperarAsync(this.IntervaloProximaTentiva.TotalMilliseconds);
+                    this.EnviarProximoPacoteAsync();
                     break;
                 }
                 default:
@@ -282,7 +290,7 @@
                     throw new ErroNaoSuportado(`O resultado do envio do pacote não é suportado ${ u.EnumUtil.RetornarDescricao(sa.EnumResultadoEnvioPacote, resultado)}`, this);
             }
         }
-
+     
         private PacoteEnviadoSucesso(tamanhoPacote: number): void
         {
             this.Gerenciador.TotalBytesMedidorVelocidade += tamanhoPacote;
@@ -293,8 +301,7 @@
 
             if (this.ParteAtual <= this.TotalPartes)
             {
-                const tempoEsperaEnviarProximoPacote = this.TempoEsperarEnvioProximoPacote;
-                setTimeout(this.EnviarProximoPacote.bind(this), tempoEsperaEnviarProximoPacote);
+                this.EnviarProximoPacoteAsync();
             }
             else
             {
@@ -304,12 +311,12 @@
 
         protected FinalizarEnviadoSucesso(): void
         {
-
             this.Progresso = 100;
             if (this.Buffer instanceof ArrayBuffer)
             {
                 this.Buffer.slice(0, this.Buffer.byteLength);
             }
+
             delete this.Buffer;
             this.Buffer = undefined;
             this.FinalizarTarefa(null);
@@ -366,7 +373,7 @@
 
                 case (t.EnumEstadoTarefa.Finalizada):
 
-                    return "Envio concluido";
+                    return "Envio concluído";
 
                 case (t.EnumEstadoTarefa.Cancelada):
 

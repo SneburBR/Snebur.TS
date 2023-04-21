@@ -163,10 +163,6 @@
             const antigoValor = this._valorPropriedade;
             const valorNormalizado = this.NormalizarValorPropriedade(value);
 
-            if (valorNormalizado instanceof Rota)
-            {
-                const xxx = this.NormalizarValorPropriedade(value);
-            }
             //######################## 
             //if (this._valorPropriedade !== value)
             //{

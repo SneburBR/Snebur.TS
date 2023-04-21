@@ -12,7 +12,7 @@
         public XmlHttp: XMLHttpRequest;
         private IdentificadorTimeoutEnviarPacote: number;
 
-        private Callback: CallbackResultado<EnumResultadoEnvioPacote>;
+        private Resolver: (resultado: EnumResultadoEnvioPacote) => void;
 
         public constructor(url: string, pacote: ArrayBuffer, parametrosCabecalho: Array<ParChaveValorSimples<string>>)
         {
@@ -22,7 +22,7 @@
             this.Pacote = pacote;
             this.XmlHttp = new XMLHttpRequest();
             this.XmlHttp.open("POST", url, true);
-
+            this.XmlHttp.timeout = EnviarPacote.TIMEOUT_ENVIAR_PACOTE;
             this.XmlHttp.onreadystatechange = this.Xmlhttp_ReadyStateChange.bind(this);
             this.XmlHttp.onerror = this.Xmlhttp_Error.bind(this);
             this.XmlHttp.onabort = this.Xmlhttp_Error.bind(this);
@@ -48,6 +48,28 @@
             }
         }
 
+        public async EnviarAsync(): Promise<sa.EnumResultadoEnvioPacote>
+        {
+            return new Promise(resolver =>
+            {
+                this.Resolver = resolver;
+                this.EnviarInternoAsync();
+            });
+        }
+
+        private async EnviarInternoAsync()
+        {
+            const token = await s.Token.RetornarTokenAsync();
+            this.XmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
+        
+
+            if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
+            {
+                $Aplicacao?.FuncaoNormalizarRequisicao(this.XmlHttp);
+            }
+            this.XmlHttp.send(new Uint8Array(this.Pacote));
+            this.IdentificadorTimeoutEnviarPacote = setTimeout(this.EnviarPacote_Timeout.bind(this), EnviarPacote.TIMEOUT_ENVIAR_PACOTE);
+        }
         private XmlHttp_Error(event: Event)
         {
             //var erro = new ErroComunicacao("Erro serviço OnError ", this.Url, this.XmlHttp.status, this);
@@ -65,26 +87,6 @@
             //var erro = new ErroComunicacao("Erro serviço time out", this.Url, this.XmlHttp.status, this);
             this.Finalizar(EnumResultadoEnvioPacote.TentarNovamente);
         }
-
-        //private Xmlhttp_Load(event: Event)
-        //{
-
-        //};
-
-        //private XmlHttp_LoadStart(event: Event)
-        //{
-
-        //};
-
-        //private XmlHttp_LoadEnd(event: ProgressEvent)
-        //{
-
-        //};
-
-        //private XmlHttp_Progress(event: ProgressEvent)
-        //{
-
-        //};
 
         private Xmlhttp_ReadyStateChange(): void
         {
@@ -142,7 +144,7 @@
 
                 case (EnumTipoErroServicoArquivo.Desconhecido): {
 
-                    const mensagem = `Falha enviar arquivo url ${this.XmlHttp.responseURL}  '${resultado.MensagemErro}'`;
+                    const mensagem = `Falha enviar arquivo URL ${this.XmlHttp.responseURL}  '${resultado.MensagemErro}'`;
                     const erro = new Erro(mensagem);
                     LogUtil.Erro(erro);
                     if ($Configuracao.IsDebug)
@@ -170,47 +172,40 @@
             this.Finalizar(EnumResultadoEnvioPacote.TentarNovamente);
         }
 
+      
+
         private Finalizar(resultado: EnumResultadoEnvioPacote): void
         {
             window.clearTimeout(this.IdentificadorTimeoutEnviarPacote);
-            const callback = this.Callback;
+            const resolver = this.Resolver;
             this.Dispose();
-            callback(resultado);
-        }
-
-        public async Enviar(callback: CallbackResultado<EnumResultadoEnvioPacote>)
-        {
-            this.Callback = callback;
-            const token = await s.Token.RetornarTokenAsync();
-            this.XmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
-
-            if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
+            if (resolver != null)
             {
-                $Aplicacao?.FuncaoNormalizarRequisicao(this.XmlHttp);
+                resolver(resultado);
             }
-
-            this.XmlHttp.send(new Uint8Array(this.Pacote));
-            this.IdentificadorTimeoutEnviarPacote = setTimeout(this.EnviarPacote_Timeout.bind(this), EnviarPacote.TIMEOUT_ENVIAR_PACOTE);
         }
-
+         
         private EnviarPacote_Timeout(): void
         {
             console.error("timeout enviar pacote");
             this.Finalizar(EnumResultadoEnvioPacote.TentarNovamente);
-
         }
 
         //#region IDisposable 
 
         public Dispose(): void
         {
-            this.Callback = null;
+            this.Resolver = null;
             this.XmlHttp.onreadystatechange = null;
             this.XmlHttp.onerror = null;
             this.XmlHttp.onabort = null;
             this.XmlHttp.ontimeout = null;
             this.XmlHttp = null;
             this.Pacote = null;
+
+            delete this.Resolver;
+            delete this.Pacote;
+            delete this.XmlHttp;
         }
         //#endregion
     }
