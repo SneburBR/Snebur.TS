@@ -189,7 +189,7 @@
             }
         }
 
-        private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<Blob>
+        private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<ArquivoBlob>
         {
             if (this.IsIcone)
             {

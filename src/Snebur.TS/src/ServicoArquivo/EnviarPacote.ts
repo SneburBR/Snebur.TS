@@ -21,7 +21,7 @@
             this.TIMEOUT = ($Configuracao.IsProducao) ? TimeSpan.FromMinutes(5) : TimeSpan.FromSeconds(30);
             this.Pacote = pacote;
             this.XmlHttp = new XMLHttpRequest();
-            this.XmlHttp.open("POST", url, true);
+            this.XmlHttp.open(u.EnumHttpMethod.POST, url, true);
             this.XmlHttp.timeout = EnviarPacote.TIMEOUT_ENVIAR_PACOTE;
             this.XmlHttp.onreadystatechange = this.Xmlhttp_ReadyStateChange.bind(this);
             this.XmlHttp.onerror = this.Xmlhttp_Error.bind(this);
@@ -61,11 +61,11 @@
         {
             const token = await s.Token.RetornarTokenAsync();
             this.XmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
-        
+
 
             if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao?.FuncaoNormalizarRequisicao(this.XmlHttp);
+                $Aplicacao?.FuncaoNormalizarRequisicao(u.EnumHttpMethod.POST, this.Url, this.XmlHttp);
             }
             this.XmlHttp.send(new Uint8Array(this.Pacote));
             this.IdentificadorTimeoutEnviarPacote = setTimeout(this.EnviarPacote_Timeout.bind(this), EnviarPacote.TIMEOUT_ENVIAR_PACOTE);
@@ -172,7 +172,7 @@
             this.Finalizar(EnumResultadoEnvioPacote.TentarNovamente);
         }
 
-      
+
 
         private Finalizar(resultado: EnumResultadoEnvioPacote): void
         {
@@ -184,7 +184,7 @@
                 resolver(resultado);
             }
         }
-         
+
         private EnviarPacote_Timeout(): void
         {
             console.error("timeout enviar pacote");

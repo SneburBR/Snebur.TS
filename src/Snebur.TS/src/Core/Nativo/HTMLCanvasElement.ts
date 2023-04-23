@@ -1,4 +1,4 @@
-
+﻿
 
 if (!HTMLCanvasElement.prototype.toBlob)
 {

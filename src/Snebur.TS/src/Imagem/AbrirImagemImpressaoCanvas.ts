@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Imagem
 {
-    export class AbrirImagemImpressao extends BaseAbrirImagemLocal 
+    export class AbrirImagemImpressaoCanvas extends BaseAbrirImagemLocalCanvas
     {
         private static readonly TIMEOUT = 90 * 1000;
         private IdTimeout: number;
@@ -17,7 +17,7 @@
             return new Promise<ArrayBuffer>(resolver =>
             {
                 this.FuncaoResolver = resolver;
-                this.IdTimeout = window.setTimeout(this.ResolverTimeout, AbrirImagemImpressao.TIMEOUT);
+                this.IdTimeout = window.setTimeout(this.ResolverTimeout, AbrirImagemImpressaoCanvas.TIMEOUT);
                 this.CarregarImagemLocal();
             });
         }
@@ -68,9 +68,7 @@
             }
             this.Resolver(null);
         }
-
-
-
+         
         private NormalizarDimensao(imagem: HTMLImageElement, dimensao: d.Dimensao): d.Dimensao 
         {
             if (dimensao === null)

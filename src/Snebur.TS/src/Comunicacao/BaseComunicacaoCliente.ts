@@ -89,7 +89,7 @@
             const nomeManipualdor = this.RetornarNomeManipulador();
             const jsonConteudo = u.JsonUtil.Serializar(contrato);
             const credencial = this.CredencialServico;
-            const pacote = PacoteUtil.CompactarPacote(jsonConteudo);
+            const pacote = await PacoteUtil.CompactarPacoteAsync(jsonConteudo);
 
             const requisicao = new Requisicao(
                 this,

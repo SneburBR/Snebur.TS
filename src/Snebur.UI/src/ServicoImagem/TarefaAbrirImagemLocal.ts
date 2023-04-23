@@ -4,11 +4,8 @@
 
     export class TarefaAbrirImagemLocal extends Snebur.Tarefa.BaseTarefa
     {
-
-        public Imagem: d.IImagem;
-        public OrigemImagem: sa.OrigemImagemLocal;
-
-        //public readonly CallbacksImagemCarregada = new List<CallbackImagemCarregada>();
+        public readonly Imagem: d.IImagem;
+        public readonly OrigemImagem: sa.OrigemImagemLocal;
         public readonly CallbacksCancelarVirtualizacao = new List<CallbackImagemCancelada>();
 
         public constructor(imagem: d.IImagem, argumento: any = null)
@@ -28,8 +25,7 @@
             //this.CallbackCancelado = callbackCancelado;
         }
 
-        //#region métodos sobreescritos
-
+        //#region métodos sobrescritos
 
         protected async ExecutarAsync() 
         {

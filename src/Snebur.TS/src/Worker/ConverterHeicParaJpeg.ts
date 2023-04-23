@@ -7,7 +7,7 @@
         private static readonly LIMITE_MINIMO: number = 1 * 1024;
 
 
-        public static RetornarBufferAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO): Promise<ArrayBuffer | Error>
+        public static RetornarBufferAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<ArrayBuffer | Error>
         {
             const mensagem = {
                 Arquivo: arquivo.Blob,
@@ -16,7 +16,7 @@
             return new ConverterHeicParaJpeg().RetornarResultadoAsync(mensagem, EnumResultadoSalvarImagem.Bytes) as Promise<ArrayBuffer | Error>;
         }
 
-        public static RetornarBlobAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO): Promise<Blob | Error>
+        public static RetornarBlobAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<Blob | Error>
         {
             const mensagem = {
                 Arquivo: arquivo.Blob,
@@ -25,7 +25,7 @@
             return new ConverterHeicParaJpeg().RetornarResultadoAsync<Blob>(mensagem, EnumResultadoSalvarImagem.Blob);
         }
 
-        public static RetornarUrlBlobAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO): Promise<string | Error>
+        public static RetornarUrlBlobAsync(arquivo: SnBlob, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<string | Error>
         {
             const mensagem = {
                 Arquivo: arquivo.Blob,
@@ -33,9 +33,7 @@
             };
             return new ConverterHeicParaJpeg().RetornarResultadoAsync<string>(mensagem, EnumResultadoSalvarImagem.UrlBlob);
         }
-
-       
-
+         
         protected override async NormalizarResultado(mensagem: IMensagemConverterHeicParaJpeg, resultado: Blob, argumento: any,): Promise<any | Error>  
         {
             if (resultado instanceof Error)
@@ -45,7 +43,7 @@
 
             if (!(resultado instanceof Blob))
             {
-                return new Erro("Não foi possível converter Heic para Jpeg");
+                return new Erro("Não foi possível converter HEIC para Jpeg");
             }
 
             if (resultado.size < ConverterHeicParaJpeg.LIMITE_MINIMO)

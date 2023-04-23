@@ -34,7 +34,7 @@
         {
             return this._httpStatus;
         }
-         
+
         public constructor(
             requisicao: Requisicao,
             url: string,
@@ -67,6 +67,12 @@
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
+
+                if ($Configuracao.IsDebug)
+                {
+                    this.XmlHttp.send(pacote);
+                    return;
+                }
 
                 const t = this.Tk,
                     a = pacote,
@@ -148,7 +154,7 @@
 
             if (this._isTimeouotAtigindo)
             {
-   
+
                 if ($Configuracao.IsDebug &&
                     resultadoChamada instanceof ResultadoChamadaTimeoutCliente)
                 {
@@ -179,13 +185,13 @@
         {
             this._isTimeouotAtigindo = true;
             window.clearTimeout(this._idTimeout);
-            console.error(`O timeout da requisição '${this.Requisicao.toString()}' foi atingido em ${this._stopwatch.TotalSeconds}s.`); 
+            console.error(`O timeout da requisição '${this.Requisicao.toString()}' foi atingido em ${this._stopwatch.TotalSeconds}s.`);
             this.FinalizarChamarAsync(new ResultadoChamadaErroCliente(this.Requisicao));
         }
 
         // adicionando um rando,
 
-        private XmlHttp_ReadyStateChange(event: ProgressEvent)
+        private async XmlHttp_ReadyStateChange(event: ProgressEvent)
         {
             if (this.XmlHttp.readyState === 4)
             {
@@ -193,7 +199,7 @@
                 {
                     case (200): {
 
-                        const resultado = this.RetornarResultadoChamada(this.XmlHttp.response);
+                        const resultado = await this.RetornarResultadoChamadaAsync(this.XmlHttp.response);
                         this.FinalizarChamarAsync(resultado);
                         break;
                     }
@@ -327,7 +333,7 @@
                 delete this.Tk;
                 this._isDispensado = true;
             }
-           
+
         }
     }
 

@@ -123,7 +123,7 @@ namespace Snebur
 
     if (!HTMLCanvasElement.prototype.toBlob)
     {
-        HTMLCanvasElement.prototype.toBlob = function (callback: (blob: Blob | null) => void, formato: any, qualidade: number): void
+        HTMLCanvasElement.prototype.toBlob = function (callback: (blob: ArquivoBlob | null) => void, formato: any, qualidade: number): void
         {
             if (!formato)
             {

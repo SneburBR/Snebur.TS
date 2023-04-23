@@ -4,21 +4,31 @@
     {
         private static NOME_ARQUIVO_PACOTE: string = "pacote.json";
 
-        public static CompactarPacote(json: string): Uint8Array
+        public static async CompactarPacoteAsync(json: string): Promise<Uint8Array>
+        {
+            return PacoteUtil.CompactarPacoteInternoAsync(json);
+        }
+
+        public static async DecompactarPacoteAsync(bytes: Uint8Array): Promise<string>
+        {
+            return PacoteUtil.DecompactarPacoteInternoAsync(bytes);
+        }
+
+        private static async CompactarPacoteInternoAsync(json: string): Promise<Uint8Array>
         {
             const zip = new JSZip();
             zip.file(PacoteUtil.NOME_ARQUIVO_PACOTE, json);
 
-            const bytes = zip.generate({ type: "uint8array" }) as Uint8Array;
+            const bytes = await zip.generateAsync({ type: "uint8array" }) as Uint8Array;
             return s.BaralhoUtil.Embaralhar(bytes);
         }
 
-        public static DecompactarPacote(bytes: Uint8Array): string
+        private static async DecompactarPacoteInternoAsync(bytes: Uint8Array): Promise<string>
         {
             const bytesNormalizado = s.BaralhoUtil.Desembaralhar(bytes);
             const zip = new JSZip();
-            zip.load(bytesNormalizado);
-            const texto = zip.file(PacoteUtil.NOME_ARQUIVO_PACOTE).asText();
+            await zip.loadAsync(bytesNormalizado);
+            const texto = await zip.file(PacoteUtil.NOME_ARQUIVO_PACOTE).async("text");
             return texto;
         }
     }

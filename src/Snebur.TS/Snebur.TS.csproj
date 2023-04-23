@@ -30,6 +30,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="lib\JSZipAsync\jszip.js" />
+    <Content Include="lib\JSZipAsync\jszip.min.js" />
+    <Content Include="lib\Magick\magick.js" />
     <Content Include="recursos\imagens\erro.png" />
     <Content Include="lib\Base64binary\base64-binary.js" />
     <Content Include="lib\Buffer\buffers.js" />
@@ -38,9 +41,9 @@
     <Content Include="lib\Checksum\crc32.js" />
     <Content Include="lib\CardType\cardtype.js" />
     <Content Include="lib\CryptoJS\CryptoJS.js" />
-    <Content Include="lib\exifr\full.legacy.umd.js" />
-    <Content Include="lib\exifr\full.umd.js" />
-    <Content Include="lib\exifr\lite.umd.js" />
+    <Content Include="lib\Exifr\full.legacy.umd.js" />
+    <Content Include="lib\Exifr\full.umd.js" />
+    <Content Include="lib\Exifr\lite.umd.js" />
     <Content Include="lib\Faker\faker.js" />
     <Content Include="lib\FileSaver\FileSaver.js" />
     <Content Include="lib\JSZip\3.0 - async promise\jszip.js" />
@@ -48,8 +51,6 @@
     <Content Include="lib\JSZip\jszip.js" />
     <Content Include="lib\JSZip\jszip.min.js" />
     <Content Include="lib\JSZip\Senha.txt" />
-    <Content Include="lib\MaterialDesign_\material.1.3.min.js" />
-    <Content Include="lib\MaterialDesign_\material.min.js" />
     <Content Include="lib\Md5\md5.js" />
     <Content Include="lib\Md5\Md5__temp.js" />
     <Content Include="lib\Pica\pica.js" />
@@ -66,6 +67,8 @@
     <Content Include="lib\UAParser\ua-parser.min.js" />
     <Content Include="lib\ZCryptoJS\ZCryptoJS.js" />
     <Content Include="src\Core\Bibliotecas\info.txt" />
+    <TypeScriptCompile Include="src\Imagem\AbrirImagemLocalMagick.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
     <Content Include="src\Worker\worker.txt" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\BaseConsultaEntidade.ts" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\ConsultaEntidade.ts" />
@@ -88,6 +91,7 @@
     <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
+    <Content Include="lib\Magick\magick.zip" />
     <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
     <TypeScriptCompile Include="src\Comum\LazyValue.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />
@@ -95,6 +99,8 @@
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\Requisicao.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\NormalizarResultadoChamada.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Async.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Magick.d.ts" />
     <TypeScriptCompile Include="src\Core\Interfaces\IClone.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
@@ -139,7 +145,7 @@
     <TypeScriptCompile Include="src\Comunicacao\Usuario\BaseServicoUsuarioCliente.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Usuario\IServicoUsuario.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\AjaxUtil.ts" />
-    <TypeScriptCompile Include="src\Comunicacao\BaseChamadaServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseChamadaServico.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\JsonUtil.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\PacoteUtil.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\Base64Binary.d.ts" />
@@ -148,7 +154,7 @@
     <TypeScriptCompile Include="src\Core\Bibliotecas\exifrd.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\Faker.d.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\FileSaver.ts" />
-    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Sync.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\md5.d.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\picad.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\ua-parser-js.d.ts" />
@@ -345,9 +351,9 @@
     <TypeScriptCompile Include="src\Globalizacao\Dominio\Snebur.Globalizacao.Dominio.Classes.ts" />
     <TypeScriptCompile Include="src\Globalizacao\Dominio\Snebur.Globalizacao.Dominio.Reflexao.ts" />
     <TypeScriptCompile Include="src\Globalizacao\Globalizacao.ts" />
-    <TypeScriptCompile Include="src\Imagem\AbrirImagemImpressao.ts" />
-    <TypeScriptCompile Include="src\Imagem\AbrirImagemLocal.ts" />
-    <TypeScriptCompile Include="src\Imagem\BaseAbrirImagemLocal.ts" />
+    <TypeScriptCompile Include="src\Imagem\AbrirImagemImpressaoCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\AbrirImagemLocalCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\BaseAbrirImagemLocalCanvas.ts" />
     <TypeScriptCompile Include="src\Imagem\DimensaoUtil.ts" />
     <TypeScriptCompile Include="src\Imagem\EnumOpcaoAbrirImagemLocal.ts" />
     <TypeScriptCompile Include="src\Imagem\Filtro\FiltroConhecido.ts" />
@@ -484,6 +490,7 @@
     <TypeScriptCompile Include="src\Utilidade\JurosUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\LocalStorageUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\LogUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\MagickInitUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\Md5Util.ts" />
     <TypeScriptCompile Include="src\Utilidade\MedidaUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\MimeTypeUtil.ts" />

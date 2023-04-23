@@ -3,8 +3,8 @@
     export class ImagemUtil
     {
         private static _tamnhoImagensApresentacao: List<d.EnumTamanhoImagem>;
-
-        public static readonly QUALIDADE_JPEG_APRESENTACAO = 85;
+        public static readonly QUALIDADE_JPEG_APRESENTACAO_CANVAS = 85;
+        public static readonly QUALIDADE_JPEG_APRESENTACAO_MAGICK = 55;
         public static readonly QUALIDADE_JPEG_IMPRESSAO = 92;
 
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }

@@ -3,18 +3,19 @@
     export class ZipUtil
     {
 
-        public static CompactarTexto(conteudo: string, nomeArquivo: string): Uint8Array
+        public static async CompactarTextoAsync(conteudo: string, nomeArquivo: string): Promise< Uint8Array>
         {
             const zip = new JSZip();
             zip.file(nomeArquivo, conteudo);
-            return zip.generate({ type: "uint8array" }) as Uint8Array;
+            const bytes = await zip.generateAsync({ type: "uint8array"  });
+            return bytes;
         }
 
-        public static DecompactarTexto(bytes: ArrayBuffer | Uint8Array, nomeArquivo: string): string
+        public static async DecompactarTextoAsync(bytes: ArrayBuffer | Uint8Array, nomeArquivo: string): Promise<string>
         {
             const zip = new JSZip();
-            zip.load(bytes);
-            const texto = zip.file(nomeArquivo).asText();
+            await zip.loadAsync(bytes);
+            const texto = await zip.file(nomeArquivo).async("text");
             return texto;
         }
     }

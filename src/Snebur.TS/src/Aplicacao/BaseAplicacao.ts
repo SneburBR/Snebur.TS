@@ -124,7 +124,8 @@
             //return versoes;
         }
 
-        public get FuncaoNormalizarRequisicao(): (request: XMLHttpRequest) => void
+        public get FuncaoNormalizarRequisicao(): (
+            metodo: u.EnumHttpMethod, url:string, request: XMLHttpRequest) => void
         {
             return undefined;
         }
@@ -162,7 +163,7 @@
         //#region Eventos conexão
 
         public readonly EventoConexaoRestabelecida = new Evento(this);
-        public readonly EventoFalhaConexao = new Evento < Snebur.Comunicacao.FalhaConexaoEventArgs>(this);
+        public readonly EventoFalhaConexao = new Evento<Snebur.Comunicacao.FalhaConexaoEventArgs>(this);
         public readonly EventoUsuarioConectadoAlterado = new Evento<UsuarioConectadoAlteradoEventArgs>(this);
         public readonly EventoUsuarioSaiu = new Evento(this);
 
@@ -410,7 +411,7 @@
             this.Versao = versao;
         }
     }
-     
+
     const __Global_Error = function (e: ErrorEvent | PromiseRejectionEvent)
     {
         e.stopImmediatePropagation();

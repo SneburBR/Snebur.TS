@@ -37,7 +37,7 @@
         {
             if (this.IsProcessarImagem)
             {
-                const abrirImagem = new i.AbrirImagemImpressao(this.OrigemImagem, this.DimensaoImpressao);
+                const abrirImagem = new i.AbrirImagemImpressaoCanvas(this.OrigemImagem, this.DimensaoImpressao);
                 const bytes = await abrirImagem.RetornarArrayBufferAsync();
                 if (bytes?.byteLength > 1024)
                 {

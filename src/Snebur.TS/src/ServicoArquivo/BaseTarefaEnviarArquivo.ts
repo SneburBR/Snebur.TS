@@ -8,7 +8,7 @@
         protected static TAMANHO_PACOTE_DEBUG: number = 32 * 1024;
 
         protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_PRODUCAO: number = 0;
-        protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_DEBUG: number = 500;
+        protected static TEMPO_ESPERA_ENVIO_PROXIMO_PACOTE_DEBUG: number = 0;
 
         private _tamanhoPacote: number = null;
         private _tempoEsperarEnvioProximoPacote: number = null;

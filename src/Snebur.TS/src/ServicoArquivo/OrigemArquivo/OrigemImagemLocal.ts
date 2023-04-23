@@ -7,7 +7,6 @@
         private readonly ImagensLocalCarregadas = new DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>();
         private readonly ImagensServidorCarregadas = new DicionarioSimples<i.ImagemServidorCarregada, d.EnumTamanhoImagem>();
 
-
         public readonly Imagem: d.IImagem;
         public readonly ArquivoLocal: SnBlob;
         public readonly FormatoImagem: d.EnumFormatoImagem;
@@ -61,7 +60,7 @@
             {
                 return this.ImagensLocalCarregadas.Item(tamanhoImagem).UrlLocal;
             }
-             
+
             u.ImagemUtil.ExisteImagemServidor(this.Imagem, tamanhoImagem);
             throw new Erro(`O tamanho ${tamanhoImagem} não foi carregado`);
 
@@ -75,7 +74,7 @@
                                 Utilize o gerenciador de abrir imagem local para carrega-la`);
             }
             const imagemCarregada = this.ImagensLocalCarregadas.Item(tamanhoImagem);
-            return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.Blob);
+            return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
         }
 
         public NotificarImagemServidorCarregada(tamanhoImagem: EnumTamanhoImagem): void
@@ -120,11 +119,8 @@
             try
             {
                 //let tamanhosImagemApresentacao = this.RetornarTamanhosImagensApresentacaoPendente();
-                const tamanhosImagemApresentacao = u.ImagemUtil.TamanhosImagemApresentacao;
-                const abrirImagem = new i.AbrirImagemLocal(this, tamanhosImagemApresentacao);
-                const resultado = await abrirImagem.CarergarImagemAsync();
-
-                for (const tamanhoImagem of tamanhosImagemApresentacao)
+                const resultado = await this.AbrirImagemInternoAsync();
+                for (const tamanhoImagem of u.ImagemUtil.TamanhosImagemApresentacao)
                 {
                     if (!resultado.ContainsKey(tamanhoImagem))
                     {
@@ -135,7 +131,7 @@
                 }
                 this._isImagemLocalCarregada = true;
 
-                abrirImagem.Dispose();
+
             }
             catch (erro)
             {
@@ -145,6 +141,44 @@
             {
                 this.NotificarResolverAsync();
             }
+        }
+
+        private async AbrirImagemInternoAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
+        {
+            if (u.MagickInitUtil.IsInicializado )
+            {
+                try
+                {
+                    const resultado = await this.AbrirImagemMagickAsync();
+                    if (resultado instanceof DicionarioSimples &&
+                        resultado.Count > 0 &&
+                        resultado.Valores.All(x=> x.IsSucesso))
+                    {
+                        return resultado;
+                    }
+                }
+                catch (erro)
+                {
+                    console.error(erro);
+                }
+            }
+            return await this.AbrirImagemCanvasAsync();
+        }
+
+        private async AbrirImagemCanvasAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
+        {
+            const abrirImagem = new i.AbrirImagemLocalCanvas(this, u.ImagemUtil.TamanhosImagemApresentacao);
+            const resultado = await abrirImagem.CarergarImagemAsync();
+            abrirImagem.Dispose();
+            return resultado;
+        }
+
+        private async AbrirImagemMagickAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
+        {
+            const abrirImagem = new i.AbrirImagemLocalMagick(this, u.ImagemUtil.TamanhosImagemApresentacao);
+            const resultado = await abrirImagem.CarergarImagemAsync();
+            abrirImagem.Dispose();
+            return resultado;
         }
 
         private NotificarResolverAsync(): void

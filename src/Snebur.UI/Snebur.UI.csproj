@@ -83,9 +83,6 @@
     <Content Include="resources\Images\fundo-transparencia.png" />
     <Content Include="resources\Images\paleta.png" />
     <Content Include="resources\Images\erro.gif" />
-    <Content Include="src\Bibliotecas\Mdl\info.txt" />
-    <Content Include="src\Bibliotecas\WebComponents\info.txt" />
-    <Content Include="src\Bibliotecas\WinJS\info.txt" />
     <Content Include="src\Componentes\Sobre.txt" />
     <Content Include="src\Controle\Apresentacao\ControleFlutuante\ControleFlutuante.shtml" />
     <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\BarraEnvioArquivo\barraenvioarquivos.shtml" />

@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Imagem
 {
-    export class AbrirImagemLocal extends BaseAbrirImagemLocal 
+    export class AbrirImagemLocalCanvas extends BaseAbrirImagemLocalCanvas 
     {
         private static readonly TIMEOUT = 90 * 1000;
         private IdTimeout: number;
@@ -15,7 +15,7 @@
 
         public CarergarImagemAsync(): Promise<DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            this.IdTimeout = window.setTimeout(this.ResolverTimeout.bind(this), AbrirImagemLocal.TIMEOUT);
+            this.IdTimeout = window.setTimeout(this.ResolverTimeout.bind(this), AbrirImagemLocalCanvas.TIMEOUT);
             return new Promise<DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>>(this.CarregarImagem_Promise.bind(this));
         }
 
@@ -47,24 +47,28 @@
             this.FuncaoResolver = resolver;
             this.CarregarImagemLocal();
         }
-
-        private static IsAbrindo: boolean = false;
-
+         
         protected override async ImagemOriginalLocal_Carregada(e: Event)
         {
             super.ImagemOriginalLocal_Carregada(e);
 
-            if (AbrirImagemLocal.IsAbrindo && $Configuracao.IsDebug)
+            try
             {
-                //alert("Existe imagem sendo aberta")
-                //throw new Erro("Existe imagem sendo aberta");
+                const imagensCarregada = await this.AbrirImagemAsync();
+                this.Resolver(imagensCarregada);
             }
-            AbrirImagemLocal.IsAbrindo = true;
+            catch (erro)
+            {
+                console.error(erro);
+                this.Resolver(null);
+            }
+        }
 
+        private async AbrirImagemAsync()
+        {
             const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
             const imagemAtual: HTMLImageElement | HTMLCanvasElement = this.ImagemLocal;
-            const qualidade = (ImagemUtil.QUALIDADE_JPEG_APRESENTACAO / 100).ToDecimal();
-
+            const qualidade = (ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS / 100).ToDecimal();
             for (const tamanhoImagem of this.TamanhosImagem)
             {
                 const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
@@ -77,11 +81,9 @@
                 const cache = new ImagemLocalCarregada(tamanhoImagem, blob);
                 imagensCarregada.Add(tamanhoImagem, cache);
             }
-
-            AbrirImagemLocal.IsAbrindo = false;
-            this.Resolver(imagensCarregada);
+            return imagensCarregada;
         }
-         
+
         public override Dispose(): void
         {
             super.Dispose();

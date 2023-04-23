@@ -1,4 +1,4 @@
-namespace ExifrJS
+﻿namespace ExifrJS
 {
 
     const DEFAULT_OPTIONS: ExifrOptions = {

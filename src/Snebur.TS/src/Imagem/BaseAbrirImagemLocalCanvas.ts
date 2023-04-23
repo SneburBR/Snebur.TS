@@ -1,13 +1,13 @@
 ﻿namespace Snebur.Imagem
 {
-    export abstract class BaseAbrirImagemLocal implements IDisposable
+    export abstract class BaseAbrirImagemLocalCanvas implements IDisposable
     {
         private readonly TEMPO_TIMEOUT_IMAGEM_ORIGINAL = ($Configuracao.IsDebug) ? 5 * 60 * 1000 : 60 * 1000;
 
         private IdentificadorTimeoutAbirImagemOriginal: number;
         private IsErro: boolean;
 
-        protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO;
+        protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS;
         protected readonly OrigemImagemLocal: sa.OrigemImagemLocal;
         protected readonly ArquivoLocal: SnBlob;
         /*protected readonly UrlBlobLocal: string;*/
@@ -20,6 +20,10 @@
 
         public get IsIcone(): boolean
         {
+            if (u.MagickInitUtil.IsInicializado)
+            {
+                return false;
+            }
             return this.OrigemImagemLocal.Imagem?.IsIcone;
         }
 
@@ -58,6 +62,7 @@
             const msgErro = `Falha ao abrir imagem local:
                              Arquivo:${this.ArquivoLocal?.name} 
                              Erro: ${e.error} `;
+
             console.warn(msgErro);
 
             this.Erro = new Erro(msgErro, e.error);

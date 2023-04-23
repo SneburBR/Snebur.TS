@@ -3,15 +3,15 @@
     export class AjaxUtil
     {
 
-        public static RetornarTextoSync(url: string): string  
-        public static RetornarTextoSync(url: string, isRetornarErro: true): string   | Error
-        public static RetornarTextoSync(url: string, isRetornarErro: false): string   
+        public static RetornarTextoSync(url: string): string
+        public static RetornarTextoSync(url: string, isRetornarErro: true): string | Error
+        public static RetornarTextoSync(url: string, isRetornarErro: false): string
         public static RetornarTextoSync(url: string, isRetornarErro: boolean = false): string | Error
         {
             const xmlHttp = new XMLHttpRequest();
             xmlHttp.open("GET", url, false);
             xmlHttp.setRequestHeader("Content-type", "text/html");
-            
+
             xmlHttp.send(null);
 
             if (xmlHttp.status === 200)
@@ -20,7 +20,7 @@
             }
             else
             {
-                const erro = new Erro("Não foi possível carregar o texto da url " + url, this);
+                const erro = new Erro("Não foi possível carregar o texto da URL " + url, this);
                 if (isRetornarErro)
                 {
                     return erro;
@@ -41,23 +41,54 @@
             {
                 if (xmlHttp.readyState === 4)
                 {
-                    if (xmlHttp.status === 200)
+                    if (xmlHttp.status !== 200)
                     {
-                        if (xmlHttp.response instanceof Blob)
-                        {
-                            callback(xmlHttp.response);
-                        }
-                        else
-                        {
-                            const resposta: any = xmlHttp.response || xmlHttp.responseText;
-                            callback(resposta);
-                        }
+                        const resposta: any = xmlHttp.response || xmlHttp.responseText;
+                        callback(resposta);
+                        return;
                     }
-                    else
+
+                    if (xmlHttp.response instanceof Blob)
                     {
-                        const mensagem = `url : ${url},  status: ${xmlHttp.status.toString()}`;
-                        callback(new Erro(mensagem, this));
+                        callback(xmlHttp.response);
+                        return;
                     }
+                    if (xmlHttp.response instanceof ArrayBuffer)
+                    {
+                        const blob = new Blob([xmlHttp.response], { type: "application/octet-stream" });
+                        callback(blob);
+                        return;
+                    }
+                    if (xmlHttp.response instanceof Uint8Array)
+                    {
+                        const blob = new Blob([xmlHttp.response.buffer], { type: "application/octet-stream" });
+                        callback(blob);
+                        return;
+                    }
+
+                    if (typeof xmlHttp.response === "string")
+                    {
+                        const blob = new Blob([xmlHttp.response], { type: "text/plain" });
+                        callback(blob);
+                        return;
+                    }
+                    if (typeof xmlHttp.responseText === "string")
+                    {
+                        const blob = new Blob([xmlHttp.responseText], { type: "text/plain" });
+                        callback(blob);
+                        return;
+                    }
+
+                    const resultado = xmlHttp.response ?? xmlHttp.responseText;
+                    if (resultado == null)
+                    {
+                        callback(null);
+                        return;
+                    }
+
+                    const blob = new Blob([resultado], { type: "text/plain" });
+                    callback(blob);
+
                 }
             };
             xmlHttp.send(null);
@@ -65,9 +96,9 @@
 
         public static RetornarConteudoTextoAsync(url: string,
             formData: FormData | ArrayBuffer = null,
-            cabecalhos: DicionarioSimples<string | number> = null, ignorarErro? :boolean): Promise<string | Erro>
+            cabecalhos: DicionarioSimples<string | number> = null, ignorarErro?: boolean): Promise<string | Erro>
         {
-            return new Promise<string| Erro>(resolver =>
+            return new Promise<string | Erro>(resolver =>
             {
                 this.__RetornarConteudoTextoInternoAsync(url, formData, cabecalhos, (resultado: string | Erro) =>
                 {
@@ -89,15 +120,15 @@
             cabecalhos: DicionarioSimples<string | number>,
             callback: CallbackResultado<string | Erro>): void
         {
-            const metodo = formData != null ? "POST" : "GET";
+            const metodo = formData != null ? u.EnumHttpMethod.POST : u.EnumHttpMethod.GET;
             const xmlHttp = new XMLHttpRequest();
             xmlHttp.open(metodo, url, true);
 
             xmlHttp.setRequestHeader("Content-type", "text/json");
 
-            if (metodo === "POST" && typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
+            if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao.FuncaoNormalizarRequisicao(xmlHttp);
+                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
             }
 
             if (cabecalhos instanceof DicionarioSimples)
@@ -107,7 +138,7 @@
                     xmlHttp.setRequestHeader(cabecalho.Chave, cabecalho.Valor.toString());
                 }
             }
-             
+
             xmlHttp.onreadystatechange = function ()
             {
                 if (xmlHttp.readyState === 4)
@@ -126,27 +157,30 @@
             xmlHttp.send(formData);
         }
 
-        private static __RetornarConteudoBytesInternoAsync(url: string,
+        private static __RetornarConteudoBytesInternoAsync(
+            metodo: EnumHttpMethod,
+            url: string,
             token: string,
-            callback?: CallbackResultado<ArrayBuffer | Error>,
-            callbackProgresso?: CallbackResultado<ProgressoEventArgs>): void
+            timeout: number,
+            callback: CallbackResultado<ArrayBuffer | Error>,
+            callbackProgresso: CallbackResultado<ProgressoEventArgs>): void
         {
             const xmlHttp = new XMLHttpRequest();
 
-            xmlHttp.open("POST", url, true);
-            xmlHttp.setRequestHeader("Content-type", "buuferArray");
+            xmlHttp.open(metodo, url, true);
             if (!String.IsNullOrEmpty(token))
             {
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
+                xmlHttp.setRequestHeader(c.ParametrosComunicacao.NOME_APLICACAO_WEB, encodeURIComponent($Configuracao.IdentificadorAplicacao));
             }
 
-            xmlHttp.setRequestHeader(c.ParametrosComunicacao.NOME_APLICACAO_WEB, encodeURIComponent($Configuracao.IdentificadorAplicacao));
-            xmlHttp.setRequestHeader("Content-type", "buuferArray");
+            xmlHttp.timeout = timeout;
+            xmlHttp.setRequestHeader("Content-type", "arraybuffer");
             xmlHttp.responseType = "arraybuffer";
 
             if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao.FuncaoNormalizarRequisicao(xmlHttp);
+                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
             }
 
             if (u.ValidacaoUtil.IsFunction(callbackProgresso))
@@ -158,7 +192,11 @@
                     callbackProgresso(argsProgresso);
                 });
             }
-
+            xmlHttp.ontimeout = function ()
+            {
+                console.error(`Timeout na requisição ${url}`);
+                callback(null);
+            };
             xmlHttp.onreadystatechange = function ()
             {
                 if (xmlHttp.readyState === 4)
@@ -171,13 +209,13 @@
                         }
                         else
                         {
-                            const mensagem = `url : ${url},  o tipo não é suportado : ${typeof xmlHttp.response}`;
+                            const mensagem = `URL : ${url},  o tipo não é suportado : ${typeof xmlHttp.response}`;
                             callback(new Erro(mensagem, this));
                         }
                     }
                     else
                     {
-                        const mensagem = `url : ${url},  status: ${xmlHttp.status.toString()}`;
+                        const mensagem = `URL : ${url},  status: ${xmlHttp.status.toString()}`;
                         callback(new Erro(mensagem, this));
                     }
                 }
@@ -185,11 +223,16 @@
             xmlHttp.send(null);
         }
 
-        public static RetornarBufferArrayAsync(url: string, token?: string, callbackProgresso?: CallbackResultado<ProgressoEventArgs>): Promise<ArrayBuffer>
+        public static RetornarBufferArrayAsync(
+            metodo: EnumHttpMethod,
+            url: string,
+            token: string = null,
+            timeout: number = 0,
+            callbackProgresso: CallbackResultado<ProgressoEventArgs> = null): Promise<ArrayBuffer>
         {
             return new Promise<ArrayBuffer>(resolver =>
             {
-                this.__RetornarConteudoBytesInternoAsync(url, token, function (resultado)
+                this.__RetornarConteudoBytesInternoAsync(metodo, url, token, timeout, function (resultado)
                 {
                     if (resultado instanceof Error)
                     {
@@ -239,23 +282,35 @@
         }
 
         public static async SalvarArquivoAsync(
+            metodo: EnumHttpMethod,
             urlArquivo: string,
             nomeArquivo: string,
             mimeType: EnumMimeType,
-            isTokenRequerido:boolean,
+            isTokenRequerido: boolean,
+            timeout: number,
             callbackProcesso: (e: ProgressoEventArgs) => void)
         {
             const token = isTokenRequerido ? GuidUtil.RetornarNovoGuid() : null;
 
             const byfferImagemGabaritoEstrutura = await AjaxUtil.RetornarBufferArrayAsync(
+                metodo,
                 urlArquivo,
-                token, (ev: ProgressoEventArgs) =>
-            {
-                callbackProcesso(ev);
-            });
+                token,
+                timeout,
+                (ev: ProgressoEventArgs) =>
+                {
+                    callbackProcesso(ev);
+                });
+
             const enumMimeType = MimeTypeUtil.RetornarMimeType(mimeType);
             const blob = new Blob([byfferImagemGabaritoEstrutura], { type: enumMimeType });
             Salvar.SalvarComo(blob, nomeArquivo);
         }
+    }
+
+    export enum EnumHttpMethod
+    {
+        POST = "POST",
+        GET = "GET"
     }
 }

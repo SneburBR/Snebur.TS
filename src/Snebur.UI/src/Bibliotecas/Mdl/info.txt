@@ -1,1 +1,0 @@
-﻿https://www.nuget.org/packages/material-design-lite.TypeScript.DefinitelyTyped/0.0.1
