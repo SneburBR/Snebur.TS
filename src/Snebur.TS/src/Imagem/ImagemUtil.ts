@@ -3,17 +3,18 @@
     export class ImagemUtil
     {
         private static _tamnhoImagensApresentacao: List<d.EnumTamanhoImagem>;
-        public static readonly QUALIDADE_JPEG_APRESENTACAO_CANVAS = 85;
-        public static readonly QUALIDADE_JPEG_APRESENTACAO_MAGICK = 55;
-        public static readonly QUALIDADE_JPEG_IMPRESSAO = 92;
+        public static readonly QUALIDADE_APRESENTACAO_CANVAS = 85;
+        public static readonly QUALIDADE_APRESENTACAO_MAGICK = 55;
+        public static readonly QUALIDADE_IMPRESSAO_CANVAS = 92;
+        public static readonly QUALIDADE_IMPRESSAO_MAGICK = 85;
 
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }
 
         public static get DimensaoIcone(): Dimensao
         {
             return new Dimensao(
-                imagem.ConstantesImagemApresentacao.LARGURA_ICONE,
-                imagem.ConstantesImagemApresentacao.ALTURA_ICONE);
+                imagens.ConstantesImagemApresentacao.LARGURA_ICONE,
+                imagens.ConstantesImagemApresentacao.ALTURA_ICONE);
         }
 
         public static get UrlImagemCarregando(): string
@@ -83,10 +84,11 @@
                 imagem.Estado = d.EnumEstadoArquivo.Novo;
                 imagem.IsIcone = isIcone;
                 imagem.FormatoImagem = isIcone ? EnumFormatoImagem.PNG : info.FormatoImagem;
+                imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
 
                 imagem.OrigemImagem = sa.OrigemImagemLocalUtil.RetornarNovaOrigemImagemLocal(imagem, info, arquivo);
 
-                
+
                 const dimensao = isIcone ? ImagemUtil.DimensaoIcone : info.Dimensao;
                 imagem.DimensaoImagemMiniatura = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Miniatura));
                 imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
@@ -291,19 +293,19 @@
             {
                 case d.EnumTamanhoImagem.Miniatura:
 
-                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagem.ConstantesImagemApresentacao.LARGURA_IMAGEM_MINIATURA, imagem.ConstantesImagemApresentacao.ALTURA_IMAGEM_MINIATURA);
+                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_MINIATURA, imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_MINIATURA);
 
                 case d.EnumTamanhoImagem.Pequena:
 
-                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagem.ConstantesImagemApresentacao.LARGURA_IMAGEM_PEQUENA, imagem.ConstantesImagemApresentacao.ALTURA_IMAGEM_PEQUENA);
+                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_PEQUENA, imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_PEQUENA);
 
                 case d.EnumTamanhoImagem.Media:
 
-                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagem.ConstantesImagemApresentacao.LARGURA_IMAGEM_MEDIA, imagem.ConstantesImagemApresentacao.ALTURA_IMAGEM_MEDIA);
+                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_MEDIA, imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_MEDIA);
 
                 case d.EnumTamanhoImagem.Grande:
 
-                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagem.ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE, imagem.ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE);
+                    return u.ImagemUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE, imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE);
 
                 case d.EnumTamanhoImagem.Impressao:
 
@@ -554,6 +556,25 @@
         public static IsJpeg(arquivoOuPath: string | SnBlob | Blob): boolean
         {
             return ImagemUtil.RetornarFormatoImagem(arquivoOuPath) === EnumFormatoImagem.JPEG;
+        }
+
+        public static AtualizarDimensao(imagem: d.IImagem, dimensao: d.Dimensao, tamanhoImagem: d.EnumTamanhoImagem):boolean
+        {
+            switch (tamanhoImagem)
+            {
+                case d.EnumTamanhoImagem.Miniatura: 
+                    return imagem.DimensaoImagemMiniatura.Atualizar(dimensao);
+                case d.EnumTamanhoImagem.Pequena:
+                    return imagem.DimensaoImagemPequena.Atualizar(dimensao);
+                case d.EnumTamanhoImagem.Media:
+                    return imagem.DimensaoImagemMedia.Atualizar(dimensao);
+                case d.EnumTamanhoImagem.Grande:
+                    return imagem.DimensaoImagemGrande.Atualizar(dimensao);
+                case d.EnumTamanhoImagem.Impressao:
+                    return imagem.DimensaoImagemImpressao.Atualizar(dimensao);
+                default:
+                    throw new Erro("Tamanho da imagem não suportado");
+            }
         }
     }
 }

@@ -20,7 +20,6 @@
             value = u.ConverterUtil.ParaNumeroValidarIntervalo(value, 0, 100);
             this.NotificarPropriedadeAlterada("Progresso", this._progresso, this._progresso = value);
             this.NotificarEventoProgressoAlterado(value);
-
         }
 
         public get Estado(): EnumEstadoTarefa

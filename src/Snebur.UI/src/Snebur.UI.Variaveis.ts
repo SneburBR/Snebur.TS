@@ -14,8 +14,8 @@ namespace Snebur
     export import TipograficaUtil = Snebur.UI.TipograficaUtil;
 
     //imagem
-    export import ImagemLocalUtil = Snebur.Imagem.ImagemLocalUtil;
-    export import ResultadoCarregarImagem = Snebur.Imagem.ResultadoCarregarImagem;
+    export import ImagemLocalUtil = Snebur.Imagens.ImagemLocalUtil;
+    export import ResultadoCarregarImagem = Snebur.Imagens.ResultadoCarregarImagem;
 
     //enumeradores
     export import EnumCor = Snebur.UI.EnumCor;

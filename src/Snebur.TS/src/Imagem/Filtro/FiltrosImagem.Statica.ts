@@ -1,4 +1,4 @@
-﻿namespace Snebur.Imagem
+﻿namespace Snebur.Imagens
 {
     import EnumFiltroImagem = Snebur.Dominio.EnumEfeitoImagem;
 

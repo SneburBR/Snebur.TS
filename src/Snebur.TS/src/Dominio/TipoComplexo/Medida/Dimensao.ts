@@ -156,9 +156,15 @@
        */
         public Maior(dimensao: d.Dimensao): boolean
         {
-
             return this.Altura > dimensao.Altura &&
                 this.Largura > dimensao.Largura;
+        }
+
+        public MaiorIgual(dimensao: d.Dimensao): boolean
+        {
+
+            return this.Altura >= dimensao.Altura &&
+                this.Largura >= dimensao.Largura;
         }
 
         /**
@@ -179,6 +185,11 @@
         {
             return this.Altura < dimensao.Altura &&
                 this.Largura < dimensao.Largura;
+        }
+        public MenorIgual(dimensao: IDimensao): boolean
+        {
+            return this.Altura <= dimensao.Altura &&
+                this.Largura <= dimensao.Largura;
         }
 
         /**
@@ -375,6 +386,22 @@
         {
             const proporcao = this.ProporcaoSimplificada;
             return `${proporcao.Largura}:${proporcao.Altura}`;
+        }
+
+        public Atualizar(dimensao: IDimensao): boolean
+        {
+            let isAtualizou = false;
+            if (this.Largura !== dimensao.Largura)
+            {
+                this.Largura = dimensao.Largura;
+                isAtualizou = true;
+            }
+            if (this.Altura !== dimensao.Altura)
+            {
+                this.Altura = dimensao.Altura;
+                isAtualizou = true;
+            }
+            return isAtualizou;
         }
 
         public static get Empty(): Dimensao

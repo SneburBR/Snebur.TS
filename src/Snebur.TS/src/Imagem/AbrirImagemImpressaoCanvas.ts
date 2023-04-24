@@ -1,4 +1,4 @@
-﻿namespace Snebur.Imagem
+﻿namespace Snebur.Imagens
 {
     export class AbrirImagemImpressaoCanvas extends BaseAbrirImagemLocalCanvas
     {
@@ -46,7 +46,7 @@
 
                 try
                 {
-                    const bytes = await Snebur.WebWorker.SalvarJpeg.RetornarBytesAsync(imageData, u.ImagemUtil.QUALIDADE_JPEG_IMPRESSAO);
+                    const bytes = await Snebur.WebWorker.SalvarJpeg.RetornarBytesAsync(imageData, u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS);
                     const bufferArray = this.RetornarArrayButter(bytes);
                     this.Resolver(bufferArray);
                     return;
@@ -58,7 +58,7 @@
 
             }
 
-            const blob = await this.RetornarBlobAsync(canvas, false, u.ImagemUtil.QUALIDADE_JPEG_IMPRESSAO / 100);
+            const blob = await this.RetornarBlobAsync(canvas, false, u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS / 100);
             if (blob != null)
             {
                 const bytes = await u.ArquivoUtil.RetornarBufferArrayAsync(blob);

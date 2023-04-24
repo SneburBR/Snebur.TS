@@ -1,4 +1,4 @@
-﻿namespace Snebur.Imagem
+﻿namespace Snebur.Imagens
 {
     export class ImagemLocalUtil
     {
@@ -189,7 +189,7 @@
             }
         }
 
-        private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<ArquivoBlob>
+        private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<Blob>
         {
             if (this.IsIcone)
             {
@@ -260,7 +260,7 @@
         private readonly Arquivo: SnBlob;
         private IsTentandoAbrirHeic: boolean;
 
-        public constructor(arquivo: SnBlob, alturaImagem: number, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO)
+        public constructor(arquivo: SnBlob, alturaImagem: number, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS)
         {
             super(arquivo.UrlBlob, alturaImagem, u.ImagemUtil.RetornarFormatoImagem(arquivo), qualidade);
             this.Arquivo = arquivo;
@@ -317,7 +317,7 @@
     export class CarrgarImagemUrl extends CarrgarImagem
     {
 
-        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO)
+        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS)
         {
             super(urlImagem, alturaImagem, formatoImagem, qualidade);
         }

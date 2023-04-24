@@ -4,5 +4,6 @@
     {
         FormatoImagem?: d.EnumFormatoImagem;
         Dimensao?: IDimensao;
+        ChecksumArquivoLocal?:string
     }
 }

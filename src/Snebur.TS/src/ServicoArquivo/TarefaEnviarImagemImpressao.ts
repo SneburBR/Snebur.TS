@@ -10,6 +10,16 @@
             return this.DimensaoImpressao;
         }
 
+        public override get Progresso(): number
+        {
+            return super.Progresso;
+        }
+
+        public override set Progresso(value: number)
+        {
+            super.Progresso = value;
+        }
+
         public constructor(gerenciador: GerenciadorEnvioArquivo,
             imagem: d.IImagem,
             dimensaoImpressao: d.Dimensao,
@@ -37,14 +47,44 @@
         {
             if (this.IsProcessarImagem)
             {
-                const abrirImagem = new i.AbrirImagemImpressaoCanvas(this.OrigemImagem, this.DimensaoImpressao);
-                const bytes = await abrirImagem.RetornarArrayBufferAsync();
-                if (bytes?.byteLength > 1024)
+                try
                 {
-                    return bytes;
+                    const bytes = await this.RetornarBufferInternoAsync();
+                    if (bytes instanceof ArrayBuffer &&
+                        bytes.byteLength > 1024 &&
+                        bytes.byteLength < this.OrigemImagem.ArquivoLocal.size)
+                    {
+                        return bytes;
+                    }
+
+                }
+                catch (erro)
+                {
+                    console.error("Falha a gerar imagem de impressão " + erro);
                 }
             }
-            return ArquivoUtil.RetornarBufferArrayAsync(this.OrigemImagem.ArquivoLocal);
+            return await ArquivoUtil.RetornarBufferArrayAsync(this.OrigemImagem.ArquivoLocal);
+        }
+        private async RetornarBufferInternoAsync(): Promise<ArrayBuffer> 
+        {
+            if (u.MagickInitUtil.IsInicializado)
+            {
+                try
+                {
+                    const abrirImagemMagick = new i.AbrirImagemImpressaoMagick(this.OrigemImagem, this.DimensaoImpressao);
+                    const bytes = await abrirImagemMagick.RetornarArrayBufferAsync();
+                    if (bytes?.byteLength > 1024)
+                    {
+                        return bytes;
+                    }
+                }
+                catch (erro)
+                {
+                    console.error("Falha processar imagem de impressão usando magick");
+                }
+            }
+            const abrirImagemCanvas = new i.AbrirImagemImpressaoCanvas(this.OrigemImagem, this.DimensaoImpressao);
+            return await abrirImagemCanvas.RetornarArrayBufferAsync();
         }
 
         public AtualizarDimensaoImpressao(dimensao: d.Dimensao)

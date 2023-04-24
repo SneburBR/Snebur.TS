@@ -222,7 +222,7 @@
         {
 
             let elementoSobrePosicao = FiltroImagemUtil.RetornarElementoFiltro(elementoRecipiente, FiltroImagemUtil.TAG_ELEMENTO_SOBREPOSICAO) as HTMLElement;
-            if (sobrePosicao instanceof imagem.SobrePosicao)
+            if (sobrePosicao instanceof imagens.SobrePosicao)
             {
                 if (elementoSobrePosicao == null)
                 {
@@ -238,7 +238,7 @@
 
         }
 
-        private static AplicarSobrePosicaoInterna(elementoSobrePosicao: HTMLElement, sobrePosicao: imagem.SobrePosicao): void
+        private static AplicarSobrePosicaoInterna(elementoSobrePosicao: HTMLElement, sobrePosicao: imagens.SobrePosicao): void
         {
             if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer ||
                 u.SistemaUtil.NavegadorEnum === d.EnumNavegador.Edge)
@@ -247,7 +247,7 @@
                 return;
             }
 
-            const valorCssMixagem = u.EnumUtil.RetornarRotulo(imagem.EnumMixagem, sobrePosicao.Mixagem).toLowerCase();
+            const valorCssMixagem = u.EnumUtil.RetornarRotulo(imagens.EnumMixagem, sobrePosicao.Mixagem).toLowerCase();
             //elementoSobrePosicao.style.opacity = (sobrePosicao.Opacidade / 100).toFixed();
             elementoSobrePosicao.style.setProperty("mix-blend-mode", valorCssMixagem);
             (elementoSobrePosicao.style as any).mixBlendMode = valorCssMixagem;
@@ -263,11 +263,11 @@
             elementoSobrePosicao.style.background = String.Empty;
             elementoSobrePosicao.style.backgroundColor = "rgba(0, 0, 0, 0)";
 
-            if (sobrePosicao instanceof imagem.SobrePosicaoSolida)
+            if (sobrePosicao instanceof imagens.SobrePosicaoSolida)
             {
                 this.AplicarSobrePosicaoSolida(elementoSobrePosicao, sobrePosicao);
             }
-            else if (sobrePosicao instanceof imagem.SobrePosicaoGradienteLinear)
+            else if (sobrePosicao instanceof imagens.SobrePosicaoGradienteLinear)
             {
                 this.AplicarSobrePosicaoGradienteLinear(elementoSobrePosicao, sobrePosicao);
             }
@@ -281,14 +281,14 @@
             }
         }
 
-        private static AplicarSobrePosicaoSolida(elementoSobrePosicao: HTMLElement, sobrePosicao: imagem.SobrePosicaoSolida): void
+        private static AplicarSobrePosicaoSolida(elementoSobrePosicao: HTMLElement, sobrePosicao: imagens.SobrePosicaoSolida): void
         {
             elementoSobrePosicao.style.backgroundColor = sobrePosicao.Cor;
         }
 
-        private static AplicarSobrePosicaoGradienteLinear(elementoSobrePosicao: HTMLElement, sobrePosicao: imagem.SobrePosicaoGradienteLinear): void
+        private static AplicarSobrePosicaoGradienteLinear(elementoSobrePosicao: HTMLElement, sobrePosicao: imagens.SobrePosicaoGradienteLinear): void
         {
-            const cssDirecao = u.EnumUtil.RetornarRotulo(imagem.EnumDirecaoGradiente, sobrePosicao.Direcao);
+            const cssDirecao = u.EnumUtil.RetornarRotulo(imagens.EnumDirecaoGradiente, sobrePosicao.Direcao);
             const cssGradiente = `linear-gradient(${cssDirecao}, ${sobrePosicao.Cor1} ${sobrePosicao.LimiteCor1.toFixed(0)}%, ${sobrePosicao.Cor2} ${sobrePosicao.LimiteCor2.toFixed(0)}%)`;
 
             elementoSobrePosicao.style.background = cssGradiente;

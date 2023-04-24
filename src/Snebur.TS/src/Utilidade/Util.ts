@@ -119,14 +119,7 @@
         {
             return u.ValidacaoUtil.IsDefinido(valor);
         }
-
-
-        public static SalvarComo(blob: Blob, nomeArquivo: string): void
-        {
-            Salvar.SalvarComo(blob, nomeArquivo);
-        }
-
-
+  
         public static RetornarTodosObjetoTipo<T>(objeto: any, construtor: IConstrutor<T>): T[]
         {
             const objetos = new HashSet<any>();
@@ -233,10 +226,7 @@
         }
     }
 }
-
-
-
-
+ 
 interface SalvarInterno
 {
     SalvarComo(blob: Blob, nomeArquivo: string): void;

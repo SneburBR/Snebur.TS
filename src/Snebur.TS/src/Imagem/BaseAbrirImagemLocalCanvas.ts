@@ -1,4 +1,4 @@
-﻿namespace Snebur.Imagem
+﻿namespace Snebur.Imagens
 {
     export abstract class BaseAbrirImagemLocalCanvas implements IDisposable
     {
@@ -7,7 +7,7 @@
         private IdentificadorTimeoutAbirImagemOriginal: number;
         private IsErro: boolean;
 
-        protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS;
+        protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS;
         protected readonly OrigemImagemLocal: sa.OrigemImagemLocal;
         protected readonly ArquivoLocal: SnBlob;
         /*protected readonly UrlBlobLocal: string;*/

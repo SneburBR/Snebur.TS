@@ -162,7 +162,6 @@
 
         protected async IniciarEnvioAsync()
         {
-
             this.Buffer = await this.RetornarBufferAsync();
 
             if (!(this.Buffer instanceof ArrayBuffer))
@@ -170,6 +169,7 @@
                 this.FinalizarTarefa(new ErroEnviarPacote("Não foi possível carregar o ArrayBuffer(bytes) do arquivo"));
                 return;
             }
+            
             this.Checksum = await Snebur.WebWorker.Checksum.RetornarChecksumAsync(this.Buffer) as string;
             this.IniciarEnvio();
         }

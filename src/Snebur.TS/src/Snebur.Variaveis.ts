@@ -26,7 +26,7 @@ namespace Snebur
 
     export import a = Snebur.AcessoDados;
     export import ex = Snebur.Expressao;
-    export import i = Snebur.Imagem;
+    export import i = Snebur.Imagens;
 
     export import d = Snebur.Dominio;
     export import s = Snebur.Seguranca;
@@ -38,8 +38,8 @@ namespace Snebur
     export import at = Snebur.Dominio.Atributos;
     export import ap = Snebur.Aplicacao;
     export import w = Snebur.WebWorker;
-    export import imagem = Snebur.Imagem;
-    export import im = Snebur.Imagem;
+    export import imagens = Snebur.Imagens;
+    export import im = Snebur.Imagens;
 
     export import Entidade = Snebur.Dominio.Entidade;
     export import IEntidade = Snebur.Dominio.IEntidade;

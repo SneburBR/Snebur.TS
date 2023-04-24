@@ -10,7 +10,7 @@
             "Snebur.UI",
             "Snebur.Reflexao",
             "Snebur.Utilidade",
-            "Snebur.Imagem",
+            "Snebur.Imagens",
             "Snebur.Dominio.Atributos"];
 
         private static readonly AtalhosNamespaceFramework: List<[string, string]> = [
@@ -18,7 +18,7 @@
             ["ui", "Snebur.UI"],
             ["r", "Snebur.Reflexao"],
             ["u", "Snebur.Utilidade"],
-            ["i", "Snebur.Imagem"],
+            ["i", "Snebur.Imagens"],
             ["at", "Snebur.Dominio.Atributos"],
         ];
 
@@ -167,8 +167,8 @@
             const a3 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Aplicacao.BaseAplicacao");
             const x3 = r.ReflexaoNamespaceUtil.RetornarObjeto("Snebur.Dominio.Atributos");
             const a5 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute");
-            const a6 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Imagem.AbrirImagemImpressao");
-            const x7 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Imagem.Processamento.Local.Seguimento2.TesteXXX");
+            const a6 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Imagens.AbrirImagemImpressao");
+            const x7 = r.ReflexaoNamespaceUtil.RetornarConstrutor("Snebur.Imagens.Processamento.Local.Seguimento2.TesteXXX");
 
             const xaa = r.ReflexaoNamespaceUtil.RetornarConstrutor("ui.BaseControle");
             const x9 = r.ReflexaoNamespaceUtil.RetornarConstrutor("ui.Converter.DefinidoParaVisibilidade");

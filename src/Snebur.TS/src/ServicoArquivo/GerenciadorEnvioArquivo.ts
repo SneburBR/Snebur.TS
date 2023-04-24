@@ -314,7 +314,10 @@
             return this.DicionarioTarefas.Item(chave) as TarefaEnviarImagem;
         }
 
-        public AdicionarNovaTarefaImagem(imagem: d.IImagem, tamanhoImagem: EnumTamanhoImagem, dimensaoImpressao: d.Dimensao, isProcessarImagem: boolean): void
+        public AdicionarNovaTarefaImagem(imagem: d.IImagem,
+            tamanhoImagem: EnumTamanhoImagem,
+            dimensaoImpressao: d.Dimensao,
+            isProcessarImagem: boolean): void
         {
             this.ValidarImagemTamanhoDimensao(imagem, tamanhoImagem, dimensaoImpressao);
 
@@ -348,7 +351,11 @@
 
         }
 
-        private RetornarNovaTarefaEnviarImagem(imagem: d.IImagem, tamanhoImagem: d.EnumTamanhoImagem, dimensaoImpressao: d.Dimensao, isProcessarImagem: boolean): TarefaEnviarImagem
+        private RetornarNovaTarefaEnviarImagem(
+            imagem: d.IImagem,
+            tamanhoImagem: d.EnumTamanhoImagem,
+            dimensaoImpressao: d.Dimensao,
+            isProcessarImagem: boolean): TarefaEnviarImagem
         {
             if (tamanhoImagem === EnumTamanhoImagem.Impressao)
             {

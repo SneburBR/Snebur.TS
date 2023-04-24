@@ -30,9 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="lib\JSZipAsync\jszip.debug.js" />
     <Content Include="lib\JSZipAsync\jszip.js" />
     <Content Include="lib\JSZipAsync\jszip.min.js" />
+    <Content Include="lib\Magick\debug\magick.js" />
+    <Content Include="lib\Magick\debug\magick-base64.js" />
+    <Content Include="lib\Magick\magick.debug\ImportMagick.js" />
+    <Content Include="lib\Magick\magick.debug\magick-base64.js" />
+    <Content Include="lib\Magick\magick.debug\magick.js" />
     <Content Include="lib\Magick\magick.js" />
+    <Content Include="lib\Magick\magick\ImportMagick.js" />
+    <Content Include="lib\Magick\magick\magick.js" />
     <Content Include="recursos\imagens\erro.png" />
     <Content Include="lib\Base64binary\base64-binary.js" />
     <Content Include="lib\Buffer\buffers.js" />
@@ -67,6 +75,7 @@
     <Content Include="lib\UAParser\ua-parser.min.js" />
     <Content Include="lib\ZCryptoJS\ZCryptoJS.js" />
     <Content Include="src\Core\Bibliotecas\info.txt" />
+    <TypeScriptCompile Include="src\Imagem\AbrirImagemImpressaoMagick.ts" />
     <TypeScriptCompile Include="src\Imagem\AbrirImagemLocalMagick.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
     <Content Include="src\Worker\worker.txt" />
@@ -91,7 +100,8 @@
     <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
     <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
-    <Content Include="lib\Magick\magick.zip" />
+    <Content Include="lib\Magick\magick.debug\magick-debug.zip" />
+    <Content Include="lib\Magick\magick\magick.zip" />
     <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
     <TypeScriptCompile Include="src\Comum\LazyValue.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />

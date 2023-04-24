@@ -7,7 +7,7 @@
 
         public static RetornarBytesAsync(canvas: HTMLCanvasElement, qualidade?: number): Promise<Uint8Array>
         public static RetornarBytesAsync(imagemData: ImageData, qualidade?: number): Promise<Uint8Array>
-        public static RetornarBytesAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<Uint8Array>
+        public static RetornarBytesAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS): Promise<Uint8Array>
         {
             const imagemData = SalvarJpeg.RetornarImagemData(imagemDataOuCanvas);
             const mensagem: ISalvarJpegMensagem = { ImagemData: imagemData, Qualidade: qualidade };
@@ -16,7 +16,7 @@
 
         public static RetornarBlobAsync(imagemData: ImageData, qualidade?: number): Promise<Blob>
         public static RetornarBlobAsync(canvas: HTMLCanvasElement, qualidade?: number): Promise<Blob>
-        public static RetornarBlobAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<Blob>
+        public static RetornarBlobAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS): Promise<Blob>
         {
             const imagemData = SalvarJpeg.RetornarImagemData(imagemDataOuCanvas);
             const mensagem: ISalvarJpegMensagem = { ImagemData: imagemData, Qualidade: qualidade };
@@ -25,7 +25,7 @@
 
         public static RetornarUrlBlobAsync(canvas: HTMLCanvasElement, qualidade?: number): Promise<string>
         public static RetornarUrlBlobAsync(imagemData: ImageData, qualidade?: number): Promise<string>
-        public static RetornarUrlBlobAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS): Promise<string>
+        public static RetornarUrlBlobAsync(imagemDataOuCanvas: ImageData | HTMLCanvasElement, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS): Promise<string>
         {
             const imagemData = SalvarJpeg.RetornarImagemData(imagemDataOuCanvas);
             const mensagem: ISalvarJpegMensagem = { ImagemData: imagemData, Qualidade: qualidade };

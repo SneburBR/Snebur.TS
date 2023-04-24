@@ -1,4 +1,4 @@
-﻿namespace Snebur.Imagem
+﻿namespace Snebur.Imagens
 {
     export class AbrirImagemLocalCanvas extends BaseAbrirImagemLocalCanvas 
     {
@@ -68,7 +68,7 @@
         {
             const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
             const imagemAtual: HTMLImageElement | HTMLCanvasElement = this.ImagemLocal;
-            const qualidade = (ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS / 100).ToDecimal();
+            const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
             for (const tamanhoImagem of this.TamanhosImagem)
             {
                 const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(

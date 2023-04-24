@@ -1,5 +1,5 @@
 ﻿
-namespace Snebur.Imagem
+namespace Snebur.Imagens
 {
     export class ImagemLocalCarregada implements IDisposable
     {

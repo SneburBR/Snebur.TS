@@ -10,14 +10,14 @@
 
     export class MagickInitUtil
     {
-        static #_status: EnumStatusInicializacaoMagick = EnumStatusInicializacaoMagick.Aguardando;
+        private static _status: EnumStatusInicializacaoMagick = EnumStatusInicializacaoMagick.Aguardando;
         private static readonly TIMEOUT = 5 * 60 * 1000;
 
         private static ProgressosHandler = new Array<(e: ProgressoEventArgs) => void>();
 
         public static get Status(): EnumStatusInicializacaoMagick 
         {
-            return MagickInitUtil.#_status;
+            return MagickInitUtil._status;
         }
 
         public static get IsInicializado(): boolean
@@ -40,9 +40,9 @@
 
             MagickInitUtil.ProgressosHandler.Add(progressHandler);
 
-            if (MagickInitUtil.#_status === EnumStatusInicializacaoMagick.Aguardando)
+            if (MagickInitUtil._status === EnumStatusInicializacaoMagick.Aguardando)
             {
-                MagickInitUtil.#_status = EnumStatusInicializacaoMagick.Inicializando;
+                MagickInitUtil._status = EnumStatusInicializacaoMagick.Inicializando;
                 MagickInitUtil.InicializarInternoAsync();
 
             }
@@ -58,15 +58,31 @@
         private static async InicializarInternoAsync()
         {
             const status = await MagickInitUtil.InicializaMagickAsync();
-            MagickInitUtil.#_status = status;
+            MagickInitUtil._status = status;
+        }
+
+        private static get UrlMagick(): string
+        {
+            const url = Snebur.$Configuracao.UrlMagick + "?v=111dasdasdas";
+            //if ($Configuracao.IsDebug)
+            //{
+            //    return url.replace("magick.zip", "magick-debug.zip");
+            //}
+            return url;
         }
 
         private static async InicializaMagickAsync()
         {
             try
             {
-                const url = Snebur.$Configuracao.UrlMagick + "?v=1";
-                if (String.IsNullOrWhiteSpace(url))
+                if (typeof MagickWasm === "object" &&
+                    MagickWasm?.Magick?.imageMagickVersion?.length > 0)
+                {
+                    return EnumStatusInicializacaoMagick.Sucesso;
+                }
+
+                const urlMagick = MagickInitUtil.UrlMagick;
+                if (String.IsNullOrWhiteSpace(urlMagick))
                 {
                     console.error("$Configuracao.UrlMagick não definida");
                     return EnumStatusInicializacaoMagick.Erro;
@@ -74,7 +90,7 @@
 
                 const bytes = await AjaxUtil.RetornarBufferArrayAsync(
                     EnumHttpMethod.GET,
-                    url,
+                    urlMagick,
                     null,
                     MagickInitUtil.TIMEOUT,
                     (e: ProgressoEventArgs) =>
@@ -92,23 +108,34 @@
                 const urlBlob = window.URL.createObjectURL(blob);
 
                 const isSucessoMagick = await u.ScriptUtil.CarregarScriptAsync(urlBlob);
-                window.URL.revokeObjectURL(urlBlob);
-                if (isSucessoMagick)
+
+                if (!isSucessoMagick)
                 {
-                    const urlBlobImport = window.URL.createObjectURL(blobImport);
-                    const isSucessoImport = await u.ScriptUtil.CarregarScriptAsync(urlBlobImport);
+                    return EnumStatusInicializacaoMagick.Erro;
+                }
 
-                    window.URL.revokeObjectURL(urlBlobImport);
+                const urlBlobImport = window.URL.createObjectURL(blobImport);
+                const isSucessoImport = await u.ScriptUtil.CarregarScriptAsync(urlBlobImport);
+                if (!isSucessoImport)
+                {
+                    return EnumStatusInicializacaoMagick.Erro;
+                }
 
-                    if (isSucessoImport)
-                    {
-                        await MagickWasm.initializeImageMagick();
-                        if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
-                        {
-                            console.log(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
-                            return EnumStatusInicializacaoMagick.Sucesso;
-                        }
-                    }
+                window.URL.revokeObjectURL(urlBlob);
+                window.URL.revokeObjectURL(urlBlobImport);
+
+
+                if (typeof MagickWasm?.initializeImageMagick !== "function")
+                {
+                    return EnumStatusInicializacaoMagick.Erro;
+                }
+
+                await MagickWasm.initializeImageMagick();
+
+                if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
+                {
+                    console.log(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
+                    return EnumStatusInicializacaoMagick.Sucesso;
                 }
             }
             catch (erro)

@@ -171,7 +171,7 @@
         {
             if (this.FiltroImagem !== EnumEfeitoImagem.Nenhum)
             {
-                const filtroImagemConhecido = Snebur.Imagem.EfeitosImagem.Efeitos.Item(this.FiltroImagem);
+                const filtroImagemConhecido = Snebur.Imagens.EfeitosImagem.Efeitos.Item(this.FiltroImagem);
                 FiltroImagemUtil.Aplicar(this.ElementoRecipienteImagem,
                     filtroImagemConhecido.Filtro,
                     filtroImagemConhecido.SobrePosicao);

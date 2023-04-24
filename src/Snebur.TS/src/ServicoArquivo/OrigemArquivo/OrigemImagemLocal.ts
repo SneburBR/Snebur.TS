@@ -12,10 +12,10 @@
         public readonly FormatoImagem: d.EnumFormatoImagem;
 
         private FileReader: FileReader;
-        private UrlBlobGrande: string;
-        private UrlBlobMedia: string;
-        private UrlBlobPequena: string;
-        private UrlBlobMiniatura: string;
+        //private UrlBlobGrande: string;
+        //private UrlBlobMedia: string;
+        //private UrlBlobPequena: string;
+        //private UrlBlobMiniatura: string;
         private IsDispensado: boolean = false;
 
         private IsAbrindoImagem: boolean = false;

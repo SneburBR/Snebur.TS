@@ -1,6 +1,6 @@
 ﻿
 
-//namespace Snebur.Imagem
+//namespace Snebur.Imagens
 //{
 //    export interface IpIndex
 //    {

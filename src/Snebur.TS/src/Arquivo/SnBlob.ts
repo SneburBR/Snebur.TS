@@ -14,6 +14,11 @@
             return this._informacaoImagem?.IsHeic;
         }
 
+        public get IsFormatoImagemSuportado(): boolean
+        {
+            return true;
+        }
+
         public get Blob(): Blob
         {
             this.ValidarSeDispensado();
@@ -122,19 +127,17 @@
 
         public async ChecksumAsync(): Promise<string | Error>  
         {
-            if (this._checksum != null)
+            if (this._checksum == null)
             {
-                return this._checksum;
+                const checksum = await w.Checksum.RetornarChecksumAsync(this._blob);
+                if (typeof checksum === "string" && u.Md5Util.IsMd5(checksum))
+                {
+                    this._checksum = checksum;
+                }
+                return checksum;
             }
-
-            const checksum = await w.Checksum.RetornarChecksumAsync(this._blob);
-            if (typeof checksum === "string" && u.Md5Util.IsMd5(checksum))
-            {
-                this._checksum = checksum;
-            }
-            return checksum;
+            return this._checksum;
         }
-
 
         public RevogarUrlBlob(): void
         {
@@ -154,19 +157,25 @@
             return false;
         }
 
-        public InfoImagemAsync(): Promise<IInformacaoImagem> | IInformacaoImagem
+        public async InfoImagemAsync(): Promise<IInformacaoImagem>  
         {
-            if (this._informacaoImagem != null)
+            if (this._informacaoImagem == null)
             {
-                return this._informacaoImagem;
+                this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
             }
-            return this.RetornarInfoImagemInternoAsync();
+            return this._informacaoImagem;
+            
         }
 
         private async RetornarInfoImagemInternoAsync(): Promise<IInformacaoImagem>  
         {
-            this._informacaoImagem = await w.InformacaoImagemWorker.RetornarInformacaoImagemAsync(this);
-            return this._informacaoImagem;
+            const informacaoImagem = await w.InformacaoImagemWorker.RetornarInformacaoImagemAsync(this);
+            const checksum = await this.ChecksumAsync();
+            if (typeof checksum === "string")
+            {
+                informacaoImagem.ChecksumArquivoLocal = checksum;
+            }
+            return informacaoImagem;
         }
 
         public SalvarComo(nomeArquivo: string)

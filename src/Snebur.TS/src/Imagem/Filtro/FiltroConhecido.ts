@@ -1,5 +1,5 @@
 ﻿
-namespace Snebur.Imagem
+namespace Snebur.Imagens
 {
     export class EfeitoImagem extends Snebur.Objeto
     {
@@ -7,7 +7,7 @@ namespace Snebur.Imagem
         public readonly Filtro: d.FiltroImagem;
         public readonly SobrePosicao: SobrePosicao;
 
-        public constructor(efeitoImagemEnum: d.EnumEfeitoImagem, inicializar: Partial<d.FiltroImagem>, sobrePosicao: imagem.SobrePosicao = null)
+        public constructor(efeitoImagemEnum: d.EnumEfeitoImagem, inicializar: Partial<d.FiltroImagem>, sobrePosicao: imagens.SobrePosicao = null)
         {
             super();
 
