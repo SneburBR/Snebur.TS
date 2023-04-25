@@ -632,6 +632,7 @@
     <TypeScriptCompile Include="src\Nativo\IHTMLElement.ts" />
     <TypeScriptCompile Include="src\Nativo\Object.ts" />
     <TypeScriptCompile Include="src\Nativo\StopPropagationEventArgs.ts" />
+    <TypeScriptCompile Include="src\Nativo\WebLock.ts" />
     <TypeScriptCompile Include="src\Nativo\Window.ts" />
     <TypeScriptCompile Include="src\Reflexao.ts" />
     <TypeScriptCompile Include="src\Reflexao\BaseTipoUI.ts" />

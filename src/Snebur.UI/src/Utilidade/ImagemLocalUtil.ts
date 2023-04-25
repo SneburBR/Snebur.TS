@@ -260,7 +260,7 @@
         private readonly Arquivo: SnBlob;
         private IsTentandoAbrirHeic: boolean;
 
-        public constructor(arquivo: SnBlob, alturaImagem: number, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS)
+        public constructor(arquivo: SnBlob, alturaImagem: number, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
         {
             super(arquivo.UrlBlob, alturaImagem, u.ImagemUtil.RetornarFormatoImagem(arquivo), qualidade);
             this.Arquivo = arquivo;
@@ -317,7 +317,7 @@
     export class CarrgarImagemUrl extends CarrgarImagem
     {
 
-        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_JPEG_APRESENTACAO_CANVAS)
+        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
         {
             super(urlImagem, alturaImagem, formatoImagem, qualidade);
         }
@@ -326,8 +326,6 @@
         {
             super.Finalizar(isErro, url);
         }
-
-        
     }
 
     export interface ResultadoCarregarImagem

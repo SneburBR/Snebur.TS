@@ -109,6 +109,7 @@
             await this.InicializarRotasAsync();
             await this.AntesInicializarDocumentoPrincipalAsync();
             this.InicializarDocumentoPrincipal();
+            await this.DepoisInicializarDocumentoPrincipalAsync();
         }
 
         protected NotificarUsuarioAnonimoNaoSuportado()
@@ -119,6 +120,10 @@
         protected abstract InicializarRotasAsync(): Promise<void>;
 
         protected async AntesInicializarDocumentoPrincipalAsync(): Promise<void>
+        {
+            //pode ser sobrescrito
+        }
+        protected async DepoisInicializarDocumentoPrincipalAsync(): Promise<void>
         {
             //pode ser sobrescrito
         }

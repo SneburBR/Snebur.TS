@@ -50,7 +50,8 @@
             const mimeType = formatoDestino === MagickWasm.MagickFormat.Jpeg ?
                 "image/jpeg" : "image/webp";
 
-            this.SetDimensaoLocal(imageMagick.width, imageMagick.height);
+            this.AtualizarDimensaoLocal(imageMagick.width, imageMagick.height);
+
             try
             {
                 const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
@@ -65,8 +66,7 @@
 
                     await imageMagick.write((bytes) =>
                     {
-
-                        this.SetDimensao(dimensaoApresentacao, tamanhoImagem);
+                        this.AtualizarDimensao(dimensaoApresentacao, tamanhoImagem);
 
                         const blob = new Blob([bytes], { type: mimeType });
                         const cache = new ImagemLocalCarregada(tamanhoImagem, blob);
@@ -82,7 +82,7 @@
             }
         }
 
-        private SetDimensaoLocal(largura: number, altura: number)
+        private AtualizarDimensaoLocal(largura: number, altura: number)
         {
             const imagem = this.OrigemImagemLocal.Imagem;
             if (imagem.DimensaoImagemLocal.Largura !== largura)
@@ -97,11 +97,17 @@
                 this._isSalvarPendente = true;
             }
 
+            if (imagem.IsIcone)
+            {
+                imagem.IsIcone = false;
+                this._isSalvarPendente = true;
+            }
         }
 
-        private SetDimensao(dimensaoApresentacao: d.Dimensao, tamanhoImagem: d.EnumTamanhoImagem)
+        private AtualizarDimensao(dimensaoApresentacao: d.Dimensao, tamanhoImagem: d.EnumTamanhoImagem)
         {
-            if (ImagemUtil.AtualizarDimensao(this.OrigemImagemLocal.Imagem, dimensaoApresentacao, tamanhoImagem))
+            const imagem = this.OrigemImagemLocal.Imagem;
+            if (ImagemUtil.AtualizarDimensao(imagem, dimensaoApresentacao, tamanhoImagem))
             {
                 this._isSalvarPendente = true;
             }

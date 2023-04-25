@@ -2,8 +2,8 @@
 {
     export class GerenciadorEnvioArquivo extends Snebur.Tarefa.GerenciadorTarefa<BaseTarefaEnviarArquivo, ProgressoGerenciadorEnvioArquivoEventArgs>
     {
-        private static readonly TEMPO_ATUALIZAR_PROGRESSO = 200;
-        private static readonly TEMPO_ATUALIZAR_PROGRESSO_INTERVALO = 500;
+        //private static readonly TEMPO_ATUALIZAR_PROGRESSO = 200;
+        //private static readonly TEMPO_ATUALIZAR_PROGRESSO_INTERVALO = 500;
 
         private _velocidadeMedia: number = 0;
 
@@ -75,7 +75,7 @@
             this.NotificarPropriedadeAlterada(x => x.VelocidadeMedia, this._velocidadeMedia, this._velocidadeMedia = value);
         }
 
-        private ExecutarProgressoDepois = new ExecutarDepois(this.AtualizarProgressoGerenciadorTarefaDepois.bind(this), GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO, GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO_INTERVALO);
+        /*private ExecutarProgressoDepois = new ExecutarDepois(this.AtualizarProgressoGerenciadorTarefaDepois.bind(this), GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO, GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO_INTERVALO);*/
 
         public static readonly TEMPO_MEDIDOR_VELOCIDADE_SEGUNDOS = 2;
         public readonly TempoIntervaloMedidorVelocidade = TimeSpan.FromSeconds(GerenciadorEnvioArquivo.TEMPO_MEDIDOR_VELOCIDADE_SEGUNDOS);
@@ -96,16 +96,11 @@
 
         protected override AtualizarProgressoGerenciadorTarefa(): void
         {
-            this.ExecutarProgressoDepois.Executar();
-        }
-
-        private AtualizarProgressoGerenciadorTarefaDepois(): void
-        {
-            const tarefasImagem = this.Tarefas.OfType<TarefaEnviarImagem>(TarefaEnviarImagem).ToList();
+            const tarefasImagem = this.Tarefas.OfType(TarefaEnviarImagem).ToList();
             if (tarefasImagem.Count > 0)
             {
-                const finalizadas = this.Finalizados.OfType<TarefaEnviarImagem>(TarefaEnviarImagem).ToList();
-                const executando = this.Executando.OfType<TarefaEnviarImagem>(TarefaEnviarImagem).ToList();
+                const finalizadas = this.Finalizados.OfType(TarefaEnviarImagem).ToList();
+                const executando = this.Executando.OfType(TarefaEnviarImagem).ToList();
 
                 const totalAreas = tarefasImagem.Sum(x => x.DimensaoSaida.Largura + x.DimensaoSaida.Altura);
                 const totalFinalizados = finalizadas.Sum(x => x.DimensaoSaida.Largura + x.DimensaoSaida.Altura) + executando.Sum(x => (x.DimensaoSaida.Largura + x.DimensaoSaida.Altura) * (x.Progresso / 100));
@@ -114,7 +109,8 @@
 
                 if (isNaN(progresso))
                 {
-                    throw new Erro("progresso invalido");
+                    console.error("Progresso gerenciador envio: " + progresso);
+                    return;
                 }
 
                 if ($Configuracao.IsDebug)
@@ -521,10 +517,10 @@
                         const parcial = index + (e.Progresso / 100);
                         const processoParcial = u.NormalizacaoUtil.NormalizarProgresso((parcial / total) * 100);
                         callbackProgresso(new ProgressoEventArgs(processoParcial));
-                    }, 
-                    this);
+                    },
+                        this);
                 }
-                
+
                 await tarefa.EnviarAsync();
 
                 if (typeof callbackProgresso === "function")

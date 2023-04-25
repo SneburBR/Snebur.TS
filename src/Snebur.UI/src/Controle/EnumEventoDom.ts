@@ -59,7 +59,8 @@
         TouchCancel = "touchcancel",
         TouchEnd = "touchend",
         TouchMove = "touchmove",
-        TouchStart = "touchstart"
+        TouchStart = "touchstart",
+        VisibilityChange = "visibilitychange"
     }
 
     export interface EventoDomMapeado  
@@ -111,5 +112,6 @@
         "touchend": TouchEvent,
         "touchmove": TouchEvent,
         "touchstart": TouchEvent
+        "visibilitychange" : Event
     }
 }

@@ -28,8 +28,7 @@
             super(gerenciador, imagem, EnumTamanhoImagem.Impressao);
 
             this.DimensaoImpressao = dimensaoImpressao;
-            this.IsProcessarImagem = isProcessarImagem;
-
+            this.IsProcessarImagem = isProcessarImagem && !imagem.IsIcone;
 
             if (this.IsProcessarImagem && this.DimensaoImpressao !== null && (!(this.DimensaoImpressao instanceof d.Dimensao) || this.DimensaoImpressao.IsEmpty))
             {
@@ -39,7 +38,6 @@
 
         protected override async IniciarEnvioAsync()
         {
-
             super.IniciarEnvioAsync();
         }
 
@@ -67,6 +65,7 @@
         }
         private async RetornarBufferInternoAsync(): Promise<ArrayBuffer> 
         {
+          
             if (u.MagickInitUtil.IsInicializado)
             {
                 try

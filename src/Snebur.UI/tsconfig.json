@@ -37,6 +37,7 @@
     "src/Nativo/IHTMLElement.ts",
     "src/Nativo/Object.ts",
     "src/Nativo/StopPropagationEventArgs.ts",
+    "src/Nativo/WebLock.ts",
     "src/Nativo/Window.ts",
     "src/Comum/EnumSentido.ts",
     "src/Controle/Apresentacao/Janela/Mensagem/EnumBotoesJanelaMensagem.ts",

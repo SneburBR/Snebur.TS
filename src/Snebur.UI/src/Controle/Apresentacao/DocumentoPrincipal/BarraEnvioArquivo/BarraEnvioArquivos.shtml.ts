@@ -5,14 +5,14 @@
 
         //private readonly ElementoProgressoRestante: HTMLDivElement;
         private readonly ElementoProgressoEnvioArquivos: HTMLDivElement;
-        private readonly TempoAtualizarProgresso = TimeSpan.FromSeconds(0.3);
+        /*private readonly TempoAtualizarProgresso = TimeSpan.FromSeconds(0.3);*/
 
         public get ViewModel(): BarraEnvioArquivosViewModel
         {
             return this.DataSource as BarraEnvioArquivosViewModel;
         }
 
-        public AtualizarProgressoDepois = new ExecutarDepois(this.AtualizarProgresso.bind(this), this.TempoAtualizarProgresso);
+        /*public AtualizarProgressoDepois = new ExecutarDepois(this.AtualizarProgresso.bind(this), this.TempoAtualizarProgresso);*/
 
         //#region Construtor e inicializador
 
@@ -67,9 +67,10 @@
             }
         }
 
-        private Gerenciador_ProgressoAlterado(provedor: any, e: t.ProgressoGerenciadorTarefaEventArgs)
+        private Gerenciador_ProgressoAlterado(provedor: any, e: sa.ProgressoGerenciadorEnvioArquivoEventArgs)
         {
-            this.AtualizarProgressoDepois.Executar(e);
+            this.AtualizarProgresso(e);
+            /*this.AtualizarProgressoDepois.Executar(e);*/
         }
 
         private AtualizarProgresso(e: sa.ProgressoGerenciadorEnvioArquivoEventArgs): void
