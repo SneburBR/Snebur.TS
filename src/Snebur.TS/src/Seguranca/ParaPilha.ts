@@ -1,4 +1,5 @@
-﻿namespace Snebur.Seguranca
+﻿
+namespace Snebur.Seguranca
 {
     export class ParaPilha
     {

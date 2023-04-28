@@ -1224,9 +1224,9 @@
             const valorNumero = u.ConverterUtil.ParaNumero(valor);
             if (!isFormatarInteiro && ValidacaoUtil.IsInteger(valorNumero))
             {
-                return valorNumero.toFixed(0) + " cm";
+                return valorNumero.toFixed(0) + "cm";
             }
-            return valorNumero.ToDecimal(1).toFixed(1) + " cm";
+            return valorNumero.ToDecimal(1).toFixed(1) + "cm";
         }
 
         public static FormatarPasso(valor: number | string, passo: number | string): string;
@@ -1260,11 +1260,11 @@
                 if (ValidacaoUtil.IsInteger(valor.Largura) &&
                     ValidacaoUtil.IsInteger(valor.Altura))
                 {
-                    return `${valor.Largura.toFixed(0)} x ${valor.Altura.toFixed(0)} ${cmd}`;
+                    return `${valor.Largura.toFixed(0)}x${valor.Altura.toFixed(0)}${cmd}`;
                 }
-                return `${valor.Largura.toFixed(1)} x ${valor.Altura.toFixed(1)} ${cmd}`;
+                return `${valor.Largura.toFixed(1)}x${valor.Altura.toFixed(1)}${cmd}`;
             }
-            return `0 x 0 ${cmd}`;
+            return `0x0 ${cmd}`;
         }
 
         public static FormatarDimensaoPixels(valor: any)

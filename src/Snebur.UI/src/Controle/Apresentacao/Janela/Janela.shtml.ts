@@ -257,6 +257,7 @@
                 {
                     this.InicializarControle();
                     $Aplicacao.DocumentoPrincipal?.EventoJanelaCarregada?.Notificar(this, EventArgs.Empty);
+                    await ThreadUtil.EsperarAsync(10);
                 }
 
                 this.__camposPrivadosJanela.callbackFechar = callback;
@@ -268,6 +269,8 @@
                     this.MostrarElemento();
                     this.NotificarControleCarregado();
                 }
+                this.Elemento.classList.remove("sn-janela-sair");
+                this.Elemento.classList.add("sn-janela-entrar");
             }
         }
 
@@ -670,6 +673,10 @@
             this.__camposPrivadosJanela.isAberta = false;
             this.__camposPrivadosJanela.resultadoFechar = resultadoNormalizado;
 
+            this.Elemento.classList.remove("sn-janela-entrar");
+            this.Elemento.classList.add("sn-janela-sair");
+            await ThreadUtil.EsperarAsync(10);
+
             this.FecharInterno();
 
             if (u.ValidacaoUtil.IsCallback(this.__camposPrivadosJanela.callbackFechar))
@@ -700,6 +707,10 @@
         {
             super.ReInicializar();
             this.Centralizar();
+            if (this.IsAberta)
+            {
+                this.Elemento.classList.add("sn-janela-entrar");
+            }
         }
 
         public override MostrarElemento(): void

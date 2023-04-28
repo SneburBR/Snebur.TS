@@ -4,7 +4,9 @@
     {
         public readonly NomePropriedade: string;
 
-        public constructor(atributoBind: AtributoHtml, bindConstrutor: IBindPropriedadeComumConstrutor, expressaoPropriedade: (value: TControle) => any)
+        public constructor(atributoBind: AtributoHtml,
+            bindConstrutor: IBindPropriedadeComumConstrutor,
+            expressaoPropriedade: (value: TControle) => any)
         {
             super(atributoBind, bindConstrutor as any);
             /*this.AtributoHtml = atributoBind;*/

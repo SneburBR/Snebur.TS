@@ -607,14 +607,14 @@
 
         protected RetornarValorAtributo(atributo: AtributoHtml): string;
         protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean, elemento: HTMLElement): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
+        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean): string;
+        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean, elemento: HTMLElement): string;
+        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, isAceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
         {
             const valorAtributo = elemento.getAttribute(atributo.Nome);
             if (!String.IsNullOrEmpty(valorAtributo))
             {
-                if (aceitarBind || !u.ValidacaoUtil.IsBind(valorAtributo))
+                if (isAceitarBind || !u.ValidacaoUtil.IsBind(valorAtributo))
                 {
                     return valorAtributo;
                 }
@@ -668,14 +668,20 @@
             return valorPadrao;
         }
 
-        protected RetornarValorAtributoEnum<TConstrutorEnum>(construtorEnum: TConstrutorEnum, atributo: AtributoHtml, valorPadrao: TConstrutorEnum[keyof TConstrutorEnum] = null, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): TConstrutorEnum[keyof TConstrutorEnum]
+        protected RetornarValorAtributoEnum<TConstrutorEnum>(construtorEnum: TConstrutorEnum, atributo: AtributoHtml, valorPadrao: TConstrutorEnum[keyof TConstrutorEnum] = null, isAceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): TConstrutorEnum[keyof TConstrutorEnum]
         {
-            const valorAtributo = this.RetornarValorAtributo(atributo, null, aceitarBind, elemento);
+            const valorAtributo = this.RetornarValorAtributo(atributo, null, isAceitarBind, elemento);
             if (!String.IsNullOrEmpty(valorAtributo))
             {
+
                 if (u.EnumUtil.IsDefindo(construtorEnum, valorAtributo))
                 {
                     return u.EnumUtil.RetornarValor(construtorEnum, valorAtributo);
+                }
+
+                if (isAceitarBind && ValidacaoUtil.IsBind(valorAtributo))
+                {
+                    return valorAtributo as any;
                 }
             }
             return valorPadrao;
@@ -797,9 +803,9 @@
             throw new Erro(`O controle pai para expressão ${filtro.toString()} não foi encontrado`);
         }
 
-        public RetornarControlePai<TControle extends BaseControle>(construtorControle: IControleConstrutor<TControle> | IAbstractControleConstrutor<TControle>, incluirEstaControle: boolean = true, isIgnorarErro: boolean = true): TControle
+        public RetornarControlePai<TControle extends BaseControle>(construtorControle: IControleConstrutor<TControle> | IAbstractControleConstrutor<TControle>, incluirEsteControle: boolean = true, isIgnorarErro: boolean = true): TControle
         {
-            let controleAtual: BaseUIElemento = incluirEstaControle ? this : this.ControlePai;
+            let controleAtual: BaseUIElemento = incluirEsteControle ? this : this.ControlePai;
             while (controleAtual instanceof BaseUIElemento)
             {
                 if (controleAtual instanceof construtorControle)

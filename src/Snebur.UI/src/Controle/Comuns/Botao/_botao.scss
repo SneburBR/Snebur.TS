@@ -67,7 +67,7 @@ sn-botao {
         vertical-align: middle;
         text-align: center;
         overflow: visible !important;
-       /* transition: all 0.1s;*/
+        /* transition: all 0.1s;*/
 
         > a {
             display: block;
@@ -300,7 +300,7 @@ sn-botao {
             align-items: baseline;
             align-content: flex-end;
             vertical-align: bottom;
-             
+
             &:active {
                 > conteudo-apresentacao {
                     &:not([class*='sn-cor-texto--']) {
@@ -379,11 +379,20 @@ sn-botao {
         /*padding: 0;*/
         conteudo-apresentacao {
             background-color: transparent !important;
+            background-color: red;
             border: 2px solid #ccc;
             box-sizing: border-box;
 
             &:hover {
                 background-color: rgba(128, 128, 128, 0.15) !important;
+            }
+
+            rotulo-botao {
+                top: -1px;
+            }
+
+            ap-icone + rotulo-botao {
+                top: -0.5rem !important;
             }
         }
     }
@@ -442,7 +451,7 @@ sn-botao {
         > conteudo-apresentacao {
 
             rotulo-botao {
-                line-height: retornar-rem(25px);
+                line-height: retornar-rem(28px);
             }
 
             border-radius: 4px !important;

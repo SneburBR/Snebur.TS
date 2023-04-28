@@ -99,16 +99,9 @@
 
             this.ClasseSeparadora = this.RetornarValorAtributo(AtributosHtml.ClasseSeparadora);
 
-            if ($Configuracao.IsDebug)
-            {
-                const tipoPainel = this.RetornarValorAtributoEnum(EnumTipoPainel, AtributosHtml.TipoPainel, null);
-                if (!EnumUtil.IsDefindo(EnumTipoPainel, tipoPainel))
-                {
-                    this.Elemento.Clear();
-                    const outerHtml = this.Elemento.outerHTML;
-                    throw new Erro(`O atributo ${AtributosHtml.TipoPainel.Nome} não foi defino ou é invalido em ${this.ControleApresentacao.___NomeConstrutor} ${outerHtml}`);
-                }
-            }
+            
+                this.ValidarTipoPainel();
+           
 
             //inicializando os templates
             const blocosTemplate = this.ControlesFilho.OfType<BlocoTemplate>(BlocoTemplate).ToList();
@@ -147,8 +140,26 @@
             this.EventoListaAtualizada.AddHandler(this.PainelLista_ListaAtualizada, this);
         }
 
-    
+        private ValidarTipoPainel()
+        {
+            if (!$Configuracao.IsDebug)
+            {
+                return;
+            }
 
+            const tipoPainel = this.RetornarValorAtributoEnum(EnumTipoPainel, AtributosHtml.TipoPainel, null, true);
+            if (ValidacaoUtil.IsBind(tipoPainel))
+            {
+                return;
+            }
+            if (!EnumUtil.IsDefindo(EnumTipoPainel, tipoPainel))
+            {
+                this.Elemento.Clear();
+                const outerHtml = this.Elemento.outerHTML;
+                throw new Erro(`O atributo ${AtributosHtml.TipoPainel.Nome} não foi defino ou é invalido em ${this.ControleApresentacao.___NomeConstrutor} ${outerHtml}`);
+            }
+        }
+         
         protected InserirItem(posicao: number, item: TItem): void
         {
             this.ValidarNovoItem(item);

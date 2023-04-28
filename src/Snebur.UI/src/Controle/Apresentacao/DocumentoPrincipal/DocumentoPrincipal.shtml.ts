@@ -433,7 +433,7 @@
         {
             if (this.__JanelaOcupado instanceof JanelaOcupado)
             {
-                this.__JanelaOcupado.ViewModel.Mensagem = mensagem ?? JanelaOcupadoViewModel.MEENSAGEM_PADRAO;
+                this.__JanelaOcupado.ViewModel.Mensagem = mensagem ?? JanelaOcupadoViewModel.MENSAGEM_PADRAO;
             }
         }
 

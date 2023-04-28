@@ -72,11 +72,11 @@
             if (this.IsControleInicializado && this.Imagens instanceof Array && this.Imagens.Count > 0) 
             {
                 this.ExibicaoImagensIniciado = true;
-                this.ProximaImagem();
+                this.ProximaImagemAsync();
             }
         }
 
-        private ProximaImagem(): void
+        private async ProximaImagemAsync() 
         {
             if (this.IsControleInicializado)
             {
@@ -84,6 +84,7 @@
                 {
                     return;
                 }
+
                 if (this.IndiceAtual > (this.Imagens.Count - 1))
                 {
                     this.IndiceAtual = 0;
@@ -103,7 +104,10 @@
                 this.ElementoImagem.UrlImagem = urlImagemServidor;
 
                 this.IndiceAtual += 1;
-                this.IdentificadorTimeout = window.setTimeout(this.ProximaImagem.bind(this), TimeSpan.FromSeconds(10).TotalMilliseconds);
+
+                const tempo = u.RandomUtil.RetornarRandom(5, 10);
+                await ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(tempo).TotalMilliseconds);
+                this.ProximaImagemAsync();
             }
         }
 

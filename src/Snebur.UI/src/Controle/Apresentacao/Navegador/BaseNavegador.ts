@@ -33,6 +33,7 @@
         public readonly PaginasEmCache = new List<Pagina>();
         public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
         public readonly EventoAntesNavegar = new Evento<AntesNavegarEventArgs>(this);
+        public readonly EventoNavaPagina = new Evento<NovaPaginaEventArgs>(this);
 
         public override get ControleApresentacao(): ControleApresentacao
         {
@@ -331,11 +332,11 @@
             }
 
             const novaPagina = this.RetornarPagina(refPagina, parametros);
-
             this._paginaAtual = novaPagina;
             this.MostrarPagina(novaPagina);
 
             this.NotificarEventoPaginaAlterada();
+
             this.PropagarDataSourcePaginaAtual();
 
             if (isSalvarHistoricoNavegador)
@@ -453,6 +454,7 @@
                 }
                 /*const construtorPagina: IPaginaConstrutor = refPagina;*/
                 const novaPagina = new (refPagina as IPaginaConstrutor)(this);
+                this.EventoNavaPagina.Notificar(this, new NovaPaginaEventArgs(novaPagina, parametros));
                 if (!(novaPagina instanceof Pagina))
                 {
                     throw new Erro(`o construtor ${(novaPagina as Function).constructor.name} não herda de Snebur.UI.Pagina`);

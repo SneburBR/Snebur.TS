@@ -17,15 +17,20 @@
         </ap-bloco>
 
         <ap-bloco>
-            <ap-texto class="subtitulo-janela-ocupado"  
+            <ap-texto
+                class="subtitulo-janela-ocupado"  
                 sn-bind="{{Mensagem}}"></ap-texto>
         </ap-bloco>
 
-        <ap-bloco sn-nome="BlocoLoader" ap-margem="160px 16px 0px 8px">
+        <ap-bloco 
+            sn-nome="BlocoLoader"
+            ap-margem="160px 16px 0px 8px">
             <ap-bloco class="sn-loader"></ap-bloco>
         </ap-bloco>
 
-        <ap-bloco sn-nome="BlocoProgresso" ap-margem="16px 24px 16px 24px" sn-visibilidade="Oculto">
+        <ap-bloco sn-nome="BlocoProgresso" 
+            ap-margem="16px 24px 16px 24px"
+            sn-visibilidade="Oculto">
             <sn-progresso sn-nome="BarraProgresso" 
                 ap-altura="23px"
                 sn-bind-progresso="{{Progresso}}"></sn-progresso>

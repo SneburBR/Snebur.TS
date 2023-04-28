@@ -50,6 +50,25 @@
             return new d.Posicao(x, y);
         }
 
+        public static RetornarOffsetRelativo(elemento: HTMLElement, elementoRelativo: HTMLElement): IPosicao
+        {
+            let offsetX = elemento.offsetLeft;
+            let offsetY = elemento.offsetTop;
+            do
+            {
+                elemento = elemento.parentElement;
+                offsetX += elemento.offsetLeft + elemento.scrollLeft;
+                offsetY += elemento.offsetTop;
+
+            }
+            while (elemento != null && elemento !== elementoRelativo);
+
+            return {
+                X: offsetX,
+                Y: offsetY
+            };
+        }
+
         public static RetornarElemento(refEelemento: HTMLElement | Element | string | Node | Window, ignorarElmentoNaoEncontrado?: boolean): HTMLElement
         {
             if (refEelemento instanceof Node ||

@@ -58,6 +58,9 @@
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.LarguraApresentacao, BindPropriedadeComum, x => x.LarguraApresentacao));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.AlturaApresentacao, BindPropriedadeComum, x => x.AlturaApresentacao));
 
+                
+
+
                 //painel
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IPainel>(AtributosHtml.TipoPainel, BindPropriedadeComum, x => x.TipoPainel));
 
@@ -66,8 +69,9 @@
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<CaixaTexto>(AtributosHtml.IsSomenteLeitura, BindPropriedadeComum, x => x.IsSomenteLeitura));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<CaixaTexto>(AtributosHtml.MarcaDagua, BindPropriedadeComum, x => x.MarcaDagua));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IControleRotulo>(AtributosHtml.Rotulo, BindPropriedadeComum, x => x.Rotulo));
-                
 
+                BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<Painel>(AtributosHtml.TipoPainel, BindPropriedadeComum, x => x.TipoPainel));
+                 
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IControleSelecionado>(AtributosHtml.Selecionado, BindPropriedadeComum, x => x.IsSelecionado));
 
             }

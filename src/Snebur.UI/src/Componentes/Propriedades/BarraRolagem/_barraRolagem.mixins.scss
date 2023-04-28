@@ -31,6 +31,8 @@
 }
 
 @mixin BarraRolagemVertical {
+    @include BarraRolagem();
+
     overscroll-behavior-y: contain;
 
     &::-webkit-scrollbar {

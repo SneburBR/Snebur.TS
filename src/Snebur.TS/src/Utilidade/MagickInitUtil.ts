@@ -31,8 +31,19 @@
                 MagickInitUtil.Status === EnumStatusInicializacaoMagick.Erro;
         }
 
+        public static get Versao(): string
+        {
+            if (typeof MagickWasm === "object" &&
+                MagickWasm?.Magick?.imageMagickVersion?.length > 0)
+            {
+                return MagickWasm.Magick?.imageMagickVersion;
+            }
+            return "Magick não inicializado";
+        }
+
         public static async InicializarAsync(progressHandler: (e: ProgressoEventArgs) => void): Promise<boolean>
         {
+
             if (MagickInitUtil.IsFinalizado)
             {
                 return MagickInitUtil.Status === EnumStatusInicializacaoMagick.Sucesso;
@@ -75,10 +86,16 @@
         {
             try
             {
+                
                 if (typeof MagickWasm === "object" &&
                     MagickWasm?.Magick?.imageMagickVersion?.length > 0)
                 {
                     return EnumStatusInicializacaoMagick.Sucesso;
+                }
+
+                if ($Configuracao.IsDebug)
+                {
+                    return EnumStatusInicializacaoMagick.Erro;
                 }
 
                 const urlMagick = MagickInitUtil.UrlMagick;

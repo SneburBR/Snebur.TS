@@ -723,9 +723,6 @@
     <Content Include="src\Controle\Apresentacao\Janela\Cadastro\basejanelacadastro.shtml.scss">
       <DependentUpon>BaseJanelaCadastro.shtml</DependentUpon>
     </Content>
-    <Content Include="src\Controle\Apresentacao\Janela\janela.shtml.scss">
-      <DependentUpon>Janela.shtml</DependentUpon>
-    </Content>
     <Content Include="src\Controle\Apresentacao\Janela\Mensagem\JanelaMensagem.shtml.scss">
       <DependentUpon>JanelaMensagem.shtml</DependentUpon>
     </Content>

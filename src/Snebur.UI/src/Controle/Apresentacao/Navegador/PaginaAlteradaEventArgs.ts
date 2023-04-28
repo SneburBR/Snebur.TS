@@ -15,6 +15,20 @@ namespace Snebur.UI
         }
     }
 
+    export class NovaPaginaEventArgs extends EventArgs
+    {
+        public readonly Pagina: Pagina;
+        public readonly Parametros: DicionarioSimples<any, string>;
+
+        public constructor(pagina: Pagina, parametros: DicionarioSimples<any, string>)
+        {
+            super();
+            this.Pagina = pagina;
+            this.Parametros = parametros;
+        }
+    }
+    
+
     export class AntesNavegarEventArgs extends EventArgs
     {
         private _isCancelarNavegacao: boolean = false;

@@ -17,10 +17,18 @@
         public override Inicializar(): void
         {
             super.Inicializar();
+            this.ValidarTipoPainel();
+        }
 
-            const tipoPainel = this.RetornarValorAtributoEnum(EnumTipoPainel, AtributosHtml.TipoPainel, null);
+        private ValidarTipoPainel()
+        {
             if ($Configuracao.IsDebug)
             {
+                const tipoPainel = this.RetornarValorAtributoEnum(EnumTipoPainel, AtributosHtml.TipoPainel, null, true);
+                if (ValidacaoUtil.IsBind(tipoPainel))
+                {
+                    return;
+                }
                 if (!EnumUtil.IsDefindo(EnumTipoPainel, tipoPainel))
                 {
                     console.warn(`O atributo ${AtributosHtml.TipoPainel.Nome}  do Painel não está defino ou é invalido em ${this.ControleApresentacao.___NomeConstrutor}.`);
@@ -64,9 +72,9 @@
                 }
 
             }
-            return componente instanceof Bloco || 
+            return componente instanceof Bloco ||
                 componente instanceof Painel ||
-                componente instanceof BlocoItem ;
+                componente instanceof BlocoItem;
         }
     }
 }
