@@ -17,8 +17,8 @@
         </ap-bloco>
 
         <ap-bloco ap-largura="100%" class="sn-bloco-item-selecionado">
-            <ap-painel
-                ap-tipo-painel="PilhaHorizontal" ap-largura="100%">
+            <ap-bloco
+                ap-largura="100%">
 
                 <ap-bloco ap-largura="100%">
                     <sn-combobox-item-selecionado
@@ -33,7 +33,7 @@
                     <seta></seta>
                 </div>
 
-            </ap-painel>
+            </ap-bloco>
         </ap-bloco>
         <ap-bloco class="bloco-linha-horizontal" ap-altura="2px">
             <div

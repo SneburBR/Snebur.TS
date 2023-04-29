@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Tarefa
 {
-    export enum EnumEstadoTarefa
+    export enum EnumStatusTarefa
     {
         Aguardando = 1,
         Executando = 2,

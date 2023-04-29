@@ -48,7 +48,7 @@
         public Controle_Carregado(provedor: any, e: EventArgs) 
         {
             $Aplicacao.GerenciadorServioArquivoPadrao.EventoProgresso.AddHandler(this.Gerenciador_ProgressoAlterado, this);
-            $Aplicacao.GerenciadorServioArquivoPadrao.EventoEstadoAlterado.AddHandler(this.GerenviadorEnvioArquivo_EstadoAlterado, this);
+            $Aplicacao.GerenciadorServioArquivoPadrao.EventoStatusAlterado.AddHandler(this.GerenviadorEnvioArquivo_StatusAlterado, this);
 
             this.DataSource = new BarraEnvioArquivosViewModel();
         }
@@ -59,9 +59,9 @@
 
         //#region Eventos gerenciador envio de arquivos
 
-        private GerenviadorEnvioArquivo_EstadoAlterado(gerenciador: sa.GerenciadorEnvioArquivo, e: t.EstadoTarefaAlteradoEventArgs): void
+        private GerenviadorEnvioArquivo_StatusAlterado(gerenciador: sa.GerenciadorEnvioArquivo, e: t.StatusTarefaAlteradoEventArgs): void
         {
-            if (e.Estado === t.EnumEstadoTarefa.Finalizada)
+            if (e.Status=== t.EnumStatusTarefa.Finalizada)
             {
                 this.OcultarBarraEnvioArquivos();
             }

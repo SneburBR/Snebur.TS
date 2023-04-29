@@ -7,7 +7,7 @@
         readonly IsListaNova: boolean;
 
         /**
-         * Define o estado para lista nova, IsListaNova = true
+         * Define o status para lista nova, IsListaNova = true
          * @param isListaNova
          */
         Clear(isListaNova: boolean): void;

@@ -42,7 +42,7 @@
 
         public get MaximoTarefasSimultaneas(): number
         {
-            if (this.Estado === t.EnumEstadoTarefa.Pausada)
+            if (this.Status === t.EnumStatusTarefa.Pausada)
             {
                 return 0;
             }
@@ -53,7 +53,7 @@
         {
             this.NotificarPropriedadeAlterada("MaximoTarefasSimultaneas", this._maximoTarefasSimultaneas, this._maximoTarefasSimultaneas = value);
 
-            if (this.Estado === t.EnumEstadoTarefa.Executando)
+            if (this.Status === t.EnumStatusTarefa.Executando)
             {
                 this.ExecutarProximaTarefa();
             }
@@ -154,7 +154,7 @@
         public override PausarTarefa(): void
         {
             super.PausarTarefa();
-            this.Estado = t.EnumEstadoTarefa.Pausada;
+            this.Status = t.EnumStatusTarefa.Pausada;
             this.ExecutarProximaTarefa();
         }
 
@@ -187,7 +187,7 @@
             {
                 //################## Pausado e continuando as Tarefas ####################
 
-                const totalTarefasEmExecucao = this.Executando.Where(x => x.Estado === t.EnumEstadoTarefa.Executando).Count;
+                const totalTarefasEmExecucao = this.Executando.Where(x => x.Status === t.EnumStatusTarefa.Executando).Count;
                 if (totalTarefasEmExecucao > this.MaximoTarefasSimultaneas)
                 {
                     for (let i = this.Executando.length - 1; i >= this.MaximoTarefasSimultaneas; i--)
@@ -198,7 +198,7 @@
                 }
                 else
                 {
-                    const tarefasPausadas = this.Executando.Where(x => x.Estado === t.EnumEstadoTarefa.Pausada).ToList();
+                    const tarefasPausadas = this.Executando.Where(x => x.Status === t.EnumStatusTarefa.Pausada).ToList();
                     if (tarefasPausadas.length > 0)
                     {
                         let fim = this.MaximoTarefasSimultaneas - totalTarefasEmExecucao;
@@ -227,7 +227,7 @@
 
                         proximaTarefa.Timeout = this.Timeout;
                         proximaTarefa.EventoProgresso.AddHandler(this.Tarefa_ProgressoAlterado, this);
-                        proximaTarefa.Estado = EnumEstadoTarefa.Executando;
+                        proximaTarefa.Status = EnumStatusTarefa.Executando;
                         this.RemoverDicionarioFila(proximaTarefa);
                         window.setTimeout(this.ExecutarTarefa_Iniciar.bind(this, proximaTarefa), this.IntervaloExecutarProximaTarefa.TotalMilliseconds);
 
@@ -242,11 +242,11 @@
             const proximo = this.RetornarProximaTarefa();
             if (proximo instanceof BaseTarefa)
             {
-                if (proximo.Estado !== EnumEstadoTarefa.Aguardando)
+                if (proximo.Status !== EnumStatusTarefa.Aguardando)
                 {
                     //if ($Configuracao.IsDebug)
                     //{
-                    //    throw new Erro("Estado da tarefa não suportado ");
+                    //    throw new Erro("Status da tarefa não suportado ");
                     //}
                     return this.RetornarProximaTarefaInterno();
                 }
@@ -300,7 +300,7 @@
             }
             else
             {
-                if (tarefa.Estado !== t.EnumEstadoTarefa.Cancelada)
+                if (tarefa.Status !== t.EnumStatusTarefa.Cancelada)
                 {
                     this.TarefasComErros.Add(tarefa);
                     this.NotificarTotalErros();

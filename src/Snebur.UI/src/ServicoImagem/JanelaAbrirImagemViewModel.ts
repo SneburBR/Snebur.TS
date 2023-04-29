@@ -5,7 +5,7 @@
         private _progresso: number = 0;
         private _totalImagens: number = 0;
         private _imagensCarregadas: number = 0;
-        private _estado: string = String.Empty;
+        private _status: string = String.Empty;
         private _imagemAtual: d.IImagem;
 
         public get Progresso(): number
@@ -41,15 +41,15 @@
             this.NotificarPropriedadeAlterada("ImagensCarregada", value);
         }
 
-        public get Estado(): string
+        public get Status(): string
         {
-            return this._estado;
+            return this._status;
         }
 
-        public set Estado(value: string)
+        public set Status(value: string)
         {
-            this._estado = value;
-            this.NotificarPropriedadeAlterada("Estado", value);
+            this._status = value;
+            this.NotificarPropriedadeAlterada("Status", value);
         }
 
         public get ImagemAtual() : d.IImagem

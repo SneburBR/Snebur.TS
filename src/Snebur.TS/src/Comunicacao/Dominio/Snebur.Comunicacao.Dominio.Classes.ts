@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 1 de abril de 2023
-//Hora : 17:56:38
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:47
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False
@@ -833,17 +833,17 @@ namespace Snebur.Comunicacao
     {
         //#region Propriedades
     
-        private _estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario = 0;
+        private _statusSessaoUsuario : Snebur.Dominio.EnumStatusSessaoUsuario = 0;
         private _identificadorSessaoUsuario : string = "00000000-0000-0000-0000-000000000000";
     
-        public get EstadoSessaoUsuario(): Snebur.Dominio.EnumEstadoSessaoUsuario 
+        public get StatusSessaoUsuario(): Snebur.Dominio.EnumStatusSessaoUsuario 
         {
-            return this._estadoSessaoUsuario;
+            return this._statusSessaoUsuario;
         }
 
-        public set EstadoSessaoUsuario(value: Snebur.Dominio.EnumEstadoSessaoUsuario) 
+        public set StatusSessaoUsuario(value: Snebur.Dominio.EnumStatusSessaoUsuario) 
         {
-            this.NotificarValorPropriedadeAlterada("EstadoSessaoUsuario", this._estadoSessaoUsuario, this._estadoSessaoUsuario = value);
+            this.NotificarValorPropriedadeAlterada("StatusSessaoUsuario", this._statusSessaoUsuario, this._statusSessaoUsuario = value);
         }
     
         public get IdentificadorSessaoUsuario(): string 
@@ -859,11 +859,11 @@ namespace Snebur.Comunicacao
     
         //#region Construtor
     
-        public constructor( estadoSessaoUsuario : Snebur.Dominio.EnumEstadoSessaoUsuario ,  identificadorSessaoUsuario : string ) 
+        public constructor( statusSessaoUsuario : Snebur.Dominio.EnumStatusSessaoUsuario ,  identificadorSessaoUsuario : string ) 
         {
             super();
             this.Inicializar();
-            this._estadoSessaoUsuario = estadoSessaoUsuario;
+            this._statusSessaoUsuario = statusSessaoUsuario;
             this._identificadorSessaoUsuario = identificadorSessaoUsuario;
         }
         //#endregion

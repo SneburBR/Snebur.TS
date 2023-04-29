@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 8 de abril de 2023
-//Hora : 20:16:01
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:45
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -263,55 +263,6 @@ namespace Snebur.Dominio
     (EnumTipoJuros as any).Rotulos["Composto"] = "Composto";
     (EnumTipoJuros as any).Rotulos["Amortizado"] = "Amortizado";
 
-    export enum EnumEstadoCodigoRecuperarSenha
-    {
-        Nenhum = 0,
-        Novo = 1,
-        TentativaInvalida = 2,
-        Sucesso = 3,
-        Expirado = 4,
-        MaximoTentativaAtingido = 5,
-        SenhaRecuperada = 6,
-        TempoMaximoTentativaExpirado = 7,
-    }
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos = {};
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["Nenhum"] = "Nenhum";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["Novo"] = "Novo";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["TentativaInvalida"] = "TentativaInvalida";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["Sucesso"] = "Sucesso";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["Expirado"] = "Expirado";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["SenhaRecuperada"] = "SenhaRecuperada";
-    (EnumEstadoCodigoRecuperarSenha as any).Rotulos["TempoMaximoTentativaExpirado"] = "TempoMaximoTentativaExpirado";
-
-    export enum EnumEstadoServicoArquivo
-    {
-        Aguardando = 0,
-        EnvioIniciado = 1,
-        EnviadoArquivos = 2,
-        EnvioPendente = 3,
-        EnvioConcluido = 4,
-    }
-    (EnumEstadoServicoArquivo as any).Rotulos = {};
-    (EnumEstadoServicoArquivo as any).Rotulos["Aguardando"] = "Aguardando";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioIniciado"] = "EnvioIniciado";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnviadoArquivos"] = "EnviadoArquivos";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioPendente"] = "EnvioPendente";
-    (EnumEstadoServicoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
-
-    export enum EnumEstadoUsuario
-    {
-        Novo = 1,
-        Ativo = 3,
-        Inativo = 4,
-        Bloqueado = 5,
-    }
-    (EnumEstadoUsuario as any).Rotulos = {};
-    (EnumEstadoUsuario as any).Rotulos["Novo"] = "Novo";
-    (EnumEstadoUsuario as any).Rotulos["Ativo"] = "Ativo";
-    (EnumEstadoUsuario as any).Rotulos["Inativo"] = "Inativo";
-    (EnumEstadoUsuario as any).Rotulos["Bloqueado"] = "Bloqueado";
-
     export enum EnumResultadoAutenticacao
     {
         Sucesso = 1,
@@ -340,7 +291,56 @@ namespace Snebur.Dominio
     (EnumResultadoValidacaoCredencial as any).Rotulos["SenhaIncorreta"] = "SenhaIncorreta";
     (EnumResultadoValidacaoCredencial as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
 
-    export enum EnumEstadoArquivo
+    export enum EnumStatusCodigoRecuperarSenha
+    {
+        Nenhum = 0,
+        Novo = 1,
+        TentativaInvalida = 2,
+        Sucesso = 3,
+        Expirado = 4,
+        MaximoTentativaAtingido = 5,
+        SenhaRecuperada = 6,
+        TempoMaximoTentativaExpirado = 7,
+    }
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos = {};
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["Nenhum"] = "Nenhum";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["Novo"] = "Novo";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["TentativaInvalida"] = "TentativaInvalida";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["Sucesso"] = "Sucesso";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["Expirado"] = "Expirado";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["SenhaRecuperada"] = "SenhaRecuperada";
+    (EnumStatusCodigoRecuperarSenha as any).Rotulos["TempoMaximoTentativaExpirado"] = "TempoMaximoTentativaExpirado";
+
+    export enum EnumStatusServicoArquivo
+    {
+        Aguardando = 0,
+        EnvioIniciado = 1,
+        EnviadoArquivos = 2,
+        EnvioPendente = 3,
+        EnvioConcluido = 4,
+    }
+    (EnumStatusServicoArquivo as any).Rotulos = {};
+    (EnumStatusServicoArquivo as any).Rotulos["Aguardando"] = "Aguardando";
+    (EnumStatusServicoArquivo as any).Rotulos["EnvioIniciado"] = "EnvioIniciado";
+    (EnumStatusServicoArquivo as any).Rotulos["EnviadoArquivos"] = "EnviadoArquivos";
+    (EnumStatusServicoArquivo as any).Rotulos["EnvioPendente"] = "EnvioPendente";
+    (EnumStatusServicoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
+
+    export enum EnumStatusUsuario
+    {
+        Novo = 1,
+        Ativo = 3,
+        Inativo = 4,
+        Bloqueado = 5,
+    }
+    (EnumStatusUsuario as any).Rotulos = {};
+    (EnumStatusUsuario as any).Rotulos["Novo"] = "Novo";
+    (EnumStatusUsuario as any).Rotulos["Ativo"] = "Ativo";
+    (EnumStatusUsuario as any).Rotulos["Inativo"] = "Inativo";
+    (EnumStatusUsuario as any).Rotulos["Bloqueado"] = "Bloqueado";
+
+    export enum EnumStatusArquivo
     {
         Novo = 1,
         Enviando = 2,
@@ -349,13 +349,13 @@ namespace Snebur.Dominio
         Pendente = 5,
         ChecksumInvalido = 6,
     }
-    (EnumEstadoArquivo as any).Rotulos = {};
-    (EnumEstadoArquivo as any).Rotulos["Novo"] = "Novo";
-    (EnumEstadoArquivo as any).Rotulos["Enviando"] = "Enviando";
-    (EnumEstadoArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
-    (EnumEstadoArquivo as any).Rotulos["ArquivoDeletado"] = "ArquivoDeletado";
-    (EnumEstadoArquivo as any).Rotulos["Pendente"] = "Pendente";
-    (EnumEstadoArquivo as any).Rotulos["ChecksumInvalido"] = "ChecksumInvalido";
+    (EnumStatusArquivo as any).Rotulos = {};
+    (EnumStatusArquivo as any).Rotulos["Novo"] = "Novo";
+    (EnumStatusArquivo as any).Rotulos["Enviando"] = "Enviando";
+    (EnumStatusArquivo as any).Rotulos["EnvioConcluido"] = "EnvioConcluido";
+    (EnumStatusArquivo as any).Rotulos["ArquivoDeletado"] = "ArquivoDeletado";
+    (EnumStatusArquivo as any).Rotulos["Pendente"] = "Pendente";
+    (EnumStatusArquivo as any).Rotulos["ChecksumInvalido"] = "ChecksumInvalido";
 
     export enum EnumAparenciaFonte
     {
@@ -455,6 +455,35 @@ namespace Snebur.Dominio
     (EnumEfeitoImagem as any).Rotulos["Medellin"] = "Medellín";
     (EnumEfeitoImagem as any).Rotulos["Londres"] = "Londres";
 
+    export enum EnumFiltroImagem
+    {
+        Exposicao = 0,
+        Ciano = 1,
+        Magenta = 2,
+        Amarelo = 3,
+        Contraste = 4,
+        Brilho = 5,
+        Sepia = 6,
+        Saturacao = 7,
+        PretoBranco = 8,
+        Inverter = 9,
+        Matriz = 10,
+        Desfoque = 11,
+    }
+    (EnumFiltroImagem as any).Rotulos = {};
+    (EnumFiltroImagem as any).Rotulos["Exposicao"] = "Exposição";
+    (EnumFiltroImagem as any).Rotulos["Ciano"] = "Ciano";
+    (EnumFiltroImagem as any).Rotulos["Magenta"] = "Magenta";
+    (EnumFiltroImagem as any).Rotulos["Amarelo"] = "Amarelo";
+    (EnumFiltroImagem as any).Rotulos["Contraste"] = "Contraste";
+    (EnumFiltroImagem as any).Rotulos["Brilho"] = "Brilho";
+    (EnumFiltroImagem as any).Rotulos["Sepia"] = "Sépia";
+    (EnumFiltroImagem as any).Rotulos["Saturacao"] = "Saturação";
+    (EnumFiltroImagem as any).Rotulos["PretoBranco"] = "Preto e branco";
+    (EnumFiltroImagem as any).Rotulos["Inverter"] = "Inverter";
+    (EnumFiltroImagem as any).Rotulos["Matriz"] = "Matriz";
+    (EnumFiltroImagem as any).Rotulos["Desfoque"] = "Desfoque";
+
     export enum EnumFormatoImagem
     {
         Desconhecido = 0,
@@ -465,16 +494,60 @@ namespace Snebur.Dominio
         ICO = 5,
         GIF = 6,
         HEIC = 7,
+        WEBP = 8,
+        SVG = 9,
+        AVIF = 10,
+        APNG = 11,
+        PSD = 12,
+        PSB = 13,
+        CDR = 14,
+        PDF_AI = 15,
+        DNG = 16,
+        CR2 = 17,
+        NEF = 18,
+        NRW = 19,
+        ARW = 20,
+        CRW = 21,
+        CR3 = 22,
+        RAF = 23,
+        SR2 = 24,
+        ORF = 25,
+        NKSC = 26,
+        GPR = 27,
+        SRW = 28,
+        EPS = 29,
     }
     (EnumFormatoImagem as any).Rotulos = {};
     (EnumFormatoImagem as any).Rotulos["Desconhecido"] = "Desconhecido";
-    (EnumFormatoImagem as any).Rotulos["JPEG"] = "JPEG";
-    (EnumFormatoImagem as any).Rotulos["BMP"] = "BMP";
-    (EnumFormatoImagem as any).Rotulos["PNG"] = "PNG";
-    (EnumFormatoImagem as any).Rotulos["TIFF"] = "TIFF";
-    (EnumFormatoImagem as any).Rotulos["ICO"] = "ICO";
-    (EnumFormatoImagem as any).Rotulos["GIF"] = "GIF";
-    (EnumFormatoImagem as any).Rotulos["HEIC"] = "HEIC";
+    (EnumFormatoImagem as any).Rotulos["JPEG"] = "Joint Photographic Experts Group";
+    (EnumFormatoImagem as any).Rotulos["BMP"] = "BMP file format";
+    (EnumFormatoImagem as any).Rotulos["PNG"] = "Portable Network Graphics";
+    (EnumFormatoImagem as any).Rotulos["TIFF"] = "Tag Image File Format";
+    (EnumFormatoImagem as any).Rotulos["ICO"] = "Microsoft Icon";
+    (EnumFormatoImagem as any).Rotulos["GIF"] = "Graphics Interchange Format";
+    (EnumFormatoImagem as any).Rotulos["HEIC"] = "High Efficiency Image ";
+    (EnumFormatoImagem as any).Rotulos["WEBP"] = "WebP - Google";
+    (EnumFormatoImagem as any).Rotulos["SVG"] = "Scalable Vector Graphics (SVG)";
+    (EnumFormatoImagem as any).Rotulos["AVIF"] = "AV1 Image File Format";
+    (EnumFormatoImagem as any).Rotulos["APNG"] = "Animated Portable Network Graphics ";
+    (EnumFormatoImagem as any).Rotulos["PSD"] = "Abobe Photoshop";
+    (EnumFormatoImagem as any).Rotulos["PSB"] = "Abobe Photoshop";
+    (EnumFormatoImagem as any).Rotulos["CDR"] = "CorelDraw";
+    (EnumFormatoImagem as any).Rotulos["PDF_AI"] = "Abobe  Acrobat Reader or Illustrator";
+    (EnumFormatoImagem as any).Rotulos["DNG"] = "Abobe RAW DNG";
+    (EnumFormatoImagem as any).Rotulos["CR2"] = "Canon RAW 2 Image";
+    (EnumFormatoImagem as any).Rotulos["NEF"] = "Nikon RAW Image";
+    (EnumFormatoImagem as any).Rotulos["NRW"] = "Nikon RAW Image";
+    (EnumFormatoImagem as any).Rotulos["ARW"] = "Sony RAW Image";
+    (EnumFormatoImagem as any).Rotulos["CRW"] = "Canon RAW Image";
+    (EnumFormatoImagem as any).Rotulos["CR3"] = "Canon RAW Image";
+    (EnumFormatoImagem as any).Rotulos["RAF"] = "Fujifilm RAW Image";
+    (EnumFormatoImagem as any).Rotulos["SR2"] = "Sony RAW Image";
+    (EnumFormatoImagem as any).Rotulos["ORF"] = "Olympus RAW Image";
+    (EnumFormatoImagem as any).Rotulos["NKSC"] = "Nikon RAW Image";
+    (EnumFormatoImagem as any).Rotulos["GPR"] = "GoPro RAW Image";
+    (EnumFormatoImagem as any).Rotulos["SRW"] = "GoPro RAW Image";
+    (EnumFormatoImagem as any).Rotulos["EPS"] = "Encapsulated PostScript";
 
     export enum EnumRotacaoImagem
     {
@@ -513,33 +586,6 @@ namespace Snebur.Dominio
     (EnumTamanhoImagem as any).Rotulos["Media"] = "Media";
     (EnumTamanhoImagem as any).Rotulos["Grande"] = "Grande";
     (EnumTamanhoImagem as any).Rotulos["Impressao"] = "Impressao";
-
-    export enum EnumEstadoSessaoUsuario
-    {
-        Nova = 100,
-        Ativo = 200,
-        Inativo = 300,
-        Finalizada = 400,
-        Bloqueado = 500,
-        Expirado = 600,
-        Cancelada = 700,
-        SenhaAlterada = 800,
-        UsuarioDiferente = 900,
-        IdentificadorSessaoUsuarioInexistente = 1000,
-        Desconhecida = 1001,
-    }
-    (EnumEstadoSessaoUsuario as any).Rotulos = {};
-    (EnumEstadoSessaoUsuario as any).Rotulos["Nova"] = "Nova";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Ativo"] = "Ativo";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Inativo"] = "Inativo";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Finalizada"] = "Finalizada";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Bloqueado"] = "Bloqueado";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Expirado"] = "Expirado";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Cancelada"] = "Cancelada";
-    (EnumEstadoSessaoUsuario as any).Rotulos["SenhaAlterada"] = "SenhaAlterada";
-    (EnumEstadoSessaoUsuario as any).Rotulos["UsuarioDiferente"] = "UsuarioDiferente";
-    (EnumEstadoSessaoUsuario as any).Rotulos["IdentificadorSessaoUsuarioInexistente"] = "IdentificadorSessaoUsuarioInexistente";
-    (EnumEstadoSessaoUsuario as any).Rotulos["Desconhecida"] = "Desconhecida";
 
     export enum EnumNavegador
     {
@@ -596,6 +642,33 @@ namespace Snebur.Dominio
     (EnumSistemaOperacional as any).Rotulos["Linux"] = "Linux";
     (EnumSistemaOperacional as any).Rotulos["Desconhecido"] = "Desconhecido";
 
+    export enum EnumStatusSessaoUsuario
+    {
+        Nova = 100,
+        Ativo = 200,
+        Inativo = 300,
+        Finalizada = 400,
+        Bloqueado = 500,
+        Expirado = 600,
+        Cancelada = 700,
+        SenhaAlterada = 800,
+        UsuarioDiferente = 900,
+        IdentificadorSessaoUsuarioInexistente = 1000,
+        Desconhecida = 1001,
+    }
+    (EnumStatusSessaoUsuario as any).Rotulos = {};
+    (EnumStatusSessaoUsuario as any).Rotulos["Nova"] = "Nova";
+    (EnumStatusSessaoUsuario as any).Rotulos["Ativo"] = "Ativo";
+    (EnumStatusSessaoUsuario as any).Rotulos["Inativo"] = "Inativo";
+    (EnumStatusSessaoUsuario as any).Rotulos["Finalizada"] = "Finalizada";
+    (EnumStatusSessaoUsuario as any).Rotulos["Bloqueado"] = "Bloqueado";
+    (EnumStatusSessaoUsuario as any).Rotulos["Expirado"] = "Expirado";
+    (EnumStatusSessaoUsuario as any).Rotulos["Cancelada"] = "Cancelada";
+    (EnumStatusSessaoUsuario as any).Rotulos["SenhaAlterada"] = "SenhaAlterada";
+    (EnumStatusSessaoUsuario as any).Rotulos["UsuarioDiferente"] = "UsuarioDiferente";
+    (EnumStatusSessaoUsuario as any).Rotulos["IdentificadorSessaoUsuarioInexistente"] = "IdentificadorSessaoUsuarioInexistente";
+    (EnumStatusSessaoUsuario as any).Rotulos["Desconhecida"] = "Desconhecida";
+
     export enum EnumTipoAplicacao
     {
         Typescript = 1,
@@ -640,8 +713,10 @@ namespace Snebur.Dominio
         Aac = 100,
         Abw = 200,
         Ai = 300,
+        Apng = 320,
         Arc = 400,
         Avi = 500,
+        Avif = 520,
         Azw = 600,
         Bin = 700,
         Bz = 800,
@@ -715,14 +790,30 @@ namespace Snebur.Dominio
         _3gp = 7000,
         _3g2 = 7100,
         _7z = 7200,
+        Dng = 7201,
+        Cr2 = 7202,
+        Nef = 7203,
+        Nrw = 7204,
+        Arw = 7205,
+        Crw = 7206,
+        Cr3 = 7207,
+        Raf = 7208,
+        Sr2 = 7209,
+        Orf = 7210,
+        NKSC = 7211,
+        GPR = 7212,
+        Srw = 7213,
+        Heic = 7214,
     }
     (EnumMimeType as any).Rotulos = {};
     (EnumMimeType as any).Rotulos["Desconhecido"] = "Desconhecido";
     (EnumMimeType as any).Rotulos["Aac"] = "Arquivo de audio AAC";
     (EnumMimeType as any).Rotulos["Abw"] = "Documento AbiWord";
     (EnumMimeType as any).Rotulos["Ai"] = "Abode Illustrator";
+    (EnumMimeType as any).Rotulos["Apng"] = "Animated Portable Network Graphics";
     (EnumMimeType as any).Rotulos["Arc"] = "Documento Arquivado (varios arquivos embutidos)";
     (EnumMimeType as any).Rotulos["Avi"] = "Arquivo de audio e vídeo Intercalar AVI";
+    (EnumMimeType as any).Rotulos["Avif"] = "Formato AV1 Image File Format";
     (EnumMimeType as any).Rotulos["Azw"] = "Formato eBook do Amazon Kindle";
     (EnumMimeType as any).Rotulos["Bin"] = "Qualquer tipo de dados binários";
     (EnumMimeType as any).Rotulos["Bz"] = "Arquivo compactado BZip";
@@ -796,6 +887,20 @@ namespace Snebur.Dominio
     (EnumMimeType as any).Rotulos["_3gp"] = "3GPP audio/video container";
     (EnumMimeType as any).Rotulos["_3g2"] = "3GPP2 audio/video container";
     (EnumMimeType as any).Rotulos["_7z"] = "7-zip archive";
+    (EnumMimeType as any).Rotulos["Dng"] = "Dng";
+    (EnumMimeType as any).Rotulos["Cr2"] = "Cr2";
+    (EnumMimeType as any).Rotulos["Nef"] = "Nef";
+    (EnumMimeType as any).Rotulos["Nrw"] = "Nrw";
+    (EnumMimeType as any).Rotulos["Arw"] = "Arw";
+    (EnumMimeType as any).Rotulos["Crw"] = "Crw";
+    (EnumMimeType as any).Rotulos["Cr3"] = "Cr3";
+    (EnumMimeType as any).Rotulos["Raf"] = "Raf";
+    (EnumMimeType as any).Rotulos["Sr2"] = "Sr2";
+    (EnumMimeType as any).Rotulos["Orf"] = "Orf";
+    (EnumMimeType as any).Rotulos["NKSC"] = "NKSC";
+    (EnumMimeType as any).Rotulos["GPR"] = "GPR";
+    (EnumMimeType as any).Rotulos["Srw"] = "Srw";
+    (EnumMimeType as any).Rotulos["Heic"] = "Heic";
 
     export enum EnumPreenchimentoImagem
     {
@@ -959,7 +1064,7 @@ namespace Snebur.Dominio.Interface.Media
     (EnumFamiliaPerfilIcc as any).Rotulos["Grayscale"] = "Grayscale";
 
 }
-namespace Snebur.Imagem
+namespace Snebur.Imagens
 {
     export enum EnumDirecaoGradiente
     {
@@ -6436,18 +6541,18 @@ namespace Snebur.Utilidade
     (EnumFiltroPropriedadeCampo as any).Rotulos["IgnorarPropriedadeProtegida"] = "IgnorarPropriedadeProtegida";
     (EnumFiltroPropriedadeCampo as any).Rotulos["IgnorarChaveEstrangeira"] = "IgnorarChaveEstrangeira";
 
-    export enum EnumEstadoDiretorio
+    export enum EnumStatusDiretorio
     {
         TudoCerto = 1,
         DiretorioNaoExiste = 2,
         SemPermissaoGravacao = 3,
         EspacoInsuficiente = 4,
     }
-    (EnumEstadoDiretorio as any).Rotulos = {};
-    (EnumEstadoDiretorio as any).Rotulos["TudoCerto"] = "TudoCerto";
-    (EnumEstadoDiretorio as any).Rotulos["DiretorioNaoExiste"] = "DiretorioNaoExiste";
-    (EnumEstadoDiretorio as any).Rotulos["SemPermissaoGravacao"] = "SemPermissaoGravacao";
-    (EnumEstadoDiretorio as any).Rotulos["EspacoInsuficiente"] = "EspacoInsuficiente";
+    (EnumStatusDiretorio as any).Rotulos = {};
+    (EnumStatusDiretorio as any).Rotulos["TudoCerto"] = "TudoCerto";
+    (EnumStatusDiretorio as any).Rotulos["DiretorioNaoExiste"] = "DiretorioNaoExiste";
+    (EnumStatusDiretorio as any).Rotulos["SemPermissaoGravacao"] = "SemPermissaoGravacao";
+    (EnumStatusDiretorio as any).Rotulos["EspacoInsuficiente"] = "EspacoInsuficiente";
 
     export enum EnumFormatacaoBytes
     {

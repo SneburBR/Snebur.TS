@@ -1,19 +1,12 @@
 ﻿namespace Snebur.UI
 {
-    export class RegiaoBlocoOrdenacao
+    export abstract class RegiaoBlocoOrdenacao
     {
-        private _ordenacaoDestino: number | null;
         private _regiaoOrigem: DOMRect;
-
+        public OrdenacaoDestino: number
+        public readonly OrdenacaoOrigem: number;
         public readonly IndiceOrigem: number;
         public readonly ItemBlocoOrdenacao: ItemBlocoOrdenacao;
-        public readonly RegiaoPainel: DOMRect;
-        public readonly OrdenacaoOrigem: number;
-
-        private RegiaoDestino: DOMRect;
-        private EstiloPosicaoInicial: Estilo;
-
-        public OrdenacaoDestino: number
 
         public get NovaOrdenacao(): number
         {
@@ -31,22 +24,54 @@
         }
 
         public constructor(
-            regiaoPainel: DOMRect,
             itemBlocoOrdenacao: ItemBlocoOrdenacao,
             indice: number)
         {
             this.IndiceOrigem = indice;
             this.ItemBlocoOrdenacao = itemBlocoOrdenacao;
-            this.RegiaoPainel = regiaoPainel;
-            this._regiaoOrigem = itemBlocoOrdenacao.Elemento.getBoundingClientRect();
-            this.RegiaoDestino = this.RegiaoOrigem;
-
             this.ItemBlocoOrdenacao.Elemento.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
             this.OrdenacaoOrigem = itemBlocoOrdenacao.ObjetoOrdenacao.Ordenacao;
-            /*this.AtivarPosicaoAbosoluta();*/
+            this._regiaoOrigem = itemBlocoOrdenacao.Elemento.getBoundingClientRect();
         }
 
-        public AtivarPosicaoAbosoluta(): void
+        public abstract Inicializar(): void;
+        public abstract SimuolarOrdenacao(regiaoDestino: DOMRect): void;
+
+        public Dispose()
+        {
+            this.ItemBlocoOrdenacao.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
+            /*eslint-disable*/
+            let _this = this as any;
+            delete _this.ItemBlocoOrdenacao;
+            delete _this.RegiaoPainel;
+            delete _this.RegiaoOrigem;
+            /*eslint-enable*/
+        }
+    }
+
+    export class RegiaoBlocoOrdenacaoAnimado extends RegiaoBlocoOrdenacao
+    {
+        public readonly RegiaoPainel: DOMRect;
+        private RegiaoDestino: DOMRect;
+        private EstiloPosicaoInicial: Estilo;
+
+        public constructor(
+            itemBlocoOrdenacao: ItemBlocoOrdenacao,
+            regiaoPainel: DOMRect,
+            indice: number)
+        {
+            super(itemBlocoOrdenacao, indice);
+
+            this.RegiaoPainel = regiaoPainel;
+            this.RegiaoDestino = this.RegiaoOrigem;
+        }
+
+        public override Inicializar(): void
+        {
+            this.AtivarPosicaoAbosoluta();
+        }
+
+        private AtivarPosicaoAbosoluta(): void
         {
             const elemento = this.ItemBlocoOrdenacao.Elemento;
 
@@ -69,7 +94,7 @@
             delete this.EstiloPosicaoInicial;
         }
 
-        public AtualizarPosicao(regiaoDestino: DOMRect): void
+        public override SimuolarOrdenacao(regiaoDestino: DOMRect): void
         {
             if (!MedidaUtil.IsRegiaoDomIgual(this.RegiaoDestino, regiaoDestino))
             {
@@ -101,18 +126,10 @@
             estilo.AplicarEm(elemento);
         }
 
-        public Dispose(): void
+        public override Dispose(): void
         {
             this.RemoverPosicaoAsoluta();
-            this.ItemBlocoOrdenacao.Elemento.classList.remove(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
-
-            /*eslint-disable*/
-            let _this = this as any;
-            delete _this.Bloco;
-            delete _this.RegiaoPainel;
-            delete _this.RegiaoOrigem;
-            /*eslint-enable*/
-
+            super.Dispose();
         }
     }
 

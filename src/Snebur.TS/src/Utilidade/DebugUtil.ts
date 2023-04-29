@@ -12,6 +12,7 @@
                 {
                     throw new Erro(mensagem);
                 }
+                console.warn(mensagem);
             }
             catch /*eslint-disable*/
             {

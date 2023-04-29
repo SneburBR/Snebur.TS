@@ -34,7 +34,7 @@ namespace Snebur.Nativo
 
         Clear(): void;
         /**
-        * Definie o estado para lista nova, IsListaNova = true,
+        * Definie o status para lista nova, IsListaNova = true,
         * Somente para a ListaObservacao
         * @param isDefinirListaNova
         */

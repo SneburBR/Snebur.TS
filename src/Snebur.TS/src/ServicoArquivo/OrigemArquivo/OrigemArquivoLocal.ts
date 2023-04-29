@@ -19,7 +19,7 @@
             this.Arquivo.TotalBytesLocal = arquivoOuBlob.size;
             this.Arquivo.NomeArquivo = nomeArquivo;
             this.Arquivo.CaminhoArquivo = nomeArquivo;
-            this.Arquivo.Estado = d.EnumEstadoArquivo.Novo;
+            this.Arquivo.Status = d.EnumStatusArquivo.Novo;
         }
 
         private RetornarNomeArquivo(arquivoOuBlob: SnBlob, nomeArquivo: string)

@@ -728,7 +728,7 @@
             super.OcultarElemento();
         }
 
-        private FecharInterno(): void
+        private FecharInterno( ): void
         {
             this.__camposPrivadosJanela.isAberta = false;
             this.AtualizarFundo(false);

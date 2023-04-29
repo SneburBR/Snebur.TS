@@ -65,11 +65,14 @@
             return EnumVisibilidade.Oculto;
         }
 
-        public override Dispose()
+        protected override async FechandoAsync(resultadoNormalizado: ResultadoFecharJanelaArgs)
         {
-            if (Snebur.$Aplicacao.DocumentoPrincipal.IsOcupado)
+            await super.FechandoAsync(resultadoNormalizado);
+
+            if ($Configuracao.IsDebugOuTeste &&
+                Snebur.$Aplicacao.DocumentoPrincipal.IsOcupado &&
+                !resultadoNormalizado.IsSucesso  )
             {
-                
                 const nomeApresentacao = this.ControleApresentacaoPai?.___NomeConstrutor ?? this.ControlePai.Nome;
                 const mensagem = `Atenção, O controle ${nomeApresentacao} está sendo  dispensado sem desocupar.
                                    Caso queria dispensar um controle e manter o sistema ocupado.
@@ -78,8 +81,12 @@
 
                 DebugUtil.ThrowAndContinue(mensagem);
 
-                Snebur.$Aplicacao.DocumentoPrincipal.DesocuparAsync();
+                await Snebur.$Aplicacao.DocumentoPrincipal.DesocuparAsync();
             }
+        }
+
+        public override Dispose()
+        {
             super.Dispose();
         }
     }

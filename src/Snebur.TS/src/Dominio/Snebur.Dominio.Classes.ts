@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 8 de abril de 2023
-//Hora : 20:16:02
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:45
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -189,7 +189,7 @@ namespace Snebur.Comunicacao
         //#region Propriedades
     
         private _isUsuarioEncontrado : boolean = false;
-        private _estado : Snebur.Dominio.EnumEstadoCodigoRecuperarSenha = 0;
+        private _status : Snebur.Dominio.EnumStatusCodigoRecuperarSenha = 0;
     
         public get IsUsuarioEncontrado(): boolean 
         {
@@ -201,14 +201,14 @@ namespace Snebur.Comunicacao
             this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
         }
     
-        public get Estado(): Snebur.Dominio.EnumEstadoCodigoRecuperarSenha 
+        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha 
         {
-            return this._estado;
+            return this._status;
         }
 
-        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha) 
+        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
         {
-            this.NotificarValorPropriedadeAlterada("Estado", this._estado, this._estado = value);
+            this.NotificarValorPropriedadeAlterada("Status", this._status, this._status = value);
         }
         //#endregion
     
@@ -226,7 +226,7 @@ namespace Snebur.Comunicacao
         //#region Propriedades
     
         private _isUsuarioEncontrado : boolean = false;
-        private _estado : Snebur.Dominio.EnumEstadoCodigoRecuperarSenha = 0;
+        private _status : Snebur.Dominio.EnumStatusCodigoRecuperarSenha = 0;
         private _tempoEsperar : number = 0;
     
         public get IsUsuarioEncontrado(): boolean 
@@ -239,14 +239,14 @@ namespace Snebur.Comunicacao
             this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
         }
     
-        public get Estado(): Snebur.Dominio.EnumEstadoCodigoRecuperarSenha 
+        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha 
         {
-            return this._estado;
+            return this._status;
         }
 
-        public set Estado(value: Snebur.Dominio.EnumEstadoCodigoRecuperarSenha) 
+        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
         {
-            this.NotificarValorPropriedadeAlterada("Estado", this._estado, this._estado = value);
+            this.NotificarValorPropriedadeAlterada("Status", this._status, this._status = value);
         }
     
         public get TempoEsperar(): number 

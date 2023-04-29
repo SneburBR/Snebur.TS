@@ -57,19 +57,19 @@
 
         private RetornarTitulo(): string
         {
-            switch (this.ControleExpandir.Estado)
+            switch (this.ControleExpandir.Status)
             {
-                case EnumEstadoConteudoExpandir.Encolhido:
+                case EnumStatusConteudoExpandir.Encolhido:
 
                     return this.NormalizarTitulo(this.TituloExpandir);
 
-                case EnumEstadoConteudoExpandir.Expandido:
+                case EnumStatusConteudoExpandir.Expandido:
 
                     return this.NormalizarTitulo(this.TituloEncolher);
 
                 default:
 
-                    throw new Error("O estado do não é suportado");
+                    throw new Error("O status do não é suportado");
             }
         }
 

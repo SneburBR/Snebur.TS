@@ -51,10 +51,10 @@
 
         private AtualizarVisibilidadeRodapeInterno(): void
         {
-            const estadoLista = this.EstadoControleLista;
+            const statusLista = this.StatusControleLista;
             if (this.IsControleInicializado && this.ElementoRodaPeInterno instanceof HTMLElement)
             {
-                this.ElementoRodaPeInterno.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregada;
+                this.ElementoRodaPeInterno.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
             }
         }
     }

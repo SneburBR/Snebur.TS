@@ -309,21 +309,21 @@
 
         public AtualizarVisibilidadeBlocoListaVazia(): void
         {
-            const estadoLista = this.EstadoControleLista;
+            const statusLista = this.StatusControleLista;
 
             if (this.BlocoListaVazia instanceof BlocoListaVazia)
             {
-                this.BlocoListaVazia.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregadaVazia;
+                this.BlocoListaVazia.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregadaVazia;
             }
 
             if (this.BlocoListaCarregando instanceof BlocoListaCarregando)
             {
-                this.BlocoListaCarregando.Visibilidade = estadoLista === EnumEstadoControleLista.Carregando;
+                this.BlocoListaCarregando.Visibilidade = statusLista === EnumStatusControleLista.Carregando;
             }
 
             if (this.BlocoCabecalho instanceof BlocoCabecalho)
             {
-                this.BlocoCabecalho.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregada;
+                this.BlocoCabecalho.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
             }
         }
 

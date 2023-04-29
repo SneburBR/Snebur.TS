@@ -91,7 +91,7 @@
             /*this.MaximoTarefasSimultaneas = $Configuracao.IsDebug?  1 : 3;*/
             this.MaximoTarefasSimultaneas = 3;
             this.IntervaloExecutarProximaTarefa = TimeSpan.FromSeconds(0);
-            this.Estado = t.EnumEstadoTarefa.Finalizada;
+            this.Status = t.EnumStatusTarefa.Finalizada;
         }
 
         protected override AtualizarProgressoGerenciadorTarefa(): void
@@ -251,7 +251,7 @@
             const tarefaImpressao = this.EnviarImagemInterno(imagem, d.EnumTamanhoImagem.Impressao, dimensaoImpressao, isProcessarImagem);
             if (tarefaImpressao instanceof TarefaEnviarImagemImpressao)
             {
-                if (tarefaImpressao.Estado === t.EnumEstadoTarefa.Aguardando)
+                if (tarefaImpressao.Status === t.EnumStatusTarefa.Aguardando)
                 {
                     tarefaImpressao.AtualizarDimensaoImpressao(dimensaoImpressao);
                 }
@@ -269,7 +269,7 @@
             dimensaoImpressao: d.Dimensao, isProcessarImagem: boolean)
         {
 
-            if (tarefaImpressao.Estado === t.EnumEstadoTarefa.Executando)
+            if (tarefaImpressao.Status === t.EnumStatusTarefa.Executando)
             {
                 tarefaImpressao.CancelarTarefa();
 
@@ -284,7 +284,7 @@
             else
             {
                 tarefaImpressao.AtualizarDimensaoImpressao(dimensaoImpressao);
-                tarefaImpressao.Estado = t.EnumEstadoTarefa.Aguardando;
+                tarefaImpressao.Status = t.EnumStatusTarefa.Aguardando;
                 if (!this.Impressoes.Contains(tarefaImpressao))
                 {
                     tarefaImpressao.IsReenviar = true;
@@ -438,7 +438,7 @@
 
         public override FinalizarGerenciadorTarefa(): void
         {
-            this.Estado = t.EnumEstadoTarefa.Finalizada;
+            this.Status = t.EnumStatusTarefa.Finalizada;
             this.DispensarMedidorVelocidade();
             this.EventoFinalizado.Notificar(this, EventArgs.Empty);
             setTimeout(this.LimparTarefas.bind(this), 5000);

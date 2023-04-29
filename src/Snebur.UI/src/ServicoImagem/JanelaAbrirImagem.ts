@@ -46,7 +46,7 @@
 
         private async SalvarEntidadesImagemAsync() 
         {
-            this.ViewModel.Estado = "Salvando";
+            this.ViewModel.Status = "Salvando";
             const contexto = $Aplicacao.RetornarContextoDados(this.TipoEntidadeImagem);
             const resultadoSalvar = await contexto.SalvarAsync(this.Imagens);
             if (!resultadoSalvar.IsSucesso)

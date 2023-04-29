@@ -12,7 +12,7 @@
 
         public TamanhoIcone: EnumTamanhoIcone
 
-        public Estado: EnumEstadoConteudoExpandir = EnumEstadoConteudoExpandir.Encolhido;
+        public Status: EnumStatusConteudoExpandir = EnumStatusConteudoExpandir.Encolhido;
 
         public readonly EventoConteudoExpandido = new Evento<ConteudoExpandidoEventArgs>(this);
 
@@ -77,11 +77,11 @@
         private ExpandirTitulo_Click(e: MouseEvent): void
         {
             const isPrimeiraVez = !this.IsExpandoPrimeiraVez;
-            if (this.Estado === EnumEstadoConteudoExpandir.Expandido)
+            if (this.Status === EnumStatusConteudoExpandir.Expandido)
             {
                 this.Elemento.classList.add("sn-expandido");
                 this.EncolherElemento(this.ExpandirConteudo.Elemento);
-                this.Estado = EnumEstadoConteudoExpandir.Encolhido;
+                this.Status = EnumStatusConteudoExpandir.Encolhido;
 
                 this.ExpandirTitulo.BotaoIcone.Icone = this.IconeExpandir;
                 this.IsExpandoPrimeiraVez = true;
@@ -91,9 +91,9 @@
                 this.Elemento.classList.remove("sn-expandido");
                 this.ExpandirElemento(this.ExpandirConteudo.Elemento);
                 this.ExpandirTitulo.BotaoIcone.Icone = this.IconeEncolher;
-                this.Estado = EnumEstadoConteudoExpandir.Expandido;
+                this.Status = EnumStatusConteudoExpandir.Expandido;
             }
-            this.EventoConteudoExpandido.Notificar(this, new ConteudoExpandidoEventArgs(isPrimeiraVez, this.Estado));
+            this.EventoConteudoExpandido.Notificar(this, new ConteudoExpandidoEventArgs(isPrimeiraVez, this.Status));
         }
         private ExpandirElemento(elemento: HTMLElement): any
         {
@@ -128,7 +128,7 @@
         }
     }
 
-    export enum EnumEstadoConteudoExpandir
+    export enum EnumStatusConteudoExpandir
     {
         Expandido = 1,
         Encolhido = 2
@@ -137,13 +137,13 @@
     export class ConteudoExpandidoEventArgs extends EventArgs
     {
         public readonly IsPrimeiraVez: boolean
-        public readonly Estado: EnumEstadoConteudoExpandir;
+        public readonly Status: EnumStatusConteudoExpandir;
 
-        public constructor(isPrimeiraVez: boolean, estado: EnumEstadoConteudoExpandir)
+        public constructor(isPrimeiraVez: boolean, status: EnumStatusConteudoExpandir)
         {
             super();
             this.IsPrimeiraVez = isPrimeiraVez;
-            this.Estado = estado;
+            this.Status = status;
         }
 
     }

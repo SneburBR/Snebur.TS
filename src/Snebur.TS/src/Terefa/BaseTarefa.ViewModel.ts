@@ -8,7 +8,7 @@
 
         private IdentificadorTimeout: number;
         private _progresso: number;
-        private _estadoTarefa: EnumEstadoTarefa;
+        private _statusTarefa: EnumStatusTarefa;
 
         public get Progresso(): number
         {
@@ -22,17 +22,17 @@
             this.NotificarEventoProgressoAlterado(value);
         }
 
-        public get Estado(): EnumEstadoTarefa
+        public get Status(): EnumStatusTarefa
         {
-            return this._estadoTarefa;
+            return this._statusTarefa;
         }
 
-        public set Estado(value: EnumEstadoTarefa)
+        public set Status(value: EnumStatusTarefa)
         {
-            const antigoValor = this._estadoTarefa;
-            this._estadoTarefa = value;
-            this.NotificarPropriedadeAlterada("Estado", antigoValor, value);
-            this.EventoEstadoAlterado.Notificar(this, new EstadoTarefaAlteradoEventArgs(this, value));
+            const antigoValor = this._statusTarefa;
+            this._statusTarefa = value;
+            this.NotificarPropriedadeAlterada("Status", antigoValor, value);
+            this.EventoStatusAlterado.Notificar(this, new StatusTarefaAlteradoEventArgs(this, value));
         }
 
         public Timeout: TimeSpan;
@@ -45,7 +45,7 @@
 
         public CallbackTarefaConcluida: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>;
         public readonly EventoProgresso: Evento<TProgressoEventArgs>;
-        public readonly EventoEstadoAlterado: Evento<EstadoTarefaAlteradoEventArgs>;
+        public readonly EventoStatusAlterado: Evento<StatusTarefaAlteradoEventArgs>;
 
         public Argumento: any;
 
@@ -60,9 +60,9 @@
             //this.__Teste2 = this.Teste2.bind(this);
 
             this._progresso = 0;
-            this._estadoTarefa = EnumEstadoTarefa.Aguardando;
+            this._statusTarefa = EnumStatusTarefa.Aguardando;
             this.EventoProgresso = new Evento<TProgressoEventArgs>(this);
-            this.EventoEstadoAlterado = new Evento<EstadoTarefaAlteradoEventArgs>(this);
+            this.EventoStatusAlterado = new Evento<StatusTarefaAlteradoEventArgs>(this);
             this.Timeout = this.RetornarTimeout();
         }
 
@@ -76,12 +76,12 @@
         {
             this.CallbackTarefaConcluida = callback;
 
-            if (this.Estado === EnumEstadoTarefa.Pausada)
+            if (this.Status === EnumStatusTarefa.Pausada)
             {
                 return;
             }
 
-            this.Estado = EnumEstadoTarefa.Executando;
+            this.Status = EnumStatusTarefa.Executando;
             await ThreadUtil.QuebrarAsync();
             await this.ExecutarAsync();
         }
@@ -100,7 +100,7 @@
         public FinalizarTarefa(erro: Error): void
         {
             this.DispensarTimeout();
-            this.Estado = (u.ValidacaoUtil.IsDefinido(erro)) ? EnumEstadoTarefa.Erro : EnumEstadoTarefa.Finalizada;
+            this.Status = (u.ValidacaoUtil.IsDefinido(erro)) ? EnumStatusTarefa.Erro : EnumStatusTarefa.Finalizada;
             if (u.ValidacaoUtil.IsDefinido(this.CallbackTarefaConcluida))
             {
                 const callback = this.CallbackTarefaConcluida;
@@ -141,17 +141,17 @@
 
         public PausarTarefa(): void
         {
-            if (this.Estado === EnumEstadoTarefa.Executando)
+            if (this.Status === EnumStatusTarefa.Executando)
             {
-                this.Estado = EnumEstadoTarefa.Pausada;
+                this.Status = EnumStatusTarefa.Pausada;
             }
         }
 
         public ContinuarTarefa(): void
         {
-            if (this.Estado === EnumEstadoTarefa.Pausada)
+            if (this.Status === EnumStatusTarefa.Pausada)
             {
-                this.Estado = EnumEstadoTarefa.Executando;
+                this.Status = EnumStatusTarefa.Executando;
                 this.Continuar();
             }
         }
@@ -170,7 +170,7 @@
         {
             this.DispensarTimeout();
 
-            if (this.Estado === EnumEstadoTarefa.Pausada)
+            if (this.Status === EnumStatusTarefa.Pausada)
             {
                 this.InicializarTimeout();
                 return;
@@ -218,7 +218,7 @@
 
         public CancelarTarefa(): void
         {
-            this.Estado = t.EnumEstadoTarefa.Cancelada;
+            this.Status = t.EnumStatusTarefa.Cancelada;
 
             console.warn("Tarefa cancelada " + this.toString());
 
@@ -229,7 +229,7 @@
 
         public override Dispose(): void
         {
-            this.EventoEstadoAlterado.Clear();
+            this.EventoStatusAlterado.Clear();
             this.EventoProgresso.Clear();
         }
         //#endregion

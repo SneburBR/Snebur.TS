@@ -16,7 +16,7 @@
             this.Inicializar();
         }
 
-        //Inicializador das BaseDominio, é diferente não interfere nos estados da ViewModel
+        //Inicializador das BaseDominio, é diferente não interfere nos status da ViewModel
 
         protected override Inicializar(): void
         {

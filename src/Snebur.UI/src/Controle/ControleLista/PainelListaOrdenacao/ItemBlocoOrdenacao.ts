@@ -295,7 +295,7 @@
 
                 for (const regiao of this.RegioesBlocoOrdenacao)
                 {
-                    regiao.AtivarPosicaoAbosoluta();
+                    regiao.Inicializar();
                 }
 
                 this.PainelLista.EventoBlocoOrdenacaoIniciada.Notificar(this,
@@ -310,12 +310,12 @@
         private RetornarRegioesBloco(regiaoPainel: DOMRect): List<RegiaoBlocoOrdenacao>
         {
             this.DispensarRegioesBlocoOrdenacao();
-             
+
             const itensBloco = this.RetornarItensBlocoOrdenados();
             const regioesBlocoOrdenados = new List<RegiaoBlocoOrdenacao>();
             for (const [itemBloco, indice] of itensBloco.ToTupleItemIndex())
             {
-                regioesBlocoOrdenados.Add(new RegiaoBlocoOrdenacao(regiaoPainel, itemBloco, indice));
+                regioesBlocoOrdenados.Add(new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice));
             }
             return regioesBlocoOrdenados;
         }
@@ -484,7 +484,7 @@
             for (const [regiaoOrdenada, indice] of regioesOrdenadas.ToTupleItemIndex())
             {
                 const regiaoDestino = this.RegioesBlocoOrdenacao[indice].RegiaoOrigem;
-                regiaoOrdenada.AtualizarPosicao(regiaoDestino);
+                regiaoOrdenada.SimuolarOrdenacao(regiaoDestino);
             }
             //    this.RegioesBlocoOrdenados.ForEach(x => x.AtualizarPosicao(regioesOrdenadas));
             //throw new Error("Method not implemented.");
@@ -815,7 +815,7 @@
             this.RegioesBlocoOrdenacao?.ForEach(x => x.Dispose());
             this.RegioesBlocoOrdenacao?.Clear();
         }
-         
+
         //#endregion
 
         public override Dispose(): void

@@ -1,17 +1,17 @@
 ﻿
 namespace Snebur.Tarefa
 {
-    export class EstadoTarefaAlteradoEventArgs extends EventArgs
+    export class StatusTarefaAlteradoEventArgs extends EventArgs
     {
         public readonly Tarefa: BaseTarefa;
-        public readonly Estado: EnumEstadoTarefa;
+        public readonly Status: EnumStatusTarefa;
 
-        public constructor(tarefa: BaseTarefa, estado: EnumEstadoTarefa)
+        public constructor(tarefa: BaseTarefa, status: EnumStatusTarefa)
         {
             super();
 
             this.Tarefa = tarefa;
-            this.Estado = estado;
+            this.Status = status;
 
         }
     }

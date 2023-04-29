@@ -74,9 +74,9 @@
             this.EventoListaAlterada.Notificar(this, EventArgs.Empty);
         }
 
-        public get EstadoControleLista(): EnumEstadoControleLista
+        public get StatusControleLista(): EnumStatusControleLista
         {
-            return this.RetornarEstadoControleLista();
+            return this.RetornarStatusControleLista();
 
         }
 
@@ -550,7 +550,7 @@
 
         //#region Métodos privados
 
-        private RetornarEstadoControleLista(): EnumEstadoControleLista
+        private RetornarStatusControleLista(): EnumStatusControleLista
         {
             if (!this.IsDispensado)
             {
@@ -559,13 +559,13 @@
                 {
                     if (this._lista.Count > 0)
                     {
-                        return EnumEstadoControleLista.ListaCarregada;
+                        return EnumStatusControleLista.ListaCarregada;
                     }
-                    return EnumEstadoControleLista.ListaCarregadaVazia;
+                    return EnumStatusControleLista.ListaCarregadaVazia;
                 }
-                return EnumEstadoControleLista.Carregando;
+                return EnumStatusControleLista.Carregando;
             }
-            return EnumEstadoControleLista.Dispensado;
+            return EnumStatusControleLista.Dispensado;
         }
 
         //#endregion
@@ -582,7 +582,7 @@
         //#endregion
     }
 
-    export enum EnumEstadoControleLista
+    export enum EnumStatusControleLista
     {
         Carregando = 1,
         ListaCarregadaVazia = 2,

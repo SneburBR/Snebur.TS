@@ -101,7 +101,7 @@ namespace Snebur
 
 
     export import EnumFormatacao = Snebur.UI.EnumFormatacao;
-    export import EnumEstadoArquivo = Snebur.Dominio.EnumEstadoArquivo;
+    export import EnumStatusArquivo = Snebur.Dominio.EnumStatusArquivo;
     export import EnumMimeType = Snebur.Dominio.EnumMimeType;
     export import EnumMimetypeString = Snebur.Utilidade.EnumMimetypeString;
 

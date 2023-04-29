@@ -109,7 +109,7 @@
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\Requisicao.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Utilidade\NormalizarResultadoChamada.ts" />
-    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Async.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Async.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\Magick.d.ts" />
     <TypeScriptCompile Include="src\Core\Interfaces\IClone.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />

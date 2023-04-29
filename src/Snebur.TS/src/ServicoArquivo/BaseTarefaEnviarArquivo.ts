@@ -15,7 +15,7 @@
 
         private _nomeArquivo: string;
         private _totalBytesLocal: number;
-        private _descricaoEstado: string;
+        private _descricaoStatus: string;
         private _checksum: string;
         private _totalBytes: number;
 
@@ -31,15 +31,15 @@
             this.NotificarPropriedadeAlterada("NomeArquivo", this._nomeArquivo, this._nomeArquivo = value);
         }
 
-        public get DescricaoEstado(): string
+        public get DescricaoStatus(): string
         {
-            return this._descricaoEstado;
+            return this._descricaoStatus;
         }
 
-        public set DescricaoEstado(value: string)
+        public set DescricaoStatus(value: string)
         {
-            this.NotificarPropriedadeAlterada("DescricaoEstado", this._descricaoEstado, value);
-            this._descricaoEstado = value;
+            this.NotificarPropriedadeAlterada("DescricaoStatus", this._descricaoStatus, value);
+            this._descricaoStatus = value;
         }
 
         public get TotalBytesLocal(): number
@@ -127,12 +127,12 @@
             this.Gerenciador = gerenciador;
             //this.Arquivo = origemArquivo.Arquivo;
             this.EntidadeArquivo = entidadeArquivo;
-            this.EventoEstadoAlterado.AddHandler(this.Tarefa_EstadoAlterado, this);
+            this.EventoStatusAlterado.AddHandler(this.Tarefa_StatusAlterado, this);
             this.URLEnviarArquivo = this.RetornarUrlEnviarArquivo();
 
             this.NomeArquivo = entidadeArquivo.NomeArquivo;
             this.TotalBytesLocal = entidadeArquivo.TotalBytesLocal;
-            this.Estado = t.EnumEstadoTarefa.Aguardando;
+            this.Status = t.EnumStatusTarefa.Aguardando;
             this.ParteAtual = 1;
             this.Tentativa = 0;
             this.IntervaloProximaTentiva = TimeSpan.FromSeconds(10);
@@ -145,9 +145,9 @@
             }
         }
 
-        public Tarefa_EstadoAlterado(provedor: any, e: Snebur.Tarefa.EstadoTarefaAlteradoEventArgs): void
+        public Tarefa_StatusAlterado(provedor: any, e: Snebur.Tarefa.StatusTarefaAlteradoEventArgs): void
         {
-            this.DescricaoEstado = this.RetornarDescricaoTarefa(e.Estado);
+            this.DescricaoStatus = this.RetornarDescricaoTarefa(e.Status);
         }
 
         protected ExecutarAsync()
@@ -184,7 +184,7 @@
             {
                 throw new Erro(" o checksum não foi definido");
                 //Aguardando calculo do check sum
-                //this.Estado = Snebur.Tarefa.EnumEstadoTarefa.Aguardando;
+                //this.Status = Snebur.Tarefa.EnumStatusTarefa.Aguardando;
                 //throw new Erro("")
             }
         }
@@ -222,16 +222,16 @@
             }
        
 
-            if (this.Estado === t.EnumEstadoTarefa.Pausada ||
-                this.Estado === t.EnumEstadoTarefa.Cancelada ||
-                this.Estado === t.EnumEstadoTarefa.Finalizada)
+            if (this.Status === t.EnumStatusTarefa.Pausada ||
+                this.Status === t.EnumStatusTarefa.Cancelada ||
+                this.Status === t.EnumStatusTarefa.Finalizada)
             {
                 return;
             }
 
-            if (this.Estado === Snebur.Tarefa.EnumEstadoTarefa.Aguardando)
+            if (this.Status === Snebur.Tarefa.EnumStatusTarefa.Aguardando)
             {
-                this.Estado = t.EnumEstadoTarefa.Executando;
+                this.Status = t.EnumStatusTarefa.Executando;
             }
             if (!(this.Buffer instanceof ArrayBuffer))
             {
@@ -355,31 +355,31 @@
 
         //#region Métodos privados
 
-        private RetornarDescricaoTarefa(estado: t.EnumEstadoTarefa): string
+        private RetornarDescricaoTarefa(status: t.EnumStatusTarefa): string
         {
-            switch (estado)
+            switch (status)
             {
-                case (t.EnumEstadoTarefa.Aguardando):
+                case (t.EnumStatusTarefa.Aguardando):
 
                     return "Aguardando envio";
 
-                case (t.EnumEstadoTarefa.Executando):
+                case (t.EnumStatusTarefa.Executando):
 
                     return "Enviando";
 
-                case (t.EnumEstadoTarefa.Pausada):
+                case (t.EnumStatusTarefa.Pausada):
 
                     return "Envio pausado";
 
-                case (t.EnumEstadoTarefa.Finalizada):
+                case (t.EnumStatusTarefa.Finalizada):
 
                     return "Envio concluído";
 
-                case (t.EnumEstadoTarefa.Cancelada):
+                case (t.EnumStatusTarefa.Cancelada):
 
                     return "Cancelado";
 
-                case (t.EnumEstadoTarefa.Erro):
+                case (t.EnumStatusTarefa.Erro):
 
                     if (this.Erro instanceof Error)
                     {
@@ -389,7 +389,7 @@
 
                 default:
 
-                    throw new ErroNaoSuportado("O estado da tarefa não é suportado", this);
+                    throw new ErroNaoSuportado("O status da tarefa não é suportado", this);
             }
         }
         //#endregion

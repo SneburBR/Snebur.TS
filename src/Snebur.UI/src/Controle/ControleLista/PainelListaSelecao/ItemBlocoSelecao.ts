@@ -22,7 +22,8 @@
 
         public readonly EventoItemSelecionadoAlterado = new Evento<ItemEventArgs<IItem>>(this);
 
-        public constructor(controlePai: PainelLista<any>, template: BlocoTemplate,
+        public constructor(controlePai: PainelLista<any>,
+            template: BlocoTemplate,
             templateSelecioando: BlocoTemplateSelecionado,
             itemReferencia: any,
             itemBlocoSeperador: ItemBlocoSeparador)

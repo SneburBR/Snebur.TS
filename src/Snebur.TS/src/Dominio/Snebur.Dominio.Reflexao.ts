@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 8 de abril de 2023
-//Hora : 20:16:01
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:45
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -87,23 +87,24 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao = new Snebur.Reflexao.TipoEnum("EnumSentidoOrdenacao", "Snebur.Dominio", "Snebur.Dominio.EnumSentidoOrdenacao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumOrientacao = new Snebur.Reflexao.TipoEnum("EnumOrientacao", "Snebur.Dominio", "Snebur.Dominio.EnumOrientacao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTipoJuros = new Snebur.Reflexao.TipoEnum("EnumTipoJuros", "Snebur.Dominio", "Snebur.Dominio.EnumTipoJuros, Snebur");
-	export const __$tipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha = new Snebur.Reflexao.TipoEnum("EnumEstadoCodigoRecuperarSenha", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoCodigoRecuperarSenha, Snebur");
-	export const __$tipoEnum_Snebur_Dominio_EnumEstadoServicoArquivo = new Snebur.Reflexao.TipoEnum("EnumEstadoServicoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoServicoArquivo, Snebur");
-	export const __$tipoEnum_Snebur_Dominio_EnumEstadoUsuario = new Snebur.Reflexao.TipoEnum("EnumEstadoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoUsuario, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumResultadoAutenticacao = new Snebur.Reflexao.TipoEnum("EnumResultadoAutenticacao", "Snebur.Dominio", "Snebur.Dominio.EnumResultadoAutenticacao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial = new Snebur.Reflexao.TipoEnum("EnumResultadoValidacaoCredencial", "Snebur.Dominio", "Snebur.Dominio.EnumResultadoValidacaoCredencial, Snebur");
-	export const __$tipoEnum_Snebur_Dominio_EnumEstadoArquivo = new Snebur.Reflexao.TipoEnum("EnumEstadoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoArquivo, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha = new Snebur.Reflexao.TipoEnum("EnumStatusCodigoRecuperarSenha", "Snebur.Dominio", "Snebur.Dominio.EnumStatusCodigoRecuperarSenha, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumStatusServicoArquivo = new Snebur.Reflexao.TipoEnum("EnumStatusServicoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumStatusServicoArquivo, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumStatusUsuario = new Snebur.Reflexao.TipoEnum("EnumStatusUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumStatusUsuario, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumStatusArquivo = new Snebur.Reflexao.TipoEnum("EnumStatusArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumStatusArquivo, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumAparenciaFonte = new Snebur.Reflexao.TipoEnum("EnumAparenciaFonte", "Snebur.Dominio", "Snebur.Dominio.EnumAparenciaFonte, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumEspessuraFonte = new Snebur.Reflexao.TipoEnum("EnumEspessuraFonte", "Snebur.Dominio", "Snebur.Dominio.EnumEspessuraFonte, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumFormatoArquivoFonte = new Snebur.Reflexao.TipoEnum("EnumFormatoArquivoFonte", "Snebur.Dominio", "Snebur.Dominio.EnumFormatoArquivoFonte, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumEfeitoImagem = new Snebur.Reflexao.TipoEnum("EnumEfeitoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumEfeitoImagem, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumFiltroImagem = new Snebur.Reflexao.TipoEnum("EnumFiltroImagem", "Snebur.Dominio", "Snebur.Dominio.EnumFiltroImagem, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumFormatoImagem = new Snebur.Reflexao.TipoEnum("EnumFormatoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumFormatoImagem, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumRotacaoImagem = new Snebur.Reflexao.TipoEnum("EnumRotacaoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumRotacaoImagem, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTamanhoImagem = new Snebur.Reflexao.TipoEnum("EnumTamanhoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumTamanhoImagem, Snebur");
-	export const __$tipoEnum_Snebur_Dominio_EnumEstadoSessaoUsuario = new Snebur.Reflexao.TipoEnum("EnumEstadoSessaoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoSessaoUsuario, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumNavegador = new Snebur.Reflexao.TipoEnum("EnumNavegador", "Snebur.Dominio", "Snebur.Dominio.EnumNavegador, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumPlataforma = new Snebur.Reflexao.TipoEnum("EnumPlataforma", "Snebur.Dominio", "Snebur.Dominio.EnumPlataforma, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumSistemaOperacional = new Snebur.Reflexao.TipoEnum("EnumSistemaOperacional", "Snebur.Dominio", "Snebur.Dominio.EnumSistemaOperacional, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario = new Snebur.Reflexao.TipoEnum("EnumStatusSessaoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumStatusSessaoUsuario, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTipoAplicacao = new Snebur.Reflexao.TipoEnum("EnumTipoAplicacao", "Snebur.Dominio", "Snebur.Dominio.EnumTipoAplicacao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTipoPrazo = new Snebur.Reflexao.TipoEnum("EnumTipoPrazo", "Snebur.Dominio", "Snebur.Dominio.EnumTipoPrazo, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumMimeType = new Snebur.Reflexao.TipoEnum("EnumMimeType", "Snebur.Dominio", "Snebur.Dominio.EnumMimeType, Snebur");
@@ -115,16 +116,16 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro = new Snebur.Reflexao.TipoEnum("EnumOrdenacaoNovoRegistro", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao = new Snebur.Reflexao.TipoEnum("EnumTipoExclusaoRelacao", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc = new Snebur.Reflexao.TipoEnum("EnumFamiliaPerfilIcc", "Snebur.Dominio.Interface.Media", "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc, Snebur");
-	export const __$tipoEnum_Snebur_Imagem_EnumDirecaoGradiente = new Snebur.Reflexao.TipoEnum("EnumDirecaoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumDirecaoGradiente, Snebur");
-	export const __$tipoEnum_Snebur_Imagem_EnumMixagem = new Snebur.Reflexao.TipoEnum("EnumMixagem", "Snebur.Imagem", "Snebur.Imagem.EnumMixagem, Snebur");
-	export const __$tipoEnum_Snebur_Imagem_EnumPosicaoGradiente = new Snebur.Reflexao.TipoEnum("EnumPosicaoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumPosicaoGradiente, Snebur");
-	export const __$tipoEnum_Snebur_Imagem_EnumTipoSobrePosicao = new Snebur.Reflexao.TipoEnum("EnumTipoSobrePosicao", "Snebur.Imagem", "Snebur.Imagem.EnumTipoSobrePosicao, Snebur");
-	export const __$tipoEnum_Snebur_Imagem_EnumTamanhoGradiente = new Snebur.Reflexao.TipoEnum("EnumTamanhoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumTamanhoGradiente, Snebur");
+	export const __$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente = new Snebur.Reflexao.TipoEnum("EnumDirecaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumDirecaoGradiente, Snebur");
+	export const __$tipoEnum_Snebur_Imagens_EnumMixagem = new Snebur.Reflexao.TipoEnum("EnumMixagem", "Snebur.Imagens", "Snebur.Imagens.EnumMixagem, Snebur");
+	export const __$tipoEnum_Snebur_Imagens_EnumPosicaoGradiente = new Snebur.Reflexao.TipoEnum("EnumPosicaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumPosicaoGradiente, Snebur");
+	export const __$tipoEnum_Snebur_Imagens_EnumTipoSobrePosicao = new Snebur.Reflexao.TipoEnum("EnumTipoSobrePosicao", "Snebur.Imagens", "Snebur.Imagens.EnumTipoSobrePosicao, Snebur");
+	export const __$tipoEnum_Snebur_Imagens_EnumTamanhoGradiente = new Snebur.Reflexao.TipoEnum("EnumTamanhoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumTamanhoGradiente, Snebur");
 	export const __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario = new Snebur.Reflexao.TipoEnum("EnumTipoPrimario", "Snebur.Reflexao", "Snebur.Reflexao.EnumTipoPrimario, Snebur");
 	export const __$tipoEnum_Snebur_Reflexao_EnumTipoReflexao = new Snebur.Reflexao.TipoEnum("EnumTipoReflexao", "Snebur.Reflexao", "Snebur.Reflexao.EnumTipoReflexao, Snebur");
 	export const __$tipoEnum_Snebur_Servicos_EnumTipoLogDesempenho = new Snebur.Reflexao.TipoEnum("EnumTipoLogDesempenho", "Snebur.Servicos", "Snebur.Servicos.EnumTipoLogDesempenho, Snebur");
 	export const __$tipoEnum_Snebur_Servicos_EnumTipoLogSeguranca = new Snebur.Reflexao.TipoEnum("EnumTipoLogSeguranca", "Snebur.Servicos", "Snebur.Servicos.EnumTipoLogSeguranca, Snebur");
-	export const __$tipoEnum_Snebur_Tarefa_EnumEstadoTarefa = new Snebur.Reflexao.TipoEnum("EnumEstadoTarefa", "Snebur.Tarefa", "Snebur.Tarefa.EnumEstadoTarefa, Snebur");
+	export const __$tipoEnum_Snebur_Tarefa_EnumStatusTarefa = new Snebur.Reflexao.TipoEnum("EnumStatusTarefa", "Snebur.Tarefa", "Snebur.Tarefa.EnumStatusTarefa, Snebur");
 	export const __$tipoEnum_Snebur_UI_EnumBotoesAlerta = new Snebur.Reflexao.TipoEnum("EnumBotoesAlerta", "Snebur.UI", "Snebur.UI.EnumBotoesAlerta, Snebur");
 	export const __$tipoEnum_Snebur_UI_EnumResultadoAlerta = new Snebur.Reflexao.TipoEnum("EnumResultadoAlerta", "Snebur.UI", "Snebur.UI.EnumResultadoAlerta, Snebur");
 	export const __$tipoEnum_Snebur_UI_EnumTipoAlerta = new Snebur.Reflexao.TipoEnum("EnumTipoAlerta", "Snebur.UI", "Snebur.UI.EnumTipoAlerta, Snebur");
@@ -168,7 +169,7 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Utilidade_OpcoesCompararData = new Snebur.Reflexao.TipoEnum("OpcoesCompararData", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararData, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_OpcoesCompararHora = new Snebur.Reflexao.TipoEnum("OpcoesCompararHora", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararHora, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo = new Snebur.Reflexao.TipoEnum("EnumFiltroPropriedadeCampo", "Snebur.Utilidade", "Snebur.Utilidade.EnumFiltroPropriedadeCampo, Snebur");
-	export const __$tipoEnum_Snebur_Utilidade_EnumEstadoDiretorio = new Snebur.Reflexao.TipoEnum("EnumEstadoDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumEstadoDiretorio, Snebur");
+	export const __$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio = new Snebur.Reflexao.TipoEnum("EnumStatusDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumStatusDiretorio, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_EnumFormatacaoBytes = new Snebur.Reflexao.TipoEnum("EnumFormatacaoBytes", "Snebur.Utilidade", "Snebur.Utilidade.EnumFormatacaoBytes, Snebur");
 	
 	//Lista Enum
@@ -184,23 +185,24 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Dominio_EnumSentidoOrdenacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumSentidoOrdenacao", "Snebur.Dominio", "Snebur.Dominio.EnumSentidoOrdenacao, Snebur", __$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumOrientacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumOrientacao", "Snebur.Dominio", "Snebur.Dominio.EnumOrientacao, Snebur", __$tipoEnum_Snebur_Dominio_EnumOrientacao);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTipoJuros = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTipoJuros", "Snebur.Dominio", "Snebur.Dominio.EnumTipoJuros, Snebur", __$tipoEnum_Snebur_Dominio_EnumTipoJuros);
-	export const __$tipoListaEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEstadoCodigoRecuperarSenha", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoCodigoRecuperarSenha, Snebur", __$tipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha);
-	export const __$tipoListaEnum_Snebur_Dominio_EnumEstadoServicoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEstadoServicoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoServicoArquivo, Snebur", __$tipoEnum_Snebur_Dominio_EnumEstadoServicoArquivo);
-	export const __$tipoListaEnum_Snebur_Dominio_EnumEstadoUsuario = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEstadoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoUsuario, Snebur", __$tipoEnum_Snebur_Dominio_EnumEstadoUsuario);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumResultadoAutenticacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumResultadoAutenticacao", "Snebur.Dominio", "Snebur.Dominio.EnumResultadoAutenticacao, Snebur", __$tipoEnum_Snebur_Dominio_EnumResultadoAutenticacao);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumResultadoValidacaoCredencial", "Snebur.Dominio", "Snebur.Dominio.EnumResultadoValidacaoCredencial, Snebur", __$tipoEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial);
-	export const __$tipoListaEnum_Snebur_Dominio_EnumEstadoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEstadoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoArquivo, Snebur", __$tipoEnum_Snebur_Dominio_EnumEstadoArquivo);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumStatusCodigoRecuperarSenha", "Snebur.Dominio", "Snebur.Dominio.EnumStatusCodigoRecuperarSenha, Snebur", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumStatusServicoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumStatusServicoArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumStatusServicoArquivo, Snebur", __$tipoEnum_Snebur_Dominio_EnumStatusServicoArquivo);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumStatusUsuario = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumStatusUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumStatusUsuario, Snebur", __$tipoEnum_Snebur_Dominio_EnumStatusUsuario);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumStatusArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumStatusArquivo", "Snebur.Dominio", "Snebur.Dominio.EnumStatusArquivo, Snebur", __$tipoEnum_Snebur_Dominio_EnumStatusArquivo);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumAparenciaFonte = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumAparenciaFonte", "Snebur.Dominio", "Snebur.Dominio.EnumAparenciaFonte, Snebur", __$tipoEnum_Snebur_Dominio_EnumAparenciaFonte);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumEspessuraFonte = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEspessuraFonte", "Snebur.Dominio", "Snebur.Dominio.EnumEspessuraFonte, Snebur", __$tipoEnum_Snebur_Dominio_EnumEspessuraFonte);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumFormatoArquivoFonte = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumFormatoArquivoFonte", "Snebur.Dominio", "Snebur.Dominio.EnumFormatoArquivoFonte, Snebur", __$tipoEnum_Snebur_Dominio_EnumFormatoArquivoFonte);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumEfeitoImagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEfeitoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumEfeitoImagem, Snebur", __$tipoEnum_Snebur_Dominio_EnumEfeitoImagem);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumFiltroImagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumFiltroImagem", "Snebur.Dominio", "Snebur.Dominio.EnumFiltroImagem, Snebur", __$tipoEnum_Snebur_Dominio_EnumFiltroImagem);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumFormatoImagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumFormatoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumFormatoImagem, Snebur", __$tipoEnum_Snebur_Dominio_EnumFormatoImagem);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumRotacaoImagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumRotacaoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumRotacaoImagem, Snebur", __$tipoEnum_Snebur_Dominio_EnumRotacaoImagem);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTamanhoImagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTamanhoImagem", "Snebur.Dominio", "Snebur.Dominio.EnumTamanhoImagem, Snebur", __$tipoEnum_Snebur_Dominio_EnumTamanhoImagem);
-	export const __$tipoListaEnum_Snebur_Dominio_EnumEstadoSessaoUsuario = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumEstadoSessaoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumEstadoSessaoUsuario, Snebur", __$tipoEnum_Snebur_Dominio_EnumEstadoSessaoUsuario);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumNavegador = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumNavegador", "Snebur.Dominio", "Snebur.Dominio.EnumNavegador, Snebur", __$tipoEnum_Snebur_Dominio_EnumNavegador);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumPlataforma = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumPlataforma", "Snebur.Dominio", "Snebur.Dominio.EnumPlataforma, Snebur", __$tipoEnum_Snebur_Dominio_EnumPlataforma);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumSistemaOperacional = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumSistemaOperacional", "Snebur.Dominio", "Snebur.Dominio.EnumSistemaOperacional, Snebur", __$tipoEnum_Snebur_Dominio_EnumSistemaOperacional);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumStatusSessaoUsuario = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumStatusSessaoUsuario", "Snebur.Dominio", "Snebur.Dominio.EnumStatusSessaoUsuario, Snebur", __$tipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTipoAplicacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTipoAplicacao", "Snebur.Dominio", "Snebur.Dominio.EnumTipoAplicacao, Snebur", __$tipoEnum_Snebur_Dominio_EnumTipoAplicacao);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTipoPrazo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTipoPrazo", "Snebur.Dominio", "Snebur.Dominio.EnumTipoPrazo, Snebur", __$tipoEnum_Snebur_Dominio_EnumTipoPrazo);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumMimeType = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumMimeType", "Snebur.Dominio", "Snebur.Dominio.EnumMimeType, Snebur", __$tipoEnum_Snebur_Dominio_EnumMimeType);
@@ -212,16 +214,16 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
 	export const __$tipoListaEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc", "Snebur.Dominio.Interface.Media", "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc, Snebur", __$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
-	export const __$tipoListaEnum_Snebur_Imagem_EnumDirecaoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagem.EnumDirecaoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumDirecaoGradiente, Snebur", __$tipoEnum_Snebur_Imagem_EnumDirecaoGradiente);
-	export const __$tipoListaEnum_Snebur_Imagem_EnumMixagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagem.EnumMixagem", "Snebur.Imagem", "Snebur.Imagem.EnumMixagem, Snebur", __$tipoEnum_Snebur_Imagem_EnumMixagem);
-	export const __$tipoListaEnum_Snebur_Imagem_EnumPosicaoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagem.EnumPosicaoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumPosicaoGradiente, Snebur", __$tipoEnum_Snebur_Imagem_EnumPosicaoGradiente);
-	export const __$tipoListaEnum_Snebur_Imagem_EnumTipoSobrePosicao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagem.EnumTipoSobrePosicao", "Snebur.Imagem", "Snebur.Imagem.EnumTipoSobrePosicao, Snebur", __$tipoEnum_Snebur_Imagem_EnumTipoSobrePosicao);
-	export const __$tipoListaEnum_Snebur_Imagem_EnumTamanhoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagem.EnumTamanhoGradiente", "Snebur.Imagem", "Snebur.Imagem.EnumTamanhoGradiente, Snebur", __$tipoEnum_Snebur_Imagem_EnumTamanhoGradiente);
+	export const __$tipoListaEnum_Snebur_Imagens_EnumDirecaoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumDirecaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumDirecaoGradiente, Snebur", __$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente);
+	export const __$tipoListaEnum_Snebur_Imagens_EnumMixagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumMixagem", "Snebur.Imagens", "Snebur.Imagens.EnumMixagem, Snebur", __$tipoEnum_Snebur_Imagens_EnumMixagem);
+	export const __$tipoListaEnum_Snebur_Imagens_EnumPosicaoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumPosicaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumPosicaoGradiente, Snebur", __$tipoEnum_Snebur_Imagens_EnumPosicaoGradiente);
+	export const __$tipoListaEnum_Snebur_Imagens_EnumTipoSobrePosicao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumTipoSobrePosicao", "Snebur.Imagens", "Snebur.Imagens.EnumTipoSobrePosicao, Snebur", __$tipoEnum_Snebur_Imagens_EnumTipoSobrePosicao);
+	export const __$tipoListaEnum_Snebur_Imagens_EnumTamanhoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumTamanhoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumTamanhoGradiente, Snebur", __$tipoEnum_Snebur_Imagens_EnumTamanhoGradiente);
 	export const __$tipoListaEnum_Snebur_Reflexao_EnumTipoPrimario = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Reflexao.EnumTipoPrimario", "Snebur.Reflexao", "Snebur.Reflexao.EnumTipoPrimario, Snebur", __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario);
 	export const __$tipoListaEnum_Snebur_Reflexao_EnumTipoReflexao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Reflexao.EnumTipoReflexao", "Snebur.Reflexao", "Snebur.Reflexao.EnumTipoReflexao, Snebur", __$tipoEnum_Snebur_Reflexao_EnumTipoReflexao);
 	export const __$tipoListaEnum_Snebur_Servicos_EnumTipoLogDesempenho = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Servicos.EnumTipoLogDesempenho", "Snebur.Servicos", "Snebur.Servicos.EnumTipoLogDesempenho, Snebur", __$tipoEnum_Snebur_Servicos_EnumTipoLogDesempenho);
 	export const __$tipoListaEnum_Snebur_Servicos_EnumTipoLogSeguranca = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Servicos.EnumTipoLogSeguranca", "Snebur.Servicos", "Snebur.Servicos.EnumTipoLogSeguranca, Snebur", __$tipoEnum_Snebur_Servicos_EnumTipoLogSeguranca);
-	export const __$tipoListaEnum_Snebur_Tarefa_EnumEstadoTarefa = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Tarefa.EnumEstadoTarefa", "Snebur.Tarefa", "Snebur.Tarefa.EnumEstadoTarefa, Snebur", __$tipoEnum_Snebur_Tarefa_EnumEstadoTarefa);
+	export const __$tipoListaEnum_Snebur_Tarefa_EnumStatusTarefa = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Tarefa.EnumStatusTarefa", "Snebur.Tarefa", "Snebur.Tarefa.EnumStatusTarefa, Snebur", __$tipoEnum_Snebur_Tarefa_EnumStatusTarefa);
 	export const __$tipoListaEnum_Snebur_UI_EnumBotoesAlerta = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.UI.EnumBotoesAlerta", "Snebur.UI", "Snebur.UI.EnumBotoesAlerta, Snebur", __$tipoEnum_Snebur_UI_EnumBotoesAlerta);
 	export const __$tipoListaEnum_Snebur_UI_EnumResultadoAlerta = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.UI.EnumResultadoAlerta", "Snebur.UI", "Snebur.UI.EnumResultadoAlerta, Snebur", __$tipoEnum_Snebur_UI_EnumResultadoAlerta);
 	export const __$tipoListaEnum_Snebur_UI_EnumTipoAlerta = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.UI.EnumTipoAlerta", "Snebur.UI", "Snebur.UI.EnumTipoAlerta, Snebur", __$tipoEnum_Snebur_UI_EnumTipoAlerta);
@@ -265,7 +267,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Utilidade_OpcoesCompararData = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.OpcoesCompararData", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararData, Snebur", __$tipoEnum_Snebur_Utilidade_OpcoesCompararData);
 	export const __$tipoListaEnum_Snebur_Utilidade_OpcoesCompararHora = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.OpcoesCompararHora", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararHora, Snebur", __$tipoEnum_Snebur_Utilidade_OpcoesCompararHora);
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumFiltroPropriedadeCampo", "Snebur.Utilidade", "Snebur.Utilidade.EnumFiltroPropriedadeCampo, Snebur", __$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
-	export const __$tipoListaEnum_Snebur_Utilidade_EnumEstadoDiretorio = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumEstadoDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumEstadoDiretorio, Snebur", __$tipoEnum_Snebur_Utilidade_EnumEstadoDiretorio);
+	export const __$tipoListaEnum_Snebur_Utilidade_EnumStatusDiretorio = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumStatusDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumStatusDiretorio, Snebur", __$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumFormatacaoBytes = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumFormatacaoBytes", "Snebur.Utilidade", "Snebur.Utilidade.EnumFormatacaoBytes, Snebur", __$tipoEnum_Snebur_Utilidade_EnumFormatacaoBytes);
 	
 	//Adicionar Enum
@@ -281,23 +283,24 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumSentidoOrdenacao",__$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumOrientacao",__$tipoEnum_Snebur_Dominio_EnumOrientacao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTipoJuros",__$tipoEnum_Snebur_Dominio_EnumTipoJuros);
-	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEstadoCodigoRecuperarSenha",__$tipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha);
-	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEstadoServicoArquivo",__$tipoEnum_Snebur_Dominio_EnumEstadoServicoArquivo);
-	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEstadoUsuario",__$tipoEnum_Snebur_Dominio_EnumEstadoUsuario);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumResultadoAutenticacao",__$tipoEnum_Snebur_Dominio_EnumResultadoAutenticacao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumResultadoValidacaoCredencial",__$tipoEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial);
-	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEstadoArquivo",__$tipoEnum_Snebur_Dominio_EnumEstadoArquivo);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumStatusCodigoRecuperarSenha",__$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumStatusServicoArquivo",__$tipoEnum_Snebur_Dominio_EnumStatusServicoArquivo);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumStatusUsuario",__$tipoEnum_Snebur_Dominio_EnumStatusUsuario);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumStatusArquivo",__$tipoEnum_Snebur_Dominio_EnumStatusArquivo);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumAparenciaFonte",__$tipoEnum_Snebur_Dominio_EnumAparenciaFonte);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEspessuraFonte",__$tipoEnum_Snebur_Dominio_EnumEspessuraFonte);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumFormatoArquivoFonte",__$tipoEnum_Snebur_Dominio_EnumFormatoArquivoFonte);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEfeitoImagem",__$tipoEnum_Snebur_Dominio_EnumEfeitoImagem);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumFiltroImagem",__$tipoEnum_Snebur_Dominio_EnumFiltroImagem);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumFormatoImagem",__$tipoEnum_Snebur_Dominio_EnumFormatoImagem);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumRotacaoImagem",__$tipoEnum_Snebur_Dominio_EnumRotacaoImagem);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTamanhoImagem",__$tipoEnum_Snebur_Dominio_EnumTamanhoImagem);
-	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumEstadoSessaoUsuario",__$tipoEnum_Snebur_Dominio_EnumEstadoSessaoUsuario);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumNavegador",__$tipoEnum_Snebur_Dominio_EnumNavegador);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumPlataforma",__$tipoEnum_Snebur_Dominio_EnumPlataforma);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumSistemaOperacional",__$tipoEnum_Snebur_Dominio_EnumSistemaOperacional);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumStatusSessaoUsuario",__$tipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTipoAplicacao",__$tipoEnum_Snebur_Dominio_EnumTipoAplicacao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTipoPrazo",__$tipoEnum_Snebur_Dominio_EnumTipoPrazo);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumMimeType",__$tipoEnum_Snebur_Dominio_EnumMimeType);
@@ -309,16 +312,16 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro",__$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao",__$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc",__$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
-	$Reflexao.Tipos.Adicionar("Snebur.Imagem.EnumDirecaoGradiente",__$tipoEnum_Snebur_Imagem_EnumDirecaoGradiente);
-	$Reflexao.Tipos.Adicionar("Snebur.Imagem.EnumMixagem",__$tipoEnum_Snebur_Imagem_EnumMixagem);
-	$Reflexao.Tipos.Adicionar("Snebur.Imagem.EnumPosicaoGradiente",__$tipoEnum_Snebur_Imagem_EnumPosicaoGradiente);
-	$Reflexao.Tipos.Adicionar("Snebur.Imagem.EnumTipoSobrePosicao",__$tipoEnum_Snebur_Imagem_EnumTipoSobrePosicao);
-	$Reflexao.Tipos.Adicionar("Snebur.Imagem.EnumTamanhoGradiente",__$tipoEnum_Snebur_Imagem_EnumTamanhoGradiente);
+	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumDirecaoGradiente",__$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente);
+	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumMixagem",__$tipoEnum_Snebur_Imagens_EnumMixagem);
+	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumPosicaoGradiente",__$tipoEnum_Snebur_Imagens_EnumPosicaoGradiente);
+	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumTipoSobrePosicao",__$tipoEnum_Snebur_Imagens_EnumTipoSobrePosicao);
+	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumTamanhoGradiente",__$tipoEnum_Snebur_Imagens_EnumTamanhoGradiente);
 	$Reflexao.Tipos.Adicionar("Snebur.Reflexao.EnumTipoPrimario",__$tipoEnum_Snebur_Reflexao_EnumTipoPrimario);
 	$Reflexao.Tipos.Adicionar("Snebur.Reflexao.EnumTipoReflexao",__$tipoEnum_Snebur_Reflexao_EnumTipoReflexao);
 	$Reflexao.Tipos.Adicionar("Snebur.Servicos.EnumTipoLogDesempenho",__$tipoEnum_Snebur_Servicos_EnumTipoLogDesempenho);
 	$Reflexao.Tipos.Adicionar("Snebur.Servicos.EnumTipoLogSeguranca",__$tipoEnum_Snebur_Servicos_EnumTipoLogSeguranca);
-	$Reflexao.Tipos.Adicionar("Snebur.Tarefa.EnumEstadoTarefa",__$tipoEnum_Snebur_Tarefa_EnumEstadoTarefa);
+	$Reflexao.Tipos.Adicionar("Snebur.Tarefa.EnumStatusTarefa",__$tipoEnum_Snebur_Tarefa_EnumStatusTarefa);
 	$Reflexao.Tipos.Adicionar("Snebur.UI.EnumBotoesAlerta",__$tipoEnum_Snebur_UI_EnumBotoesAlerta);
 	$Reflexao.Tipos.Adicionar("Snebur.UI.EnumResultadoAlerta",__$tipoEnum_Snebur_UI_EnumResultadoAlerta);
 	$Reflexao.Tipos.Adicionar("Snebur.UI.EnumTipoAlerta",__$tipoEnum_Snebur_UI_EnumTipoAlerta);
@@ -362,7 +365,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.OpcoesCompararData",__$tipoEnum_Snebur_Utilidade_OpcoesCompararData);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.OpcoesCompararHora",__$tipoEnum_Snebur_Utilidade_OpcoesCompararHora);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumFiltroPropriedadeCampo",__$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
-	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumEstadoDiretorio",__$tipoEnum_Snebur_Utilidade_EnumEstadoDiretorio);
+	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumStatusDiretorio",__$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumFormatacaoBytes",__$tipoEnum_Snebur_Utilidade_EnumFormatacaoBytes);
 	
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_EnumAmbienteServidor",__$tipoListaEnum_Snebur_EnumAmbienteServidor);
@@ -377,23 +380,24 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumSentidoOrdenacao",__$tipoListaEnum_Snebur_Dominio_EnumSentidoOrdenacao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumOrientacao",__$tipoListaEnum_Snebur_Dominio_EnumOrientacao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTipoJuros",__$tipoListaEnum_Snebur_Dominio_EnumTipoJuros);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha",__$tipoListaEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEstadoServicoArquivo",__$tipoListaEnum_Snebur_Dominio_EnumEstadoServicoArquivo);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEstadoUsuario",__$tipoListaEnum_Snebur_Dominio_EnumEstadoUsuario);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumResultadoAutenticacao",__$tipoListaEnum_Snebur_Dominio_EnumResultadoAutenticacao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial",__$tipoListaEnum_Snebur_Dominio_EnumResultadoValidacaoCredencial);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEstadoArquivo",__$tipoListaEnum_Snebur_Dominio_EnumEstadoArquivo);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha",__$tipoListaEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumStatusServicoArquivo",__$tipoListaEnum_Snebur_Dominio_EnumStatusServicoArquivo);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumStatusUsuario",__$tipoListaEnum_Snebur_Dominio_EnumStatusUsuario);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumStatusArquivo",__$tipoListaEnum_Snebur_Dominio_EnumStatusArquivo);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumAparenciaFonte",__$tipoListaEnum_Snebur_Dominio_EnumAparenciaFonte);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEspessuraFonte",__$tipoListaEnum_Snebur_Dominio_EnumEspessuraFonte);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumFormatoArquivoFonte",__$tipoListaEnum_Snebur_Dominio_EnumFormatoArquivoFonte);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEfeitoImagem",__$tipoListaEnum_Snebur_Dominio_EnumEfeitoImagem);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumFiltroImagem",__$tipoListaEnum_Snebur_Dominio_EnumFiltroImagem);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumFormatoImagem",__$tipoListaEnum_Snebur_Dominio_EnumFormatoImagem);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumRotacaoImagem",__$tipoListaEnum_Snebur_Dominio_EnumRotacaoImagem);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTamanhoImagem",__$tipoListaEnum_Snebur_Dominio_EnumTamanhoImagem);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumEstadoSessaoUsuario",__$tipoListaEnum_Snebur_Dominio_EnumEstadoSessaoUsuario);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumNavegador",__$tipoListaEnum_Snebur_Dominio_EnumNavegador);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumPlataforma",__$tipoListaEnum_Snebur_Dominio_EnumPlataforma);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumSistemaOperacional",__$tipoListaEnum_Snebur_Dominio_EnumSistemaOperacional);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario",__$tipoListaEnum_Snebur_Dominio_EnumStatusSessaoUsuario);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTipoAplicacao",__$tipoListaEnum_Snebur_Dominio_EnumTipoAplicacao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTipoPrazo",__$tipoListaEnum_Snebur_Dominio_EnumTipoPrazo);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumMimeType",__$tipoListaEnum_Snebur_Dominio_EnumMimeType);
@@ -405,16 +409,16 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc",__$tipoListaEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagem_EnumDirecaoGradiente",__$tipoListaEnum_Snebur_Imagem_EnumDirecaoGradiente);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagem_EnumMixagem",__$tipoListaEnum_Snebur_Imagem_EnumMixagem);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagem_EnumPosicaoGradiente",__$tipoListaEnum_Snebur_Imagem_EnumPosicaoGradiente);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagem_EnumTipoSobrePosicao",__$tipoListaEnum_Snebur_Imagem_EnumTipoSobrePosicao);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagem_EnumTamanhoGradiente",__$tipoListaEnum_Snebur_Imagem_EnumTamanhoGradiente);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumDirecaoGradiente",__$tipoListaEnum_Snebur_Imagens_EnumDirecaoGradiente);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumMixagem",__$tipoListaEnum_Snebur_Imagens_EnumMixagem);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumPosicaoGradiente",__$tipoListaEnum_Snebur_Imagens_EnumPosicaoGradiente);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumTipoSobrePosicao",__$tipoListaEnum_Snebur_Imagens_EnumTipoSobrePosicao);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumTamanhoGradiente",__$tipoListaEnum_Snebur_Imagens_EnumTamanhoGradiente);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Reflexao_EnumTipoPrimario",__$tipoListaEnum_Snebur_Reflexao_EnumTipoPrimario);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Reflexao_EnumTipoReflexao",__$tipoListaEnum_Snebur_Reflexao_EnumTipoReflexao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Servicos_EnumTipoLogDesempenho",__$tipoListaEnum_Snebur_Servicos_EnumTipoLogDesempenho);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Servicos_EnumTipoLogSeguranca",__$tipoListaEnum_Snebur_Servicos_EnumTipoLogSeguranca);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Tarefa_EnumEstadoTarefa",__$tipoListaEnum_Snebur_Tarefa_EnumEstadoTarefa);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Tarefa_EnumStatusTarefa",__$tipoListaEnum_Snebur_Tarefa_EnumStatusTarefa);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_UI_EnumBotoesAlerta",__$tipoListaEnum_Snebur_UI_EnumBotoesAlerta);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_UI_EnumResultadoAlerta",__$tipoListaEnum_Snebur_UI_EnumResultadoAlerta);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_UI_EnumTipoAlerta",__$tipoListaEnum_Snebur_UI_EnumTipoAlerta);
@@ -458,7 +462,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_OpcoesCompararData",__$tipoListaEnum_Snebur_Utilidade_OpcoesCompararData);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_OpcoesCompararHora",__$tipoListaEnum_Snebur_Utilidade_OpcoesCompararHora);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo",__$tipoListaEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumEstadoDiretorio",__$tipoListaEnum_Snebur_Utilidade_EnumEstadoDiretorio);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumStatusDiretorio",__$tipoListaEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumFormatacaoBytes",__$tipoListaEnum_Snebur_Utilidade_EnumFormatacaoBytes);
 	
 	//Associar caminhos Emil
@@ -474,23 +478,24 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.EnumSentidoOrdenacao.__CaminhoTipo = "Snebur.Dominio.EnumSentidoOrdenacao";
 	Snebur.Dominio.EnumOrientacao.__CaminhoTipo = "Snebur.Dominio.EnumOrientacao";
 	Snebur.Dominio.EnumTipoJuros.__CaminhoTipo = "Snebur.Dominio.EnumTipoJuros";
-	Snebur.Dominio.EnumEstadoCodigoRecuperarSenha.__CaminhoTipo = "Snebur.Dominio.EnumEstadoCodigoRecuperarSenha";
-	Snebur.Dominio.EnumEstadoServicoArquivo.__CaminhoTipo = "Snebur.Dominio.EnumEstadoServicoArquivo";
-	Snebur.Dominio.EnumEstadoUsuario.__CaminhoTipo = "Snebur.Dominio.EnumEstadoUsuario";
 	Snebur.Dominio.EnumResultadoAutenticacao.__CaminhoTipo = "Snebur.Dominio.EnumResultadoAutenticacao";
 	Snebur.Dominio.EnumResultadoValidacaoCredencial.__CaminhoTipo = "Snebur.Dominio.EnumResultadoValidacaoCredencial";
-	Snebur.Dominio.EnumEstadoArquivo.__CaminhoTipo = "Snebur.Dominio.EnumEstadoArquivo";
+	Snebur.Dominio.EnumStatusCodigoRecuperarSenha.__CaminhoTipo = "Snebur.Dominio.EnumStatusCodigoRecuperarSenha";
+	Snebur.Dominio.EnumStatusServicoArquivo.__CaminhoTipo = "Snebur.Dominio.EnumStatusServicoArquivo";
+	Snebur.Dominio.EnumStatusUsuario.__CaminhoTipo = "Snebur.Dominio.EnumStatusUsuario";
+	Snebur.Dominio.EnumStatusArquivo.__CaminhoTipo = "Snebur.Dominio.EnumStatusArquivo";
 	Snebur.Dominio.EnumAparenciaFonte.__CaminhoTipo = "Snebur.Dominio.EnumAparenciaFonte";
 	Snebur.Dominio.EnumEspessuraFonte.__CaminhoTipo = "Snebur.Dominio.EnumEspessuraFonte";
 	Snebur.Dominio.EnumFormatoArquivoFonte.__CaminhoTipo = "Snebur.Dominio.EnumFormatoArquivoFonte";
 	Snebur.Dominio.EnumEfeitoImagem.__CaminhoTipo = "Snebur.Dominio.EnumEfeitoImagem";
+	Snebur.Dominio.EnumFiltroImagem.__CaminhoTipo = "Snebur.Dominio.EnumFiltroImagem";
 	Snebur.Dominio.EnumFormatoImagem.__CaminhoTipo = "Snebur.Dominio.EnumFormatoImagem";
 	Snebur.Dominio.EnumRotacaoImagem.__CaminhoTipo = "Snebur.Dominio.EnumRotacaoImagem";
 	Snebur.Dominio.EnumTamanhoImagem.__CaminhoTipo = "Snebur.Dominio.EnumTamanhoImagem";
-	Snebur.Dominio.EnumEstadoSessaoUsuario.__CaminhoTipo = "Snebur.Dominio.EnumEstadoSessaoUsuario";
 	Snebur.Dominio.EnumNavegador.__CaminhoTipo = "Snebur.Dominio.EnumNavegador";
 	Snebur.Dominio.EnumPlataforma.__CaminhoTipo = "Snebur.Dominio.EnumPlataforma";
 	Snebur.Dominio.EnumSistemaOperacional.__CaminhoTipo = "Snebur.Dominio.EnumSistemaOperacional";
+	Snebur.Dominio.EnumStatusSessaoUsuario.__CaminhoTipo = "Snebur.Dominio.EnumStatusSessaoUsuario";
 	Snebur.Dominio.EnumTipoAplicacao.__CaminhoTipo = "Snebur.Dominio.EnumTipoAplicacao";
 	Snebur.Dominio.EnumTipoPrazo.__CaminhoTipo = "Snebur.Dominio.EnumTipoPrazo";
 	Snebur.Dominio.EnumMimeType.__CaminhoTipo = "Snebur.Dominio.EnumMimeType";
@@ -502,16 +507,16 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro";
 	Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao";
 	Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc.__CaminhoTipo = "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc";
-	Snebur.Imagem.EnumDirecaoGradiente.__CaminhoTipo = "Snebur.Imagem.EnumDirecaoGradiente";
-	Snebur.Imagem.EnumMixagem.__CaminhoTipo = "Snebur.Imagem.EnumMixagem";
-	Snebur.Imagem.EnumPosicaoGradiente.__CaminhoTipo = "Snebur.Imagem.EnumPosicaoGradiente";
-	Snebur.Imagem.EnumTipoSobrePosicao.__CaminhoTipo = "Snebur.Imagem.EnumTipoSobrePosicao";
-	Snebur.Imagem.EnumTamanhoGradiente.__CaminhoTipo = "Snebur.Imagem.EnumTamanhoGradiente";
+	Snebur.Imagens.EnumDirecaoGradiente.__CaminhoTipo = "Snebur.Imagens.EnumDirecaoGradiente";
+	Snebur.Imagens.EnumMixagem.__CaminhoTipo = "Snebur.Imagens.EnumMixagem";
+	Snebur.Imagens.EnumPosicaoGradiente.__CaminhoTipo = "Snebur.Imagens.EnumPosicaoGradiente";
+	Snebur.Imagens.EnumTipoSobrePosicao.__CaminhoTipo = "Snebur.Imagens.EnumTipoSobrePosicao";
+	Snebur.Imagens.EnumTamanhoGradiente.__CaminhoTipo = "Snebur.Imagens.EnumTamanhoGradiente";
 	Snebur.Reflexao.EnumTipoPrimario.__CaminhoTipo = "Snebur.Reflexao.EnumTipoPrimario";
 	Snebur.Reflexao.EnumTipoReflexao.__CaminhoTipo = "Snebur.Reflexao.EnumTipoReflexao";
 	Snebur.Servicos.EnumTipoLogDesempenho.__CaminhoTipo = "Snebur.Servicos.EnumTipoLogDesempenho";
 	Snebur.Servicos.EnumTipoLogSeguranca.__CaminhoTipo = "Snebur.Servicos.EnumTipoLogSeguranca";
-	Snebur.Tarefa.EnumEstadoTarefa.__CaminhoTipo = "Snebur.Tarefa.EnumEstadoTarefa";
+	Snebur.Tarefa.EnumStatusTarefa.__CaminhoTipo = "Snebur.Tarefa.EnumStatusTarefa";
 	Snebur.UI.EnumBotoesAlerta.__CaminhoTipo = "Snebur.UI.EnumBotoesAlerta";
 	Snebur.UI.EnumResultadoAlerta.__CaminhoTipo = "Snebur.UI.EnumResultadoAlerta";
 	Snebur.UI.EnumTipoAlerta.__CaminhoTipo = "Snebur.UI.EnumTipoAlerta";
@@ -555,7 +560,7 @@ namespace Snebur.Reflexao
 	Snebur.Utilidade.OpcoesCompararData.__CaminhoTipo = "Snebur.Utilidade.OpcoesCompararData";
 	Snebur.Utilidade.OpcoesCompararHora.__CaminhoTipo = "Snebur.Utilidade.OpcoesCompararHora";
 	Snebur.Utilidade.EnumFiltroPropriedadeCampo.__CaminhoTipo = "Snebur.Utilidade.EnumFiltroPropriedadeCampo";
-	Snebur.Utilidade.EnumEstadoDiretorio.__CaminhoTipo = "Snebur.Utilidade.EnumEstadoDiretorio";
+	Snebur.Utilidade.EnumStatusDiretorio.__CaminhoTipo = "Snebur.Utilidade.EnumStatusDiretorio";
 	Snebur.Utilidade.EnumFormatacaoBytes.__CaminhoTipo = "Snebur.Utilidade.EnumFormatacaoBytes";
 	
 	//BaseDominio
@@ -910,19 +915,19 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_IsUsuarioEncontrado = new Snebur.Reflexao.Propriedade("IsUsuarioEncontrado", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha, false);
 	
-	export const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Estado = new Snebur.Reflexao.Propriedade("Estado", __$tipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha, __$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha, false);
+	export const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status = new Snebur.Reflexao.Propriedade("Status", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha, __$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha, false);
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_IsUsuarioEncontrado);
-	__$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Estado);
+	__$tipoBaseDominioSnebur_Comunicacao_ResultadoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status);
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_IsUsuarioEncontrado = new Snebur.Reflexao.Propriedade("IsUsuarioEncontrado", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false);
 	
-	export const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Estado = new Snebur.Reflexao.Propriedade("Estado", __$tipoEnum_Snebur_Dominio_EnumEstadoCodigoRecuperarSenha, __$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false);
+	export const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Status = new Snebur.Reflexao.Propriedade("Status", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha, __$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false);
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_TempoEsperar = new Snebur.Reflexao.Propriedade("TempoEsperar", __$tipoTipoPrimario_Integer, __$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false);
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_IsUsuarioEncontrado);
-	__$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Estado);
+	__$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Status);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_TempoEsperar);
 	
 	export const __$propriedade_Snebur_Dominio_Entidade_Id = new Snebur.Reflexao.Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominioSnebur_Dominio_Entidade, false);

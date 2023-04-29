@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -31,7 +31,6 @@
     "src/Snebur.Inicio.ts",
     "src/Core/Bibliotecas/Base64Binary.d.ts",
     "src/Core/Bibliotecas/Faker.d.ts",
-    "src/Core/Bibliotecas/JSZip.Async.d.ts",
     "src/Core/Bibliotecas/Magick.d.ts",
     "src/Core/Bibliotecas/md5.d.ts",
     "src/Core/Bibliotecas/ua-parser-js.d.ts",
@@ -354,6 +353,7 @@
     "src/Comunicacao/ServicoArquivo/IServicoLogServicoArquivo.ts",
     "src/Comunicacao/Usuario/IServicoUsuario.ts",
     "src/Core/Bibliotecas/exifrd.ts",
+    "src/Core/Bibliotecas/JSZip.Async.ts",
     "src/Core/Bibliotecas/picad.ts",
     "src/Core/Evento/IResultadoEventArgs.ts",
     "src/Core/Extensao/IEqualityComparer.ts",

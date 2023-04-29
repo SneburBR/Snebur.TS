@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 8 de abril de 2023
-//Hora : 20:16:02
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:45
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -28,10 +28,12 @@ namespace Snebur
         public static readonly IDENTIFICADOR_SESSAO_USUARIO : string = "IdentificadorSessaoUsuario";
     }
 }
-namespace Snebur.Imagem
+namespace Snebur.Imagens
 {
     export class ConstantesImagemApresentacao
     {
+        public static readonly LARGURA_ICONE : number = 178;
+        public static readonly ALTURA_ICONE : number = 220;
         public static readonly ALTURA_IMAGEM_MINIATURA : number = 90;
         public static readonly LARGURA_IMAGEM_MINIATURA : number = 90;
         public static readonly ALTURA_IMAGEM_PEQUENA : number = 290;

@@ -134,7 +134,7 @@
         public static get LocalAtiva(): d.ISessaoUsuario
         {
             return {
-                Estado: Snebur.Dominio.EnumEstadoSessaoUsuario.Ativo
+                Status: Snebur.Dominio.EnumStatusSessaoUsuario.Ativo
             } as d.ISessaoUsuario;
         }
     }

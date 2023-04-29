@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 8 de abril de 2023
-//Hora : 20:16:02
+//Data : sábado, 29 de abril de 2023
+//Hora : 19:56:45
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -174,7 +174,7 @@ namespace Snebur.Dominio
         DataHoraInicioEnvio? : Date;
         DataHoraFimEnvio? : Date;
         DataHoraArquivoDeletado? : Date;
-        Estado : Snebur.Dominio.EnumEstadoArquivo;
+        Status : Snebur.Dominio.EnumStatusArquivo;
         Progresso : number;
         SessaoUsuario : Snebur.Dominio.ISessaoUsuario;
         MimeType : Snebur.Dominio.EnumMimeType;
@@ -187,6 +187,7 @@ namespace Snebur.Dominio
     }
     export interface IImagem extends Snebur.Dominio.IMedia,Snebur.Dominio.IArquivo,Snebur.Dominio.IEntidade 
     {
+        ChecksumArquivoLocal : string;
         IsExisteMiniatura : boolean;
         IsExistePequena : boolean;
         IsExisteMedia : boolean;
@@ -195,6 +196,7 @@ namespace Snebur.Dominio
         TotalBytesPequena : number;
         TotalBytesMedia : number;
         TotalBytesGrande : number;
+        IsIcone : boolean;
         DimensaoImagemMiniatura : Snebur.Dominio.Dimensao;
         DimensaoImagemPequena : Snebur.Dominio.Dimensao;
         DimensaoImagemMedia : Snebur.Dominio.Dimensao;
@@ -225,7 +227,7 @@ namespace Snebur.Dominio
     }
     export interface ILogServicoArquivo extends Snebur.Dominio.IEntidade 
     {
-        EstadoServicoArquivo : Snebur.Dominio.EnumEstadoServicoArquivo;
+        StatusServicoArquivo : Snebur.Dominio.EnumStatusServicoArquivo;
         IndetificadorLog : string;
         SessaoUsuario : Snebur.Dominio.ISessaoUsuario;
         DataHoraInicio? : Date;
@@ -272,8 +274,8 @@ namespace Snebur.Dominio
         Usuario_Id : number;
         IP : string;
         IPInformacao : Snebur.Dominio.IIPInformacao;
-        Estado : Snebur.Dominio.EnumEstadoSessaoUsuario;
-        EstadoServicoArquivo : Snebur.Dominio.EnumEstadoServicoArquivo;
+        Status : Snebur.Dominio.EnumStatusSessaoUsuario;
+        StatusServicoArquivo : Snebur.Dominio.EnumStatusServicoArquivo;
         MotivoBloqueio : string;
         DataHoraExpiracaoBloqueio? : Date;
         DataHoraInicio? : Date;
@@ -287,7 +289,7 @@ namespace Snebur.Dominio
         DataHoraUltimoAcesso? : Date;
         IsDesativado : boolean;
         IsAlterarSenhaProximoAcesso : boolean;
-        readonly Estado : Snebur.Dominio.EnumEstadoUsuario;
+        readonly Status : Snebur.Dominio.EnumStatusUsuario;
     }
     export interface IFiltroImagem
     {

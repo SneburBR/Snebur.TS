@@ -312,11 +312,11 @@
 
     export interface IControleVirtualizacao  
     {
-        EstadoVirtualizacao: EnumEstadoVirtualizacao;
+        StatusVirtualizacao: EnumStatusVirtualizacao;
         MostrarVirtualizacao(): void;
         OcultarVirtualizacao(): void;
     }
-    export enum EnumEstadoVirtualizacao
+    export enum EnumStatusVirtualizacao
     {
         NaTela = 1,
         Ocultado = 2

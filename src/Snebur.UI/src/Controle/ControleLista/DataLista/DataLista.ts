@@ -166,28 +166,28 @@
         {
             if (this.IsControleInicializado)
             {
-                const estadoLista = this.EstadoControleLista;
+                const statusLista = this.StatusControleLista;
 
                 if (this.BlocoListaVazia instanceof BlocoListaVazia)
                 {
-                    this.BlocoListaVazia.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregadaVazia;
+                    this.BlocoListaVazia.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregadaVazia;
                 }
 
                 if (this.BlocoListaCarregando instanceof BlocoListaCarregando)
                 {
-                    this.BlocoListaCarregando.Visibilidade = estadoLista === EnumEstadoControleLista.Carregando;
+                    this.BlocoListaCarregando.Visibilidade = statusLista === EnumStatusControleLista.Carregando;
                 }
 
-                this.ElementoConteudoTabela.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregada;
+                this.ElementoConteudoTabela.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
 
                 if (this.BlocoCabecalho instanceof BlocoCabecalho)
                 {
-                    this.BlocoCabecalho.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregada;
+                    this.BlocoCabecalho.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
                 }
 
                 if (this.ElementoRodape instanceof HTMLElement)
                 {
-                    this.ElementoRodape.Visibilidade = estadoLista === EnumEstadoControleLista.ListaCarregada;
+                    this.ElementoRodape.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
                 }
             }
         }

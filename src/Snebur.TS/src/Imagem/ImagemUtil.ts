@@ -81,7 +81,7 @@
                 imagem.CaminhoArquivo = arquivo.name;
                 imagem.TotalBytesLocal = arquivo.size;
                 imagem.DimensaoImagemLocal = new Dimensao(info.Dimensao);
-                imagem.Estado = d.EnumEstadoArquivo.Novo;
+                imagem.Status = d.EnumStatusArquivo.Novo;
                 imagem.IsIcone = isIcone;
                 imagem.FormatoImagem = isIcone ? EnumFormatoImagem.PNG : info.FormatoImagem;
                 imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
