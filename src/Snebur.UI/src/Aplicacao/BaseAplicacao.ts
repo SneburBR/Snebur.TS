@@ -157,12 +157,17 @@
         {
             if ($Configuracao.IsDebug)
             {
-                const nomeTipo = controle.GetType().Nome.toLowerCase();
-                if (!this.DicionarControlesCarregado.ContainsKey(nomeTipo))
+                let tipo = controle.GetType();
+                while (tipo != null)
                 {
-                    this.DicionarControlesCarregado.Add(nomeTipo, new HashSet<BaseControle>());
+                    const nomeTipo = tipo.Nome.toLowerCase();
+                    if (!this.DicionarControlesCarregado.ContainsKey(nomeTipo))
+                    {
+                        this.DicionarControlesCarregado.Add(nomeTipo, new HashSet<BaseControle>());
+                    }
+                    this.DicionarControlesCarregado.Item(nomeTipo).Add(controle);
+                    tipo = tipo.TipoBase;
                 }
-                this.DicionarControlesCarregado.Item(nomeTipo).Add(controle);
             }
         }
 
@@ -170,10 +175,15 @@
         {
             if ($Configuracao.IsDebug)
             {
-                const nomeTipo = controle.GetType().Nome.toLowerCase();
-                if (this.DicionarControlesCarregado.ContainsKey(nomeTipo))
+                let tipo = controle.GetType();
+                while (tipo != null)
                 {
-                    this.DicionarControlesCarregado.Item(nomeTipo).Remove(controle);
+                    const nomeTipo = tipo.Nome.toLowerCase();
+                    if (this.DicionarControlesCarregado.ContainsKey(nomeTipo))
+                    {
+                        this.DicionarControlesCarregado.Item(nomeTipo).Remove(controle);
+                    }
+                    tipo = tipo.TipoBase;
                 }
             }
         }
@@ -246,7 +256,9 @@
 
         private ReinicializarControles(nomeControle: string, isReiniciarControlePai: boolean)
         {
+
             nomeControle = nomeControle.toLowerCase();
+
             if (this.DicionarControlesCarregado.ContainsKey(nomeControle))
             {
                 const controles = this.DicionarControlesCarregado.Item(nomeControle);

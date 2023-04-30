@@ -354,9 +354,9 @@
             this.RemoverClssClasseComecaCom(elemento, prefixo);
         }
 
-        public static RemoverClssClasseComecaCom(elemento: HTMLElement, comecaCom: string): any
+        public static RemoverClssClasseComecaCom(elemento: HTMLElement, prefixo: string): any
         {
-            const classesCor = u.Util.CopiarArray<string>(elemento.classList).Where(x => x.StartsWith(comecaCom)).ToList();
+            const classesCor = u.Util.CopiarArray<string>(elemento.classList).Where(x => x.StartsWith(prefixo)).ToList();
             for (const classe of classesCor)
             {
                 elemento.classList.remove(classe);
@@ -604,6 +604,21 @@
                 return 0;
             }
             return parseFloat(match[1]);
+        }
+
+        public static AtualizarCssClassPrefixo(elemento: HTMLElement, cssClasse: string)
+        {
+            const index = cssClasse.lastIndexOf("--");
+            if (index > 0)
+            {
+                const prefixo = cssClasse.substring(0, index + 2);
+                EstiloUtil.RemoverClssClassePrefixo(elemento, prefixo);
+            }
+            else
+            {
+                console.error(`A classe CSS '${cssClasse}' não possui um prefixo '--'`);
+            }
+            elemento.classList.add(cssClasse);
         }
     }
 

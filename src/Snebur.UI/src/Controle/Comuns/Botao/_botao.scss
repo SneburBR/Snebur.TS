@@ -2,14 +2,15 @@
 @import "../../../../scss/_telas.mixins.scss";
 @import "_botao.mixins.scss";
 
+
 $altura-botao-padrao: 1.5rem;
 $altura-minima: 4rem;
 $margem-lateral: 0.25rem;
 $margem-vertical: 0.125rem;
 
 $margem-lateral-interna: 1rem;
-$margem-vertical-interna: 0.3rem;
-$margem-vertical-interna-inferior: 0.25rem;
+$margem-vertical-interna: 0.5rem;
+$margem-vertical-interna-inferior: 0.35rem;
 
 $margem-lateral-icone: 0.5rem;
 /*$margem-vertical-interna: 0.5rem;*/
