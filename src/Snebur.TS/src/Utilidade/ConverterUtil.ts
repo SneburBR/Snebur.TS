@@ -590,6 +590,10 @@
             }
             if (ValidacaoUtil.IsString(valor))
             {
+                if(valor === "null")
+                {
+                    return null;
+                }
                 ConverterUtil.ParaString(valor);
             }
             return valor;

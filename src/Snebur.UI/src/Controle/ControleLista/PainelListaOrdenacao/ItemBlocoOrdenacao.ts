@@ -11,17 +11,22 @@
         private IdentificadorMouseDown: number;
         private IdentificadorTouchStart: number;
         private IsOrdenacaoAtiva: boolean;
-        private RegiaoBlocoAtual: RegiaoBlocoOrdenacao;
+        private RegiaoBlocoAtual: BaseRegiaoBlocoOrdenacao;
         private EstiloPainelInicial: Estilo;
         private EstiloApresentacaoPainelInicial: Estilo;
 
         private DiferencaX: number;
         private DiferencaY: number;
-        private RegioesBlocoOrdenacao: List<RegiaoBlocoOrdenacao>;
+        private RegioesBlocoOrdenacao: List<BaseRegiaoBlocoOrdenacao>;
 
         public override get PainelLista(): PainelListaOrdenacao<any>
         {
             return this.ControlePai as PainelListaOrdenacao<any>;
+        }
+
+        public get IsAnimarOrdenacao(): boolean
+        {
+            return this.PainelLista.IsAnimarOrdenacao;
         }
 
         public get ElementoClone(): HTMLElement
@@ -195,7 +200,6 @@
             e.preventDefault();
             e.cancelBubble = true;
             e.returnValue = false;
-
         }
 
         //#endregion
@@ -307,17 +311,27 @@
             }
         }
 
-        private RetornarRegioesBloco(regiaoPainel: DOMRect): List<RegiaoBlocoOrdenacao>
+        private RetornarRegioesBloco(regiaoPainel: DOMRect): List<BaseRegiaoBlocoOrdenacao>
         {
             this.DispensarRegioesBlocoOrdenacao();
 
             const itensBloco = this.RetornarItensBlocoOrdenados();
-            const regioesBlocoOrdenados = new List<RegiaoBlocoOrdenacao>();
+            const regioesBlocoOrdenados = new List<BaseRegiaoBlocoOrdenacao>();
             for (const [itemBloco, indice] of itensBloco.ToTupleItemIndex())
             {
-                regioesBlocoOrdenados.Add(new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice));
+                const regiaoBloco = this.RetornarRegiaoBloco(itemBloco, regiaoPainel, indice);
+                regioesBlocoOrdenados.Add(regiaoBloco);
             }
             return regioesBlocoOrdenados;
+        }
+
+        private RetornarRegiaoBloco(itemBloco: ItemBlocoOrdenacao, regiaoPainel: DOMRect, indice: number)
+        {
+            if (this.IsAnimarOrdenacao)
+            {
+                return new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice);
+            }
+            return new RegiaoBlocoOrdenacao(itemBloco,indice);
         }
 
         private RetornarItensBlocoOrdenados(): List<ItemBlocoOrdenacao>
@@ -378,7 +392,8 @@
                 }
 
                 //this.RegiaoBlocoAtual.P
-                if (blocosCapturados.Count > 0 && blocosCapturados.Sum(x => x.Porcentagem) > 50)
+                if (blocosCapturados.Count > 0 &&
+                    blocosCapturados.Sum(x => x.Porcentagem) > 50)
                 {
                     this.SimularOrdenacao(blocosCapturados);
                 }
@@ -486,6 +501,7 @@
                 const regiaoDestino = this.RegioesBlocoOrdenacao[indice].RegiaoOrigem;
                 regiaoOrdenada.SimuolarOrdenacao(regiaoDestino);
             }
+
             //    this.RegioesBlocoOrdenados.ForEach(x => x.AtualizarPosicao(regioesOrdenadas));
             //throw new Error("Method not implemented.");
         }

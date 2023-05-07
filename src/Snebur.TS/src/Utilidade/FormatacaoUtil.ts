@@ -1402,15 +1402,15 @@
             return prazo?.Descricao ?? String.Empty;
         }
 
-        public static FormatarPeso(valor: number): string
+        public static FormatarPeso(pesoEmGramas: number): string
         {
-            if (ValidacaoUtil.IsNumber(valor, true))
+            if (ValidacaoUtil.IsNumber(pesoEmGramas, true))
             {
-                if (valor > 1000)
+                if (pesoEmGramas > 1000)
                 {
-                    return `${FormatacaoUtil.FormatarDecimal(valor, false, true, 1)} kg`;
+                    return `${FormatacaoUtil.FormatarDecimal(pesoEmGramas, false, true, 1)} kg`;
                 }
-                return `${parseInt(valor)} g`;
+                return `${parseInt(pesoEmGramas)} g`;
             }
             return String.Empty;
         }

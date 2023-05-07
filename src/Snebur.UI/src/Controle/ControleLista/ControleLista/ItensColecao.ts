@@ -10,6 +10,10 @@
         public TagNovoElemento: string;
         public CssClassElementoItensColecao: string;
 
+        public get TotalItens(): number
+        {
+            return this.DicionarioControlesFilho.Count;
+        }
 
         private get EventoItemControleCarregado(): Evento<ItemEventArgs<ItemControle>>
         {

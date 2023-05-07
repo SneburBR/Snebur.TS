@@ -87,6 +87,11 @@
             return true;
         }
 
+        public override get TotalItens(): number
+        {
+            return this.LinhasColecao.Linhas.Count;
+        }
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);

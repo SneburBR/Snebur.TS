@@ -3,7 +3,7 @@
     export abstract class BaseControle extends Snebur.UI.ComponenteApresentacaoConteudo
     {
         //private _isMarcarItem: boolean = null;
-        private ___isOcupado: boolean = false;
+        private __isOcupado__: boolean = false;
 
         /*readonly #camposPrivados = new BaseControleCamposPrivados();*/
         private readonly __camposPrivadosBaseControle = new BaseControleCamposPrivados();
@@ -51,13 +51,13 @@
 
         public get IsOcupado(): boolean
         {
-            return this.___isOcupado;
+            return this.__isOcupado__;
         }
 
         //se renomeado alterar em ui.DocumentoPrincipal
         private set IsOcupadoInterno(value: boolean)
         {
-            this.___isOcupado = value;
+            this.__isOcupado__ = value;
             this.NotificarPropriedadeAlterada(x => x.IsOcupado);
         }
 
@@ -77,7 +77,7 @@
 
         public get IsControleCarregado(): boolean
         {
-            return this.__isControleCarregado;
+            return this.__isControleInicializado && this.__isControleCarregado;
         }
 
         public get IsControleInicializado(): boolean
@@ -911,6 +911,7 @@
         {
             if (!this.IsDispensado)
             {
+               
                 //if (this.ControlePai instanceof BaseControle )
                 //{
                 //    this.ControlePai.EventoDataSourceAlterado.RemoveHandler(this.LegendaControlePai_DataSourceAlterado, this);
@@ -961,7 +962,7 @@
 
         private DispensarVariaveis()
         {
-            delete this.___isOcupado;
+            delete this.__isOcupado__;
             delete this.IsOcupadoInterno;
             delete this.__isControleCarregado;
             delete (this as any).__classesCssControle;

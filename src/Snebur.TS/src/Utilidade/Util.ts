@@ -224,6 +224,15 @@
                     throw new Erro("comparacao não suportado");
             }
         }
+
+        public static RetornarValor<T>(obj: any, construtor: IConstrutor<T>): T
+        {
+            if (obj instanceof construtor)
+            {
+                return obj;
+            }
+            return null;
+        }
     }
 }
  

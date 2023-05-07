@@ -254,10 +254,15 @@
 
         private NormalizarValorPropriedadeAtributo(valorPropriedade: string, nomePropriedade: any)
         {
+            if (valorPropriedade === "null")
+            {
+                return null;
+            }
+
             const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
             if (propriedade instanceof r.Propriedade)
             {
-                u.ConverterUtil.Para(valorPropriedade, propriedade.Tipo);
+                return u.ConverterUtil.Para(valorPropriedade, propriedade.Tipo);
             }
             return u.ConverterUtil.ParaTipoRecomendado(valorPropriedade);
         }

@@ -27,9 +27,13 @@
             });
         }
 
-        public static CarregarImagemArquivoAsync(arquivo: SnBlob, alturaMaxima: number, timeout: number = 30000): Promise<ResultadoCarregarImagem>
+        public static CarregarImagemArquivoAsync(
+            arquivo: SnBlob,
+            alturaMaxima: number,
+            timeout: number = 30000): Promise<ResultadoCarregarImagem>
         {
             /*eslint-disable*/
+
             return new Promise<ResultadoCarregarImagem>(async resolver =>
             {
                 let identificadorTimeout = setTimeout(function ()
@@ -170,7 +174,6 @@
                 contexto.imageSmoothingEnabled = false;
                 contexto.drawImage(this.Imagem, 0, 0, this.LarguraImagemRedimensionada, this.AlturaImagemRedimensionada);
 
-
                 const blobImagem = await this.RetornarBlobAsync(canvas);
                 url = window.URL.createObjectURL(blobImagem);
 
@@ -260,7 +263,10 @@
         private readonly Arquivo: SnBlob;
         private IsTentandoAbrirHeic: boolean;
 
-        public constructor(arquivo: SnBlob, alturaImagem: number, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
+        public constructor(
+            arquivo: SnBlob,
+            alturaImagem: number,
+            qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
         {
             super(arquivo.UrlBlob, alturaImagem, u.ImagemUtil.RetornarFormatoImagem(arquivo), qualidade);
             this.Arquivo = arquivo;

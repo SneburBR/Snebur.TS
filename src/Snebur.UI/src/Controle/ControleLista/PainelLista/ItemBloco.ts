@@ -6,6 +6,7 @@
         public readonly ItemBlocoSeperador: ItemBlocoSeparador;
 
         private IsPainelListaOrdenacao: boolean;
+
         public get IsMarcarItem():boolean
         {
             return this.PainelLista.IsMarcarItem;

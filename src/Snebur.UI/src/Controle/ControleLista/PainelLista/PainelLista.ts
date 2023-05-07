@@ -9,7 +9,7 @@
         private _blocoListaCarregando: BlocoListaCarregando;
 
         private IsExisteSeparador: boolean;
-        private ClasseSeparadora: string;
+        /*private ClasseSeparadora: string;*/
         public readonly DicionarioItensBloco = new DicionarioTipado<TItem, TItemBloco>();
         public readonly ItensBloco = new List<TItemBloco>();
 
@@ -76,6 +76,11 @@
             }
         }
 
+        public override get TotalItens(): number
+        {
+            return this.ItensBloco.Count;
+        }
+
         public readonly EventoItemBlocoCarregado = new Evento<ItemEventArgs<TItemBloco>>(this);
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
@@ -97,11 +102,9 @@
         {
             super.Inicializar();
 
-            this.ClasseSeparadora = this.RetornarValorAtributo(AtributosHtml.ClasseSeparadora);
+            /*this.ClasseSeparadora = this.RetornarValorAtributo(AtributosHtml.ClasseSeparadora);*/
+            this.ValidarTipoPainel();
 
-            
-                this.ValidarTipoPainel();
-           
 
             //inicializando os templates
             const blocosTemplate = this.ControlesFilho.OfType<BlocoTemplate>(BlocoTemplate).ToList();
@@ -159,7 +162,7 @@
                 throw new Erro(`O atributo ${AtributosHtml.TipoPainel.Nome} não foi defino ou é invalido em ${this.ControleApresentacao.___NomeConstrutor} ${outerHtml}`);
             }
         }
-         
+
         protected InserirItem(posicao: number, item: TItem): void
         {
             this.ValidarNovoItem(item);
@@ -356,6 +359,7 @@
         public async ScrollIntoViewAsync(item: TItem, options?: OptionsScrollPainelLista)
         {
             await ThreadUtil.QuebrarAsync();
+            await this.AguardarCarregandoItensAsync();
             this.ScrollIntoView(item, options);
             await ThreadUtil.EsperarAsync(200);
         }

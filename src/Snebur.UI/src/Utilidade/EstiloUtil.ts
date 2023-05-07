@@ -9,6 +9,8 @@
         public static readonly OptionsEventListernerNotPassive = { passive: false };
         public static readonly OptionsEventListernerPassive = { passive: true };
 
+        public static readonly TAMANHO_FONTE_PADRAO = 16;
+
         private static EstilosIngnorar: any = {
             "cssText": true,
             "insetInline": true,
@@ -440,7 +442,7 @@
             if (scalar == null)
             {
                 const tamanhoFonteDocumento = EstiloUtil.TamanhoFonteDocumento;
-                scalar = 16 / tamanhoFonteDocumento;
+                scalar = EstiloUtil.TAMANHO_FONTE_PADRAO / tamanhoFonteDocumento;
             }
             if (scalar !== 1)
             {

@@ -30,8 +30,10 @@
 
             this.ControleLista.EventoAntesAlterarLista.AddHandler(this.ControleLista_RemoverMonipuladores, this);
             this.ControleLista.EventoListaAlterada.AddHandler(this.ControleLista_AdicionarManipuladores, this);
-            this.ControleLista_AdicionarManipuladores();
-            if (this.ControleLista.Lista instanceof Array && this.ControleLista.Lista.length)
+            this.AdicionarManipuladores();
+
+            if (this.ControleLista.Lista instanceof Array &&
+                this.ControleLista.Lista.length)
             {
                 this.AtualizarVirtualizacao();
             }
@@ -39,17 +41,18 @@
 
         private ControleLista_RemoverMonipuladores(): void
         {
-            if (this.ControleLista.Lista instanceof Array && ListaUtil.IsListaObservacao( this.ControleLista.Lista))
-            {
-                this.ControleLista.Lista.EventoItemAdicionado.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
-                this.ControleLista.Lista.EventoItemInserido.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
-                this.ControleLista.Lista.EventoItemRemovido.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
-            }
+            this.RemoverManipuladores();
         }
-
+         
         private ControleLista_AdicionarManipuladores(): void
         {
-            if (this.ControleLista.Lista instanceof Array && ListaUtil.IsListaObservacao(this.ControleLista.Lista))
+            this.AdicionarManipuladores();
+        }
+
+        private AdicionarManipuladores()
+        {
+            if (this.ControleLista.Lista instanceof Array &&
+                ListaUtil.IsListaObservacao(this.ControleLista.Lista))
             {
                 this.ControleLista.Lista.EventoItemAdicionado.AddHandler(this.ControleLista_ItensListaAlterada, this);
                 this.ControleLista.Lista.EventoItemInserido.AddHandler(this.ControleLista_ItensListaAlterada, this);
@@ -59,6 +62,17 @@
                 {
                     this.AtualizarVirtualizacao();
                 }
+            }
+        }
+
+        private RemoverManipuladores()
+        {
+            if (this.ControleLista?.Lista instanceof Array &&
+                ListaUtil.IsListaObservacao(this.ControleLista.Lista))
+            {
+                this.ControleLista.Lista.EventoItemAdicionado.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
+                this.ControleLista.Lista.EventoItemInserido.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
+                this.ControleLista.Lista.EventoItemRemovido.RemoveHandler(this.ControleLista_ItensListaAlterada, this);
             }
         }
 
@@ -253,7 +267,7 @@
                 posicao += 1;
             }
 
-            throw new Erro("O ultimo indice não foi encontrado");
+            throw new Erro("O ultimo índice não foi encontrado");
         }
 
         private RetornarPrimeiroIndiceNaTela(fim: number)
@@ -305,7 +319,9 @@
 
         public Dispose(): void
         {
-
+            this.RemoverManipuladores();
+            this.ControleLista?.EventoAntesAlterarLista.AddHandler(this.ControleLista_RemoverMonipuladores, this);
+            this.ControleLista?.EventoListaAlterada.AddHandler(this.ControleLista_AdicionarManipuladores, this);
         }
 
     }
@@ -316,6 +332,7 @@
         MostrarVirtualizacao(): void;
         OcultarVirtualizacao(): void;
     }
+
     export enum EnumStatusVirtualizacao
     {
         NaTela = 1,

@@ -42,6 +42,11 @@ namespace Snebur.UI
             return true;
         }
 
+        public override get TotalItens(): number
+        {
+            return this.ItensColecao.TotalItens;
+        }
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);

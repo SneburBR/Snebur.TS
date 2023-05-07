@@ -174,6 +174,7 @@
                     novaLista.push(this.RetornarValorObjetoTipado(itemLista, tipoItemLista));
                 }
             }
+            novaLista.__isListaNova = false;
             return novaLista;
         }
 

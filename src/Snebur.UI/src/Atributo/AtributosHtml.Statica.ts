@@ -198,12 +198,15 @@
         //Controle ordenação
         public static readonly SensibilidadeVertical = new AtributoHtml("sn-sensibilidade-vertical", Boolean);
         //public static AnimacaoOrdenacaoSimples = new AtributoHtml("sn-animacao-ordenacao-simples", Boolean);
+
         public static readonly SentidoOrdenacao = new AtributoHtml("sn-sentido-ordenacao", Snebur.Dominio.EnumSentidoOrdenacao);
         public static readonly IsSalvarOrdenacaoAutomaticamente = new AtributoHtml("sn-is-salvar-ordenacao-automaticamente", Boolean);
+        public static readonly IsAnimarOrdenacao = new AtributoHtml("sn-is-animar-ordenacao", Boolean);
         public static readonly EntidadeOrdenacao = new AtributoHtml("sn-entidade-ordenacao", String);
         public static readonly IsAlvoOrdenacao = new AtributoHtml("sn-is-alvo-ordenacao", Boolean);
         public static readonly IsElementoPrincipalAlvoOrdenacao = new AtributoHtml("sn-is-elemento-principal-alvo-ordenacao", Boolean);
         public static readonly IsCloneGlobal = new AtributoHtml("sn-is-clone-global", Boolean);
+
 
         public static readonly CssClassElementoClonado = new AtributoHtml("sn-css-class-elemento-clonado", String);
         public static readonly FuncaoNormalizarElementoClonado = new AtributoHtml("sn-funcao-normalizar-elemento-clonado", String);
@@ -242,7 +245,7 @@
         public static readonly TagElementoItemTemplate = new AtributoHtml("sn-tag-elemento-item-template", String);
         public static readonly CssClassElementoItensColecao = new AtributoHtml("sn-css-class-elemento-itens-colecao", String);
         public static readonly Virtualizar = new AtributoHtml("sn-virtualizar", Boolean);
-        public static readonly ClasseSeparadora = new AtributoHtml("sn-classe-separadora", Boolean);
+        /*public static readonly ClasseSeparadora = new AtributoHtml("sn-classe-separadora", Boolean);*/
 
         //Paginação
         public static readonly MaximoPaginas = new AtributoHtml("sn-maximo-paginas", String);

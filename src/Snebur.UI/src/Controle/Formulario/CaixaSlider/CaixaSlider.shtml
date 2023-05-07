@@ -12,8 +12,11 @@
             <input sn-item-elemento="ControleInput" class="sn-slider" type="range" style="width: 100% !important" value="0" />
         </ap-bloco>
 
-        <ap-bloco ap-largura="36px" ap-margem="0px -3px 0px 0px" >
-            <sn-botao sn-tipo-botao="Icone" ap-icone="Add" sn-click="BtnMais_Click" ap-tamanho-icone="Pequeno"></sn-botao>
+        <ap-bloco ap-largura="36px" 
+            ap-margem="0px -3px 0px 0px" 
+            ap-margem--notebook="0px" >
+            <sn-botao sn-tipo-botao="Icone"
+                ap-icone="Add" sn-click="BtnMais_Click" ap-tamanho-icone="Pequeno"></sn-botao>
         </ap-bloco>
 
         <ap-bloco sn-nome="BlocoTextoValor" 

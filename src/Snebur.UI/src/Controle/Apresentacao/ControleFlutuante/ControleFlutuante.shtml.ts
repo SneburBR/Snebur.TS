@@ -434,7 +434,7 @@
                 }
 
                 const tamanhoFonteDocumento = EstiloUtil.TamanhoFonteDocumento;
-                const scalar = tamanhoFonteDocumento / 16;
+                const scalar = tamanhoFonteDocumento / EstiloUtil.TAMANHO_FONTE_PADRAO;
 
                 const larguraInical = this.LarguraInicial * scalar;
                 const alturaInical = this.AlturaInicial * scalar;

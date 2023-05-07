@@ -66,15 +66,15 @@
 
         }
 
-        public RetornarArrayBufferImagemCarregadaAsync(tamanhoImagem: d.EnumTamanhoImagem): Promise<ArrayBuffer>
+        public RetornarRetornarImagemCarregada(tamanhoImagem: d.EnumTamanhoImagem): i.ImagemLocalCarregada
         {
             if (!this.ImagensLocalCarregadas.ContainsKey(tamanhoImagem))
             {
                 throw new Erro(`A imagem '${this.Imagem.Id} - ${this.Imagem.NomeArquivo}' não foi carregada no tamanho '${EnumUtil.RetornarDescricao(EnumTamanhoImagem, tamanhoImagem)}'
                                 Utilize o gerenciador de abrir imagem local para carrega-la`);
             }
-            const imagemCarregada = this.ImagensLocalCarregadas.Item(tamanhoImagem);
-            return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
+            return this.ImagensLocalCarregadas.Item(tamanhoImagem);
+            /*return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);*/
         }
 
         public NotificarImagemServidorCarregada(tamanhoImagem: EnumTamanhoImagem): void

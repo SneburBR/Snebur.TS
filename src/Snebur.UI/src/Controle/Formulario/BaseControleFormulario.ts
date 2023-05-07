@@ -693,7 +693,7 @@
                 this.DestinoMensagemValidacao instanceof HTMLElement)
             {
                 const tamanhoFonteDocumento = EstiloUtil.TamanhoFonteDocumento;
-                const scalar = 16 / tamanhoFonteDocumento;
+                const scalar = EstiloUtil.TAMANHO_FONTE_PADRAO / tamanhoFonteDocumento;
 
                 const posicaoAtual = this.Elemento.getBoundingClientRect();
                 let top = posicaoAtual.top + posicaoAtual.height + 7;

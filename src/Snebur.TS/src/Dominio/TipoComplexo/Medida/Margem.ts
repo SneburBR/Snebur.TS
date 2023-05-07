@@ -197,7 +197,15 @@
                 Superior: this.Superior
             };
         }
-         
+
+        public Maior(margem: IMargem)
+        {
+            return this.Superior > margem.Superior &&
+                this.Inferior > margem.Inferior &&
+                this.Esquerda > margem.Esquerda &&
+                this.Direita > margem.Direita;
+        }
+
         //#endregion
 
 

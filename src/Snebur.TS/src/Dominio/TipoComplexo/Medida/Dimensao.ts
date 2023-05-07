@@ -37,15 +37,7 @@
 
         public get Orientacao(): d.EnumOrientacao
         {
-            if (this.Largura > this.Altura)
-            {
-                return d.EnumOrientacao.Horizontal;
-            }
-            if (this.Altura > this.Largura)
-            {
-                return d.EnumOrientacao.Vertical;
-            }
-            return d.EnumOrientacao.Quadrado;
+            return this.RetornarOrientacao(0);
         }
 
         public get IsQuadrada(): boolean
@@ -78,9 +70,15 @@
             return (this.Largura / this.Altura).ToDecimal(2);
         }
 
-        public get ProporcaoSimplificada(): IDimensao
+        public get DimensaoProporcaoSimplificada(): IDimensao
         {
             return DimensaoUtil.ProporcaoSimplificada(this.Largura, this.Altura);
+        }
+
+        public get ProporcaoSimplificada(): number
+        {
+            const dimensao = this.DimensaoProporcaoSimplificada;
+            return dimensao.Largura / dimensao.Altura;
         }
 
         //#endregion
@@ -384,7 +382,7 @@
 
         public ToProporcaoSimplificadaString(): string
         {
-            const proporcao = this.ProporcaoSimplificada;
+            const proporcao = this.DimensaoProporcaoSimplificada;
             return `${proporcao.Largura}:${proporcao.Altura}`;
         }
 
@@ -407,6 +405,34 @@
         public static get Empty(): Dimensao
         {
             return new Dimensao(0, 0);
+        }
+
+        public RetornarOrientacao(tolerenciaPercentual: number): d.EnumOrientacao
+        {
+            if (tolerenciaPercentual > 1)
+            {
+                tolerenciaPercentual /= 100;
+            }
+
+            if (tolerenciaPercentual < 0)
+            {
+                throw new Erro("tolerenciaPercentual deve ser maior que 0");
+            }
+
+            const larguraPercentual = this.Largura + (this.Largura * tolerenciaPercentual);
+            const alturaPercentual = this.Altura + (this.Altura * tolerenciaPercentual);
+             
+            if (this.Largura > alturaPercentual)
+            {
+                return d.EnumOrientacao.Horizontal;
+            }
+
+            if (this.Altura > larguraPercentual)
+            {
+                return d.EnumOrientacao.Vertical;
+            }
+
+            return d.EnumOrientacao.Quadrado;
         }
     }
 }

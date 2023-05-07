@@ -12,6 +12,21 @@
     }
 }
 
+.nao-quebrar-sem-ellipsis {
+    white-space: nowrap;
+    text-overflow: unset;
+    width: auto;
+    max-width: auto;
+    display: inline-block !important;
+
+    > conteudo-apresentacao:first-child {
+        white-space: nowrap;
+        text-overflow: unset;
+        width: auto;
+        max-width: auto;
+        display: inline-block !important;
+    }
+}
 .ap-quebrar--quebrar {
     white-space: normal !important;
 

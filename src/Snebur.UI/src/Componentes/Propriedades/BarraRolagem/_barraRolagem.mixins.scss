@@ -1,16 +1,13 @@
 ﻿@import "../../../../scss/_telas.mixins.scss";
 
 @mixin BarraRolagem {
-
     overscroll-behavior: contain;
-
     /*-webkit-overflow-scrolling: touch;*/
 
 
     &::-webkit-scrollbar {
-
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
 
         @include Responsivo(celular, tablet) {
             width: 1px;
@@ -24,19 +21,18 @@
 
     &::-webkit-scrollbar-thumb {
         background: #888;
-        border-radius: 10px;
+        border-radius: 0.625rem;
     }
 
-    padding-right: 8px;
+    padding-right: 0.5rem;
 }
 
 @mixin BarraRolagemVertical {
     @include BarraRolagem();
-
     overscroll-behavior-y: contain;
 
     &::-webkit-scrollbar {
-        width: 8px;
+        width: 0.5rem;
 
         @include Responsivo(celular, tablet) {
             width: 1px;
@@ -51,7 +47,7 @@
         background: #888;
     }
 
-    padding-right: 8px;
+    padding-right: 0.5rem;
 }
 
 

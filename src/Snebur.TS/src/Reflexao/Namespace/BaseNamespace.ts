@@ -163,8 +163,6 @@
             return this.Nome;
         }
 
-
-
         public AlterarTipoNamespace(tipoNamespace: EnumTipoNamespace)
         {
             console.warn(`Alterado o tipo do namespace:  ${this.Caminho}.

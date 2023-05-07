@@ -27,6 +27,15 @@
                 case EnumQuebrar.NaoQuebrar:
 
                     return "nao-quebrar";
+
+                case EnumQuebrar.NaoQuebrarSemEllipsis:
+
+                    return "nao-quebrar-sem-ellipsis";
+
+                default:
+
+                    throw new Erro("EnumQuebrar não definido ou não suportado " + quebrar);
+
             }
         }
     }

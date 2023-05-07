@@ -7,6 +7,7 @@
 
         private _passo: number;
         private _isSalvarOrdenacaoAutomaticamente: boolean = true;
+        private _isAnimarOrdenacao: boolean = true;
         private _isCloneGlobal: boolean = true;
         private _elementoScroll: HTMLElement;
         private _isRolandoScroll = false;
@@ -29,10 +30,15 @@
         {
             return this._isSalvarOrdenacaoAutomaticamente;
         }
-
+         
         public get IsCloneGlobal(): boolean
         {
             return this._isCloneGlobal;
+        }
+
+        public get IsAnimarOrdenacao(): boolean
+        {
+            return this._isAnimarOrdenacao;
         }
 
         public get ElementoScroll(): HTMLElement
@@ -43,6 +49,7 @@
             }
             return this._elementoScroll;
         }
+
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
@@ -58,6 +65,7 @@
 
             this._passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, ControleListaOrdenacao.PASSO_PADRAO);
             this._isSalvarOrdenacaoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.IsSalvarOrdenacaoAutomaticamente, true);
+            this._isAnimarOrdenacao = this.RetornarValorAtributoBoolean(AtributosHtml.IsAnimarOrdenacao, true);
             this._isCloneGlobal = this.RetornarValorAtributoBoolean(AtributosHtml.IsCloneGlobal, true);
             this._sentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();

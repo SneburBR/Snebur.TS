@@ -86,6 +86,7 @@
         }
 
         public abstract get IsMarcarItem(): boolean;
+        public abstract get TotalItens(): number;
         //#endregion
 
         //#region Eventos 
@@ -217,6 +218,15 @@
             }
         }
         //#endregion
+
+        public async AguardarCarregandoItensAsync()
+        {
+            while (this.Fila?.Count > 0)
+            {
+                await ThreadUtil.EsperarAsync(250);
+            }
+            await ThreadUtil.EsperarAsync(250);
+        }
 
         //#region AcessoDados - Pesquisa - Ordenação - Paginação
 
@@ -387,7 +397,6 @@
 
         protected RetornarConsulta(): a.IConsultaEntidade<d.IEntidade>
         {
-
             const consulta = this.RetornarConsultaInterno();
             if (!String.IsNullOrWhiteSpace(this.Pesquisa))
             {
