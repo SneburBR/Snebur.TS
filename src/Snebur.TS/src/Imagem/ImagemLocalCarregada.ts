@@ -7,18 +7,23 @@ namespace Snebur.Imagens
         public readonly ArquivoBlob: Blob;
         public readonly TamanhoImagem: d.EnumTamanhoImagem;
         public readonly Erro: Error;
+        public readonly MimeType: ImagemLocalMimeType;
 
         public get IsSucesso(): boolean
         {
             return this.Erro == null &&
                 this.ArquivoBlob instanceof Blob;
         }
-     
-        public constructor(tamanhoImagem: d.EnumTamanhoImagem, blob: Blob)
+
+        public constructor(
+            tamanhoImagem: d.EnumTamanhoImagem,
+            blob: Blob,
+            mimeType: ImagemLocalMimeType)
         {
             this.TamanhoImagem = tamanhoImagem;
             this.ArquivoBlob = blob;
             this.UrlLocal = window.URL.createObjectURL(this.ArquivoBlob);
+            this.MimeType = mimeType;
         }
 
         public Dispose(): void
@@ -28,5 +33,7 @@ namespace Snebur.Imagens
             delete (this as any).ArquivoBlob;
         }
     }
+
+   export  type ImagemLocalMimeType = "image/jpeg" | "image/webp";
 }
 

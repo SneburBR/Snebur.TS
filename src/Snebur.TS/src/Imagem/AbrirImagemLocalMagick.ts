@@ -24,8 +24,17 @@
             const buffer = await ArquivoUtil.RetornarBufferArrayAsync(blob);
             const bytes = new Uint8Array(buffer);
 
+            const dimensao= `${ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE}x${ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE}`;
+
+            const settings = new MagickWasm.MagickReadSettings();
+            settings.setDefine(
+                MagickWasm.MagickFormat.Jpeg,
+                "size",
+                dimensao);
+
             const imagensCarregada = await MagickWasm.ImageMagick.read<DicionarioImagensCarregada>(
                 bytes,
+                settings,
                 this.CarregarImagemInternoAsync.bind(this));
 
             if (this._isSalvarPendente)
@@ -45,7 +54,9 @@
             imageMagick.autoOrient();
              
             const formatoDestino = (imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-                imageMagick.format === MagickWasm.MagickFormat.Jpg) ? MagickWasm.MagickFormat.Jpeg : MagickWasm.MagickFormat.Webp;
+                imageMagick.format === MagickWasm.MagickFormat.Jpg) ?
+                MagickWasm.MagickFormat.Jpeg :
+                MagickWasm.MagickFormat.Webp;
 
             const mimeType = formatoDestino === MagickWasm.MagickFormat.Jpeg ?
                 "image/jpeg" : "image/webp";
@@ -69,7 +80,11 @@
                         this.AtualizarDimensao(dimensaoApresentacao, tamanhoImagem);
 
                         const blob = new Blob([bytes], { type: mimeType });
-                        const cache = new ImagemLocalCarregada(tamanhoImagem, blob);
+                        const cache = new ImagemLocalCarregada(
+                            tamanhoImagem,
+                            blob,
+                            mimeType);
+
                         imagensCarregada.Add(tamanhoImagem, cache);
 
                     }, formatoDestino);

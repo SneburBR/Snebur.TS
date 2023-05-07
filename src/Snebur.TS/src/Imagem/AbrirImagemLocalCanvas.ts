@@ -77,8 +77,14 @@
                     tamanhoImagem);
 
                 const canvas = super.RetornarCanvas(imagemAtual, dimensaoApresentacao);
-                const blob = await this.RetornarBlobAsync(canvas, true, qualidade);
-                const cache = new ImagemLocalCarregada(tamanhoImagem, blob);
+                const mimeType = this.RetornarMimeType();
+                const blob = await this.RetornarBlobAsync(canvas, qualidade, mimeType);
+
+                const cache = new ImagemLocalCarregada(
+                    tamanhoImagem,
+                    blob,
+                    mimeType);
+
                 imagensCarregada.Add(tamanhoImagem, cache);
             }
             return imagensCarregada;

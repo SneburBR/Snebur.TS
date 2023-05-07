@@ -110,30 +110,11 @@
 
         protected RetornarBlobAsync(
             canvas: HTMLCanvasElement,
-            isWebP: boolean,
-            qualidade: number): Promise<Blob>
+            qualidade: number,
+            mimeType: u.EnumMimeTypeImagemString.Jpeg | u.EnumMimeTypeImagemString.Webp): Promise<Blob>
         {
+            return canvas.ToBlobAsync(mimeType, qualidade);
 
-            if (isWebP)
-            {
-                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Webp, qualidade);
-            }
-
-            switch (this.OrigemImagemLocal.FormatoImagem)
-            {
-                case d.EnumFormatoImagem.JPEG:
-                case d.EnumFormatoImagem.GIF:
-                case d.EnumFormatoImagem.WEBP:
-                case d.EnumFormatoImagem.BMP:
-
-                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Jpeg, qualidade);
-
-                default:
-
-                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, qualidade);
-
-                /*throw new ErroNaoSuportado("O formato do imagem não é suportado");*/
-            }
         }
 
         protected Resolver(args: any): void
@@ -147,6 +128,25 @@
                 this.FuncaoResolver(args);
                 this.FuncaoResolver = null;
                 delete this.FuncaoResolver;
+            }
+        }
+
+        protected RetornarMimeType(): u.EnumMimeTypeImagemString.Jpeg | u.EnumMimeTypeImagemString.Webp
+        {
+            switch (this.OrigemImagemLocal.FormatoImagem)
+            {
+                case d.EnumFormatoImagem.JPEG:
+                case d.EnumFormatoImagem.GIF:
+                case d.EnumFormatoImagem.WEBP:
+                case d.EnumFormatoImagem.BMP:
+
+                    return u.EnumMimeTypeImagemString.Jpeg;
+
+                default:
+
+                    return u.EnumMimeTypeImagemString.Webp;
+
+                /*throw new ErroNaoSuportado("O formato do imagem não é suportado");*/
             }
         }
 

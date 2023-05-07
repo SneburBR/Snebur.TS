@@ -55,10 +55,11 @@
                 {
                     console.error(err);
                 }
-
             }
 
-            const blob = await this.RetornarBlobAsync(canvas, false, u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS / 100);
+            const mimeType = this.RetornarMimeType();
+            const blob = await this.RetornarBlobAsync(canvas,
+                u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS / 100, mimeType);
             if (blob != null)
             {
                 const bytes = await u.ArquivoUtil.RetornarBufferArrayAsync(blob);
@@ -77,8 +78,6 @@
             }
             return dimensao;
         }
-
-
 
         private RetornarArrayButter(bytes: Uint8Array | ArrayBuffer | null): ArrayBuffer | null
         {

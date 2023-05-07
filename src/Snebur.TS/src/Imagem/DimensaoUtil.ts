@@ -261,6 +261,10 @@
             {
                 return b === 0 ? a : mdc(b, a % b);
             }
+
+            largura = Math.round(largura * 0.1);
+            altura = Math.round(altura * 0.1);
+
             const divisorComum = mdc(largura, altura);
             const proporcaoLargura = largura / divisorComum;
             const proporcaoAltura = altura / divisorComum;

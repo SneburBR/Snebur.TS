@@ -23,14 +23,38 @@
                     return this.Imagem.DimensaoImagemGrande;
                 default:
 
-                    throw new Erro("O tmanaho da imagem não é suportado");
+                    throw new Erro("O tamanho da imagem não é suportado");
             }
         }
 
-
-        protected RetornarBufferAsync(): Promise<ArrayBuffer>
+        protected async RetornarBufferAsync(): Promise<ArrayBuffer>
         {
-            return this.OrigemImagem.RetornarArrayBufferImagemCarregadaAsync(this.TamanhoImagem);
+            const imagemCarregada = this.OrigemImagem.RetornarRetornarImagemCarregada(this.TamanhoImagem);
+            if (imagemCarregada.MimeType !== "image/webp" &&
+                u.MagickInitUtil.IsInicializado)
+            {
+                const buffer = await this.ConverterParaWebpAsync(imagemCarregada.ArquivoBlob);
+                if (buffer?.byteLength > 0)
+                {
+                    return buffer;
+                }
+            }
+            return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
+        }
+
+        private async ConverterParaWebpAsync(arquivoBlob: Blob):  Promise<ArrayBuffer>
+        {
+            const buffer = await ArquivoUtil.RetornarBufferArrayAsync(arquivoBlob);
+            const bytes = new Uint8Array(buffer);
+            return await MagickWasm.ImageMagick.read<ArrayBuffer>(bytes, this.CarregarImagemInternoAsync.bind(this));
+        }
+
+        private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<ArrayBuffer>
+        {
+            return await imageMagick.write((bytes) =>
+            {
+                return new Uint8Array(bytes).buffer;
+             }, MagickWasm.MagickFormat.Webp);
         }
 
         protected override FinalizarEnviadoSucesso(): void
