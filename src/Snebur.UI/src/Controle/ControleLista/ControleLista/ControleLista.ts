@@ -132,6 +132,15 @@ namespace Snebur.UI
                 this.ItensColecao.RemoverItemControle(item);
             }
         }
+        public async ScrollItemAsync(item: TItem)
+        {
+            const itemBloco = this.DicionarioItensControle.Item(item);
+            if (itemBloco?.Elemento != null)
+            {
+                ElementoUtil.ScrollTo(itemBloco.Elemento);
+            }
+        }
+
         //#endregion
 
         //#region Métodos privados
@@ -154,6 +163,7 @@ namespace Snebur.UI
         }
 
         //Esse elemento, é referencia para adicionar o elemento do controle ItensCotroleColecao
+
         private RetornarElementoAntesDeInserirItensColecao(): any
         {
             if (u.ValidacaoUtil.IsDefinido(this.Rodape))
@@ -213,6 +223,7 @@ namespace Snebur.UI
                 ElementoUtil.AdicionarElemento(elemento, elementoRodape);
             }
         }
+
         //#endregion
     }
 }

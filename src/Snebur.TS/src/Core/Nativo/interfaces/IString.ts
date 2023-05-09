@@ -44,7 +44,7 @@ namespace Snebur.Nativo
 
         Split(divisor: string): Array<string>;
 
-        ToNumber(removerPixels?: boolean): number;
+        ToNumber(removerPixelsOrRem?: boolean): number;
 
         GetHashCode(): number;
 

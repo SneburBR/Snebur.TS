@@ -20,13 +20,21 @@
             this.IsCache = this.RetornarIsCache();
             this.Controle = this.ControlePai.ControlesFilho.Where(x => x.IDElemento === this.IDElemento).SingleOrDefault();
             this.ElementoImagem = this.RetornarIDElementoImagem();
+
+            if (!(this.ElementoImagem instanceof HTMLImageElement))
+            {
+                throw new ErroNaoSuportado("O controle ou elemento não é suportado pelo bind-imagem ", this);
+            }
         }
 
         private RetornarIDElementoImagem(): HTMLImageElement
         {
             if (this.Controle instanceof ControleImagem)
             {
-                return (this.Controle as ControleImagem).ElementoImagem;
+                if ((this.Controle as ControleImagem).ElementoImagem instanceof HTMLImageElement)
+                {
+                    return this.Controle.ElementoImagem;
+                }
             }
 
             if (this.Elemento instanceof HTMLImageElement)
@@ -225,7 +233,10 @@
 
         private AtualizarImagemCarregando(): void
         {
-            this.ElementoImagem.UrlImagem = u.ImagemUtil.UrlImagemCarregando;
+            if (this.ElementoImagem != null)
+            {
+                this.ElementoImagem.UrlImagem = u.ImagemUtil.UrlImagemCarregando;
+            }
             //this.CentralizarMiniaturaCarregando();
         }
 

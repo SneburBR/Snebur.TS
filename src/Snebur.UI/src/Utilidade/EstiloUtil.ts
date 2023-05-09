@@ -622,6 +622,26 @@
             }
             elemento.classList.add(cssClasse);
         }
+
+        public static CalcularPixelsTamanhoFonte(pixels: number)
+        {
+            const tamanhoFonte = ui.EstiloUtil.TamanhoFonteDocumento;
+            if (tamanhoFonte === ui.EstiloUtil.TAMANHO_FONTE_PADRAO)
+            {
+                return pixels;
+            }
+            return pixels * (tamanhoFonte / ui.EstiloUtil.TAMANHO_FONTE_PADRAO);
+        }
+
+        public static RetornarValorPixel(pixelOrRem: string): number
+        {
+            const valor = pixelOrRem.ToNumber();
+            if (pixelOrRem.endsWith("px"))
+            {
+                return valor;
+            }
+            return valor * EstiloUtil.TamanhoFonteDocumento;
+        }
     }
 
     export enum EnumEstiloHtml

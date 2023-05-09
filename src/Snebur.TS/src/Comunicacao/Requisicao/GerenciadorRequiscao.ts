@@ -74,7 +74,7 @@
                     ultimoProgresso = Math.max(ultimoProgresso, progresso);
                     progressHandler(new ProgressoEventArgs(ultimoProgresso, `Fila ${executadas}/${totalFila}`));
                 }
-                await ThreadUtil.EsperarAsync(350);
+                await ThreadUtil.EsperarAsync(200);
             }
             this.CallbackIncrementarTotalFinal.Remove(incrementarTotalFinal);
         }

@@ -13,7 +13,8 @@
         ap-largura="100%" class="caixa">
 
         <ap-bloco
-            sn-nome="BlocoEspacoRotuloFlutuante" ap-altura="1em">
+            sn-nome="BlocoEspacoRotuloFlutuante"
+            ap-altura="1em">
         </ap-bloco>
 
         <ap-bloco ap-largura="100%" class="sn-bloco-item-selecionado">

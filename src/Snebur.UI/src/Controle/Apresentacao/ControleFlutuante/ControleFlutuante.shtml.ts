@@ -48,7 +48,7 @@
         {
             if (this.Elemento instanceof HTMLElement)
             {
-                return this.Elemento.style.width.ToNumber();
+                return EstiloUtil.RetornarValorPixel(this.Elemento.style.width);
             }
             return 0;
         }
@@ -64,7 +64,7 @@
         {
             if (this.Elemento instanceof HTMLElement)
             {
-                return this.Elemento.style.height.ToNumber(true);
+                return EstiloUtil.RetornarValorPixel(this.Elemento.style.height);
             }
             return 0;
         }
@@ -291,7 +291,7 @@
 
 
             this.TempoAbrirControle = Stopwatch.StartNew();
-            if (this.IsAberto)
+            if (this.IsAberto && this.OpcoesControleFlutuante.IsAtualizarPosicaoAoMostrar)
             {
                 this.AtualizarPosicaoAsync("mostrar this.IsAberto");
                 return;
@@ -315,9 +315,11 @@
             this._isAberto = true;
             super.MostrarElemento();
 
-            if (this.OpcoesControleFlutuante.IsAtualizarPosicaoAoMostrar || !this._isPosicaoAtualizada)
+           
+
+            if (this.OpcoesControleFlutuante.IsAtualizarPosicaoAoMostrar  )
             {
-                this.AtualizarPosicaoAsync("Mostrar");
+            this.AtualizarPosicaoAsync("Mostrar");
             }
 
             this.EventoMostrou.Notificar(this, new MostrouControleFlutanteEventArgs(this));
@@ -419,7 +421,6 @@
         }
         public async AtualizarPosicaoAsync(origem?: string, tentativa: number = 0)
         {
-
             if (this.IsAberto && this.OpcoesControleFlutuante.IsFlutuante && this.IsControleInicializado)
             {
                 const posicaoElementoRelativo = this.RetornarPosicaoElementoRelativo();
@@ -450,19 +451,19 @@
 
                 const estilo = new Estilo({
                     position: "absolute",
-                    top: posicaoY.ToRems(tamanhoFonteDocumento),
-                    left: posicaoX.ToRems(tamanhoFonteDocumento),
+                    top: posicaoY.ToPixels(),
+                    left: posicaoX.ToPixels(),
                     transform: "none",
                 });
 
                 if (altura > 0)
                 {
-                    estilo.height = altura.ToRems(tamanhoFonteDocumento);
+                    estilo.height = altura.ToPixels();
                 }
 
                 if (largura > 0)
                 {
-                    estilo.width = largura.ToRems(tamanhoFonteDocumento);
+                    estilo.width = largura.ToPixels();
                 }
 
                 estilo.AplicarEm(this.Elemento);
@@ -478,13 +479,13 @@
             }
         }
 
-        protected RetornarPosicaoElementoRelativo(): ClientRect
+        protected RetornarPosicaoElementoRelativo():DOMRect
         {
             return this.ElementoRelativo?.getBoundingClientRect();
 
         }
 
-        protected RetornarPosicaoX(posicaoElementoRelativo: ClientRect, largura: number): number
+        protected RetornarPosicaoX(posicaoElementoRelativo: DOMRect, largura: number): number
         {
             if (this.Movimentacao?.PosicaoX > 0)
             {
@@ -511,9 +512,7 @@
                 case EnumDestinoControleFlutuante.DireitaInferior:
 
                     return posicaoElementoRelativo.left + posicaoElementoRelativo.width;
-
-
-
+                     
                 case EnumDestinoControleFlutuante.InferiorEsquerda:
                 case EnumDestinoControleFlutuante.SuperiorEsquerda:
 
@@ -543,7 +542,7 @@
             //posicaoElementoRelativo.left + this.RetornarDiferencaPosicaoX();
         }
 
-        protected RetornarPosicaoY(posicaoElementoRelativo: ClientRect, altura: number): number
+        protected RetornarPosicaoY(posicaoElementoRelativo: DOMRect, altura: number): number
         {
             if (this.Movimentacao?.PosicaoY > 0)
             {

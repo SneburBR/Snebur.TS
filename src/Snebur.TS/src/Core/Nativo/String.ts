@@ -151,11 +151,11 @@ namespace Snebur
         }
     };
 
-    String.prototype.ToNumber = function (this: string, removerPixels: boolean)
+    String.prototype.ToNumber = function (this: string, removerPixelsOrRem: boolean)
     {
-        if (removerPixels)
+        if (removerPixelsOrRem)
         {
-            return u.ConverterUtil.ParaNumero((this as string).replace("px", String.Empty));
+            return u.ConverterUtil.ParaNumero((this as string).replace("px", String.Empty).replace("em", String.Empty));
         }
         return u.ConverterUtil.ParaNumero(this);
     };

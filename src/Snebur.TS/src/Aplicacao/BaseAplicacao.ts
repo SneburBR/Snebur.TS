@@ -25,6 +25,8 @@
         public readonly ContextosDados = new DicionarioSimples<Snebur.AcessoDados.BaseContextoDados>();
         public readonly ServicosArquivo = new DicionarioSimples<Snebur.ServicoArquivo.ServicoArquivo>();
 
+        public abstract IsCarregandoImagem: boolean;
+
         public get GerenciadorServioArquivoPadrao(): sa.GerenciadorEnvioArquivo
         {
             return this._gerenciadorServioArquivoPadrao;

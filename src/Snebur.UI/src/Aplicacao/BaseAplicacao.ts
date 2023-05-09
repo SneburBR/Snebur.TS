@@ -49,6 +49,11 @@
 
         //#region Inicialização
 
+        public override get IsCarregandoImagem(): boolean
+        {
+            return this.GerenciadorAbrirImagemLocal?.IsCarregandoImagem ?? false;
+        }
+
         public constructor(construtorJanelaEntrar?: IJanelaAutenticacaoConstrutor,
             construtorDocumentoPrincipal?: IDocumentoPrincipalConstrutor<TDocumentoPrincipal>)
         {
