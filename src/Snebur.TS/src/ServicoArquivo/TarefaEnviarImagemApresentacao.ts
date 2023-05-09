@@ -30,15 +30,15 @@
         protected async RetornarBufferAsync(): Promise<ArrayBuffer>
         {
             const imagemCarregada = this.OrigemImagem.RetornarRetornarImagemCarregada(this.TamanhoImagem);
-            if (imagemCarregada.MimeType !== "image/webp" &&
-                u.MagickInitUtil.IsInicializado)
-            {
-                const buffer = await this.ConverterParaWebpAsync(imagemCarregada.ArquivoBlob);
-                if (buffer?.byteLength > 0)
-                {
-                    return buffer;
-                }
-            }
+            //if (imagemCarregada.MimeType !== "image/webp" &&
+            //    u.MagickInitUtil.IsInicializado)
+            //{
+            //    const buffer = await this.ConverterParaWebpAsync(imagemCarregada.ArquivoBlob);
+            //    if (buffer?.byteLength > 0)
+            //    {
+            //        return buffer;
+            //    }
+            //}
             return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
         }
 

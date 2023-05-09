@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Comunicacao
 {
-    //#region Proteger chamada
+    //#region Proteger chamada (Não entendeu, então não mecha)
 
     const _0019276d = "(function () { return (function (c) { this.a(c); }); })();";
     const _be22 = "_6a2ab522010d(t, h)";
@@ -74,6 +74,7 @@
                     return;
                 }
 
+                //#region Proteger chamada (Não entendeu, então não mecha)
                 const t = this.Tk,
                     a = pacote,
                     h = this.XmlHttp,
@@ -81,6 +82,7 @@
                     z = Snebur,
                     x = eval(_be22),
                     l = (z as any)[t](c);
+                //#endregion
 
             });
 
@@ -185,11 +187,13 @@
         {
             this._isTimeouotAtigindo = true;
             window.clearTimeout(this._idTimeout);
-            console.error(`O timeout da requisição '${this.Requisicao.toString()}' foi atingido em ${this._stopwatch.TotalSeconds}s.`);
+            if (this.Requisicao == null)
+            {
+                return;
+            }
+            console.error(`O timeout da requisição '${this.Requisicao?.toString()}' foi atingido em ${this._stopwatch?.TotalSeconds}s.`);
             this.FinalizarChamarAsync(new ResultadoChamadaErroCliente(this.Requisicao));
         }
-
-        // adicionando um rando,
 
         private async XmlHttp_ReadyStateChange(event: ProgressEvent)
         {
@@ -259,7 +263,8 @@
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }
 
-        //#region Não suportado em todos navegadores 
+        //#region Events
+
         //Usar OnReadyStateChange
 
         private Xmlhttp_Load(event: Event)

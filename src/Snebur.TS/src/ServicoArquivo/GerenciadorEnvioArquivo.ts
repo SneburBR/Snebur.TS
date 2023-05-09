@@ -89,9 +89,17 @@
             this.ServicoLog = $Aplicacao.ServicoLogServicoArquivo;
             //this.PrerenciaOrdemFila = Snebur.Tarefa.EnumPreferenciaOrdemFila.Primeiro;
             /*this.MaximoTarefasSimultaneas = $Configuracao.IsDebug?  1 : 3;*/
-            this.MaximoTarefasSimultaneas = 3;
+
+            this.MaximoTarefasSimultaneas = 2;
             this.IntervaloExecutarProximaTarefa = TimeSpan.FromSeconds(0);
             this.Status = t.EnumStatusTarefa.Finalizada;
+            this.CalcularMaximoThreadsAsync();
+        }
+        private async CalcularMaximoThreadsAsync()
+        {
+            const resultado = await u.ProcessadorUtil.CalcularNotaProcessaadorAsync(false);
+            const nota = resultado.Worker.Total / resultado.Worker.Tempo;
+
         }
 
         protected override AtualizarProgressoGerenciadorTarefa(): void

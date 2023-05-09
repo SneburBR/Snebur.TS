@@ -5,12 +5,20 @@ namespace Snebur.UI
     {
         private readonly DicionarioTarefasVirtualizacao = new DicionarioSimples<TarefaAbrirImagemLocal, string>();
         public readonly TarefasVirtualizacao = new ListaObservacao<TarefaAbrirImagemLocal>();
+        private _isAbrirImagem: boolean = false;
+        
         //private  readonly Tarefas
 
         public get TotalVirtualizacao(): number
         {
             return this.TarefasVirtualizacao.Count;
         }
+
+       public get IsCarregandoImagem(): boolean
+        {
+           return this.TarefasVirtualizacao?.Count > 0 ||
+               this.Executando?.Count > 0 || this._isAbrirImagem;
+       }
 
         public constructor()
         {

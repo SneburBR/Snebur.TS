@@ -46,6 +46,10 @@
             {
                 return 0;
             }
+            if ($Aplicacao.IsCarregandoImagem)
+            {
+                return 1;
+            }
             return this._maximoTarefasSimultaneas;
         }
 

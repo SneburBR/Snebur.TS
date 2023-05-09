@@ -9,7 +9,7 @@
 
         public readonly Imagem: d.IImagem;
         public readonly ArquivoLocal: SnBlob;
-        public readonly FormatoImagem: d.EnumFormatoImagem;
+        
 
         private FileReader: FileReader;
         //private UrlBlobGrande: string;
@@ -28,6 +28,10 @@
             return this._isImagemLocalCarregada;
         }
 
+        public get FormatoImagem(): d.EnumFormatoImagem
+        {
+            return this.Imagem.FormatoImagem;
+        }
 
         public IsExisteImagemServidor(tamanhoImagem: EnumTamanhoImagem): boolean
         {
@@ -35,13 +39,12 @@
                 this.ImagensServidorCarregadas.ContainsKey(tamanhoImagem);
         }
 
-        public constructor(imagem: d.IImagem, arquivoLocal: SnBlob, informacaoImagem: IInformacaoImagem)
+        public constructor(imagem: d.IImagem, arquivoLocal: SnBlob)
         {
             super();
 
             this.Imagem = imagem;
             this.ArquivoLocal = arquivoLocal;
-            this.FormatoImagem = informacaoImagem.FormatoImagem;
         }
 
         public RetornarUrlImagemCarregada(tamanhoImagem: d.EnumTamanhoImagem)
@@ -145,7 +148,7 @@
 
         private async AbrirImagemInternoAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            if (u.MagickInitUtil.IsInicializado )
+            if (u.MagickInitUtil.IsInicializado  && !window.__IS_USAR_CANVAS__ )
             {
                 try
                 {
@@ -167,17 +170,21 @@
 
         private async AbrirImagemCanvasAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
+            const stopWatch = Stopwatch.StartNew();
             const abrirImagem = new i.AbrirImagemLocalCanvas(this, u.ImagemUtil.TamanhosImagemApresentacao);
             const resultado = await abrirImagem.CarergarImagemAsync();
             abrirImagem.Dispose();
+            console.warn(`Tempo abrir imagem Canvas: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
             return resultado;
         }
 
         private async AbrirImagemMagickAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
+            const stopWatch = Stopwatch.StartNew();
             const abrirImagem = new i.AbrirImagemLocalMagick(this, u.ImagemUtil.TamanhosImagemApresentacao);
             const resultado = await abrirImagem.CarergarImagemAsync();
             abrirImagem.Dispose();
+            console.warn(`Tempo abrir imagem Magick: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
             return resultado;
         }
 
@@ -244,3 +251,9 @@
     //#endregion
 }
 
+
+interface Window
+{
+    __IS_USAR_CANVAS__: boolean;
+}
+window.__IS_USAR_CANVAS__ = false;

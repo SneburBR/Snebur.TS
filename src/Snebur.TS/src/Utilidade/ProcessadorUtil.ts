@@ -2,35 +2,43 @@
 {
     export class ProcessadorUtil
     {
-        public static async CalcularNotaProcessaador(): Promise<{ MainThread: w.IResultadoProcessador; Worker: w.IResultadoProcessador }>
+        public static async CalcularNotaProcessaadorAsync(isMainThread: boolean): Promise<{ MainThread: w.IResultadoProcessador; Worker: w.IResultadoProcessador }>
         {
-            const tempo = ProcessadorUtil.fib(40);
-            const totalOpacoes = ProcessadorUtil.dist(1000);
-
-            const mainThread = {
-                Tempo: tempo,
-                Total: totalOpacoes
-            };
-
             const worker = await w.Cpu.CalcularNotaProcessaadorAsync();
-
             if ($Configuracao.IsDebug || $Configuracao.IsTeste)
             {
-                let estilo = "color:red;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
-                console.LogDebug("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
-                console.LogDebug("%cMAINTHREAD TOTAL OPERAÇÕES 1s: " + totalOpacoes, estilo);
-
-                estilo = "color:blue;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
+                const estilo = "color:blue;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
                 console.LogDebug("%cWORKER TEMPO : " + worker.Tempo + " ms", estilo);
                 console.LogDebug("%cWORKER TOTAL OPERAÇÕES 1s: " + worker.Total, estilo);
-
-                if (u.SistemaUtil.IsAndroidOrIOS)
-                {
-                    let info = `Mainthread Tempo ${tempo}ms, \r\n total operações em 1s : ${totalOpacoes}`;
-                    info += `\rWorker Tempo ${worker.Tempo}ms, \r\n total operações em 1s : ${worker.Total}`;
-                    alert(info);
-                }
             }
+
+            let mainThread = null;
+            if (isMainThread)
+            {
+                const tempo = ProcessadorUtil.fib(40);
+                const totalOpacoes = ProcessadorUtil.dist(1000);
+
+                mainThread = {
+                    Tempo: tempo,
+                    Total: totalOpacoes
+                };
+
+                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                {
+                    const estilo = "color:red;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
+                    console.LogDebug("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
+                    console.LogDebug("%cMAINTHREAD TOTAL OPERAÇÕES 1s: " + totalOpacoes, estilo);
+
+                    //if (u.SistemaUtil.IsAndroidOrIOS)
+                    //{
+                    //    let info = `Mainthread Tempo ${tempo}ms, \r\n total operações em 1s : ${totalOpacoes}`;
+                    //    info += `\rWorker Tempo ${worker.Tempo}ms, \r\n total operações em 1s : ${worker.Total}`;
+                    //    alert(info);
+                    //}
+                }
+
+            }
+
 
             return {
                 MainThread: mainThread,

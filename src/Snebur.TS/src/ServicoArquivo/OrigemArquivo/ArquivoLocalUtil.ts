@@ -7,7 +7,7 @@
 
         private static readonly DicionarioArquivoLocal = new DicionarioSimples<List<OrigemImagemLocal>, string>();
 
-        public static RetornarNovaOrigemImagemLocal(imagem: d.IImagem, informacaoImagem: IInformacaoImagem, arquivo: SnBlob): OrigemImagemLocal
+        public static RetornarNovaOrigemImagemLocal(imagem: d.IImagem, arquivo: SnBlob): OrigemImagemLocal
         {
             const chave = this.RetornarChave(imagem);
             if (!OrigemImagemLocalUtil.DicionarioArquivoLocal.ContainsKey(chave))
@@ -22,7 +22,7 @@
                 return origemImagemLocal;
             }
 
-            const origemLocal = new OrigemImagemLocal(imagem, arquivo, informacaoImagem);
+            const origemLocal = new OrigemImagemLocal(imagem, arquivo);
             lista.Add(origemLocal);
             return origemLocal;
         }
