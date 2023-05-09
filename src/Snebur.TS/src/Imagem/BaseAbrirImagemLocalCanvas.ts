@@ -98,7 +98,7 @@
             return [canvas, imageData];
         }
 
-        protected RetornarCanvas(imagem: HTMLImageElement, dimensao: IDimensao): HTMLCanvasElement
+        protected RetornarCanvas(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: IDimensao): HTMLCanvasElement
         {
             const canvas = document.createElement("canvas");
             canvas.width = dimensao.Largura;

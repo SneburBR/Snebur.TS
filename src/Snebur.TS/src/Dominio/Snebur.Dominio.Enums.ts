@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : sábado, 29 de abril de 2023
-//Hora : 19:56:45
+//Data : segunda-feira, 8 de maio de 2023
+//Hora : 18:16:10
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -6238,11 +6238,13 @@ namespace Snebur.UI
         Vazio = -1,
         Quebrar = 1,
         NaoQuebrar = 2,
+        NaoQuebrarSemEllipsis = 3,
     }
     (EnumQuebrar as any).Rotulos = {};
     (EnumQuebrar as any).Rotulos["Vazio"] = "Vazio";
     (EnumQuebrar as any).Rotulos["Quebrar"] = "Quebrar";
     (EnumQuebrar as any).Rotulos["NaoQuebrar"] = "NaoQuebrar";
+    (EnumQuebrar as any).Rotulos["NaoQuebrarSemEllipsis"] = "NaoQuebrarSemEllipsis";
 
     export enum EnumTamanhoIcone
     {

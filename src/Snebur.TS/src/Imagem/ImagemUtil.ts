@@ -4,7 +4,7 @@
     {
         private static _tamnhoImagensApresentacao: List<d.EnumTamanhoImagem>;
         public static readonly QUALIDADE_APRESENTACAO_CANVAS = 85;
-        public static readonly QUALIDADE_APRESENTACAO_MAGICK = 55;
+        public static readonly QUALIDADE_APRESENTACAO_MAGICK = 50;
         public static readonly QUALIDADE_IMPRESSAO_CANVAS = 92;
         public static readonly QUALIDADE_IMPRESSAO_MAGICK = 85;
 
@@ -75,26 +75,33 @@
         {
             if (arquivo instanceof SnBlob)
             {
-                const isIcone = !ImagemUtil.IsFormatoImagemSuportado(info.FormatoImagem);
-                const mimeType = this.RetornarMimeTypeEnum(info, arquivo);
                 imagem.NomeArquivo = arquivo.name;
                 imagem.CaminhoArquivo = arquivo.name;
                 imagem.TotalBytesLocal = arquivo.size;
-                imagem.DimensaoImagemLocal = new Dimensao(info.Dimensao);
+
                 imagem.Status = d.EnumStatusArquivo.Novo;
-                imagem.IsIcone = isIcone;
-                imagem.FormatoImagem = isIcone ? EnumFormatoImagem.PNG : info.FormatoImagem;
-                imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
+                imagem.IsIcone = false;
+                imagem.FormatoImagem = EnumFormatoImagem.Desconhecido;
+                imagem.OrigemImagem = sa.OrigemImagemLocalUtil.RetornarNovaOrigemImagemLocal(imagem, arquivo);
 
-                imagem.OrigemImagem = sa.OrigemImagemLocalUtil.RetornarNovaOrigemImagemLocal(imagem, info, arquivo);
+                if (info != null)
+                {
+                    const isIcone = !ImagemUtil.IsFormatoImagemSuportado(info.FormatoImagem);
+                    const mimeType = this.RetornarMimeTypeEnum(info, arquivo);
+                    const dimensao = isIcone ? ImagemUtil.DimensaoIcone : info.Dimensao;
+
+                    imagem.FormatoImagem = isIcone ? EnumFormatoImagem.PNG : info.FormatoImagem;
+                    imagem.DimensaoImagemLocal = new Dimensao(info.Dimensao);
+                    imagem.DimensaoImagemMiniatura = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Miniatura));
+                    imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
+                    imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));
+                    imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
 
 
-                const dimensao = isIcone ? ImagemUtil.DimensaoIcone : info.Dimensao;
-                imagem.DimensaoImagemMiniatura = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Miniatura));
-                imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
-                imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));
-                imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
-                imagem.MimeType = mimeType;
+                    imagem.MimeType = mimeType;
+                    imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
+                }
+
             }
             else
             {
@@ -218,12 +225,14 @@
                 return d.EnumTamanhoImagem.Miniatura;
             }
 
-            if (largura < imagem.DimensaoImagemPequena.Largura && altura < imagem.DimensaoImagemPequena.Altura)
+            if (largura < imagem.DimensaoImagemPequena.Largura &&
+                altura < imagem.DimensaoImagemPequena.Altura)
             {
                 return d.EnumTamanhoImagem.Pequena;
             }
 
-            if (largura < imagem.DimensaoImagemMedia.Largura && altura < imagem.DimensaoImagemMedia.Altura)
+            if (largura < imagem.DimensaoImagemMedia.Largura &&
+                altura < imagem.DimensaoImagemMedia.Altura)
             {
                 return d.EnumTamanhoImagem.Media;
             }
@@ -237,10 +246,7 @@
             {
                 return true;
             }
-            else
-            {
-                return ImagemUtil.ExisteImagemLocal(imagem, tamanhoImagem);
-            }
+            return ImagemUtil.ExisteImagemLocal(imagem, tamanhoImagem);
         }
 
         public static ExisteImagemServidor(imagem: d.IImagem, tamanhoImagem: d.EnumTamanhoImagem): boolean
@@ -558,11 +564,11 @@
             return ImagemUtil.RetornarFormatoImagem(arquivoOuPath) === EnumFormatoImagem.JPEG;
         }
 
-        public static AtualizarDimensao(imagem: d.IImagem, dimensao: d.Dimensao, tamanhoImagem: d.EnumTamanhoImagem):boolean
+        public static AtualizarDimensao(imagem: d.IImagem, dimensao: IDimensao, tamanhoImagem: d.EnumTamanhoImagem): boolean
         {
             switch (tamanhoImagem)
             {
-                case d.EnumTamanhoImagem.Miniatura: 
+                case d.EnumTamanhoImagem.Miniatura:
                     return imagem.DimensaoImagemMiniatura.Atualizar(dimensao);
                 case d.EnumTamanhoImagem.Pequena:
                     return imagem.DimensaoImagemPequena.Atualizar(dimensao);
@@ -576,5 +582,47 @@
                     throw new Erro("Tamanho da imagem não suportado");
             }
         }
+
+        public static AtualizarDimensaLocal(imagem: d.IImagem,
+            dimensao: IDimensao,
+            formatoImagem: EnumFormatoImagem,
+            mimeType: EnumMimeType,
+            isIcone: boolean): boolean
+        {
+            let isAtualizou = false;
+            if (imagem.DimensaoImagemLocal.Atualizar(dimensao))
+            {
+                isAtualizou = true;
+            }
+
+
+            if (imagem.FormatoImagem !== formatoImagem)
+            {
+                imagem.FormatoImagem = formatoImagem;
+                isAtualizou = true;
+            }
+            if (imagem.MimeType !== mimeType)
+            {
+                imagem.MimeType = mimeType;
+                isAtualizou = true;
+            }
+
+            if (isIcone && !imagem.IsIcone)
+            {
+                imagem.IsIcone = true;
+
+                const dimensao = ImagemUtil.DimensaoIcone;
+                imagem.FormatoImagem = EnumFormatoImagem.PNG;
+                imagem.DimensaoImagemLocal = new Dimensao(dimensao);
+                imagem.DimensaoImagemMiniatura = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Miniatura));
+                imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
+                imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));
+                imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
+                isAtualizou = true;
+            }
+
+            return isAtualizou;
+        }
+
     }
 }

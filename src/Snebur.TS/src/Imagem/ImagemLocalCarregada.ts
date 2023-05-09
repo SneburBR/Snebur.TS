@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.Imagens
 {
-    export class ImagemLocalCarregada implements IDisposable
+    export class ImagemLocalCarregada 
     {
         public readonly UrlLocal: string;
         public readonly ArquivoBlob: Blob;
