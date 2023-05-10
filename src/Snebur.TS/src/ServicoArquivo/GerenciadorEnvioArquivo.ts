@@ -95,11 +95,11 @@
             this.Status = t.EnumStatusTarefa.Finalizada;
             this.CalcularMaximoThreadsAsync();
         }
+
         private async CalcularMaximoThreadsAsync()
         {
-            const resultado = await u.ProcessadorUtil.CalcularNotaProcessaadorAsync(false);
-            const nota = resultado.Worker.Total / resultado.Worker.Tempo;
-
+            //const resultado = await u.ProcessadorUtil.CalcularNotaProcessaadorAsync(false);
+            //const nota = resultado.Worker.Total / resultado.Worker.Tempo;
         }
 
         protected override AtualizarProgressoGerenciadorTarefa(): void

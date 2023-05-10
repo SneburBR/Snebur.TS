@@ -226,7 +226,7 @@
 
             if (this.DicionarioItensBloco.ContainsKey(item))
             {
-                throw new Erro(`O item ${item.toString()} hash '${item.GetHashCode()} já existe no PainelLista em ${this.ControleApresentacao.___NomeConstrutor}, verificar o método override GetHashCode()  `);
+                throw new Erro(`O item ${item.toString()} hash '${item?.GetHashCode() ?? null} já existe no PainelLista em ${this.ControleApresentacao.___NomeConstrutor}, verificar o método override GetHashCode()  `);
             }
         }
 
@@ -279,7 +279,7 @@
 
             if (this.BlocoTemplatePadrao == null)
             {
-                const mensagem = `Nenhum bloco template 'z-bloco-template' padrão ou tipado  foi encontrado no painel-lista em ${this.ControleApresentacao.___NomeConstrutor} para o item do tipo ${item?.GetType().Nome} `;
+                const mensagem = `Nenhum bloco template 'sn-bloco-template' padrão ou tipado  foi encontrado no painel-lista em ${this.ControleApresentacao.___NomeConstrutor} para o item do tipo ${item?.GetType().Nome} `;
                 throw new Erro(mensagem);
             }
             return this.BlocoTemplatePadrao;

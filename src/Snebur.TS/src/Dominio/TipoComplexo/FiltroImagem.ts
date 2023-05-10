@@ -364,40 +364,78 @@
             const args = new AjusteEventArgs(filtro, antigoValor, novoValor);
             this.EventoAjusteAlterado.Notificar(this, args);
         }
-
+         
         public Serializar(): string | null
         {
             if (this.IsExisteFiltro)
             {
-                const obj = {} as Partial<d.FiltroImagem>;
-                const setValor = function (destino: any, expressaoPropriedade: (value: d.FiltroImagem) => any, valor: any, valorPadrao: any)
-                {
-                    if (valor != null && valor !== valorPadrao)
-                    {
-                        const propriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
-                        destino[propriedade] = valor;
-                    }
-                };
-
-                setValor(obj, x => x.Exposicao, this._exposicao, FiltroImagem.EXPOSICAO_PADRAO);
-                setValor(obj, x => x.Magenta, this._magenta, FiltroImagem.MAGENTA_PADRAO);
-                setValor(obj, x => x.Ciano, this._ciano, FiltroImagem.CIANO_PADRAO);
-                setValor(obj, x => x.Amarelo, this._amarelo, FiltroImagem.AMARELO_PADRAO);
-                setValor(obj, x => x.Contraste, this._contraste, FiltroImagem.CONTRASTE_PADRAO);
-                setValor(obj, x => x.Brilho, this._brilho, FiltroImagem.BRILHO_PADRAO);
-                setValor(obj, x => x.Saturacao, this._saturacao, FiltroImagem.SATURACAO_PADRAO);
-                setValor(obj, x => x.Sepia, this._sepia, FiltroImagem.SEPIA_PADRAO);
-                setValor(obj, x => x.PretoBranco, this._pretoBranco, FiltroImagem.PRETO_BRANCO_PADRAO);
-                setValor(obj, x => x.Inverter, this._inverter, FiltroImagem.INVERTER_PADRAO);
-                setValor(obj, x => x.Matriz, this._matriz, FiltroImagem.MATRIZ_PADRAO);
-                setValor(obj, x => x.Desfoque, this._desfoque, FiltroImagem.DESFOQUE_PADRAO);
-
-                return JSON.stringify(obj);
+                return JSON.stringify(this.PartialFiltroImagem);
             }
             return null;
         }
 
+        public get PartialFiltroImagem(): Partial<d.FiltroImagem>
+        {
+            const filtro = {} as Partial<d.FiltroImagem>;
+            const setValor = function (destino: any, expressaoPropriedade: (value: d.FiltroImagem) => any, valor: any, valorPadrao: any)
+            {
+                if (valor != null && valor !== valorPadrao)
+                {
+                    const propriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
+                    destino[propriedade] = valor;
+                }
+            };
 
+            setValor(filtro, x => x.Exposicao, this._exposicao, FiltroImagem.EXPOSICAO_PADRAO);
+            setValor(filtro, x => x.Magenta, this._magenta, FiltroImagem.MAGENTA_PADRAO);
+            setValor(filtro, x => x.Ciano, this._ciano, FiltroImagem.CIANO_PADRAO);
+            setValor(filtro, x => x.Amarelo, this._amarelo, FiltroImagem.AMARELO_PADRAO);
+            setValor(filtro, x => x.Contraste, this._contraste, FiltroImagem.CONTRASTE_PADRAO);
+            setValor(filtro, x => x.Brilho, this._brilho, FiltroImagem.BRILHO_PADRAO);
+            setValor(filtro, x => x.Saturacao, this._saturacao, FiltroImagem.SATURACAO_PADRAO);
+            setValor(filtro, x => x.Sepia, this._sepia, FiltroImagem.SEPIA_PADRAO);
+            setValor(filtro, x => x.PretoBranco, this._pretoBranco, FiltroImagem.PRETO_BRANCO_PADRAO);
+            setValor(filtro, x => x.Inverter, this._inverter, FiltroImagem.INVERTER_PADRAO);
+            setValor(filtro, x => x.Matriz, this._matriz, FiltroImagem.MATRIZ_PADRAO);
+            setValor(filtro, x => x.Desfoque, this._desfoque, FiltroImagem.DESFOQUE_PADRAO);
+
+            return filtro;
+        }
+
+        public override toString()
+        {
+            const filtroInterno = this.PartialFiltroImagem;
+            const sb = new StringBuilder();
+            for (const key in filtroInterno)
+            {
+                sb.Append(`${key}: ${(filtroInterno as any)[key]}`);
+            }
+            return sb.ToString(";");
+        }
+
+        public RetornarFormatacao(filtro: d.EnumFiltroImagem): EnumFormatacao
+        {
+            switch (filtro)
+            {
+                case  d.EnumFiltroImagem.Exposicao :
+                case d.EnumFiltroImagem.Ciano :
+                case d.EnumFiltroImagem.Magenta: 
+                case d.EnumFiltroImagem.Amarelo: 
+                case d.EnumFiltroImagem.Contraste: 
+                case d.EnumFiltroImagem.Brilho: 
+                case d.EnumFiltroImagem.Sepia: 
+                case d.EnumFiltroImagem.Saturacao: 
+                case d.EnumFiltroImagem.PretoBranco: 
+                case d.EnumFiltroImagem.Inverter: 
+                case d.EnumFiltroImagem.Desfoque:
+                    return EnumFormatacao.Porcentagem;
+                case d.EnumFiltroImagem.Matriz:
+                    return EnumFormatacao.Grau;
+                default:
+                    throw new Erro("filtro imagem não suportado: "  + filtro);
+            }
+        }
+        
     }
 
     export class AjusteEventArgs extends EventArgs

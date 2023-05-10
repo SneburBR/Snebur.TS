@@ -66,10 +66,11 @@
         {
             this.CorRgba = value.Rgba;
         }
-         
-        public get ExisteBorda(): boolean
+
+        public get IsExisteBorda(): boolean
         {
-            return !this.Cor.IsTransparente || this.Arredondamento > 0;
+            return this.Arredondamento > 0 ||
+                this.Espessura > 0;
         }
 
         public constructor()
@@ -106,6 +107,16 @@
                     this.CorRgba === borda.CorRgba;
             }
             return false;
+        }
+
+        public override toString()
+        {
+            const sb = new StringBuilder();
+            sb.Append(`Espessura: ${this.Espessura}`);
+            sb.Append(`Cor: ${this.CorRgba}`);
+            sb.Append(`IsInterna: ${this.IsInterna}`);
+            sb.Append(`Arredondamento: ${this.Arredondamento}`);
+            return sb.ToString(";");
         }
     }
 }

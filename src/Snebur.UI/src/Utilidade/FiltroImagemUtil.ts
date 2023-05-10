@@ -86,7 +86,7 @@
             if (valor !== null)
             {
                 valor = ConverterUtil.ParaNumero(valor);
-                const valorPadrao = FiltroImagemUtil.RetornarValorPadrao(filtro);
+                const valorPadrao = FiltroImagemUtil.RetornarValorPadraoFiltroCss(filtro);
                 if (valor !== valorPadrao)
                 {
                     if (escala !== 1)
@@ -130,7 +130,7 @@
             }
         }
 
-        private static RetornarValorPadrao(filtro: EnumFiltroCss): number
+        private static RetornarValorPadraoFiltroCss(filtro: EnumFiltroCss): number
         {
             switch (filtro)
             {
@@ -235,13 +235,11 @@
             {
                 elementoSobrePosicao?.remove();
             }
-
         }
 
         private static AplicarSobrePosicaoInterna(elementoSobrePosicao: HTMLElement, sobrePosicao: imagens.SobrePosicao): void
         {
-            if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer ||
-                u.SistemaUtil.NavegadorEnum === d.EnumNavegador.Edge)
+            if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer  )
             {
                 elementoSobrePosicao.OcultarElemento();
                 return;
@@ -475,6 +473,85 @@
         //#endregion
 
         //#endregion
+
+
+        public static RetornarFormatacao(filtro: d.EnumFiltroImagem): EnumFormatacao
+        {
+            switch (filtro)
+            {
+                case d.EnumFiltroImagem.Exposicao:
+                case d.EnumFiltroImagem.Ciano:
+                case d.EnumFiltroImagem.Magenta:
+                case d.EnumFiltroImagem.Amarelo:
+                case d.EnumFiltroImagem.Contraste:
+                case d.EnumFiltroImagem.Brilho:
+                case d.EnumFiltroImagem.Sepia:
+                case d.EnumFiltroImagem.Saturacao:
+                case d.EnumFiltroImagem.PretoBranco:
+                case d.EnumFiltroImagem.Inverter:
+                case d.EnumFiltroImagem.Desfoque:
+                    return EnumFormatacao.Porcentagem;
+                case d.EnumFiltroImagem.Matriz:
+                    return EnumFormatacao.Grau;
+                default:
+                    throw new Erro("filtro imagem não suportado: " + filtro);
+            }
+        }
+
+        public static RetornarValorPadraoFiltroImagem(filtro: d.EnumFiltroImagem): number
+        {
+            switch (filtro)
+            {
+                case d.EnumFiltroImagem.Exposicao:
+
+                    return d.FiltroImagem.EXPOSICAO_PADRAO;
+
+                case d.EnumFiltroImagem.Contraste:
+
+                    return d.FiltroImagem.CONTRASTE_PADRAO;
+
+                case d.EnumFiltroImagem.Brilho:
+
+                    return d.FiltroImagem.BRILHO_PADRAO;
+
+                case d.EnumFiltroImagem.Saturacao:
+
+                    return d.FiltroImagem.SATURACAO_PADRAO;
+
+                case d.EnumFiltroImagem.Sepia:
+
+                    return d.FiltroImagem.SEPIA_PADRAO;
+
+                case d.EnumFiltroImagem.PretoBranco:
+
+                    return d.FiltroImagem.PRETO_BRANCO_PADRAO;
+
+                case d.EnumFiltroImagem.Inverter:
+
+                    return d.FiltroImagem.INVERTER_PADRAO;
+
+                case d.EnumFiltroImagem.Matriz:
+
+                    return d.FiltroImagem.MATRIZ_PADRAO;
+
+                case d.EnumFiltroImagem.Desfoque:
+
+                    return d.FiltroImagem.DESFOQUE_PADRAO;
+
+                case d.EnumFiltroImagem.Magenta:
+
+                    return d.FiltroImagem.MAGENTA_PADRAO;
+                case d.EnumFiltroImagem.Ciano   :
+
+                    return d.FiltroImagem.CIANO_PADRAO;
+                case d.EnumFiltroImagem.Amarelo:
+
+                    return d.FiltroImagem.AMARELO_PADRAO;
+
+                default:
+                    throw new Erro("O filtro" + filtro + " não é suportado");
+            }
+        }
     }
 
     enum EnumCorCorrecao

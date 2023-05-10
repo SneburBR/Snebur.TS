@@ -61,7 +61,7 @@
             this.CallbackIncrementarTotalFinal.Add(incrementarTotalFinal);
             while (this.IsExisteRequisicoesAtivas)
             {
-                console.WarmDebug(`Existe ainda ( ${this.TotalRequisicoesFila} requisições na fila`);
+                /*console.WarmDebug(`Existe ainda ( ${this.TotalRequisicoesFila} requisições na fila`);*/
                 if (progressHandler != null)
                 {
                     if (totalFila < this.Fila.length)

@@ -341,6 +341,7 @@
     "src/Evento/EventoSelecionarArquivos.ts",
     "src/Evento/EventoTextoPesquisa.ts",
     "src/Evento/EventoValorAlterado.ts",
+    "src/Evento/EventoValorMotificando.ts",
     "src/Hisorico/ConstantesHistoricoNavegador.ts",
     "src/Hisorico/HistoricoNavegadorUtil.ts",
     "src/Mascara/MascaraFormatacao.ts",

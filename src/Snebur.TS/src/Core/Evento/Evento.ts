@@ -8,33 +8,17 @@
         private _isDispensado: boolean = false;
 
         protected readonly _manipuladores = new List<Snebur.Core.ManipuladorEvento<TEventArgs>>();
-        private _eventoManipuladoresAlterado_DEBUG: Evento<ItemAlteradoEventArgs>;
-        protected _manipuladores_DEBUG: ListaObservacao<Snebur.Core.ManipuladorEvento<TEventArgs>>;
 
         protected get Manipuladores(): List<Snebur.Core.ManipuladorEvento<TEventArgs>>
         {
-            if (Snebur.$Configuracao?.IsDebug &&
-                !Array.isArray(this.Provedor))
-            {
-                if (this._manipuladores_DEBUG == null)
-                {
-                    this._manipuladores_DEBUG = new ListaObservacao<Snebur.Core.ManipuladorEvento<TEventArgs>>();
-                    this._manipuladores_DEBUG.EventoItemAlterado.AddHandler(this.Manipuladores_ItemAlterado, this);
-                }
-                return this._manipuladores_DEBUG;
-            }
             return this._manipuladores;
         }
 
-        public get EventoManipuladoresAlterado_DEBUG(): Evento<ItemAlteradoEventArgs>
+        public get TotalManipuladores(): number
         {
-            if (this._eventoManipuladoresAlterado_DEBUG == null && Snebur.$Configuracao.IsDebug)
-            {
-                this._eventoManipuladoresAlterado_DEBUG = new Evento<ItemAlteradoEventArgs>(this);
-            }
-            return this._eventoManipuladoresAlterado_DEBUG;
+            return this.Manipuladores.Count;
         }
-       
+         
         public get IsDispensado(): boolean
         {
             return this._isDispensado;
@@ -148,12 +132,7 @@
         {
             this._isAtivado = false;
         }
-
-        private Manipuladores_ItemAlterado(provedor: any, e: ItemAlteradoEventArgs)
-        {
-            this.EventoManipuladoresAlterado_DEBUG.Notificar(provedor, e);
-        }
-
+         
         //#region IDispensar 
 
         public Dispose(): void
@@ -165,6 +144,7 @@
             }
             this._isDispensado = true;
         }
+
         //#endregil
     }
 }

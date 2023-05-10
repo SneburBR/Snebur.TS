@@ -34,7 +34,7 @@
                 const tipo = u.ReflexaoUtil.RetornarTipo(caminhoTipo);
                 if (tipo === d.BaseViewModel.GetType())
                 {
-                    throw new Erro("dasdas");
+                    throw new Erro(`O tipo ${caminhoTipo} deve ser colocado em um arquivo separado, para reflexão reconhece-lo`);
                 }
                
                 return tipo.CaminhoTipo ??
