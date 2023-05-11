@@ -206,6 +206,24 @@
                 this.Direita > margem.Direita;
         }
 
+        public Diminuir(valor: number, isAceitarNegativo: boolean): Margem
+        {
+            const esquerda = this.Esquerda - valor;
+            const superior = this.Superior - valor;
+            const direita = this.Direita - valor;
+            const inferior = this.Inferior - valor;
+
+            if (isAceitarNegativo)
+            {
+                return new Margem(esquerda, superior, direita, inferior);
+            }
+
+            return new Margem(
+                Math.max(esquerda, 0),
+                Math.max(superior, 0),
+                Math.max(direita, 0),
+                Math.max(inferior, 0));
+        }
         //#endregion
 
 

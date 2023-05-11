@@ -26,7 +26,8 @@
             const buffer = await ArquivoUtil.RetornarBufferArrayAsync(blob);
             const bytes = new Uint8Array(buffer);
 
-            const dimensao = `${ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE}x${ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE}`;
+            /*const dimensao = `${ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE}x${ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE}`;*/
+            const dimensao = `$1300x720`;
             const settings = new MagickWasm.MagickReadSettings();
              
             settings.setDefine(
@@ -50,7 +51,7 @@
 
         private async CarregarImagemInternoAsync_PartirMedia(imageMagick: MagickWasm.IMagickImage): Promise<DicionarioImagensCarregada>
         {
-            imageMagick.filterType = MagickWasm.FilterType.Lagrange;
+            imageMagick.filterType = MagickWasm.FilterType.Hermite;
 
             imageMagick.quality = ImagemUtil.QUALIDADE_APRESENTACAO_MAGICK;
             imageMagick.autoOrient();

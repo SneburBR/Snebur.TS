@@ -174,7 +174,7 @@
             const abrirImagem = new i.AbrirImagemLocalCanvas(this, u.ImagemUtil.TamanhosImagemApresentacao);
             const resultado = await abrirImagem.CarergarImagemAsync();
             abrirImagem.Dispose();
-            console.warn(`Tempo abrir imagem Canvas: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
+            console.LogDebug(`Tempo abrir imagem Canvas: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
             return resultado;
         }
 
@@ -184,7 +184,7 @@
             const abrirImagem = new i.AbrirImagemLocalMagick(this, u.ImagemUtil.TamanhosImagemApresentacao);
             const resultado = await abrirImagem.CarergarImagemAsync();
             abrirImagem.Dispose();
-            console.warn(`Tempo abrir imagem Magick: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
+            console.LogDebug(`Tempo abrir imagem Magick: ${this.ArquivoLocal.name}- ${stopWatch.TotalSeconds}s`);
             return resultado;
         }
 

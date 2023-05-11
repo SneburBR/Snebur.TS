@@ -16,16 +16,27 @@
             const argumentoErro = (argumento2 instanceof Error) ? argumento2 : argumento1;
             const erroInterno = (argumentoErro instanceof Error) ? argumentoErro : null;
 
-            this.Stack = Error().stack;
+            this.Stack = this.TentarRetornarStack();
             this.message = mensagem;
             this.ErroInterno = erroInterno;
-
             LogUtil.Erro(this);
+        }
+
+        private TentarRetornarStack(): string
+        {
+            try
+            {
+                return window?.Error()?.stack ?? String.Empty;
+            }
+            catch
+            {
+                return String.Empty;
+            }
         }
 
         private static get MensagemTeste()
         {
-            if ($Configuracao== null || $Configuracao.IsTeste)
+            if ($Configuracao == null || $Configuracao.IsTeste)
             {
                 return `\r\nObs: Tente simular novamente, anote todos os passos, tire um print do console, e depois passe para  o desenvolvimento. :) `;
             }
@@ -48,4 +59,3 @@ interface Error
     IsNotificado?: boolean;
 }
 
- 

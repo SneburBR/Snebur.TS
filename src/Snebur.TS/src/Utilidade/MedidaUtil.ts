@@ -31,11 +31,22 @@ namespace Snebur.Utilidade
             return (medidaEmPixel * 300) / u.MedidaUtil.RetornarPixelsImpressao(medidaEmCentimetros);
         }
 
-        public static RetornarDpiDimensaoVisualizacao(dimensaoCm: IDimensao, dimensaoPixels: IDimensao, isPrefeirMenor:boolean= true): number
+        public static RetornarDpiDimensaoVisualizacao
+            (dimensaoCm: IDimensao,
+                dimensaoPixels: IDimensao,
+                isPrefeirMenor: boolean = true,
+                isGerarLogErro: boolean = true): number
         {
             const dpiX = MedidaUtil.RetornarDpiVisualizacao(dimensaoCm.Largura, dimensaoPixels.Largura);
             const dpiY = MedidaUtil.RetornarDpiVisualizacao(dimensaoCm.Altura, dimensaoPixels.Altura);
-            if (dimensaoPixels)
+
+            if (isGerarLogErro &&
+                !Util.IgualSensivel(dpiX, dpiY, 0.1))
+            {
+                console.error("Os DPI X e Y são diferente");
+            }
+
+            if (isPrefeirMenor)
             {
                 return Math.min(dpiX, dpiY).ToDecimal(1);
             }

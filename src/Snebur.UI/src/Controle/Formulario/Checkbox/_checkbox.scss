@@ -66,7 +66,7 @@ sn-checkbox,
                 height: $dimensao_marcacao;
                 width: $dimensao_marcacao;
                 background-color: $cor-desmacado;
-                border-radius: 5px;
+                border-radius:  retornar-rem(5px);
                 transition: background-color linear 0.1s;
                 /*opacity:0.5;*/
                 &:after {

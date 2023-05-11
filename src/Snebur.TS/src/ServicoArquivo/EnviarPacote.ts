@@ -144,7 +144,7 @@
 
                 case (EnumTipoErroServicoArquivo.Desconhecido): {
 
-                    const mensagem = `Falha enviar arquivo URL ${this.XmlHttp.responseURL}  '${resultado.MensagemErro}'`;
+                    const mensagem = `Falha enviar arquivo URL ${this.XmlHttp?.responseURL}  '${resultado?.MensagemErro}'`;
                     const erro = new Erro(mensagem);
                     LogUtil.Erro(erro);
                     if ($Configuracao.IsDebug)
