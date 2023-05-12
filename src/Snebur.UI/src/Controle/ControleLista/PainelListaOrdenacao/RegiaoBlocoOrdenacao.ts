@@ -6,7 +6,7 @@
         public OrdenacaoDestino: number
         public readonly OrdenacaoOrigem: number;
         public readonly IndiceOrigem: number;
-        public readonly ItemBlocoOrdenacao: ItemBlocoOrdenacao;
+        public readonly ItemBlocoOrdenacao: BaseItemBlocoOrdenacao;
 
         public get NovaOrdenacao(): number
         {
@@ -24,7 +24,7 @@
         }
 
         public constructor(
-            itemBlocoOrdenacao: ItemBlocoOrdenacao,
+            itemBlocoOrdenacao: BaseItemBlocoOrdenacao,
             indice: number)
         {
             this.IndiceOrigem = indice;
@@ -63,7 +63,6 @@
 
     }
     
-
      
     export interface RegiaoBlocoPorcentagem
     {

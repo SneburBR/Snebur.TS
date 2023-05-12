@@ -197,15 +197,13 @@ namespace Snebur.UI
         {
             for (const itemControle of this.ItensColecao.ItensControle)
             {
-
-                if (itemControle !== this && itemControle.IsPosicaoMouseEmCimaDoElemento(new d.Posicao(e.pageX, e.pageY)))
+                if (itemControle !== this &&
+                    itemControle.IsPosicaoMouseEmCimaDoElemento(new d.Posicao(e.pageX, e.pageY)))
                 {
                     this.ItemControleMouseEmCima = this;
-                    this.AdicionarAnimacao(itemControle, e);
+                    this.SimularOrdenacao(itemControle, e);
                 }
             }
-
-
         }
 
         private Window_MouseUp(e: MouseEvent)
@@ -353,7 +351,7 @@ namespace Snebur.UI
         }
 
 
-        private AdicionarAnimacao(itemControleMouseEmCima: ItemControleOrdenacao, e: MouseEvent): void
+        private SimularOrdenacao(itemControleMouseEmCima: ItemControleOrdenacao, e: MouseEvent): void
         {
             const elementoMouseEmCima = itemControleMouseEmCima.Elemento;
             const posicoes = elementoMouseEmCima.getBoundingClientRect();
@@ -372,7 +370,6 @@ namespace Snebur.UI
                 {
                     this.ItensColecao.Elemento.insertBefore(elementoMovento, elementoMouseEmCima.nextElementSibling);
                 }
-
             }
             else
             {
@@ -391,12 +388,8 @@ namespace Snebur.UI
             {
                 this._elemento = elementoMovento;
             }
-
         }
-
-
-
-
+         
         //#endregion
 
         private OrdenarItensControle(): void

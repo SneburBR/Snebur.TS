@@ -7,7 +7,7 @@
         private EstiloPosicaoInicial: Estilo;
 
         public constructor(
-            itemBlocoOrdenacao: ItemBlocoOrdenacao,
+            itemBlocoOrdenacao: BaseItemBlocoOrdenacao,
             regiaoPainel: DOMRect,
             indice: number)
         {

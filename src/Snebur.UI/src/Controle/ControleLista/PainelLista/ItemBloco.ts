@@ -17,7 +17,11 @@
             return this.ControlePai as PainelLista<any>;
         }
 
-        public constructor(controlePai: PainelLista<any>, template: BlocoTemplate, itemReferencia: any, itemBlocoSeperador :ItemBlocoSeparador)
+        public constructor(
+            controlePai: PainelLista<any>,
+            template: BlocoTemplate,
+            itemReferencia: any,
+            itemBlocoSeperador: ItemBlocoSeparador)
         {
             super(controlePai, ElementoUtil.RetornarNovoIDElemento(controlePai, "sn-bloco"), template);
 

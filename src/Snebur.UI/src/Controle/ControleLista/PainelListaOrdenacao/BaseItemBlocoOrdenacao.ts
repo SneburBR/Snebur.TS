@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class ItemBlocoOrdenacao extends ItemBloco 
+    export abstract class BaseItemBlocoOrdenacao extends ItemBloco 
     {
         //#region Propriedades 
 
@@ -11,23 +11,23 @@
         private IdentificadorMouseDown: number;
         private IdentificadorTouchStart: number;
         private IsOrdenacaoAtiva: boolean;
-        private RegiaoBlocoAtual: BaseRegiaoBlocoOrdenacao;
+        protected RegiaoBlocoAtual: BaseRegiaoBlocoOrdenacao;
         private EstiloPainelInicial: Estilo;
         private EstiloApresentacaoPainelInicial: Estilo;
 
         private DiferencaX: number;
         private DiferencaY: number;
-        private RegioesBlocoOrdenacao: List<BaseRegiaoBlocoOrdenacao>;
+        protected RegioesBlocoOrdenacao: List<BaseRegiaoBlocoOrdenacao>;
 
         public override get PainelLista(): PainelListaOrdenacao<any>
         {
             return this.ControlePai as PainelListaOrdenacao<any>;
         }
 
-        public get IsAnimarOrdenacao(): boolean
-        {
-            return this.PainelLista.IsAnimarOrdenacao;
-        }
+        //public get IsAnimarOrdenacao(): boolean
+        //{
+        //    return this.PainelLista.IsAnimarOrdenacao;
+        //}
 
         public get ElementoClone(): HTMLElement
         {
@@ -325,16 +325,12 @@
             return regioesBlocoOrdenados;
         }
 
-        private RetornarRegiaoBloco(itemBloco: ItemBlocoOrdenacao, regiaoPainel: DOMRect, indice: number)
+        private RetornarRegiaoBloco(itemBloco: BaseItemBlocoOrdenacao, regiaoPainel: DOMRect, indice: number)
         {
-            if (this.IsAnimarOrdenacao)
-            {
-                return new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice);
-            }
-            return new RegiaoBlocoOrdenacao(itemBloco,indice);
+            return new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice);
         }
 
-        private RetornarItensBlocoOrdenados(): List<ItemBlocoOrdenacao>
+        private RetornarItensBlocoOrdenados(): List<BaseItemBlocoOrdenacao>
         {
             const itensBloco = this.PainelLista.ItensBloco;
             if (this.PainelLista.SentidoOrdenacao === EnumSentidoOrdenacao.Crescente)
@@ -417,6 +413,8 @@
                 }
             }
         }
+        protected abstract SimularOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>): void;
+
 
 
         private async FinalizarOrdenacaoAsync(eventoNativo: MouseEvent | TouchEvent)
@@ -491,78 +489,9 @@
 
         //#region Simulação
 
-        private SimularOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>)
-        {
-            this.RegiaoBlocoAtual.OrdenacaoDestino = this.RetornarNovaOrdenacao(blocosCapturados);
-
-            const regioesOrdenadas = this.RegioesBlocoOrdenacao.OrderBy(x => x.NovaOrdenacao);
-            for (const [regiaoOrdenada, indice] of regioesOrdenadas.ToTupleItemIndex())
-            {
-                const regiaoDestino = this.RegioesBlocoOrdenacao[indice].RegiaoOrigem;
-                regiaoOrdenada.SimuolarOrdenacao(regiaoDestino);
-            }
-
-            //    this.RegioesBlocoOrdenados.ForEach(x => x.AtualizarPosicao(regioesOrdenadas));
-            //throw new Error("Method not implemented.");
-        }
-
-        private RetornarNovaOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
-        {
-            if (blocosCapturados.Count > 0 && blocosCapturados.Sum(x => x.Porcentagem) > 50)
-            {
-                if (this.PainelLista.SentidoOrdenacao === EnumSentidoOrdenacao.Crescente)
-                {
-                    return this.RetornarNovaOrdenacaoCrescente(blocosCapturados);
-                }
-                else
-                {
-                    return this.RetornarNovaOrdenacaoDecrescente(blocosCapturados);
-                }
-            }
-            return this.ObjetoOrdenacao.Ordenacao;
-        }
 
 
-        private RetornarNovaOrdenacaoCrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
-        {
-            blocosCapturados = blocosCapturados.OrderByDescending(x => x.Porcentagem);
-            const regiaoBlocoCapturado = blocosCapturados.First().RegiaoBlocoOrdenacao;
 
-            /*eslint-disable*/
-            if (regiaoBlocoCapturado.ItemBlocoOrdenacao == this)
-            {
-                return this.ObjetoOrdenacao.Ordenacao;
-            }
-            /*eslint-enable*/
-            if (regiaoBlocoCapturado.OrdenacaoOrigem >= this.ObjetoOrdenacao.Ordenacao)
-            {
-                // ultimo posição
-                if (regiaoBlocoCapturado.IndiceOrigem === this.RegioesBlocoOrdenacao.length - 1)
-                {
-                    return regiaoBlocoCapturado.OrdenacaoOrigem + this.PainelLista.Passo;
-                }
-
-                const proximaOrdenacao = this.RegioesBlocoOrdenacao[regiaoBlocoCapturado.IndiceOrigem + 1].OrdenacaoOrigem;
-                const novaOrdenacaoProxima = regiaoBlocoCapturado.OrdenacaoOrigem + ((proximaOrdenacao - regiaoBlocoCapturado.OrdenacaoOrigem) / 2);
-                return novaOrdenacaoProxima;
-            }
-            else
-            {
-                //primeiro
-                if (regiaoBlocoCapturado.IndiceOrigem === 0)
-                {
-                    return regiaoBlocoCapturado.OrdenacaoOrigem - this.PainelLista.Passo;
-                }
-                const ordenacaoAnterior = this.RegioesBlocoOrdenacao[regiaoBlocoCapturado.IndiceOrigem - 1].OrdenacaoOrigem;
-                const novaOrdenacaoAnterior = regiaoBlocoCapturado.OrdenacaoOrigem - ((regiaoBlocoCapturado.OrdenacaoOrigem - ordenacaoAnterior) / 2);
-                return novaOrdenacaoAnterior;
-            }
-        }
-
-        private RetornarNovaOrdenacaoDecrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
-        {
-            throw new Error("Method not implemented.");
-        }
 
         //#endregion
 
@@ -648,7 +577,7 @@
             this.OrdenarElementosInterno(itensBloco, 0);
         }
 
-        private OrdenarElementosInterno(itensBloco: List<ItemBlocoOrdenacao>, contador: number)
+        private OrdenarElementosInterno(itensBloco: List<BaseItemBlocoOrdenacao>, contador: number)
         {
             const elementos = Util.CopiarArray(this.PainelLista.ElementoApresentacao.childNodes).
                 OfType(HTMLElement).Where(x => x.tagName === "AP-BLOCO-ORDENACAO");

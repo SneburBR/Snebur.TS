@@ -474,8 +474,10 @@
     <TypeScriptCompile Include="src\Controle\ControleLista\Paginacao\ControlePaginacao.shtml.ts">
       <DependentUpon>ControlePaginacao.shtml</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\BaseItemBlocoOrdenacao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\BlocoOrdenandoEventArgs.ts" />
-    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacaoAnimado.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacaoEstatico.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\PainelListaOrdenacao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacaoAnimado.ts" />

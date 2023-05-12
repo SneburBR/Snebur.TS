@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.UI
 {
-    export class BlocoOrdenacaoEventArgs<TItemBloco extends ItemBlocoOrdenacao = ItemBlocoOrdenacao> extends EventArgs
+    export class BlocoOrdenacaoEventArgs<TItemBloco extends BaseItemBlocoOrdenacao = BaseItemBlocoOrdenacao> extends EventArgs
     {
         public readonly Bloco: TItemBloco;
         public readonly Referencia: d.IOrdenacao;
@@ -21,11 +21,11 @@ namespace Snebur.UI
             this.EventoNativo = eventoNativo;
         }
     }
-    export class BlocoOdernacaoMovimentandoEventArgs<TItemBloco extends ItemBlocoOrdenacao = ItemBlocoOrdenacao> extends BlocoOrdenacaoEventArgs<TItemBloco>
+    export class BlocoOdernacaoMovimentandoEventArgs<TItemBloco extends BaseItemBlocoOrdenacao = BaseItemBlocoOrdenacao> extends BlocoOrdenacaoEventArgs<TItemBloco>
     {
         public readonly RegioesBlocosCapturados: List<RegiaoBlocoPorcentagem>
 
-        public get BlocoCaputuradoOrdenacao(): ItemBlocoOrdenacao
+        public get BlocoCaputuradoOrdenacao(): BaseItemBlocoOrdenacao
         {
             if (this.RegioesBlocosCapturados?.Count > 0)
             {
