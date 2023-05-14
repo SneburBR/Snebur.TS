@@ -65,11 +65,11 @@
 
                 case EnumTipoPainel.PilhaVertical:
                 case EnumTipoPainel.PilhaVerticalCheia:
-                case EnumTipoPainel.Bloco:
                 case EnumTipoPainel.Vazio:
+                case EnumTipoPainel.Bloco:
 
                     return EnumOrientacao.Vertical;
-
+                     
                 default:
 
                     throw new Erro("Tipo de painel não suportado: " + EnumTipoPainel[this.TipoPainel]);

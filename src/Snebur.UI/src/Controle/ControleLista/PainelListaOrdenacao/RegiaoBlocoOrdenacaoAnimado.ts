@@ -1,13 +1,13 @@
 ﻿namespace Snebur.UI
 {
-    export class RegiaoBlocoOrdenacaoAnimado extends BaseRegiaoBlocoOrdenacao
+    export class RegiaoBlocoOrdenacaoAnimado extends RegiaoBlocoOrdenacao
     {
         public readonly RegiaoPainel: DOMRect;
         private RegiaoDestino: DOMRect;
         private EstiloPosicaoInicial: Estilo;
 
         public constructor(
-            itemBlocoOrdenacao: BaseItemBlocoOrdenacao,
+            itemBlocoOrdenacao: ItemBlocoOrdenacao,
             regiaoPainel: DOMRect,
             indice: number)
         {
@@ -16,6 +16,8 @@
             this.RegiaoPainel = regiaoPainel;
             this.RegiaoDestino = this.RegiaoOrigem;
         }
+
+      
 
         public override Inicializar(): void
         {

@@ -1,7 +1,7 @@
 ﻿namespace Snebur.UI
 {
     //é preciso deixar a mesma linha para extensão pode organizar os arquivos na sequencia das heranças
-    export class PainelListaOrdenacao<TItem extends TipoItemLista = Snebur.Objeto> extends PainelLista<TItem, BaseItemBlocoOrdenacao>
+    export class PainelListaOrdenacao<TItem extends TipoItemLista = Snebur.Objeto> extends PainelLista<TItem, ItemBlocoOrdenacao>
     {
         public static readonly PASSO_PADRAO: number = 1;
 
@@ -93,7 +93,7 @@
             return null;
         }
 
-        protected override RetornarNovoItemBloco(item: TItem): BaseItemBlocoOrdenacao
+        protected override RetornarNovoItemBloco(item: TItem): ItemBlocoOrdenacao
         {
             const objetoOrdenacao = this.RetornarObjetoOrdenacaoInterno(item);
             if (!u.ValidacaoUtil.IsNumber(((objetoOrdenacao as any) as d.IOrdenacao).Ordenacao))

@@ -581,11 +581,16 @@
 
         private DispensarObjetosNomeados()
         {
-            for (const chave of this.DicionariosObjetosNomeados.Chaves)
+            if (this.DicionariosObjetosNomeados != null)
             {
-                delete (this as any)[chave];
+                for (const chave of this.DicionariosObjetosNomeados.Chaves)
+                {
+                    delete (this as any)[chave];
+                }
+                this.DicionariosObjetosNomeados?.Clear();
             }
-            this.DicionariosObjetosNomeados.Clear();
+            (this as any).DicionariosObjetosNomeados = undefined;
+            delete (this as any).DicionariosObjetosNomeados;
         }
 
         //#endregion

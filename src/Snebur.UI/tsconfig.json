@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "build/Snebur.UI.js",
+    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "../Snebur.TS/build/Snebur.d.ts",
+    "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
@@ -277,7 +277,7 @@
     "src/Controle/ControleLista/PainelLista/BlocoTemplate.ts",
     "src/Controle/ControleLista/PainelLista/BlocoTemplateSeparador.ts",
     "src/Controle/ControleLista/PainelLista/ItemBloco.ts",
-    "src/Controle/ControleLista/PainelListaOrdenacao/BaseItemBlocoOrdenacao.ts",
+    "src/Controle/ControleLista/PainelListaOrdenacao/ItemBlocoOrdenacao.ts",
     "src/Controle/ControleLista/PainelLista/ItemBlocoSeparador.ts",
     "src/Controle/ControleLista/PainelLista/PainelLista.Mapeamento.ts",
     "src/Controle/ControleLista/PainelLista/PainelLista.ts",
@@ -285,6 +285,7 @@
     "src/Controle/ControleLista/PainelListaOrdenacao/ItemBlocoOrdenacaoEstatico.ts",
     "src/Controle/ControleLista/PainelListaOrdenacao/PainelListaOrdenacao.ts",
     "src/Controle/ControleLista/PainelListaOrdenacao/RegiaoBlocoOrdenacaoAnimado.ts",
+    "src/Controle/ControleLista/PainelListaOrdenacao/RegiaoBlocoOrdenacaoEstatico.ts",
     "src/Controle/ControleLista/PainelListaSelecao/BlocoTemplateSelecionado.ts",
     "src/Controle/ControleLista/PainelListaSelecao/ItemBlocoSelecao.ts",
     "src/Controle/ControleLista/PainelListaSelecao/PainelListaSelecao.ts",

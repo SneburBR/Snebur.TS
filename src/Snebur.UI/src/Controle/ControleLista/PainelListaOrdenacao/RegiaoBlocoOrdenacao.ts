@@ -1,12 +1,12 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class BaseRegiaoBlocoOrdenacao
+    export abstract class RegiaoBlocoOrdenacao
     {
         private _regiaoOrigem: DOMRect;
         public OrdenacaoDestino: number
         public readonly OrdenacaoOrigem: number;
         public readonly IndiceOrigem: number;
-        public readonly ItemBlocoOrdenacao: BaseItemBlocoOrdenacao;
+        public readonly ItemBlocoOrdenacao: ItemBlocoOrdenacao;
 
         public get NovaOrdenacao(): number
         {
@@ -24,7 +24,7 @@
         }
 
         public constructor(
-            itemBlocoOrdenacao: BaseItemBlocoOrdenacao,
+            itemBlocoOrdenacao: ItemBlocoOrdenacao,
             indice: number)
         {
             this.IndiceOrigem = indice;
@@ -49,24 +49,12 @@
         }
     }
 
-    export class RegiaoBlocoOrdenacao extends BaseRegiaoBlocoOrdenacao
-    {
-        public Inicializar(): void 
-        {
-            throw new Error("Method not implemented.");
-        }
-
-        public SimuolarOrdenacao(regiaoDestino: DOMRect): void 
-        {
-            throw new Error("Method not implemented.");
-        }
-
-    }
+   
     
      
     export interface RegiaoBlocoPorcentagem
     {
-        RegiaoBlocoOrdenacao: BaseRegiaoBlocoOrdenacao;
+        RegiaoBlocoOrdenacao: RegiaoBlocoOrdenacao;
         Porcentagem: number
     }
 }

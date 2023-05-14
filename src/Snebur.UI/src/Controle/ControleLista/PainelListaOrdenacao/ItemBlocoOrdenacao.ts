@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class BaseItemBlocoOrdenacao extends ItemBloco 
+    export abstract class ItemBlocoOrdenacao extends ItemBloco 
     {
         //#region Propriedades 
 
@@ -11,13 +11,16 @@
         private IdentificadorMouseDown: number;
         private IdentificadorTouchStart: number;
         private IsOrdenacaoAtiva: boolean;
-        protected RegiaoBlocoAtual: BaseRegiaoBlocoOrdenacao;
+        protected RegiaoBlocoAtual: RegiaoBlocoOrdenacao;
+        protected Orientacao: d.EnumOrientacao;
+        protected NextElementSibling: HTMLElement;
+
         private EstiloPainelInicial: Estilo;
         private EstiloApresentacaoPainelInicial: Estilo;
 
         private DiferencaX: number;
         private DiferencaY: number;
-        protected RegioesBlocoOrdenacao: List<BaseRegiaoBlocoOrdenacao>;
+        protected RegioesBlocoOrdenacao: List<RegiaoBlocoOrdenacao>;
 
         public override get PainelLista(): PainelListaOrdenacao<any>
         {
@@ -296,6 +299,8 @@
 
                 this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
                 this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
+                this.Orientacao = this.PainelLista.OrientacaoPainel;
+                this.NextElementSibling = this.Elemento.nextElementSibling as HTMLElement;
 
                 for (const regiao of this.RegioesBlocoOrdenacao)
                 {
@@ -311,12 +316,12 @@
             }
         }
 
-        private RetornarRegioesBloco(regiaoPainel: DOMRect): List<BaseRegiaoBlocoOrdenacao>
+        private RetornarRegioesBloco(regiaoPainel: DOMRect): List<RegiaoBlocoOrdenacao>
         {
             this.DispensarRegioesBlocoOrdenacao();
 
             const itensBloco = this.RetornarItensBlocoOrdenados();
-            const regioesBlocoOrdenados = new List<BaseRegiaoBlocoOrdenacao>();
+            const regioesBlocoOrdenados = new List<RegiaoBlocoOrdenacao>();
             for (const [itemBloco, indice] of itensBloco.ToTupleItemIndex())
             {
                 const regiaoBloco = this.RetornarRegiaoBloco(itemBloco, regiaoPainel, indice);
@@ -325,12 +330,9 @@
             return regioesBlocoOrdenados;
         }
 
-        private RetornarRegiaoBloco(itemBloco: BaseItemBlocoOrdenacao, regiaoPainel: DOMRect, indice: number)
-        {
-            return new RegiaoBlocoOrdenacaoAnimado(itemBloco, regiaoPainel, indice);
-        }
+        protected abstract RetornarRegiaoBloco(itemBloco: ItemBlocoOrdenacao, regiaoPainel: DOMRect, indice: number): RegiaoBlocoOrdenacao;
 
-        private RetornarItensBlocoOrdenados(): List<BaseItemBlocoOrdenacao>
+        private RetornarItensBlocoOrdenados(): List<ItemBlocoOrdenacao>
         {
             const itensBloco = this.PainelLista.ItensBloco;
             if (this.PainelLista.SentidoOrdenacao === EnumSentidoOrdenacao.Crescente)
@@ -444,12 +446,10 @@
                     this.ObjetoOrdenacao,
                     this.ElementoClone,
                     eventoNativo));
-
         }
 
         private AplicarEstiloPainel(regiaoPainel: DOMRect): void
         {
-
             const elementoPainel = this.PainelLista.Elemento;
             const elementoApresentacaoPainel = this.PainelLista.ElementoApresentacao;
             elementoPainel.classList.add(ConstantesOrdenacao.CSS_CLASS_ORDENACAO_ATIVA);
@@ -484,18 +484,114 @@
             delete this.EstiloPainelInicial;
         }
 
+        //#endregion
+
+        //#region Nova Ordenação
+
+        protected RetornarNovaOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
+        {
+            if (blocosCapturados.Count > 0 && blocosCapturados.Sum(x => x.Porcentagem) > 50)
+            {
+                if (this.PainelLista.SentidoOrdenacao === EnumSentidoOrdenacao.Crescente)
+                {
+                    return this.RetornarNovaOrdenacaoCrescente(blocosCapturados);
+                }
+                else
+                {
+                    return this.RetornarNovaOrdenacaoDecrescente(blocosCapturados);
+                }
+            }
+            return this.ObjetoOrdenacao.Ordenacao;
+        }
+
+        private RetornarNovaOrdenacaoCrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
+        {
+            blocosCapturados = blocosCapturados.OrderByDescending(x => x.Porcentagem);
+            const regiaoBlocoCapturado = blocosCapturados.First().RegiaoBlocoOrdenacao;
+
+            /*eslint-disable*/
+            if (regiaoBlocoCapturado.ItemBlocoOrdenacao == this)
+            {
+                return this.ObjetoOrdenacao.Ordenacao;
+            }
+            /*eslint-enable*/
+            if (regiaoBlocoCapturado.OrdenacaoOrigem >= this.ObjetoOrdenacao.Ordenacao)
+            {
+                // ultimo posição
+                if (regiaoBlocoCapturado.IndiceOrigem === this.RegioesBlocoOrdenacao.length - 1)
+                {
+                    return regiaoBlocoCapturado.OrdenacaoOrigem + this.PainelLista.Passo;
+                }
+
+                const proximaOrdenacao = this.RegioesBlocoOrdenacao[regiaoBlocoCapturado.IndiceOrigem + 1].OrdenacaoOrigem;
+                const novaOrdenacaoProxima = regiaoBlocoCapturado.OrdenacaoOrigem + ((proximaOrdenacao - regiaoBlocoCapturado.OrdenacaoOrigem) / 2);
+                return novaOrdenacaoProxima;
+            }
+            else
+            {
+                //primeiro
+                if (regiaoBlocoCapturado.IndiceOrigem === 0)
+                {
+                    return regiaoBlocoCapturado.OrdenacaoOrigem - this.PainelLista.Passo;
+                }
+                const ordenacaoAnterior = this.RegioesBlocoOrdenacao[regiaoBlocoCapturado.IndiceOrigem - 1].OrdenacaoOrigem;
+                const novaOrdenacaoAnterior = regiaoBlocoCapturado.OrdenacaoOrigem - ((regiaoBlocoCapturado.OrdenacaoOrigem - ordenacaoAnterior) / 2);
+                return novaOrdenacaoAnterior;
+            }
+        }
+
+        private RetornarNovaOrdenacaoDecrescente(blocosCapturados: List<RegiaoBlocoPorcentagem>): number
+        {
+            throw new Error("Method not implemented.");
+        }
 
         //#endregion
 
-        //#region Simulação
+        //#region Ordenação Elementos
+
+        private OrdenarElementos(): void
+        {
+            const itensBloco = this.RetornarItensBlocoOrdenados();
+            this.OrdenarElementosInterno(itensBloco, 0);
+        }
+
+        private OrdenarElementosInterno(itensBloco: List<ItemBlocoOrdenacao>, contador: number)
+        {
+            const elementos = Util.CopiarArray(this.PainelLista.ElementoApresentacao.childNodes).
+                OfType(HTMLElement).Where(x => x.tagName === "AP-BLOCO-ORDENACAO");
 
 
+            if (itensBloco.length !== elementos.length)
+            {
+                throw new Erro(`O painel lista ordenação suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
+            }
 
+            for (let i = 0; i < itensBloco.length; i++)
+            {
+                const itemBloco = itensBloco[i];
+                const elemento = elementos[i];
 
+                if (itemBloco.Elemento !== elemento)
+                {
+                    itemBloco.Elemento.parentElement.insertBefore(
+                        itemBloco.Elemento,
+                        elemento);
+
+                    this.OrdenarElementosInterno(itensBloco,
+                        contador + 1);
+                    break;
+                }
+            }
+
+            if (contador > elementos.length)
+            {
+                throw new Erro(`não foi possível ordenar os elementos`);
+            }
+        }
 
         //#endregion
 
-        //#region Ordenação
+        //#region Reordenação
 
         private Ordernar(eventoNativo: MouseEvent | TouchEvent): void
         {
@@ -517,7 +613,6 @@
                         eventoNativo));
             }
         }
-
 
         private OrdernarCrescente(): void
         {
@@ -553,6 +648,7 @@
         {
             throw new Error("Method not implemented.");
         }
+
         //#endregion
 
         //#region Salvar entidade
@@ -569,52 +665,7 @@
 
         //#endregion
 
-        //#region Ordenação Elementos
-
-        private OrdenarElementos(): void
-        {
-            const itensBloco = this.RetornarItensBlocoOrdenados();
-            this.OrdenarElementosInterno(itensBloco, 0);
-        }
-
-        private OrdenarElementosInterno(itensBloco: List<BaseItemBlocoOrdenacao>, contador: number)
-        {
-            const elementos = Util.CopiarArray(this.PainelLista.ElementoApresentacao.childNodes).
-                OfType(HTMLElement).Where(x => x.tagName === "AP-BLOCO-ORDENACAO");
-
-
-            if (itensBloco.length !== elementos.length)
-            {
-                throw new Erro(`O painel lista ordenação suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
-            }
-
-            for (let i = 0; i < itensBloco.length; i++)
-            {
-                const itemBloco = itensBloco[i];
-                const elemento = elementos[i];
-
-                if (itemBloco.Elemento !== elemento)
-                {
-                    itemBloco.Elemento.parentElement.insertBefore(
-                        itemBloco.Elemento,
-                        elemento);
-
-                    this.OrdenarElementosInterno(itensBloco,
-                        contador + 1);
-                    break;
-                }
-            }
-
-            if (contador > elementos.length)
-            {
-                throw new Erro(`não foi possível ordenar os elementos`);
-            }
-        }
-        //#endregion
-
         //#region Clone 
-
-
 
         private ClonarElemento(posicaoX: number, posicaoY: number): void
         {
