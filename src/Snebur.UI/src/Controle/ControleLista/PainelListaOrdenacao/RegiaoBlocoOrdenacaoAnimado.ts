@@ -17,11 +17,17 @@
             this.RegiaoDestino = this.RegiaoOrigem;
         }
 
-      
-
         public override Inicializar(): void
         {
             this.AtivarPosicaoAbosoluta();
+        }
+
+        public override AtualizarRegiaoOrigem(isForcar: boolean = false): void
+        {
+            if (isForcar)
+            {
+                this._regiaoOrigem = this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();
+            }
         }
 
         private AtivarPosicaoAbosoluta(): void

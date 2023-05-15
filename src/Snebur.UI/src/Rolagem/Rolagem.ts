@@ -4,236 +4,264 @@
     {
         //#region Propriedades
 
-        private readonly INTERVALO_ENTRE_ROLAGENS: number = 20;
-
-        private ElementoAlvo: HTMLElement;
-
-        private IdIntervalo: number;
-        private DuracaoEmMilisegundos: number;
-        private Direcao: EnumDirecaoRolagem;
-
-        private PosicaoInicial: number;
-        private PosicaoAtual: number;
-        private PosicaoFinal: number;
+        private static readonly INTERVALO_ENTRE_ROLAGENS: number = 20;
+        private static readonly TEMPO_PADRAO: number = 200;
+        public readonly ElementoScroll: HTMLElement;
+        private TokenCancelamento: TokenCancelamento;
 
         //#endregion
 
         //#region Construtor
 
-        public constructor(idElementoAlvo: string);
-        public constructor(elementoAlvo: HTMLElement);
-        public constructor(refElementoAlvo: any)
+        public constructor(elementoAlvo: HTMLElement | string)
         {
-            this.ElementoAlvo = ElementoUtil.RetornarElemento(refElementoAlvo);
+            this.ElementoScroll = ElementoUtil.RetornarElemento(elementoAlvo);
         }
         //#endregion
 
         //#region Métodos Públicos
 
-        public RolarParaInicioHorizontal(duracaoEmMilisegundos: number)
+        public RolarParaInicioHorizontalAsync(duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.RolarHorizontalParaPontoEspecifico(0, duracaoEmMilisegundos);
+            return this.RolarHorizontalAsync(0, duracaoEmMilisegundos);
         }
 
-        public RolarParaFinalHorizontal(duracaoEmMilisegundos: number)
+        public RolarParaFinalHorizontalAsync(duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.RolarHorizontalParaPontoEspecifico(this.ElementoAlvo.scrollWidth, duracaoEmMilisegundos);
+            return this.RolarHorizontalAsync(this.ElementoScroll.scrollWidth, duracaoEmMilisegundos);
         }
 
-
-        public RolarParaInicioVertical(duracaoEmMilisegundos: number)
+        public RolarParaInicioVerticalAsync(duracaoEmMilisegundos: number): Promise<void>
         {
-            this.RolarVerticalParaPontoEspecifico(0, duracaoEmMilisegundos);
+            return this.RolarVerticalAsync(0, duracaoEmMilisegundos);
         }
 
-        public RolarParaFinalVertical(duracaoEmMilisegundos: number)
+        public RolarParaFinalVertical(duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO)
         {
-            this.RolarVerticalParaPontoEspecifico(this.ElementoAlvo.scrollHeight, duracaoEmMilisegundos);
+            return this.RolarVerticalAsync(this.ElementoScroll.scrollHeight, duracaoEmMilisegundos);
         }
 
-        public RolarHorizontalParaPontoEspecifico(posicaoFinal: number, duracaoEmMilisegundos: number): void
+        public async RolarHorizontalAsync(posicaoFinal: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollLeft;
-            this.PosicaoFinal = u.ConverterUtil.ParaInteiro(posicaoFinal);
-            this.Direcao = (this.PosicaoInicial < this.PosicaoFinal ? EnumDirecaoRolagem.ParaDireita : EnumDirecaoRolagem.ParaEsquerda);
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollLeft;
+            posicaoFinal = u.ConverterUtil.ParaInteiro(posicaoFinal);
+            const direcao = (posicaoInicial < posicaoFinal ? EnumDirecaoRolagem.ParaDireita : EnumDirecaoRolagem.ParaEsquerda);
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
 
-        public RolarVerticalParaPontoEspecifico(posicaoFinal: number, duracaoEmMilisegundos: number): void
+        public async RolarVerticalAsync(posicaoFinal: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollTop;
-            this.PosicaoFinal = u.ConverterUtil.ParaInteiro(posicaoFinal);
-            this.Direcao = (this.PosicaoInicial < this.PosicaoFinal ? EnumDirecaoRolagem.ParaBaixo : EnumDirecaoRolagem.ParaCima);
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollTop;
+            posicaoFinal = u.ConverterUtil.ParaInteiro(posicaoFinal);
+            const direcao = (posicaoInicial < posicaoFinal ? EnumDirecaoRolagem.ParaBaixo : EnumDirecaoRolagem.ParaCima);
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
 
-        public RolarParaEsquerda(distancia: number, duracaoEmMilisegundos: number): void
+        public async RolarParaEsquerdaAsync(distancia: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollLeft;
-            this.PosicaoFinal = this.PosicaoInicial - distancia;
-            this.Direcao = EnumDirecaoRolagem.ParaEsquerda;
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollLeft;
+            const posicaoFinal = posicaoInicial - distancia;
+            const direcao = EnumDirecaoRolagem.ParaEsquerda;
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
 
-        public RolarParaDireita(distancia: number, duracaoEmMilisegundos: number): void
+        public async RolarParaDireitaAsync(distancia: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollLeft;
-            this.PosicaoFinal = this.PosicaoInicial + distancia;
-            this.Direcao = EnumDirecaoRolagem.ParaDireita;
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollLeft;
+            const posicaoFinal = posicaoInicial + distancia;
+            const direcao = EnumDirecaoRolagem.ParaDireita;
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
 
-        public RolarParaCima(distancia: number, duracaoEmMilisegundos: number): void
+        public async RolarParaCimaAsync(distancia: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollTop;
-            this.PosicaoFinal = this.PosicaoInicial - distancia;
-            this.Direcao = EnumDirecaoRolagem.ParaCima;
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollTop;
+            const posicaoFinal = posicaoInicial - distancia;
+            const direcao = EnumDirecaoRolagem.ParaCima;
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
 
-        public RolarParaBaixo(distancia: number, duracaoEmMilisegundos: number): void
+        public async RolarParaBaixoAsync(distancia: number, duracaoEmMilisegundos: number = Rolagem.TEMPO_PADRAO): Promise<void>
         {
-            this.PosicaoInicial = this.ElementoAlvo.scrollTop;
-            this.PosicaoFinal = this.PosicaoInicial + distancia;
-            this.Direcao = EnumDirecaoRolagem.ParaBaixo;
-
-            this.Iniciar(duracaoEmMilisegundos);
+            const posicaoInicial = this.ElementoScroll.scrollTop;
+            const posicaoFinal = posicaoInicial + distancia;
+            const direcao = EnumDirecaoRolagem.ParaBaixo;
+            await this.IniciarAsync(direcao, posicaoInicial, posicaoFinal, duracaoEmMilisegundos);
         }
-
-        public Finalizar(): void
-        {
-            clearInterval(this.IdIntervalo);
-            this.IdIntervalo = null;
-        }
+         
         //#endregion
 
         //#region Métodos Privados
 
-        private Iniciar(duracaoEmMilisegundos: number): void
+        private IniciarAsync(
+            direcao: EnumDirecaoRolagem,
+            posicaoInicial: number,
+            posicaoFinal: number,
+            duracaoEmMilisegundos: number): Promise<void>
         {
-            this.DuracaoEmMilisegundos = duracaoEmMilisegundos;
-            this.PosicaoAtual = this.PosicaoInicial;
+            this.TokenCancelamento?.Cancelar();
+            this.TokenCancelamento = new TokenCancelamento();
 
-            this.ValidarPosicaoFinal();
-            this.VerificarRolagemEmAndamento();
+            return this.IniciarInternoAsync(this.TokenCancelamento,
+                direcao,
+                posicaoInicial,
+                posicaoFinal,
+                duracaoEmMilisegundos);
 
-            this.IdIntervalo = setInterval(this.RealizarRolagem.bind(this), this.INTERVALO_ENTRE_ROLAGENS);
         }
 
-        private RealizarRolagem(): void
+        private async IniciarInternoAsync(
+            tokenCancelamento: TokenCancelamento,
+            direcao: EnumDirecaoRolagem,
+            posicaoInicial: number,
+            posicaoFinal: number,
+            duracaoEmMilisegundos: number): Promise<void>
         {
-            this.PosicaoAtual = this.RetornarNovaPosicao();
-            this.AtualizarPosicaoScroll();
+
+            posicaoFinal = this.NormalizarPosicaoFinal(direcao, posicaoFinal);
+
+            const rolagemPorIntervalo = this.RetornarRolagemPorIntervalo(
+                posicaoInicial,
+                posicaoFinal,
+                duracaoEmMilisegundos);
+
+            let novaPosicao = this.RetornarNovaPosicao(
+                direcao,
+                posicaoInicial,
+                posicaoFinal,
+                rolagemPorIntervalo);
+
+            do 
+            {
+                this.AtualizarPosicaoScroll(direcao, novaPosicao);
+                novaPosicao = this.RetornarNovaPosicao(direcao, novaPosicao, posicaoFinal, rolagemPorIntervalo);
+
+                if (posicaoFinal !== novaPosicao)
+                {
+                    await ThreadUtil.EsperarAsync(20);
+                    if (tokenCancelamento.IsCancelado)
+                    {
+                        return;
+                    }
+                }
+            }
+            while (posicaoFinal !== novaPosicao);
         }
 
-        private AtualizarPosicaoScroll(): void
+        private AtualizarPosicaoScroll(diretacao: EnumDirecaoRolagem, posicao: number): void
         {
-            switch (this.Direcao)
+            switch (diretacao)
             {
                 case EnumDirecaoRolagem.ParaEsquerda:
                 case EnumDirecaoRolagem.ParaDireita:
-                    this.ElementoAlvo.scrollLeft = this.PosicaoAtual;
+
+                    this.ElementoScroll.scrollLeft = posicao;
+
                     return;
 
                 case EnumDirecaoRolagem.ParaCima:
                 case EnumDirecaoRolagem.ParaBaixo:
-                    this.ElementoAlvo.scrollTop = this.PosicaoAtual;
+
+                    this.ElementoScroll.scrollTop = posicao;
                     return;
 
                 default:
-                    throw new ErroNaoSuportado(`A direção ${this.Direcao} não é suportada para rolagem.`, this);
+
+                    throw new ErroNaoSuportado(`A direção ${diretacao} não é suportada para rolagem.`, this);
             }
         }
 
-        private RetornarNovaPosicao(): number
+        private RetornarNovaPosicao(direcao: EnumDirecaoRolagem,
+            posicaoAtual: number,
+            posicaoFinal: number,
+            rolagemPorIntervalo: number): number
         {
             let novaPosicao: number;
-            const rolagemPorIntervalo = this.RetornarRolagemPorIntervalo();
 
-            switch (this.Direcao)
+            switch (direcao)
             {
                 case EnumDirecaoRolagem.ParaEsquerda:
                 case EnumDirecaoRolagem.ParaCima:
-                    novaPosicao = this.PosicaoAtual - rolagemPorIntervalo;
+                    novaPosicao = posicaoAtual - rolagemPorIntervalo;
                     break;
 
                 case EnumDirecaoRolagem.ParaDireita:
                 case EnumDirecaoRolagem.ParaBaixo:
-                    novaPosicao = this.PosicaoAtual + rolagemPorIntervalo;
+                    novaPosicao = posicaoAtual + rolagemPorIntervalo;
                     break;
 
                 default:
-                    throw new ErroNaoSuportado(`A direção ${this.Direcao} não é suportada para rolagem.`, this);
+                    throw new ErroNaoSuportado(`A direção ${direcao} não é suportada para rolagem.`, this);
             }
-            if (((this.Direcao === EnumDirecaoRolagem.ParaEsquerda || this.Direcao === EnumDirecaoRolagem.ParaCima) && novaPosicao <= this.PosicaoFinal) ||
-                ((this.Direcao === EnumDirecaoRolagem.ParaDireita || this.Direcao === EnumDirecaoRolagem.ParaBaixo) && novaPosicao >= this.PosicaoFinal))
+
+            if (this.IsPosicaoFinal(direcao, novaPosicao, posicaoFinal))
             {
-                novaPosicao = this.PosicaoFinal;
-                this.Finalizar();
+                return posicaoFinal;
             }
             return novaPosicao;
         }
 
-        private RetornarRolagemPorIntervalo(): number
+        private IsPosicaoFinal(direcao: EnumDirecaoRolagem, novaPosicao: number, posicaoFinal: number)
         {
-            const rolagemTotal = Math.abs(this.PosicaoFinal - this.PosicaoInicial);
-            const rolagemPorIntervalo = Math.ceil(rolagemTotal / this.DuracaoEmMilisegundos * this.INTERVALO_ENTRE_ROLAGENS);
+            if (direcao === EnumDirecaoRolagem.ParaEsquerda || direcao === EnumDirecaoRolagem.ParaCima)
+            {
+                return novaPosicao <= posicaoFinal;
+            }
 
+            if (direcao === EnumDirecaoRolagem.ParaDireita || direcao === EnumDirecaoRolagem.ParaBaixo)
+            {
+                return novaPosicao >= posicaoFinal;
+            }
+            throw new Erro("direção não suportada");
+        }
+
+        private RetornarRolagemPorIntervalo(posicaoInicial: number, posicaoFinal: number, durecao: number): number
+        {
+            const rolagemTotal = Math.abs(posicaoFinal - posicaoInicial);
+            const rolagemPorIntervalo = Math.ceil(rolagemTotal / durecao * Rolagem.INTERVALO_ENTRE_ROLAGENS);
             return rolagemPorIntervalo;
         }
 
-        private ValidarPosicaoFinal(): void
+        private NormalizarPosicaoFinal(direcao: number, posicaoFinal: number): number
         {
-            switch (this.Direcao)
+            if (direcao === EnumDirecaoRolagem.ParaEsquerda ||
+                direcao === EnumDirecaoRolagem.ParaCima)
             {
-                case EnumDirecaoRolagem.ParaEsquerda:
-                case EnumDirecaoRolagem.ParaCima:
-                    if (this.PosicaoFinal < 0)
-                    {
-                        this.PosicaoFinal = 0;
-                    }
-                    break;
-
-                case EnumDirecaoRolagem.ParaDireita: {
-
-                    const limiteFinalParaDireita = this.ElementoAlvo.scrollWidth - this.ElementoAlvo.clientWidth;
-                    if (this.PosicaoFinal > limiteFinalParaDireita)
-                    {
-                        this.PosicaoFinal = limiteFinalParaDireita;
-                    }
-                    break;
+                if (posicaoFinal < 0)
+                {
+                    return 0;
                 }
-                case EnumDirecaoRolagem.ParaBaixo: {
-                    const limiteFinalParaBaixo = this.ElementoAlvo.scrollHeight - this.ElementoAlvo.clientHeight;
 
-                    if (this.PosicaoFinal > limiteFinalParaBaixo)
-                    {
-                        this.PosicaoFinal = limiteFinalParaBaixo;
-                    }
-                    break;
-                }
-                default:
-                    throw new ErroNaoSuportado(`A direção ${this.Direcao} não é suportada para rolagem.`, this);
             }
+            else if (direcao === EnumDirecaoRolagem.ParaDireita)
+            {
+                const limiteFinalParaDireita = this.ElementoScroll.scrollWidth - this.ElementoScroll.clientWidth;
+                if (posicaoFinal > limiteFinalParaDireita)
+                {
+                    return limiteFinalParaDireita;
+                }
+            }
+            else if (direcao === EnumDirecaoRolagem.ParaBaixo)
+            {
+                const limiteFinalParaBaixo = this.ElementoScroll.scrollHeight - this.ElementoScroll.clientHeight;
+                if (posicaoFinal > limiteFinalParaBaixo)
+                {
+                    return limiteFinalParaBaixo;
+                }
+            }
+            else
+            {
+                throw new ErroNaoSuportado(`A direção ${direcao} não é suportada para rolagem.`, this);
+            }
+            return posicaoFinal;
         }
 
-        private VerificarRolagemEmAndamento(): void
-        {
-            if (this.IdIntervalo != null)
-            {
-                this.Finalizar();
-            }
-        }
+
         //#endregion
 
         public Dispose(): void
         {
-            clearInterval(this.IdIntervalo);
+            this.TokenCancelamento?.Cancelar();
         }
     }
 }

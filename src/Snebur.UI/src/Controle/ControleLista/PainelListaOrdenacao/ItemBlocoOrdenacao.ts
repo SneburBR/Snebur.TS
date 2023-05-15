@@ -9,10 +9,10 @@
         private _elementoClone: HTMLElement;
         private __Window_TouchMove: (e: TouchEvent) => void;
         private IdentificadorMouseDown: number;
+        private _ultimoInfoMovimentacao: InfoMovimentacaoItemBloco;
         private IdentificadorTouchStart: number;
         private IsOrdenacaoAtiva: boolean;
         protected RegiaoBlocoAtual: RegiaoBlocoOrdenacao;
-        protected Orientacao: d.EnumOrientacao;
         protected NextElementSibling: HTMLElement;
 
         private EstiloPainelInicial: Estilo;
@@ -170,6 +170,7 @@
         private Window_MouseUp(e: MouseEvent)
         {
             window.clearTimeout(this.IdentificadorMouseDown);
+            this._ultimoInfoMovimentacao = null;
             this.RemoverEventoDom(EnumEventoDom.MouseLeave, this.Elemento_MouseLeave);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseUp, this.Window_MouseUp);
             this.RemoverEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
@@ -187,7 +188,7 @@
             if (this.IsMouseEmCimaDoElemento(e.clientX, e.clientY))
             {
                 this.AdicionarEventoDomGlobal(EnumEventoDom.MouseMove, this.Window_MouseMove);
-                this.IniciarOrdenacao(e.clientX, e.clientY, e);
+                this.IniciarOrdenacaoInterno(e.clientX, e.clientY, e);
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
@@ -240,7 +241,7 @@
                 {
                     //this.AdicionarEventoDomGlobal(EnumEventoDom.TouchMove, this.Window_TouchMove);
                     document.addEventListener("touchmove", this.__Window_TouchMove, { passive: false });
-                    this.IniciarOrdenacao(touch.clientX, touch.clientY, e);
+                    this.IniciarOrdenacaoInterno(touch.clientX, touch.clientY, e);
 
                     e.stopPropagation();
                     e.stopImmediatePropagation();
@@ -284,36 +285,40 @@
         //#endregion
 
         //#region Ordenação 
-
-        private IniciarOrdenacao(posicaoX: number, posicaoY: number, eventoNativo: TouchEvent | MouseEvent)
+        private IniciarOrdenacaoInterno(posicaoX: number, posicaoY: number, eventoNativo: TouchEvent | MouseEvent)
         {
             if (!this.IsOrdenacaoAtiva)
             {
-                const regiaoPainel = this.PainelLista.ElementoApresentacao.getBoundingClientRect();
-
-                this.ClonarElemento(posicaoX, posicaoY);
-                this.Elemento.style.opacity = "0";
                 this.IsOrdenacaoAtiva = true;
-                EstiloUtil.DefinirCursorGlogal("grabbing");
-                this.AplicarEstiloPainel(regiaoPainel);
-
-                this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
-                this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
-                this.Orientacao = this.PainelLista.OrientacaoPainel;
-                this.NextElementSibling = this.Elemento.nextElementSibling as HTMLElement;
-
-                for (const regiao of this.RegioesBlocoOrdenacao)
-                {
-                    regiao.Inicializar();
-                }
-
-                this.PainelLista.EventoBlocoOrdenacaoIniciada.Notificar(this,
-                    new BlocoOrdenacaoEventArgs(
-                        this,
-                        this.ObjetoOrdenacao,
-                        this.ElementoClone,
-                        eventoNativo));
+                this._ultimoInfoMovimentacao = null;
+                this.IniciarOrdenacao(posicaoX, posicaoY, eventoNativo);
             }
+        }
+
+        protected IniciarOrdenacao(posicaoX: number, posicaoY: number, eventoNativo: TouchEvent | MouseEvent)
+        {
+            const regiaoPainel = this.PainelLista.ElementoApresentacao.getBoundingClientRect();
+            this.ClonarElemento(posicaoX, posicaoY);
+            this.Elemento.style.opacity = "0";
+
+            EstiloUtil.DefinirCursorGlogal("grabbing");
+            this.AplicarEstiloPainel(regiaoPainel);
+
+            this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
+            this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
+            this.NextElementSibling = this.Elemento.nextElementSibling as HTMLElement;
+
+            for (const regiao of this.RegioesBlocoOrdenacao)
+            {
+                regiao.Inicializar();
+            }
+
+            this.PainelLista.EventoBlocoOrdenacaoIniciada.Notificar(this,
+                new BlocoOrdenacaoEventArgs(
+                    this,
+                    this.ObjetoOrdenacao,
+                    this.ElementoClone,
+                    eventoNativo));
         }
 
         private RetornarRegioesBloco(regiaoPainel: DOMRect): List<RegiaoBlocoOrdenacao>
@@ -352,6 +357,12 @@
             posicaoY: number,
             eventoNativo: MouseEvent | TouchEvent)
         {
+            this._ultimoInfoMovimentacao = {
+                PosicaoX: posicaoX,
+                PosicaoY: posicaoY,
+                EventoNativo: eventoNativo,
+            };
+
             if (this.RegioesBlocoOrdenacao == null)
             {
                 return;
@@ -360,7 +371,7 @@
             if (this.IsOrdenacaoAtiva)
             {
                 const elementoClone = this.ElementoClone;
-                const posicaoMoventando = elementoClone.getBoundingClientRect();
+                const regiaoElementoClone = elementoClone.getBoundingClientRect();
                 const estilo = new Estilo({
                     left: (posicaoX - this.DiferencaX).ToPixels(),
                     top: (posicaoY - this.DiferencaY).ToPixels(),
@@ -373,10 +384,11 @@
                     if (regiao.ItemBlocoOrdenacao !== this)
                     {
                         regiao.OrdenacaoDestino = null;
+                        regiao.AtualizarRegiaoOrigem();
                     }
 
                     const porcentagem = ElementoAreaUtil.RetornarPorcentagemAreaSobreRegiao(
-                        posicaoMoventando,
+                        regiaoElementoClone,
                         regiao.RegiaoOrigem);
 
                     if (porcentagem > 0)
@@ -393,7 +405,10 @@
                 if (blocosCapturados.Count > 0 &&
                     blocosCapturados.Sum(x => x.Porcentagem) > 50)
                 {
-                    this.SimularOrdenacao(blocosCapturados);
+                    this.SimularOrdenacao(
+                        blocosCapturados,
+                        regiaoElementoClone,
+                        this._ultimoInfoMovimentacao);
                 }
 
                 this.PainelLista.EventoBlocoOrdenacaoMovimentando.Notificar(this,
@@ -415,9 +430,21 @@
                 }
             }
         }
-        protected abstract SimularOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>): void;
 
+        protected AnalisarMousePadrado(infoMovimentacao: InfoMovimentacaoItemBloco)
+        {
+            if (this._ultimoInfoMovimentacao != null &&
+                this._ultimoInfoMovimentacao.PosicaoX === infoMovimentacao.PosicaoX &&
+                this._ultimoInfoMovimentacao.PosicaoY === infoMovimentacao.PosicaoY )
+            {
+                this.Movimentar(
+                    infoMovimentacao.PosicaoX,
+                    infoMovimentacao.PosicaoY,
+                    infoMovimentacao.EventoNativo);
+            }
 
+        }
+        protected abstract SimularOrdenacao(blocosCapturados: List<RegiaoBlocoPorcentagem>, regiaoElementoCloente: DOMRect, infoMovimentacao: InfoMovimentacaoItemBloco): void;
 
         private async FinalizarOrdenacaoAsync(eventoNativo: MouseEvent | TouchEvent)
         {
@@ -826,5 +853,12 @@
     {
         public static readonly CSS_CLASS_ORDENACAO_ATIVA = "sn-ordenacao-ativa";
         public static readonly CSS_CLASS_BLOCO_MOVIMENTANDO = "ap-bloco-movimentando";
+    }
+
+    export interface InfoMovimentacaoItemBloco
+    {
+        readonly PosicaoX: number,
+        readonly PosicaoY: number;
+        readonly EventoNativo: MouseEvent | TouchEvent
     }
 }

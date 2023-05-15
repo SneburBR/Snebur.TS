@@ -3,10 +3,12 @@
     export class PainelLista<TItem extends TipoItemLista = Snebur.Objeto, TItemBloco extends ItemBloco = ItemBloco> extends BaseControleLista<TItem>
     {
         private _isMarcarItem: boolean = null;
-
         private _blocoCabecalho: BlocoCabecalho;
         private _blocoListaVazia: BlocoListaVazia;
         private _blocoListaCarregando: BlocoListaCarregando;
+        private _orientacaoPainel: EnumOrientacao;
+        private _orientacaoScroll: EnumOrientacao;
+        protected _elementoScroll: HTMLElement;
 
         private IsExisteSeparador: boolean;
         /*private ClasseSeparadora: string;*/
@@ -52,29 +54,25 @@
             return true;
         }
 
+        public get OrientacaoScroll(): EnumOrientacao
+        {
+            return this._orientacaoScroll;
+        }
+
         public get OrientacaoPainel(): EnumOrientacao
         {
-            switch (this.TipoPainel)
-            {
-                case EnumTipoPainel.PilhaHorizontal:
-                case EnumTipoPainel.PilhaHorizontalCheia:
-                case EnumTipoPainel.PilhaHorizontalEmLinha:
-                case EnumTipoPainel.BlocoVertical:
-
-                    return EnumOrientacao.Horizontal;
-
-                case EnumTipoPainel.PilhaVertical:
-                case EnumTipoPainel.PilhaVerticalCheia:
-                case EnumTipoPainel.Vazio:
-                case EnumTipoPainel.Bloco:
-
-                    return EnumOrientacao.Vertical;
-                     
-                default:
-
-                    throw new Erro("Tipo de painel não suportado: " + EnumTipoPainel[this.TipoPainel]);
-            }
+            return this._orientacaoPainel;
         }
+
+        public get ElementoScroll(): HTMLElement
+        {
+            if (this._elementoScroll == null)
+            {
+                this._elementoScroll = this.RetornarElementoScroll();
+            }
+            return this._elementoScroll;
+        }
+
 
         public override get TotalItens(): number
         {
@@ -141,6 +139,17 @@
 
             this.AtualizarVisibilidadeBlocoListaVazia();
             this.EventoListaAtualizada.AddHandler(this.PainelLista_ListaAtualizada, this);
+            this.AdicionarEventoPropriedadeApresentacaoAlterada(AtributosHtml.TipoPainel, this.EventoTipoPainelAlterado);
+
+            this._orientacaoPainel = this.RetornarOrientacaoPainel();
+            this._orientacaoScroll = this.RetornarOrientacaoScroll();
+        }
+         
+        private EventoTipoPainelAlterado()
+        {
+            this._elementoScroll = null;
+            this._orientacaoPainel = this.RetornarOrientacaoPainel();
+            this._orientacaoScroll = this.RetornarOrientacaoScroll();
         }
 
         private ValidarTipoPainel()
@@ -377,6 +386,70 @@
                 ElementoUtil.ScrollTo(itemBloco.Elemento);
             }
         }
+
+        private RetornarElementoScroll(): HTMLElement
+        {
+            if (this.OrientacaoScroll === EnumOrientacao.Horizontal)
+            {
+                return ScrollUtil.RetornarElementoScrollHorizontalPai(this.ElementoApresentacao, true);
+            }
+            return ScrollUtil.RetornarElementoScrollVerticalPai(this.ElementoApresentacao, true);
+        }
+
+
+        private RetornarOrientacaoScroll(): EnumOrientacao
+        {
+            switch (this.TipoPainel)
+            {
+                case EnumTipoPainel.PilhaHorizontal:
+                case EnumTipoPainel.PilhaHorizontalCheia:
+                case EnumTipoPainel.PilhaHorizontalEmLinha:
+                case EnumTipoPainel.BlocoVertical:
+
+                    return EnumOrientacao.Horizontal;
+
+                case EnumTipoPainel.PilhaVertical:
+                case EnumTipoPainel.PilhaVerticalCheia:
+                case EnumTipoPainel.Vazio:
+                case EnumTipoPainel.Bloco:
+
+                    return EnumOrientacao.Vertical;
+                     
+                default:
+
+                    throw new Erro("Tipo de painel não suportado: " + EnumTipoPainel[this.TipoPainel]);
+            }
+        }
+
+        private RetornarOrientacaoPainel(): EnumOrientacao
+        {
+            switch (this.TipoPainel)
+            {
+                case EnumTipoPainel.PilhaHorizontal:
+                case EnumTipoPainel.PilhaHorizontalCheia:
+                case EnumTipoPainel.PilhaHorizontalEmLinha:
+          
+
+                    return EnumOrientacao.Horizontal;
+
+                case EnumTipoPainel.PilhaVertical:
+                case EnumTipoPainel.PilhaVerticalCheia:
+                case EnumTipoPainel.Vazio:
+                
+                    return EnumOrientacao.Vertical;
+
+                case EnumTipoPainel.BlocoVertical:
+                case EnumTipoPainel.Bloco:
+
+                    return EnumOrientacao.Quadrado;
+
+                default:
+
+                    throw new Erro("Tipo de painel não suportado: " + EnumTipoPainel[this.TipoPainel]);
+            }
+        }
+         
+
     }
 
     interface OptionsScrollPainelLista

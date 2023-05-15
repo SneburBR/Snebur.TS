@@ -6,7 +6,19 @@
         //{
         //    return this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();
         //}
-         
+
+        public override AtualizarRegiaoOrigem(): void
+        {
+            if (this.ItemBlocoOrdenacao.Elemento.parentElement != null)
+            {
+                this._regiaoOrigem = this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();
+            }
+            else
+            {
+                const xx = "";
+            }
+        }
+
         public Inicializar(): void 
         {
             

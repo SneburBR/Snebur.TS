@@ -2,7 +2,7 @@
 {
     export abstract class RegiaoBlocoOrdenacao
     {
-        private _regiaoOrigem: DOMRect;
+        protected _regiaoOrigem: DOMRect;
         public OrdenacaoDestino: number
         public readonly OrdenacaoOrigem: number;
         public readonly IndiceOrigem: number;
@@ -20,7 +20,6 @@
         public get RegiaoOrigem(): DOMRect
         {
             return this._regiaoOrigem;
-            /*return this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();*/
         }
 
         public constructor(
@@ -36,6 +35,8 @@
 
         public abstract Inicializar(): void;
         public abstract SimuolarOrdenacao(regiaoDestino: DOMRect): void;
+        public abstract AtualizarRegiaoOrigem(): void;
+         
 
         public Dispose()
         {
@@ -49,9 +50,9 @@
         }
     }
 
-   
-    
-     
+
+
+
     export interface RegiaoBlocoPorcentagem
     {
         RegiaoBlocoOrdenacao: RegiaoBlocoOrdenacao;
