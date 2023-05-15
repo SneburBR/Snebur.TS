@@ -482,6 +482,7 @@
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacaoAnimado.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacaoEstatico.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoItemBlocoOrdenacaoUtil.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\BlocoTemplateSelecionado.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\ItemBlocoSelecao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\PainelListaSelecao.ts" />

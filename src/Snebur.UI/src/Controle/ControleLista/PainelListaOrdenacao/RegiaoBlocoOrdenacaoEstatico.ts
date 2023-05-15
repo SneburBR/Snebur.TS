@@ -13,10 +13,6 @@
             {
                 this._regiaoOrigem = this.ItemBlocoOrdenacao.Elemento.getBoundingClientRect();
             }
-            else
-            {
-                const xx = "";
-            }
         }
 
         public Inicializar(): void 

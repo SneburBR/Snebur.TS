@@ -286,6 +286,7 @@
     "src/Controle/ControleLista/PainelListaOrdenacao/PainelListaOrdenacao.ts",
     "src/Controle/ControleLista/PainelListaOrdenacao/RegiaoBlocoOrdenacaoAnimado.ts",
     "src/Controle/ControleLista/PainelListaOrdenacao/RegiaoBlocoOrdenacaoEstatico.ts",
+    "src/Controle/ControleLista/PainelListaOrdenacao/RegiaoItemBlocoOrdenacaoUtil.ts",
     "src/Controle/ControleLista/PainelListaSelecao/BlocoTemplateSelecionado.ts",
     "src/Controle/ControleLista/PainelListaSelecao/ItemBlocoSelecao.ts",
     "src/Controle/ControleLista/PainelListaSelecao/PainelListaSelecao.ts",

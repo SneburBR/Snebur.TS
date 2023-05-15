@@ -20,6 +20,7 @@
         public BlocoTemplatePadrao: BlocoTemplate;
 
         public TipoPainel: EnumTipoPainel;
+        public FuncaoRetornarElementoScroll: () => HTMLElement = null;
 
         public get BlocoCabecalho(): BlocoCabecalho
         {
@@ -389,6 +390,19 @@
 
         private RetornarElementoScroll(): HTMLElement
         {
+            if (typeof this.FuncaoRetornarElementoScroll === "function")
+            {
+                const elmentoScroll = this.FuncaoRetornarElementoScroll();
+                if (elmentoScroll instanceof HTMLElement)
+                {
+                    return elmentoScroll;
+                }
+
+                if (elmentoScroll != null)
+                {
+                    console.error(`O elemento scroll ${elmentoScroll} FuncaoRetornarElementoScroll não é suportado`);
+                }
+            }
             if (this.OrientacaoScroll === EnumOrientacao.Horizontal)
             {
                 return ScrollUtil.RetornarElementoScrollHorizontalPai(this.ElementoApresentacao, true);

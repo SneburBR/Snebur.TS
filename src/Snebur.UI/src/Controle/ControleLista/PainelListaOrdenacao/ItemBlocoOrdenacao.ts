@@ -3,24 +3,33 @@
     export abstract class ItemBlocoOrdenacao extends ItemBloco 
     {
         //#region Propriedades 
-
         public readonly ObjetoOrdenacao: d.IOrdenacao;
 
         private _elementoClone: HTMLElement;
         private __Window_TouchMove: (e: TouchEvent) => void;
+        private _regioesBlocoOrdenacao: RegiaoBlocoOrdenacao[];
+        private _regiaoBlocoAtual: RegiaoBlocoOrdenacao;
         private IdentificadorMouseDown: number;
         private _ultimoInfoMovimentacao: InfoMovimentacaoItemBloco;
         private IdentificadorTouchStart: number;
         private IsOrdenacaoAtiva: boolean;
-        protected RegiaoBlocoAtual: RegiaoBlocoOrdenacao;
-        protected NextElementSibling: HTMLElement;
-
         private EstiloPainelInicial: Estilo;
         private EstiloApresentacaoPainelInicial: Estilo;
 
+
+        protected NextElementSibling: HTMLElement;
+
         private DiferencaX: number;
         private DiferencaY: number;
-        protected RegioesBlocoOrdenacao: List<RegiaoBlocoOrdenacao>;
+
+        protected get RegioesBlocoOrdenacao(): RegiaoBlocoOrdenacao[]
+        {
+            return this._regioesBlocoOrdenacao;
+        }
+        protected get RegiaoBlocoAtual(): RegiaoBlocoOrdenacao
+        {
+            return this._regiaoBlocoAtual;
+        }
 
         public override get PainelLista(): PainelListaOrdenacao<any>
         {
@@ -304,8 +313,8 @@
             EstiloUtil.DefinirCursorGlogal("grabbing");
             this.AplicarEstiloPainel(regiaoPainel);
 
-            this.RegioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
-            this.RegiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
+            this._regioesBlocoOrdenacao = this.RetornarRegioesBloco(regiaoPainel);
+            this._regiaoBlocoAtual = this.RegioesBlocoOrdenacao.Where(x => x.ItemBlocoOrdenacao === this).Single();
             this.NextElementSibling = this.Elemento.nextElementSibling as HTMLElement;
 
             for (const regiao of this.RegioesBlocoOrdenacao)
@@ -398,7 +407,24 @@
                             Porcentagem: porcentagem,
                         });
                     }
-                    //}
+
+                    if (blocosCapturados.Count === 0 && this.RegioesBlocoOrdenacao.Count > 1)
+                    {
+                        const blocoRegiaoBlocoExtermidade = RegiaoItemBlocoOrdenacaoUtil.
+                            RetornarRegicoesBlocoInicioOuFinal(
+                                this.PainelLista.OrientacaoPainel,
+                                regiaoElementoClone,
+                                this.RegioesBlocoOrdenacao.First(),
+                                this.RegioesBlocoOrdenacao.Last());
+
+                        if (blocoRegiaoBlocoExtermidade != null)
+                        {
+                            blocosCapturados.Add({
+                                RegiaoBlocoOrdenacao: blocoRegiaoBlocoExtermidade,
+                                Porcentagem: 100,
+                            });
+                        }
+                    }
                 }
 
                 //this.RegiaoBlocoAtual.P
@@ -435,7 +461,7 @@
         {
             if (this._ultimoInfoMovimentacao != null &&
                 this._ultimoInfoMovimentacao.PosicaoX === infoMovimentacao.PosicaoX &&
-                this._ultimoInfoMovimentacao.PosicaoY === infoMovimentacao.PosicaoY )
+                this._ultimoInfoMovimentacao.PosicaoY === infoMovimentacao.PosicaoY)
             {
                 this.Movimentar(
                     infoMovimentacao.PosicaoX,
@@ -458,8 +484,8 @@
             this.DispensarRegioesBlocoOrdenacao();
             this.RemoverEstiloPainel();
 
-            delete this.RegioesBlocoOrdenacao;
-            delete this.RegiaoBlocoAtual;
+            delete this._regioesBlocoOrdenacao;
+            delete this._regiaoBlocoAtual;
 
             this.RemoverElementoClonado();
 

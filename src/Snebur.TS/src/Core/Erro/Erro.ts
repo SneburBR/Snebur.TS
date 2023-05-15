@@ -46,10 +46,9 @@
 
     export class InfoErro
     {
-        public Namespace: string;
-        public NomeClasse: string;
-        public Linha: number;
-
+        public readonly Namespace: string;
+        public readonly NomeClasse: string;
+        public readonly Linha: number;
     }
 
 }

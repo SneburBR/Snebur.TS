@@ -18,7 +18,11 @@
         protected override IniciarOrdenacao(posicaoX: number, posicaoY: number, eventoNativo: TouchEvent | MouseEvent)
         {
             this.Rolagem?.Dispose();
-            this.Rolagem = new Rolagem(this.PainelLista.ElementoScroll);
+            const elementoScroll = this.PainelLista.ElementoScroll;
+            if (elementoScroll != null)
+            {
+                this.Rolagem = new Rolagem(elementoScroll);
+            }
             super.IniciarOrdenacao(posicaoX, posicaoY, eventoNativo);
         }
 
@@ -35,12 +39,11 @@
             regiaoElementoClone: DOMRect,
             infoMovimentacao: InfoMovimentacaoItemBloco)
         {
+            this.RegiaoBlocoAtual.OrdenacaoDestino = this.RetornarNovaOrdenacao(blocosCapturados);
+
             this.AtualizarScroll(regiaoElementoClone, infoMovimentacao);
 
             const melhorBlocoCapturado = blocosCapturados.OrderByDescending(x => x.Porcentagem).First();
-            const isIserirAntes = melhorBlocoCapturado.Porcentagem <= 50;
-            console.warn(`Atual: ${this.ObjetoOrdenacao.Ordenacao} -- Destino : ${this.RegiaoBlocoAtual.OrdenacaoDestino}, Antes ${isIserirAntes}`);
-
             const elementoDestino = this.Elemento.parentElement;
 
             if (elementoDestino !== this.PainelLista.ElementoApresentacao)
@@ -48,12 +51,9 @@
                 console.error("elemento destino inválido");
             }
 
-            /*const elementoCapturado = .ItemBlocoOrdenacao.Elemento;*/
             const elementoReferencia = this.RetornarElementoReferencia(melhorBlocoCapturado, regiaoElementoClone);
             if (elementoReferencia != null)
             {
-                const label = elementoReferencia.querySelector(".foto-album-lamina-encadernacao-descricao-formatada");
-                console.warn(`Label ${label?.textContent ?? "null"}`);
                 elementoDestino.insertBefore(
                     this.Elemento,
                     elementoReferencia);
@@ -104,7 +104,9 @@
 
         private IsIserirAntesScrollHorizontal(regiaoBlocoCapturado: DOMRect, regiaoElementoClone: DOMRect): boolean
         {
-            throw new Error("Method not implemented.");
+            const xCentroCaputurado = regiaoBlocoCapturado.x + (regiaoBlocoCapturado.width / 2);
+            const xCentroClone = regiaoElementoClone.x + (regiaoElementoClone.width / 2);
+            return xCentroClone < xCentroCaputurado;
         }
 
         //#region Scroll
@@ -113,6 +115,10 @@
             regiaoElementoClone: DOMRect,
             infoMovimentacao:InfoMovimentacaoItemBloco): Promise<void>
         {
+            if (this.Rolagem == null)
+            {
+                return;
+            }
             let isRolouScroll = false;
             if (this._isRolandoScroll)
             {
@@ -153,24 +159,18 @@
             }
             return await this.AtualizarScrollVerticalAsync(regiaoElementoClone);
         }
-
-        private async AtualizarScrollHorizontalAsync(regiaoElementoClone: DOMRect): Promise<boolean>
-        {
-            console.error("AtualizarScrollHorizontal Method not implemented.");
-            return false;
-        }
-
+         
         private async AtualizarScrollVerticalAsync(regiaoElementoClone: DOMRect): Promise<boolean>
         {
             const elementoScroll = this.ElementoScroll;
             const regiaoScroll = elementoScroll.getBoundingClientRect();
 
-            console.log(`Scroll : 
-                         Rect Top + height: ${regiaoScroll.top + regiaoScroll.height}
-                         Rect Top: ${regiaoScroll.top} - Height: ${regiaoScroll.height} 
-                         clientHeight: ${elementoScroll.clientHeight}
-                         scrollHeight: ${elementoScroll.scrollHeight}
-                         ScrollTop: ${elementoScroll.scrollTop} `);
+            //console.LogDebug(`Scroll : 
+            //                  Rect Top + height: ${regiaoScroll.top + regiaoScroll.height}
+            //                  Rect Top: ${regiaoScroll.top} - Height: ${regiaoScroll.height} 
+            //                  clientHeight: ${elementoScroll.clientHeight}
+            //                  scrollHeight: ${elementoScroll.scrollHeight}
+            //                  ScrollTop: ${elementoScroll.scrollTop} `);
 
             const yInferior = regiaoScroll.top + regiaoScroll.height;
             const yMouse = regiaoElementoClone.top + regiaoElementoClone.height;
@@ -191,6 +191,47 @@
                 if (elementoScroll.scrollTop > 0)
                 {
                     await this.Rolagem.RolarParaCimaAsync(regiaoElementoClone.height);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private async AtualizarScrollHorizontalAsync(regiaoElementoClone: DOMRect): Promise<boolean>
+        {
+            const elementoScroll = this.ElementoScroll;
+            const regiaoScroll = elementoScroll.getBoundingClientRect();
+
+            console.LogDebug(`Scroll : 
+                              Rect Left + width: ${regiaoScroll.left + regiaoScroll.width}
+                              Rect Left: ${regiaoScroll.left} - Height: ${regiaoScroll.width} 
+                              clientWidth: ${elementoScroll.clientWidth}
+                              scrollWidth: ${elementoScroll.scrollWidth}
+                              scrollLeft: ${elementoScroll.scrollLeft} `);
+
+            /*elementoScroll.style.border = "2px solid red";*/
+
+            const xDireita = regiaoScroll.left + regiaoScroll.width;
+            const xMouse = regiaoElementoClone.left + regiaoElementoClone.width;
+
+            /*console.warn(`xDireita: ${xDireita} -- xMouse: ${xMouse}`);*/
+
+            const isRolarParaDireita = xMouse > xDireita;
+            if (isRolarParaDireita)
+            {
+                if (elementoScroll.scrollLeft < (elementoScroll.scrollWidth - regiaoScroll.width))
+                {
+                    await this.Rolagem.RolarParaDireitaAsync(regiaoElementoClone.width);
+                    return true;
+                }
+            }
+
+            const isRolarParaEsquerda = regiaoElementoClone.left < regiaoScroll.left;
+            if (isRolarParaEsquerda)
+            {
+                if (elementoScroll.scrollLeft > 0)
+                {
+                    await this.Rolagem.RolarParaEsquerdaAsync(regiaoElementoClone.width );
                     return true;
                 }
             }

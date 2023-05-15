@@ -11,7 +11,7 @@
             blocosCapturados: List<RegiaoBlocoPorcentagem>,
             regiaoElementoClone: DOMRect)
         {
-            /*this.RegiaoBlocoAtual.OrdenacaoDestino = this.RetornarNovaOrdenacao(blocosCapturados);*/
+            this.RegiaoBlocoAtual.OrdenacaoDestino = this.RetornarNovaOrdenacao(blocosCapturados);
 
             const regioesOrdenadas = this.RegioesBlocoOrdenacao.OrderBy(x => x.NovaOrdenacao);
             for (const [regiaoOrdenada, indice] of regioesOrdenadas.ToTupleItemIndex())
