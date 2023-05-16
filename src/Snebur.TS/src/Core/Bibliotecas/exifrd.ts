@@ -1,6 +1,5 @@
 ﻿namespace ExifrJS
 {
-
     const DEFAULT_OPTIONS: ExifrOptions = {
         // APP Segments
         jfif: false,
@@ -52,6 +51,7 @@
     export interface ResultadoMargeOutput
     {
         ifd0: ifd0;
+        ifd1: ifd1;
         exif: exif;
         gps: gps;
         interop: interop;
@@ -61,69 +61,79 @@
     }
 
 
-    export interface ResultadoOutput extends ifd0, exif, gps, interop, thumbnail, iptc, icc
+    export interface ResultadoOutput extends ifd0, ifd1, exif, gps, interop, thumbnail, iptc, icc
     {
 
     }
 
     export interface ifd0
     {
-        ImageWidth: string;
-        ImageHeight: string;
-        Make: string; Model: string;
-        Software: string;
+        readonly ImageWidth: string;
+        readonly ImageHeight: string;
+        readonly Make: string;
+        readonly Model: string;
+        readonly Software: string;
     }
+
+    export interface ifd1
+    {
+        readonly Compression: number,
+        readonly XResolution: number,
+        readonly YResolution: number,
+        readonly ResolutionUnit: string,
+        readonly ThumbnailOffset: number
+    }
+
 
     export interface exif
     {
-
-        ExposureTime: string;
-        ShutterSpeedValue: string;
-        FNumber: string;
-        ApertureValue: string;
-        ISO: string;
-        LensModel: string;
+        readonly ExposureTime: string;
+        readonly ShutterSpeedValue: string;
+        readonly FNumber: string;
+        readonly ApertureValue: string;
+        readonly ISO: string;
+        readonly LensModel: string;
     }
 
     export interface gps
     {
-        latitude: string;
-        longitude: string;
+        readonly latitude: string;
+        readonly longitude: string;
     }
 
     export interface interop
     {
-        InteropIndex: string;
-        InteropVersion: string;
+        readonly InteropIndex: string;
+        readonly InteropVersion: string;
     }
 
     export interface thumbnail
     {
-        ImageWidth: string;
-        ImageHeight: string;
-        ThumbnailLength: string;
+        readonly ImageWidth: string;
+        readonly ImageHeight: string;
+        readonly ThumbnailLength: string;
     }
 
     export interface iptc
     {
-        Headline: string;
-        Byline: string;
-        Credit: string;
-        Caption: string;
-        Source: string;
-        Country: string;
+        readonly Headline: string;
+        readonly Byline: string;
+        readonly Credit: string;
+        readonly Caption: string;
+        readonly Source: string;
+        readonly Country: string;
     }
 
     export interface icc
     {
-        ProfileVersion: string;
-        ProfileClass: string;
-        ColorSpaceData: string;
-        ProfileConnectionSpace: string;
-        ProfileFileSignature: string; DeviceManufacturer: string;
-        RenderingIntent: string;
-        ProfileCreator: string;
-        ProfileDescription: string;
+        readonly ProfileVersion: string;
+        readonly ProfileClass: string;
+        readonly ColorSpaceData: string;
+        readonly ProfileConnectionSpace: string;
+        readonly ProfileFileSignature: string; DeviceManufacturer: string;
+        readonly RenderingIntent: string;
+        readonly ProfileCreator: string;
+        readonly ProfileDescription: string;
     }
 
 
@@ -161,7 +171,6 @@
         chunkSize: 65536 | number; // 64kb
         chunkLimit: 5 | number;
     }
-
 
 
 }

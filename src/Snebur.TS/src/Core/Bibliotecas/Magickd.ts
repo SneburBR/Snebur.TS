@@ -491,6 +491,7 @@
         createDefine(name: string, value: number): MagickDefine;
         createDefine(name: string, value: string): MagickDefine;
     }
+
     interface IDisposable
     {
         dispose(): void;
@@ -1164,6 +1165,9 @@
         readFromCanvas(canvas: HTMLCanvasElement): void;
         removeArtifact(name: string): void;
         removeAttribute(name: string): void;
+        /*####alterando*/
+        /*removeProfile(name: string): void;*/
+        
         removeWriteMask(): void;
         repage(): void;
         resize(geometry: MagickGeometry): void;
