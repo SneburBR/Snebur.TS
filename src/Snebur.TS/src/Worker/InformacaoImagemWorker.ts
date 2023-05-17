@@ -120,7 +120,7 @@
 
             if (typeof orientacao === "number" && orientacao >= 0)
             {
-                return u.ExifUtil.RetornarRotacaoExifInterno(orientacao);
+                return i.ExifUtil.RetornarRotacaoExifInterno(orientacao);
             }
             return 0;
         }

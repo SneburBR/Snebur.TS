@@ -46,6 +46,8 @@
                 imagem.resize(dimensaoImpressao.Largura, dimensaoImpressao.Altura);
             }
 
+            await MagickUtil.ConvertersRGBAsync(imagem);
+
             const buffer = await imagem.write<ArrayBuffer>((data) =>
             {
                 return new Uint8Array(data).buffer;

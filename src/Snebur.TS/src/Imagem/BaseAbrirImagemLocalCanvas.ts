@@ -20,7 +20,7 @@
 
         public get IsIcone(): boolean
         {
-            if (u.MagickInitUtil.IsInicializado)
+            if (MagickInitUtil.IsInicializado)
             {
                 return false;
             }

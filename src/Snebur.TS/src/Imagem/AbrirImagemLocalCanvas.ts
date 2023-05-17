@@ -113,15 +113,7 @@
                     tamanhoImagem,
                     blob,
                     mimeType);
-
-                //if (tamanhoImagem === EnumTamanhoImagem.Media)
-                //{
-                //    imagensCarregada.Add(EnumTamanhoImagem.Grande, new ImagemLocalCarregada(
-                //        tamanhoImagem,
-                //        blob,
-                //        mimeType));
-                //    this.AtualizarDimensao(dimensaoApresentacao, EnumTamanhoImagem.Grande);
-                //}
+ 
 
                 imagensCarregada.Add(tamanhoImagem, cache);
 
