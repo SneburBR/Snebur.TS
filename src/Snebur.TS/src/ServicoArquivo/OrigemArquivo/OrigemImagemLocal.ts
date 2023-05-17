@@ -148,7 +148,7 @@
 
         private async AbrirImagemInternoAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            if (u.MagickInitUtil.IsInicializado  && !window.__IS_USAR_CANVAS__ )
+            if (i.MagickInitUtil.IsInicializado  && !window.__IS_USAR_CANVAS__ )
             {
                 try
                 {

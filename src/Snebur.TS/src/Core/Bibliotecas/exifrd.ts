@@ -40,15 +40,15 @@
 
     export interface ExifrStatic
     {
-        parse(input: input, options?: Partial<ExifrOptions>): Promise<ResultadoOutput>;
-        parse(input: input, options: Partial<ExifrOptions>, mergeOutput: false): Promise<ResultadoMargeOutput>;
+        parse(input: input, options?: Partial<ExifrOptions>): Promise<Output>;
+        parse(input: input, options: Partial<ExifrOptions>, mergeOutput: false): Promise<MargeOutput>;
         gps(input: input): Promise<{ latitude: number; longitude: number }>;
         orientation(input: input): Promise<number>;
         thumbnail(input: input): Promise<Uint8Array>;
         thumbnailUrl(input: input): Promise<string>;
     }
 
-    export interface ResultadoMargeOutput
+    export interface MargeOutput
     {
         ifd0: ifd0;
         ifd1: ifd1;
@@ -61,7 +61,7 @@
     }
 
 
-    export interface ResultadoOutput extends ifd0, ifd1, exif, gps, interop, thumbnail, iptc, icc
+    export interface Output extends ifd0, ifd1, exif, gps, interop, thumbnail, iptc, icc
     {
 
     }

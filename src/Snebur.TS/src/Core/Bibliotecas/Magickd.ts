@@ -1165,9 +1165,7 @@
         readFromCanvas(canvas: HTMLCanvasElement): void;
         removeArtifact(name: string): void;
         removeAttribute(name: string): void;
-        /*####alterando*/
-        /*removeProfile(name: string): void;*/
-        
+        removeProfile(name: string): void;
         removeWriteMask(): void;
         repage(): void;
         resize(geometry: MagickGeometry): void;
@@ -1180,6 +1178,7 @@
         setArtifact(name: string, value: string): void;
         setArtifact(name: string, value: boolean): void;
         setAttribute(name: string, value: string): void;
+        addProfile(name: string, data: Uint8Array): void;
         setWriteMask(image: IMagickImage): void;
         sharpen(): void;
         sharpen(radius: number, sigma: number): void;
@@ -1358,6 +1357,7 @@
         readFromCanvas(canvas: HTMLCanvasElement): void;
         removeArtifact(name: string): void;
         removeAttribute(name: string): void;
+        removeProfile(name: string): void;
         removeWriteMask(): void;
         repage(): void;
         resize(geometry: MagickGeometry): void;
@@ -1370,6 +1370,7 @@
         setArtifact(name: string, value: string): void;
         setArtifact(name: string, value: boolean): void;
         setAttribute(name: string, value: string): void;
+        addProfile(name: string, data: Uint8Array): void;
         setWriteMask(image: IMagickImage): void;
         sharpen(): void;
         sharpen(radius: number, sigma: number): void;
