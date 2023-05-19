@@ -9,7 +9,7 @@ self.onmessage = function (e)
     leitor.onerror = function (e: ProgressEvent<FileReader>)
     {
         const nomeArquivo = RetornarNomeArquivo(arquivo);
-        const mensagemErro = `Checksum Não foi possivel ler o arquivo '${nomeArquivo}`;
+        const mensagemErro = `Checksum Não foi possível ler o arquivo '${nomeArquivo}`;
         const erro = leitor.error ?? e.target.error ?? new Error(mensagemErro);
         console.error(`${mensagemErro} ${erro.message} `);
 
@@ -84,6 +84,10 @@ function RetornarNomeArquivo(arquivoOuBlob: Blob)
 }
 
 
+interface WorkerGlobalScope
+{
+    Sizeof: Function;
+}
 interface Window
 {
     Sizeof: Function;

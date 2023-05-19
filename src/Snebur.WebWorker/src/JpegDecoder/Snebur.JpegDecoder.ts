@@ -13,7 +13,7 @@ let ARQUIVO = null;
 let __identificadorTimeout: number = null;
 
 declare const __wasm_image_loader: any;
-declare const Promise: any;
+/*declare const Promise: any;*/
 declare const pica: any;
 declare const JPEGEncoder: any;
 declare const Buffer: any;

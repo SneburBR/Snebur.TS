@@ -88,6 +88,8 @@
     <TypeScriptCompile Include="src\InformacaoImagem.Moderno\Snebur.InformacaoImagem.Moderno.ts" />
     <TypeScriptCompile Include="src\InformacaoImagem\Snebur.InformacaoImagem.ts" />
     <TypeScriptCompile Include="src\JpegDecoder\Snebur.JpegDecoder.ts" />
+    <TypeScriptCompile Include="src\MagickWorker\Init.ts" />
+    <TypeScriptCompile Include="src\MagickWorker\MagickWorker.ts" />
     <TypeScriptCompile Include="src\SalvarJpeg\Snebur.SalvarJpeg.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="src\MagickWorker\tsconfig.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
