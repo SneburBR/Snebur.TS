@@ -6,7 +6,7 @@
         public static readonly QUALIDADE_APRESENTACAO_CANVAS = 85;
         public static readonly QUALIDADE_APRESENTACAO_MAGICK = 55;
         public static readonly QUALIDADE_IMPRESSAO_CANVAS = 92;
-        public static readonly QUALIDADE_IMPRESSAO_MAGICK = 85;
+
 
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }
 
@@ -317,6 +317,48 @@
 
                     throw new ErroOperacaoInvalida("O tamanho da impressão não é suportado pelo método");
                 //return new d.Dimensao(larguraImagem, alturaImagem);
+
+                default:
+
+                    throw new ErroNaoSuportado("Tamanho da imagem não suportado");
+            }
+        }
+
+        public static RetornarDimensaoApresentacao( tamanahoImagem: d.EnumTamanhoImagem): IDimensao
+        {
+            switch (tamanahoImagem)
+            {
+                case d.EnumTamanhoImagem.Miniatura:
+
+                    return {
+                        Largura: imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_MINIATURA,
+                        Altura: imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_MINIATURA
+                    };
+
+                case d.EnumTamanhoImagem.Pequena:
+
+                    return {
+                        Largura: imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_PEQUENA,
+                        Altura: imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_PEQUENA
+                    };
+
+                case d.EnumTamanhoImagem.Media:
+
+                    return {
+                        Largura: imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_MEDIA,
+                        Altura: imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_MEDIA
+                    };
+
+                case d.EnumTamanhoImagem.Grande:
+
+                    return {
+                        Largura: imagens.ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE,
+                        Altura: imagens.ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE
+                    };
+
+                case d.EnumTamanhoImagem.Impressao:
+
+                    throw new ErroOperacaoInvalida("O tamanho da impressão não é suportado pelo método");
 
                 default:
 

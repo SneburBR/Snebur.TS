@@ -2,7 +2,7 @@
 {
     export class GerenciadorTarefa<TTarefa extends BaseTarefa, TProgressoGerenciadorTarefaEventArgs extends ProgressoGerenciadorTarefaEventArgs = ProgressoGerenciadorTarefaEventArgs> extends BaseTarefa<TProgressoGerenciadorTarefaEventArgs>
     {
-        private _maximoTarefasSimultaneas: number = 1;
+        protected _maximoTarefasSimultaneas: number = 1;
 
         protected readonly DicionarioTarefas = new DicionarioSimples<TTarefa>();
         protected readonly DicionarioFila = new DicionarioSimples<TTarefa>();
@@ -46,16 +46,12 @@
             {
                 return 0;
             }
-            if ($Aplicacao.IsCarregandoImagem)
-            {
-                return 1;
-            }
             return this._maximoTarefasSimultaneas;
         }
 
         public set MaximoTarefasSimultaneas(value: number)
         {
-            this.NotificarPropriedadeAlterada("MaximoTarefasSimultaneas", this._maximoTarefasSimultaneas, this._maximoTarefasSimultaneas = value);
+            this.NotificarPropriedadeAlterada(x=> x.MaximoTarefasSimultaneas, this._maximoTarefasSimultaneas, this._maximoTarefasSimultaneas = value);
 
             if (this.Status === t.EnumStatusTarefa.Executando)
             {
@@ -181,7 +177,7 @@
 
         //#region Métodos privados
 
-        private ExecutarProximaTarefa(): void
+        protected ExecutarProximaTarefa(): void
         {
             if (this.TotalFila === 0 && this.Executando.length === 0)
             {

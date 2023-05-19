@@ -19,7 +19,6 @@
         Shape = 14,
         Transparent = 15
     }
-
     enum AutoThresholdMethod
     {
         Undefined = 0,
@@ -27,7 +26,6 @@
         OTSU = 2,
         Triangle = 3
     }
-
     enum PixelChannel
     {
         Red = 0,
@@ -42,8 +40,7 @@
         Index = 5,
         Composite = 64
     }
-
-    interface IChannelStatistics
+    export interface IChannelStatistics
     {
         channel: PixelChannel;
         depth: number;
@@ -55,7 +52,6 @@
         skewness: number;
         standardDeviation: number;
     }
-
     enum Channels
     {
         Undefined = 0,
@@ -79,7 +75,30 @@
         Sync = 131072,
         Default = 134217727
     }
-
+    class PrimaryInfo
+    {
+        private _x;
+        private _y;
+        private _z;
+        constructor(x: number, y: number, z: number);
+        get x(): number;
+        get y(): number;
+        get z(): number;
+    }
+    class ChromaticityInfo
+    {
+        red: PrimaryInfo;
+        green: PrimaryInfo;
+        blue: PrimaryInfo;
+        white: PrimaryInfo;
+        constructor(red: PrimaryInfo, green: PrimaryInfo, blue: PrimaryInfo, white: PrimaryInfo);
+    }
+    enum ClassType
+    {
+        Undefined = 0,
+        Direct = 1,
+        Pseudo = 2
+    }
     enum ColorSpace
     {
         Undefined = 0,
@@ -117,7 +136,21 @@
         YUV = 32,
         LinearGray = 33
     }
-
+    enum ColorType
+    {
+        Undefined = 0,
+        Bilevel = 1,
+        Grayscale = 2,
+        GrayscaleAlpha = 3,
+        Palette = 4,
+        PaletteAlpha = 5,
+        TrueColor = 6,
+        TrueColorAlpha = 7,
+        ColorSeparation = 8,
+        ColorSeparationAlpha = 9,
+        Optimize = 10,
+        PaletteBilevelAlpha = 11
+    }
     enum CompositeOperator
     {
         Undefined = 0,
@@ -193,7 +226,37 @@
         Xor = 70,
         Stereo = 71
     }
-
+    enum CompressionMethod
+    {
+        Undefined = 0,
+        B44A = 1,
+        B44 = 2,
+        BZip = 3,
+        DXT1 = 4,
+        DXT3 = 5,
+        DXT5 = 6,
+        Fax = 7,
+        Group4 = 8,
+        JBIG1 = 9,
+        JBIG2 = 10,
+        JPEG2000 = 11,
+        JPEG = 12,
+        LosslessJPEG = 13,
+        LZMA = 14,
+        LZW = 15,
+        NoCompression = 16,
+        Piz = 17,
+        Pxr24 = 18,
+        RLE = 19,
+        Zip = 20,
+        ZipS = 21,
+        Zstd = 22,
+        WebP = 23,
+        DWAA = 24,
+        DWAB = 25,
+        BC7 = 26,
+        BC5 = 27
+    }
     enum MagickFormat
     {
         Unknown = "UNKNOWN",
@@ -461,19 +524,16 @@
         Ycbcra = "YCbCrA",
         Yuv = "YUV"
     }
-
-    interface IDefine
+    export interface IDefine
     {
         readonly format: MagickFormat;
         readonly name: string;
         readonly value: string;
     }
-
-    interface IDefines
+    export interface IDefines
     {
         getDefines(): IDefine[];
     }
-
     class MagickDefine implements IDefine
     {
         constructor(format: MagickFormat, name: string, value: string);
@@ -481,7 +541,6 @@
         readonly name: string;
         readonly value: string;
     }
-
     abstract class DefinesCreator implements IDefines
     {
         protected format: MagickFormat;
@@ -491,12 +550,25 @@
         createDefine(name: string, value: number): MagickDefine;
         createDefine(name: string, value: string): MagickDefine;
     }
-
-    interface IDisposable
+    enum DensityUnit
+    {
+        Undefined = 0,
+        PixelsPerInch = 1,
+        PixelsPerCentimeter = 2
+    }
+    class Density
+    {
+        constructor(xy: number);
+        constructor(xy: number, unit: DensityUnit);
+        constructor(x: number, y: number, units: DensityUnit);
+        readonly x: number;
+        readonly y: number;
+        readonly units: DensityUnit;
+    }
+    export interface IDisposable
     {
         dispose(): void;
     }
-
     enum DistortMethod
     {
         Undefined = 0,
@@ -857,12 +929,15 @@
     class MagickSettings
     {
         backgroundColor?: MagickColor;
+        colorType?: ColorType;
         fillColor?: MagickColor;
         font?: string;
         fontPointsize?: number;
         format?: MagickFormat;
         strokeColor?: MagickColor;
         strokeWidth?: number;
+        textInterlineSpacing?: number;
+        textKerning?: number;
         getDefine(name: string): string;
         getDefine(format: MagickFormat, name: string): string;
         setDefine(name: string, value: string): void;
@@ -872,7 +947,6 @@
         setDefines(defines: IDefines): void;
         private parseDefine;
     }
-
     class MagickReadSettings extends MagickSettings
     {
         constructor(partialSettings?: Partial<MagickReadSettings>);
@@ -880,7 +954,6 @@
         width?: number;
         private getSize;
     }
-
     class MontageSettings
     {
         backgroundColor?: MagickColor;
@@ -902,6 +975,14 @@
     }
     export interface IMagickImageCollection extends Array<IMagickImage>, IDisposable
     {
+        appendHorizontally<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
+        appendHorizontally<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+        appendVertically<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
+        appendVertically<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+        clone<TReturnType>(func: (images: IMagickImageCollection) => TReturnType): TReturnType;
+        clone<TReturnType>(func: (images: IMagickImageCollection) => Promise<TReturnType>): Promise<TReturnType>;
+        evaluate<TReturnType>(evaluateOperator: EvaluateOperator, func: (image: IMagickImage) => TReturnType): TReturnType;
+        evaluate<TReturnType>(evaluateOperator: EvaluateOperator, func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
         flatten<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
         flatten<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
         merge<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
@@ -919,6 +1000,14 @@
     {
         private constructor();
         dispose(): void;
+        appendHorizontally<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
+        appendHorizontally<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+        appendVertically<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
+        appendVertically<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+        clone<TReturnType>(func: (images: IMagickImageCollection) => TReturnType): TReturnType;
+        clone<TReturnType>(func: (images: IMagickImageCollection) => Promise<TReturnType>): Promise<TReturnType>;
+        evaluate<TReturnType>(evaluateOperator: EvaluateOperator, func: (image: IMagickImage) => TReturnType): TReturnType;
+        evaluate<TReturnType>(evaluateOperator: EvaluateOperator, func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
         flatten<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
         flatten<TReturnType>(func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
         merge<TReturnType>(func: (image: IMagickImage) => TReturnType): TReturnType;
@@ -935,6 +1024,7 @@
         private addImages;
         private attachImages;
         private static createObject;
+        private createImage;
         private static createSettings;
         private detachImages;
         private getSettings;
@@ -1005,6 +1095,12 @@
         get y(): number;
         set y(value: number);
     }
+    export interface IStatistics
+    {
+        readonly channels: ReadonlyArray<PixelChannel>;
+        composite(): IChannelStatistics;
+        getChannel(channel: PixelChannel): IChannelStatistics | null;
+    }
     enum VirtualPixelMethod
     {
         Undefined = 0,
@@ -1025,12 +1121,6 @@
         VerticalTileEdge = 15,
         CheckerTile = 16
     }
-    export interface IStatistics
-    {
-        readonly channels: ReadonlyArray<PixelChannel>;
-        composite(): IChannelStatistics;
-        getChannel(channel: PixelChannel): IChannelStatistics | null;
-    }
     export interface IMagickImage extends IDisposable
     {
         animationDelay: number;
@@ -1039,12 +1129,23 @@
         readonly artifactNames: ReadonlyArray<string>;
         readonly attributeNames: ReadonlyArray<string>;
         backgroundColor: MagickColor;
+        readonly baseHeight: number;
+        readonly baseWidth: number;
+        blackPointCompensation: boolean;
         borderColor: MagickColor;
-        readonly channels: ReadonlyArray<PixelChannel>;
+        boundingBox: MagickGeometry | null;
         readonly channelCount: number;
+        readonly channels: ReadonlyArray<PixelChannel>;
+        chromaticity: ChromaticityInfo;
+        classType: ClassType;
         colorFuzz: Percentage;
+        colormapSize: number;
         colorSpace: ColorSpace;
+        colorType: ColorType;
         comment: string | null;
+        compose: CompositeOperator;
+        readonly compression: CompressionMethod;
+        density: Density;
         depth: number;
         filterType: FilterType;
         format: MagickFormat;
@@ -1055,9 +1156,11 @@
         orientation: OrientationType;
         page: MagickGeometry;
         quality: number;
+        readonly settings: MagickSettings;
         readonly signature: string | null;
         virtualPixelMethod: VirtualPixelMethod;
         width: number;
+        addProfile(name: string, data: Uint8Array): void;
         alpha(value: AlphaOption): void;
         autoOrient(): void;
         autoThreshold(method: AutoThresholdMethod): void;
@@ -1126,6 +1229,8 @@
         extent(geometry: MagickGeometry, gravity: Gravity): void;
         extent(geometry: MagickGeometry, gravity: Gravity, backgroundColor: MagickColor): void;
         extent(geometry: MagickGeometry, backgroundColor: MagickColor): void;
+        flip(): void;
+        flop(): void;
         getArtifact(name: string): string | null;
         getAttribute(name: string): string | null;
         getProfile(name: string): IImageProfile | null;
@@ -1135,6 +1240,7 @@
         getPixels<TReturnType>(func: (pixels: IPixelCollection) => Promise<TReturnType>): Promise<TReturnType>;
         histogram(): Map<string, number>;
         inverseContrast(): void;
+        inverseOpaque(target: MagickColor, fill: MagickColor): void;
         inverseSigmoidalContrast(contrast: number): void;
         inverseSigmoidalContrast(contrast: number, midpointPercentage: Percentage): void;
         inverseSigmoidalContrast(contrast: number, midpoint: number): void;
@@ -1157,12 +1263,13 @@
         normalize(): void;
         oilPaint(): void;
         oilPaint(radius: number): void;
+        opaque(target: MagickColor, fill: MagickColor): void;
         ping(fileName: string, settings?: MagickReadSettings): void;
         ping(array: Uint8Array, settings?: MagickReadSettings): void;
         read(color: MagickColor, width: number, height: number): void;
         read(fileName: string, settings?: MagickReadSettings): void;
         read(array: Uint8Array, settings?: MagickReadSettings): void;
-        readFromCanvas(canvas: HTMLCanvasElement): void;
+
         removeArtifact(name: string): void;
         removeAttribute(name: string): void;
         removeProfile(name: string): void;
@@ -1178,7 +1285,6 @@
         setArtifact(name: string, value: string): void;
         setArtifact(name: string, value: boolean): void;
         setAttribute(name: string, value: string): void;
-        addProfile(name: string, data: Uint8Array): void;
         setWriteMask(image: IMagickImage): void;
         sharpen(): void;
         sharpen(radius: number, sigma: number): void;
@@ -1201,9 +1307,11 @@
         vignette(radius: number, sigma: number, x: number, y: number): void;
         wave(): void;
         wave(method: PixelInterpolateMethod, amplitude: number, length: number): void;
-        write<TReturnType>(func: (data: Uint8Array) => TReturnType, format?: MagickFormat): TReturnType;
-        write<TReturnType>(func: (data: Uint8Array) => Promise<TReturnType>, format?: MagickFormat): Promise<TReturnType>;
-        writeToCanvas(canvas: HTMLCanvasElement): void;
+        write<TReturnType>(func: (data: Uint8Array) => TReturnType): TReturnType;
+        write<TReturnType>(format: MagickFormat, func: (data: Uint8Array) => TReturnType): TReturnType;
+        write<TReturnType>(func: (data: Uint8Array) => Promise<TReturnType>): Promise<TReturnType>;
+        write<TReturnType>(format: MagickFormat, func: (data: Uint8Array) => Promise<TReturnType>): Promise<TReturnType>;
+
     }
     class MagickImage extends NativeInstance implements IMagickImage
     {
@@ -1219,16 +1327,34 @@
         get attributeNames(): ReadonlyArray<string>;
         get backgroundColor(): MagickColor;
         set backgroundColor(value: MagickColor);
+        get baseHeight(): number;
+        get baseWidth(): number;
+        get blackPointCompensation(): boolean;
+        set blackPointCompensation(value: boolean);
         get borderColor(): MagickColor;
         set borderColor(value: MagickColor);
-        get channels(): ReadonlyArray<PixelChannel>;
+        get boundingBox(): MagickGeometry | null;
         get channelCount(): number;
+        get channels(): ReadonlyArray<PixelChannel>;
+        get chromaticity(): ChromaticityInfo;
+        set chromaticity(value: ChromaticityInfo);
+        get classType(): ClassType;
+        set classType(value: ClassType);
         get colorFuzz(): Percentage;
         set colorFuzz(value: Percentage);
+        get colormapSize(): number;
+        set colormapSize(value: number);
         get colorSpace(): ColorSpace;
         set colorSpace(value: ColorSpace);
+        get colorType(): ColorType;
+        set colorType(value: ColorType);
         get comment(): string | null;
         set comment(value: string | null);
+        get compose(): CompositeOperator;
+        set compose(value: CompositeOperator);
+        get compression(): CompressionMethod;
+        get density(): Density;
+        set density(value: Density);
         get depth(): number;
         set depth(value: number);
         get filterType(): number;
@@ -1248,10 +1374,12 @@
         set page(value: MagickGeometry);
         get quality(): number;
         set quality(value: number);
+        get settings(): MagickSettings;
         get signature(): string | null;
         get virtualPixelMethod(): VirtualPixelMethod;
         set virtualPixelMethod(value: VirtualPixelMethod);
         get width(): number;
+        addProfile(name: string, data: Uint8Array): void;
         alpha(value: AlphaOption): void;
         autoOrient(): void;
         autoThreshold(method: AutoThresholdMethod): void;
@@ -1295,15 +1423,18 @@
         compositeGravity(image: IMagickImage, gravity: Gravity, compose: CompositeOperator, point: Point, channels: Channels): void;
         compositeGravity(image: IMagickImage, gravity: Gravity, compose: CompositeOperator, point: Point, args: string): void;
         compositeGravity(image: IMagickImage, gravity: Gravity, compose: CompositeOperator, point: Point, args: string, channels: Channels): void;
-        contrast(): void;
+        contrast: () => void;
         contrastStretch(blackPoint: Percentage): void;
         contrastStretch(blackPoint: Percentage, whitePoint: Percentage): void;
+        static create(): IMagickImage;
+        static create(color: MagickColor, width: number, height: number): IMagickImage;
+        static create(fileName: string, settings?: MagickReadSettings): IMagickImage;
+        static create(array: Uint8Array, settings?: MagickReadSettings): IMagickImage;
         crop(geometry: MagickGeometry): void;
         crop(geometry: MagickGeometry, gravity: Gravity): void;
         crop(width: number, height: number): void;
         crop(width: number, height: number, gravity: Gravity): void;
         cropToTiles(geometry: MagickGeometry): IMagickImageCollection;
-        static create(): IMagickImage;
         deskew(threshold: Percentage): number;
         distort(method: DistortMethod, params: number[]): void;
         distort(method: DistortMethod, settings: DistortSettings, params: number[]): void;
@@ -1320,6 +1451,8 @@
         extent(geometry: MagickGeometry, gravity: Gravity): void;
         extent(geometry: MagickGeometry, gravity: Gravity, backgroundColor: MagickColor): void;
         extent(geometry: MagickGeometry, backgroundColor: MagickColor): void;
+        flip(): void;
+        flop(): void;
         getArtifact(name: string): string | null;
         getAttribute(name: string): string | null;
         getProfile(name: string): IImageProfile | null;
@@ -1328,12 +1461,13 @@
         getPixels<TReturnType>(func: (pixels: IPixelCollection) => TReturnType): TReturnType;
         getPixels<TReturnType>(func: (pixels: IPixelCollection) => Promise<TReturnType>): Promise<TReturnType>;
         histogram(): Map<string, number>;
-        inverseContrast(): void;
+        inverseContrast: () => void;
+        inverseOpaque: (target: MagickColor, fill: MagickColor) => void;
         inverseSigmoidalContrast(contrast: number): void;
         inverseSigmoidalContrast(contrast: number, midpointPercentage: Percentage): void;
         inverseSigmoidalContrast(contrast: number, midpoint: number): void;
         inverseSigmoidalContrast(contrast: number, midpoint: number, channels: Channels): void;
-        inverseTransparent(color: MagickColor): void;
+        inverseTransparent: (color: MagickColor) => void;
         level(blackPoint: Percentage, whitePoint: Percentage): void;
         level(blackPoint: Percentage, whitePoint: Percentage, gamma: number): void;
         level(channels: Channels, blackPoint: Percentage, whitePoint: Percentage): void;
@@ -1349,12 +1483,13 @@
         modulate(brightness: Percentage, saturation: Percentage, hue: Percentage): void;
         oilPaint(): void;
         oilPaint(radius: number): void;
+        opaque: (target: MagickColor, fill: MagickColor) => void;
         ping(fileName: string, settings?: MagickReadSettings): void;
         ping(array: Uint8Array, settings?: MagickReadSettings): void;
         read(color: MagickColor, width: number, height: number): void;
         read(fileName: string, settings?: MagickReadSettings): void;
         read(array: Uint8Array, settings?: MagickReadSettings): void;
-        readFromCanvas(canvas: HTMLCanvasElement): void;
+
         removeArtifact(name: string): void;
         removeAttribute(name: string): void;
         removeProfile(name: string): void;
@@ -1370,7 +1505,6 @@
         setArtifact(name: string, value: string): void;
         setArtifact(name: string, value: boolean): void;
         setAttribute(name: string, value: string): void;
-        addProfile(name: string, data: Uint8Array): void;
         setWriteMask(image: IMagickImage): void;
         sharpen(): void;
         sharpen(radius: number, sigma: number): void;
@@ -1393,10 +1527,15 @@
         wave(method: PixelInterpolateMethod, amplitude: number, length: number): void;
         vignette(): void;
         vignette(radius: number, sigma: number, x: number, y: number): void;
-        write<TReturnType>(func: (data: Uint8Array) => TReturnType, format?: MagickFormat): TReturnType;
-        write<TReturnType>(func: (data: Uint8Array) => Promise<TReturnType>, format?: MagickFormat): Promise<TReturnType>;
-        writeToCanvas(canvas: HTMLCanvasElement): void;
-        private privateSigmoidalContrast;
+        write<TReturnType>(func: (data: Uint8Array) => TReturnType): TReturnType;
+        write<TReturnType>(format: MagickFormat, func: (data: Uint8Array) => TReturnType): TReturnType;
+        write<TReturnType>(func: (data: Uint8Array) => Promise<TReturnType>): Promise<TReturnType>;
+        write<TReturnType>(format: MagickFormat, func: (data: Uint8Array) => Promise<TReturnType>): Promise<TReturnType>;
+
+        private _contrast;
+        private _opaque;
+        private _sigmoidalContrast;
+        private _transparent;
         private static createInstance;
         private fromBool;
         private readOrPing;
@@ -1436,10 +1575,11 @@
         static readCollection<TReturnType>(fileName: string, settings: MagickReadSettings, func: (images: IMagickImageCollection) => Promise<TReturnType>): Promise<TReturnType>;
         static readCollection<TReturnType>(fileName: string, func: (images: IMagickImageCollection) => TReturnType): TReturnType;
         static readCollection<TReturnType>(fileName: string, func: (images: IMagickImageCollection) => Promise<TReturnType>): Promise<TReturnType>;
-        static readFromCanvas<TReturnType>(canvas: HTMLCanvasElement, func: (image: IMagickImage) => TReturnType): TReturnType;
-        static readFromCanvas<TReturnType>(canvas: HTMLCanvasElement, func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+        readFromCanvas<TReturnType>(canvas: HTMLCanvasElement, func: (image: IMagickImage) => TReturnType): TReturnType;
+        readFromCanvas<TReturnType>(canvas: HTMLCanvasElement, func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
+
     }
-    function initializeImageMagick(): Promise<void>;
+    function initializeImageMagick(wasmLocation?: string | ArrayBuffer | Blob | Uint8Array): Promise<void>;
     class MagickColors
     {
         static get None(): MagickColor;
@@ -1662,5 +1802,8 @@
         strokeWidth?: number;
     }
 
+    interface HTMLCanvasElement
+    {
 
+    }
 }

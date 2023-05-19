@@ -134,6 +134,10 @@ namespace Snebur.UI
         }
         public async ScrollItemAsync(item: TItem)
         {
+            if (item == null)
+            {
+                return;
+            }
             const itemBloco = this.DicionarioItensControle.Item(item);
             if (itemBloco?.Elemento != null)
             {

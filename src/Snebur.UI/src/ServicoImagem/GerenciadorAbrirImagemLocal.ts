@@ -5,8 +5,9 @@ namespace Snebur.UI
     {
         private readonly DicionarioTarefasVirtualizacao = new DicionarioSimples<TarefaAbrirImagemLocal, string>();
         public readonly TarefasVirtualizacao = new ListaObservacao<TarefaAbrirImagemLocal>();
-        private _isAbrirImagem: boolean = false;
-        
+        public readonly CarregamentosAsync = new ListaObservacao<TarefaAbrirImagemLocal>();
+
+
         //private  readonly Tarefas
 
         public get TotalVirtualizacao(): number
@@ -14,18 +15,29 @@ namespace Snebur.UI
             return this.TarefasVirtualizacao.Count;
         }
 
-       public get IsCarregandoImagem(): boolean
+        public get IsCarregandoImagem(): boolean
         {
-           return this.TarefasVirtualizacao?.Count > 0 ||
-               this.Executando?.Count > 0 || this._isAbrirImagem;
-       }
+            return this.Executando.Count > 0 ||
+                this.Fila.Count > 0 ||
+                this.CarregamentosAsync.Count > 0 ||
+                this.DicionarioTarefasVirtualizacao.Count > 0;
+        }
+
+        public override get MaximoTarefasSimultaneas(): number
+        {
+            return this._maximoTarefasSimultaneas;
+        }
+        public override set MaximoTarefasSimultaneas(value: number)
+        {
+            super.MaximoTarefasSimultaneas = value;
+        }
 
         public constructor()
         {
             super();
 
             //this.PreferenciaOrdemFila = t.EnumPreferenciaOrdemFila.Meio;
-            this.MaximoTarefasSimultaneas = 1;
+            this.MaximoTarefasSimultaneas = 3;
         }
 
         protected override RetornarChaveTarefa(tarefa: TarefaAbrirImagemLocal): string
@@ -33,11 +45,24 @@ namespace Snebur.UI
             return tarefa.Imagem.__IdentificadorEntidade;
         }
 
-        public override IniciarAsync(): Promise<void>
-        public override IniciarAsync(): Promise<void>
+        protected override ExecutarProximaTarefa(): void
+        {
+            super.ExecutarProximaTarefa();
+        }
+
+        public override IniciarAsync(): Promise<void>;
+        public override IniciarAsync(): Promise<void>;
         public override async IniciarAsync(callback: CallbackResultado<t.ResultadoTarefaFinalizadaEventArgs> = null)
         {
             await super.IniciarAsync(callback);
+        }
+
+        public async AguardarCarregamentoImagensAsync()
+        {
+            while (this.IsCarregandoImagem)
+            {
+                await ThreadUtil.EsperarAsync(150);
+            }
         }
 
         public AbrirImagemVirtualizacao(imagem: d.IImagem): void
@@ -65,8 +90,10 @@ namespace Snebur.UI
             return new Promise<void>(reolver =>
             {
                 const tarefa = new TarefaAbrirImagemLocal(imagem);
+                this.CarregamentosAsync.Add(tarefa);
                 tarefa.IniciarAsync(() =>
                 {
+                    this.CarregamentosAsync.Remove(tarefa);
                     reolver();
                 });
             });

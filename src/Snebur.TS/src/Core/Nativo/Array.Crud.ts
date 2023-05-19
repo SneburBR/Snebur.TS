@@ -97,6 +97,7 @@
             case EnumTipoLista.List:
 
                 return lista.push(item);
+
             case EnumTipoLista.ListaObservacao:
 
                 return ListaObservacao.Adicionar(lista as ListaObservacao<any>, item);

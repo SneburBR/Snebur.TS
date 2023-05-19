@@ -3,7 +3,8 @@
     export abstract class WorkerCliente<TMensagem = any, TResultado = any>
     {
         protected abstract UrlWorker: string;
-        protected constructor()
+        protected constructor(
+            public readonly IsDebug: boolean = false)
         {
 
         }
@@ -15,7 +16,7 @@
 
         private async Promise_Resolver(mensagem: TMensagem, argumento: any, resolver: (resultado: TResultado | Error) => void) 
         {
-            const workerInterno = new WorkerClienteInterno(this.UrlWorker);
+            const workerInterno = new WorkerClienteInterno(this.UrlWorker, this.IsDebug);
             await workerInterno.InicializarAsync();
             const callback = async (resultado: TResultado | Error) =>
             {

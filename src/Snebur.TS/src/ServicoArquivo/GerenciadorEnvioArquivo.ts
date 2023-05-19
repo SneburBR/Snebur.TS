@@ -75,6 +75,24 @@
             this.NotificarPropriedadeAlterada(x => x.VelocidadeMedia, this._velocidadeMedia, this._velocidadeMedia = value);
         }
 
+        public override get MaximoTarefasSimultaneas(): number
+        {
+            if (this.Status === t.EnumStatusTarefa.Pausada)
+            {
+                return 0;
+            }
+
+            if ($Aplicacao.IsCarregandoImagem)
+            {
+                return 1;
+            }
+            return this._maximoTarefasSimultaneas;
+        }
+        public override set MaximoTarefasSimultaneas(value: number)
+        {
+            super.MaximoTarefasSimultaneas = value;
+        }
+
         /*private ExecutarProgressoDepois = new ExecutarDepois(this.AtualizarProgressoGerenciadorTarefaDepois.bind(this), GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO, GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO_INTERVALO);*/
 
         public static readonly TEMPO_MEDIDOR_VELOCIDADE_SEGUNDOS = 2;

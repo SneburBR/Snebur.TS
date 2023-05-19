@@ -8,9 +8,10 @@
         private IdTimeout: number;
 
         private readonly UrlWorkerRelativa: string;
-        private UrlWorkerFinal: string;
+        private UrlWorker: string;
 
-        public constructor(url: string)
+        public constructor(url: string,
+            public readonly IsDebug: boolean)
         {
             if (typeof $Aplicacao.FuncaoNormalizarUrlRelativaWebWorker === "function")
             {
@@ -21,21 +22,42 @@
 
         public async InicializarAsync()
         {
-            this.UrlWorkerFinal = await UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorkerRelativa);
+            await this.InicializarUrlWorker();
 
-            if (!ValidacaoUtil.IsUrlBlob(this.UrlWorkerFinal))
+            if (!this.IsDebug && !ValidacaoUtil.IsUrlBlob(this.UrlWorker))
             {
-                console.error("Não foi possível carregar o urlblob do servico worker.");
+                console.error("Não foi possível carregar o urlblob do serviço worker.");
                 console.error(`Url. ${$Configuracao.UrlServicosWorker}`);
-                console.error(`Configuracao ${JSON.stringify($Configuracao)}`);
-                console.error(`UrlWorkerFINAL : ${this.UrlWorkerFinal}`);
-                alert("FALHA AO INICIAR O SERVICO WORKER");
-                throw new Error("Não foi possível carregar o urlblob do servico worker.");
+                console.error(`Configuração ${JSON.stringify($Configuracao)}`);
+                console.error(`UrlWorkerFINAL : ${this.UrlWorker}`);
+                console.error("Não foi possível carregar o urlblob do serviço worker.");
             }
-             
-            this.Worker = new Worker(this.UrlWorkerFinal);
+
+            this.Worker = new Worker(this.UrlWorker);
             this.Worker.onmessage = this.Worker_Message.bind(this);
             this.Worker.onerror = this.Worker_Error.bind(this);
+        }
+
+        private async InicializarUrlWorker(): Promise<void> 
+        {
+            if (this.UrlWorker == null)
+            {
+                this.UrlWorker = await this.RetornarUrlWorkderAsync();
+            }
+        }
+
+        private RetornarUrlWorkderAsync(): string | PromiseLike<string>
+        {
+            if (this.IsDebug)
+            {
+                return this.UrlWorkerRelativa;
+            }
+
+            if (ValidacaoUtil.IsUrlBlob(this.UrlWorkerRelativa))
+            {
+                return this.UrlWorkerRelativa;
+            }
+            return UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorkerRelativa);
         }
 
         private Worker_Message(e: MessageEvent): void
@@ -48,7 +70,7 @@
             let retorno = e.data;
             if (retorno.IsErro && !String.IsNullOrWhiteSpace(retorno.MessagemErro))
             {
-                const mensagem = `Erro no worker ${this.UrlWorkerFinal} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
+                const mensagem = `Erro no worker ${this.UrlWorker} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
                 retorno = new Error(mensagem);
                 LogUtil.Erro(retorno);
             }
@@ -59,7 +81,7 @@
         private Worker_Error(e: ErrorEvent): void
         {
             this.Worker.terminate();
-            let mensagem = `Worker: ${this.UrlWorkerFinal}, linha ${e.lineno}, coluna ${e.colno}`;
+            let mensagem = `Worker: ${this.UrlWorker}, linha ${e.lineno}, coluna ${e.colno}`;
             mensagem += `\r\n ${e.message ?? e.error?.message ?? "erro desconhecido"}`;
             const erro = new Erro(mensagem);
             LogUtil.Erro(erro);
@@ -75,7 +97,7 @@
             }
             this.IdTimeout = window.setTimeout(() =>
             {
-                const erro = new ErroTimeout(`O timeout do serviço ${this.UrlWorkerFinal}`);
+                const erro = new ErroTimeout(`O timeout do serviço ${this.UrlWorker}`);
                 LogUtil.Erro(erro);
                 this.Finalizar(erro);
 

@@ -1,7 +1,7 @@
 ﻿namespace Snebur.WebWorker
 {
     export class SalvarJpeg extends WorkerCliente<ISalvarJpegMensagem, Uint8Array>
-    {
+    {   
         private static readonly UrlWorker: string = "/workers/Snebur.SalvarJpeg.js?=v7";
         private static readonly LIMITE_MINIMO: number = 1 * 1024;
 

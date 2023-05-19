@@ -1,242 +1,133 @@
 ﻿namespace Snebur.Imagens
 {
-    type DicionarioImagensCarregada = DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>;
-
     export class AbrirImagemLocalMagick implements IDisposable
     {
         private _isSalvarPendente: boolean = false;
-        private _isAbriuIcone: boolean;
+        private _exif: ExifrJS.MargeOutput;
 
-        private readonly TamanhosImagem: List<d.EnumTamanhoImagem>;
-        private Exif: ExifrJS.MargeOutput;
+        protected readonly Redimensinamentos = new Array<RedimensionarImagemMagick>();
+        public get Exif(): ExifrJS.MargeOutput
+        {
+            return this._exif;
+        }
 
         public get Imagem(): d.IImagem
         {
             return this.OrigemImagemLocal.Imagem;
         }
+
         public constructor(
             private readonly OrigemImagemLocal: sa.OrigemImagemLocal,
             tamanhosImagem: List<d.EnumTamanhoImagem>)
         {
-            this.TamanhosImagem = tamanhosImagem.OrderByDescending(x => x);
-        }
-
-        public async CarergarImagemAsync(): Promise<DicionarioImagensCarregada>
-        {
-            const blob = this.OrigemImagemLocal.ArquivoLocal;
-            const buffer = await ArquivoUtil.RetornarBufferArrayAsync(blob);
-            const bytes = new Uint8Array(buffer);
-
-            /*const dimensao = `${ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE}x${ConstantesImagemApresentacao.ALTURA_IMAGEM_GRANDE}`;*/
-            const dimensao = `$1300x720`;
-            const settings = new MagickWasm.MagickReadSettings();
-
-            settings.setDefine(
-                MagickWasm.MagickFormat.Jpeg,
-                "size",
-                dimensao);
-
-
-            this.Exif = await ExifUtil.RetornarExifAsync(bytes);
-
-            const imagensCarregada = await MagickWasm.ImageMagick.read<DicionarioImagensCarregada>(
-                bytes,
-                settings,
-                this.CarregarImagemInternoAsync_PartirMedia.bind(this));
-
-            if (this._isSalvarPendente)
+            for (const tamanhoImagem of tamanhosImagem.OrderByDescending(x => x))
             {
-                const imagem = this.Imagem;
-                const contexto = $Aplicacao.RetornarContextoDados(imagem.GetType() as r.TipoEntidade);
-                contexto.SalvarAsync(imagem);
+                const dimensao = u.ImagemUtil.RetornarDimensaoApresentacao(tamanhoImagem);
+                this.Redimensinamentos.Add({
+                    TamanhoImagem: tamanhoImagem,
+                    Dimensao: dimensao
+                });
             }
-            return imagensCarregada;
         }
 
-        private async CarregarImagemInternoAsync_PartirMedia(imageMagick: MagickWasm.IMagickImage): Promise<DicionarioImagensCarregada>
+        public async CarergarImagemAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            imageMagick.filterType = MagickWasm.FilterType.Hermite;
+            const buffer = await ArquivoUtil.RetornarBufferArrayAsync(this.OrigemImagemLocal.ArquivoLocal);
+            const bytes = new Uint8Array(buffer);
+            this._exif = await ExifUtil.RetornarExifAsync(bytes);
 
-            imageMagick.quality = ImagemUtil.QUALIDADE_APRESENTACAO_MAGICK;
-            imageMagick.autoOrient();
+            const opcoes = await this.RetornarOpcoesAsync(bytes);
+            const resultado = await this.ProcessarAsync(opcoes);
 
-            const formatoDestino = (imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-                imageMagick.format === MagickWasm.MagickFormat.Jpg) ?
-                MagickWasm.MagickFormat.Jpeg :
-                MagickWasm.MagickFormat.Webp;
-
-            const mimeType = formatoDestino === MagickWasm.MagickFormat.Jpeg ?
-                "image/jpeg" : "image/webp";
-
-
-
-            this.AtualizarDimensaoLocal(
-                imageMagick.format,
-                { Largura: imageMagick.width, Altura: imageMagick.height });
-
-            try
+            if (resultado != null)
             {
-                const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
-                const tamanhos = this.TamanhosImagem;
+                this.AtualizarDimensaoLocal(resultado.MagickFormat, resultado.DimensaoLocal);
 
-                for (const tamanhoImagem of tamanhos)
+                if (resultado?.IsSucesso === true)
                 {
-                    const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                        imageMagick.width,
-                        imageMagick.height,
-                        tamanhoImagem);
-
-                    imageMagick.resize(dimensaoApresentacao.Largura, dimensaoApresentacao.Altura);
-
-                    if (tamanhoImagem === d.EnumTamanhoImagem.Grande)
+                    const imagensLocalCarregada = new DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>();
+                    for (const imagemCarregada of resultado.ImagensCarregada)
                     {
-                        MagickUtil.RemoverExif(imageMagick);
-                        await MagickUtil.ConvertersRGBAsync(imageMagick);
+                        this.AtualizarDimensaoApresentacao(imagemCarregada.TamanhoImagem, imagemCarregada.Dimensao);
+
+                        const imagemLocalCarregada = new ImagemLocalCarregada(
+                            imagemCarregada.TamanhoImagem,
+                            imagemCarregada.Arquivo,
+                            resultado.MimeType);
+                        imagensLocalCarregada.Add(imagemCarregada.TamanhoImagem, imagemLocalCarregada);
                     }
 
-                    await imageMagick.write((bytes) =>
+                    if (this._isSalvarPendente)
                     {
-                        this.AtualizarDimensao(dimensaoApresentacao, tamanhoImagem);
-
-                        const blob = new Blob([bytes], { type: mimeType });
-                        const cache = new ImagemLocalCarregada(
-                            tamanhoImagem,
-                            blob,
-                            mimeType);
-
-                        imagensCarregada.Add(tamanhoImagem, cache);
-
-                    }, formatoDestino);
+                        const imagem = this.Imagem;
+                        const contexto = $Aplicacao.RetornarContextoDados(imagem.GetType() as r.TipoEntidade);
+                        contexto.SalvarAsync(imagem);
+                    }
+                    return imagensLocalCarregada;
                 }
-                return imagensCarregada;
             }
-            finally
-            {
-                imageMagick.dispose();
-            }
+            return null;
         }
 
-        private async CarregarImagemInternoAsync_ImagemMedia(imageMagick: MagickWasm.IMagickImage): Promise<DicionarioImagensCarregada>
+        private async RetornarOpcoesAsync(bytesOrigem: Uint8Array): Promise<IOpcoesMagick>
         {
-            imageMagick.filterType = MagickWasm.FilterType.Hermite;
-            imageMagick.quality = ImagemUtil.QUALIDADE_APRESENTACAO_MAGICK;
-            imageMagick.autoOrient();
+            const redimensionamentos = this.Redimensinamentos;
+            return {
+                NomeArquivoOrigem: this.Imagem.NomeArquivo,
+                Identificador: u.GuidUtil.RetornarNovoGuid(),
+                BytesPerfilDestino: MagickInitUtil.sRgbProfile,
+                BytesOrigem: bytesOrigem,
+                IsRemoverExif: true,
+                Qualidade: QUALIDADE_APRESENTACAO_MAGICK,
+                Redimensinamentos: redimensionamentos,
+                BufferWasm: MagickInitUtil.BufferWasm,
+                UrlMagick: MagickInitUtil.UrlBlobMagick
+            };
+        }
 
-            const formatoDestino = (imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-                imageMagick.format === MagickWasm.MagickFormat.Jpg) ?
-                MagickWasm.MagickFormat.Jpeg :
-                MagickWasm.MagickFormat.Webp;
-
-            const mimeType = formatoDestino === MagickWasm.MagickFormat.Jpeg ?
-                "image/jpeg" : "image/webp";
-
-            this.AtualizarDimensaoLocal(
-                imageMagick.format,
-                { Largura: imageMagick.width, Altura: imageMagick.height });
-
+        private async ProcessarAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
+        {
             try
             {
-                const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
-
-                const tamanhoImagem = EnumTamanhoImagem.Media;
-                const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                    imageMagick.width,
-                    imageMagick.height,
-                    tamanhoImagem);
-
-                imageMagick.resize(
-                    dimensaoApresentacao.Largura,
-                    dimensaoApresentacao.Altura);
-
-                const blob = await imageMagick.write((bytes) =>
+                if (MagickUtil.IsWorker)
                 {
-                    const blob = new Blob([bytes], { type: mimeType });
-                    return blob;
-
-                }, formatoDestino);
-
-                for (const tamanhoImagem of this.TamanhosImagem)
-                {
-                    const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                        imageMagick.width,
-                        imageMagick.height,
-                        tamanhoImagem);
-
-                    const imagemCarregada = new ImagemLocalCarregada(
-                        tamanhoImagem,
-                        blob,
-                        mimeType);
-
-
-
-                    this.AtualizarDimensao(dimensaoApresentacao, tamanhoImagem);
-                    imagensCarregada.Add(tamanhoImagem, imagemCarregada);
-
-                }
-
-                return imagensCarregada;
-            }
-            finally
-            {
-                imageMagick.dispose();
-            }
-        }
-
-
-
-        private async CarregarImagemInternoAsync_Todas(imageMagick: MagickWasm.IMagickImage): Promise<DicionarioImagensCarregada>
-        {
-            imageMagick.filterType = MagickWasm.FilterType.Hermite;
-            imageMagick.quality = ImagemUtil.QUALIDADE_APRESENTACAO_MAGICK;
-            imageMagick.autoOrient();
-
-            const formatoDestino = (imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-                imageMagick.format === MagickWasm.MagickFormat.Jpg) ?
-                MagickWasm.MagickFormat.Jpeg :
-                MagickWasm.MagickFormat.Webp;
-
-            const mimeType = formatoDestino === MagickWasm.MagickFormat.Jpeg ?
-                "image/jpeg" : "image/webp";
-
-            this.AtualizarDimensaoLocal(
-                imageMagick.format,
-                { Largura: imageMagick.width, Altura: imageMagick.height });
-
-            try
-            {
-                const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
-                for (const tamanhoImagem of this.TamanhosImagem)
-                {
-                    const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                        imageMagick.width,
-                        imageMagick.height,
-                        tamanhoImagem);
-
-                    imageMagick.resize(dimensaoApresentacao.Largura, dimensaoApresentacao.Altura);
-
-                    await imageMagick.write((bytes) =>
+                    const resultado = await this.ProcessarWorkerAsync(opcoes);
+                    if (!(resultado instanceof Error) && resultado != null)
                     {
-                        this.AtualizarDimensao(dimensaoApresentacao, tamanhoImagem);
-
-                        const blob = new Blob([bytes], { type: mimeType });
-                        const cache = new ImagemLocalCarregada(
-                            tamanhoImagem,
-                            blob,
-                            mimeType);
-
-                        imagensCarregada.Add(tamanhoImagem, cache);
-
-                    }, formatoDestino);
+                        return resultado;
+                    }
+                    console.error("Falha magick worker " + this.Imagem.NomeArquivo);
                 }
-                return imagensCarregada;
             }
-            finally
+            catch (erro)
             {
-                imageMagick.dispose();
+                console.error("Falha ao processar no worker " + erro);
             }
+
+            const t = Stopwatch.StartNew();
+            const processador = new MagickProcessador(opcoes);
+            const resultado = await processador.ProcessarAsync();
+            if (!(resultado instanceof Error) && resultado != null)
+            {
+                
+                return resultado;
+            }
+            console.error("Falha magick main thread " + this.Imagem.NomeArquivo);
+            return null;
         }
 
-        private AtualizarDimensaoLocal(formato: MagickWasm.MagickFormat, dimensao: IDimensao)
+        private async ProcessarWorkerAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
+        {
+            const resultado = await w.GerenciadorMagickWorker.Instancia.ProcessarAsync(opcoes);
+            if (resultado instanceof Error)
+            {
+                console.error("Falha ao processar imagem MagickWorker " + resultado);
+                return null;
+            }
+            return resultado;
+        }
+
+        private AtualizarDimensaoLocal(formato: "JPEG" | "WEBP", dimensao: IDimensao)
         {
             const imagem = this.OrigemImagemLocal.Imagem;
             const formatoImagem = formato === MagickWasm.MagickFormat.Jpeg ? EnumFormatoImagem.JPEG : EnumFormatoImagem.WEBP;
@@ -248,7 +139,7 @@
             }
         }
 
-        private AtualizarDimensao(dimensaoApresentacao: d.Dimensao, tamanhoImagem: d.EnumTamanhoImagem)
+        private AtualizarDimensaoApresentacao(tamanhoImagem: d.EnumTamanhoImagem, dimensaoApresentacao: IDimensao)
         {
             const imagem = this.OrigemImagemLocal.Imagem;
             if (ImagemUtil.AtualizarDimensao(imagem, dimensaoApresentacao, tamanhoImagem))

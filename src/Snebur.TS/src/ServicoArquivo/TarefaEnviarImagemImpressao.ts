@@ -65,8 +65,7 @@
         }
         private async RetornarBufferInternoAsync(): Promise<ArrayBuffer> 
         {
-          
-            if (u.MagickInitUtil.IsInicializado)
+            if (i.MagickInitUtil.IsInicializado)
             {
                 try
                 {

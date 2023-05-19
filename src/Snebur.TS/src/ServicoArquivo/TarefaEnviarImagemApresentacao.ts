@@ -42,7 +42,7 @@
             return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
         }
 
-        private async ConverterParaWebpAsync(arquivoBlob: Blob):  Promise<ArrayBuffer>
+        private async ConverterParaWebpAsync(arquivoBlob: Blob): Promise<ArrayBuffer>
         {
             const buffer = await ArquivoUtil.RetornarBufferArrayAsync(arquivoBlob);
             const bytes = new Uint8Array(buffer);
@@ -51,10 +51,10 @@
 
         private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<ArrayBuffer>
         {
-            return await imageMagick.write((bytes) =>
+            return await imageMagick.write(MagickWasm.MagickFormat.Webp, (bytes) =>
             {
                 return new Uint8Array(bytes).buffer;
-             }, MagickWasm.MagickFormat.Webp);
+            });
         }
 
         protected override FinalizarEnviadoSucesso(): void

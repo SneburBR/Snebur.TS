@@ -28,6 +28,10 @@ namespace Snebur.Utilidade
 
         public static RetornarDpiVisualizacao(medidaEmCentimetros: number, medidaEmPixel: number): number
         {
+            if (medidaEmCentimetros === 0 || medidaEmPixel === 0)
+            {
+                return 0;
+            }
             return (medidaEmPixel * 300) / u.MedidaUtil.RetornarPixelsImpressao(medidaEmCentimetros);
         }
 

@@ -4,12 +4,11 @@
     {
         public static ThrowAndContinue(mensagem: string)
         {
-
-            console.error(mensagem);
             try
             {
                 if ($Configuracao.IsDebug)
                 {
+                    console.error(mensagem);
                     throw new Erro(mensagem);
                 }
                 console.warn(mensagem);

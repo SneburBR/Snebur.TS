@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Imagens
 {
-    
+
     export class AbrirImagemImpressaoMagick
     {
         public constructor(
@@ -18,7 +18,7 @@
             const settings = new MagickWasm.MagickReadSettings();
             settings.setDefine(MagickWasm.MagickFormat.Jpeg, "lossless", true);
             settings.setDefine(MagickWasm.MagickFormat.Webp, "lossless", true);
-             
+
             const bytesIamgem = await MagickWasm.ImageMagick.read<ArrayBuffer>(
                 bytesArquivo,
                 settings,
@@ -34,7 +34,7 @@
                 MagickWasm.MagickFormat.Jpeg :
                 MagickWasm.MagickFormat.Webp;
 
-         
+
             const dimensaoImpressao = this.DimensaoImpressao;
             imagem.filterType = MagickWasm.FilterType.Lagrange;
             imagem.autoOrient();
@@ -46,13 +46,15 @@
                 imagem.resize(dimensaoImpressao.Largura, dimensaoImpressao.Altura);
             }
 
-            await MagickUtil.ConvertersRGBAsync(imagem);
+            await MagickUtil.ConverterPerfilAsync(imagem, MagickInitUtil.sRgbProfile);
 
-            const buffer = await imagem.write<ArrayBuffer>((data) =>
-            {
-                return new Uint8Array(data).buffer;
+            const buffer = await imagem.write<ArrayBuffer>(formatoDestino,
+                (data) =>
+                {
+                    return new Uint8Array(data).buffer;
 
-            }, formatoDestino);
+                });
+
             return buffer;
         }
     }
