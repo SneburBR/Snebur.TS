@@ -10,13 +10,17 @@ class MagickProcessador
     {
         const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura));
         const maiorDimensao = maiorRedimensionamento[0];
-        const dimensao = `${maiorDimensao.Dimensao.Largura}x${maiorDimensao.Dimensao.Altura}`;
+
         const settings = new MagickWasm.MagickReadSettings();
 
-        settings.setDefine(
-            MagickWasm.MagickFormat.Jpeg,
-            "size",
-            dimensao);
+        if (maiorDimensao.TamanhoImagem !== EnumTamanhoImagem.Impressao)
+        {
+            const dimensao = `${maiorDimensao.Dimensao.Largura}x${maiorDimensao.Dimensao.Altura}`;
+            settings.setDefine(
+                MagickWasm.MagickFormat.Jpeg,
+                "size",
+                dimensao);
+        }
 
         const imagensCarregada = await MagickWasm.ImageMagick.read<IResultadoMagick>(
             this.Opcoes.BytesOrigem,
@@ -29,11 +33,22 @@ class MagickProcessador
 
     private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<IResultadoMagick>
     {
-        imageMagick.filterType = MagickWasm.FilterType.Hermite;
+        const redimensionamentos = this.Opcoes.Redimensinamentos;
+        const primeiroTamaho = redimensionamentos[0].TamanhoImagem;
+
+        imageMagick.filterType = primeiroTamaho === EnumTamanhoImagem.Impressao ?
+            MagickWasm.FilterType.Lagrange :
+            MagickWasm.FilterType.Hermite;
 
         imageMagick.quality = QUALIDADE_APRESENTACAO_MAGICK;
+
+        const larguraAntes = imageMagick.width;
         imageMagick.autoOrient();
 
+        if (imageMagick.width !== larguraAntes)
+        {
+            const xxx = "mudou a orientação";
+        }
 
         const isJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
             imageMagick.format === MagickWasm.MagickFormat.Jpg;
@@ -44,25 +59,27 @@ class MagickProcessador
 
         const mimeType = isJpeg ? "image/jpeg" : "image/webp";
 
-        const dimensaoLocal = {
-            Largura: imageMagick.width,
-            Altura: imageMagick.height
-        };
 
+        const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);
+        if (imageMagick.width > imageMagick.height &&
+            imageMagick.baseWidth < imageMagick.baseHeight)
+        {
+            throw new Error("Falha na orientação");
+        }
         MagickUtil.RemoverExif(imageMagick);
 
         try
         {
             /*const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();*/
-            const redimensionamentos = this.Opcoes.Redimensinamentos;
-            const primeiroTamaho = redimensionamentos.First().TamanhoImagem;
+        
             const imagensCarregada = new Array<ImagemCarregada>();
 
             for (const redimensionamento of redimensionamentos)
             {
                 imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
 
-                if (redimensionamento.TamanhoImagem === primeiroTamaho && this.Opcoes.BytesPerfilDestino != null)
+                if (redimensionamento.TamanhoImagem === primeiroTamaho &&
+                    this.Opcoes.BytesPerfilDestino != null)
                 {
                     await MagickUtil.ConverterPerfilAsync(
                         imageMagick,
@@ -103,5 +120,24 @@ class MagickProcessador
         {
             imageMagick.dispose();
         }
+    }
+
+    private RetornarDimensaoLocal(imageMagick: MagickWasm.IMagickImage):IDimensao
+    {
+        const maiorLado = Math.max(imageMagick.baseWidth, imageMagick.baseHeight);
+        const menorLado = Math.min(imageMagick.baseWidth, imageMagick.baseHeight);
+
+        if (imageMagick.width > imageMagick.height)
+        {
+            return {
+                Largura: maiorLado,
+                Altura: menorLado
+            };
+        }
+
+        return {
+            Largura: menorLado,
+            Altura: maiorLado
+        };
     }
 }

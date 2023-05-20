@@ -34,7 +34,7 @@
         {
             if (i.MagickInitUtil.IsInicializado)
             {
-                const dimensao = { Largura: alturaMaxima * 3, Altura: alturaMaxima };
+                const dimensao = { Largura: alturaMaxima * 2, Altura: alturaMaxima };
                 const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
                 const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
                 if (resultado != null && resultado.ImagensCarregada.Count === 1)

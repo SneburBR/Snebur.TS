@@ -190,7 +190,7 @@
 
                 if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
                 {
-                    console.log(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
+                    console.warn(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
             }

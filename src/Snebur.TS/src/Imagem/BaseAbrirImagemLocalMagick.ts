@@ -19,12 +19,10 @@
         public constructor(
             private readonly ArquivoLocal: SnBlob)
         {
-
+ 
         }
 
         protected abstract PopularRedimensionamentos(): void;
-
-
 
         protected async RetornarOpcoesAsync(bytesOrigem: Uint8Array): Promise<IOpcoesMagick>
         {
@@ -98,9 +96,7 @@
             }
             return resultado;
         }
-
-
-
+         
         public Dispose(): void
         {
 

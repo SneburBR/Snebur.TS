@@ -6,6 +6,8 @@ namespace Snebur.WebWorker
         private static readonly UrlWorkerDebug: string = "/build/MagickWorker.js?";
         private static readonly TIMEOUT = 1 * 60 * 1000;
 
+        private readonly IsReciclar: boolean = true;
+
         private _isProcessando: boolean = false;
         private Worker: Worker;
         private Opcoes: IOpcoesMagick = null;
@@ -60,7 +62,11 @@ namespace Snebur.WebWorker
 
         private InicializarWorker()
         {
-            this.Dispose();
+            if (this.IsReciclar || this.Worker === null)
+            {
+                this.Dispose();
+            }
+
             this.Worker = new Worker(this.UrlWorker);
             this.Worker.addEventListener("message", this.__Worker_Message);
             this.Worker.addEventListener("error", this.__Worker_Error);
@@ -98,7 +104,11 @@ namespace Snebur.WebWorker
 
         private Finalizar(isSucesso: boolean, resultado: IResultadoMagick = null)
         {
-            this.Dispose();
+            if (this.IsReciclar)
+            {
+                this.Dispose();
+            }
+             
             window.clearInterval(this.IdTimeout);
             const resolver = this.Resolver;
             const opcoes = this.Opcoes;
@@ -111,7 +121,7 @@ namespace Snebur.WebWorker
 
                 this.Resolver = null;
                 this.Opcoes = null;
-                 
+
                 this.MensagemErro = null;
                 this._isProcessando = false;
                 resolver(resultado);

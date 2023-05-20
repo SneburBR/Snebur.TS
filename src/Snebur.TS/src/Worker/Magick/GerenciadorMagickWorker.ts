@@ -85,13 +85,12 @@
 
         private async RetornarWorkerClienteDisponivelAsync(): Promise<MagickWorkerCliente>
         {
-            let proximoWorker = this.WorkersDisponivel.shift();
-            while (!(proximoWorker instanceof MagickWorkerCliente))
+            while (this.WorkersDisponivel.length === 0)
             {
-                await ThreadUtil.EsperarAsync(200);
-                proximoWorker = this.WorkersDisponivel.shift();
+                await ThreadUtil.EsperarAsync(100);
             }
 
+            const proximoWorker = this.WorkersDisponivel.shift();
             if (proximoWorker instanceof MagickWorkerCliente)
             {
                 this.WorkersOcupados.Add(proximoWorker);
