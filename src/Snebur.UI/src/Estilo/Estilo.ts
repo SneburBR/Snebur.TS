@@ -584,7 +584,6 @@
 		webkitUserModify: string;
 		webkitUserSelect: string;
 		webkitWritingMode: string;
-	  
         public constructor(inicializador?: Partial<Estilo>)
         {
             if (u.ValidacaoUtil.IsDefinido(inicializador))
@@ -667,4 +666,10 @@
             return String.Join("\r\n", partes);
         }
     }
+
+}
+
+interface CSSStyleDeclaration
+{
+    contentVisibility: string;
 }

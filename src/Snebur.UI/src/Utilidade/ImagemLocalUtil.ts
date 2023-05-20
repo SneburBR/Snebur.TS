@@ -27,13 +27,41 @@
             });
         }
 
-        public static CarregarImagemArquivoAsync(
+        public static async CarregarImagemArquivoAsync(
             arquivo: SnBlob,
             alturaMaxima: number,
-            timeout: number = 30000): Promise<ResultadoCarregarImagem>
+            timeout: number = 60000): Promise<ResultadoCarregarImagem>
+        {
+            if (i.MagickInitUtil.IsInicializado)
+            {
+                const dimensao = { Largura: alturaMaxima * 3, Altura: alturaMaxima };
+                const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
+                const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
+                if (resultado != null && resultado.ImagensCarregada.Count === 1)
+                {
+                    const blob = resultado.ImagensCarregada[0].Arquivo;
+                    const url = window.URL.createObjectURL(blob);
+
+                    return {
+                        AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
+                        LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
+                        Url: url,
+                    };
+                }
+            }
+
+            return await ImagemLocalUtil.CarregarImagemArquivoInternoAsync(
+                arquivo,
+                alturaMaxima,
+                timeout);
+        }
+
+        private static CarregarImagemArquivoInternoAsync(
+            arquivo: SnBlob,
+            alturaMaxima: number,
+            timeout: number = 60000): Promise<ResultadoCarregarImagem>
         {
             /*eslint-disable*/
-
             return new Promise<ResultadoCarregarImagem>(async resolver =>
             {
                 let identificadorTimeout = setTimeout(function ()
@@ -123,7 +151,10 @@
         protected IsIcone: boolean = false;
         protected _erro: Error | null;
 
-        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number)
+        public constructor(urlImagem: string,
+            alturaImagem: number,
+            formatoImagem: d.EnumFormatoImagem,
+            qualidade: number)
         {
             this.UrlImagem = urlImagem;
             this.AlturaImagem = alturaImagem;
@@ -132,7 +163,6 @@
             this.Imagem.crossOrigin = "anonymous";
             this.Qualidade = qualidade;
         }
-
 
         public CarregarImagemAsync(): Promise<ResultadoCarregarImagem>
         {
@@ -327,7 +357,7 @@
         {
             super(urlImagem, alturaImagem, formatoImagem, qualidade);
         }
-         
+
         protected override Finalizar(isErro: boolean, url: string)
         {
             super.Finalizar(isErro, url);

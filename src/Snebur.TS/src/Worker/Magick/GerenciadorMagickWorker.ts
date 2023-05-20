@@ -46,9 +46,19 @@
             {
                 const t = Stopwatch.StartNew();
                 const resultado = await workerCliente.ProcessarAsync(opcoes);
-                console.warn(`Processado Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
+
+                const memory = (performance as any).memory;
+                if (memory != null)
+                {
+                    const totalJSHeapSize = FormatacaoUtil.FormatarBytes(memory.totalJSHeapSize);
+                    const usedJSHeapSize = FormatacaoUtil.FormatarBytes(memory.usedJSHeapSize);
+                    const jsHeapSizeLimit = FormatacaoUtil.FormatarBytes(memory.jsHeapSizeLimit);
+                    console.warn(`Memória totalJSHeapSize: ${totalJSHeapSize} - usedJSHeapSize:${usedJSHeapSize} - jsHeapSizeLimit:${jsHeapSizeLimit}`);
+                }
+
                 if (resultado.IsSucesso)
                 {
+                    console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} {} `);
                     isSucesso = true;
                     return resultado;
                 }
@@ -78,7 +88,7 @@
             let proximoWorker = this.WorkersDisponivel.shift();
             while (!(proximoWorker instanceof MagickWorkerCliente))
             {
-                await ThreadUtil.EsperarAsync(100);
+                await ThreadUtil.EsperarAsync(200);
                 proximoWorker = this.WorkersDisponivel.shift();
             }
 

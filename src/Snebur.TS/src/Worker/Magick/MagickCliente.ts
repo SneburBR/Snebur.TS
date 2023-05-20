@@ -4,18 +4,22 @@ namespace Snebur.WebWorker
     export class MagickWorkerCliente  
     {
         private static readonly UrlWorkerDebug: string = "/build/MagickWorker.js?";
-        private static readonly TIMEOUT = 2 * 60 * 1000;
+        private static readonly TIMEOUT = 1 * 60 * 1000;
 
         private _isProcessando: boolean = false;
-        private readonly Worker: Worker;
+        private Worker: Worker;
         private Opcoes: IOpcoesMagick = null;
         private Resolver: (r: IResultadoMagick) => void;
         private IdTimeout: number = null;
         private MensagemErro: string;
 
+        private __Worker_Message: (e: MessageEvent) => void;
+        private __Worker_Error: (e: ErrorEvent) => void;
+        private __Worker_MessageError: (e: MessageEvent) => void;
+
         public get UrlWorker(): string
         {
-            if (ValidacaoUtil.IsUrlBlob(this.UrlBlobWorker))
+            if (!$Configuracao.IsDebug && ValidacaoUtil.IsUrlBlob(this.UrlBlobWorker))
             {
                 return this.UrlBlobWorker;
             }
@@ -26,14 +30,15 @@ namespace Snebur.WebWorker
             public readonly Numero: number,
             public readonly UrlBlobWorker: string = null)
         {
-            this.Worker = new Worker(this.UrlWorker);
-            this.Worker.addEventListener("message", this.Worker_Message.bind(this));
-            this.Worker.addEventListener("error", this.Worker_Error.bind(this));
-            this.Worker.addEventListener("messageerror", this.Worker_MessageError.bind(this));
+
+            this.__Worker_Message = this.Worker_Message.bind(this);
+            this.__Worker_Error = this.Worker_Error.bind(this);
+            this.__Worker_MessageError = this.Worker_MessageError.bind(this);
         }
 
         public async ProcessarAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick | null>
         {
+
             if (this._isProcessando)
             {
                 DebugUtil.ThrowAndContinue("O Worker estava processando");
@@ -42,19 +47,32 @@ namespace Snebur.WebWorker
             window.clearInterval(this.IdTimeout);
 
             this._isProcessando = true;
+            this.InicializarWorker();
 
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
                 this.Opcoes = opcoes;
                 this.Worker.postMessage(this.Opcoes);
-                this.IdTimeout = window.setTimeout(this.Worker_Timeout, MagickWorkerCliente.TIMEOUT);
+                this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);
             });
+        }
+
+        private InicializarWorker()
+        {
+            this.Dispose();
+            this.Worker = new Worker(this.UrlWorker);
+            this.Worker.addEventListener("message", this.__Worker_Message);
+            this.Worker.addEventListener("error", this.__Worker_Error);
+            this.Worker.addEventListener("messageerror", this.__Worker_MessageError);
         }
 
         private Worker_Message(e: MessageEvent)
         {
-            const isSucesso = e.data != null && this.Opcoes?.Identificador === (e.data as IResultadoMagick).Identificador;
+            const isSucesso = e.data != null &&
+                !(e.data instanceof Error) &&
+                this.Opcoes?.Identificador === (e.data as IResultadoMagick).Identificador;
+
             this.MensagemErro = isSucesso ? null : `Message: ${JSON.stringify(e.data)}`;
             this.Finalizar(isSucesso, e.data);
         }
@@ -80,18 +98,20 @@ namespace Snebur.WebWorker
 
         private Finalizar(isSucesso: boolean, resultado: IResultadoMagick = null)
         {
+            this.Dispose();
             window.clearInterval(this.IdTimeout);
             const resolver = this.Resolver;
             const opcoes = this.Opcoes;
             if (resolver != null && opcoes != null)
             {
-                this.Resolver = null;
-                this.Opcoes = null;
-
                 if (!isSucesso)
                 {
-                    DebugUtil.ThrowAndContinue(`Falha Worker : ${this.MensagemErro}, Arquivo ${this.Opcoes.NomeArquivoOrigem}`);
+                    DebugUtil.ThrowAndContinue(`Falha Worker : ${this.MensagemErro}, Arquivo ${opcoes?.NomeArquivoOrigem}`);
                 }
+
+                this.Resolver = null;
+                this.Opcoes = null;
+                 
                 this.MensagemErro = null;
                 this._isProcessando = false;
                 resolver(resultado);
@@ -100,9 +120,16 @@ namespace Snebur.WebWorker
 
         public Dispose(): void
         {
-            console.warn("Dispensando MagickWorkerCliente n " + this.Numero);
-            this.Worker?.terminate();
-            (this as any).Worker = null;
+            if (this.Worker instanceof Worker)
+            {
+                console.warn("Dispensando MagickWorkerCliente n " + this.Numero);
+                this.Worker.terminate();
+                this.Worker.removeEventListener("message", this.__Worker_Message);
+                this.Worker.removeEventListener("error", this.__Worker_Error);
+                this.Worker.removeEventListener("messageerror", this.__Worker_MessageError);
+                this.Worker = null;
+                delete this.Worker;
+            }
         }
     }
 }

@@ -15,7 +15,8 @@ interface IOpcoesMagick
     readonly Identificador: string;
     readonly NomeArquivoOrigem: string;
     readonly UrlMagick: string;
-    readonly BufferWasm: ArrayBuffer;
+    /*readonly BufferWasm: ArrayBuffer;*/
+    readonly BlobWasm: Blob;
     readonly BytesOrigem: Uint8Array;
     readonly BytesPerfilDestino: Uint8Array;
     readonly IsRemoverExif: boolean;

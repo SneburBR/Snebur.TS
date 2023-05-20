@@ -55,14 +55,14 @@ class MagickProcessador
         {
             /*const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();*/
             const redimensionamentos = this.Opcoes.Redimensinamentos;
+            const primeiroTamaho = redimensionamentos.First().TamanhoImagem;
             const imagensCarregada = new Array<ImagemCarregada>();
 
             for (const redimensionamento of redimensionamentos)
             {
                 imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
 
-                if (redimensionamento.TamanhoImagem === EnumTamanhoImagem.Grande &&
-                    this.Opcoes.BytesPerfilDestino != null)
+                if (redimensionamento.TamanhoImagem === primeiroTamaho && this.Opcoes.BytesPerfilDestino != null)
                 {
                     await MagickUtil.ConverterPerfilAsync(
                         imageMagick,

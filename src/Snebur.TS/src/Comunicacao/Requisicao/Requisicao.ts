@@ -25,8 +25,8 @@
             private readonly Credencial: s.Credencial,
             private readonly Pacote: Uint8Array)
         {
-
             super();
+
             this.URLServico = this.BaseServico.URLServico;
             this.UrlServicoDebug = this.BaseServico.UrlServicoDebug;
         }
@@ -44,11 +44,6 @@
 
         private async ExecutarInternoAsync(): Promise<any>
         {
-            //if ($Configuracao.IsDebug)
-            //{
-            //    await ThreadUtil.EsperarAsync(500);
-            //}
-
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(
                 this,
@@ -104,7 +99,7 @@
             resultadoChamada: ResultadoChamadaErro): void
         {
 
-            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor;
+            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor || resultadoChamada.StatusCode === 500;
 
             const sb = new StringBuilder();
             sb.AppendLine(`Erro interno no servidor (Status) ${chamarServico.HttpStatus}, tratamento do erro não implementado`);
@@ -132,17 +127,14 @@
             }
 
             this.TentarUtilizarUrlServicoDebug();
-
             this.Tentativa += 1;
-
-
         }
-
 
         private async TentarNovamenteAsync(
             resultadoChamada: ResultadoChamadaErro)
         {
-            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor;
+            const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor ||
+                resultadoChamada.StatusCode === 500;
 
             if (isErroInternoServidor)
             {
@@ -167,8 +159,7 @@
             await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this.Tentativa, 10)));
             return await this.ExecutarInternoAsync();
         }
-
-
+         
         //#region Normalizar resultado
 
         private RetornarValorResultado(resultadoChamada: ResultadoChamada): any

@@ -17,6 +17,7 @@
         private static _urlBlobMagick: string;
         private static _urlBlobMagickWorker: string;
         private static _bufferWasm: ArrayBuffer;
+        private static _blobWasm: Blob;
 
         private static ProgressosHandler = new Array<(e: ProgressoEventArgs) => void>();
 
@@ -34,6 +35,11 @@
         {
             return MagickInitUtil._bufferWasm;
         }
+        public static get BlobWasm(): Blob
+        {
+            return MagickInitUtil._blobWasm;
+        }
+
         public static get UrlBlobMagick(): string
         {
             return MagickInitUtil._urlBlobMagick;
@@ -157,12 +163,12 @@
                 {
                     return EnumStatusInicializacaoMagick.Erro;
                 }
-                 
+
+                this._blobWasm = blobWasm;
                 this._urlBlobMagick = urlBlobMagick;
                 this._urlBlobMagickWorker = urlBlobMagickWorker;
                 this._bufferWasm = bufferWasm;
-
-
+                 
                 if (typeof MagickWasm?.initializeImageMagick !== "function")
                 {
                     return EnumStatusInicializacaoMagick.Erro;

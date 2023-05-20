@@ -69,6 +69,7 @@
         "beforeunload": BeforeUnloadEvent,
         "blur": FocusEvent,
         "change": Event,
+        "contentvisibilityautostatechange": ContentVisibilityEvent,
         "click": MouseEvent,
         "contextmenu": MouseEvent,
         "copy": ClipboardEvent,
@@ -107,11 +108,15 @@
         "popstate": PopStateEvent,
         "resize": UIEvent,
         "scroll": UIEvent,
-
         "touchcancel": TouchEvent,
         "touchend": TouchEvent,
         "touchmove": TouchEvent,
         "touchstart": TouchEvent
         "visibilitychange" : Event
     }
+}
+
+interface ContentVisibilityEvent extends Event
+{
+    readonly skipped: boolean;
 }
