@@ -3,6 +3,7 @@
     export class OrigemImagemLocal extends OrigemImagem
     {
         private _isImagemLocalCarregada: boolean = false;
+        private _isSalvarPendente: boolean = false;
 
         private readonly ImagensLocalCarregadas = new DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>();
         private readonly ImagensServidorCarregadas = new DicionarioSimples<i.ImagemServidorCarregada, d.EnumTamanhoImagem>();
@@ -217,6 +218,37 @@
         //    throw new Erro("Não implementado");
         //}
         //#endregion
+
+        public AtualizarDimensaoLocal(formato: "JPEG" | "WEBP", dimensao: IDimensao)
+        {
+            const imagem = this.Imagem;
+            const formatoImagem = formato === MagickWasm.MagickFormat.Jpeg ? EnumFormatoImagem.JPEG : EnumFormatoImagem.WEBP;
+            const mimeType = formato === MagickWasm.MagickFormat.Jpeg ? EnumMimeType.Jpeg : EnumMimeType.Webp;
+
+            if (ImagemUtil.AtualizarDimensaLocal(imagem, dimensao, formatoImagem, mimeType, false))
+            {
+                this._isSalvarPendente = true;
+            }
+        }
+
+        public AtualizarDimensaoApresentacao(tamanhoImagem: d.EnumTamanhoImagem, dimensaoApresentacao: IDimensao)
+        {
+            const imagem = this.Imagem;
+            if (ImagemUtil.AtualizarDimensao(imagem, dimensaoApresentacao, tamanhoImagem))
+            {
+                this._isSalvarPendente = true;
+            }
+        }
+
+        public async SalvarPedenciasAsync()
+        {
+            if (this._isSalvarPendente)
+            {
+                const imagem = this.Imagem;
+                const contexto = $Aplicacao.RetornarContextoDados(imagem.GetType() as r.TipoEntidade);
+                await contexto.SalvarAsync(imagem);
+            }
+        }
 
         //#region IDisposable
 
