@@ -2,7 +2,6 @@
 {
     export class SnBlob extends Snebur.Objeto
     {
-
         private _informacaoImagem: IInformacaoImagem;
         private _isDispensado: boolean = false;
         private _urlBlob: string = null;
@@ -82,6 +81,11 @@
             return ArquivoUtil.RetornarMineTypeEnum(this.name);
         }
 
+        public get InfoImagemInterno(): IInformacaoImagem
+        {
+            return this._informacaoImagem;
+        }
+
         public constructor(blob: Blob)
         {
             super();
@@ -157,15 +161,14 @@
             return false;
         }
 
-        public async InfoImagemAsync(): Promise<IInformacaoImagem>  
-        {
-            if (this._informacaoImagem == null)
-            {
-                this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
-            }
-            return this._informacaoImagem;
-            
-        }
+        //public async InfoImagemAsync(): Promise<IInformacaoImagem>  
+        //{
+        //    if (this._informacaoImagem == null)
+        //    {
+        //        this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
+        //    }
+        //    return this._informacaoImagem;
+        //}
 
         private async RetornarInfoImagemInternoAsync(): Promise<IInformacaoImagem>  
         {
@@ -186,7 +189,6 @@
         public AtribuirInformacaoImagem(informacaoImagem: IInformacaoImagem)
         {
             this._informacaoImagem = informacaoImagem;
-            //(this._blob as any).IsHeic = informacaoImagem.IsHeic;
         }
 
         //#region nativa blob

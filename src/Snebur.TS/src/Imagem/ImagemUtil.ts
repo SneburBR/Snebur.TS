@@ -7,7 +7,6 @@
         public static readonly QUALIDADE_APRESENTACAO_MAGICK = 55;
         public static readonly QUALIDADE_IMPRESSAO_CANVAS = 92;
 
-
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }
 
         public static get DimensaoIcone(): Dimensao
@@ -498,10 +497,10 @@
             return $Aplicacao.GerenciadorServioArquivoPadrao.EnviarImagemImpressaoAsync(imagem, dimensaoImpressao, true, callbackProgresso);
         }
 
-        public static RetornarInfoImagemAsync(arquivo: SnBlob): Promise<IInformacaoImagem> | IInformacaoImagem
-        {
-            return arquivo.InfoImagemAsync();
-        }
+        //public static RetornarInfoImagemAsync(arquivo: SnBlob): Promise<IInformacaoImagem> | IInformacaoImagem
+        //{
+        //    return arquivo.InfoImagemAsync();
+        //}
 
         private static RetornarMimeTypeEnum(infoImagem: IInformacaoImagem, arquivo: SnBlob): EnumMimeType
         {
@@ -662,7 +661,6 @@
                 imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
                 isAtualizou = true;
             }
-
             return isAtualizou;
         }
 
