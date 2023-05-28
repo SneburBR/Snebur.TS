@@ -10,13 +10,8 @@
 
         public readonly Imagem: d.IImagem;
         public readonly ArquivoLocal: SnBlob;
-        
 
         private FileReader: FileReader;
-        //private UrlBlobGrande: string;
-        //private UrlBlobMedia: string;
-        //private UrlBlobPequena: string;
-        //private UrlBlobMiniatura: string;
         private IsDispensado: boolean = false;
 
         private IsAbrindoImagem: boolean = false;
@@ -196,36 +191,16 @@
                 resolverAsync(true);
             }
         }
-
-        //private RetornarTamanhosImagensApresentacaoPendente(): List<d.EnumTamanhoImagem>
-        //{
-        //    let tamanhosImagemPendente = u.ImagemUtil.TamanhosImagemApresentacao;
-        //    for (var tamanhoImagem of tamanhosImagemPendente.ToList(true))
-        //    {
-        //        if (u.ImagemUtil.ExisteImagemServidor(this.Imagem, tamanhoImagem))
-        //        {
-        //            tamanhosImagemPendente.Remove(tamanhoImagem);
-        //            //var urlServidor = imagem.RetornarUrlImagem(tamanhoImagem);
-        //            //this.ImagensCarregadas.Add(tamanhoImagem, urlServidor);
-        //            break;
-        //        }
-        //    }
-        //    return tamanhosImagemPendente;
-        //}
-
-        //private IniciarEnvioImagensLocal(): void
-        //{
-        //    throw new Erro("Não implementado");
-        //}
+         
         //#endregion
 
-        public AtualizarDimensaoLocal(formato: "JPEG" | "WEBP", dimensao: IDimensao)
+        public AtualizarDimensaoLocal(mimeType: ImagemMimeType, dimensao:IDimensao)
         {
             const imagem = this.Imagem;
-            const formatoImagem = formato === MagickWasm.MagickFormat.Jpeg ? EnumFormatoImagem.JPEG : EnumFormatoImagem.WEBP;
-            const mimeType = formato === MagickWasm.MagickFormat.Jpeg ? EnumMimeType.Jpeg : EnumMimeType.Webp;
+            const formatoImagem = mimeType === u.EnumMimetypeString.Jpeg ? EnumFormatoImagem.JPEG : EnumFormatoImagem.WEBP;
+            const mimeTypeNum = mimeType === u.EnumMimetypeString.Jpeg ? EnumMimeType.Jpeg : EnumMimeType.Webp;
 
-            if (ImagemUtil.AtualizarDimensaLocal(imagem, dimensao, formatoImagem, mimeType, false))
+            if (ImagemUtil.AtualizarDimensaLocal(imagem, dimensao, formatoImagem, mimeTypeNum, false))
             {
                 this._isSalvarPendente = true;
             }
