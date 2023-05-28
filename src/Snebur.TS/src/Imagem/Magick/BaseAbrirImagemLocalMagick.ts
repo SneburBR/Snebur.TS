@@ -19,7 +19,7 @@
         public constructor(
             private readonly ArquivoLocal: SnBlob)
         {
- 
+
         }
 
         protected abstract PopularRedimensionamentos(): void;
@@ -41,20 +41,27 @@
             };
         }
 
+
         public async ProcessarAsync(): Promise<IResultadoMagick>
         {
-            this.PopularRedimensionamentos();
+            try
+            {
+                this.PopularRedimensionamentos();
 
-            const buffer = await ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);
-            const bytes = new Uint8Array(buffer);
-            this._exif = await ExifUtil.RetornarExifAsync(bytes);
-
-            const opcoes = await this.RetornarOpcoesAsync(bytes);
-            const resultado = await this.ProcessarInternoAsync(opcoes);
-            return resultado;
-
+                const buffer = await ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);
+                const bytes = new Uint8Array(buffer);
+                this._exif = await ExifUtil.RetornarExifAsync(bytes);
+                const opcoes = await this.RetornarOpcoesAsync(bytes);
+                const resultado = await this.ProcessarInternoAsync(opcoes);
+                return resultado;
+            }
+            catch (erro)
+            {
+                console.error(`Erro a carregar arquivo com magick ${erro} - ${this.ArquivoLocal.name}`);
+                return null;
+            }
         }
-
+         
         private async ProcessarInternoAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
         {
             try
@@ -96,7 +103,7 @@
             }
             return resultado;
         }
-         
+
         public Dispose(): void
         {
 

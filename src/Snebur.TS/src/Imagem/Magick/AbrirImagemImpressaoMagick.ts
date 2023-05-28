@@ -1,6 +1,5 @@
 ﻿namespace Snebur.Imagens
 {
-
     export class AbrirImagemImpressaoMagick
     {
         public constructor(

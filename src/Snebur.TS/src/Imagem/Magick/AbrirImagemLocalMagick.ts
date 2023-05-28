@@ -37,7 +37,8 @@
             const resultado = await this.ProcessarAsync();
             if (resultado != null)
             {
-                this.OrigemImagemLocal.AtualizarDimensaoLocal(resultado.MagickFormat, resultado.DimensaoLocal);
+                
+                this.OrigemImagemLocal.AtualizarDimensaoLocal(resultado.MimeType, resultado.DimensaoLocal);
 
                 if (resultado?.IsSucesso === true)
                 {
@@ -58,26 +59,7 @@
             }
             return null;
         }
-
-
-
     }
 
-    export class AbrirArquivoLocalMagick extends BaseAbrirImagemLocalMagick
-    {
-        public constructor(arquivo: SnBlob,
-            private Dimensao: IDimensao)
-        {
-            super(arquivo);
-        }
-
-        protected PopularRedimensionamentos(): void
-        {
-            this.Redimensinamentos.Add({
-                Dimensao: this.Dimensao,
-                TamanhoImagem: EnumTamanhoImagem.Pequena
-            });
-        }
-
-    }
+  
 }
