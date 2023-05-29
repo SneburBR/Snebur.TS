@@ -10,6 +10,7 @@
 
     export class MagickInitUtil
     {
+
         private static _status: EnumStatusInicializacaoMagick = EnumStatusInicializacaoMagick.Aguardando;
         private static readonly TIMEOUT = 5 * 60 * 1000;
         /*private static readonly DA = "__DA__";*/
@@ -69,6 +70,8 @@
             }
             return "Magick não inicializado";
         }
+
+
 
         public static async InicializarAsync(progressHandler: (e: ProgressoEventArgs) => void): Promise<boolean>
         {
@@ -168,7 +171,7 @@
                 this._urlBlobMagick = urlBlobMagick;
                 this._urlBlobMagickWorker = urlBlobMagickWorker;
                 this._bufferWasm = bufferWasm;
-                 
+
                 if (typeof MagickWasm?.initializeImageMagick !== "function")
                 {
                     return EnumStatusInicializacaoMagick.Erro;
@@ -200,6 +203,58 @@
             }
 
             return EnumStatusInicializacaoMagick.Erro;
+        }
+
+        public static RetornarTotalThreadsWorker(): number
+        {
+            if (navigator.hardwareConcurrency >= 16)
+            {
+                return 4;
+            }
+
+            if (navigator.hardwareConcurrency >= 8)
+            {
+                return 3;
+            }
+
+            if (navigator.hardwareConcurrency >= 4)
+            {
+                return 2;
+            }
+
+            return 1;
+        }
+
+        public static RetornarTotalProcessamentoRecilar(): number
+        {
+            const memory = (performance as any).memory;
+            if (memory != null)
+            {
+                const totalGb = u.FormatarByteUtil.ConverterParaGB(memory.jsHeapSizeLimit);
+                if (totalGb > 0 && isFinite(totalGb))
+                {
+                    if (totalGb >= 4)
+                    {
+                        return 6;
+                    }
+
+                    if (totalGb >= 3)
+                    {
+                        return 5;
+                    }
+
+                    if (totalGb >= 2)
+                    {
+                        return 3;
+                    }
+                    if (totalGb >= 1)
+                    {
+                        return 2;
+                    }
+                    return 1;
+                }
+            }
+            return 3;
         }
     }
 }
