@@ -6,9 +6,8 @@ namespace Snebur.WebWorker
         private static readonly UrlWorkerDebug: string = "/build/MagickWorker.js?";
         private static readonly TIMEOUT = 1 * 60 * 1000;
 
-        private readonly IsReciclar: boolean = true;
-
         private _isProcessando: boolean = false;
+        private _isReciclarPedente: boolean = false;
         private Worker: Worker;
         private Opcoes: IOpcoesMagick = null;
         private Resolver: (r: IResultadoMagick) => void;
@@ -19,6 +18,11 @@ namespace Snebur.WebWorker
         private __Worker_Error: (e: ErrorEvent) => void;
         private __Worker_MessageError: (e: MessageEvent) => void;
 
+        private get IsReciclar(): boolean
+        {
+            return this._isReciclarPedente ||  this.TotalProcessado > this.TotalProcessosReciclar;
+        }
+
         public get UrlWorker(): string
         {
             if (!$Configuracao.IsDebug && ValidacaoUtil.IsUrlBlob(this.UrlBlobWorker))
@@ -28,11 +32,13 @@ namespace Snebur.WebWorker
             return MagickWorkerCliente.UrlWorkerDebug + $Configuracao.Versao;
         }
 
+        private TotalProcessado: number = 0;
+
         public constructor(
             public readonly Numero: number,
-            public readonly UrlBlobWorker: string = null)
+            public readonly UrlBlobWorker: string,
+            public readonly TotalProcessosReciclar: number)
         {
-
             this.__Worker_Message = this.Worker_Message.bind(this);
             this.__Worker_Error = this.Worker_Error.bind(this);
             this.__Worker_MessageError = this.Worker_MessageError.bind(this);
@@ -40,26 +46,35 @@ namespace Snebur.WebWorker
 
         public async ProcessarAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick | null>
         {
-
             if (this._isProcessando)
             {
                 DebugUtil.ThrowAndContinue("O Worker estava processando");
                 return null;
             }
             window.clearInterval(this.IdTimeout);
-
-            this._isProcessando = true;
-            this.InicializarWorker();
-
+             
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
+
+                this._isProcessando = true;
+                this.InicializarWorker();
                 this.Opcoes = opcoes;
                 this.Worker.postMessage(this.Opcoes);
                 this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);
             });
         }
 
+        public Reciclar()
+        {
+            if (this._isProcessando)
+            {
+                this._isReciclarPedente = true;
+                return;
+            }
+            this.Worker?.terminate();
+        }
+    
         private InicializarWorker()
         {
             if (this.IsReciclar || this.Worker === null)
@@ -80,6 +95,7 @@ namespace Snebur.WebWorker
                 this.Opcoes?.Identificador === (e.data as IResultadoMagick).Identificador;
 
             this.MensagemErro = isSucesso ? null : `Message: ${JSON.stringify(e.data)}`;
+            this.TotalProcessado += 1;
             this.Finalizar(isSucesso, e.data);
         }
 
@@ -108,15 +124,16 @@ namespace Snebur.WebWorker
             {
                 this.Dispose();
             }
-             
+
             window.clearInterval(this.IdTimeout);
+
             const resolver = this.Resolver;
             const opcoes = this.Opcoes;
             if (resolver != null && opcoes != null)
             {
                 if (!isSucesso)
                 {
-                    DebugUtil.ThrowAndContinue(`Falha Worker : ${this.MensagemErro}, Arquivo ${opcoes?.NomeArquivoOrigem}`);
+                    DebugUtil.ThrowAndContinue(`Falha Worker ${this.Numero} : ${this.MensagemErro}, Arquivo ${opcoes?.NomeArquivoOrigem}`);
                 }
 
                 this.Resolver = null;
@@ -138,6 +155,7 @@ namespace Snebur.WebWorker
                 this.Worker.removeEventListener("error", this.__Worker_Error);
                 this.Worker.removeEventListener("messageerror", this.__Worker_MessageError);
                 this.Worker = null;
+                this.TotalProcessado = 0;
                 delete this.Worker;
             }
         }
