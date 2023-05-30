@@ -17,9 +17,8 @@
             super(origemImagemLocal.ArquivoLocal);
 
             this.OrigemImagemLocal = origemImagemLocal;
-
-
         }
+
         protected override PopularRedimensionamentos(): void
         {
             for (const tamanhoImagem of this.TamanhosImagem.OrderByDescending(x => x))
@@ -60,6 +59,4 @@
             return null;
         }
     }
-
-  
 }

@@ -71,11 +71,8 @@
             return "Magick não inicializado";
         }
 
-
-
         public static async InicializarAsync(progressHandler: (e: ProgressoEventArgs) => void): Promise<boolean>
         {
-
             if (MagickInitUtil.IsFinalizado)
             {
                 return MagickInitUtil.Status === EnumStatusInicializacaoMagick.Sucesso;
@@ -87,7 +84,6 @@
             {
                 MagickInitUtil._status = EnumStatusInicializacaoMagick.Inicializando;
                 MagickInitUtil.InicializarInternoAsync();
-
             }
 
             while (!MagickInitUtil.IsFinalizado)
@@ -95,7 +91,6 @@
                 await ThreadUtil.EsperarAsync(350);
             }
             return MagickInitUtil.Status === EnumStatusInicializacaoMagick.Sucesso;
-
         }
 
         private static async InicializarInternoAsync()
@@ -106,27 +101,20 @@
 
         private static get UrlMagick(): string
         {
-            const url = Snebur.$Configuracao.UrlMagick;
-            return url;
+            return Snebur.$Configuracao.UrlMagick;
         }
 
         private static async InicializaMagickAsync()
         {
             try
             {
-
                 if (typeof MagickWasm === "object" &&
                     MagickWasm.Magick != null &&
                     MagickWasm?.Magick.imageMagickVersion.length > 0)
                 {
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
-
-                //if ($Configuracao.IsDebug)
-                //{
-                //    return EnumStatusInicializacaoMagick.Erro;
-                //}
-
+                 
                 const urlPackage = MagickInitUtil.UrlMagick;
                 if (String.IsNullOrWhiteSpace(urlPackage))
                 {
@@ -186,10 +174,7 @@
                 await MagickWasm.initializeImageMagick(urlBlobWasm);
 
                 window.URL.revokeObjectURL(urlPackage);
-                /*window.URL.revokeObjectURL(urlBlobMagick);*/
                 window.URL.revokeObjectURL(urlBlobWasm);
-                //(globalThis as any)[MagickInitUtil.DA] = null;
-                //delete (globalThis as any)[MagickInitUtil.DA];
 
                 if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
                 {
@@ -221,7 +206,6 @@
             {
                 return 2;
             }
-
             return 1;
         }
 
@@ -233,7 +217,7 @@
                 const totalGb = u.FormatarByteUtil.ConverterParaGB(memory.jsHeapSizeLimit);
                 if (totalGb > 0 && isFinite(totalGb))
                 {
-                    if (totalGb >= 4)
+                    if (totalGb >= 3.9)
                     {
                         return 6;
                     }
@@ -245,9 +229,15 @@
 
                     if (totalGb >= 2)
                     {
+                        return 4;
+                    }
+
+                    if (totalGb >= 1.5)
+                    {
                         return 3;
                     }
-                    if (totalGb >= 1)
+
+                    if (totalGb >= 0.5)
                     {
                         return 2;
                     }

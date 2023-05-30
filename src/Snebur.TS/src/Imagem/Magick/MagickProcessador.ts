@@ -6,6 +6,7 @@ class MagickProcessador
     {
 
     }
+
     public async ProcessarAsync(): Promise<IResultadoMagick>
     {
         const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura));
@@ -36,19 +37,13 @@ class MagickProcessador
         const redimensionamentos = this.Opcoes.Redimensinamentos;
         const primeiroTamaho = redimensionamentos[0].TamanhoImagem;
 
-        imageMagick.filterType = primeiroTamaho === EnumTamanhoImagem.Impressao ?
+        const isImpressao = primeiroTamaho === EnumTamanhoImagem.Impressao;
+        imageMagick.filterType = isImpressao ?
             MagickWasm.FilterType.Lagrange :
             MagickWasm.FilterType.Hermite;
 
-        imageMagick.quality = QUALIDADE_APRESENTACAO_MAGICK;
-
-        const larguraAntes = imageMagick.width;
+        imageMagick.quality = isImpressao ? QUALIDADE_APRESENTACAO_MAGICK : QUALIDADE_IMPRESSAO_MAGICK;
         imageMagick.autoOrient();
-
-        if (imageMagick.width !== larguraAntes)
-        {
-            const xxx = "mudou a orientação";
-        }
 
         const isJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
             imageMagick.format === MagickWasm.MagickFormat.Jpg;
@@ -58,22 +53,14 @@ class MagickProcessador
             MagickWasm.MagickFormat.Webp;
 
         const mimeType = isJpeg ? "image/jpeg" : "image/webp";
-
-
         const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);
-        if (imageMagick.width > imageMagick.height &&
-            imageMagick.baseWidth < imageMagick.baseHeight)
-        {
-            throw new Error("Falha na orientação");
-        }
+
         MagickUtil.RemoverExif(imageMagick);
 
         try
         {
             /*const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();*/
-        
             const imagensCarregada = new Array<ImagemCarregada>();
-
             for (const redimensionamento of redimensionamentos)
             {
                 imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
