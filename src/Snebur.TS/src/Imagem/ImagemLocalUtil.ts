@@ -44,6 +44,18 @@
             alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
 
+            if (i.MagickInitUtil.IsInicializado && !window.__IS_USAR_CANVAS__)
+            {
+                const resultadoMagick = await ImagemLocalUtil.CarregarImagemArquivoMagickAsync(
+                    arquivo,
+                    alturaMaxima);
+
+                if (resultadoMagick != null)
+                {
+                    return resultadoMagick;
+                }
+            }
+
             const resultadoCanvas = await ImagemLocalUtil.CarregarImagemArquivoCanvasAsync(
                 arquivo,
                 alturaMaxima);
@@ -51,15 +63,6 @@
             if (resultadoCanvas != null)
             {
                 return resultadoCanvas;
-            }
-
-            const resultadoMagick = await ImagemLocalUtil.CarregarImagemArquivoMagickAsync(
-                arquivo,
-                alturaMaxima);
-
-            if (resultadoMagick != null)
-            {
-                return resultadoMagick;
             }
 
             return {
@@ -76,16 +79,18 @@
             const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao);
             const resultado = await abrirArquivoLocalCanvas.ProcessarAsync();
 
-            if (resultado === null)
+            if (ValidacaoUtil.IsUrl(resultado.Url) &&
+                resultado.LarguraImagemOrigem > 0 &&
+                resultado.AlturaImagemOrigem > 0)
             {
-                return null;
+                return {
+                    AlturaImagemOrigem: resultado.AlturaImagemOrigem,
+                    LarguraImagemOrigem: resultado.LarguraImagemOrigem,
+                    Url: resultado.Url
+                };
             }
-
-            return {
-                AlturaImagemOrigem: resultado.AlturaImagemOrigem,
-                LarguraImagemOrigem: resultado.LarguraImagemOrigem,
-                Url: resultado.Url
-            };
+             
+                return null;
         }
 
         private static async CarregarImagemArquivoMagickAsync(
@@ -421,7 +426,7 @@
     export interface ResultadoCarregarImagem
     {
         //Blob?: Blob | null;
-        Url?: string  
+        Url?: string
         LarguraImagemOrigem?: number;
         AlturaImagemOrigem?: number;
         IsHeic?: boolean;
