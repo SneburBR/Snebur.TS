@@ -35,8 +35,14 @@ if (!HTMLCanvasElement.prototype.toBlob)
 HTMLCanvasElement.prototype.ToBlobAsync = (function (tipo: string, qualidade: number)
 {
     const canvas = this as HTMLCanvasElement;
+    
     return new Promise<Blob | null>(resolver =>
     {
+        canvas.onerror = function ()
+        {
+            resolver(null);
+        };
+
         canvas.toBlob(function (blob)
         {
             resolver(blob);

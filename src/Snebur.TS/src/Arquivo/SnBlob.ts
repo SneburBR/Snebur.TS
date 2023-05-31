@@ -161,14 +161,14 @@
             return false;
         }
 
-        //public async InfoImagemAsync(): Promise<IInformacaoImagem>  
-        //{
-        //    if (this._informacaoImagem == null)
-        //    {
-        //        this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
-        //    }
-        //    return this._informacaoImagem;
-        //}
+        public async RetornarInfoImagemAsync(): Promise<IInformacaoImagem>  
+        {
+            if (this._informacaoImagem == null)
+            {
+                this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
+            }
+            return this._informacaoImagem;
+        }
 
         private async RetornarInfoImagemInternoAsync(): Promise<IInformacaoImagem>  
         {

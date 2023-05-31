@@ -2,7 +2,7 @@
 {
     export abstract class BaseAplicacao extends Snebur.ObjetoControladorPropriedade 
     {
-        protected _isNavegadorSuportarOrientacaoExif: boolean;
+        /*protected _isNavegadorSuportarOrientacaoExif: boolean;*/
 
         private _servicoUsuario: Snebur.Comunicacao.IServicoUsuario;
         private _servicoRegrasNegocio: Snebur.AcessoDados.ServicoRegrasNegocioCliente;
@@ -151,10 +151,10 @@
             return this._isAplicacaoInicializada;
         }
 
-        public get IsNavegadorSuportarOrientacaoExif(): boolean
-        {
-            return this._isNavegadorSuportarOrientacaoExif;
-        }
+        //public get IsNavegadorSuportarOrientacaoExif(): boolean
+        //{
+        //    return this._isNavegadorSuportarOrientacaoExif;
+        //}
 
         public abstract readonly ProgressoOcupadoAtual: number
 
