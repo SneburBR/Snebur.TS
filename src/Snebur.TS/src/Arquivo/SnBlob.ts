@@ -43,6 +43,10 @@
             const extensao = ArquivoUtil.RetornarExtensaoArquivo(this._blob.type);
             return `[blob]-${(this.size)} ${extensao}`;
         }
+        public get NameWithOutExtension(): string
+        {
+            return ArquivoUtil.RetornarNomeArquivoSemExtensao(this.Name);
+        }
 
         public get Size(): number
         {
