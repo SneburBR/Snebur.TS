@@ -9,7 +9,6 @@ namespace Snebur.WebWorker
         private _isProcessando: boolean = false;
         private _isReciclarPedente: boolean = false;
         private Worker: Worker;
-        private Opcoes: IOpcoesMagick = null;
         private Resolver: (r: IResultadoMagick) => void;
         private IdTimeout: number = null;
         private MensagemErro: string;
@@ -20,7 +19,7 @@ namespace Snebur.WebWorker
 
         private get IsReciclar(): boolean
         {
-            return this._isReciclarPedente ||  this.TotalProcessado > this.TotalProcessosReciclar;
+            return this._isReciclarPedente || this.TotalProcessado > this.TotalProcessosReciclar;
         }
 
         public get UrlWorker(): string
@@ -33,6 +32,10 @@ namespace Snebur.WebWorker
         }
 
         private TotalProcessado: number = 0;
+
+        private IdentificadorMensagem: string;
+        private NomeArquivoOrigem: string;
+
 
         public constructor(
             public readonly Numero: number,
@@ -52,15 +55,27 @@ namespace Snebur.WebWorker
                 return null;
             }
             window.clearInterval(this.IdTimeout);
-             
+
+            const identificadorMensagem = GuidUtil.RetornarNovoGuid();
+            const memsnagem: IMensagemMagickWorker = {
+                IdentificadorMensagem: identificadorMensagem,
+                Opcoes: opcoes,
+                MagickInit: {
+                    BlobWasm: i.MagickInitUtil.BlobWasm,
+                    UrlBlobMagick: i.MagickInitUtil.UrlBlobMagick,
+                    BytesPerfilSRGB: i.MagickInitUtil.BytesPerfilSRGB,
+                }
+            };
+
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
 
                 this._isProcessando = true;
                 this.InicializarWorker();
-                this.Opcoes = opcoes;
-                this.Worker.postMessage(this.Opcoes);
+                this.IdentificadorMensagem = identificadorMensagem;
+                this.NomeArquivoOrigem = opcoes.NomeArquivoOrigem;
+                this.Worker.postMessage(memsnagem);
                 this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);
             });
         }
@@ -74,7 +89,7 @@ namespace Snebur.WebWorker
             }
             this.Worker?.terminate();
         }
-    
+
         private InicializarWorker()
         {
             if (this.IsReciclar || this.Worker === null)
@@ -92,7 +107,7 @@ namespace Snebur.WebWorker
         {
             const isSucesso = e.data != null &&
                 !(e.data instanceof Error) &&
-                this.Opcoes?.Identificador === (e.data as IResultadoMagick).Identificador;
+                this.IdentificadorMensagem === (e.data as IResultadoMagickWorker).IdentificadorMensagem;
 
             this.MensagemErro = isSucesso ? null : `Message: ${JSON.stringify(e.data)}`;
             this.TotalProcessado += 1;
@@ -128,16 +143,14 @@ namespace Snebur.WebWorker
             window.clearInterval(this.IdTimeout);
 
             const resolver = this.Resolver;
-            const opcoes = this.Opcoes;
-            if (resolver != null && opcoes != null)
+            if (resolver != null)
             {
                 if (!isSucesso)
                 {
-                    DebugUtil.ThrowAndContinue(`Falha Worker ${this.Numero} : ${this.MensagemErro}, Arquivo ${opcoes?.NomeArquivoOrigem}`);
+                    DebugUtil.ThrowAndContinue(`Falha Worker ${this.Numero} : ${this.MensagemErro}, Arquivo ${this?.NomeArquivoOrigem}`);
                 }
 
                 this.Resolver = null;
-                this.Opcoes = null;
 
                 this.MensagemErro = null;
                 this._isProcessando = false;

@@ -143,7 +143,6 @@
                     if (isIgnorarErro)
                     {
                         retorno = null;
-
                     }
                     resolver(retorno);
                 };

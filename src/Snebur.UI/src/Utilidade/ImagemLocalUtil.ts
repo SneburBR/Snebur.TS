@@ -1,379 +1,392 @@
-﻿namespace Snebur.Imagens
-{
-    export class ImagemLocalUtil
-    {
-        public static RetornarElementoImagemCarregadaAsync(urlImagem: string, isIgnorarErro: boolean): Promise<HTMLImageElement>
-        {
-            return new Promise<HTMLImageElement>(resolver =>
-            {
-                const imagem = new Image();
-                imagem.crossOrigin = "*";
-                imagem.onload = function ()
-                {
-                    resolver(imagem);
-                };
+﻿//namespace Snebur.Imagens
+//{
+//    export class ImagemLocalUtil
+//    {
+//        public static RetornarElementoImagemCarregadaAsync(
+//            urlImagem: string,
+//            isIgnorarErro: boolean,
+//            dimensaoBase: IDimensao = null): Promise<HTMLImageElement>
+//        {
+//            return new Promise<HTMLImageElement>(resolver =>
+//            {
+//                const imagem = new Image();
+//                imagem.crossOrigin = "*";
+//                /*imagem.crossOrigin = "Anonymous";*/
+//                imagem.style.imageRendering = "auto";
+//                imagem.style.imageOrientation = "from-image";
 
-                imagem.onerror = function ()
-                {
-                    if (isIgnorarErro)
-                    {
-                        resolver(null);
-                        return;
-                    }
-                    throw new Error("Não foi possível carregar a imagem " + urlImagem);
-                };
+//                if (dimensaoBase!= null)
+//                {
+//                    imagem.style.maxWidth = dimensaoBase.Largura + "px";
+//                    imagem.style.maxHeight = dimensaoBase.Altura + "px";
+//                }
 
-                imagem.src = urlImagem;
-            });
-        }
+//                imagem.onload = function ()
+//                {
+//                    resolver(imagem);
+//                };
 
-        public static async CarregarImagemArquivoAsync(
-            arquivo: SnBlob,
-            alturaMaxima: number,
-            timeout: number = 60000): Promise<ResultadoCarregarImagem>
-        {
-            if (i.MagickInitUtil.IsInicializado)
-            {
-                const dimensao = { Largura: alturaMaxima * 2, Altura: alturaMaxima };
-                const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
-                const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
-                if (resultado != null && resultado.ImagensCarregada.Count === 1)
-                {
-                    const blob = resultado.ImagensCarregada[0].Arquivo;
-                    const url = window.URL.createObjectURL(blob);
+//                imagem.onerror = function ()
+//                {
+//                    if (isIgnorarErro)
+//                    {
+//                        resolver(null);
+//                        return;
+//                    }
+//                    throw new Error("Não foi possível carregar a imagem " + urlImagem);
+//                };
+//                imagem.src = urlImagem;
+//            });
+//        }
 
-                    return {
-                        AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
-                        LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
-                        Url: url,
-                    };
-                }
-            }
+//        public static async CarregarImagemArquivoAsync(
+//            arquivo: SnBlob,
+//            alturaMaxima: number,
+//            timeout: number = 60000): Promise<ResultadoCarregarImagem>
+//        {
+//            if (i.MagickInitUtil.IsInicializado)
+//            {
+//                const dimensao = { Largura: alturaMaxima * 2, Altura: alturaMaxima };
+//                const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
+//                const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
 
-            return await ImagemLocalUtil.CarregarImagemArquivoInternoAsync(
-                arquivo,
-                alturaMaxima,
-                timeout);
-        }
+//                if (resultado != null && resultado.ImagensCarregada.Count === 1)
+//                {
+//                    const blob = resultado.ImagensCarregada[0].Arquivo;
+//                    const url = window.URL.createObjectURL(blob);
 
-        private static CarregarImagemArquivoInternoAsync(
-            arquivo: SnBlob,
-            alturaMaxima: number,
-            timeout: number = 60000): Promise<ResultadoCarregarImagem>
-        {
-            /*eslint-disable*/
-            return new Promise<ResultadoCarregarImagem>(async resolver =>
-            {
-                let identificadorTimeout = setTimeout(function ()
-                {
-                    identificadorTimeout = 0;
-                    resolver({
-                        IsErro: true,
-                        Erro: new ErroTimeout(`Timeout ao abrir o arquivo ${arquivo}`)
-                    });
-                }, timeout);
+//                    return {
+//                        AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
+//                        LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
+//                        Url: url,
+//                    };
+//                }
+//            }
 
-                const carregarImagem = new CarregarImagemArquivo(arquivo, alturaMaxima);
-                const resultado = await carregarImagem.CarregarImagemAsync();
-                if (identificadorTimeout > 0)
-                {
-                    window.clearTimeout(identificadorTimeout);
-                    resolver(resultado);
-                }
-            });
-            /*eslint-enable*/
-        }
+//            return await ImagemLocalUtil.CarregarImagemArquivoInternoAsync(
+//                arquivo,
+//                alturaMaxima,
+//                timeout);
+//        }
 
-        public static CarregarImagemUrlAsync(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem): Promise<ResultadoCarregarImagem>
-        {
-            const carregarImagem = new CarrgarImagemUrl(urlImagem, alturaImagem, formatoImagem);
-            return carregarImagem.CarregarImagemAsync();
-        }
+//        private static CarregarImagemArquivoInternoAsync(
+//            arquivo: SnBlob,
+//            alturaMaxima: number,
+//            timeout: number = 60000): Promise<ResultadoCarregarImagem>
+//        {
+//            /*eslint-disable*/
+//            return new Promise<ResultadoCarregarImagem>(async resolver =>
+//            {
+//                let identificadorTimeout = setTimeout(function ()
+//                {
+//                    identificadorTimeout = 0;
+//                    resolver({
+//                        IsErro: true,
+//                        Erro: new ErroTimeout(`Timeout ao abrir o arquivo ${arquivo}`)
+//                    });
+//                }, timeout);
 
-        public static async CarregarThumbnailUrl(arquivo: SnBlob): Promise<string>
-        {
-            const url = await exifr.thumbnailUrl(arquivo.Blob);
-            if (ValidacaoUtil.IsUrl(url))
-            {
-                return url;
-            }
+//                const carregarImagem = new CarregarImagemArquivo(arquivo, alturaMaxima);
+//                const resultado = await carregarImagem.CarregarImagemAsync();
+//                if (identificadorTimeout > 0)
+//                {
+//                    window.clearTimeout(identificadorTimeout);
+//                    resolver(resultado);
+//                }
+//            });
+//            /*eslint-enable*/
+//        }
 
-            const resultadoCarregarImagem = await ImagemLocalUtil.CarregarImagemArquivoAsync(arquivo, ConstantesImagemApresentacao.ALTURA_IMAGEM_PEQUENA);
-            if (ValidacaoUtil.IsUrl(resultadoCarregarImagem.Url))
-            {
-                return url;
-            }
-            throw new Erro("Sem imagem");
-        }
+//        public static CarregarImagemUrlAsync(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem): Promise<ResultadoCarregarImagem>
+//        {
+//            const carregarImagem = new CarrgarImagemUrl(urlImagem, alturaImagem, formatoImagem);
+//            return carregarImagem.CarregarImagemAsync();
+//        }
 
-        private static _isNavegadorSuportarOrientacaoExif: boolean = undefined;
-        private static readonly URL_IMAGEM_VERIFICAR_ORIENTACAO = "https://online.sigi.com.br/images/VerificarOrientacao.jpg";
+//        public static async CarregarThumbnailUrl(arquivo: SnBlob): Promise<string>
+//        {
+//            const url = await exifr.thumbnailUrl(arquivo.Blob);
+//            if (ValidacaoUtil.IsUrl(url))
+//            {
+//                return url;
+//            }
 
-        public static async IsNavegadorSuportarOrientacaoExifAsync(): Promise<boolean> 
-        {
-            if (typeof ImagemLocalUtil._isNavegadorSuportarOrientacaoExif === "boolean")
-            {
-                return ImagemLocalUtil._isNavegadorSuportarOrientacaoExif;
-            }
+//            const resultadoCarregarImagem = await ImagemLocalUtil.CarregarImagemArquivoAsync(arquivo, ConstantesImagemApresentacao.ALTURA_IMAGEM_PEQUENA);
+//            if (ValidacaoUtil.IsUrl(resultadoCarregarImagem.Url))
+//            {
+//                return url;
+//            }
+//            throw new Erro("Sem imagem");
+//        }
 
-            const elementoImagenm = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(ImagemLocalUtil.URL_IMAGEM_VERIFICAR_ORIENTACAO, false);
-            return elementoImagenm.naturalHeight > elementoImagenm.naturalWidth;
-        }
+//        private static _isNavegadorSuportarOrientacaoExif: boolean = undefined;
+//        private static readonly URL_IMAGEM_VERIFICAR_ORIENTACAO = "https://online.sigi.com.br/images/VerificarOrientacao.jpg";
 
-        public static IsElementoImagemCarregado(elementoImagem: HTMLImageElement)
-        {
-            return elementoImagem.complete &&
-                elementoImagem.naturalHeight > 0 &&
-                elementoImagem.naturalWidth > 0;
-        }
+//        public static async IsNavegadorSuportarOrientacaoExifAsync(): Promise<boolean> 
+//        {
+//            if (typeof ImagemLocalUtil._isNavegadorSuportarOrientacaoExif === "boolean")
+//            {
+//                return ImagemLocalUtil._isNavegadorSuportarOrientacaoExif;
+//            }
 
-    }
+//            const elementoImagenm = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(ImagemLocalUtil.URL_IMAGEM_VERIFICAR_ORIENTACAO, false);
+//            return elementoImagenm.naturalHeight > elementoImagenm.naturalWidth;
+//        }
 
-    export abstract class CarrgarImagem 
-    {
-        protected readonly UrlImagem: string;
-        protected readonly AlturaImagem: number;
+//        public static IsElementoImagemCarregado(elementoImagem: HTMLImageElement)
+//        {
+//            return elementoImagem.complete &&
+//                elementoImagem.naturalHeight > 0 &&
+//                elementoImagem.naturalWidth > 0;
+//        }
 
-        protected readonly FormatoImagem: d.EnumFormatoImagem;
+//    }
 
-        protected Imagem: HTMLImageElement;
+//    //export abstract class CarrgarImagem 
+//    //{
+//    //    protected readonly UrlImagem: string;
+//    //    protected readonly AlturaImagem: number;
 
-        private Resolver: (resultado: ResultadoCarregarImagem) => void;
+//    //    protected readonly FormatoImagem: d.EnumFormatoImagem;
 
-        private LarguraImagemRedimensionada: number = 0;
-        private AlturaImagemRedimensionada: number = 0;
-        private LarguraImagemOriginal: number = 0;
-        private AlturaImagemOriginal: number = 0;
-        private IdentificadorTimeout: number = null;
-        private Qualidade: number;
+//    //    protected Imagem: HTMLImageElement;
 
-        protected IsHeic: boolean = false;
-        protected IsIcone: boolean = false;
-        protected _erro: Error | null;
+//    //    private Resolver: (resultado: ResultadoCarregarImagem) => void;
 
-        public constructor(urlImagem: string,
-            alturaImagem: number,
-            formatoImagem: d.EnumFormatoImagem,
-            qualidade: number)
-        {
-            this.UrlImagem = urlImagem;
-            this.AlturaImagem = alturaImagem;
-            this.FormatoImagem = formatoImagem;
-            this.Imagem = new Image();
-            this.Imagem.crossOrigin = "anonymous";
-            this.Qualidade = qualidade;
-        }
+//    //    private LarguraImagemRedimensionada: number = 0;
+//    //    private AlturaImagemRedimensionada: number = 0;
+//    //    private LarguraImagemOriginal: number = 0;
+//    //    private AlturaImagemOriginal: number = 0;
+//    //    private IdentificadorTimeout: number = null;
+//    //    private Qualidade: number;
 
-        public CarregarImagemAsync(): Promise<ResultadoCarregarImagem>
-        {
-            return new Promise<ResultadoCarregarImagem>(this.CarregarImagem_Resolver.bind(this));
-        }
+//    //    protected IsHeic: boolean = false;
+//    //    protected IsIcone: boolean = false;
+//    //    protected _erro: Error | null;
 
-        private CarregarImagem_Resolver(resolver: (resultado: ResultadoCarregarImagem) => void): void
-        {
-            this.Resolver = resolver;
-            this.Imagem.onload = this.Imagem_Carregada.bind(this);
-            this.Imagem.onerror = this.Imagem_Error.bind(this);
-            this.Imagem.style.width = "auto";
-            this.Imagem.style.height = this.AlturaImagem.ToPixels();
-            this.Imagem.style.objectFit = "contain";
-            this.Imagem.src = this.UrlImagem;
+//    //    public constructor(urlImagem: string,
+//    //        alturaImagem: number,
+//    //        formatoImagem: d.EnumFormatoImagem,
+//    //        qualidade: number)
+//    //    {
+//    //        this.UrlImagem = urlImagem;
+//    //        this.AlturaImagem = alturaImagem;
+//    //        this.FormatoImagem = formatoImagem;
+//    //        this.Imagem = new Image();
+//    //        this.Imagem.crossOrigin = "anonymous";
+//    //        this.Qualidade = qualidade;
+//    //    }
 
-            const timeout = $Configuracao.IsDebug ? Number.Int32MaxValue : 45000;
+//    //    public CarregarImagemAsync(): Promise<ResultadoCarregarImagem>
+//    //    {
+//    //        return new Promise<ResultadoCarregarImagem>(this.CarregarImagem_Resolver.bind(this));
+//    //    }
 
-            this.IdentificadorTimeout = window.setTimeout(this.Imagem_ErroTimeout.bind(this), timeout);
-        }
+//    //    private CarregarImagem_Resolver(resolver: (resultado: ResultadoCarregarImagem) => void): void
+//    //    {
+//    //        this.Resolver = resolver;
+//    //        this.Imagem.onload = this.Imagem_Carregada.bind(this);
+//    //        this.Imagem.onerror = this.Imagem_Error.bind(this);
+//    //        this.Imagem.style.width = "auto";
+//    //        this.Imagem.style.height = this.AlturaImagem.ToPixels();
+//    //        this.Imagem.style.objectFit = "contain";
+//    //        this.Imagem.src = this.UrlImagem;
 
-        private async Imagem_Carregada(e: Event) 
-        {
-            this.LarguraImagemOriginal = this.Imagem.naturalWidth;
-            this.AlturaImagemOriginal = this.Imagem.naturalHeight;
-            let isErro = false;
-            let url: string = null;
+//    //        const timeout = $Configuracao.IsDebug ? Number.Int32MaxValue : 45000;
 
-            try
-            {
-                this.AlturaImagemRedimensionada = this.AlturaImagem;
-                this.LarguraImagemRedimensionada = Math.round(this.LarguraImagemOriginal * this.AlturaImagem / this.AlturaImagemOriginal);
+//    //        this.IdentificadorTimeout = window.setTimeout(this.Imagem_ErroTimeout.bind(this), timeout);
+//    //    }
 
-                const canvas = document.createElement("canvas");
-                canvas.width = this.LarguraImagemRedimensionada;
-                canvas.height = this.AlturaImagemRedimensionada;
+//    //    private async Imagem_Carregada(e: Event) 
+//    //    {
+//    //        this.LarguraImagemOriginal = this.Imagem.naturalWidth;
+//    //        this.AlturaImagemOriginal = this.Imagem.naturalHeight;
+//    //        let isErro = false;
+//    //        let url: string = null;
 
-                const contexto = canvas.getContext("2d");
-                contexto.imageSmoothingEnabled = false;
-                contexto.drawImage(this.Imagem, 0, 0, this.LarguraImagemRedimensionada, this.AlturaImagemRedimensionada);
+//    //        try
+//    //        {
+//    //            this.AlturaImagemRedimensionada = this.AlturaImagem;
+//    //            this.LarguraImagemRedimensionada = Math.round(this.LarguraImagemOriginal * this.AlturaImagem / this.AlturaImagemOriginal);
 
-                const blobImagem = await this.RetornarBlobAsync(canvas);
-                url = window.URL.createObjectURL(blobImagem);
+//    //            const canvas = document.createElement("canvas");
+//    //            canvas.width = this.LarguraImagemRedimensionada;
+//    //            canvas.height = this.AlturaImagemRedimensionada;
 
-                u.ImagemUtil.LimarCanvas(canvas);
-            }
-            catch (erro)
-            {
-                console.error(`Falha salvar imagem ${this.UrlImagem} ${erro?.message ?? erro}`);
-                isErro = true;
-                url = null;
-                this._erro = erro;
-            }
-            finally
-            {
-                this.Finalizar(isErro, url);
-            }
-        }
+//    //            const contexto = canvas.getContext("2d");
+//    //            contexto.imageSmoothingEnabled = false;
+//    //            contexto.drawImage(this.Imagem, 0, 0, this.LarguraImagemRedimensionada, this.AlturaImagemRedimensionada);
 
-        private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<Blob>
-        {
-            if (this.IsIcone)
-            {
-                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
-            }
+//    //            const blobImagem = await this.RetornarBlobAsync(canvas);
+//    //            url = window.URL.createObjectURL(blobImagem);
 
-            switch (this.FormatoImagem)
-            {
-                case d.EnumFormatoImagem.JPEG:
-                case d.EnumFormatoImagem.BMP:
+//    //            u.ImagemUtil.LimarCanvas(canvas);
+//    //        }
+//    //        catch (erro)
+//    //        {
+//    //            console.error(`Falha salvar imagem ${this.UrlImagem} ${erro?.message ?? erro}`);
+//    //            isErro = true;
+//    //            url = null;
+//    //            this._erro = erro;
+//    //        }
+//    //        finally
+//    //        {
+//    //            this.Finalizar(isErro, url);
+//    //        }
+//    //    }
 
-                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Jpeg, 1);
+//    //    private RetornarBlobAsync(canvas: HTMLCanvasElement): Promise<Blob>
+//    //    {
+//    //        if (this.IsIcone)
+//    //        {
+//    //            return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
+//    //        }
 
-                case d.EnumFormatoImagem.PNG:
+//    //        switch (this.FormatoImagem)
+//    //        {
+//    //            case d.EnumFormatoImagem.JPEG:
+//    //            case d.EnumFormatoImagem.BMP:
 
-                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
+//    //                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Jpeg, 1);
 
-                default:
+//    //            case d.EnumFormatoImagem.PNG:
 
-                    return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
-            }
-        }
+//    //                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
 
-        protected async Imagem_Error(e: ErrorEvent) 
-        {
-            console.error(`Falha ao abrir imagem ${this.UrlImagem}`);
-            this.Finalizar(true, null);
-        }
+//    //            default:
 
-        private Imagem_ErroTimeout(): void
-        {
-            console.error(`Timeout abrir  imagem ${this.UrlImagem}`);
-            this.Finalizar(true, null);
-        }
+//    //                return canvas.ToBlobAsync(u.EnumMimeTypeImagemString.Png, 1);
+//    //        }
+//    //    }
 
-        protected Finalizar(isErro: boolean, url: string): void
-        {
-            window.clearTimeout(this.IdentificadorTimeout);
+//    //    protected async Imagem_Error(e: ErrorEvent) 
+//    //    {
+//    //        console.error(`Falha ao abrir imagem ${this.UrlImagem}`);
+//    //        this.Finalizar(true, null);
+//    //    }
 
-            this.Imagem.onload = this.ImagemVazia_Carregada.bind(this);
-            this.Imagem.onerror = null;
-            this.Imagem.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+//    //    private Imagem_ErroTimeout(): void
+//    //    {
+//    //        console.error(`Timeout abrir  imagem ${this.UrlImagem}`);
+//    //        this.Finalizar(true, null);
+//    //    }
 
-            const resultado: ResultadoCarregarImagem = {
-                IsErro: isErro,
-                LarguraImagemOrigem: this.LarguraImagemOriginal,
-                AlturaImagemOrigem: this.AlturaImagemOriginal,
-                Url: url,
-                IsHeic: this.IsHeic,
-                Erro: this._erro,
-                IsIcone: this.IsIcone,
-            };
+//    //    protected Finalizar(isErro: boolean, url: string): void
+//    //    {
+//    //        window.clearTimeout(this.IdentificadorTimeout);
 
-            const resolver = this.Resolver;
-            this.Resolver = null;
-            resolver(resultado);
-        }
+//    //        this.Imagem.onload = this.ImagemVazia_Carregada.bind(this);
+//    //        this.Imagem.onerror = null;
+//    //        this.Imagem.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
-        private ImagemVazia_Carregada(): void
-        {
-            this.Imagem.onload = null;
-            delete this.Imagem;
-        }
-    }
+//    //        const resultado: ResultadoCarregarImagem = {
+//    //            IsErro: isErro,
+//    //            LarguraImagemOrigem: this.LarguraImagemOriginal,
+//    //            AlturaImagemOrigem: this.AlturaImagemOriginal,
+//    //            Url: url,
+//    //            IsHeic: this.IsHeic,
+//    //            Erro: this._erro,
+//    //            IsIcone: this.IsIcone,
+//    //        };
 
-    export class CarregarImagemArquivo extends CarrgarImagem
-    {
-        private readonly Arquivo: SnBlob;
-        private IsTentandoAbrirHeic: boolean;
+//    //        const resolver = this.Resolver;
+//    //        this.Resolver = null;
+//    //        resolver(resultado);
+//    //    }
 
-        public constructor(
-            arquivo: SnBlob,
-            alturaImagem: number,
-            qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
-        {
-            super(arquivo.UrlBlob, alturaImagem, u.ImagemUtil.RetornarFormatoImagem(arquivo), qualidade);
-            this.Arquivo = arquivo;
-        }
+//    //    private ImagemVazia_Carregada(): void
+//    //    {
+//    //        this.Imagem.onload = null;
+//    //        delete this.Imagem;
+//    //    }
+//    //}
 
-        protected override async Imagem_Error(e: ErrorEvent)
-        {
-            if (!u.SistemaUtil.IsInternetExplorer11)
-            {
-                if (this.IsTentarHeic())
-                {
-                    this.IsTentandoAbrirHeic = true;
-                    const blobOuError = await w.ConverterHeicParaJpeg.RetornarBlobAsync(this.Arquivo);
-                    if (blobOuError instanceof Blob)
-                    {
-                        const urlHeicJpeg = window.URL.createObjectURL(blobOuError);
-                        this.IsHeic = true;
-                        this.Imagem.src = urlHeicJpeg;
-                        return;
-                    }
-                }
+//    //export class CarregarImagemArquivo extends CarrgarImagem
+//    //{
+//    //    private readonly Arquivo: SnBlob;
+//    //    private IsTentandoAbrirHeic: boolean;
 
-                if (!this.IsIcone && ValidacaoUtil.IsUrl($Configuracao.UrlIcone))
-                {
+//    //    public constructor(
+//    //        arquivo: SnBlob,
+//    //        alturaImagem: number,
+//    //        qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
+//    //    {
+//    //        super(arquivo.UrlBlob, alturaImagem, u.ImagemUtil.RetornarFormatoImagem(arquivo), qualidade);
+//    //        this.Arquivo = arquivo;
+//    //    }
 
-                    this.IsIcone = true;
-                    const extensao = ArquivoUtil.RetornarExtensaoArquivo(this.Arquivo.name);
-                    if (!String.IsNullOrWhiteSpace(extensao))
-                    {
-                        const url = `${$Configuracao.UrlIcone}${extensao}`;
-                        this.Imagem.src = url;
-                        return;
-                    }
-                }
-            }
-            super.Imagem_Error(e);
-        }
+//    //    protected override async Imagem_Error(e: ErrorEvent)
+//    //    {
+//    //        if (!u.SistemaUtil.IsInternetExplorer11)
+//    //        {
+//    //            if (this.IsTentarHeic())
+//    //            {
+//    //                this.IsTentandoAbrirHeic = true;
+//    //                const blobOuError = await w.ConverterHeicParaJpeg.RetornarBlobAsync(this.Arquivo);
+//    //                if (blobOuError instanceof Blob)
+//    //                {
+//    //                    const urlHeicJpeg = window.URL.createObjectURL(blobOuError);
+//    //                    this.IsHeic = true;
+//    //                    this.Imagem.src = urlHeicJpeg;
+//    //                    return;
+//    //                }
+//    //            }
 
-        private IsTentarHeic()
-        {
-            const formatoImagem = u.ImagemUtil.RetornarFormatoImagem(this.Arquivo);
-            return !this.IsTentandoAbrirHeic &&
-                formatoImagem === EnumFormatoImagem.JPEG ||
-                formatoImagem === EnumFormatoImagem.HEIC;
-        }
+//    //            if (!this.IsIcone && ValidacaoUtil.IsUrl($Configuracao.UrlIcone))
+//    //            {
 
-        protected override Finalizar(isErro: boolean, url: string): void
-        {
-            this.Arquivo.RevogarUrlBlob();
-            super.Finalizar(isErro, url,);
-        }
-    }
+//    //                this.IsIcone = true;
+//    //                const extensao = ArquivoUtil.RetornarExtensaoArquivo(this.Arquivo.name);
+//    //                if (!String.IsNullOrWhiteSpace(extensao))
+//    //                {
+//    //                    const url = `${$Configuracao.UrlIcone}${extensao}`;
+//    //                    this.Imagem.src = url;
+//    //                    return;
+//    //                }
+//    //            }
+//    //        }
+//    //        super.Imagem_Error(e);
+//    //    }
 
-    export class CarrgarImagemUrl extends CarrgarImagem
-    {
+//    //    private IsTentarHeic()
+//    //    {
+//    //        const formatoImagem = u.ImagemUtil.RetornarFormatoImagem(this.Arquivo);
+//    //        return !this.IsTentandoAbrirHeic &&
+//    //            formatoImagem === EnumFormatoImagem.JPEG ||
+//    //            formatoImagem === EnumFormatoImagem.HEIC;
+//    //    }
 
-        public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
-        {
-            super(urlImagem, alturaImagem, formatoImagem, qualidade);
-        }
+//    //    protected override Finalizar(isErro: boolean, url: string): void
+//    //    {
+//    //        this.Arquivo.RevogarUrlBlob();
+//    //        super.Finalizar(isErro, url,);
+//    //    }
+//    //}
 
-        protected override Finalizar(isErro: boolean, url: string)
-        {
-            super.Finalizar(isErro, url);
-        }
-    }
+//    //export class CarrgarImagemUrl extends CarrgarImagem
+//    //{
 
-    export interface ResultadoCarregarImagem
-    {
-        //Blob?: Blob | null;
-        Url?: string | null;
-        LarguraImagemOrigem?: number;
-        AlturaImagemOrigem?: number;
-        IsHeic?: boolean;
-        IsErro?: boolean;
-        IsIcone?: boolean
-        Erro?: Error;
-    }
+//    //    public constructor(urlImagem: string, alturaImagem: number, formatoImagem: d.EnumFormatoImagem, qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS)
+//    //    {
+//    //        super(urlImagem, alturaImagem, formatoImagem, qualidade);
+//    //    }
 
-}
+//    //    protected override Finalizar(isErro: boolean, url: string)
+//    //    {
+//    //        super.Finalizar(isErro, url);
+//    //    }
+//    //}
+
+//    export interface ResultadoCarregarImagem
+//    {
+//        //Blob?: Blob | null;
+//        Url?: string | null;
+//        LarguraImagemOrigem?: number;
+//        AlturaImagemOrigem?: number;
+//        IsHeic?: boolean;
+//        IsErro?: boolean;
+//        IsIcone?: boolean
+//        Erro?: Error;
+//    }
+
+//}

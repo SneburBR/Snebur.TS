@@ -16,7 +16,10 @@
             return new InformacaoImagemWorker().RetornarResultadoAsync(blob.Blob) as Promise<IInformacaoImagem>;
         }
 
-        protected override NormalizarResultado(arquivo: Blob, resultado: IInformacaoImagem, argumento: any): Promise<IInformacaoImagem> | IInformacaoImagem
+        protected override NormalizarResultado(
+            arquivo: Blob,
+            resultado: IInformacaoImagem,
+            argumento: any): Promise<IInformacaoImagem> | IInformacaoImagem
         {
             if (resultado instanceof Error)
             {
@@ -112,8 +115,7 @@
         private RetornarRotacaoExif(blob: Blob, formatoImagem: EnumFormatoImagem, orientacao: number): number
         {
             if (formatoImagem !== EnumFormatoImagem.JPEG ||
-                u.SistemaUtil.IsInternetExplorer11 ||
-                !$Aplicacao.IsNavegadorSuportarOrientacaoExif)
+                u.SistemaUtil.IsInternetExplorer11  )
             {
                 return 0;
             }

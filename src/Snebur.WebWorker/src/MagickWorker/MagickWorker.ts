@@ -1,20 +1,21 @@
-﻿const xxx = "";
-self.addEventListener("message", async function (e: MessageEvent)
+﻿self.addEventListener("message", async function (e: MessageEvent)
 {
-    const opcoes = e.data as IOpcoesMagick;
+    const mensagem = e.data as IMensagemMagickWorker;
     try
     {
-        const isSucesso = await inicializarMagickAsync(opcoes);
-        if (isSucesso)
+        const isSucesso = await inicializarMagickAsync(mensagem);
+        if (!isSucesso)
         {
-            const processador = new MagickProcessador(opcoes);
-            const resultado = await processador.ProcessarAsync();
-            self.postMessage(resultado);
+            throw new Error("Magick não inicializado");
         }
+
+        const processador = new MagickProcessador(mensagem.Opcoes, mensagem.MagickInit.BytesPerfilSRGB);
+        const resultado = await processador.ProcessarAsync();
+        (resultado as IResultadoMagickWorker).IdentificadorMensagem = mensagem.IdentificadorMensagem;
+        self.postMessage(resultado);
     }
     catch (erro)
     {
         self.postMessage(erro);
     }
-
 });

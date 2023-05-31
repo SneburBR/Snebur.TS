@@ -1,25 +1,31 @@
-﻿const QUALIDADE_APRESENTACAO_MAGICK = 85;
+﻿
+const QUALIDADE_APRESENTACAO_MAGICK = 90;
+const QUALIDADE_IMPRESSAO_MAGICK = 70;
 
- enum EnumTamanhoImagem
+
+
+interface IMagickInit
 {
-    Miniatura = 2,
-    Pequena = 4,
-    Media = 8,
-    Grande = 16,
-    Impressao = 32,
-    Automatico = 999,
+    readonly UrlBlobMagick: string;
+    readonly BlobWasm: Blob;
+    readonly BytesPerfilSRGB: Uint8Array;
+}
+
+interface IMensagemMagickWorker
+{
+    readonly IdentificadorMensagem: string;
+    readonly MagickInit: IMagickInit;
+    readonly Opcoes: IOpcoesMagick;
 }
 
 interface IOpcoesMagick
 {
-    readonly Identificador: string;
     readonly NomeArquivoOrigem: string;
-    readonly UrlMagick: string;
     /*readonly BufferWasm: ArrayBuffer;*/
-    readonly BlobWasm: Blob;
     readonly BytesOrigem: Uint8Array;
-    readonly BytesPerfilDestino: Uint8Array;
+    readonly IsConverterSRGB: boolean;
     readonly IsRemoverExif: boolean;
+    readonly IsPngParaJpeg: boolean;
     readonly Redimensinamentos: RedimensionarImagemMagick[];
     readonly Qualidade: number;
 
@@ -28,16 +34,22 @@ interface RedimensionarImagemMagick
 {
     Dimensao: IDimensao;
     TamanhoImagem: EnumTamanhoImagem;
+    Recorte?: IRecorte;
+    DimensaoRecorte?:IDimensao
 }
 
 interface IResultadoMagick
 {
-    readonly Identificador: string;
     readonly IsSucesso: boolean;
-    readonly MagickFormat: "JPEG" | "WEBP";
-    readonly MimeType: "image/jpeg" | "image/webp";
+    readonly MagickFormat: "JPEG" | "PNG" | "WEBP";
+    readonly MimeType: ImagemMimeType;
     readonly DimensaoLocal: IDimensao;
     readonly ImagensCarregada: ImagemCarregada[];
+}
+
+interface IResultadoMagickWorker extends IResultadoMagick
+{
+    IdentificadorMensagem: string;
 }
 
 interface ImagemCarregada
@@ -47,9 +59,6 @@ interface ImagemCarregada
     readonly TamanhoImagem: EnumTamanhoImagem;
 }
 
-interface IDimensao
-{
-    Largura: number;
-    Altura: number;
-}
+
+
 

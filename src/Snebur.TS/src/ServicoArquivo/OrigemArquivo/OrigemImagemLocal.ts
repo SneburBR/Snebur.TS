@@ -89,7 +89,6 @@
                 imagemCarregada.Dispose();
                 this.ImagensLocalCarregadas.Remove(tamanhoImagem);
             }
-
         }
 
         //#region Imagem Carregando
@@ -262,5 +261,7 @@
 interface Window
 {
     __IS_USAR_CANVAS__: boolean;
+    __IS_SALVAR_ARQUIVOS__: boolean;
 }
 window.__IS_USAR_CANVAS__ = false;
+window.__IS_SALVAR_ARQUIVOS__ = false;

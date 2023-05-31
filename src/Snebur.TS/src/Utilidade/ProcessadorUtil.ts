@@ -28,17 +28,8 @@
                     const estilo = "color:red;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
                     console.LogDebug("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
                     console.LogDebug("%cMAINTHREAD TOTAL OPERAÇÕES 1s: " + totalOpacoes, estilo);
-
-                    //if (u.SistemaUtil.IsAndroidOrIOS)
-                    //{
-                    //    let info = `Mainthread Tempo ${tempo}ms, \r\n total operações em 1s : ${totalOpacoes}`;
-                    //    info += `\rWorker Tempo ${worker.Tempo}ms, \r\n total operações em 1s : ${worker.Total}`;
-                    //    alert(info);
-                    //}
                 }
-
             }
-
 
             return {
                 MainThread: mainThread,

@@ -50,11 +50,10 @@
                 novaAltura);
         }
 
-        public static RetornarDimencaoUniformeFora(
-            largura: number,
-            altura: number,
-            larguraRecipiente: number, alturaRecipiente: number,
-            valorDecimal: boolean = true): Dimensao
+        public static RetornarDimencaoUniformeFora(largura: number, altura: number, larguraRecipiente: number, alturaRecipiente: number, isDecimal?: boolean): Dimensao
+        public static RetornarDimencaoUniformeFora(largura: number, altura: number, larguraRecipiente: number, alturaRecipiente: number, isDecimal: boolean, isTimpar: false): IDimensao
+        public static RetornarDimencaoUniformeFora(largura: number, altura: number, larguraRecipiente: number, alturaRecipiente: number, isDecimal: boolean, isTimpar: true): Dimensao
+        public static RetornarDimencaoUniformeFora(largura: number, altura: number, larguraRecipiente: number, alturaRecipiente: number, isDecimal: boolean = true, isTimpar: boolean = true): IDimensao
         {
             let novaLargura = 0;
             let novaAltura = 0;
@@ -85,7 +84,7 @@
                 novaLargura = Math.max(larguraRecipiente, alturaRecipiente);
                 novaAltura = novaLargura;
             }
-            if (!valorDecimal)
+            if (!isDecimal)
             {
                 novaLargura = u.ConverterUtil.ParaInteiro(novaLargura);
                 novaAltura = u.ConverterUtil.ParaInteiro(novaAltura);
@@ -94,15 +93,21 @@
             novaLargura = Math.max(novaLargura, 0);
             novaAltura = Math.max(novaAltura, 0);
 
-            return new d.Dimensao(
-                novaLargura,
-                novaAltura);
+            if (isTimpar)
+            {
+                return new d.Dimensao(novaLargura, novaAltura);
+            }
+
+            return {
+                Largura: novaLargura,
+                Altura: novaAltura
+            };
         }
 
-        public static RetornarDimencaoUniformeDentro(largura: number,
-            altura: number, larguraRecipiente: number,
-            alturaRecipente: number, valorDecimal: boolean = true,
-            aumentar: boolean = true): d.Dimensao
+        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal?: boolean, isAumentar?:boolean): Dimensao
+        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean, isAumentar: boolean, isTipar: false): IDimensao
+        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean, isAumentar: boolean, isTipar: true): Dimensao
+        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean = true, isAumentar: boolean = true, isTipar: boolean = true): IDimensao
         {
             let novaLargura = 0;
             let novaAltura = 0;
@@ -137,11 +142,12 @@
                 novaAltura = novaLargura;
             }
 
-            if (!aumentar && (largura < novaLargura || altura < novaAltura))
+            if (!isAumentar && (largura < novaLargura || altura < novaAltura))
             {
-                return new d.Dimensao(largura, altura);
+                novaLargura = largura;
+                novaAltura = altura;
             }
-            if (!valorDecimal)
+            if (!isDecimal)
             {
                 novaLargura = u.ConverterUtil.ParaInteiro(novaLargura);
                 novaAltura = u.ConverterUtil.ParaInteiro(novaAltura);
@@ -150,7 +156,16 @@
             novaLargura = Math.max(novaLargura, 0);
             novaAltura = Math.max(novaAltura, 0);
 
-            return new d.Dimensao(novaLargura, novaAltura);
+            if (isTipar)
+            {
+                return new d.Dimensao(novaLargura, novaAltura);
+            }
+
+            return {
+                Largura: largura,
+                Altura: altura
+            };
+
         }
 
         public static RetornarOrientacao(dimensao: IDimensao): EnumOrientacao
@@ -253,7 +268,7 @@
             return !DimensaoUtil.IsDimensaoIgual(dimensao1, dimensao2);
         }
 
-     
+
         public static ProporcaoSimplificada(largura: number, altura: number): IDimensao
         {
             // Encontrar o maior divisor comum usando o algoritmo de Euclides

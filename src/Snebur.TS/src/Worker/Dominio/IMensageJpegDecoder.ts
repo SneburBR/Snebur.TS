@@ -10,18 +10,7 @@
         DimensaoFoto: IDimensao;
         Qualidade: number;
     }
-
-    export interface IRecorte
-    {
-        XScalar: number;
-        YScalar: number;
-        //LarguraBase: number;
-        //AlturaBase: number;
-        //LarguraFoto: number;
-        //AlturaFoto: number;
-
-    }
-
+     
     export enum EnumEtapaDecoder
     {
         LeituraArquivo = 0,

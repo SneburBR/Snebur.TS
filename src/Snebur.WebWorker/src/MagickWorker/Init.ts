@@ -1,7 +1,7 @@
 ﻿let isMagickCarregado = false;
 let isInicilizando = false;
 
-async function inicializarMagickAsync(mensagem: IOpcoesMagick): Promise<boolean>
+async function inicializarMagickAsync(mensagem: IMensagemMagickWorker): Promise<boolean>
 {
     if (isInicilizando)
     {
@@ -16,13 +16,13 @@ async function inicializarMagickAsync(mensagem: IOpcoesMagick): Promise<boolean>
         isInicilizando = true;
         try
         {
-            importScripts(mensagem.UrlMagick);
+            importScripts(mensagem.MagickInit.UrlBlobMagick);
 
             /*const bytes = new Uint8Array(mensagem.BufferWasm);*/
             /*const blobWasm = new Blob([mensagem.BufferWasm], { type: "application/wasm" });*/
             /*const url = self.URL.createObjectURL(blobWasm);*/
 
-            const url = self.URL.createObjectURL(mensagem.BlobWasm);
+            const url = self.URL.createObjectURL(mensagem.MagickInit.BlobWasm);
 
             await MagickWasm.initializeImageMagick(url);
             /*await MagickWasm.initializeImageMagick("/magick/magick.wasm");*/
@@ -33,11 +33,6 @@ async function inicializarMagickAsync(mensagem: IOpcoesMagick): Promise<boolean>
                 console.log("Magick worker Carregado v:" + MagickWasm.Magick.imageMagickVersion);
                 return true;
             }
-        }
-        catch (erro)
-        {
-            console.error("Erro Magick worker Carregado " + erro);
-            self.postMessage(erro);
         }
         finally
         {

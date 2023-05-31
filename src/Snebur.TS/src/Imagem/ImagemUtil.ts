@@ -366,14 +366,14 @@
         }
 
 
-        public static RetornarDimencaoUniformeFora(larguraImagem: number, alturaImagem: number, larguraMinima: number, alturaMinima: number, valorDecimal: boolean): Dimensao
+        public static RetornarDimencaoUniformeFora(larguraImagem: number, alturaImagem: number, larguraMinima: number, alturaMinima: number, isDecimal: boolean): Dimensao
         {
-            return u.DimensaoUtil.RetornarDimencaoUniformeFora(larguraImagem, alturaImagem, larguraMinima, alturaMinima, valorDecimal);
+            return u.DimensaoUtil.RetornarDimencaoUniformeFora(larguraImagem, alturaImagem, larguraMinima, alturaMinima, isDecimal);
         }
 
-        public static RetornarDimencaoUniformeDentro(larguraImagem: number, alturaImagem: number, larguraMaxima: number, alturaMaxima: number, valorDecimal: boolean = true, aumentar: boolean = true): Dimensao
+        public static RetornarDimencaoUniformeDentro(larguraImagem: number, alturaImagem: number, larguraMaxima: number, alturaMaxima: number, isDecimal: boolean = true, aumentar: boolean = true): Dimensao
         {
-            return u.DimensaoUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, larguraMaxima, alturaMaxima, valorDecimal, aumentar);
+            return u.DimensaoUtil.RetornarDimencaoUniformeDentro(larguraImagem, alturaImagem, larguraMaxima, alturaMaxima, isDecimal, aumentar);
         }
 
         public static RetornarRegiaoCentroFora(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number): IRegiao

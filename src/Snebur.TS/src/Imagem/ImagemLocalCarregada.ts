@@ -7,7 +7,7 @@ namespace Snebur.Imagens
         public readonly ArquivoBlob: Blob;
         public readonly TamanhoImagem: d.EnumTamanhoImagem;
         public readonly Erro: Error;
-        public readonly MimeType: ImagemLocalMimeType;
+        public readonly MimeType: ImagemMimeType;
 
         public get IsSucesso(): boolean
         {
@@ -18,7 +18,7 @@ namespace Snebur.Imagens
         public constructor(
             tamanhoImagem: d.EnumTamanhoImagem,
             blob: Blob,
-            mimeType: ImagemLocalMimeType)
+            mimeType: ImagemMimeType)
         {
             this.TamanhoImagem = tamanhoImagem;
             this.ArquivoBlob = blob;
@@ -34,6 +34,6 @@ namespace Snebur.Imagens
         }
     }
 
-   export  type ImagemLocalMimeType = "image/jpeg" | "image/webp";
+   /*export  type ImagemLocalMimeType = "image/jpeg" | "image/webp";*/
 }
 

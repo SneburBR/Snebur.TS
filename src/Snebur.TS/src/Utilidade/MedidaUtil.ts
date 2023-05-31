@@ -58,10 +58,23 @@ namespace Snebur.Utilidade
         }
 
         public static RetornarDimensaoImpressao(dimensaoEmCentimetros: IDimensao): d.Dimensao
+        public static RetornarDimensaoImpressao(dimensaoEmCentimetros: IDimensao, isTipar: false): IDimensao
+        public static RetornarDimensaoImpressao(dimensaoEmCentimetros: IDimensao, isTipar: true): d.Dimensao
+        public static RetornarDimensaoImpressao(dimensaoEmCentimetros: IDimensao, isTipar: boolean = true): IDimensao
         {
-            return new d.Dimensao(
-                u.MedidaUtil.RetornarPixelsImpressao(dimensaoEmCentimetros.Largura),
-                u.MedidaUtil.RetornarPixelsImpressao(dimensaoEmCentimetros.Altura));
+            const largura = u.MedidaUtil.RetornarPixelsImpressao(dimensaoEmCentimetros.Largura);
+            const altura = u.MedidaUtil.RetornarPixelsImpressao(dimensaoEmCentimetros.Altura);
+
+            if (isTipar)
+            {
+                return new Dimensao(largura, altura);
+            }
+
+            return {
+                Largura: largura,
+                Altura: altura
+            };
+            
         }
 
         public static RetornarDimensaoVisualizacao(dimensaoEmCentimetros: IDimensao, dpi: number): d.Dimensao

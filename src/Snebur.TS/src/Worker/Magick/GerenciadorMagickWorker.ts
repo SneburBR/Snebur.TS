@@ -8,15 +8,24 @@
         private readonly UrlBlobWorker: string;
 
         private _totalThreads: number = 0;
+        private _totalProcessamentoReciclar: number = 0;
         public get TotalThreas(): number
         {
             return this._totalThreads;
+        }
+        public get TotalProcessamentoReciclar(): number
+        {
+            return this._totalProcessamentoReciclar;
         }
 
         private constructor(urlBlobWorker: string = null)
         {
             this.UrlBlobWorker = urlBlobWorker;
-            this.AtualizarThreads(GerenciadorMagickWorker.TOTAL_THREAD_PADRAO);
+            this._totalThreads = i.MagickInitUtil.RetornarTotalThreadsWorker();
+            this._totalProcessamentoReciclar = i.MagickInitUtil.RetornarTotalProcessamentoRecilar();
+            console.warn(`CARREGAMENTO IMAGENS THREADS ${this._totalThreads} - RECICLAR ${this._totalProcessamentoReciclar} `);
+
+            this.AtualizarThreads(this.TotalThreas);
         }
 
         public AtualizarThreads(totalThreads: number)
@@ -34,7 +43,7 @@
 
             for (let i = 0; i < this.TotalThreas; i++)
             {
-                this.WorkersDisponivel.Add(new MagickWorkerCliente(i + 1, this.UrlBlobWorker));
+                this.WorkersDisponivel.Add(new MagickWorkerCliente(i + 1, this.UrlBlobWorker, this.TotalProcessamentoReciclar));
             }
         }
 
@@ -46,16 +55,7 @@
             {
                 const t = Stopwatch.StartNew();
                 const resultado = await workerCliente.ProcessarAsync(opcoes);
-
-                const memory = (performance as any).memory;
-                if (memory != null)
-                {
-                    const totalJSHeapSize = FormatacaoUtil.FormatarBytes(memory.totalJSHeapSize);
-                    const usedJSHeapSize = FormatacaoUtil.FormatarBytes(memory.usedJSHeapSize);
-                    const jsHeapSizeLimit = FormatacaoUtil.FormatarBytes(memory.jsHeapSizeLimit);
-                    console.warn(`Memória totalJSHeapSize: ${totalJSHeapSize} - usedJSHeapSize:${usedJSHeapSize} - jsHeapSizeLimit:${jsHeapSizeLimit}`);
-                }
-
+                 
                 if (resultado.IsSucesso)
                 {
                     console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} {} `);
@@ -77,7 +77,7 @@
                 else
                 {
                     workerCliente.Dispose();
-                    this.WorkersDisponivel.Add(new MagickWorkerCliente(workerCliente.Numero, this.UrlBlobWorker));
+                    this.WorkersDisponivel.Add(new MagickWorkerCliente(workerCliente.Numero, this.UrlBlobWorker, this.TotalProcessamentoReciclar));
                 }
             }
             return null;
@@ -87,7 +87,7 @@
         {
             while (this.WorkersDisponivel.length === 0)
             {
-                await ThreadUtil.EsperarAsync(100);
+                await ThreadUtil.EsperarAsync(150);
             }
 
             const proximoWorker = this.WorkersDisponivel.shift();
@@ -100,6 +100,14 @@
             return this.RetornarWorkerClienteDisponivelAsync();
         }
 
+
+        public Recilar()
+        {
+            for (const worker of this.WorkersDisponivel)
+            {
+                worker.Reciclar();
+            }
+        }
 
         //#region Instancia
 
