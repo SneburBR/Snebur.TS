@@ -1,15 +1,15 @@
 ﻿namespace Snebur.Utilidade
 {
     export class JsonUtil
-    { 
-        public static Serializar(obj: any, isIdentar? :boolean): string
+    {
+        public static Serializar(obj: any, isIdentar?: boolean): string
         {
             const serializador = new Snebur.Serializacao.JsonSerializar(isIdentar);
             const json = serializador.Serializar(obj);
             serializador.Dispose();
             return json;
         }
-         
+
         //public static Deserializar<T extends d.BaseDominio>(json: any, tipo: d.BaseDominioConstrutor<T>): T
         public static Deserializar<T extends d.BaseDominio>(json: string, construtor: IConstrutor<T>): T
         public static Deserializar<T>(json: string, tipo: r.BaseTipo): T
@@ -47,6 +47,19 @@
         public static RetornarPropriedadesSerializavel(tipo: r.BaseTipo, arg1: boolean): r.Propriedade[]
         {
             return tipo.RetornarPropriedades(false);
+        }
+
+        public static TrySerializar(obj: any): string | null
+        {
+            try
+            {
+                return JSON.stringify(obj);
+            }
+            catch (erro)
+            {
+                console.error(`Falha ao serializar objeto: ${obj} - ${ErroUtil.RetornarErro(erro)}`);
+                return null;
+            }
         }
     }
 }
