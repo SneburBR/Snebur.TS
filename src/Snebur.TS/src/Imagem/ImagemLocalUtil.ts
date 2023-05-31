@@ -12,7 +12,7 @@
                 const imagem = new Image();
                 imagem.crossOrigin = "*";
                 imagem.crossOrigin = "Anonymous";
-                imagem.style.imageRendering = "auto";
+                /*imagem.style.imageRendering = "auto";*/
                 imagem.style.imageOrientation = "from-image";
 
                 if (dimensaoBase != null)
@@ -89,8 +89,8 @@
                     Url: resultado.Url
                 };
             }
-             
-                return null;
+
+            return null;
         }
 
         private static async CarregarImagemArquivoMagickAsync(
@@ -99,7 +99,7 @@
         {
             if (i.MagickInitUtil.IsInicializado)
             {
-                const dimensao = { Largura: alturaMaxima * 2, Altura: alturaMaxima };
+                const dimensao = { Largura: alturaMaxima, Altura: alturaMaxima };
                 const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
                 const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
                 if (resultado != null && resultado.ImagensCarregada.Count === 1)

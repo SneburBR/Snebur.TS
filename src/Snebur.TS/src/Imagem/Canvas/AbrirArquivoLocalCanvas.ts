@@ -29,7 +29,7 @@
             const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
             const mimeType = this.RetornarMimeType();
 
-            const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(url, true, dimensao);
+            const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(url, true);
             if (!(imagem instanceof HTMLImageElement))
             {
                 return null;
@@ -49,8 +49,6 @@
                 Url: window.URL.createObjectURL(blob),
             };
         }
-
-
     }
 
     export interface IResultadoCanvas

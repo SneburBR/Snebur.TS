@@ -4,7 +4,6 @@
     {
         private static _tamnhoImagensApresentacao: List<d.EnumTamanhoImagem>;
         public static readonly QUALIDADE_APRESENTACAO_CANVAS = 85;
-        public static readonly QUALIDADE_APRESENTACAO_MAGICK = 55;
         public static readonly QUALIDADE_IMPRESSAO_CANVAS = 92;
 
         public static get ImagemVaziaBase64(): string { return i.ImagemMemoria.UrlImagemVazia; }
