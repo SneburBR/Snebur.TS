@@ -107,6 +107,63 @@
             return ProcessadorUtil.distBenchmark(n);
         }
 
+        public static RetornarTotalThreadsWorker(): number
+        {
+            if (navigator.hardwareConcurrency >= 16)
+            {
+                return 4;
+            }
+
+            if (navigator.hardwareConcurrency >= 8)
+            {
+                return 3;
+            }
+
+            if (navigator.hardwareConcurrency >= 4)
+            {
+                return 2;
+            }
+            return 1;
+        }
+
+        public static RetornarTotalProcessamentoRecilar(): number
+        {
+            const memory = (performance as any).memory;
+            if (memory != null)
+            {
+                const totalGb = u.FormatarByteUtil.ConverterParaGB(memory.jsHeapSizeLimit);
+                if (totalGb > 0 && isFinite(totalGb))
+                {
+                    if (totalGb >= 3.9)
+                    {
+                        return 6;
+                    }
+
+                    if (totalGb >= 3)
+                    {
+                        return 5;
+                    }
+
+                    if (totalGb >= 2)
+                    {
+                        return 4;
+                    }
+
+                    if (totalGb >= 1.5)
+                    {
+                        return 3;
+                    }
+
+                    if (totalGb >= 0.5)
+                    {
+                        return 2;
+                    }
+                    return 1;
+                }
+            }
+            return 3;
+        }
+
     }
 
 
