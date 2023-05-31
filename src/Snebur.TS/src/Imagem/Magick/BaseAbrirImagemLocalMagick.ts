@@ -29,15 +29,12 @@
             const redimensionamentos = this.Redimensinamentos;
             return {
                 NomeArquivoOrigem: this.NomeArquivo,
-                Identificador: u.GuidUtil.RetornarNovoGuid(),
-                BytesPerfilDestino: MagickInitUtil.sRgbProfile,
                 BytesOrigem: bytesOrigem,
                 IsRemoverExif: true,
+                IsPngParaJpeg: false,
                 Qualidade: QUALIDADE_APRESENTACAO_MAGICK,
                 Redimensinamentos: redimensionamentos,
-                /*BufferWasm: MagickInitUtil.BufferWasm,*/
-                BlobWasm: MagickInitUtil.BlobWasm,
-                UrlMagick: MagickInitUtil.UrlBlobMagick
+                IsConverterSRGB: true
             };
         }
 
@@ -82,7 +79,7 @@
             }
 
             const t = Stopwatch.StartNew();
-            const processador = new MagickProcessador(opcoes);
+            const processador = new MagickProcessador(opcoes, MagickInitUtil.BytesPerfilSRGB);
             const resultado = await processador.ProcessarAsync();
             if (!(resultado instanceof Error) && resultado != null)
             {

@@ -50,7 +50,7 @@
             return MagickInitUtil._urlBlobMagickWorker;
         }
 
-        public static get sRgbProfile(): Uint8Array
+        public static get BytesPerfilSRGB(): Uint8Array
         {
             return MagickInitUtil._sRgbProfile;
         }

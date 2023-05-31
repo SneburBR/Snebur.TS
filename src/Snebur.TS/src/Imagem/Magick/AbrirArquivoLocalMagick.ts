@@ -4,7 +4,7 @@
     {
         public constructor(
             arquivo: SnBlob,
-            private Dimensao: IDimensao)
+            private readonly Dimensao: IDimensao)
         {
             super(arquivo);
         }
@@ -13,9 +13,8 @@
         {
             this.Redimensinamentos.Add({
                 Dimensao: this.Dimensao,
-                TamanhoImagem: EnumTamanhoImagem.Pequena
+                TamanhoImagem: EnumTamanhoImagem.Pequena,
             });
         }
-
     }
 }

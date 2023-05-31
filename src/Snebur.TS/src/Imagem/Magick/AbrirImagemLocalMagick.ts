@@ -26,7 +26,8 @@
                 const dimensao = u.ImagemUtil.RetornarDimensaoApresentacao(tamanhoImagem);
                 this.Redimensinamentos.Add({
                     TamanhoImagem: tamanhoImagem,
-                    Dimensao: dimensao
+                    Dimensao: dimensao,
+                    Recorte: null
                 });
             }
         }

@@ -1,8 +1,8 @@
-﻿
-class MagickProcessador
+﻿class MagickProcessador
 {
     public constructor(
-        public readonly Opcoes: IOpcoesMagick)
+        public readonly Opcoes: IOpcoesMagick,
+        public readonly BytesPerfilDestino: Uint8Array)
     {
 
     }
@@ -45,14 +45,14 @@ class MagickProcessador
         imageMagick.quality = isImpressao ? QUALIDADE_APRESENTACAO_MAGICK : QUALIDADE_IMPRESSAO_MAGICK;
         imageMagick.autoOrient();
 
-        const isJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-            imageMagick.format === MagickWasm.MagickFormat.Jpg;
+        const isSalvarJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
+            imageMagick.format === MagickWasm.MagickFormat.Jpg || 
+            imageMagick.format === MagickWasm.MagickFormat.Heic;
 
-        const formatoDestino = (isJpeg) ?
-            MagickWasm.MagickFormat.Jpeg :
-            MagickWasm.MagickFormat.Webp;
+        const formatoDestino = (isSalvarJpeg) ? MagickWasm.MagickFormat.Jpeg :
+            this.Opcoes.IsPngParaJpeg ? MagickWasm.MagickFormat.Png : MagickWasm.MagickFormat.Webp;
 
-        const mimeType = isJpeg ? "image/jpeg" : "image/webp";
+        const mimeType = isSalvarJpeg ? "image/jpeg" : this.Opcoes.IsPngParaJpeg ? "image/png": "image/webp";
         const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);
 
         MagickUtil.RemoverExif(imageMagick);
@@ -63,14 +63,20 @@ class MagickProcessador
             const imagensCarregada = new Array<ImagemCarregada>();
             for (const redimensionamento of redimensionamentos)
             {
+
                 imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
 
-                if (redimensionamento.TamanhoImagem === primeiroTamaho &&
-                    this.Opcoes.BytesPerfilDestino != null)
+                if (redimensionamento.Recorte != null && redimensionamento.DimensaoRecorte!= null)
+                {
+                    const recorte = this.RetornarRecorte(redimensionamento);
+                    imageMagick.crop(recorte);
+                }
+
+                if (redimensionamento.TamanhoImagem === primeiroTamaho && this.Opcoes.IsConverterSRGB)
                 {
                     await MagickUtil.ConverterPerfilAsync(
                         imageMagick,
-                        this.Opcoes.BytesPerfilDestino);
+                        this.BytesPerfilDestino);
                 }
 
                 await imageMagick.write(formatoDestino, (bytes) =>
@@ -90,7 +96,6 @@ class MagickProcessador
             }
 
             return {
-                Identificador: this.Opcoes.Identificador,
                 MimeType: mimeType,
                 DimensaoLocal: dimensaoLocal,
                 ImagensCarregada: imagensCarregada,
@@ -109,7 +114,15 @@ class MagickProcessador
         }
     }
 
-    private RetornarDimensaoLocal(imageMagick: MagickWasm.IMagickImage):IDimensao
+    private RetornarRecorte(redimensionamento: RedimensionarImagemMagick): MagickWasm.MagickGeometry
+    {
+        const x = redimensionamento.Dimensao.Largura * redimensionamento.Recorte.XScalar;
+        const y = redimensionamento.Dimensao.Altura * redimensionamento.Recorte.YScalar;
+        return new MagickWasm.MagickGeometry(x, y, redimensionamento.DimensaoRecorte.Largura, redimensionamento.DimensaoRecorte.Altura);
+
+    }
+
+    private RetornarDimensaoLocal(imageMagick: MagickWasm.IMagickImage): IDimensao
     {
         const maiorLado = Math.max(imageMagick.baseWidth, imageMagick.baseHeight);
         const menorLado = Math.min(imageMagick.baseWidth, imageMagick.baseHeight);

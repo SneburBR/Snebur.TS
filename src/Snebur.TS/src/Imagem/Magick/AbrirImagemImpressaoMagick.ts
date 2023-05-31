@@ -45,7 +45,7 @@
                 imagem.resize(dimensaoImpressao.Largura, dimensaoImpressao.Altura);
             }
 
-            await MagickUtil.ConverterPerfilAsync(imagem, MagickInitUtil.sRgbProfile);
+            await MagickUtil.ConverterPerfilAsync(imagem, MagickInitUtil.BytesPerfilSRGB);
 
             const buffer = await imagem.write<ArrayBuffer>(formatoDestino,
                 (data) =>
