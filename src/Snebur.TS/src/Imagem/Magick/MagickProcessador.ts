@@ -9,64 +9,94 @@
 
     public async ProcessarAsync(): Promise<IResultadoMagick>
     {
-        const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura));
-        const maiorDimensao = maiorRedimensionamento[0];
-
-        const settings = new MagickWasm.MagickReadSettings();
-
-        if (maiorDimensao.TamanhoImagem !== EnumTamanhoImagem.Impressao)
+        try
         {
+            const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura));
+            const maiorDimensao = maiorRedimensionamento[0];
+            const settings = new MagickWasm.MagickReadSettings();
             const dimensao = `${maiorDimensao.Dimensao.Largura}x${maiorDimensao.Dimensao.Altura}`;
             settings.setDefine(
                 MagickWasm.MagickFormat.Jpeg,
                 "size",
                 dimensao);
+
+            const bytesOrigem = await this.RetornarBytesAsync(this.Opcoes.ArquivoOrigem);
+            const imagensCarregada = await MagickWasm.ImageMagick.read<IResultadoMagick>(
+                bytesOrigem,
+                settings,
+                this.CarregarImagemInternoAsync.bind(this));
+ 
+            return imagensCarregada;
         }
+        catch (erro)
+        {
+            return erro;
+        }
+    }
 
-        const imagensCarregada = await MagickWasm.ImageMagick.read<IResultadoMagick>(
-            this.Opcoes.BytesOrigem,
-            settings,
-            this.CarregarImagemInternoAsync.bind(this));
-
-
-        return imagensCarregada;
+    public async RetornarBytesAsync(arquivo: Blob): Promise<Uint8Array>
+    {
+        return new Promise(resolver =>
+        {
+            const fileReader = new FileReader();
+            fileReader.onload = function ()
+            {
+                if (fileReader.result instanceof ArrayBuffer)
+                {
+                    resolver(new Uint8Array(fileReader.result));
+                    return;
+                }
+                resolver(null);
+            };
+            fileReader.onerror = function ()
+            {
+                resolver(null);
+            };
+            fileReader.readAsArrayBuffer(arquivo);
+        });
     }
 
     private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<IResultadoMagick>
     {
-        const redimensionamentos = this.Opcoes.Redimensinamentos;
-        const primeiroTamaho = redimensionamentos[0].TamanhoImagem;
-
-        const isImpressao = primeiroTamaho === EnumTamanhoImagem.Impressao;
-        imageMagick.filterType = isImpressao ?
-            MagickWasm.FilterType.Lagrange :
-            MagickWasm.FilterType.Hermite;
-
-        imageMagick.quality = isImpressao ? QUALIDADE_APRESENTACAO_MAGICK : QUALIDADE_IMPRESSAO_MAGICK;
-        imageMagick.autoOrient();
-
-        const isSalvarJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
-            imageMagick.format === MagickWasm.MagickFormat.Jpg || 
-            imageMagick.format === MagickWasm.MagickFormat.Heic;
-
-        const formatoDestino = (isSalvarJpeg) ? MagickWasm.MagickFormat.Jpeg :
-            this.Opcoes.IsPngParaJpeg ? MagickWasm.MagickFormat.Png : MagickWasm.MagickFormat.Webp;
-
-        const mimeType = isSalvarJpeg ? "image/jpeg" : this.Opcoes.IsPngParaJpeg ? "image/png": "image/webp";
-        const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);
-
-        MagickUtil.RemoverExif(imageMagick);
-
         try
         {
+            imageMagick.autoOrient();
+
+            const redimensionamentos = this.Opcoes.Redimensinamentos;
+            const primeiroTamaho = redimensionamentos[0].TamanhoImagem;
+
+            const isImpressao = primeiroTamaho === EnumTamanhoImagem.Impressao;
+            imageMagick.filterType = isImpressao ?
+                MagickWasm.FilterType.Lagrange :
+                MagickWasm.FilterType.Hermite;
+
+            imageMagick.interpolate = MagickWasm.PixelInterpolateMethod.Undefined;
+
+            imageMagick.quality = isImpressao ? QUALIDADE_APRESENTACAO_MAGICK : QUALIDADE_IMPRESSAO_MAGICK;
+
+
+            const isSalvarJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
+                imageMagick.format === MagickWasm.MagickFormat.Jpg ||
+                imageMagick.format === MagickWasm.MagickFormat.Heic;
+
+            const formatoDestino = (isSalvarJpeg) ? MagickWasm.MagickFormat.Jpeg :
+                this.Opcoes.IsPngParaJpeg ? MagickWasm.MagickFormat.Png : MagickWasm.MagickFormat.Webp;
+
+            const mimeType = isSalvarJpeg ? "image/jpeg" : this.Opcoes.IsPngParaJpeg ? "image/png" : "image/webp";
+            const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);
+
+            if (primeiroTamaho !== EnumTamanhoImagem.Impressao)
+            {
+                MagickUtil.RemoverExif(imageMagick);
+            }
+
             /*const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();*/
             const imagensCarregada = new Array<ImagemCarregada>();
             for (const redimensionamento of redimensionamentos)
             {
-
                 imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
 
-                if (redimensionamento.Recorte != null && redimensionamento.DimensaoRecorte!= null)
+                if (redimensionamento.Recorte != null && redimensionamento.DimensaoRecorte != null)
                 {
                     const recorte = this.RetornarRecorte(redimensionamento);
                     imageMagick.crop(recorte);
@@ -81,8 +111,8 @@
 
                 await imageMagick.write(formatoDestino, (bytes) =>
                 {
-                    const buffer = new Uint8Array(bytes).buffer;
-                    const blob = new Blob([buffer], { type: mimeType });
+                    /*const buffer = new Uint8Array(bytes).buffer;*/
+                    const blob = new Blob([bytes], { type: mimeType });
 
                     imagensCarregada.push({
                         Arquivo: blob,
@@ -105,8 +135,7 @@
         }
         catch (erro)
         {
-            console.error(erro);
-            return null;
+            return erro;
         }
         finally
         {

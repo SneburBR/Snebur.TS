@@ -93,6 +93,7 @@
             return MagickInitUtil.Status === EnumStatusInicializacaoMagick.Sucesso;
         }
 
+
         private static async InicializarInternoAsync()
         {
             const status = await MagickInitUtil.InicializaMagickAsync();
@@ -114,7 +115,7 @@
                 {
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
-                 
+
                 const urlPackage = MagickInitUtil.UrlMagick;
                 if (String.IsNullOrWhiteSpace(urlPackage))
                 {
@@ -129,12 +130,19 @@
                     MagickInitUtil.TIMEOUT,
                     (e: ProgressoEventArgs) =>
                     {
-                        for (const progress of MagickInitUtil.ProgressosHandler)
-                        {
-                            progress(e);
-                        }
+                        MagickInitUtil.NotificarProgresso(e);
+
                     });
 
+                if ($Configuracao.IsTeste)
+                {
+                    for (let i = 50; i < 100; i++)
+                    {
+                        MagickInitUtil.NotificarProgresso(new ProgressoEventArgs(i));
+                        await ThreadUtil.EsperarAsync(500);
+                    }
+                }
+                 
                 const zip = new JSZip();
                 await zip.loadAsync(bytes);
 
@@ -190,61 +198,12 @@
             return EnumStatusInicializacaoMagick.Erro;
         }
 
-        public static RetornarTotalThreadsWorker(): number
+        private static NotificarProgresso(e: ProgressoEventArgs)
         {
-            if (navigator.hardwareConcurrency >= 16)
+            for (const progress of MagickInitUtil.ProgressosHandler)
             {
-                return 4;
+                progress(e);
             }
-
-            if (navigator.hardwareConcurrency >= 8)
-            {
-                return 3;
-            }
-
-            if (navigator.hardwareConcurrency >= 4)
-            {
-                return 2;
-            }
-            return 1;
-        }
-
-        public static RetornarTotalProcessamentoRecilar(): number
-        {
-            const memory = (performance as any).memory;
-            if (memory != null)
-            {
-                const totalGb = u.FormatarByteUtil.ConverterParaGB(memory.jsHeapSizeLimit);
-                if (totalGb > 0 && isFinite(totalGb))
-                {
-                    if (totalGb >= 3.9)
-                    {
-                        return 6;
-                    }
-
-                    if (totalGb >= 3)
-                    {
-                        return 5;
-                    }
-
-                    if (totalGb >= 2)
-                    {
-                        return 4;
-                    }
-
-                    if (totalGb >= 1.5)
-                    {
-                        return 3;
-                    }
-
-                    if (totalGb >= 0.5)
-                    {
-                        return 2;
-                    }
-                    return 1;
-                }
-            }
-            return 3;
         }
     }
 }

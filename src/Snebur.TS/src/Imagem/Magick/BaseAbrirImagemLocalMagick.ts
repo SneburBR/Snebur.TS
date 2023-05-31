@@ -2,14 +2,13 @@
 {
     export abstract class BaseAbrirImagemLocalMagick implements IDisposable
     {
-
-        protected _exif: ExifrJS.MargeOutput;
+        /*protected _exif: ExifrJS.MargeOutput;*/
         protected readonly Redimensinamentos = new Array<RedimensionarImagemMagick>();
 
-        public get Exif(): ExifrJS.MargeOutput
-        {
-            return this._exif;
-        }
+        //public get Exif(): ExifrJS.MargeOutput
+        //{
+        //    return this._exif;
+        //}
 
         public get NomeArquivo(): string
         {
@@ -24,12 +23,13 @@
 
         protected abstract PopularRedimensionamentos(): void;
 
-        protected async RetornarOpcoesAsync(bytesOrigem: Uint8Array): Promise<IOpcoesMagick>
+        protected async RetornarOpcoesAsync(/*bytesOrigem: Uint8Array*/): Promise<IOpcoesMagick>
         {
             const redimensionamentos = this.Redimensinamentos;
             return {
                 NomeArquivoOrigem: this.NomeArquivo,
-                BytesOrigem: bytesOrigem,
+                /*BytesOrigem: bytesOrigem,*/
+                ArquivoOrigem: this.ArquivoLocal.Blob ,
                 IsRemoverExif: true,
                 IsPngParaJpeg: false,
                 Qualidade: QUALIDADE_APRESENTACAO_MAGICK,
@@ -45,10 +45,10 @@
             {
                 this.PopularRedimensionamentos();
 
-                const buffer = await ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);
-                const bytes = new Uint8Array(buffer);
-                this._exif = await ExifUtil.RetornarExifAsync(bytes);
-                const opcoes = await this.RetornarOpcoesAsync(bytes);
+                /*const buffer = await ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);*/
+                /*const bytes = new Uint8Array(buffer);*/
+                /*this._exif = await ExifUtil.RetornarExifAsync(bytes);*/
+                const opcoes = await this.RetornarOpcoesAsync();
                 const resultado = await this.ProcessarInternoAsync(opcoes);
                 return resultado;
             }

@@ -2,13 +2,17 @@
 class MagickUtil
 {
     public static IsWorker: boolean = true;
+    public static  Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"]
 
     public static async RemoverExif(imageMagick: MagickWasm.IMagickImage)
     {
-        const exif = imageMagick.getProfile("exif");
-        if (exif != null)
+        for (const profileName of MagickUtil.Profiles)
         {
-            imageMagick.removeProfile("exif");
+            const profile = imageMagick.getProfile(profileName);
+            if (profile != null)
+            {
+                imageMagick.removeProfile("exif");
+            }
         }
     }
 
