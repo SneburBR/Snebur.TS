@@ -49,38 +49,23 @@
             return this._maximoTarefasSimultaneas;
         }
 
-        public set MaximoTarefasSimultaneas(value: number)
+        public SetMaximoTarefasSimultaneas(value: number)
         {
             this.NotificarPropriedadeAlterada(x=> x.MaximoTarefasSimultaneas, this._maximoTarefasSimultaneas, this._maximoTarefasSimultaneas = value);
-
             if (this.Status === t.EnumStatusTarefa.Executando)
             {
                 this.ExecutarProximaTarefa();
             }
         }
 
-        public IntervaloExecutarProximaTarefa: TimeSpan;
-        public readonly EventoTarefaConcluida: Evento<t.ResultadoTarefaFinalizadaEventArgs>;
-        //protected TotalTarefasDispensadas: number = 0;
-
+        public readonly EventoTarefaConcluida = new Evento<t.ResultadoTarefaFinalizadaEventArgs>(this);
+ 
         public constructor()
         {
             super();
-
-            //this.TarefasComErros = new Array<BaseTarefa>();
-            //this.Executando = new Array<TTarefa>();
-            //this.Finalizados = new Array<TTarefa>();
-
-            this.IntervaloExecutarProximaTarefa = TimeSpan.FromSeconds(0);
-            this.EventoTarefaConcluida = new Evento<t.ResultadoTarefaFinalizadaEventArgs>(this);
         }
 
         //#region Métodos públicos
-
-        public override async IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>)
-        {
-            await super.IniciarAsync(callback);
-        }
 
         protected AdicionarTarefa(tarefa: TTarefa): void
         {
@@ -158,7 +143,7 @@
             this.ExecutarProximaTarefa();
         }
 
-        protected ExecutarAsync(): void
+        protected ExecutarInternoAsync(): void
         {
             this.ExecutarProximaTarefa();
         }
@@ -186,7 +171,6 @@
             else
             {
                 //################## Pausado e continuando as Tarefas ####################
-
                 const totalTarefasEmExecucao = this.Executando.Where(x => x.Status === t.EnumStatusTarefa.Executando).Count;
                 if (totalTarefasEmExecucao > this.MaximoTarefasSimultaneas)
                 {
@@ -229,9 +213,7 @@
                         proximaTarefa.EventoProgresso.AddHandler(this.Tarefa_ProgressoAlterado, this);
                         proximaTarefa.Status = EnumStatusTarefa.Executando;
                         this.RemoverDicionarioFila(proximaTarefa);
-                        window.setTimeout(this.ExecutarTarefa_Iniciar.bind(this, proximaTarefa), this.IntervaloExecutarProximaTarefa.TotalMilliseconds);
-
-                        //proximaTarefa.IniciarAsync(this.CallbackTarefaFinaliza.bind(this));
+                        this.ExecutarTarefaAsync(proximaTarefa);
                     }
                 }
             }
@@ -277,18 +259,18 @@
                 this.DicionarioFila.Remove(chave);
             }
         }
-
-        private ExecutarTarefa_Iniciar(tarefa: BaseTarefa): void
+        private async ExecutarTarefaAsync(tarefa: BaseTarefa)
         {
-            tarefa.IniciarAsync(this.FinalizarTarefa_Concluido.bind(this));
-        }
+            tarefa.EventoConcluido.AddHandler(this.FinalizarTarefa_Concluido, this);
+            await tarefa.IniciarAsync();
 
+        }
         private Tarefa_ProgressoAlterado(tarefa: BaseTarefa, e: ProgressoEventArgs): void
         {
             this.AtualizarProgressoGerenciadorTarefa();
         }
 
-        private FinalizarTarefa_Concluido(resultado: ResultadoTarefaFinalizadaEventArgs): void
+        private FinalizarTarefa_Concluido(obj: any,resultado: ResultadoTarefaFinalizadaEventArgs): void
         {
             const tarefa = resultado.Tarefa as TTarefa;
             this.Executando.Remove(tarefa);

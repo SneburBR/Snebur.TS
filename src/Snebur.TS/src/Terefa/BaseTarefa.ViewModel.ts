@@ -4,11 +4,17 @@
     {
         //#region Propriedades
 
-        private static TIMEOUT_PADRAO: number = 30;
+        private static readonly TIMEOUT_PADRAO: number = 30;
 
         private IdentificadorTimeout: number;
         private _progresso: number;
         private _statusTarefa: EnumStatusTarefa;
+        private _timeout: TimeSpan;
+        private _erro: Error;
+        private _dataHoraUltimaAtividade: Date;
+        private _dataHoraInicio: Date;
+
+        private Resolver: (resultado: ResultadoTarefaFinalizadaEventArgs) => void;
 
         public get Progresso(): number
         {
@@ -26,7 +32,6 @@
         {
             return this._statusTarefa;
         }
-
         public set Status(value: EnumStatusTarefa)
         {
             const antigoValor = this._statusTarefa;
@@ -35,21 +40,33 @@
             this.EventoStatusAlterado.Notificar(this, new StatusTarefaAlteradoEventArgs(this, value));
         }
 
-        public Timeout: TimeSpan;
+        public get Timeout(): TimeSpan
+        {
+            return this._timeout;
+        } 
+        public set Timeout(value: TimeSpan)
+        {
+            this._timeout = value;
+        }
 
-        public DataHoraInicio: Date;
-        public AtivarProgresso: number;
-        public DataHoraUltimaAtividade: Date;
+        public get Erro(): Error
+        {
+            return this._erro;
+        }
+        public get DataHoraInicio(): Date
+        {
+            return this._dataHoraInicio;
+        }
+        public get DataHoraUltimaAtividade(): Date
+        {
+            return this._dataHoraUltimaAtividade;
+        }
 
-        public Erro: Erro;
+        public readonly EventoProgresso = new Evento<TProgressoEventArgs>(this);
+        public readonly EventoConcluido = new Evento<ResultadoTarefaFinalizadaEventArgs>(this);
+        public readonly EventoStatusAlterado = new Evento<StatusTarefaAlteradoEventArgs>(this);
 
-        public CallbackTarefaConcluida: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>;
-        public readonly EventoProgresso: Evento<TProgressoEventArgs>;
-        public readonly EventoStatusAlterado: Evento<StatusTarefaAlteradoEventArgs>;
-
-        public Argumento: any;
-
-        //#endregion
+        public readonly Argumento: any;
 
         public constructor(argumento: any = null)
         {
@@ -61,9 +78,7 @@
 
             this._progresso = 0;
             this._statusTarefa = EnumStatusTarefa.Aguardando;
-            this.EventoProgresso = new Evento<TProgressoEventArgs>(this);
-            this.EventoStatusAlterado = new Evento<StatusTarefaAlteradoEventArgs>(this);
-            this.Timeout = this.RetornarTimeout();
+            this._timeout = this.RetornarTimeout();
         }
 
         protected RetornarTimeout(): TimeSpan
@@ -72,44 +87,37 @@
         }
         //#region Métodos públicos 
 
-        public async IniciarAsync(callback: CallbackResultado<ResultadoTarefaFinalizadaEventArgs>)
+        public async IniciarAsync()
         {
-            this.CallbackTarefaConcluida = callback;
-
             if (this.Status === EnumStatusTarefa.Pausada)
             {
                 return;
             }
 
-            this.Status = EnumStatusTarefa.Executando;
-            await ThreadUtil.QuebrarAsync();
-            await this.ExecutarAsync();
-        }
-
-        public EnviarAsync(): Promise<void>
-        {
-            return new Promise<void>(resolver =>
+            return new Promise(resolver =>
             {
-                this.IniciarAsync(() =>
-                {
-                    resolver();
-                });
+                this.Resolver = resolver;
+                this.Status = EnumStatusTarefa.Executando;
+                this.ExecutarInternoAsync();
             });
         }
-         
+
         public FinalizarTarefa(erro: Error): void
         {
             this.DispensarTimeout();
-            this.Status = (u.ValidacaoUtil.IsDefinido(erro)) ? EnumStatusTarefa.Erro : EnumStatusTarefa.Finalizada;
-            if (u.ValidacaoUtil.IsDefinido(this.CallbackTarefaConcluida))
+            this._erro = erro;
+            const status = (u.ValidacaoUtil.IsDefinido(erro)) ? EnumStatusTarefa.Erro : EnumStatusTarefa.Finalizada;
+            this.Status = status;
+            const resultado = new ResultadoTarefaFinalizadaEventArgs(this, erro);
+            const resolver = this.Resolver;
+            if (u.ValidacaoUtil.IsDefinido(resolver))
             {
-                const callback = this.CallbackTarefaConcluida;
-                this.CallbackTarefaConcluida = null;
+                this.Resolver = null;
 
-                const resultado = new ResultadoTarefaFinalizadaEventArgs(this, erro);
                 resultado.UserState = this.Argumento;
-                callback(resultado);
+                resolver(resultado);
             }
+            this.EventoConcluido.Notificar(this, resultado);
         }
 
         //#region Progresso alterado
@@ -135,9 +143,8 @@
         public NotificarAtividade()
         {
             this.InicializarTimeout();
-            this.DataHoraUltimaAtividade = new Date();
+            this._dataHoraUltimaAtividade = new Date();
         }
-
 
         public PausarTarefa(): void
         {
@@ -210,7 +217,7 @@
 
         //#region Métodos abstratos
 
-        protected abstract ExecutarAsync(): void;
+        protected abstract ExecutarInternoAsync(): void;
 
         protected abstract Continuar(): void;
 
@@ -219,9 +226,7 @@
         public CancelarTarefa(): void
         {
             this.Status = t.EnumStatusTarefa.Cancelada;
-
             console.warn("Tarefa cancelada " + this.toString());
-
             this.FinalizarTarefa(null);
         }
 
