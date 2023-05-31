@@ -9,17 +9,11 @@ namespace Snebur.WebWorker
         private _isProcessando: boolean = false;
         private _isReciclarPedente: boolean = false;
         private Worker: Worker;
-        private Resolver: (r: IResultadoMagick) => void;
-        private IdTimeout: number = null;
-        private MensagemErro: string;
-
-        private __Worker_Message: (e: MessageEvent) => void;
-        private __Worker_Error: (e: ErrorEvent) => void;
-        private __Worker_MessageError: (e: MessageEvent) => void;
 
         private get IsReciclar(): boolean
         {
-            return this._isReciclarPedente || this.TotalProcessado > this.TotalProcessosReciclar;
+            return this._isReciclarPedente ||
+                this.TotalProcessado >= this.TotalProcessosReciclar;
         }
 
         public get UrlWorker(): string
@@ -42,19 +36,20 @@ namespace Snebur.WebWorker
             public readonly UrlBlobWorker: string,
             public readonly TotalProcessosReciclar: number)
         {
-            this.__Worker_Message = this.Worker_Message.bind(this);
-            this.__Worker_Error = this.Worker_Error.bind(this);
-            this.__Worker_MessageError = this.Worker_MessageError.bind(this);
+            //this.__Worker_Message = this.Worker_Message.bind(this);
+            //this.__Worker_Error = this.Worker_Error.bind(this);
+            //this.__Worker_MessageError = this.Worker_MessageError.bind(this);
         }
 
         public async ProcessarAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick | null>
         {
             if (this._isProcessando)
             {
+                this.LogErro(opcoes, "Processando");
                 DebugUtil.ThrowAndContinue("O Worker estava processando");
                 return null;
             }
-            window.clearInterval(this.IdTimeout);
+            /*window.clearInterval(this.IdTimeout);*/
 
             const identificadorMensagem = GuidUtil.RetornarNovoGuid();
             const memsnagem: IMensagemMagickWorker = {
@@ -69,14 +64,56 @@ namespace Snebur.WebWorker
 
             return new Promise(resolver =>
             {
-                this.Resolver = resolver;
+                /*this.Resolver = resolver;*/
 
                 this._isProcessando = true;
-                this.InicializarWorker();
+
+                const ontimeout = () =>
+                {
+                    this.LogErro(opcoes, `ontimeout`);
+                    resolver(null);
+                };
+
+                const idTimeout = window.setTimeout(ontimeout.bind(this), MagickWorkerCliente.TIMEOUT);
+
+                const worker = this.RetornarWorker();
+                worker.onmessage = (e) =>
+                {
+                    window.clearInterval(idTimeout);
+                    let resultado = e.data;
+                    const isSucesso = e.data != null && identificadorMensagem === (e.data as IResultadoMagickWorker).IdentificadorMensagem;
+
+                    if (!isSucesso)
+                    {
+                        resultado = null;
+                        this.LogErro(opcoes, `onmessage: ${JsonUtil.TrySerializar(e.data)}`);
+                    }
+
+                    this.TotalProcessado += 1;
+                    this.Finalizar(isSucesso);
+                    resolver(resultado);
+                };
+
+                worker.onmessageerror = (e) =>
+                {
+                    window.clearInterval(idTimeout);
+                    this.LogErro(opcoes, `onmessageerror: ${JsonUtil.TrySerializar(e.data)}. ${e}`);
+                    this.Finalizar(false);
+                    resolver(null);
+                };
+
+                worker.onerror = (e) =>
+                {
+                    window.clearInterval(idTimeout);
+                    this.LogErro(opcoes, `onerror: ${e.message}: \r\nArquivo:${e.filename}\r\n Linha: ${e.lineno}, Col:${e.colno}  ${u.ErroUtil.RetornarMensagemErro(e.error)}`);
+                    this.Finalizar(false);
+                    resolver(null);
+                };
+
                 this.IdentificadorMensagem = identificadorMensagem;
                 this.NomeArquivoOrigem = opcoes.NomeArquivoOrigem;
                 this.Worker.postMessage(memsnagem);
-                this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);
+                /*this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);*/
             });
         }
 
@@ -87,90 +124,49 @@ namespace Snebur.WebWorker
                 this._isReciclarPedente = true;
                 return;
             }
-            this.Worker?.terminate();
+            this.Dispose();
         }
 
-        private InicializarWorker()
+        private RetornarWorker()
         {
             if (this.IsReciclar || this.Worker === null)
             {
                 this.Dispose();
             }
 
-            this.Worker = new Worker(this.UrlWorker);
-            this.Worker.addEventListener("message", this.__Worker_Message);
-            this.Worker.addEventListener("error", this.__Worker_Error);
-            this.Worker.addEventListener("messageerror", this.__Worker_MessageError);
+            if (this.Worker == null)
+            {
+                this.Worker = new Worker(this.UrlWorker);
+            }
+            return this.Worker;
         }
 
-        private Worker_Message(e: MessageEvent)
+        private Finalizar(isSucesso: boolean)
         {
-            const isSucesso = e.data != null &&
-                !(e.data instanceof Error) &&
-                this.IdentificadorMensagem === (e.data as IResultadoMagickWorker).IdentificadorMensagem;
-
-            this.MensagemErro = isSucesso ? null : `Message: ${JSON.stringify(e.data)}`;
-            this.TotalProcessado += 1;
-            this.Finalizar(isSucesso, e.data);
-        }
-
-
-        private Worker_Error(e: ErrorEvent)
-        {
-            this.MensagemErro = `Error: ${e.message}. ${e.error}`;
-            this.Finalizar(false);
-        }
-
-        private Worker_MessageError(e: MessageEvent)
-        {
-            this.MensagemErro = "MessageError: " + e.data;
-            this.Finalizar(false);
-        }
-
-        private Worker_Timeout()
-        {
-            this.MensagemErro = "Timeout";
-            this.Finalizar(false);
-        }
-
-        private Finalizar(isSucesso: boolean, resultado: IResultadoMagick = null)
-        {
-            if (this.IsReciclar)
+            if (this.IsReciclar || !isSucesso)
             {
                 this.Dispose();
             }
+            this._isProcessando = false;
+        }
 
-            window.clearInterval(this.IdTimeout);
-
-            const resolver = this.Resolver;
-            if (resolver != null)
-            {
-                if (!isSucesso)
-                {
-                    DebugUtil.ThrowAndContinue(`Falha Worker ${this.Numero} : ${this.MensagemErro}, Arquivo ${this?.NomeArquivoOrigem}`);
-                }
-
-                this.Resolver = null;
-
-                this.MensagemErro = null;
-                this._isProcessando = false;
-                resolver(resultado);
-            }
+        private LogErro(opcoes: IOpcoesMagick, mensagem: string)
+        {
+            console.error(`Error MagickWorker ${this.Numero} - Arquivo: ${opcoes.NomeArquivoOrigem} - ${mensagem}`);
         }
 
         public Dispose(): void
         {
             if (this.Worker instanceof Worker)
             {
-                console.warn("Dispensando MagickWorkerCliente n " + this.Numero);
+                console.warn("Reciclando MagickWorkerCliente Thread " + this.Numero);
                 this.Worker.terminate();
-                this.Worker.removeEventListener("message", this.__Worker_Message);
-                this.Worker.removeEventListener("error", this.__Worker_Error);
-                this.Worker.removeEventListener("messageerror", this.__Worker_MessageError);
                 this.Worker = null;
                 this.TotalProcessado = 0;
                 delete this.Worker;
             }
         }
+
+
     }
 }

@@ -13,6 +13,7 @@
         {
             return this._totalThreads;
         }
+
         public get TotalProcessamentoReciclar(): number
         {
             return this._totalProcessamentoReciclar;
@@ -21,8 +22,8 @@
         private constructor(urlBlobWorker: string = null)
         {
             this.UrlBlobWorker = urlBlobWorker;
-            this._totalThreads = i.MagickInitUtil.RetornarTotalThreadsWorker();
-            this._totalProcessamentoReciclar = i.MagickInitUtil.RetornarTotalProcessamentoRecilar();
+            this._totalThreads = u.ProcessadorUtil.RetornarTotalThreadsWorker();
+            this._totalProcessamentoReciclar = u.ProcessadorUtil.RetornarTotalProcessamentoRecilar();
             console.warn(`CARREGAMENTO IMAGENS THREADS ${this._totalThreads} - RECICLAR ${this._totalProcessamentoReciclar} `);
 
             this.AtualizarThreads(this.TotalThreas);
@@ -56,9 +57,9 @@
                 const t = Stopwatch.StartNew();
                 const resultado = await workerCliente.ProcessarAsync(opcoes);
                  
-                if (resultado.IsSucesso)
+                if (resultado?.IsSucesso)
                 {
-                    console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} {} `);
+                    console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
                     isSucesso = true;
                     return resultado;
                 }
@@ -87,7 +88,8 @@
         {
             while (this.WorkersDisponivel.length === 0)
             {
-                await ThreadUtil.EsperarAsync(150);
+                console.error("Esperando Worker disponível");
+                await ThreadUtil.EsperarAsync(100);
             }
 
             const proximoWorker = this.WorkersDisponivel.shift();

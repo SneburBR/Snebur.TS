@@ -1,9 +1,7 @@
 ﻿
-const QUALIDADE_APRESENTACAO_MAGICK = 90;
-const QUALIDADE_IMPRESSAO_MAGICK = 70;
-
-
-
+const QUALIDADE_APRESENTACAO_MAGICK = 70;
+const QUALIDADE_IMPRESSAO_MAGICK = 90;
+ 
 interface IMagickInit
 {
     readonly UrlBlobMagick: string;
@@ -22,7 +20,8 @@ interface IOpcoesMagick
 {
     readonly NomeArquivoOrigem: string;
     /*readonly BufferWasm: ArrayBuffer;*/
-    readonly BytesOrigem: Uint8Array;
+    /*readonly BytesOrigem: Uint8Array;*/
+    readonly ArquivoOrigem: Blob;
     readonly IsConverterSRGB: boolean;
     readonly IsRemoverExif: boolean;
     readonly IsPngParaJpeg: boolean;

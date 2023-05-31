@@ -10,12 +10,22 @@
         }
 
         const processador = new MagickProcessador(mensagem.Opcoes, mensagem.MagickInit.BytesPerfilSRGB);
-        const resultado = await processador.ProcessarAsync();
-        (resultado as IResultadoMagickWorker).IdentificadorMensagem = mensagem.IdentificadorMensagem;
+        const resultado = await processador.ProcessarAsync() as IResultadoMagickWorker;
+        if (resultado instanceof Error)
+        {
+            throw resultado;
+        }
+
+        if (resultado == null)
+        {
+            throw new Error(`O resultado do processamento do  Worker não foi definido`);
+        }
+
+        resultado.IdentificadorMensagem = mensagem.IdentificadorMensagem;
         self.postMessage(resultado);
     }
     catch (erro)
     {
-        self.postMessage(erro);
+        self.reportError(erro);
     }
 });
