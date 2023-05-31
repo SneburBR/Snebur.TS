@@ -29,12 +29,12 @@
             }
         }
 
-        private static __RetornarConteudoBlobInternoAsync(url: string, callback: CallbackResultado<string | Blob | Erro>): void
+        private static __RetornarConteudoBlobInternoAsync(url: string, type: EnumMimetypeString = EnumMimetypeString.Bin, callback: CallbackResultado<string | Blob | Erro>): void
         {
             const xmlHttp = new XMLHttpRequest();
 
             xmlHttp.open("GET", url, true);
-            xmlHttp.setRequestHeader("Content-type", "application/octet-stream");
+            xmlHttp.setRequestHeader("Content-type", EnumMimetypeString.Bin );
             xmlHttp.responseType = "blob";
 
             xmlHttp.onreadystatechange = function ()
@@ -43,8 +43,8 @@
                 {
                     if (xmlHttp.status !== 200)
                     {
-                        const resposta: any = xmlHttp.response || xmlHttp.responseText;
-                        callback(resposta);
+                        /*const resposta: any = xmlHttp.response || xmlHttp.responseText;*/
+                        callback(new Erro(`Falha download ${url}`));
                         return;
                     }
 
@@ -55,13 +55,13 @@
                     }
                     if (xmlHttp.response instanceof ArrayBuffer)
                     {
-                        const blob = new Blob([xmlHttp.response], { type: "application/octet-stream" });
+                        const blob = new Blob([xmlHttp.response], { type: type });
                         callback(blob);
                         return;
                     }
                     if (xmlHttp.response instanceof Uint8Array)
                     {
-                        const blob = new Blob([xmlHttp.response.buffer], { type: "application/octet-stream" });
+                        const blob = new Blob([xmlHttp.response.buffer], { type: type });
                         callback(blob);
                         return;
                     }
@@ -243,11 +243,11 @@
             });
         }
 
-        public static RetornarConteudoBlobAsync(url: string): Promise<Blob | string | Error>
+        public static RetornarConteudoBlobAsync(url: string, mimeType?:EnumMimetypeString): Promise<Blob | string | Error>
         {
             return new Promise<Blob | string | Error>(resolver =>
             {
-                this.__RetornarConteudoBlobInternoAsync(url, function (resultado)
+                this.__RetornarConteudoBlobInternoAsync(url, mimeType, function (resultado)
                 {
                     if (resultado instanceof Error)
                     {
