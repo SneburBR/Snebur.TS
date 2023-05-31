@@ -131,18 +131,8 @@
                     (e: ProgressoEventArgs) =>
                     {
                         MagickInitUtil.NotificarProgresso(e);
-
                     });
 
-                if ($Configuracao.IsTeste)
-                {
-                    for (let i = 50; i < 100; i++)
-                    {
-                        MagickInitUtil.NotificarProgresso(new ProgressoEventArgs(i));
-                        await ThreadUtil.EsperarAsync(500);
-                    }
-                }
-                 
                 const zip = new JSZip();
                 await zip.loadAsync(bytes);
 

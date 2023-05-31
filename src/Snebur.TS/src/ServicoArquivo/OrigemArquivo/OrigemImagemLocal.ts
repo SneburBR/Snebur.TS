@@ -262,6 +262,9 @@ interface Window
 {
     __IS_USAR_CANVAS__: boolean;
     __IS_SALVAR_ARQUIVOS__: boolean;
+    __IS_SALVAR_ARQUIVOS__IMPRESSAO: boolean;
 }
+
 window.__IS_USAR_CANVAS__ = false;
 window.__IS_SALVAR_ARQUIVOS__ = false;
+window.__IS_SALVAR_ARQUIVOS__IMPRESSAO = false;

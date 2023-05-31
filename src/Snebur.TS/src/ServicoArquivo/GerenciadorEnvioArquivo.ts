@@ -2,10 +2,7 @@
 {
     export class GerenciadorEnvioArquivo extends Snebur.Tarefa.GerenciadorTarefa<BaseTarefaEnviarArquivo, ProgressoGerenciadorEnvioArquivoEventArgs>
     {
-        //private static readonly TEMPO_ATUALIZAR_PROGRESSO = 200;
-        //private static readonly TEMPO_ATUALIZAR_PROGRESSO_INTERVALO = 500;
-
-        private _velocidadeMedia: number = 0;
+                private _velocidadeMedia: number = 0;
 
         public IdentificadorLog: string;
         public ServicoLog: Snebur.Comunicacao.BaseServicoLogServicoArquivo;
@@ -88,38 +85,21 @@
             }
             return this._maximoTarefasSimultaneas;
         }
-        public override set MaximoTarefasSimultaneas(value: number)
-        {
-            super.MaximoTarefasSimultaneas = value;
-        }
-
-        /*private ExecutarProgressoDepois = new ExecutarDepois(this.AtualizarProgressoGerenciadorTarefaDepois.bind(this), GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO, GerenciadorEnvioArquivo.TEMPO_ATUALIZAR_PROGRESSO_INTERVALO);*/
 
         public static readonly TEMPO_MEDIDOR_VELOCIDADE_SEGUNDOS = 2;
         public readonly TempoIntervaloMedidorVelocidade = TimeSpan.FromSeconds(GerenciadorEnvioArquivo.TEMPO_MEDIDOR_VELOCIDADE_SEGUNDOS);
+
         public TotalBytesMedidorVelocidade: number = 0;
 
         public constructor()
         {
             super();
 
-            //this.DicionarioOrigemImagemLocal = new Dicionario<sa.OrigemImagemLocal, number>();
             this.ServicoLog = $Aplicacao.ServicoLogServicoArquivo;
-            //this.PrerenciaOrdemFila = Snebur.Tarefa.EnumPreferenciaOrdemFila.Primeiro;
-            /*this.MaximoTarefasSimultaneas = $Configuracao.IsDebug?  1 : 3;*/
-
-            this.MaximoTarefasSimultaneas = 2;
-            this.IntervaloExecutarProximaTarefa = TimeSpan.FromSeconds(0);
+            this._maximoTarefasSimultaneas = u.ProcessadorUtil.RetornarTotalThreadsWorker();
             this.Status = t.EnumStatusTarefa.Finalizada;
-            this.CalcularMaximoThreadsAsync();
         }
-
-        private async CalcularMaximoThreadsAsync()
-        {
-            //const resultado = await u.ProcessadorUtil.CalcularNotaProcessaadorAsync(false);
-            //const nota = resultado.Worker.Total / resultado.Worker.Tempo;
-        }
-
+ 
         protected override AtualizarProgressoGerenciadorTarefa(): void
         {
             const tarefasImagem = this.Tarefas.OfType(TarefaEnviarImagem).ToList();
@@ -425,9 +405,11 @@
         }
 
         private _bloqueio = false;
+        private IdLimparTarefas: number;
 
         public override async IniciarAsync()
         {
+            window.clearTimeout(this.IdLimparTarefas);
             while (this._bloqueio)
             {
                 await u.ThreadUtil.EsperarAsync(500);
@@ -442,21 +424,17 @@
             }
             this.InicializarMedidoVelocidadeAsync();
 
-            super.IniciarAsync(this.CallbackGerenciadorEnvioArquivo_Finalizado.bind(this));
-        }
+            await super.IniciarAsync();
 
-        public CallbackGerenciadorEnvioArquivo_Finalizado(provedor: any, e: t.ResultadoTarefaFinalizadaEventArgs): void
-        {
             this.DispensarMedidorVelocidade();
-            setTimeout(this.LimparTarefas.bind(this), 5000);
+           this.IdLimparTarefas = window.setTimeout(this.LimparTarefas.bind(this), 5000);
         }
-
+         
         private LimparTarefas(): void
         {
             if (this.IsFinalizado)
             {
                 this.TarefasEnviarImagemImpressao.AddRange(this.Finalizados.OfType(TarefaEnviarImagemImpressao));
-
                 this.Tarefas.Clear();
                 this.Finalizados.Clear();
             }
@@ -517,6 +495,7 @@
                 this.VelocidadeMedia = velocidade;
                 this.TotalBytesMedidorVelocidade = 0;
             }
+
             if (velocidade === 0)
             {
                 this.DispensarMedidorVelocidade();
@@ -547,7 +526,7 @@
                         this);
                 }
 
-                await tarefa.EnviarAsync();
+                await tarefa.IniciarAsync();
 
                 if (typeof callbackProgresso === "function")
                 {
@@ -560,22 +539,20 @@
         public async EnviarImagemImpressaoAsync(imagem: d.IImagem, dimensaoImpressao: Dimensao, isProcessarImagem: boolean, callbackProgresso?: Action1<ProgressoEventArgs>): Promise<void>
         {
             const tarefa = new TarefaEnviarImagemImpressao(this, imagem, dimensaoImpressao, isProcessarImagem);
-            if (typeof callbackProgresso === "function")
+
+            const funcaoProgressoAlterado = (provedor: any, e: ProgressoEventArgs) =>
             {
-                const funcaoProgressoAlterado = (provedor: any, e: ProgressoEventArgs) =>
+                if (typeof callbackProgresso === "function")
                 {
                     const processo = u.NormalizacaoUtil.NormalizarProgresso(e.Progresso);
                     callbackProgresso(new ProgressoEventArgs(processo));
-                };
+                }
+            };
 
-                tarefa.EventoProgresso.AddHandler(funcaoProgressoAlterado, null);
-                await tarefa.EnviarAsync();
-                tarefa.EventoProgresso.RemoveHandler(funcaoProgressoAlterado, null);
-            }
-            else
-            {
-                await tarefa.EnviarAsync();
-            }
+            tarefa.EventoProgresso.AddHandler(funcaoProgressoAlterado, null);
+            await tarefa.IniciarAsync();
+            tarefa.EventoProgresso.RemoveHandler(funcaoProgressoAlterado, null);
+
         }
 
         public async EnviarArquivoAsync(entidadeArquivo: d.IArquivo, callbackProgresso?: Action1<ProgressoEventArgs>): Promise<void> 
@@ -590,12 +567,12 @@
                 };
 
                 tarefa.EventoProgresso.AddHandler(funcaoProgressoAlterado, null);
-                await tarefa.EnviarAsync();
+                await tarefa.IniciarAsync();
                 tarefa.EventoProgresso.RemoveHandler(funcaoProgressoAlterado, null);
             }
             else
             {
-                await tarefa.EnviarAsync();
+                await tarefa.IniciarAsync();
             }
         }
 

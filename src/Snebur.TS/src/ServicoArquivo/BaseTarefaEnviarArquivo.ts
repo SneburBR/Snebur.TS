@@ -150,7 +150,7 @@
             this.DescricaoStatus = this.RetornarDescricaoTarefa(e.Status);
         }
 
-        protected ExecutarAsync()
+        protected ExecutarInternoAsync()
         {
             this.IniciarEnvioAsync();
         }

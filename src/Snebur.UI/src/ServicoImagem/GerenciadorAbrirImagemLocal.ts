@@ -7,9 +7,7 @@ namespace Snebur.UI
         public readonly TarefasVirtualizacao = new ListaObservacao<TarefaAbrirImagemLocal>();
         public readonly CarregamentosAsync = new ListaObservacao<TarefaAbrirImagemLocal>();
 
-
         //private  readonly Tarefas
-
         public get TotalVirtualizacao(): number
         {
             return this.TarefasVirtualizacao.Count;
@@ -27,17 +25,11 @@ namespace Snebur.UI
         {
             return this._maximoTarefasSimultaneas;
         }
-        public override set MaximoTarefasSimultaneas(value: number)
-        {
-            super.MaximoTarefasSimultaneas = value;
-        }
 
         public constructor()
         {
             super();
-
-            //this.PreferenciaOrdemFila = t.EnumPreferenciaOrdemFila.Meio;
-            this.MaximoTarefasSimultaneas = 3;
+            this._maximoTarefasSimultaneas = u.ProcessadorUtil.RetornarTotalThreadsWorker();
         }
 
         protected override RetornarChaveTarefa(tarefa: TarefaAbrirImagemLocal): string
@@ -48,13 +40,6 @@ namespace Snebur.UI
         protected override ExecutarProximaTarefa(): void
         {
             super.ExecutarProximaTarefa();
-        }
-
-        public override IniciarAsync(): Promise<void>;
-        public override IniciarAsync(): Promise<void>;
-        public override async IniciarAsync(callback: CallbackResultado<t.ResultadoTarefaFinalizadaEventArgs> = null)
-        {
-            await super.IniciarAsync(callback);
         }
 
         public async AguardarCarregamentoImagensAsync()
@@ -81,32 +66,31 @@ namespace Snebur.UI
             {
                 tarefa.CallbacksCancelarVirtualizacao.Add(callbackCanceladoVirtualizacao);
             }
-
             this.IniciarAsync();
         }
 
-        public AbrirImagemAsync(imagem: d.IImagem): Promise<void>
+        public async AbrirImagemAsync(imagem: d.IImagem): Promise<void>
         {
-            return new Promise<void>(reolver =>
+            const tarefa = new TarefaAbrirImagemLocal(imagem);
+            this.CarregamentosAsync.Add(tarefa);
+            try
             {
-                const tarefa = new TarefaAbrirImagemLocal(imagem);
-                this.CarregamentosAsync.Add(tarefa);
-                tarefa.IniciarAsync(() =>
-                {
-                    this.CarregamentosAsync.Remove(tarefa);
-                    reolver();
-                });
-            });
-
+                await tarefa.IniciarAsync();
+            }
+            finally
+            {
+                this.CarregamentosAsync.Remove(tarefa);
+            }
         }
 
-        public AbrirImagemNormal(imagem: d.IImagem): void
+        public AbrirImagemNormal(imagem: d.IImagem, callbackImagemCarregada: () => void): void
         {
             if (imagem.Id === 0)
             {
                 throw new Erro("A imagem não foi salva");
             }
-            this.RetornarTarefaAbrirImagem(imagem);
+            const tarefa = this.RetornarTarefaAbrirImagem(imagem);
+            tarefa.EventoConcluido.AddHandler(callbackImagemCarregada, this);
             this.IniciarAsync();
         }
 

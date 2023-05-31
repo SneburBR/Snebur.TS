@@ -1,42 +1,42 @@
-﻿let isMagickCarregado = false;
-let isInicilizando = false;
+﻿self.__isMagickCarregado = false;
+self.__isInicilizando = false;
 
 async function inicializarMagickAsync(mensagem: IMensagemMagickWorker): Promise<boolean>
 {
-    if (isInicilizando)
+    if (self.__isMagickCarregado)
     {
-        while (isInicilizando)
+        return true;
+    }
+
+    if (self.__isInicilizando)
+    {
+        while (self.__isInicilizando)
         {
+            console.error("MAGICK SENDO INICIALIZADO");
             await daley(100);
         }
     }
 
-    if (!isMagickCarregado)
+    if (!self.__isMagickCarregado)
     {
-        isInicilizando = true;
+        self.__isInicilizando = true;
+        const url = self.URL.createObjectURL(mensagem.MagickInit.BlobWasm);
         try
         {
             importScripts(mensagem.MagickInit.UrlBlobMagick);
-
-            /*const bytes = new Uint8Array(mensagem.BufferWasm);*/
-            /*const blobWasm = new Blob([mensagem.BufferWasm], { type: "application/wasm" });*/
-            /*const url = self.URL.createObjectURL(blobWasm);*/
-
-            const url = self.URL.createObjectURL(mensagem.MagickInit.BlobWasm);
-
             await MagickWasm.initializeImageMagick(url);
-            /*await MagickWasm.initializeImageMagick("/magick/magick.wasm");*/
-            self.URL.revokeObjectURL(url);
+           
             if (MagickWasm.Magick.imageMagickVersion != null)
             {
-                isMagickCarregado = true;
+                self.__isMagickCarregado = true;
                 console.log("Magick worker Carregado v:" + MagickWasm.Magick.imageMagickVersion);
                 return true;
             }
         }
         finally
         {
-            isInicilizando = false;
+            self.URL.revokeObjectURL(url);
+            self.__isInicilizando = false;
         }
         return false;
     }
@@ -46,4 +46,10 @@ async function inicializarMagickAsync(mensagem: IMensagemMagickWorker): Promise<
 async function daley(timeout: number)
 {
     return new Promise(r => setTimeout(r, timeout));
+}
+
+interface WorkerGlobalScope
+{
+    __isMagickCarregado: boolean;
+    __isInicilizando: boolean;
 }

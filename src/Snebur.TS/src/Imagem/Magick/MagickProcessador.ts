@@ -11,10 +11,15 @@
     {
         try
         {
-            const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura));
-            const maiorDimensao = maiorRedimensionamento[0];
+            const maiorRedimensionamento = this.Opcoes.Redimensinamentos.sort((a, b) => (b.Dimensao.Largura * b.Dimensao.Altura) - (a.Dimensao.Largura * b.Dimensao.Largura))[0];
+            const maiorDimensao = maiorRedimensionamento.Dimensao;
             const settings = new MagickWasm.MagickReadSettings();
-            const dimensao = `${maiorDimensao.Dimensao.Largura}x${maiorDimensao.Dimensao.Altura}`;
+
+            const lado = maiorRedimensionamento.TamanhoImagem === EnumTamanhoImagem.Impressao ?
+                Math.max(maiorDimensao.Largura, maiorDimensao.Altura) :
+                Math.min(maiorDimensao.Largura, maiorDimensao.Altura);
+
+            const dimensao = `${lado}x${lado}`;
             settings.setDefine(
                 MagickWasm.MagickFormat.Jpeg,
                 "size",

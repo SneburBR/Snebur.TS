@@ -75,7 +75,11 @@
             {
                 if (erro instanceof Error)
                 {
-                    return erro.message;
+                    if (erro.stack != null)
+                    {
+                        return `${erro.message} -  stack: ${erro.stack}`;
+                    }
+                    return `${erro.message}`;
                 }
                 else
                 {

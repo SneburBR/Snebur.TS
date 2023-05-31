@@ -27,7 +27,7 @@
 
         //#region métodos sobrescritos
 
-        protected async ExecutarAsync() 
+        protected async ExecutarInternoAsync() 
         {
             let erro: Error = null;
             try
