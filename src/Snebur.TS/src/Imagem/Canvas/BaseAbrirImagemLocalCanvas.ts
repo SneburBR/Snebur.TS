@@ -17,6 +17,7 @@
             canvas.height = dimensao.Altura;
             const contexto = canvas.getContext("2d");
             contexto.drawImage(imagem, 0, 0, dimensao.Largura, dimensao.Altura);
+         
             const imageData = contexto.getImageData(0, 0, canvas.width, canvas.height);
             return [canvas, imageData];
         }

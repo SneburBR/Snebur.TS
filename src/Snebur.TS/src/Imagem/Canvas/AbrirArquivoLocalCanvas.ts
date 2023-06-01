@@ -35,17 +35,23 @@
                 return null;
             }
 
+            const larguraImagemOrigem = imagem.naturalWidth;
+            const alturaImagemOrigem = imagem.naturalHeight;
+
             const dimensaoCanvas = DimensaoUtil.RetornarDimencaoUniformeDentro(
                 imagem.naturalWidth,
                 imagem.naturalHeight,
                 dimensao.Largura, dimensao.Altura);
 
             const canvas = super.RetornarCanvas(imagem, dimensaoCanvas);
+            u.ImagemUtil.LimparElementoImagem(imagem);
+
             const blob = await this.RetornarBlobAsync(canvas, qualidade, mimeType);
+            u.ImagemUtil.LimparCanvas(canvas);
 
             return {
-                LarguraImagemOrigem: imagem.naturalWidth,
-                AlturaImagemOrigem: imagem.naturalHeight,
+                LarguraImagemOrigem: larguraImagemOrigem,
+                AlturaImagemOrigem: alturaImagemOrigem,
                 Url: window.URL.createObjectURL(blob),
             };
         }

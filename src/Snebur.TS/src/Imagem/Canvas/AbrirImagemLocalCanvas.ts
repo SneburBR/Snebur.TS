@@ -10,7 +10,7 @@
             return this.OrigemImagemLocal.Imagem;
         }
 
-        private get DimensaoBase():IDimensao
+        private get DimensaoBase(): IDimensao
         {
             return {
                 Largura: ConstantesImagemApresentacao.LARGURA_IMAGEM_GRANDE,
@@ -47,7 +47,7 @@
             }
         }
 
-        private async AbrirImagemAsync(imagemAtual:HTMLImageElement)
+        private async AbrirImagemAsync(imagemAtual: HTMLImageElement)
         {
             const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
             const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
@@ -62,7 +62,7 @@
                 tamanhoImagem);
 
             let canvas = super.RetornarCanvas(imagemAtual, dimensaoApresentacao);
-
+            u.ImagemUtil.LimparElementoImagem(imagemAtual);
 
             const tamanhos = this.TamanhosImagem;
             /*tamanhos.Remove(EnumTamanhoImagem.Grande);*/
@@ -76,7 +76,9 @@
 
                 if (tamanhoImagem !== EnumTamanhoImagem.Grande)
                 {
+                    const canvasTemp = canvas;
                     canvas = super.RetornarCanvas(canvas, dimensaoApresentacao);
+                    u.ImagemUtil.LimparCanvas(canvasTemp);
                 }
 
                 const blob = await this.RetornarBlobAsync(canvas, qualidade, mimeType);
@@ -84,14 +86,14 @@
                     tamanhoImagem,
                     blob,
                     mimeType);
-  
-                imagensCarregada.Add(tamanhoImagem, cache);
 
+                imagensCarregada.Add(tamanhoImagem, cache);
                 await this.OrigemImagemLocal.AtualizarDimensaoApresentacao(tamanhoImagem, dimensaoApresentacao);
             }
+            u.ImagemUtil.LimparCanvas(canvas);
             return imagensCarregada;
         }
-          
+
 
         public override Dispose(): void
         {
