@@ -11,7 +11,8 @@
 
         private static readonly TEMPO_MAXIMO_CARREGAR_FONTES_ICONE = 30000;
         private static readonly FONTE_ICONES = "24px 'Material Icons'"
-
+        protected readonly NomeElementoProgressoCarregandoAplicacao: string = "sn-progresso-carregando-aplicacao";
+        protected readonly NomeElementoCarregandoAplicacao: string = "sn-carregando-aplicacao";
         //#endregion
 
         //#region Propriedades 
@@ -84,7 +85,9 @@
             this.RegistrarIdElementoCorpo();
 
             await super.InicializarAsync();
+            this.IncrementarProcessoCarregandoAplicacao();
             await this.CarregarFonteIconesAsync();
+            this.IncrementarProcessoCarregandoAplicacao();
 
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
             {
@@ -112,9 +115,13 @@
             console.log(" ANTES DE CARREGAR O DOCUMENTO PRINCIPAL");
 
             await this.InicializarRotasAsync();
+            this.IncrementarProcessoCarregandoAplicacao();
             await this.AntesInicializarDocumentoPrincipalAsync();
+            this.IncrementarProcessoCarregandoAplicacao();
             this.InicializarDocumentoPrincipal();
+            this.IncrementarProcessoCarregandoAplicacao();
             await this.DepoisInicializarDocumentoPrincipalAsync();
+            this.IncrementarProcessoCarregandoAplicacao();
         }
 
         protected NotificarUsuarioAnonimoNaoSuportado()
@@ -131,6 +138,15 @@
         protected async DepoisInicializarDocumentoPrincipalAsync(): Promise<void>
         {
             //pode ser sobrescrito
+            const elmementoCarregando = document.getElementById(this.NomeElementoCarregandoAplicacao);
+            if (elmementoCarregando != null)
+            {
+                elmementoCarregando.style.opacity = "0";
+                elmementoCarregando.style.visibility = "hidden";
+                await ThreadUtil.EsperarAsync(200);
+                elmementoCarregando.remove();
+            }
+
         }
 
         public override RetornarBarraEnvio(documentoPrincipal: DocumentoPrincipal): BarraEnvioArquivos
@@ -477,7 +493,7 @@
 
         //#region Ocupar
 
-        public override get IsOcupado():boolean
+        public override get IsOcupado(): boolean
         {
             return this.DocumentoPrincipal?.IsOcupado ?? false;
         }
@@ -491,7 +507,7 @@
         {
             this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
         }
-         
+
         public override TituloOcupado(titulo: string): void
         {
             return this.DocumentoPrincipal?.TituloOcupado(titulo);
@@ -524,6 +540,18 @@
         //    this._isObservacaoHistoricoAtiva = false;
         //}
         //#endregion
+
+        private _progressoCarregandoAplicacao = 90;
+
+        protected IncrementarProcessoCarregandoAplicacao()
+        {
+            const divProgresso = document.getElementById(this.NomeElementoProgressoCarregandoAplicacao);
+            if (divProgresso != null)
+            {
+                this._progressoCarregandoAplicacao = Math.min(this._progressoCarregandoAplicacao += 1, 100);
+                divProgresso.innerHTML = `Aguarde carregando ${this._progressoCarregandoAplicacao}%`;
+            }
+        }
     }
 
 }
