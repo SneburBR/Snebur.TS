@@ -410,7 +410,7 @@
         }
 
 
-        public static LimarCanvas(canvas: HTMLCanvasElement)
+        public static LimparCanvas(canvas: HTMLCanvasElement)
         {
             const contexto = canvas.getContext("2d");
 

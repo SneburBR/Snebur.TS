@@ -15,7 +15,7 @@ namespace Snebur.UI
             const ctxOrigem = canvasOrigem.getContext("2d");
             const imageDataOrigem = ctxOrigem.getImageData(0, 0, canvasOrigem.width, canvasOrigem.height);
 
-            u.ImagemUtil.LimarCanvas(canvasOrigem);
+            u.ImagemUtil.LimparCanvas(canvasOrigem);
             //dimensaoFoto = RecorteUtil.NormalizarDimensaoFoto(dimensaoFoto,
             //    imageDataOrigem.width,
             //    imageDataOrigem.height);

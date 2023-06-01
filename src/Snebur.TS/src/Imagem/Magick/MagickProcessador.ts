@@ -76,9 +76,7 @@
                 MagickWasm.FilterType.Hermite;
 
             imageMagick.interpolate = MagickWasm.PixelInterpolateMethod.Undefined;
-
             imageMagick.quality = isImpressao ? QUALIDADE_APRESENTACAO_MAGICK : QUALIDADE_IMPRESSAO_MAGICK;
-
 
             const isSalvarJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
                 imageMagick.format === MagickWasm.MagickFormat.Jpg ||

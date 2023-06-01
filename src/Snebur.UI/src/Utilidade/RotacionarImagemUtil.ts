@@ -108,7 +108,7 @@
 
             const imagemDataDestino = RotacionarImagemUtil.RotacionarImageData(imagemDataOrigem, rotacao);
 
-            u.ImagemUtil.LimarCanvas(canvasOrigem);
+            u.ImagemUtil.LimparCanvas(canvasOrigem);
 
             const canvasDestino = document.createElement("canvas");
             canvasDestino.width = imagemDataDestino.width;

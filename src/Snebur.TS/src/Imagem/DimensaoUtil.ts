@@ -61,22 +61,22 @@
             if (largura > altura)
             {
                 novaLargura = larguraRecipiente;
-                novaAltura = altura * novaLargura / largura;
+                novaAltura = altura * (novaLargura / largura);
                 if (novaAltura < alturaRecipiente)
                 {
                     novaAltura = alturaRecipiente;
-                    novaLargura = largura * novaAltura / altura;
+                    novaLargura = largura * (novaAltura / altura);
                 }
             }
             else if (altura > largura)
             {
                 novaAltura = alturaRecipiente;
-                novaLargura = largura * novaAltura / altura;
+                novaLargura = largura * (novaAltura / altura);
 
                 if (novaLargura < larguraRecipiente)
                 {
                     novaLargura = larguraRecipiente;
-                    novaAltura = altura * novaLargura / largura;
+                    novaAltura = altura * (novaLargura / largura);
                 }
             }
             else if (largura === altura)
@@ -86,8 +86,8 @@
             }
             if (!isDecimal)
             {
-                novaLargura = u.ConverterUtil.ParaInteiro(novaLargura);
-                novaAltura = u.ConverterUtil.ParaInteiro(novaAltura);
+                novaLargura = Math.round(novaLargura);
+                novaAltura = Math.round(novaAltura);
             }
 
             novaLargura = Math.max(novaLargura, 0);
@@ -104,7 +104,7 @@
             };
         }
 
-        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal?: boolean, isAumentar?:boolean): Dimensao
+        public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal?: boolean, isAumentar?: boolean): Dimensao
         public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean, isAumentar: boolean, isTipar: false): IDimensao
         public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean, isAumentar: boolean, isTipar: true): Dimensao
         public static RetornarDimencaoUniformeDentro(largura: number, altura: number, larguraRecipiente: number, alturaRecipente: number, isDecimal: boolean = true, isAumentar: boolean = true, isTipar: boolean = true): IDimensao
@@ -116,23 +116,23 @@
             {
                 //IMAGEM NA HORIZONTAL
                 novaLargura = larguraRecipiente;
-                novaAltura = altura * novaLargura / largura;
+                novaAltura = altura * (novaLargura / largura);
                 if (novaAltura > alturaRecipente)
                 {
                     novaAltura = alturaRecipente;
-                    novaLargura = largura * novaAltura / altura;
+                    novaLargura = largura * (novaAltura / altura);
                 }
             }
             else if (altura > largura)
             {
                 //IMAGEM NA VERTICAL
                 novaAltura = alturaRecipente;
-                novaLargura = largura * novaAltura / altura;
+                novaLargura = largura * (novaAltura / altura);
 
                 if (novaLargura > larguraRecipiente)
                 {
                     novaLargura = larguraRecipiente;
-                    novaAltura = altura * novaLargura / largura;
+                    novaAltura = altura * (novaLargura / largura);
                 }
             }
             else if (largura === altura)
@@ -149,8 +149,8 @@
             }
             if (!isDecimal)
             {
-                novaLargura = u.ConverterUtil.ParaInteiro(novaLargura);
-                novaAltura = u.ConverterUtil.ParaInteiro(novaAltura);
+                novaLargura = Math.round(novaLargura);
+                novaAltura = Math.round(novaAltura);
             }
 
             novaLargura = Math.max(novaLargura, 0);
@@ -162,10 +162,9 @@
             }
 
             return {
-                Largura: largura,
-                Altura: altura
+                Largura: novaLargura,
+                Altura: novaAltura
             };
-
         }
 
         public static RetornarOrientacao(dimensao: IDimensao): EnumOrientacao
@@ -222,7 +221,6 @@
 
                     throw new Erro("Orientação não suportada");
             }
-
         }
 
         private static RetornarNormalizarOrientacao(dimensaoOuOrientacao: d.IDimensao | d.EnumOrientacao)

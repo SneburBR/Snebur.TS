@@ -56,7 +56,12 @@
             {
                 const t = Stopwatch.StartNew();
                 const resultado = await workerCliente.ProcessarAsync(opcoes);
-                 
+
+                if (opcoes.Redimensinamentos.Any(x => x.TamanhoImagem === EnumTamanhoImagem.Impressao))
+                {
+                    workerCliente.Reciclar();
+                }
+
                 if (resultado?.IsSucesso)
                 {
                     console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);

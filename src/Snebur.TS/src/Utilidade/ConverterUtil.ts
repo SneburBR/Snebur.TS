@@ -208,7 +208,7 @@
         {
             if (typeof valor === "number" && !isNaN(valor)) 
             {
-                return parseInt(Math.round(valor));
+                return Math.round(valor);
             }
 
             if (typeof valor === "boolean")
@@ -252,7 +252,7 @@
             return Math.round(valorTipado * 1000) / 1000;
         }
 
-        private static readonly EXPRESSAO_FALSO = /^(?:f(?:alse)?|no?|0+)$/i;
+        /*private static readonly EXPRESSAO_FALSO = /^(?:f(?:alse)?|no?|0+)$/i;*/
 
         public static ParaBoolean(valor: any): boolean
         {
@@ -271,6 +271,7 @@
             {
                 return false;
             }
+
             if (typeof valor === "string")
             {
                 valor = valor.trim().toLocaleLowerCase();
@@ -278,12 +279,14 @@
                 if (valor === "false" ||
                     valor === "" ||
                     valor === "0" ||
+                    valor === "-1" ||
                     valor === "no" ||
-                    valor === "off")
+                    valor === "off" ||
+                    valor === "nao" ||
+                    valor === "não")
                 {
                     return false;
                 }
-                return true;
             }
             return true;
 
@@ -654,29 +657,7 @@
         {
             return (valor) ? 1 : 0;
         }
-
-        //public static ConverterParaTimeSpan(obj: string): TimeSpan
-        //{
-        //    if (u.ValidacaoUtil.IsHora(obj))
-        //    {
-        //        let partes = obj.split(":");
-
-        //        let horas = ConverterUtil.ParaNumero(partes[0]);
-        //        let minutos = ConverterUtil.ParaNumero(partes[1]);
-        //        let segundos = (partes.length == 3) ? ConverterUtil.ParaNumero(partes[2]) : 0;
-        //        let totalMinutos = horas * 60 + minutos + (segundos / 60);
-        //        return TimeSpan.FromMinutes(totalMinutos);
-        //    }
-
-        //    if (u.ValidacaoUtil.IsNumber(obj, true))
-        //    {
-        //        return TimeSpan.FromMinutes(ConverterUtil.ParaNumero(obj));
-        //    }
-
-        //    throw new Erro("Formato não suportado");
-
-
-
+         
         private static NormalizarPontosVirgula(valor: string): string
         {
             const posicaoPonto = valor.lastIndexOf(".");
@@ -742,9 +723,6 @@
             const a = parseInt(strA, 16);
 
             return ConverterUtil.RetornarRgbaCorInterno(r, g, b, a);
-
-
-            //return null;
         }
 
         private static RetornarRgbaCorInterno(red: number, green: number, blue: number, alpha: number): string
@@ -813,6 +791,4 @@
             return valor;
         }
     }
-
-
 }

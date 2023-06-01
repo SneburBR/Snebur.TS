@@ -560,7 +560,9 @@
     <TypeScriptCompile Include="src\Worker\InformacaoImagemWorker.ts" />
     <TypeScriptCompile Include="src\Worker\JpegDecoder.ts" />
     <TypeScriptCompile Include="src\Worker\Magick\GerenciadorMagickWorker.ts" />
+    <None Include="src\Worker\Magick\MagickCliente.bkp.2" />
     <TypeScriptCompile Include="src\Worker\Magick\MagickCliente.ts" />
+    <None Include="src\Worker\Magick\MagickCliente.ts.bkp" />
     <TypeScriptCompile Include="src\Worker\SalvarImagem.ts" />
     <TypeScriptCompile Include="src\Worker\SalvarJpeg.ts" />
     <TypeScriptCompile Include="src\Worker\SalvarPneg.ts" />
