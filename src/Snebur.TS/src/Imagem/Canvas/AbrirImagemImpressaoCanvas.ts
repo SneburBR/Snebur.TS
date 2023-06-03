@@ -14,8 +14,7 @@
 
         public async RetornarArrayBufferAsync(): Promise<ArrayBuffer>
         {
-            const url = this.ArquivoLocal.UrlBlob;
-            const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(url, true);
+            const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
             if (imagem == null)
             {
                 return null;

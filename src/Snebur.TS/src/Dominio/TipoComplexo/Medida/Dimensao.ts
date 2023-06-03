@@ -235,7 +235,7 @@
         /**Converter dimensão para impressão, padrão 300dpi */
         public ParaImpressao(): Dimensao
         {
-            return this.ParaPixels(MedidaUtil.DPI_IMPRESSAO_PADRAO);
+            return this.ParaPixels(MedidaUtil.DPI_IMPRESSAO);
         }
 
         public ParaCentimetros(dpi: number): Dimensao

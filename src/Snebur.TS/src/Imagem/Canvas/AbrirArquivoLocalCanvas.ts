@@ -24,12 +24,11 @@
 
         public async ProcessarInternoAsync(): Promise<IResultadoCanvas>
         {
-            const url = this.ArquivoLocal.UrlBlob;
             const dimensao = this.Dimensao;
             const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
             const mimeType = this.RetornarMimeType();
 
-            const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(url, true);
+            const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
             if (!(imagem instanceof HTMLImageElement))
             {
                 return null;

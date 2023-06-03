@@ -499,7 +499,7 @@
                     {
                         if ($Configuracao.IsDebug)
                         {
-                            throw new Error(`Item '${nome}' ja nomerado, isso pode acontecer, porem deve ser evitado`);
+                            throw new Error(`Item '${nome}' já nomeados, isso pode acontecer, porem deve ser evitado`);
                         }
                         //substituir nome
                         destino.DicionariosObjetosNomeados.AtribuirItem(nome, objeto);
@@ -578,19 +578,13 @@
             return this.ControlePai;
         }
 
-
-        private DispensarObjetosNomeados()
+        private DispensarObjetosNomeados(isDeletar: boolean = true)
         {
-            if (this.DicionariosObjetosNomeados != null)
+            for (const chave of this.DicionariosObjetosNomeados.Chaves)
             {
-                for (const chave of this.DicionariosObjetosNomeados.Chaves)
-                {
-                    delete (this as any)[chave];
-                }
-                this.DicionariosObjetosNomeados?.Clear();
+                delete (this as any)[chave];
             }
-            (this as any).DicionariosObjetosNomeados = undefined;
-            delete (this as any).DicionariosObjetosNomeados;
+            this.DicionariosObjetosNomeados.Clear();
         }
 
         //#endregion
@@ -604,8 +598,7 @@
         {
             this.Elemento?.blur();
         }
-
-
+         
         //#region Debug e
 
         protected NomeAlterado(): void

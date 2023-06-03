@@ -1,14 +1,33 @@
-﻿
+﻿const DPI_IMPRESSAO_PADRAO = 300;
+
 namespace Snebur.Utilidade
 {
     export class MedidaUtil
     {
-        public static DPI_IMPRESSAO_PADRAO: number = 300;
-        public static POLEGADA: number = 2.54;
+        private static __DPI_IMPRESSAO: number = DPI_IMPRESSAO_PADRAO;
+        public static readonly POLEGADA: number = 2.54;
+        public static get DPI_IMPRESSAO(): number
+        {
+            return this.__DPI_IMPRESSAO;
+        }
+
+        public static SetDpiImpressao(dpiImpressao: number)
+        {
+            if (!ValidacaoUtil.IsNumber(dpiImpressao))
+            {
+                console.error(`DPI de impressão inválido ${dpiImpressao}`);
+                return;
+            }
+            if (dpiImpressao < 200)
+            {
+                console.error(`O DPI '${dpiImpressao}'' de impressão deve ser superior 200`);
+            }
+            MedidaUtil.__DPI_IMPRESSAO = dpiImpressao;
+        }
 
         public static RetornarPixelsImpressao(medidaEmCentimetros: number): number
         {
-            return MedidaUtil.ParaPixels(medidaEmCentimetros, MedidaUtil.DPI_IMPRESSAO_PADRAO);
+            return MedidaUtil.ParaPixels(medidaEmCentimetros, MedidaUtil.DPI_IMPRESSAO);
         }
 
         public static RetornarPixelsVisualizacao(medidiaEmCentimetros: number, dpiVisualizacao: number): number
@@ -47,7 +66,7 @@ namespace Snebur.Utilidade
             if (isGerarLogErro &&
                 !Util.IgualSensivel(dpiX, dpiY, 0.1))
             {
-                console.error("Os DPI X e Y são diferente");
+                console.error(`DPI X '${dpiX}' e diferente do Y '${dpiY}', fora da margem tolerância: ${0.1}`);
             }
 
             if (isPrefeirMenor)
@@ -74,7 +93,7 @@ namespace Snebur.Utilidade
                 Largura: largura,
                 Altura: altura
             };
-            
+
         }
 
         public static RetornarDimensaoVisualizacao(dimensaoEmCentimetros: IDimensao, dpi: number): d.Dimensao
@@ -108,3 +127,4 @@ namespace Snebur.Utilidade
         }
     }
 }
+

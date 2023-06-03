@@ -29,8 +29,7 @@
         {
             try
             {
-                const url = this.ArquivoLocal.UrlBlob;
-                const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(url, true, this.DimensaoBase);
+                const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
                 if (!(imagem instanceof HTMLImageElement))
                 {
                     return null;

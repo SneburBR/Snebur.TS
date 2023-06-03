@@ -379,6 +379,7 @@
         }
 
 
+        public static IsUrlBlob(url: any): url is string
         public static IsUrlBlob(url: string): boolean
         {
             if (ValidacaoUtil.IsString(url))

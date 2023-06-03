@@ -1,10 +1,8 @@
 ﻿namespace Snebur
 {
-    export interface IInformacaoImagem
+    export interface IInformacaoImagem extends IDimensao
     {
         IsImagem: boolean;
-        Largura: number;
-        Altura: number;
         NomeArquivo: string;
         TotalBytes: number;
         Type?: string;

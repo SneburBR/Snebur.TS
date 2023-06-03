@@ -9,12 +9,8 @@
             rotacao: EnumRotacaoImagem,
             formatoImagem: EnumFormatoImagem): Promise<string>
         {
-            const imagem = await ImagemLocalUtil.RetornarElementoImagemCarregadaAsync(urlImagem, false);
-            //if (SistemaUtil.IsAndroidOrIOS)
-            //{
+            const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(urlImagem, false);
             return await RotacionarImagemUtil.RotacionarImagemUsingCanvasAsync(imagem, rotacao, formatoImagem);
-            //}
-            //return await RotacionarImagemUtil.RotacionarImagemUsingBuffferAsync(imagem, angulo);
         }
 
         public static async RotacionarImagemUsingCanvasAsync(

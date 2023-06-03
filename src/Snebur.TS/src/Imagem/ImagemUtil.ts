@@ -86,10 +86,10 @@
                 {
                     const isIcone = !ImagemUtil.IsFormatoImagemSuportado(info.FormatoImagem);
                     const mimeType = this.RetornarMimeTypeEnum(info, arquivo);
-                    const dimensao = isIcone ? ImagemUtil.DimensaoIcone : info.Dimensao;
+                    const dimensao = isIcone ? ImagemUtil.DimensaoIcone : { Largura: info.Largura, Altura: info.Altura };
 
                     imagem.FormatoImagem = isIcone ? EnumFormatoImagem.PNG : info.FormatoImagem;
-                    imagem.DimensaoImagemLocal = new Dimensao(info.Dimensao);
+                    imagem.DimensaoImagemLocal = new Dimensao(dimensao);
                     imagem.DimensaoImagemMiniatura = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Miniatura));
                     imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
                     imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));

@@ -3,7 +3,7 @@
     export interface IInformacaoImagem
     {
         FormatoImagem?: d.EnumFormatoImagem;
-        Dimensao?: IDimensao;
+        /*Dimensao?: IDimensao;*/
         ChecksumArquivoLocal?:string
     }
 }

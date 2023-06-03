@@ -141,7 +141,7 @@
 
         public ParaImpressao(): Posicao
         {
-            return this.ParaPixels(MedidaUtil.DPI_IMPRESSAO_PADRAO);
+            return this.ParaPixels(MedidaUtil.DPI_IMPRESSAO);
         }
 
         public ParaCentimetros(dpi: number): Posicao

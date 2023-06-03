@@ -28,7 +28,6 @@
                     TotalBytes: arquivo.size,
                     Altura: 0,
                     Largura: 0,
-                    Dimensao: null,
                     FormatoImagem: EnumFormatoImagem.Desconhecido,
                     NomeArquivo: (arquivo as File)?.name ?? "[blob]"
                 };
@@ -48,13 +47,10 @@
             const rotacao = this.RetornarRotacaoExif(arquivo, resultado.FormatoImagem, resultado.Orientacao);
             const dimensao = this.NormalizarDimensao(resultado.Largura, resultado.Altura, rotacao);
 
-            resultado.Dimensao = dimensao;
             resultado.Largura = dimensao.Largura;
             resultado.Altura = dimensao.Altura;
             resultado.Rotacao = rotacao;
-
             return resultado;
-
         }
 
         private NormalizarDimensao(largura: number, altura: number, rotacao: number): d.Dimensao

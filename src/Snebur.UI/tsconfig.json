@@ -377,6 +377,7 @@
     "src/Utilidade/MascaraUtil.ts",
     "src/Utilidade/MdlUtil.ts",
     "src/Utilidade/PaginaUtil.ts",
+    "src/Utilidade/RecorteCanvasUtil.ts",
     "src/Utilidade/ScrollUtil.ts",
     "src/Utilidade/SelecionarArquivosUtil.ts",
     "src/Utilidade/TelaUtil.ts",

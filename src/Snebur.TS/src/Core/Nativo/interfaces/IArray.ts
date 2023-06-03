@@ -66,7 +66,7 @@ namespace Snebur.Nativo
         NaturalOrderByDescending(expressao: (value: T) => string): T[];
 
         OrderByRandow(): T[];
-       
+
         Max(): T | null;
         Max<TResultado = number | Date | TimeSpan>(expressao: (value: T) => TResultado): TResultado | null;
 
@@ -121,7 +121,7 @@ namespace Snebur.Nativo
         Distinct(): Array<T>;
 
         Add(item: T): number;
-        AddIsTrue(item: T, isAdd:boolean): number;
+        AddIsTrue(item: T, isAdd: boolean): number;
 
         AddRange(itens: Array<T>): void;
         AddRangeAsync(items: Array<T>): Promise<void>;
@@ -157,7 +157,7 @@ namespace Snebur.Nativo
         //OfType<U extends T>(UConstrutor: any): Array<U>;
 
         //OfType<U extends T>(UConstrutor: { new (...args: Array<any>): U; }): Array<U>;
-         
+
         ToTupleItemIndex(): List<[T, number]>;
 
         ToTupleItemProgresso(): List<[T, number]>;
@@ -176,16 +176,19 @@ namespace Snebur.Nativo
         /*ToDicionario(expressaoPropriedade: (value: T) => string | number): DicionarioSimples<T>;*/
 
         ToDicionarioTipado<TChave extends TipoItemLista, U>(expressaoChave: (value: T) => TChave, expressaoItem: (value: T) => U): DicionarioTipado<TChave, U>;
-         
+
         CopyTo(lista: Array<T>): void;
         /*IsListaObservacao: boolean;*/
 
+        ToObject(isValueAsKey: true): { [x: string]: undefined };
+        ToObject(isValueAsKey: false): { [x: number]: T };
+        ToObject(): { [x: number]: T };
 
         readonly TipoLista: EnumTipoLista;
 
         readonly IsListaNova: boolean;
 
-       
+
 
         Except(lista: Array<T>): Array<T>;
 

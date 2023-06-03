@@ -2,6 +2,7 @@
 {
     export class SnBlob extends Snebur.Objeto
     {
+        private _nomeArquivo: string;
         private _informacaoImagem: IInformacaoImagem;
         private _isDispensado: boolean = false;
         private _urlBlob: string = null;
@@ -33,16 +34,13 @@
                 {
                     return ArquivoUtil.TrocarExtensao(this._blob.name, ".jpeg");
                 }
-
                 return this._blob.name;
             }
-            if (this.IsHeic)
-            {
-                return `[blob]-${(this.size)}.jpeg`;
-            }
-            const extensao = ArquivoUtil.RetornarExtensaoArquivo(this._blob.type);
-            return `[blob]-${(this.size)} ${extensao}`;
+
+            return this._nomeArquivo ?? this.RetornarNomeGenerico();
         }
+
+      
         public get NameWithOutExtension(): string
         {
             return ArquivoUtil.RetornarNomeArquivoSemExtensao(this.Name);
@@ -90,7 +88,7 @@
             return this._informacaoImagem;
         }
 
-        public constructor(blob: Blob)
+        public constructor(blob: Blob, nomeArquivo?:string)
         {
             super();
             if (!(blob instanceof Blob))
@@ -99,6 +97,7 @@
 
             }
             this._blob = blob;
+            this._nomeArquivo = nomeArquivo;
         }
 
         public Slice(start?: number, end?: number, contentType?: string): SnBlob
@@ -250,6 +249,16 @@
             }
             this._urlBlob = null;
             delete this._urlBlob;
+        }
+
+        private RetornarNomeGenerico(): string
+        {
+            if (this.IsHeic)
+            {
+                return `[blob]-${(this.size)}.jpeg`;
+            }
+            const extensao = ArquivoUtil.RetornarExtensaoArquivo(this._blob.type);
+            return `[blob]-${(this.size)} ${extensao}`;
         }
 
         public override Dispose(): void

@@ -2,10 +2,48 @@
 {
     export class ImagemLocalUtil
     {
-        public static RetornarElementoImagemCarregadaAsync(
-            urlImagem: string,
+        public static RetornarElementoImagemAsync(urlImagem: string, isIgnorarErro: boolean): Promise<HTMLImageElement>
+        public static RetornarElementoImagemAsync(arquivo: SnBlob | string, isIgnorarErro: boolean, isTentarHeic: boolean): Promise<HTMLImageElement>
+        public static RetornarElementoImagemAsync(arquivoOuUrl: SnBlob | string, isIgnorarErro: boolean, isTentarHeic?: boolean): Promise<HTMLImageElement>
+        {
+            if (arquivoOuUrl instanceof SnBlob)
+            {
+                return ImagemLocalUtil.RetornarElementoImagemDoArquivoAsync(arquivoOuUrl, isIgnorarErro, isTentarHeic);
+            }
+            return ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(arquivoOuUrl, isIgnorarErro);
+        }
+
+        private static async RetornarElementoImagemDoArquivoAsync(
+            arquivo: SnBlob,
             isIgnorarErro: boolean,
-            dimensaoBase: IDimensao = null): Promise<HTMLImageElement>
+            isTentarHeic: boolean): Promise<HTMLImageElement>
+        {
+            let imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(arquivo.UrlBlob, true);
+            if (imagem === null && isTentarHeic)
+            {
+                const urlHeicOuErro = await w.ConverterHeicParaJpeg.RetornarUrlBlobAsync(arquivo);
+                if (ValidacaoUtil.IsUrlBlob(urlHeicOuErro))
+                {
+                    imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(urlHeicOuErro, true);
+                }
+            }
+
+            if (imagem instanceof HTMLImageElement)
+            {
+                return imagem;
+            }
+
+            if (isIgnorarErro)
+            {
+                return null;
+            }
+
+            throw new Error(`Não foi possível carregar imagem do arquivo: ${arquivo.name}`);
+        }
+
+        private static RetornarElementoImagemDaUrlAsync(
+            urlImagem: string,
+            isIgnorarErro: boolean): Promise<HTMLImageElement>
         {
             return new Promise<HTMLImageElement>(resolver =>
             {
@@ -15,11 +53,11 @@
                 /*imagem.style.imageRendering = "auto";*/
                 imagem.style.imageOrientation = "from-image";
 
-                if (dimensaoBase != null)
-                {
-                    imagem.style.maxWidth = dimensaoBase.Largura + "px";
-                    imagem.style.maxHeight = dimensaoBase.Altura + "px";
-                }
+                //if (dimensaoBase != null)
+                //{
+                //    imagem.style.maxWidth = dimensaoBase.Largura + "px";
+                //    imagem.style.maxHeight = dimensaoBase.Altura + "px";
+                //}
 
                 imagem.onload = function ()
                 {
@@ -68,7 +106,7 @@
             return {
                 IsIcone: true,
                 Url: arquivo.UrlIcone,
-                IsErro: true
+                IsErro: false
             };
         }
         private static async CarregarImagemArquivoCanvasAsync(
@@ -79,7 +117,8 @@
             const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao);
             const resultado = await abrirArquivoLocalCanvas.ProcessarAsync();
 
-            if (ValidacaoUtil.IsUrl(resultado.Url) &&
+            if (resultado != null &&
+                ValidacaoUtil.IsUrl(resultado.Url) &&
                 resultado.LarguraImagemOrigem > 0 &&
                 resultado.AlturaImagemOrigem > 0)
             {
@@ -89,7 +128,6 @@
                     Url: resultado.Url
                 };
             }
-
             return null;
         }
 

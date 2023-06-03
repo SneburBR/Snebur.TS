@@ -834,15 +834,32 @@ namespace Snebur
         return this.forEach(f);
     };
 
-    Object.defineProperty(Array.prototype, "IsListaNova", {
+    Array.prototype.ToObject = function (this: Array<any>, isValueAsKey: boolean = false)
+    {
+        const obj: { [x: string| number]: any } = {};
+        if (isValueAsKey)
+        {
+            for (let i = 0; i < this.length; ++i)
+            {
+                obj[this[i]] = undefined;
+            }
+            return obj;
+        }
 
+        for (let i = 0; i < this.length; ++i)
+        {
+            obj[i] = this[i];
+        }
+        return obj;
+    }
+
+    Object.defineProperty(Array.prototype, "IsListaNova", {
         get: function ()
         {
             return this.__isListaNova ||
                 this.__isLimpandoListaNova;
         }
     });
-
      
     Array.isArrayBase = Array.isArray;
 
