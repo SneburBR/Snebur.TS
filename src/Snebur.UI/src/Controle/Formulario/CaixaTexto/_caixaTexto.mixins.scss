@@ -14,6 +14,7 @@
     sn-caixa-quantidade {
 
         &.ap-caixa--padrao {
+
             .caixa-texto {
                 &:not(.sn-desabilitado) {
 
@@ -30,6 +31,15 @@
                             }
                         }
                     }
+                }
+            }
+
+            &.sn-is-focus {
+
+                .linha-horizontal {
+                    background-color: $cor !important;
+                    width: 100%;
+                    left: 0;
                 }
             }
         }
@@ -63,7 +73,7 @@
             }
 
 
-         
+
 
             &.sn-is-focus {
                 .caixa-texto {

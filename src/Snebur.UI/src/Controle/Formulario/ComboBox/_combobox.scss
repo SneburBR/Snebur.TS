@@ -35,15 +35,26 @@ sn-combobox-nn {
             cursor: pointer;
             min-height: 1.2em;
             width: 100% !important;
+            overflow: visible !important;
 
             &:hover {
                 background-color: rgba(#ccc, 0.2);
+            }
+
+            > conteudo-apresentacao {
+                overflow: visible !important;
             }
         }
 
         &.sn-is-focus {
             .caixa {
                 background-color: rgba(#ccc, 0.2);
+            }
+
+            .linha-horizontal {
+                background-color: $cor-principal;
+                width: 100%;
+                left: 0;
             }
         }
 
@@ -150,7 +161,7 @@ sn-combobox-nn {
                 .rotulo {
                     top: 0.125em;
                     top: 50% !important;
-                    transform : translateY(-50%);
+                    transform: translateY(-50%);
                 }
             }
 

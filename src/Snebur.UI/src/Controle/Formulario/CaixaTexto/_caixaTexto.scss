@@ -19,6 +19,7 @@ sn-caixa-moeda,
 sn-caixa-hora,
 sn-caixa-data,
 sn-caixa-cartao-credito,
+sn-caixa-quantidade,
 sn-caixa-texto {
 
     &:not([class*='ap-tipografia--']) {
@@ -272,6 +273,19 @@ sn-caixa-texto {
                 font: large Verdana, sans-serif !important;
                 letter-spacing: 0.1em !important;
             }*/
+        }
+
+        &.sn-is-focus {
+
+            .caixa {
+                background-color: rgba(#ccc, 0.2);
+            }
+
+            .linha-horizontal {
+                /*background-color: var(--cor-principal);*/
+                width: 100%;
+                left: 0;
+            }
         }
     }
 }

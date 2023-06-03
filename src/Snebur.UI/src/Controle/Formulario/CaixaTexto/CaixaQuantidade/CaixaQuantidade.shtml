@@ -8,7 +8,7 @@
             
             <sn-botao 
                 sn-nome="BtnMenos" 
-                ap-icone="ArrowBackIos" 
+                ap-icone="Remove" 
                 sn-tipo-botao="Icone" 
                 ap-tamanho-icone="Pequeno" 
                 sn-click="BtnMenos_Click" > </sn-botao>
@@ -29,7 +29,7 @@
             ap-margem-interna="0px 0px 0px 0px">
 
             <sn-botao sn-nome="BtnMais" 
-                ap-icone="ArrowForwardIos"
+                ap-icone="Add"
                 sn-tipo-botao="Icone" 
                 ap-tamanho-icone="Pequeno" 
                 sn-click="BtnMais_Click" ></sn-botao>
@@ -37,6 +37,7 @@
     </ap-painel-horizontal>
     
     <label class="rotulo-caixa-texto" sn-item-elemento="Rotulo">Rotulo não encontrado</label>
+
     <div class="linha-horizontal-externa" >
         <div class="linha-horizontal">
         </div>

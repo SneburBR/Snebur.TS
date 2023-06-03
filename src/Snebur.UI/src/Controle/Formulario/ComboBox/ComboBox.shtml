@@ -10,7 +10,8 @@
     <ap-painel
         ap-tipo-painel="PilhaVertical"
         sn-item-elemento="Caixa"
-        ap-largura="100%" class="caixa">
+        ap-largura="100%"
+        class="caixa">
 
         <ap-bloco
             sn-nome="BlocoEspacoRotuloFlutuante"
@@ -36,11 +37,16 @@
 
             </ap-bloco>
         </ap-bloco>
-        <ap-bloco class="bloco-linha-horizontal" ap-altura="2px">
+
+        <ap-bloco 
+            class="bloco-linha-horizontal"
+            ap-altura="2px" 
+            style="min-height:2px !important">
+
             <div
                 sn-nome="ElemenotLinhaHorizontal"
                 class="linha-horizontal-externa">
-                <div class="linha-horizontal">
+                <div class="linha-horizontal"  style="min-height:2px !important">
                 </div>
             </div>
         </ap-bloco>
@@ -48,6 +54,7 @@
         <label class="rotulo" sn-item-elemento="Rotulo"></label>
 
     </ap-painel>
+
     <ap-bloco sn-nome="BlocoMensagemValidacao">
         <div class="mensagem-validacao"
             sn-item-elemento="MensagemValidacao">
