@@ -124,7 +124,7 @@
         {
             if (!this.IsDesabilitado && !this.IsSomenteLeitura)
             {
-                if (!(this instanceof CaixaMoeda))
+                if (!(this instanceof CaixaMoeda) && !(this instanceof CaixaQuantidade))
                 {
                     this.ElementoInput.select();
                 }

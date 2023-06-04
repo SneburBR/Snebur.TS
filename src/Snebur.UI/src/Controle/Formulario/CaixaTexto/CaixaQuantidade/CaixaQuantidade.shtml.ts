@@ -35,7 +35,9 @@
         {
             super.Inicializar();
 
-            this.AdicionarEventoDom(EnumEventoDom.Blur, this.ElementoInput_Blur, this.ElementoInput);
+/*            this.AdicionarEventoDom(EnumEventoDom.Blur, this.ElementoInput_Blur, this.ElementoInput);*/
+            this.AdicionarEventoDom(ui.EnumEventoDom.Blur, this.ElementoInput_Blur.bind(this), this.Elemento);
+            this.AdicionarEventoDom(ui.EnumEventoDom.FocusOut, this.ElementoInput_Blur.bind(this), this.Elemento);
         }
 
         protected override DepoisInicializarComponentesApresentacao(): void
@@ -210,6 +212,9 @@
             }
             this.Valor = valor;
             this.AlterarValorPropriedade();
+            /*this.ElementoInput?.focus();*/
+            this.Elemento.classList.add(ConstantesCssClasses.CSS_CLASSE_FOCUS);
+            this.Elemento.focus();
         }
 
         private BtnMais_Click(provedor: ui.Botao, e: ui.UIEventArgs): void
@@ -224,6 +229,10 @@
             }
             this.Valor = valor;
             this.AlterarValorPropriedade();
+            /*this.ElementoInput?.focus();*/
+            /*this.ElementoInput.setSelectionRange(0, 0);*/
+            this.Elemento.classList.add(ConstantesCssClasses.CSS_CLASSE_FOCUS);
+            document.activeElement
         }
 
         public NormalizarValor(valor: number): number

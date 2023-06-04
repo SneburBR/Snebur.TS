@@ -195,6 +195,8 @@
             this.AdicionarEventoDom(ui.EnumEventoDom.Focus, this.ElementoInput_Focus.bind(this));
             this.AdicionarEventoDom(ui.EnumEventoDom.Click, this.ElementoInput_Click.bind(this));
             this.AdicionarEventoDom(ui.EnumEventoDom.Blur, this.ElementoInput_Blur.bind(this));
+            this.AdicionarEventoDom(ui.EnumEventoDom.FocusOut, this.ElementoInput_Blur.bind(this));
+
             this.AdicionarEventoDom(ui.EnumEventoDom.MouseDown, this.ElementoInput_MouseDown.bind(this));
 
 
@@ -815,7 +817,6 @@
 
         protected ElementoInput_Blur(e: FocusEvent) 
         {
-
             if (this._isFocusPrimeiroControleApresentacao)
             {
                 this._isFocusPrimeiroControleApresentacao = false;
