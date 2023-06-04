@@ -69,6 +69,7 @@ namespace Snebur.Utilidade
                 const chave = localStorage.key(i);
                 localStorage.removeItem(chave);
             }
+            localStorage.clear();
         }
     }
 
@@ -81,6 +82,7 @@ namespace Snebur.Utilidade
                 const chave = sessionStorage.key(i);
                 sessionStorage.removeItem(chave);
             }
+            sessionStorage.clear();
         }
     }
 }

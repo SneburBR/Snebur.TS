@@ -171,6 +171,8 @@
 
                 await MagickWasm.initializeImageMagick(urlBlobWasm);
 
+                /*await this.SimularProgressoAsync();*/
+
                 window.URL.revokeObjectURL(urlPackage);
                 window.URL.revokeObjectURL(urlBlobWasm);
 
@@ -188,11 +190,24 @@
             return EnumStatusInicializacaoMagick.Erro;
         }
 
+
         private static NotificarProgresso(e: ProgressoEventArgs)
         {
             for (const progress of MagickInitUtil.ProgressosHandler)
             {
                 progress(e);
+            }
+        }
+
+        private static async SimularProgressoAsync()
+        {
+            if ($Configuracao.IsDebugOuTeste)
+            {
+                for (let i = 50; i < 100; i++)
+                {
+                    MagickInitUtil.NotificarProgresso(new ProgressoEventArgs(i));
+                    await ThreadUtil.EsperarAsync(500);
+                }
             }
         }
     }

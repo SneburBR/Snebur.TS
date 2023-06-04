@@ -14,25 +14,34 @@
 
         public async RetornarArrayBufferAsync(): Promise<ArrayBuffer>
         {
+            const t = Stopwatch.StartNew();
+
             const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
             if (imagem == null)
             {
                 return null;
             }
-            
+
             const dimensao = this.NormalizarDimensao(imagem, this.DimensaoImpressao);
             const canvas = this.RetornarCanvas(imagem, dimensao);
-             
+
             const mimeType = this.RetornarMimeType();
             const blob = await this.RetornarBlobAsync(canvas, u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS / 100, mimeType);
             if (blob != null)
             {
+                console.warn(`Processado Magick Canvas  : Arquivo: ${this.ArquivoLocal.name} - t ${t.TotalSeconds} `);
+                if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO)
+                {
+                    const extensao = mimeType.substring(mimeType.indexOf("/") + 1);
+                    Salvar.SalvarComo(blob, `CANVAS-IMPRESSAO-${this.ArquivoLocal.NameWithOutExtension}-t-${t.ElapsedMilliseconds}.${extensao}`);
+                }
+
                 const bytes = await u.ArquivoUtil.RetornarBufferArrayAsync(blob, true);
                 return bytes;
             }
             return null;
         }
-         
+
         private NormalizarDimensao(imagem: HTMLImageElement, dimensao: d.Dimensao): d.Dimensao 
         {
             if (dimensao === null)

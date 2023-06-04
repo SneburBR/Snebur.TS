@@ -83,7 +83,10 @@
             const resultado = await processador.ProcessarAsync();
             if (!(resultado instanceof Error) && resultado != null)
             {
-                console.warn(`Processado Magick Main Thread  : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
+                if (this instanceof AbrirImagemImpressaoMagick)
+                {
+                    console.warn(`Processado Magick Main Thread  : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
+                }
                 return resultado;
             }
             console.error("Falha magick main thread " + this.NomeArquivo);

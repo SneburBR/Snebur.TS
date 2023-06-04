@@ -4,17 +4,25 @@
     {
         public static NormalizarCaminho(caminho: string, isAdicionarBarraFinal:boolean = false): string
         {
+            if (caminho == null)
+            {
+                return "/";
+            }
+
             if (u.UrlUtil.IsPathHasFileName(caminho))
             {
                 caminho = u.UrlUtil.RetornarUrlSemNomeArquivo(caminho);
             }
+
+            caminho = caminho.ReplaceAll("\\", "/").ReplaceAll("//", "/");
             caminho = u.UrlUtil.RemoverBarraInicial(caminho);
             caminho = u.UrlUtil.RemoverBarraFinal(caminho);
-            caminho = caminho.ReplaceAll("//", "/");
+            
             if (String.IsNullOrWhiteSpace(caminho))
             {
                 return "/";
             }
+
             if (isAdicionarBarraFinal)
             {
                 return `/${caminho.trim().toLowerCase()}/`;

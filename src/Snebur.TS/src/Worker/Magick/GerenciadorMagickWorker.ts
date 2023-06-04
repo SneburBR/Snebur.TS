@@ -57,14 +57,20 @@
                 const t = Stopwatch.StartNew();
                 const resultado = await workerCliente.ProcessarAsync(opcoes);
 
-                if (opcoes.Redimensinamentos.Any(x => x.TamanhoImagem === EnumTamanhoImagem.Impressao))
-                {
-                    workerCliente.Reciclar();
-                }
 
                 if (resultado?.IsSucesso)
                 {
-                    console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
+                    const impressao = resultado.ImagensCarregada.Where(x => x.TamanhoImagem === EnumTamanhoImagem.Impressao).FirstOrDefault();
+                    if (impressao != null)
+                    {
+                        workerCliente.Reciclar();
+                        console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
+                        if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO)
+                        {
+                            Salvar.SalvarComo(impressao.Arquivo, `MAGICK-IMPRESSAO-${opcoes?.NomeArquivoOrigem}t-${t.ElapsedMilliseconds}.${resultado.MagickFormat.toLocaleLowerCase()}`);
+                        }
+                    }
+
                     isSucesso = true;
                     return resultado;
                 }
@@ -103,6 +109,7 @@
                 this.WorkersOcupados.Add(proximoWorker);
                 return proximoWorker;
             }
+
             DebugUtil.ThrowAndContinue("Operação invalida na fila worker ");
             return this.RetornarWorkerClienteDisponivelAsync();
         }
