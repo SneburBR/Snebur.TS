@@ -1,11 +1,11 @@
-﻿const DPI_IMPRESSAO_PADRAO = 300;
-
-namespace Snebur.Utilidade
+﻿namespace Snebur.Utilidade
 {
+    
     export class MedidaUtil
     {
-        private static __DPI_IMPRESSAO: number = DPI_IMPRESSAO_PADRAO;
+        private static readonly DPI_IMPRESSAO_PADRAO = 300;
         public static readonly POLEGADA: number = 2.54;
+        private static __DPI_IMPRESSAO: number = MedidaUtil.DPI_IMPRESSAO_PADRAO;
         public static get DPI_IMPRESSAO(): number
         {
             return this.__DPI_IMPRESSAO;
@@ -51,7 +51,7 @@ namespace Snebur.Utilidade
             {
                 return 0;
             }
-            return (medidaEmPixel * 300) / u.MedidaUtil.RetornarPixelsImpressao(medidaEmCentimetros);
+            return (medidaEmPixel * MedidaUtil.DPI_IMPRESSAO) / u.MedidaUtil.RetornarPixelsImpressao(medidaEmCentimetros);
         }
 
         public static RetornarDpiDimensaoVisualizacao
