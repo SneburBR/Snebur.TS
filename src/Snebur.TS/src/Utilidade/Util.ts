@@ -235,9 +235,7 @@
             }
             return null;
         }
-
-        
-
+         
         public static get SafeGlobalThis(): any
         {
             return Util._globalThis
