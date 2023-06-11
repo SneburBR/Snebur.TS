@@ -1,18 +1,7 @@
 ﻿
-
-if (!HTMLCanvasElement.prototype.toBlob)
+if (typeof HTMLCanvasElement.prototype.toBlob === "undefined")
 {
-    //HTMLCanvasElement.prototype.BaseToBlob = HTMLCanvasElement.prototype.toBlob;
-}
-
-//HTMLCanvasElement.prototype.toBlob = function ()
-//{
-//    throw new Erro("Utilizar SalvarJpeg no workder");
-//}
-
-if (!HTMLCanvasElement.prototype.toBlob)
-{
-    HTMLCanvasElement.prototype.toBlob = function (callback: (blob: Blob | null) => void, formato: any, qualidade: number): void
+    HTMLCanvasElement.prototype.toBlob = function (this: HTMLCanvasElement, callback: (blob: Blob | null) => void, formato: any, qualidade: number): void
     {
         if (!formato)
         {
@@ -32,39 +21,18 @@ if (!HTMLCanvasElement.prototype.toBlob)
     };
 }
 
-HTMLCanvasElement.prototype.ToBlobAsync = (function (tipo: string, qualidade: number)
+HTMLCanvasElement.prototype.ToBlobAsync = (function (this: HTMLCanvasElement, tipo: string, qualidade: number)
 {
-    const canvas = this as HTMLCanvasElement;
-    
-    return new Promise<Blob | null>(resolver =>
+    return new Promise(resolver =>
     {
-        canvas.onerror = function ()
+        this.onerror = function ()
         {
             resolver(null);
         };
 
-        canvas.toBlob(function (blob)
+        this.toBlob(function (blob)
         {
             resolver(blob);
         }, tipo, qualidade);
     });
-});
-
-
-
-//Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
-//    value: function (callback: any, type: string, quality: number)
-//    {
-//        let binStr = atob(this.toDataURL(type, quality).split(',')[1]);
-//        let len = binStr.length;
-//        let arr = new Uint8Array(len);
-
-//        for (var i = 0; i < len; i++)
-//        {
-//            arr[i] = binStr.charCodeAt(i);
-//        }
-//        callback(new Blob([arr], { type: type || 'image/png' }));
-//    }
-//});
-
-
+}); 

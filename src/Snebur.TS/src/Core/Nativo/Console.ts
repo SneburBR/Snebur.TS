@@ -64,8 +64,7 @@ namespace Snebur
                 {
                     base.bind(this)(mensagem);
                 }
-
-
+                 
                 if ($Configuracao != null && $Configuracao.IsDebug &&
                     tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
                 {
@@ -89,9 +88,7 @@ namespace Snebur
                 }
             }
         };
-
-       
-
+         
         console.baseLog = console.log;
         console.baseInfo = console.info;
         console.baseError = console.error;
@@ -106,11 +103,7 @@ namespace Snebur
         console.InfoDebug = CallBase.bind(console, true, EnumTipoLog.Info, console.baseInfo);
         console.WarmDebug = CallBase.bind(console, true, EnumTipoLog.Alerta, console.baseWarm);
         console.ErrorDebug = CallBase.bind(console, true, EnumTipoLog.Erro, console.baseError);
-
-
-
     })();
-
 
 }
 

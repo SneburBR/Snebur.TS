@@ -1,6 +1,5 @@
 ﻿
-File.prototype.toString = function ()
+File.prototype.toString = function (this:File)
 {
-    const arquivo: File = this;
-    return Snebur.Utilidade.TextoUtil.RetornarSomentesLetrasNumeros(arquivo.name + arquivo.size);
+    return Snebur.Utilidade.TextoUtil.RetornarSomentesLetrasNumeros(this.name + this.size);
 };
