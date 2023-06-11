@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <link href="../../../../../Css/Snebur.UI.css" rel="stylesheet" />
+    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
 </head>
 <body>
     <ap-painel-vertical sn-nome="PainelVertical">
