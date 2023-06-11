@@ -12,4 +12,14 @@
             this.DomEvento = domEvento;
         }
     }
+
+    export class ValorSelecionadoAlteradoEventArgs<T = any> extends ValorAlteradoEventArgs<T>
+    {
+        public readonly IsSelecionado: boolean;
+        public constructor(valor: T, isSelecionado:boolean, domEvent: Event = null)
+        {
+            super(valor, domEvent);
+            this.IsSelecionado = isSelecionado;
+        }
+    }
 }

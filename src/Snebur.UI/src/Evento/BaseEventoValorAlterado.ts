@@ -59,7 +59,6 @@
                 {
                     //this.IdentificadorTimeout = window.setTimeout(this.ManipuladorTimeout.bind(this), 1000);
                     this.Manipulador(this.ControlePai, args);
-
                 }
                 catch (erroInterno)
                 {

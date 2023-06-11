@@ -99,17 +99,11 @@
             //var eventoEnum = (u.SistemaUtil.Navegador.NavegadorEnum == d.EnumNavegador.InternetExplorer) ? ui.EnumEventoDom.Change : ui.EnumEventoDom.Input;
             this.AdicionarEventoDom(ui.EnumEventoDom.Input, this.ElementoInput_Input.bind(this), this.ElementoInput);
 
-            this.IsMostrarValor = this.RetornarValorAtributoBoolean(AtributosHtml.MostrarValor, false);
+            this.IsMostrarValor = this.RetornarValorAtributoBoolean(AtributosHtml.IsMostrarValor, false);
 
             this.FormatacaoValor = this.RetornarValorAtributo(AtributosHtml.FormatarValor, null);
             this.FormatacaoFuncao = this.RetornarFuncaoFormatar();
-            if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer ||
-                u.SistemaUtil.NavegadorEnum === d.EnumNavegador.Edge)
-            {
-                this.ElementoInput.classList.remove("sn-slider");
-
-            }
-
+             
             if (!String.IsNullOrEmpty(this.RetornarValorAtributo(AtributosHtml.Formatar, null)))
             {
                 throw new Erro(`O atributo ${AtributosHtml.Formatar.Nome} não é suportado pela caixa slider utilizar o atributo ${AtributosHtml.FormatarValor.Nome} para evitar o conflito com bind, Controle: ${this.ControleApresentacao.___NomeConstrutor}`);

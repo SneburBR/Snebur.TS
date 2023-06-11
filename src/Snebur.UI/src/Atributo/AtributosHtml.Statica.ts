@@ -157,7 +157,7 @@
          
         public static readonly Passo = new AtributoHtml("sn-passo", String);
         public static readonly PassoLargo = new AtributoHtml("sn-passo-largo", String);
-        public static readonly MostrarValor = new AtributoHtml("sn-mostrar-valor", Boolean);
+        public static readonly IsMostrarValor = new AtributoHtml("sn-is-mostrar-valor", Boolean);
         public static readonly Parametros = new AtributoHtml("sn-parametros", String);
         public static readonly LarguraTextoValor = new AtributoHtml("sn-largura-texto-valor", String);
 

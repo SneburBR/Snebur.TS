@@ -39,7 +39,13 @@
                               \r\nElemento: ${this.Elemento.outerHTML.substr(0, 100)}`);
                 return [null, null];
             }
+
+            if (controle == null)
+            {
+                throw new Erro(`O controle manipulador do evento ${this.___NomeConstrutor} não foi definido em ${this.ControleApresentacao.___NomeConstrutor}`);
+            }
             manipulador = manipulador.bind(controle);
+            
             return [manipulador, controle];
         }
 

@@ -9,7 +9,10 @@
         </ap-bloco>
 
         <ap-bloco ap-margem-interna="8px">
-            <input sn-item-elemento="ControleInput" class="sn-slider" type="range" style="width: 100% !important" value="0" />
+            <input 
+                sn-item-elemento="ControleInput"
+                class="sn-slider" 
+                type="range" style="width: 100% !important" value="0" />
         </ap-bloco>
 
         <ap-bloco ap-largura="36px" 

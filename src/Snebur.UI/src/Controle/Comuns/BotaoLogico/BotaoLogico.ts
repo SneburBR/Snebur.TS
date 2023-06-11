@@ -18,13 +18,14 @@
         {
             this._valor = value;
             this.NotificarPropriedadeAlterada(x => x.Valor, this._valor, this._valor = value);
+            this.EventoValorAlterado.Notificar(this, new ValorSelecionadoAlteradoEventArgs(value, this.IsSelecionado));
         }
 
         public get ValorSelecionado(): TValor
         {
             if (!this.IsGrupo)
             {
-                throw new Erro("A valor selecionado é retornar apenas grupo de mais de um botao");
+                throw new Erro("A valor selecionado é retornar apenas grupo de mais de um botão");
             }
             const botaoSelecioando = this.GrupoBotoesLogico.Where(x => x.IsSelecionado).SingleOrDefault();
             if (botaoSelecioando instanceof BotaoLogico)
@@ -65,7 +66,7 @@
             return BotaoLogico.CSS_CLASSE_FALSO_PADRAO;
         }
 
-        public readonly EventoValorAlterado: Evento<ValorAlteradoEventArgs<TValor | boolean>>;
+        public readonly EventoValorAlterado = new Evento<ValorSelecionadoAlteradoEventArgs<TValor | boolean>>(this);
 
         //public AlterarValorClick: boolean = true;
 
@@ -74,13 +75,12 @@
             return this._isGrupo;
         }
         private NomeGrupo: string;
+
         public readonly GrupoBotoesLogico: Array<ui.BotaoLogico> = new Array<ui.BotaoLogico>();
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-
-            this.EventoValorAlterado = new Evento<ValorAlteradoEventArgs<boolean>>(this);
             this.EventoCarregado.AddHandler(this.BotaoLogico_Carregado, this);
             this.CssClasseControle = "sn-botao-logico";
         }
@@ -88,7 +88,6 @@
         protected override Inicializar(): void
         {
             super.Inicializar();
-
             this.Valor = this.RetornarValor();
 
         }
@@ -104,7 +103,7 @@
                     return valorReflexao;
                 }
             }
-            return valor as any;
+            return ConverterUtil.ParaMelhorTipo(valor);
         }
 
         private BotaoLogico_Carregado(provedor: any, e: EventArgs): void
@@ -190,16 +189,14 @@
             {
                 if (this.IsSelecionado)
                 {
-                    this.EventoValorAlterado.Notificar(this, new ValorAlteradoEventArgs(this._valor));
+                    this.EventoValorAlterado.Notificar(this, new ValorSelecionadoAlteradoEventArgs(this._valor, this.IsSelecionado));
                 }
             }
             else
             {
-                this.EventoValorAlterado.Notificar(this, new ValorAlteradoEventArgs(this._isSelecioando));
+                this.EventoValorAlterado.Notificar(this, new ValorSelecionadoAlteradoEventArgs(this._valor, this._isSelecioando));
             }
             this.AtualizarEstilos();
         }
-
-
     }
 }

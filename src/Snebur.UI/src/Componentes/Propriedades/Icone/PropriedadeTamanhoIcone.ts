@@ -25,13 +25,25 @@
 
                     return "pequeno";
 
+                case EnumTamanhoIcone.PequenoMedio:
+
+                    return "pequeno-medio";
+
                 case EnumTamanhoIcone.Padrao:
 
                     return "padrao";
 
+                case EnumTamanhoIcone.MediodPequeno:
+
+                    return "medio-pequeno";
+
                 case EnumTamanhoIcone.Medio:
 
                     return "medio";
+
+                case EnumTamanhoIcone.MedioGrande:
+
+                    return "medio-grande";
 
                 case EnumTamanhoIcone.Grande:
 

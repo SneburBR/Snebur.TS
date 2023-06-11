@@ -120,6 +120,14 @@ h7,
     text-transform: inherit
 }
 
+.ap-tipografia--normal {
+    font-size:  1rem; // 16px
+    font-weight: map-get($dicionario-font-weight, normal);
+    letter-spacing: retornar-espaco-letras(.5, 1);
+    text-decoration: inherit;
+    text-transform: inherit
+}
+
 .ap-tipografia--corpo {
     font-size: 0.875rem; // 16px
     font-weight: map-get($dicionario-font-weight, regular);

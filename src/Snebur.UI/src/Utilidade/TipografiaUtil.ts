@@ -51,6 +51,10 @@
 
                     return "sub-titulo";
 
+                case EnumTipografia.Normal:
+
+                    return "normal";
+
                 case EnumTipografia.SubTitulo2:
 
                     return "sub-titulo2";

@@ -69,14 +69,20 @@
 
         private ValidarControleManipulador(): void
         {
-            if (this.ControleManipulador.IsDispensado)
+            const controleManipulador = this.ControleManipulador;
+            if (controleManipulador == null)
             {
-                throw new Erro(`O controle '${this.ControleManipulador.GetType().Namespace}' foi dispensado, não pode ser chamado o evento click`);
+                throw new Erro(`O controle  manipulador não está definido`);
+            }
+
+            if (controleManipulador.IsDispensado)
+            {
+                throw new Erro(`O controle '${controleManipulador.GetType().Nome}' foi dispensado, não pode ser chamado o evento click`);
             }
 
             if (!this.ControleManipulador.IsControleInicializado)
             {
-                throw new Erro(`O controle '${this.ControleManipulador.GetType().Namespace}' não está inicializado, não pode ser chamado o evento click`);
+                throw new Erro(`O controle '${controleManipulador.GetType().Nome}'}' não está inicializado, não pode ser chamado o evento click`);
             }
         }
 
