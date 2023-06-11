@@ -2,6 +2,8 @@
 {
     export class Util
     {
+        private static _globalThis: any = typeof globalThis === "object" ? globalThis : typeof window === "object" ? window : typeof self === "object" ? self : typeof global === "object" ? global : undefined;
+
         public static RetornarArray<T>(item: T): Array<T>
         {
             const array = new Array<T>();
@@ -24,7 +26,7 @@
             }
             return String.Join(",", relacoes);
         }
-         
+
         public static IsIgual(valor1: any, valor2: any)
         {
             if (valor1 === valor2)
@@ -119,7 +121,7 @@
         {
             return u.ValidacaoUtil.IsDefinido(valor);
         }
-  
+
         public static RetornarTodosObjetoTipo<T>(objeto: any, construtor: IConstrutor<T>): T[]
         {
             const objetos = new HashSet<any>();
@@ -233,9 +235,18 @@
             }
             return null;
         }
+
+        
+
+        public static get SafeGlobalThis(): any
+        {
+            return Util._globalThis
+        }
     }
+    declare var global: any;
 }
- 
+
+
 interface SalvarInterno
 {
     SalvarComo(blob: Blob, nomeArquivo: string): void;

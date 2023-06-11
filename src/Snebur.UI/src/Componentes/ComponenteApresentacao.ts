@@ -97,6 +97,7 @@
         public VisibilidadeApresentacao: EnumVisibilidade;
 
         public CorFundoApresentacao: EnumCor | string;
+        public CorFundoApresentacaoDebug: EnumCor | string;
         public CorTextoApresentacao: EnumCor | string;
         public CorBordaApresentacao: EnumCor | string;
         public CorIconeApresentacao: EnumCor | string;

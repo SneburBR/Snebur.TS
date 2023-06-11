@@ -31,7 +31,7 @@ namespace Snebur.Nativo
 
         Equals(comparar: string): boolean;
         Equals(comparar: string, ignorarCaso?: boolean): boolean;
-        Equals(comparar: string, comparacao?: EnumStringComparacao  ): boolean;
+        Equals(comparar: string, comparacao?: EnumStringComparacao): boolean;
 
         Contains(texto: string): boolean;
         Contains(texto: string, ignoreCase?: boolean): boolean;
@@ -56,6 +56,10 @@ namespace Snebur.Nativo
         Formatar(formado: EnumFormatacao): string;
         ToString(formacao: EnumFormatacao): string;
         IsParecido(texto: string, porcentagem: number): boolean;
+        trimStart(): string;
+        trimEnd(): string;
+        padStart(length: number, fillStr?: string): string;
+        padEnd(length: number, fillStr?: string): string;
 
     }
 
@@ -79,7 +83,7 @@ namespace Snebur.Nativo
 
     }
 
-    
+
 }
 namespace Snebur
 {
@@ -88,7 +92,7 @@ namespace Snebur
         Normal,
         IgnorarCaso,
         IgnorarAcentos,
-        IgnorarCasoAcentos, 
+        IgnorarCasoAcentos,
         IgnorarCasoTrim,
         IgnorarAcentosTrim,
         IgnorarCasoAcentosTrim

@@ -1,6 +1,5 @@
 ﻿namespace Snebur.UI
 {
-
     export class ComponenteApresentacaoMapeamento<TComponente extends ComponenteApresentacao = ComponenteApresentacao> extends MapeamentoPropriedadeApresentacao<TComponente>
     {
         protected override Inicializar(): void
@@ -11,6 +10,12 @@
             //this.Mapear(x => x.LarguraApresentacao, new ProvedorLargura());
             //this.Mapear(x => x.AlturaApresentacao, new ProvedorAltura());
             this.Mapear(x => x.CorFundoApresentacao, new PropriedadeCorFundo());
+
+            //if (u.SistemaUtil.IsDebug)
+            //{
+            //    this.Mapear(x => x.CorFundoApresentacaoDebug, new PropriedadeCorFundoDebug());
+            //}
+            
             this.Mapear(x => x.CorTextoApresentacao, new PropriedadeCorTexto());
             this.Mapear(x => x.TonalidadeCorFundo, new PropriedadeCorFundo(), true);
             this.Mapear(x => x.TonalidadeCorTexto, new PropriedadeCorTexto(), true);
@@ -29,8 +34,7 @@
             this.Mapear(x => x.AlturaApresentacao, new PropriedadeAltura());
             this.Mapear(x => x.AlturaMinimaApresentacao, new PropriedadeAlturaMinima());
             this.Mapear(x => x.AlturaMaximaApresentacao, new PropriedadeAlturaMaxima());
-
-
+             
             this.Mapear(x => x.AlinhamentoVertical, new PropriedadeAlinhamentoVertical());
             this.Mapear(x => x.AlinhamentoHorizontal, new PropriedadeAlinhamentoHorizontal());
             /*this.Mapear(x => x.AlinhamentoTexto, new PropriedadeAlinhamentoHorizontal());*/
@@ -38,8 +42,7 @@
             this.Mapear(x => x.BarraRolagem, new PropriedadeBarraRolagem());
             this.Mapear(x => x.BarraRolagemHorizontal, new PropriedadeBarraRolagemHorizontal());
             this.Mapear(x => x.BarraRolagemVertical, new PropriedadeBarraRolagemVertical());
-
-
+             
             //this.Mapear<Painel>(x => x.TipoPainel, new PropriedadeTipoPainel());
 
             this.Mapear(x => x.Tipografia, new PropriedadeTipografia());
@@ -72,5 +75,3 @@
 
     type ComponenteTexto = Texto | Paragrafo;
 }
-
-

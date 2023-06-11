@@ -16,11 +16,13 @@
         private static _idioma: string;
         private static _tipoAplicacao: d.EnumTipoAplicacao;
 
+        public static readonly IsDebug = location.origin.indexOf("localhost") >= 0 || /\W[D|d]ebug\W/.test(location.href);
+
         public static get IsCookieAtivo(): boolean
         {
             return CookieUtil.IsCookieAtivo;
         }
-
+         
         public static get Resolucao(): d.Dimensao
         {
             if (!(SistemaUtil._resolucao instanceof d.Dimensao))
@@ -320,32 +322,34 @@
 
         public static ECMAVersion(): EnumECMAVersion
         {
-            if (typeof BigInt === "function")
+            const _global: any = Util.SafeGlobalThis;
+                
+            if (typeof _global.BigInt === "function")
             {
                 return EnumECMAVersion.ES2020;
             }
 
-            if (typeof Object.fromEntries === "function" && typeof String.prototype.trimStart === "function")
+            if (typeof _global.Object.fromEntries === "function" && typeof _global.String.prototype.trimStart === "function")
             {
                 return EnumECMAVersion.ES2019;
             }
 
-            if (typeof Promise !== "undefined" && typeof Promise.prototype.finally === "function")
+            if (typeof Promise !== "undefined" && typeof _global.Promise?.prototype.finally === "function")
             {
                 return EnumECMAVersion.ES2018;
             }
 
-            if (typeof Object.entries === "function")
+            if (typeof _global.Object.entries === "function")
             {
                 return EnumECMAVersion.ES2017;
             }
 
-            if (typeof Array.prototype.includes === "function")
+            if (typeof _global.Array.prototype.includes === "function")
             {
                 return EnumECMAVersion.ES2016;
             }
 
-            if (typeof Array.prototype.find === "function" && typeof Array.prototype.findIndex === "function")
+            if (typeof _global.Array.prototype.find === "function" && typeof Array.prototype.findIndex === "function")
             {
                 return EnumECMAVersion.ES2015;
             }

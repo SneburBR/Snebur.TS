@@ -24,6 +24,7 @@
 
         //public static CorAP = new AtributoHtml("ap-cor", Snebur.UI.EnumCor);
         public static readonly CorFundoApresentacao = new AtributoHtml("ap-cor-fundo", Snebur.UI.EnumCor);
+        public static readonly CorFundoDebugApresentacao = new AtributoHtml("ap-cor-fundo-debug", Snebur.UI.EnumCor);
         public static readonly CorTextoApresentacao = new AtributoHtml("ap-cor-texto", Snebur.UI.EnumCor);
         //public static readonly CorIconeApresentacao = new AtributoHtml("ap-cor-icone", Snebur.UI.EnumCor);
         public static readonly CorBordaApresentacao = new AtributoHtml("ap-cor-borda", Snebur.UI.EnumCor);

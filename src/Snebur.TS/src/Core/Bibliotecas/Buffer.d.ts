@@ -43,7 +43,7 @@
     writeUInt16BE(value: number, offset: number, noAssert?: boolean): number;
     writeUInt32LE(value: number, offset: number, noAssert?: boolean): number;
     writeUInt32BE(value: number, offset: number, noAssert?: boolean): number;
-    writeBigUInt64LE(value: number, offset: number): BigInt;
+    /*writeBigUInt64LE(value: number, offset: number): BigInt;*/
     writeBigUInt64BE(value: number, offset: number): number;
     writeInt8(value: number, offset: number, noAssert?: boolean): number;
     writeInt16LE(value: number, offset: number, noAssert?: boolean): number;

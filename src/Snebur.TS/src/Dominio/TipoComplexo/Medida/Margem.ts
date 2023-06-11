@@ -54,6 +54,32 @@
             return ((this.Superior + this.Inferior + this.Direita + this.Esquerda) / 4).ToDecimal(3);
         }
 
+        public get IsUniforme(): boolean
+        {
+            return this.Esquerda === this.Direita &&
+                this.Superior === this.Inferior;
+        }
+
+        public get Horizontal(): number
+        {
+            return Math.min(this.Esquerda, this.Direita);
+        }
+        public set Horizontal(value: number)
+        {
+            this.Esquerda = value;
+            this.Direita = value;
+        }
+
+        public get Vertical(): number
+        {
+            return Math.min(this.Superior, this.Inferior);
+        }
+        public set Vertical(value: number)
+        {
+            this.Superior = value;
+            this.Inferior = value;
+        }
+
         //#endregion
 
         //#region Construtor
@@ -101,7 +127,6 @@
                 superior = u.ConverterUtil.ParaNumero(p2);
             }
 
-
             this.Esquerda = u.ConverterUtil.ParaNumero(esquerda);
             this.Superior = u.ConverterUtil.ParaNumero(superior);
             this.Direita = u.ConverterUtil.ParaNumero(direita);
@@ -115,6 +140,8 @@
 
         public Equals(margem: Margem): boolean
         {
+            if (margem == null) return false;
+
             return this.Esquerda === margem.Esquerda &&
                 this.Superior === margem.Superior &&
                 this.Direita === margem.Direita &&
@@ -123,6 +150,8 @@
 
         public Somar(margem: Margem): Margem
         {
+            if (margem == null) throw new ErroArgumentoNulo("margem");
+
             return new Margem(this.Esquerda + margem.Esquerda,
                 this.Superior + margem.Superior,
                 this.Direita + margem.Direita,
