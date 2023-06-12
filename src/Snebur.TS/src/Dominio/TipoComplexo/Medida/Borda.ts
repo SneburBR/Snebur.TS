@@ -118,5 +118,10 @@
             sb.Append(`Arredondamento: ${this.Arredondamento}`);
             return sb.ToString(";");
         }
+
+        public static Empty(): Borda
+        {
+            return new Borda();
+        }
     }
 }

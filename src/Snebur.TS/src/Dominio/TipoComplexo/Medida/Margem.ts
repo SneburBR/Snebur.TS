@@ -56,8 +56,10 @@
 
         public get IsUniforme(): boolean
         {
-            return this.Esquerda === this.Direita &&
-                this.Superior === this.Inferior;
+            const esquerda = this.Esquerda;
+            return this.Direita === esquerda &&
+                this.Superior === esquerda &&
+                this.Inferior === esquerda;
         }
 
         public get Horizontal(): number

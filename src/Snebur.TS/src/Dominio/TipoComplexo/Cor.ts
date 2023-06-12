@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.Dominio 
 {
-     
+
     export class Cor extends Snebur.Dominio.BaseTipoComplexo implements Snebur.Dominio.ICaminhoTipo, Snebur.Dominio.ICaminhoTipo, IEquals 
     {
         public static readonly COR_TRANSPARENTE: string = "rgba(0,0,0,0.0)";
@@ -73,13 +73,9 @@ namespace Snebur.Dominio
             this._a = value;
             this.AtualizarRgba();
         }
-         
+
         public get IsTransparente(): boolean
         {
-            //return this.R == 0 &&
-            //    this.G == 0 &&
-            //    this.B == 0 &&
-            //    this.A == 0;
             return this.A === 0;
         }
 
@@ -97,6 +93,13 @@ namespace Snebur.Dominio
                 this.G === 0 &&
                 this.B === 0 &&
                 this.A === 0;
+        }
+
+        public get Solida(): Cor
+        {
+            const clone = this.Clone();
+            clone.A = 1;
+            return clone;
         }
 
         //#endregion
