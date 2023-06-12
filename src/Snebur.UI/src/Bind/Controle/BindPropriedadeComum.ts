@@ -2,7 +2,7 @@
 {
     export class BindPropriedadeComum extends BindControle
     {
-        public CaminhoPropriedadeControle: string;
+        public readonly CaminhoPropriedadeControle: string;
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement, valorAtributo: string, nomePropriedade: string)
         {

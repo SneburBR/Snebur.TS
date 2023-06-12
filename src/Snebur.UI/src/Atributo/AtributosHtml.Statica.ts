@@ -66,7 +66,7 @@
         public static readonly BarraRolagemVertical = new AtributoHtml("ap-barra-rolagem-vertical", Snebur.UI.EnumBarraRolagem);
 
         //tipografia
-        public static readonly Mostrar = new AtributoHtml("ap-mostrar", Snebur.UI.EnumMostrar);
+        /*public static readonly Mostrar = new AtributoHtml("ap-mostrar", Snebur.UI.EnumMostrar);*/
         public static readonly Tipografia = new AtributoHtml("ap-tipografia", Snebur.UI.EnumTipografia);
         public static readonly PesoFonte = new AtributoHtml("ap-peso-fonte", Snebur.UI.EnumPesoFonte);
         public static readonly Fonte = new AtributoHtml("ap-fonte", Snebur.UI.EnumFonte);

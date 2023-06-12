@@ -451,7 +451,8 @@ namespace Snebur.UI
          
         private SelecionarElemento(cor: d.Cor)
         {
-            const seletor = `td[data-cor="${cor}"]`;
+            const corSolidada = cor.Solida;
+            const seletor = `td[data-cor="${corSolidada}"]`;
             const elementosPaletaCores = document.querySelectorAll(`.${ControleFlutuanteCores.CSS_CLASS_PALETA_CORES}`) as any as Element[];
             for (const elementoPaletaCores of elementosPaletaCores)
             {
