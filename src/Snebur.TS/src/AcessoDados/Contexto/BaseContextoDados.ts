@@ -129,8 +129,8 @@
 
 
         public async SalvarAvancadoAsync(
-            argsEntidades: List<Entidade> | Entidade,
-            argsEntidadesAlvos?: List<Entidade> | Entidade)
+            argsEntidades: List<IEntidade> | IEntidade,
+            argsEntidadesAlvos?: List<IEntidade> | IEntidade)
         {
 
             while (this._isSalvando)
