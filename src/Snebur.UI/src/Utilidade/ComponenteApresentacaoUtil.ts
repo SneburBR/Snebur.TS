@@ -31,5 +31,25 @@
         {
             return (elemento.tagName.substring(0, PREFIXO_TAG_ELEMENTO_APRESENTACAO.length) === PREFIXO_TAG_ELEMENTO_APRESENTACAO);
         }
+
+        public static FiltrarComponenteFilho(
+            componente: ComponenteApresentacao,
+            filtro: (c: ComponenteApresentacao) => boolean): ComponenteApresentacao | null
+        {
+            if (filtro(componente))
+            {
+                return componente;
+            }
+
+            for (const componenteFilho of componente.ComponentesApresentacaoFilhos)
+            {
+                const componenteEntrado = ComponenteApresentacaoUtil.FiltrarComponenteFilho(componenteFilho, filtro);
+                if (componenteEntrado != null)
+                {
+                    return componenteEntrado;
+                }
+            }
+            return null;
+        }
     }
 }
