@@ -62,6 +62,14 @@
                 this.Inferior === esquerda;
         }
 
+        public get IsNegativa(): boolean
+        {
+            return this.Esquerda < 0 ||
+                this.Direita < 0 ||
+                this.Superior < 0 ||
+                this.Inferior < 0;
+        }
+
         public get Horizontal(): number
         {
             return Math.min(this.Esquerda, this.Direita);
@@ -190,14 +198,12 @@
                 this.Inferior === 0;
         }
 
-
-
-        public get ExisteMargem(): boolean
+        public get IsExisteMargem(): boolean
         {
-            return !isNaN(this.Esquerda) ||
-                !isNaN(this.Direita) ||
-                !isNaN(this.Superior) ||
-                !isNaN(this.Inferior);
+            return this.Esquerda >= 0 ||
+                this.Direita >= 0 ||
+                this.Superior >= 0 ||
+                this.Inferior >= 0;
         }
 
         public static get Empty(): Margem
