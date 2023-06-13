@@ -11,6 +11,7 @@
         public constructor(controlePai: BaseControle, elemento: HTMLElement) 
         {
             super(controlePai, elemento);
+            this._isPropagarBindDataSource = false;
         }
 
         protected override Inicializar(): void

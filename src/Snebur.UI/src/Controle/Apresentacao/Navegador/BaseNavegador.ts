@@ -2,15 +2,20 @@
 {
     export abstract class BaseNavegador extends BaseControleApresentacaoFormulario
     {
-        private _paginaAtual: Pagina;
         private _isManterCache: boolean;
-
+        protected _isPropagarBindDataSource: boolean = true;
+        private _resolverNavegacaoAsync: { Resolver: (value: ResolverNavegacaoAsync<Pagina> | PromiseLike<ResolverNavegacaoAsync<Pagina>>) => void, Pagina: Pagina; };
+        private _paginaAtual: Pagina;
+        protected _parametros: DicionarioSimples<any>;
+         
         public abstract readonly IdentificadorNavegador: string;
-        /*public IsNavegadorPrincipal: boolean;*/
-        public IsPropagarBindDataSource: boolean = true;
-
-        protected Parametros: DicionarioSimples<any>;
+        private readonly HistoricoLocal = new List<{ Pagina: Pagina | typeof Pagina, Parametros: DicionarioSimples<any> }>();
         public readonly TipoAnimacao: EnumTipoAnimacao;
+         
+        public get IsPropagarBindDataSource(): boolean
+        {
+            return this._isPropagarBindDataSource;
+        }
 
         public get IsPodeVoltar(): boolean
         {
@@ -27,12 +32,10 @@
         {
             return this._paginaAtual;
         }
-
-        private ResolverNavegacaoAsync: { Resolver: (value: ResolverNavegacaoAsync<Pagina> | PromiseLike<ResolverNavegacaoAsync<Pagina>>) => void, Pagina: Pagina; };
-        private readonly HistoricoLocal = new List<{ Pagina: Pagina | typeof Pagina, Parametros: DicionarioSimples<any> }>();
+         
         public readonly PaginasEmCache = new List<Pagina>();
-        public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
         public readonly EventoAntesNavegar = new Evento<AntesNavegarEventArgs>(this);
+        public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
         public readonly EventoNavaPagina = new Evento<NovaPaginaEventArgs>(this);
 
         public override get ControleApresentacao(): ControleApresentacao
@@ -52,10 +55,7 @@
         {
             super.Inicializar();
 
-            this.IsPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsPropagarBindDataSource, true));
-
-            /*this.IsNavegadorPrincipal = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.NavegadorPrincipal, false));*/
-
+            this._isPropagarBindDataSource = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsPropagarBindDataSource, this._isPropagarBindDataSource));
             this._isManterCache = this.RetornarValorAtributoBoolean(AtributosHtml.IsManterCache, null);
 
             if (this.IsPropagarBindDataSource)
@@ -104,7 +104,7 @@
         public Navegar<T extends Snebur.UI.Pagina, TValor>(construtorPagina: IPaginaConstrutor<T>, parametros: Partial<T>): void;
         public Navegar(refPagina: IPaginaConstrutor | Pagina | typeof Pagina, expresoesParametrosOuChave: any = null, valor: any = null): void
         {
-            if (this.ResolverNavegacaoAsync != null)
+            if (this._resolverNavegacaoAsync != null)
             {
                 throw new Erro("Existe uma navegação Async pendente, utilizar o método voltar");
             }
@@ -140,7 +140,7 @@
                     throw new Erro("Somente é possível fazer um navegação await partindo de uma página existente");
                 }
 
-                this.ResolverNavegacaoAsync = {
+                this._resolverNavegacaoAsync = {
                     Resolver: resolver,
                     Pagina: this._paginaAtual
                 };
@@ -194,7 +194,7 @@
                 return;
             }
             const paginaAtual = this.PaginaAtual;
-            this.Parametros = parametros;
+            this._parametros = parametros;
             const novaPagina = this.RetornarPagina(refPagina, parametros);
 
             if (!this.ControlesFilho.Contains(novaPagina))
@@ -313,7 +313,7 @@
                 return;
             }
 
-            this.Parametros = parametros;
+            this._parametros = parametros;
 
             const paginaAtual = this.PaginaAtual;
             if (paginaAtual instanceof Pagina)
@@ -353,7 +353,7 @@
 
         public Voltar(isSucesso: boolean = false): void
         {
-            if (this.ResolverNavegacaoAsync != null)
+            if (this._resolverNavegacaoAsync != null)
             {
                 this.VoltarNavegacaoAsync(isSucesso);
                 return;
@@ -389,10 +389,10 @@
         private async VoltarNavegacaoAsync(isSucesso: boolean) 
         {
             const paginaAtual = this.PaginaAtual;
-            const resolver = this.ResolverNavegacaoAsync.Resolver;
-            const pagina = this.ResolverNavegacaoAsync.Pagina;
-            this.ResolverNavegacaoAsync = null;
-            delete this.ResolverNavegacaoAsync;
+            const resolver = this._resolverNavegacaoAsync.Resolver;
+            const pagina = this._resolverNavegacaoAsync.Pagina;
+            this._resolverNavegacaoAsync = null;
+            delete this._resolverNavegacaoAsync;
 
             this.OcultarPagina(paginaAtual);
 
@@ -507,7 +507,7 @@
         {
             if (this.IsControleInicializado)
             {
-                if (!this.IsMantarCache && this.ResolverNavegacaoAsync == null)
+                if (!this.IsMantarCache && this._resolverNavegacaoAsync == null)
                 {
                     this.ControlesFilho.Remove(pagina);
                     pagina.Dispose();
@@ -670,7 +670,7 @@
 
         public NotificarEventoPaginaAlterada(): void
         {
-            this.EventoPaginaAlterada?.Notificar(this, new PaginaAlteradaEventArgs(this.PaginaAtual, this.Parametros));
+            this.EventoPaginaAlterada?.Notificar(this, new PaginaAlteradaEventArgs(this.PaginaAtual, this._parametros));
             if ($Configuracao.IsDebug)
             {
                 const nomePaginaAtual = this.PaginaAtual?.___NomeConstrutor;

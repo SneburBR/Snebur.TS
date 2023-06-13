@@ -87,7 +87,7 @@
 
         private async Window_HashhChange(domEvent: HashChangeEvent)
         {
-            const urlHsitoricoPaginaAtual = this.RetoronarUrlHistoricoHash(this.PaginaAtual, this.Parametros);
+            const urlHsitoricoPaginaAtual = this.RetoronarUrlHistoricoHash(this.PaginaAtual, this._parametros);
             if (document.location.href !== urlHsitoricoPaginaAtual)
             {
                 if (document.location.href.Contains("#"))
