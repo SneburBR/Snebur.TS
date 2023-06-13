@@ -111,7 +111,7 @@ namespace Snebur.UI
             EstiloUtil.DefinirCursorGlogal("grabbing");
             e.preventDefault();
         }
-         
+
         private ElementoClone_Window_MouseMove(e: MouseEvent): void
         {
             if (this.ElementoClone instanceof HTMLElement)
@@ -294,7 +294,7 @@ namespace Snebur.UI
                     entidadesSalvar.Add(this.EntidadeOrdenacao);
                     this.SalvarEntidadesOrdenada(entidadesSalvar.ToList<d.IOrdenacaoEntidade>());
                 }
-             
+
                 this.OrdenarItensControle();
 
                 //let destinoItemControle = controleMouseEmCima.RetornarDestinoItemControle(e);
@@ -389,7 +389,7 @@ namespace Snebur.UI
                 this._elemento = elementoMovento;
             }
         }
-         
+
         //#endregion
 
         private OrdenarItensControle(): void
@@ -716,8 +716,6 @@ namespace Snebur.UI
                 //EstiloUtil.RemoverCssClasse(this.Elemento, "sn-item-lista-elemento-movendo");
                 this.ElementoClone = null;
                 delete this.ElementoClone;
-
-
             }
         }
 
@@ -742,10 +740,10 @@ namespace Snebur.UI
                     entidadeClonada.Ordenacao = entidadeSalvar.Ordenacao;
                     entidadesClonada.Add(entidadeClonada);
                 }
-                const resultado = await contexto.SalvarAsync(entidadesClonada);
+                const resultado = await contexto.SalvarAvancadoAsync(entidadesClonada);
                 if ($Configuracao.IsDebug && !resultado.IsSucesso)
                 {
-                    throw new Error("Não foi possível salvar");
+                    throw new Error("Não foi possível salvar a ordenação");
                 }
             }
 
