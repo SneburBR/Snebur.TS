@@ -42,7 +42,6 @@
             return this.__isReiniciado;
         }
 
-        public IsAtualizandoDataSource: boolean = false;
         private _visibilidade: EnumVisibilidade = undefined;
 
         public get Elemento(): HTMLElement
@@ -146,13 +145,10 @@
         {
             if (this._dataSource !== valor)
             {
-                this.IsAtualizandoDataSource = true;
                 this.EventoDataSourceAntesAlterar?.Notificar(this, UIEventArgs.Empty);
                 this._dataSource = valor;
                 this.EventoDataSourceAlterado?.Notificar(this, UIEventArgs.Empty);
-                this.IsAtualizandoDataSource = false;
             }
-
         }
         //#endregion
 
@@ -790,7 +786,7 @@
             return elemento.id;
         }
 
-        public RetornarControlePaiFiltro<TControle extends BaseUIElemento = BaseControle>(filtro: (value: TControle) => boolean, retornarNullSeEncontrado = true): TControle
+        public RetornarControlePaiFiltro<TControle extends BaseUIElemento = BaseControle>(filtro: (value: TControle) => boolean, isNullSeEncontrado = true): TControle
         {
             let controleAtual: BaseUIElemento = this;
             while (controleAtual instanceof BaseUIElemento)
@@ -801,7 +797,7 @@
                 }
                 controleAtual = controleAtual.ControlePai;
             }
-            if (retornarNullSeEncontrado)
+            if (isNullSeEncontrado)
             {
                 return null;
             }

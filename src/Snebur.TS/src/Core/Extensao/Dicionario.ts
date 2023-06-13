@@ -27,7 +27,6 @@
     {
 
         private __Obetos: any;
-
         private _length: number
 
         public get Length(): number
@@ -369,23 +368,7 @@
         {
             return this.Existe(chave);
         }
-
-        //public Contains(item: TItem): boolean
-        //{
-        //    let chaves = this.Chaves;
-        //    let len = chaves.length;
-        //    for (var i = 0; i < len; i++)
-        //    {
-        //        let chave = chaves[i];
-        //        if (this.Item(chave) == item)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
-
-
+         
         public ToArray(): Array<TItem>
         {
             let array = new Array<TItem>();
