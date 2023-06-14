@@ -6,8 +6,6 @@ namespace Snebur.AcessoDados
     {
         private readonly CredencialServicoInterno: s.CredencialServico | null;
 
-        public constructor(urlServicoDados: string, urlServicoDebug?: string)
-        public constructor(urlServicoDados: string, urlServicoDebug?: string, credencialServico?: s.CredencialServico)
         public constructor(urlServicoDados: string, urlServicoDebug: string = null, credencialServico: s.CredencialServico | null = null)
         {
             super(urlServicoDados, urlServicoDebug);
@@ -18,42 +16,7 @@ namespace Snebur.AcessoDados
         {
             return valorParametro;
         }
-
-        //#region IServicoDados
-
-
-        //public RetornarDataHora(): Date
-        //{
-        //    return this.ChamarServico<Date>("RetornarDataHora", arguments);
-        //}
-
-        //public RetornarDataHoraUTC(): Date
-        //{
-        //    return this.ChamarServico<Date>("RetornarDataHora", arguments);
-        //}
-
-        //public RetornarValorScalar(estruturaConsulta: EstruturaConsulta): any
-        //{
-        //    return this.ChamarServico<any>("RetornarValorScalar", arguments);
-        //}
-
-        //public RetornarResultadoConsulta(estruturaConsulta: EstruturaConsulta): ResultadoConsulta
-        //{
-        //    return this.ChamarServico<ResultadoConsulta>("RetornarResultadoConsulta", arguments);
-        //}
-
-        //public Salvar(entidades: Array<d.Entidade>): ResultadoSalvar
-        //{
-        //    return this.ChamarServico<ResultadoSalvar>("Salvar", arguments);
-        //}
-
-        //public Excluir(entidades: Array<Snebur.Dominio.Entidade>, relacoesEmCascata: string = ""): Snebur.AcessoDados.ResultadoExcluir
-        //{
-        //    return this.ChamarServico<ResultadoExcluir>("Excluir", arguments);
-        //}
-
-        //#endregion
-
+  
         //#region IServicoDadosAsync
 
         public RetornarDataHoraAsync(): Promise<Date>
@@ -128,7 +91,7 @@ namespace Snebur.AcessoDados
             return this.ChamarServicoAsync("SalvarAsync", arguments);
         }
 
-        public ExcluirAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoExcluir> 
+        public DeletarAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar> 
         {
             return new Promise(resolver =>
             {
@@ -136,7 +99,7 @@ namespace Snebur.AcessoDados
             });
         }
 
-        private __ExcluirInternoAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
+        private __ExcluirInternoAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoDeletar>): void
         {
             return this.ChamarServicoAsync("ExcluirAsync", arguments);
         }

@@ -8,18 +8,18 @@ namespace Snebur
     export let $Configuracao: Snebur.Aplicacao.ConfiguracaoAplicacao;
 
     //export let $Global: Window;
-    export declare const $0: any;
-    export declare const $1: any;
-    export declare const $2: any;
-    export declare const $3: any;
-    export declare const $4: any;
-    export declare const $5: any;
-    export declare const $6: any;
-    export declare const $7: any;
-    export declare const $8: any;
-    export declare const $9: any;
-    export declare const $10: any;
 
+    //export declare const $0: any;
+    //export declare const $1: any;
+    //export declare const $2: any;
+    //export declare const $3: any;
+    //export declare const $4: any;
+    //export declare const $5: any;
+    //export declare const $6: any;
+    //export declare const $7: any;
+    //export declare const $8: any;
+    //export declare const $9: any;
+    //export declare const $10: any;
     //importados no arquivo Reflexao.ts
     //export import r = Snebur.Reflexao;
     //export import u = Snebur.Utilidade;
@@ -98,8 +98,7 @@ namespace Snebur
     export import EnumSentidoOrdenacao = Snebur.Dominio.EnumSentidoOrdenacao;
     export import EnumAparencia = Snebur.UI.EnumAparencia;
     export import EnumNavegador = Snebur.Dominio.EnumNavegador;
-
-
+     
     export import EnumFormatacao = Snebur.UI.EnumFormatacao;
     export import EnumStatusArquivo = Snebur.Dominio.EnumStatusArquivo;
     export import EnumMimeType = Snebur.Dominio.EnumMimeType;
@@ -111,7 +110,6 @@ namespace Snebur
     export import IConsultaEntidades = Snebur.AcessoDados.IConsultaEntidade;
 
     //interfaces
-
     export import IDeletado = Snebur.Dominio.IDeletado;
     export import IAtivo = Snebur.Dominio.IAtivo;
     export import ISelecionado = Snebur.Dominio.ISelecionado;
@@ -125,8 +123,7 @@ namespace Snebur
     export import IPosicao = Snebur.Dominio.IPosicao;
     export import IArea = Snebur.Dominio.IArea;
     export import IRegiao = Snebur.Dominio.IRegiao;
-
-
+     
     (function ()
     {
         /* eslint-disable*/

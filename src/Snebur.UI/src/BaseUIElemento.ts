@@ -893,6 +893,13 @@
             this.Visibilidade = invisivel ? EnumVisibilidade.Invisivel : EnumVisibilidade.Oculto;
             //ElementoUtil.OcultarElemento(this.IDElemento);
         }
+
+        public async OcultarDepois(tempo: number)
+        {
+            await ThreadUtil.EsperarAsync(tempo);
+            this.OcultarElemento();
+
+        }
         //#endregion
 
         //#region IDisposable 

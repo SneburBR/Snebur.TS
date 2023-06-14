@@ -234,32 +234,21 @@
                 MensagemErro: mensagemErro
             });
         }
+ 
 
-        //public __ExcluirInternoAsync(entidade: d.Entidade, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //public __ExcluirInternoAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //public __ExcluirInternoAsync(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //public __ExcluirInternoAsync<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //public __ExcluirInternoAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //public __ExcluirInternoAsync(parametro: any, relacoesEmCascata: string, callback: CallbackResultado<ResultadoExcluir>): void
-        //{
-        //    /*eslint-disable*/
-        //    const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
-        //    this.ServicoDados.__ExcluirInternoAsync(entidadesClonada, relacoesEmCascata, this.CallbackExcluirAsync.bind(this, entidades, callback));
-        //}
-
-        public ExcluirAsync(entidade: d.Entidade): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidade: d.IEntidade): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidade: d.Entidade, relacoesEmCascata: string): Promise<ResultadoExcluir>
-        public ExcluirAsync<TEntidade extends d.Entidade>(entidade: TEntidade, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidades: Array<d.Entidade>): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidades: ListaEntidades<d.Entidade>): Promise<ResultadoExcluir>
-        public ExcluirAsync(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoExcluir>
-        public ExcluirAsync<TEntidade>(entidades: Array<TEntidade>): Promise<ResultadoExcluir>
-        public ExcluirAsync<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string): Promise<ResultadoExcluir>
-        public ExcluirAsync<TEntidade>(entidades: Array<TEntidade>, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoExcluir>
-        public ExcluirAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): Promise<ResultadoExcluir>
-        public ExcluirAsync(argumento: any, relacoesEmCascata: any = ""): Promise<ResultadoExcluir>
+        public DeletarAsync(entidade: d.Entidade): Promise<ResultadoDeletar>
+        public DeletarAsync(entidade: d.IEntidade): Promise<ResultadoDeletar>
+        public DeletarAsync(entidade: d.Entidade, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public DeletarAsync<TEntidade extends d.Entidade>(entidade: TEntidade, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
+        public DeletarAsync(entidades: Array<d.Entidade>): Promise<ResultadoDeletar>
+        public DeletarAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public DeletarAsync(entidades: ListaEntidades<d.Entidade>): Promise<ResultadoDeletar>
+        public DeletarAsync(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>): Promise<ResultadoDeletar>
+        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
+        public DeletarAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): Promise<ResultadoDeletar>
+        public DeletarAsync(argumento: any, relacoesEmCascata: any = ""): Promise<ResultadoDeletar>
         {
             if (typeof relacoesEmCascata === "undefined")
             {
@@ -288,7 +277,7 @@
                 throw new Erro(`Não é possível excluir entidades não salvas ${String.Join(", ", entidadesNaoSalvas.Select(k => k.GetType().Nome))}`);
             }
             const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
-            return this.ServicoDados.ExcluirAsync(entidadesClonada, relacoesEmCascata);
+            return this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
 
         }
 
@@ -532,64 +521,7 @@
             }
             return entidades;
         }
-
-        //private CallbackSalvarAsync(entidades: Array<d.Entidade>, callback: CallbackResultado<ResultadoSalvar>, resultadoSalvar: ResultadoSalvar): void
-        //{
-        //    this.AtualizarEntidadesDepoisSalvar(entidades, resultadoSalvar);
-
-        //    if (u.ValidacaoUtil.IsFunction(callback))
-        //    {
-        //        callback(resultadoSalvar);
-        //    }
-
-        //}
-
-        //private CallbackExcluirAsync(entidades: Array<d.Entidade>, callback: CallbackResultado<ResultadoExcluir>, resultadoExcluir: ResultadoSalvar): void
-        //{
-        //    callback(resultadoExcluir);
-        //}
-
-        //private AtualizarEntidadesDepoisSalvar(entidades: Array<d.Entidade>, resultadoSalvar: ResultadoSalvar): void
-        //{
-        //    const dicionarioEntidades = u.EntidadeUtil.RetornarDicionario(entidades);
-        //    for (const itemEntidade of dicionarioEntidades.Valores)
-        //    {
-        //        itemEntidade.__PropriedadesAlteradas.Clear();
-        //    }
-
-        //    const len = resultadoSalvar.EntidadesSalvas.length;
-        //    for (let i = 0; i < len; i++)
-        //    {
-        //        const entidadeSalvada = resultadoSalvar.EntidadesSalvas[i];
-        //        const entidadeXXX = this.Retornar
-        //        if (dicionarioEntidades.ContainsKey(entidadeSalvada.IdentificadorUnicoEntidade))
-        //        {
-        //            const entidade = dicionarioEntidades.Item(entidadeSalvada.IdentificadorUnicoEntidade);
-        //            const tipo = entidade.GetType();
-        //            if (entidade.Id === 0)
-        //            {
-        //                entidade.Id = entidadeSalvada.Id;
-        //            }
-
-        //            for (let p = 0; p < entidadeSalvada.PropriedadesComputada.length; p++)
-        //            {
-        //                const propriedadeComputada = entidadeSalvada.PropriedadesComputada[p];
-        //                let valorPropriedade = propriedadeComputada.Valor;
-        //                const propriedade = tipo.RetornarPropriedade(propriedadeComputada.NomePropriedade);
-        //                if (propriedade instanceof r.Propriedade)
-        //                {
-        //                    if (propriedade.Tipo instanceof r.TipoPrimario)
-        //                    {
-        //                        const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
-        //                        valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
-        //                    }
-        //                    (entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+         
         private ValidarEntidades(entidades: List<d.Entidade>): void
         {
             if (entidades.Any(x => x.__IsSomenteLeitura))

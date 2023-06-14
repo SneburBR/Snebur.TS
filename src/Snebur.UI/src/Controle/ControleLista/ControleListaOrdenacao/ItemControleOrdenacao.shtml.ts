@@ -1,7 +1,6 @@
 ﻿
 namespace Snebur.UI
 {
-
     export class ItemControleOrdenacao extends ItemControle
     {
         private static readonly ITEM_MOVENDO = "sn-item-movimentando";
