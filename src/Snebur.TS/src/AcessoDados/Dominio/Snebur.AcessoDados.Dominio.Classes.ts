@@ -1,6 +1,6 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:13
+//Data : quinta-feira, 15 de junho de 2023
+//Hora : 18:20:42
 //@Namespace: Snebur.AcessoDados
 //@PrioridadeDominio: 2
 //@Globalizar: False
@@ -98,8 +98,8 @@ namespace Snebur.AcessoDados
     
         private _nomeTipoEntidade : string = null;
         private _tipoEntidadeAssemblyQualifiedName : string = null;
-        private _isMostrarDeletados : boolean = false;
-        private _isMostrarInativos : boolean = false;
+        private _isIncluirDeletados : boolean = false;
+        private _isIncluirInativos : boolean = false;
         private _isDesativarOrdenacao : boolean = false;
         private _take : number = 0;
         private _skip : number = 0;
@@ -135,24 +135,24 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("TipoEntidadeAssemblyQualifiedName", this._tipoEntidadeAssemblyQualifiedName, this._tipoEntidadeAssemblyQualifiedName = value);
         }
     
-        public get IsMostrarDeletados(): boolean 
+        public get IsIncluirDeletados(): boolean 
         {
-            return this._isMostrarDeletados;
+            return this._isIncluirDeletados;
         }
 
-        public set IsMostrarDeletados(value: boolean) 
+        public set IsIncluirDeletados(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("IsMostrarDeletados", this._isMostrarDeletados, this._isMostrarDeletados = value);
+            this.NotificarValorPropriedadeAlterada("IsIncluirDeletados", this._isIncluirDeletados, this._isIncluirDeletados = value);
         }
     
-        public get IsMostrarInativos(): boolean 
+        public get IsIncluirInativos(): boolean 
         {
-            return this._isMostrarInativos;
+            return this._isIncluirInativos;
         }
 
-        public set IsMostrarInativos(value: boolean) 
+        public set IsIncluirInativos(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("IsMostrarInativos", this._isMostrarInativos, this._isMostrarInativos = value);
+            this.NotificarValorPropriedadeAlterada("IsIncluirInativos", this._isIncluirInativos, this._isIncluirInativos = value);
         }
     
         public get IsDesativarOrdenacao(): boolean 
@@ -821,11 +821,11 @@ namespace Snebur.AcessoDados
         }
         //#endregion
     }
-    export class ResultadoExcluir extends Snebur.AcessoDados.Resultado
+    export class ResultadoDeletar extends Snebur.AcessoDados.Resultado
     {
         //#region Construtor
     
-        public constructor(inicializador?: Partial<ResultadoExcluir>) 
+        public constructor(inicializador?: Partial<ResultadoDeletar>) 
         {
             super(inicializador);
             this.Inicializar();

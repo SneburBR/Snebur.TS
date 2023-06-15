@@ -3,9 +3,7 @@
     export abstract class BaseConsultaEntidade extends Snebur.Objeto
     {
         protected _tipoEntidadeConsulta: r.TipoEntidade;
-
         public readonly ContextoDados: BaseContextoDados;
-
         public readonly EstruturaConsulta: EstruturaConsulta;
 
         public get TipoEntidadeConsulta(): r.TipoEntidade
@@ -39,8 +37,19 @@
             }
             else
             {
-                return ConsultaUtil.RetornarNovaEstruturaConsulta(this.TipoEntidadeConsulta);
+                return this.RetornarNovaEstruturaConsulta();
             }
+        }
+
+        private RetornarNovaEstruturaConsulta(): EstruturaConsulta
+        {
+            const tipoEntidade = this.TipoEntidadeConsulta;
+            const novoEstruturaConsulta = new EstruturaConsulta();
+            novoEstruturaConsulta.NomeTipoEntidade = tipoEntidade.Nome;
+            novoEstruturaConsulta.TipoEntidadeAssemblyQualifiedName = tipoEntidade.AssemblyQualifiedName;
+            novoEstruturaConsulta.TipoEntidadeConsulta = tipoEntidade;
+            novoEstruturaConsulta.TipoFuncaoEnum = EnumTipoFuncao.Consulta;
+            return novoEstruturaConsulta;
         }
     }
 }

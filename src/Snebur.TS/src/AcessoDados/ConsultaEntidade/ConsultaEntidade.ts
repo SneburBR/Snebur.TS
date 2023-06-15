@@ -8,14 +8,14 @@
             super(contextoDados, tipoEntidadeConsulta);
         }
 
-        public get IsMostrarDeletados(): boolean
+        public get IsIncluirDeletados(): boolean
         {
-            return this.EstruturaConsulta.IsMostrarDeletados;
+            return this.EstruturaConsulta.IsIncluirDeletados;
         }
 
-        public set IsMostrarDeletados(value: boolean)
+        public set IsIncluirDeletados(value: boolean)
         {
-            this.EstruturaConsulta.IsMostrarDeletados = value;
+            this.EstruturaConsulta.IsIncluirDeletados = value;
         }
         //#region Chamadas serviço  Síncronas
 
@@ -532,6 +532,7 @@
             estruturaConsultaScalar.NomeTipoEntidade = this.EstruturaConsulta.NomeTipoEntidade;
             estruturaConsultaScalar.TipoEntidadeAssemblyQualifiedName = this.EstruturaConsulta.TipoEntidadeAssemblyQualifiedName;
             estruturaConsultaScalar.FiltroGrupoE = this.EstruturaConsulta.FiltroGrupoE;
+            estruturaConsultaScalar.IsIncluirDeletados = this.EstruturaConsulta.IsIncluirDeletados;
 
             if (estruturaConsultaScalar.Take > 0 || estruturaConsultaScalar.Skip > 0)
             {
@@ -633,6 +634,8 @@
                         relacaoAbertaListaEntidade.EstruturaConsulta.NomeTipoEntidade = tipoPropridadeItemBaseEntidade.Nome;
                         relacaoAbertaListaEntidade.EstruturaConsulta.TipoEntidadeAssemblyQualifiedName = tipoPropridadeItemBaseEntidade.AssemblyQualifiedName;
                         relacaoAbertaListaEntidade.EstruturaConsulta.TipoEntidadeConsulta = tipoPropridadeItemBaseEntidade;
+                        relacaoAbertaListaEntidade.EstruturaConsulta.IsIncluirDeletados =this.EstruturaConsulta.IsIncluirDeletados;
+                        relacaoAbertaListaEntidade.EstruturaConsulta.IsIncluirInativos = this.EstruturaConsulta.IsIncluirInativos;
 
                         estruturaConsulta.ColecoesAberta.Add(caminhoPropriedadeParcial, relacaoAbertaListaEntidade);
 
@@ -885,7 +888,7 @@
 
         public IncluirDeletados(incluir: boolean = true): ConsultaEntidade<TEntidade>
         {
-            this.EstruturaConsulta.IsMostrarDeletados = incluir;
+            this.EstruturaConsulta.IsIncluirDeletados = incluir;
             return this;
         }
         //#endregion

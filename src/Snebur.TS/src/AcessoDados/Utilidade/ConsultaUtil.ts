@@ -2,15 +2,7 @@
 {
     export class ConsultaUtil
     {
-        public static RetornarNovaEstruturaConsulta(tipoEntidade: r.TipoEntidade): EstruturaConsulta
-        {
-            const novoEstruturaConsulta = new EstruturaConsulta();
-            novoEstruturaConsulta.NomeTipoEntidade = tipoEntidade.Nome;
-            novoEstruturaConsulta.TipoEntidadeAssemblyQualifiedName = tipoEntidade.AssemblyQualifiedName;
-            novoEstruturaConsulta.TipoEntidadeConsulta = tipoEntidade;
-            novoEstruturaConsulta.TipoFuncaoEnum = EnumTipoFuncao.Consulta;
-            return novoEstruturaConsulta;
-        }
+       
 
         public static RetornarNovoFiltroPropriedade(propriedade: r.Propriedade, operador: EnumOperadorFiltro, valorPropriedade: any): FiltroPropriedade
         {
