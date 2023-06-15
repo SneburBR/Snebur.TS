@@ -645,7 +645,7 @@
                 this.OcuparElemento();
             }
         }
-         
+
         public ProgressoOcupado(processo: number): void
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
@@ -669,7 +669,7 @@
                 $Aplicacao.DocumentoPrincipal.MensagemOcupado(mensagem);
             }
         }
- 
+
         public async DesocuparAsync(): Promise<void>
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
@@ -736,51 +736,31 @@
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>): Promise<T>
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueio: (value: TThis) => boolean): Promise<T>
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, identificadorBloqueio: string): Promise<T>
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean)): Promise<T>
+        public async OcuparAsync<T, TThis extends this = this>(funcAsync: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean)): Promise<T>
         {
-            if (expressaoFlagBloqueioOuIdentificador == null)
-            {
-                return this.OcuparInternoAsync(funcAsunc);
-            }
-            return this.OcuparComBloqueioInternoAsync(funcAsunc, expressaoFlagBloqueioOuIdentificador);
-        }
+            const nomeFlagDeBloqueio = expressaoFlagBloqueioOuIdentificador == null ?
+                "__flagsOcupado__ocupado" : typeof expressaoFlagBloqueioOuIdentificador === "string" ?
+                    "__flagsOcupado__" + expressaoFlagBloqueioOuIdentificador :
+                    ExpressaoUtil.RetornarNomePropriedade(expressaoFlagBloqueioOuIdentificador);
 
-        private async OcuparInternoAsync<T>(funcAsync: () => Promise<T>): Promise<T>
-        {
-            try
-            {
-                this.Ocupar();
-                return await funcAsync();
-            }
-            finally
-            {
-                await this.DesocuparAsync();
-            }
-        }
-
-        private async OcuparComBloqueioInternoAsync<T, TThis extends this = this>(funcAsync: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean))
-        {
-            const nomePropriedade = typeof expressaoFlagBloqueioOuIdentificador === "string" ?
-                "__flags__" + expressaoFlagBloqueioOuIdentificador :
-                ExpressaoUtil.RetornarNomePropriedade(expressaoFlagBloqueioOuIdentificador);
-
-            if ((this as any)[nomePropriedade])
+            if ((this as any)[nomeFlagDeBloqueio])
             {
                 return null;
             }
 
             try
             {
-                (this as any)[nomePropriedade] = true;
+                (this as any)[nomeFlagDeBloqueio] = true;
                 this.Ocupar();
                 return await funcAsync();
             }
             finally
             {
-                (this as any)[nomePropriedade] = false;
+                (this as any)[nomeFlagDeBloqueio] = false;
                 await this.DesocuparAsync();
             }
         }
+          
         //#region
         //#region Habilitar e desabilitar 
 
@@ -931,7 +911,7 @@
         {
             if (!this.IsDispensado)
             {
-               
+
                 //if (this.ControlePai instanceof BaseControle )
                 //{
                 //    this.ControlePai.EventoDataSourceAlterado.RemoveHandler(this.LegendaControlePai_DataSourceAlterado, this);

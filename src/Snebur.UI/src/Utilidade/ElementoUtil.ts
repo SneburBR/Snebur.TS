@@ -619,10 +619,15 @@
 
         //#endregion
 
-        public static RetornarNovoElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string = "", className: string = ""): HTMLElementTagNameMap[K]
+        public static CriarElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
+        {
+            return ElementoUtil.RetornarNovoElemento(tag, innerHTML, className);
+        }
+
+        public static RetornarNovoElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
         {
             const e = document.createElement(tag);
-            e.innerHTML = innerHTML;
+            e.innerHTML = innerHTML?.toString();
             e.className = className;
             return e;
         }
