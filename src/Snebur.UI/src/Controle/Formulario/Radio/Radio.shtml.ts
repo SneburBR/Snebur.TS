@@ -76,7 +76,11 @@
         protected override HtmlCarregado(): void
         {
             super.HtmlCarregado();
+        }
 
+        protected override DepoisInicializarComponentesApresentacao(): void
+        {
+            super.DepoisInicializarComponentesApresentacao();
             if (!String.IsNullOrWhiteSpace(this.CaminhoBind))
             {
                 ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindTexto, this.CaminhoBind);
@@ -86,6 +90,9 @@
         protected override Inicializar(): void
         {
             super.Inicializar();
+
+           
+
             this.Valor = this.RetornarValor();
             this.Grupo = this.RetornarGrupoRadio();
             this.IsSelecionado = this.RetornarValorAtributoBoolean(AtributosHtml.Selecionado, false);
