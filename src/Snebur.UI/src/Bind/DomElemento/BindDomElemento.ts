@@ -147,7 +147,7 @@
             {
                 return this.Elemento.getAttribute("sn-mascara") !== "Moeda";
             }
-             
+
             return true;
         }
 
@@ -213,13 +213,15 @@
                         }
                         default: {
 
-                            throw new ErroNaoSuportado(`O tipo '${tipo}' do elemento input não é suportado pelo Bind `, this);
+                            console.error(`O elemento  ${elemento.tagName} type ${tipo} não é suportado pelo bind ${this.___NomeConstrutor} em ${this.ControleApresentacao.___NomeConstrutor}`, this);
+                            return;
                         }
                     }
                 }
                 default: {
 
-                    throw new ErroNaoSuportado(`Elemento dom não suportado pelo bind ${elemento.tagName}`, this);
+                    console.error(`O elemento  ${elemento.tagName}  não é suportado pelo bind ${this.___NomeConstrutor} em ${this.ControleApresentacao.___NomeConstrutor}`, this);
+                    return;
                 }
             }
         }
@@ -285,7 +287,8 @@
 
                             if (!String.IsNullOrEmpty(novoValorDom) && isNaN(parseFloat(novoValorDom)))
                             {
-                                throw new Erro(`O valor ${novoValorDom} não é suportado para elemento input dos tipos number e range `);
+                                console.error(`O novo valor do dom ${novoValorDom} para o elemento  ${elemento.tagName} não é suportado pelo bind ${this.___NomeConstrutor} em ${this.ControleApresentacao.___NomeConstrutor}`, this);
+                                return;
                             }
 
                             if (String.IsNullOrEmpty(novoValorDom))
@@ -311,7 +314,8 @@
                         }
                         default: {
 
-                            throw new ErroNaoSuportado(`O tipo ${tipo} do elemento input não é suportado pelo Bind `, this);
+                            console.error(`O tipo ${tipo} do elemento input não é suportado pelo Bind  ${this.___NomeConstrutor}`, this);
+                            return;
                         }
                     }
                 }
@@ -366,7 +370,7 @@
                     }
                 }
 
-                throw new ErroNaoSuportado(`Elemento não suportado pelo bind ${elemento.tagName} em ${this.ControleApresentacao.___NomeConstrutor}`, this);
+                console.error(`O elemento  ${elemento.tagName} não é suportado pelo bind ${this.___NomeConstrutor} em ${this.ControleApresentacao.___NomeConstrutor}`, this);
             }
 
         }
