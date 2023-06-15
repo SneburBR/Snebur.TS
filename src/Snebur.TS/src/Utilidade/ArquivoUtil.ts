@@ -243,6 +243,12 @@
             }
             return nomeArquivo + extensao;
         }
+
+        public static SalvarArquivo(conteudo: string | Uint8Array | ArrayBuffer, nomeArquivo: string, mimeType: string = "text/plain")
+        {
+            const blob = new Blob([conteudo], { type: mimeType });
+            Salvar.SalvarComo(blob, nomeArquivo);
+        }
     }
 
 

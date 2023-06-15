@@ -1,6 +1,4 @@
-﻿
-
-interface Console
+﻿interface Console
 {
     baseLog(...data: any[]): void;
     baseInfo(...data: any[]): void;
@@ -64,17 +62,16 @@ namespace Snebur
                 {
                     base.bind(this)(mensagem);
                 }
-                 
+
                 if ($Configuracao != null && $Configuracao.IsDebug &&
                     tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
                 {
                     __contadorAlertasErro += 1;
-                    if (__contadorAlertasErro > 5)
-                    {
-                        clearTimeout(__identificadorTimeoutAlertaErro);
-                        __identificadorTimeoutAlertaErro = setTimeout(() => __contadorAlertasErro = 0, 30 * 1000);
-                    }
-                    else
+
+                    clearTimeout(__identificadorTimeoutAlertaErro);
+                    __identificadorTimeoutAlertaErro = setTimeout(() => __contadorAlertasErro = 0, 5 * 1000);
+
+                    if (__contadorAlertasErro > 100)
                     {
                         const mensagem = String.Join("\r\n", data);
                         alert(mensagem);
