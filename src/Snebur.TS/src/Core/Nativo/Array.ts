@@ -187,6 +187,16 @@ namespace Snebur
         return retorno;
     };
 
+    Array.prototype.Zip = function (this: Array<any>, lista: Array<any>)
+    {
+        const retorno = new Array<[any, any]>();
+        for (let i = 0; i < this.length; i++)
+        {
+            retorno.Add([this[i], lista[i] ?? null]);
+        }
+        return retorno;
+    };
+
     Array.prototype.SelectMany = function (this: Array<any>, caminhoColecao: Function)
     {
         let retorno = new Array<any>();

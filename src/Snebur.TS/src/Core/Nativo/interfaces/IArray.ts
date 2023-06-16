@@ -41,6 +41,7 @@ namespace Snebur.Nativo
         Clear(isDefinirListaNova: boolean): void;
 
         Select<U>(funcaoMapear: (value: T) => U): U[];
+        Zip<U>(lista: Array<U>): Array<[T, U]>;
 
         SelectMany<U>(caminhoColexao: (value: T) => U): U;
 
