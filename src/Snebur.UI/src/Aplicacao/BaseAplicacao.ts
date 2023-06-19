@@ -8,7 +8,6 @@
     export abstract class BaseAplicacao<TDocumentoPrincipal extends DocumentoPrincipal = DocumentoPrincipal> extends Snebur.Aplicacao.BaseAplicacao
     {
         //#region Contantes
-
         private static readonly TEMPO_MAXIMO_CARREGAR_FONTES_ICONE = 30000;
         private static readonly FONTE_ICONES = "24px 'Material Icons'"
         protected readonly NomeElementoProgressoCarregandoAplicacao: string = "sn-progresso-carregando-aplicacao";
@@ -101,8 +100,10 @@
                 window.addEventListener("keydown", this.WindowDebug_KeyDow.bind(this));
             }
 
-            if (!$Configuracao.IsPermitirUsuarioAnonimo && !this.IsUsuarioLogado)
+            if (!$Configuracao.IsPermitirUsuarioAnonimo &&
+                !this.IsUsuarioLogado)
             {
+                await this.DesocuparInicializacaoAsync();
                 await u.AutenticacaoUtil.EntrarAsync();
 
                 if (!$Aplicacao.IsUsuarioLogado)
@@ -138,17 +139,9 @@
         protected async DepoisInicializarDocumentoPrincipalAsync(): Promise<void>
         {
             //pode ser sobrescrito
-            const elmementoCarregando = document.getElementById(this.NomeElementoCarregandoAplicacao);
-            if (elmementoCarregando != null)
-            {
-                elmementoCarregando.style.opacity = "0";
-                elmementoCarregando.style.visibility = "hidden";
-                await ThreadUtil.EsperarAsync(200);
-                elmementoCarregando.remove();
-            }
-
+            await this.DesocuparInicializacaoAsync();
         }
-
+         
         public override RetornarBarraEnvio(documentoPrincipal: DocumentoPrincipal): BarraEnvioArquivos
         {
             return new BarraEnvioArquivos(documentoPrincipal);
@@ -167,6 +160,18 @@
             if (String.IsNullOrWhiteSpace(document.body.id))
             {
                 document.body.id = ElementoUtil.RetornarNovoIDElemento(null, "corpo");
+            }
+        }
+
+        protected async DesocuparInicializacaoAsync()
+        {
+            const elmementoCarregando = document.getElementById(this.NomeElementoCarregandoAplicacao);
+            if (elmementoCarregando != null)
+            {
+                elmementoCarregando.style.opacity = "0";
+                elmementoCarregando.style.visibility = "hidden";
+                await ThreadUtil.EsperarAsync(200);
+                elmementoCarregando.remove();
             }
         }
 
