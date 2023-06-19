@@ -2,7 +2,7 @@
 {
     //Ao adicionar um evento dom, deve ser adicionar o mapeamento KeyOf do tipo do argumento do evento do dom,
 
-   //Sequencias dos eventos do mouse ou touch
+    //Sequencias dos eventos do mouse ou touch
     // 1 - touchstart
     // 2 - touchmove
     // 3 - touchend
@@ -44,12 +44,13 @@
         Input = "input",
         HashChange = "hashchange",
         Message = "message",
+
         MouseDown = "mousedown",
         MouseEnter = "mouseenter",
         MouseMove = "mousemove",
         MouseLeave = "mouseleave",
-        //mouseout, USAR MOUSE LEAVE
-        //mouseover, USAR MOUSEENTER
+        MouseOut = "mouseout",
+        MouseOver = "mouseover",
         MouseUp = "mouseup",
         DOMMouseScroll = "DOMMouseScroll",
         MouseWheel = "mousewheel",
@@ -89,8 +90,8 @@
         "focus": FocusEvent,
         "focusin": FocusEvent,
         "focusout": FocusEvent,
-        "fullscreenchange" :Event,
-        "fullscreenerror" :Event,
+        "fullscreenchange": Event,
+        "fullscreenerror": Event,
         "keydown": KeyboardEvent,
         "keypress": KeyboardEvent,
         "keyup": KeyboardEvent,
@@ -102,8 +103,8 @@
         "mousemove": MouseEvent,
         "mouseleave": MouseEvent,
         "hashchange": HashChangeEvent,
-        //mouseout, USAR MOUSE LEAVE
-        //mouseover, USAR MOUSEENTER
+        "mouseout": MouseEvent,
+        "mouseover": MouseEvent,
         "mouseup": MouseEvent,
         "mousewheel": WheelEvent,
         "DOMMouseScroll": WheelEvent,
@@ -116,7 +117,7 @@
         "touchend": TouchEvent,
         "touchmove": TouchEvent,
         "touchstart": TouchEvent
-        "visibilitychange" : Event
+        "visibilitychange": Event
     }
 }
 
