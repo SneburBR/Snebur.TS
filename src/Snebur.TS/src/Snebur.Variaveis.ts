@@ -2,9 +2,10 @@
 
 namespace Snebur
 {
+    export declare const $Aplicacao: Snebur.Aplicacao.BaseAplicacao;
     /*eslint-disable*/
     export let VersaoScript: string;
-    export let $Aplicacao: Snebur.Aplicacao.BaseAplicacao;
+    
     export let $Configuracao: Snebur.Aplicacao.ConfiguracaoAplicacao;
 
     //export let $Global: Window;
@@ -141,7 +142,14 @@ namespace Snebur
         Object.freeze(___PropriedadesMetodosProtegidosEntidades);
     })();
 
-
+    Object.defineProperty(Snebur, "$Aplicacao", {
+        get: function ()
+        {
+            return Snebur.Aplicacao.BaseAplicacao.Instancia;
+        },
+        configurable: false,
+        enumerable: false
+    });
 }
 
 namespace Snebur.Dominio.Atributos
