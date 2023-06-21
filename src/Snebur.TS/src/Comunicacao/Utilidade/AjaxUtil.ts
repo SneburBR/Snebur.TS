@@ -230,13 +230,14 @@
             timeout: number = 0,
             callbackProgresso: CallbackResultado<ProgressoEventArgs> = null): Promise<ArrayBuffer>
         {
-            return new Promise<ArrayBuffer>(resolver =>
+            return new Promise<ArrayBuffer>((resolver, reject) =>
             {
                 this.__RetornarConteudoBytesInternoAsync(metodo, url, token, timeout, function (resultado)
                 {
                     if (resultado instanceof Error)
                     {
-                        throw resultado;
+                        reject(resultado);
+                        return;
                     }
                     resolver(resultado);
                 }, callbackProgresso);
