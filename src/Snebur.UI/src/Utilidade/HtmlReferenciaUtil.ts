@@ -37,7 +37,7 @@
                 const isReiniciando = tipoOuConstrutor instanceof BaseUIElemento && tipoOuConstrutor.__IsReiniciado;
                 if (!isReiniciando)
                 {
-                    const tempoUtlimaDecodificacao = new Date().getTime() - htmlReferencia.DataHoraDecodificado.getTime();
+                    const tempoUtlimaDecodificacao = Date.now() - htmlReferencia.DataHoraDecodificado.getTime();
                     if (tempoUtlimaDecodificacao < HtmlReferenciaUtil.TEMPO_ATUALIZAR_HTML_DECODIFICADO)
                     {
                         return htmlReferencia.HtmlDecodificado;

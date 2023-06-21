@@ -58,7 +58,7 @@ function Inicializar(e)
 {
     try
     {
-        const inicio = new Date().getTime();
+        const inicio = Date.now();
 
         const mensagem: Snebur.WebWorker.IMensageJpegDecoder = e.data ;
         const arquivo = mensagem.Arquivo;
@@ -90,12 +90,12 @@ function Inicializar(e)
                 const rawPixels = JpegDecoder.decode(bytes, bytes.length, canais);
                 const dimensao = JpegDecoder.dimensions();
 
-                const tempoDecoder = new Date().getTime() - inicio;
+                const tempoDecoder = Date.now() - inicio;
                 console.log(" TEMPO DO DECODER : " + tempoDecoder);
 
                 NotificarProgresso(50, ETAPA_DECODER);
 
-                const inicioResize = new Date().getTime();
+                const inicioResize = Date.now();
 
                 const imageDataOrigem = new ImageData(
                     new Uint8ClampedArray(rawPixels),
@@ -138,9 +138,9 @@ function Inicializar(e)
 
                         try
                         {
-                            const tempoResize = new Date().getTime() - inicioResize;
+                            const tempoResize = Date.now() - inicioResize;
                             console.log(nomeArquivo + " TEMPO DO RESIZE  : " + tempoResize);
-                            const inicoEncoder = new Date().getTime();
+                            const inicoEncoder = Date.now();
 
                             NotificarProgresso(75, ETAPA_RESIZE);
 
@@ -165,8 +165,8 @@ function Inicializar(e)
                                 const bufferJpeg = encoder.encode(resultado, qualidade);
                                 const blob = new Blob([bufferJpeg], { type: "image/jpeg" });
 
-                                const tempoEncoder = new Date().getTime() - inicoEncoder;
-                                const tempoGeral = new Date().getTime() - inicio;
+                                const tempoEncoder = Date.now()  - inicoEncoder;
+                                const tempoGeral = Date.now() - inicio;
 
                                 console.log("ARQUIVO " + nomeArquivo +
                                     "\rTEMPO DECODER " + tempoDecoder +

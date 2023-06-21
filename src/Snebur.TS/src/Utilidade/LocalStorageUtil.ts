@@ -5,7 +5,7 @@ namespace Snebur.Utilidade
     {
         public static AdicionarConteudo(chave: string, conteudo: any)
         {
-            const expirarem = (new Date().getTime()) + (365 * 24 * 60 * 60 * 1000);
+            const expirarem = Date.now() + (365 * 24 * 60 * 60 * 1000);
             const json = JSON.stringify(conteudo);
             const jsonBase64 = u.Base64Util.Encode(json);
 

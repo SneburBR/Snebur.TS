@@ -513,7 +513,7 @@
             if (this.ValorProprieade === this.ValorPropriedadeUltimaValidacao &&
                 this.DataHoraUltimaValidacao instanceof Date)
             {
-                const tempo = new Date().getTime() - this.DataHoraUltimaValidacao.getTime();
+                const tempo = Date.now() - this.DataHoraUltimaValidacao.getTime();
                 return tempo > BaseControleFormulario.TEMPO_EXPIRACAO_ULTIMA_VALIDACAO;
             }
             return true;

@@ -20,7 +20,7 @@
         {
             if (this._isRunning)
             {
-                return new Date().getTime() - this.Inicio;
+                return Date.now() - this.Inicio;
             }
             if (this.Fim > 0 && this.Inicio > 0 &&
                 this.Fim > this.Inicio)
@@ -43,7 +43,7 @@
 
         public Start(): void
         {
-            this.Inicio = new Date().getTime();
+            this.Inicio = Date.now();
             this._isRunning = true;
             this.Fim = 0;
         }
@@ -52,7 +52,7 @@
         {
             if (this._isRunning)
             {
-                this.Fim = new Date().getTime();
+                this.Fim = Date.now();
                 this._isRunning = false;
             }
         }

@@ -48,9 +48,9 @@ class ProcessadorUtil
     public static distBenchmark(timeLimit: number): number
     {
         const locs = ProcessadorUtil.getRandomLocations(10);
-        const start = new Date().getTime();
+        const start = Date.now();
         let ops = 0;
-        let curTime = new Date().getTime();
+        let curTime = Date.now();
         while (curTime < start + timeLimit)
         {
             const dists = [];
@@ -60,7 +60,7 @@ class ProcessadorUtil
                 dists.push(d);
             }));
             ops++;
-            curTime = new Date().getTime();
+            curTime = Date.now();
         }
         return ops;
     }
@@ -73,9 +73,9 @@ class ProcessadorUtil
 
     private static fibBenchmark(i: number): number
     {
-        const start = new Date().getTime();
+        const start = Date.now();
         ProcessadorUtil.fibonacci(i);
-        const end = new Date().getTime();
+        const end = Date.now();
         return end - start;
     }
 
