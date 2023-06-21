@@ -96,47 +96,14 @@
 
         public constructor()
         public constructor(margem: number)
+        public constructor(margem: IMargem)
         public constructor(margemHorizontal: number, magemVertical: number)
         public constructor(esquerda: number, superior: number, direita: number, inferior: number)
-        public constructor(p1?: number, p2?: number, direita?: number, inferior?: number) 
+        public constructor(...args: any[]) 
         {
             super();
 
-            let esquerda: number;
-            let superior: number;
-
-            if (arguments.length === 0 || (arguments.length === 1 && p1 == null))
-            {
-                esquerda = null;
-                superior = null;
-                direita = null;
-                inferior = null;
-
-            }
-            else if (arguments.length === 1)
-            {
-                const margem = u.ConverterUtil.ParaNumero(p1);
-                esquerda = margem;
-                superior = margem;
-                direita = margem;
-                inferior = margem;
-            }
-            else if (arguments.length === 2)
-            {
-                const margemX = u.ConverterUtil.ParaNumero(p1);
-                const margemY = u.ConverterUtil.ParaNumero(p2);
-
-                esquerda = margemX;
-                superior = margemY;
-                direita = margemX;
-                inferior = margemY;
-            }
-            else
-            {
-                esquerda = u.ConverterUtil.ParaNumero(p1);
-                superior = u.ConverterUtil.ParaNumero(p2);
-            }
-
+            const [esquerda, superior, direita, inferior] = this.RetornarParametrosInicializacao(args);
             this.Esquerda = u.ConverterUtil.ParaNumero(esquerda);
             this.Superior = u.ConverterUtil.ParaNumero(superior);
             this.Direita = u.ConverterUtil.ParaNumero(direita);
@@ -235,7 +202,7 @@
             };
         }
 
-        public Maior(margem: IMargem)
+        public IsMaior(margem: IMargem): boolean
         {
             return this.Superior > margem.Superior &&
                 this.Inferior > margem.Inferior &&
@@ -267,6 +234,50 @@
         public override toString(): string
         {
             return `${this.___NomeConstrutor} ${this.Esquerda.toFixed(2)}  ${this.Superior.toFixed(2)}  ${this.Direita.toFixed(2)} Y: ${this.Inferior.toFixed(2)}`;
+        }
+
+        private RetornarParametrosInicializacao(args: any[]): [number, number, number, number]
+        {
+            if (args.length === 0 || (args.length === 1 && args[0] == null))
+            {
+                return [0, 0, 0, 0];
+
+            }
+            if (args.length === 1)
+            {
+                const a1 = args[0];
+                if (typeof a1 === "number")
+                {
+                    const margem = u.ConverterUtil.ParaNumero(a1);
+                    return [margem, margem, margem, margem];
+                }
+
+                if (
+                    a1.Esquerda !== undefined &&
+                    a1.Superior !== undefined &&
+                    a1.Direita !== undefined &&
+                    a1.Inferior !== undefined)
+                {
+                    return [a1.Esquerda, a1.Superior, a1.Direita, a1.Inferior];
+                }
+            }
+
+            if (args.length === 2)
+            {
+                const margemX = u.ConverterUtil.ParaNumero(args[0]);
+                const margemY = u.ConverterUtil.ParaNumero(args[1]);
+                return [margemX, margemY, margemX, margemY];
+            }
+
+            if (args.length === 4)
+            {
+                return [
+                    ConverterUtil.ParaNumero(args[0]),
+                    ConverterUtil.ParaNumero(args[1]),
+                    ConverterUtil.ParaNumero(args[2]),
+                    ConverterUtil.ParaNumero(args[3])];
+            }
+            throw new Erro("Argumentos de construção da margem inválidos");
         }
     }
 }
