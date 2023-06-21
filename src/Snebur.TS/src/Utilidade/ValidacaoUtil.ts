@@ -174,8 +174,9 @@
         {
             if (obj instanceof Date)
             {
-                return obj instanceof Date;
+                return true;
             }
+
             if (isAceitarString)
             {
                 return ValidacaoUtil.IsDateString(obj);
