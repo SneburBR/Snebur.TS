@@ -4,25 +4,22 @@
         ITipo<Snebur.Reflexao.TipoListaEntidade>, IListaEntidades
     {
 
-        private _aberta: boolean = false;
+        private _isAberta: boolean = false;
 
-        public get Aberta(): boolean
+        public get IsAberta(): boolean
         {
-            return this._aberta;
+            return this._isAberta;
         }
 
         private NotificacaoAlterarRemoverAtiva: boolean;
 
-        public EntidadesRemovida: Array<Snebur.Dominio.IEntidade | Snebur.Dominio.Entidade>;
-        public EntidadesAdicionada: Array<Snebur.Dominio.IEntidade | Snebur.Dominio.Entidade>;
+        public readonly EntidadesRemovida = new Array<Snebur.Dominio.Entidade>();
+        public readonly EntidadesAdicionada = new Array<Snebur.Dominio.Entidade>();
          
         public constructor()
         {
             super();
-
-            this.EntidadesRemovida = new Array<Snebur.Dominio.Entidade>();
-            this.EntidadesAdicionada = new Array<Snebur.Dominio.Entidade>();
-            this._tipoLista = EnumTipoLista.ListaEntidades;
+             this._tipoLista = EnumTipoLista.ListaEntidades;
         }
 
         public static ExisteEntidade(lista: ListaObservacao<any>, entidade: d.Entidade, comparador?: Snebur.IEqualityComparer): boolean
