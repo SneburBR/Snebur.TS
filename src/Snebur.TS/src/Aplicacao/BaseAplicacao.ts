@@ -3,7 +3,6 @@
     export abstract class BaseAplicacao extends Snebur.ObjetoControladorPropriedade 
     {
         /*protected _isNavegadorSuportarOrientacaoExif: boolean;*/
-
         private _servicoUsuario: Snebur.Comunicacao.IServicoUsuario;
         private _servicoRegrasNegocio: Snebur.AcessoDados.ServicoRegrasNegocioCliente;
         private _servicoDepuracao: Snebur.Depuracao.ServicoDepuracao;
@@ -111,23 +110,9 @@
         {
             return this._diferencaDataHoraUtcServidor;
         }
-
-        public get VersoesDepedencia(): List<VersaoDepedencia>
-        {
-            throw new ErroNaoImplementado();
-            //const versoes = new List<VersaoDepedencia>();
-            //const depedencias = $Configuracao.NamespaceDepedentes;
-            //for (const depedencia of depedencias)
-            //{
-            //    const caminhoVersao = depedencia + ".VersaoScript";
-            //    const versao = u.ReflexaoUtil.RetornarValorPropriedade(window, caminhoVersao);
-            //    versoes.Add(new VersaoDepedencia(depedencia, versao));
-            //}
-            //return versoes;
-        }
-
+ 
         public get FuncaoNormalizarRequisicao(): (
-            metodo: u.EnumHttpMethod, url:string, request: XMLHttpRequest) => void
+            metodo: u.EnumHttpMethod, url: string, request: XMLHttpRequest) => void
         {
             return undefined;
         }
@@ -181,6 +166,12 @@
         {
             super();
             this.DefinirVersaoDebug();
+
+            if (BaseAplicacao.__instancia != null)
+            {
+                throw new Erro("Já existe uma aplicação snebur instanciada");
+            }
+            BaseAplicacao.__instancia = this;
         }
 
         public async Inicializar() 
@@ -255,6 +246,7 @@
             {
                 throw new Error("O objeto configuração $Configuracao não foi definido");
             }
+
             Object.defineProperty(Snebur.$Configuracao, "IsDebugOuTeste", {
                 get: function ()
                 {
@@ -397,6 +389,18 @@
             return null;
 
         }
+        //#endregion
+
+
+        //#region Static
+
+       private static __instancia: BaseAplicacao = null;
+
+        public static get Instancia(): BaseAplicacao
+        {
+            return BaseAplicacao.__instancia;
+        }
+
         //#endregion
     }
 
