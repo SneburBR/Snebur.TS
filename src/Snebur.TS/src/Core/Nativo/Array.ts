@@ -68,29 +68,15 @@ namespace Snebur
                 resultado.push(objeto);
             }
         }
-      /*  resultado.__isQuery = true;*/
+        /*  resultado.__isQuery = true;*/
         return resultado;
     };
 
-    Array.prototype.ToList = function (this: Array<any>, isNova?: boolean)
+    Array.prototype.ToList = function (this: Array<any>, isCopiar: boolean = false)
     {
-        //if (this.__isQuery === true)
-        //{
-        //    this.__isQuery = false;
-        //    return this;
-        //}
-
-        if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this) ||
-            u.ConverterUtil.ParaBoolean(isNova) /*|| lista.__isQuery*/)
+        if (isCopiar)
         {
-            let novaLista = new Array<any>();
-            let len = this.length;
-            for (let i = 0; i < len; i++)
-            {
-                let item = this[i];
-                novaLista.Add(item);
-            }
-            return novaLista;
+            return [...this]
         }
         else
         {
@@ -134,7 +120,7 @@ namespace Snebur
                 retorno.Add(item);
             }
         }
-       /* retorno.__isQuery = true;*/
+        /* retorno.__isQuery = true;*/
         return retorno;
     }
 
@@ -179,8 +165,8 @@ namespace Snebur
         return lista;
     };
 
-   
-    Array.prototype.Select = function (this:Array<any>, funcaoMapear: any)
+
+    Array.prototype.Select = function (this: Array<any>, funcaoMapear: any)
     {
         let retorno = this.map(funcaoMapear) as Array<any>;
         /*retorno.__isQuery = true;*/
@@ -238,20 +224,18 @@ namespace Snebur
             let valorB = funcaoOrdenacao(b);
 
             // Os nulo vem antes
-            if (!u.ValidacaoUtil.IsDefinido(valorA) && (!u.ValidacaoUtil.IsDefinido(valorB)))
+            if (valorA == null)
             {
-                return 0;
+                return valorB == null ? 0 : -1;
             }
-            if (!u.ValidacaoUtil.IsDefinido(valorA))
-            {
-                return -1;
-            }
-            if (!u.ValidacaoUtil.IsDefinido(valorB))
+
+            if (valorB == null)
             {
                 return -1;
             }
+
             // String
-            if (u.ValidacaoUtil.IsString(valorA) && (u.ValidacaoUtil.IsString(valorB)))
+            if (typeof valorA === "string" && typeof valorB === "string")
             {
                 valorA = valorA.toLowerCase();
                 valorB = valorB.toLowerCase();
@@ -267,12 +251,12 @@ namespace Snebur
                 return 0;
             }
 
-            if (u.ValidacaoUtil.IsNumber(valorA) && (u.ValidacaoUtil.IsNumber(valorB)))
+            if (typeof valorA === "number" && typeof valorB === "number")
             {
                 return valorA - valorB;
             }
 
-            if (u.ValidacaoUtil.IsDate(valorA) && (u.ValidacaoUtil.IsDate(valorB)))
+            if (valorA instanceof Date && valorB instanceof Date)
             {
                 return valorA.getTime() - valorB.getTime();
             }
@@ -285,34 +269,34 @@ namespace Snebur
             throw new Erro(' A valor do propriedade para ordenação não é suportado');
         };
 
-        let retorno = (this as Array<any>).ToList(true).sort(ordenacaoCrenscente) as Array<any>;
-        /*retorno.__isQuery = true;*/
-        return retorno;
+        return [...this].sort(ordenacaoCrenscente) as Array<any>;
     });
 
     Array.prototype.OrderByDescending = function (this: Array<any>, funcaoOrdenacao)
     {
+        if (this.length == 0)
+        {
+            return this;
+        }
+
         let ordenacaoDecrenscente = function (a: any, b: any)
         {
             let valorA = funcaoOrdenacao(a);
             let valorB = funcaoOrdenacao(b);
 
             // Os nulo vem antes
-            if (!u.ValidacaoUtil.IsDefinido(valorA) && (!u.ValidacaoUtil.IsDefinido(valorB)))
+            if (valorA == null)
             {
-                return 0;
+                return (valorB == null) ? 0 : 1;
             }
-            if (!u.ValidacaoUtil.IsDefinido(valorA))
+
+            if (valorB == null)
             {
                 return 1;
             }
 
-            if (!u.ValidacaoUtil.IsDefinido(valorB))
-            {
-                return 1;
-            }
             // String
-            if (u.ValidacaoUtil.IsString(valorA) && (u.ValidacaoUtil.IsString(valorB)))
+            if (typeof valorA === "string" && typeof valorB === "string")
             {
                 valorA = valorA.toLowerCase();
                 valorB = valorB.toLowerCase();
@@ -327,11 +311,13 @@ namespace Snebur
                 }
                 return 0;
             }
-            if (u.ValidacaoUtil.IsNumber(valorA) && (u.ValidacaoUtil.IsNumber(valorB)))
+
+            if (typeof valorA === "number" && typeof valorB === "number")
             {
                 return valorB - valorA;
             }
-            if (u.ValidacaoUtil.IsDate(valorA) && (u.ValidacaoUtil.IsDate(valorB)))
+
+            if (valorA instanceof Date && valorB instanceof Date)
             {
                 return valorB.getTime() - valorA.getTime();
             }
@@ -343,12 +329,9 @@ namespace Snebur
 
             throw new ErroNaoSuportado(" A valor do propriedade para ordenação não é suportado");
         };
-
-        let retorno = (this as Array<any>).ToList(true).sort(ordenacaoDecrenscente) as Array<any>;
-        /*retorno.__isQuery = true;*/
-        return retorno;
+        return [...this].sort(ordenacaoDecrenscente) as Array<any>;
     };
-      
+
     Array.prototype.NaturalOrderBy = (function (this: Array<any>, funcaoOrdenacao)
     {
         const retorno = this.ToList(true).sort((a, b) =>
@@ -364,7 +347,7 @@ namespace Snebur
     Array.prototype.NaturalOrderByDescending = (function (this: Array<any>, funcaoOrdenacao)
     {
         return this.NaturalOrderBy(funcaoOrdenacao).reverse();
-        
+
     });
 
     Array.prototype.Sum = (function (this: Array<any>, expressao?: Function)
@@ -846,7 +829,7 @@ namespace Snebur
 
     Array.prototype.ToObject = function (this: Array<any>, isValueAsKey: boolean = false)
     {
-        const obj: { [x: string| number]: any } = {};
+        const obj: { [x: string | number]: any } = {};
         if (isValueAsKey)
         {
             for (let i = 0; i < this.length; ++i)
@@ -870,7 +853,7 @@ namespace Snebur
                 this.__isLimpandoListaNova;
         }
     });
-     
+
     Array.isArrayBase = Array.isArray;
 
     Object.defineProperty(Array, "isArray", {
