@@ -23,8 +23,13 @@
         </ap-bloco>
 
         <ap-bloco sn-nome="BlocoTextoValor" 
-            sn-item-elemento="ItemBlocoTextoValor" ap-largura="50px">
-            <ap-texto ap-margem="0px 2px 0px 0px" sn-nome="TextoValor" ap-alinhamento-horizontal="Direita" ap-quebrar="NaoQuebrar"></ap-texto>
+            sn-item-elemento="ItemBlocoTextoValor"
+            ap-largura="50px">
+            <ap-texto 
+                ap-margem="0px 2px 0px 0px"
+                sn-nome="TextoValor" 
+                ap-alinhamento-horizontal="Direita"
+                ap-quebrar="NaoQuebrar"></ap-texto>
         </ap-bloco>
 
     </ap-painel>

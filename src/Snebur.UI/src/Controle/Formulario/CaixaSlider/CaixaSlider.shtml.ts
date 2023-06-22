@@ -6,8 +6,6 @@
 
         private _minimo: number = 0;
         private _maximo: number = 100;
-        private _valor: number;
-
         public Passo: number;
         public PassoLargo: number;
         public LarguraTextoValor: string;
@@ -18,26 +16,7 @@
         }
         public override set Valor(value: number)
         {
-            const decimal = ConverterUtil.ParaNumero(value).ToDecimal();
-            if (this.Valor !== decimal)
-            {
-                this._valor = decimal;
-                this.ElementoInput.value = decimal.toString();
-                 
-                //foi alterado para caixa de ferramenta de ajuste estava zerando
-                //this.NotificarAlteracaoConcluido(decimal, null);
-                if (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer)
-                {
-                    this.NotificarAlteracaoConcluido(decimal, null);
-                }
-                else
-                {
-                    /*this.NotificarAlteracaoConcluido(decimal, null);*/
-                    this.ElementoInput.dispatchEvent(new Event("change"));
-                }
-                this.AlterarValorPropriedade();
-            }
-            this.AtualizarTextoValor();
+            this.SetValor(value, false, null);
         }
 
         public get Minimo(): number 
@@ -63,10 +42,6 @@
         private PosicaoRotulo: EnumPosicao;
 
         public readonly EventoValorMotificando: Evento<ValorAlteradoEventArgs<number>>
-
-        private readonly TextoValor: ui.Texto;
-        private readonly BlocoTextoValor: ui.Bloco;
-
         private IsMostrarValor: boolean;
         private FormatacaoValor: string;
         private FormatacaoFuncao: (valor: any) => string;
@@ -103,7 +78,7 @@
 
             this.FormatacaoValor = this.RetornarValorAtributo(AtributosHtml.FormatarValor, null);
             this.FormatacaoFuncao = this.RetornarFuncaoFormatar();
-             
+
             if (!String.IsNullOrEmpty(this.RetornarValorAtributo(AtributosHtml.Formatar, null)))
             {
                 throw new Erro(`O atributo ${AtributosHtml.Formatar.Nome} não é suportado pela caixa slider utilizar o atributo ${AtributosHtml.FormatarValor.Nome} para evitar o conflito com bind, Controle: ${this.ControleApresentacao.___NomeConstrutor}`);
@@ -154,26 +129,14 @@
 
         protected override ElementoInput_Change(e?: Event)
         {
-            const novoValor = parseFloat(this.ElementoInput.value).ToDecimal();
-            //if (this._valor !== novoValor)
-            //{
-            this._valor = novoValor;
-            this.AlterarValorPropriedade();
-            this.NotificarAlteracaoConcluido(this.Valor, e);
-            this.AtualizarTextoValor();
-            /*}*/
+            const novoValor = ConverterUtil.ParaDecimal(this.ElementoInput.value);
+            this.SetValor(novoValor, false, e);
         }
 
         private ElementoInput_Input(e: Event)
         {
-            const novoValor = parseFloat(this.ElementoInput.value).ToDecimal();
-            if (this._valor !== novoValor)
-            {
-                this._valor = novoValor;
-                this.AlterarValorPropriedade();
-                this.NotificarValorAlterando(this.Valor);
-                this.AtualizarTextoValor();
-            }
+            const novoValor = ConverterUtil.ParaDecimal(this.ElementoInput.value);
+            this.SetValor(novoValor, true, e);
         }
 
         private BtnMenos_Click(provedor: ui.Botao, e: ui.UIEventArgs): void
@@ -182,12 +145,7 @@
             let valor = this.Valor;
             valor -= passaLargo;
             valor = Math.round(valor / passaLargo) * passaLargo;
-            if (valor < this.Minimo)
-            {
-                valor = this.Minimo;
-            }
-            this.Valor = valor;
-
+            this.SetValor(valor, false, e.DomEvent);
         }
 
         private BtnMais_Click(provedor: ui.Botao, e: ui.UIEventArgs): void
@@ -196,12 +154,25 @@
             let valor = this.Valor;
             valor += passaLargo;
             valor = Math.round(valor / passaLargo) * passaLargo;
-            if (valor > this.Maximo)
-            {
-                valor = this.Maximo;
-            }
-            this.Valor = valor;
+            this.SetValor(valor, false, e.DomEvent);
+        }
 
+        private SetValor(valor: any, isModificando: boolean, e?: Event)
+        {
+            const valorNormalizado = Math.max(Math.min(ConverterUtil.ParaDecimal(valor), this.Maximo), this.Minimo);
+            if (this.Valor !== valorNormalizado)
+            {
+                this.ElementoInput.value = valorNormalizado.toString();
+                this.AlterarValorPropriedade();
+                this.NotificarValorModificando(this.Valor);
+
+                this.NotificarAlteracaoConcluido(valorNormalizado, e);
+                this.AtualizarTextoValor();
+                if (e == null)
+                {
+                    this.ElementoInput.dispatchEvent(new Event(isModificando ? "input" : "change"));
+                }
+            }
         }
 
         //isso far a propagação do bind
@@ -252,7 +223,7 @@
             }
         }
 
-        private NotificarValorAlterando(valor: any): void
+        private NotificarValorModificando(valor: any): void
         {
             if (this.IsControleInicializado)
             {
@@ -306,4 +277,15 @@
         }
         //#endregion
     }
+
+    //#region Elementos da apresentação - código gerado automaticamente #
+
+    export interface CaixaSlider
+    {
+        readonly BlocoTextoValor: ui.Bloco;
+        readonly TextoValor: ui.Texto;
+    }
+
+    //#endregion
+
 }
