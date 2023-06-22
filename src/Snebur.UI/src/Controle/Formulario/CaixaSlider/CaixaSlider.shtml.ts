@@ -4,6 +4,7 @@
     {
         //#region Propriedades
 
+        private _valorUltimo: number; 
         private _minimo: number = 0;
         private _maximo: number = 100;
         public Passo: number;
@@ -160,17 +161,17 @@
         private SetValor(valor: any, isModificando: boolean, e?: Event)
         {
             const valorNormalizado = Math.max(Math.min(ConverterUtil.ParaDecimal(valor), this.Maximo), this.Minimo);
-            if (this.Valor !== valorNormalizado)
+            if (this.Valor !== valorNormalizado ||
+                this._valorUltimo !== valorNormalizado)
             {
+                this._valorUltimo = valorNormalizado;
                 this.ElementoInput.value = valorNormalizado.toString();
                 this.AlterarValorPropriedade();
-                this.NotificarValorModificando(this.Valor);
-
-                this.NotificarAlteracaoConcluido(valorNormalizado, e);
                 this.AtualizarTextoValor();
-                if (e == null)
+                this.NotificarValorModificando(this.Valor);
+                if (!isModificando)
                 {
-                    this.ElementoInput.dispatchEvent(new Event(isModificando ? "input" : "change"));
+                    this.NotificarAlteracaoConcluido(valorNormalizado, e);
                 }
             }
         }
