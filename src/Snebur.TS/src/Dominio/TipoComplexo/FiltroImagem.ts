@@ -49,7 +49,6 @@
             const antigoValor = this._exposicao;
             this.NotificarValorPropriedadeAlterada("Exposicao", this._exposicao, this._exposicao = (value === FiltroImagem.EXPOSICAO_PADRAO) ? null : value);
             this.NotificarAjusteAlterado(EnumFiltroImagem.Exposicao, antigoValor, value);
-
         }
 
         public get Ciano(): number

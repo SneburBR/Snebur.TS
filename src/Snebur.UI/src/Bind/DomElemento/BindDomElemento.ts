@@ -119,6 +119,7 @@
                 }
             }
         }
+
         private AdicionarHandlerEventoDomInterno(elemento: HTMLElement)
         {
             elemento.addEventListener("change", this.__ElementoInput_ValorDomAlterado);

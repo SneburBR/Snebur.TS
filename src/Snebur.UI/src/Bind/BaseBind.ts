@@ -222,7 +222,9 @@
         {
             if (u.ValidacaoUtil.IsDefinido(this.PaiPropriedadeLigacao))
             {
-                u.ReflexaoUtil.AtribuirValorPropriedade(this.PaiPropriedadeLigacao, this.NomePropriedadeLigacao, valorPropriedade, true);
+                u.ReflexaoUtil.AtribuirValorPropriedade(this.PaiPropriedadeLigacao,
+                    this.NomePropriedadeLigacao,
+                    valorPropriedade, true);
             }
         }
 
