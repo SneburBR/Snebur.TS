@@ -1,16 +1,7 @@
 ﻿namespace Snebur.Utilidade
 {
-
-    /*declare function randomKey<T>(object: T): keyof T;*/
-
     export class EnumUtil
     {
-        //public static RetornarValoresEnum<T>(construtorEnum: any): Array<T>
-        //public static RetornarValoresEnum(construtorEnum: any): Array<number>
-        //sugestão do meu amigo ahejlsberg 
-        //https://github.com/Microsoft/TypeScript/issues/18869
-        //public static RetornarValoresEnum(construtorEnum: any): Array<number>
-
         public static RetornarValores<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
         {
             return EnumUtil.RetornarValoresEnum(construtorEnum);
@@ -71,39 +62,60 @@
             return descricao.toString();
         }
 
-        public static RetornarValor<TEnum>(construtorEnum: TEnum, descricao: string | number): TEnum[keyof TEnum] | null
+        public static RetornarValor<TEnum>(
+            construtorEnum: TEnum,
+            descricao: string | number,
+            isIgnorarErro: boolean = true): TEnum[keyof TEnum] | null
         {
-            const valor = EnumUtil.RetornarValorInterno(construtorEnum, descricao);
-            if (valor == null && typeof descricao === "string" && !String.IsNullOrWhiteSpace(descricao))
+            const valor = EnumUtil.RetornarValorInterno(construtorEnum, descricao, isIgnorarErro);
+            if (valor != null)
             {
-                const descricaoSensivel = EnumUtil.RetornarDescricoes(construtorEnum).Where(x => x.toLowerCase().trim() === descricao).SingleOrDefault();
-                if (descricaoSensivel != null)
-                {
-                    return EnumUtil.RetornarValorInterno(construtorEnum, descricaoSensivel);
-                }
+                return valor;
             }
-            return valor;
+            
+            if (isIgnorarErro)
+            {
+                if (typeof descricao === "string")
+                {
+                    const descricaoSensivel = EnumUtil.RetornarDescricoes(construtorEnum).Where(x => x.toLowerCase().trim() === descricao).SingleOrDefault();
+                    if (descricaoSensivel != null)
+                    {
+                        const valor = EnumUtil.RetornarValorInterno(construtorEnum, descricaoSensivel, isIgnorarErro);
+                        if (valor != null)
+                        {
+                            console.warn(`Foi encontrado o descrição ${descricao} = '${descricaoSensivel}' usando case insensitive`);
+                            return valor;
+                        }
+                    }
+                }
+                return null;
+            }
+
+            throw new Erro(`Não foi possível encontrar o valor '${valor}'  no enum  ${construtorEnum.constructor.name}`);
         }
 
-        public static RetornarValorInterno(construtorEnum: any, descricao: string | number): any
+        private static RetornarValorInterno(construtorEnum: any, descricao: string | number, isIngorarErro: boolean): any
         {
             const objectoEnum = (construtorEnum as any);
             const valor = objectoEnum[descricao];
-            if (valor == null)
+            if (valor != null)
+            {
+                if (typeof valor === "number" && isFinite(valor))
+                {
+                    return valor;
+                }
+                if (typeof objectoEnum[valor] === "number" && isFinite(objectoEnum[valor]))
+                {
+                    return objectoEnum[valor];
+                }
+            }
+
+            if (isIngorarErro)
             {
                 return null;
             }
 
-            if (typeof valor === "number" && isFinite(valor))
-            {
-                return valor;
-            }
-
-            if (typeof objectoEnum[valor] === "number" && isFinite(objectoEnum[valor]))
-            {
-                return objectoEnum[valor];
-            }
-            return valor;
+            throw new Erro(`Não foi possível encontrar o valor '${descricao}'  no enum  ${construtorEnum.constructor.name}`);
         }
 
         public static RetornarListaDescricao(construtorEnum: any): Array<string>
