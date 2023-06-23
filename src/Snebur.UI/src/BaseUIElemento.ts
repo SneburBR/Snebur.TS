@@ -167,18 +167,11 @@
             {
                 this._elemento = refElemento;
             }
-
-
             this.EventosDom = new Array<EventoDom>();
-
-            //this.CarregarHtmlElemento();
-            //this.HtmlCarregado();
         }
 
         protected Inicializar(): void
         {
-            //this.Argumentos = argumentos;
-
             this.CarregarHtmlElemento();
             this.HtmlCarregado();
             this.InicializarAtributosElementoRaiz();
@@ -248,17 +241,19 @@
             return String.Join("", partes.Select(x => TextoUtil.FormatarPrimeiraLetraMaiuscula(x)));
         }
 
-        private NormalizarValorPropriedadeAtributo(valorPropriedade: string, nomePropriedade: any)
+        private NormalizarValorPropriedadeAtributo(valorPropriedade: string, nomePropriedade: string)
         {
             if (valorPropriedade === "null")
             {
                 return null;
             }
-
-            const propriedade = this.GetType().RetornarPropriedade(nomePropriedade);
-            if (propriedade instanceof r.Propriedade)
+            if (!nomePropriedade.Contains("."))
             {
-                return u.ConverterUtil.Para(valorPropriedade, propriedade.Tipo);
+                const propriedade = this.GetType().RetornarPropriedade(nomePropriedade, true);
+                if (propriedade instanceof r.Propriedade)
+                {
+                    return u.ConverterUtil.Para(valorPropriedade, propriedade.Tipo);
+                }
             }
             return u.ConverterUtil.ParaTipoRecomendado(valorPropriedade);
         }
@@ -371,21 +366,11 @@
                 this.AtualizarInnerHtml(elemento, htmlInterno);
             }
 
-            //if (!String.IsNullOrEmpty(htmlInterno))
-            //{
-            //    let htmlElemento = htmlInterno + this.HtmlInternoInicial;
-            //    htmlElemento = this.NormalizarHtmlInterno(htmlInterno);
-            //    ElementoUtil.AtualizarInnerHtml(elemento, htmlElemento);
-            //}
-
             if ($Configuracao.IsDebug)
             {
                 elemento.setAttribute("sn-construtor", this.___NomeConstrutor);
             }
             this._elemento = elemento;
-
-            //delete (elemento as any);
-            //elemento = undefined;
         }
 
         /**
@@ -578,8 +563,6 @@
 
         public RemoverEventoDom<T extends keyof EventoDomMapeado>(evento: T, manipulador: (e: EventoDomMapeado[T]) => void, refElemento?: HTMLElement | string | Window | Document): void
         {
-            // let nomeEvento = u.EnumUtil.RetornarDescricao(EnumEventoDom, evento);
-
             const nomeEvento = evento;
             const elemento = u.ValidacaoUtil.IsDefinido(refElemento) ? ui.ElementoUtil.RetornarElemento(refElemento) : this.Elemento;
 
@@ -602,6 +585,7 @@
             }
             this.EventosDom.Clear();
         }
+
         //#endregion
 
         //#region Métodos protegidos
