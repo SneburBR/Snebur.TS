@@ -26,12 +26,6 @@
 
         public static RetornarDescricao(construtorEnum: any, valor: number | string | any): string
         {
-            //if ($Configuracao.IsDebug)
-            //{
-            //    u.ValidacaoUtil.ValidarArgumentoDefinido({ valor });
-            //    u.ValidacaoUtil.ValidarArgumentoDefinido({ construtorEnum });
-            //}
-
             if (typeof construtorEnum[valor] === "number")
             {
                 return valor as string;
@@ -104,9 +98,16 @@
                 {
                     return valor;
                 }
+                 
                 if (typeof objectoEnum[valor] === "number" && isFinite(objectoEnum[valor]))
                 {
                     return objectoEnum[valor];
+                }
+
+                if (typeof valor === "string" &&
+                    typeof descricao === "string")
+                {
+                    return valor;
                 }
             }
 
@@ -114,7 +115,6 @@
             {
                 return null;
             }
-
             throw new Erro(`Não foi possível encontrar o valor '${descricao}'  no enum  ${construtorEnum.constructor.name}`);
         }
 

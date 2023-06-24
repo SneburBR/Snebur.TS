@@ -146,7 +146,7 @@
 
             if (!isNullSeNaoExiste)
             {
-                throw new Erro(`Não foi encontrada a proprieade '${nomePropriedade}' em '${this.Nome}'`, this);
+                throw new Erro(`Não foi encontrada a propriedade '${nomePropriedade}' em '${this.Nome}'`, this);
             }
             return null;
         }

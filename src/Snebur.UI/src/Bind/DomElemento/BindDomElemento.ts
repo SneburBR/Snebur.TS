@@ -5,6 +5,7 @@
         public override readonly Priority: number = -1;
 
         private _isInputEvent: boolean;
+        private __ultimoValorDom: string;
 
         protected __ElementoInput_ValorDomAlterado: EventListener;
         protected __ElementoInput_ValorDomAlteradoInput: EventListener;
@@ -38,7 +39,7 @@
 
         //#region Handler Evento Dom
 
-        private __ultimoValorDom: string;
+        
 
         protected ElementoInput_ValorDomAlteradoInput(e: UIEvent): void
         {
@@ -79,7 +80,6 @@
         {
             this.__ultimoValorDom = null;
         }
-
 
         protected ElementoInput_KeyDown(e: KeyboardEvent): void
         {
