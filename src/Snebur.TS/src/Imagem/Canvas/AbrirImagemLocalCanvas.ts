@@ -3,7 +3,6 @@
     export class AbrirImagemLocalCanvas extends BaseAbrirImagemLocalCanvas 
     {
         private readonly TamanhosImagem: List<d.EnumTamanhoImagem>;
-
         private readonly OrigemImagemLocal: sa.OrigemImagemLocal;
         public get Imagem(): d.IImagem
         {
@@ -48,16 +47,21 @@
 
         private async AbrirImagemAsync(imagemAtual: HTMLImageElement)
         {
+            const dimensaoImagemOriginal: IDimensao = {
+                Largura: imagemAtual.naturalWidth,
+                Altura: imagemAtual.naturalHeight
+            };
+
             const imagensCarregada = new DicionarioSimples<ImagemLocalCarregada, d.EnumTamanhoImagem>();
             const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
             const mimeType = this.RetornarMimeType();
 
-            await this.OrigemImagemLocal.AtualizarDimensaoLocal(mimeType, { Largura: imagemAtual.naturalWidth, Altura: imagemAtual.naturalHeight });
+            await this.OrigemImagemLocal.AtualizarDimensaoLocal(mimeType, dimensaoImagemOriginal);
 
             const tamanhoImagem = EnumTamanhoImagem.Grande;
             const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                imagemAtual.naturalWidth,
-                imagemAtual.naturalHeight,
+                dimensaoImagemOriginal.Largura,
+                dimensaoImagemOriginal.Altura,
                 tamanhoImagem);
 
             let canvas = super.RetornarCanvas(imagemAtual, dimensaoApresentacao);
@@ -69,8 +73,8 @@
             for (const tamanhoImagem of tamanhos)
             {
                 const dimensaoApresentacao = u.ImagemUtil.RetornarDimensaoUniformeApresentacao(
-                    imagemAtual.naturalWidth,
-                    imagemAtual.naturalHeight,
+                    dimensaoImagemOriginal.Largura,
+                    dimensaoImagemOriginal.Altura,
                     tamanhoImagem);
 
                 if (tamanhoImagem !== EnumTamanhoImagem.Grande)
@@ -92,7 +96,6 @@
             u.ImagemUtil.LimparCanvas(canvas);
             return imagensCarregada;
         }
-
 
         public override Dispose(): void
         {
