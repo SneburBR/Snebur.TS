@@ -34,7 +34,8 @@
             {
                 return tipo === EnumTipoLista.ListaObservacao ||
                     tipo === EnumTipoLista.ListaEntidades ||
-                    tipo === EnumTipoLista.ListaObservacaoIndexada;
+                    tipo === EnumTipoLista.ListaObservacaoIndexada ||
+                    tipo === EnumTipoLista.ListaEntidadesIndexada;
             }
             return false;
         }
