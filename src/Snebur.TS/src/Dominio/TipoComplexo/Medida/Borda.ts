@@ -119,7 +119,7 @@
             return sb.ToString(";");
         }
 
-        public static Empty(): Borda
+        public static get Empty(): Borda
         {
             return new Borda();
         }
