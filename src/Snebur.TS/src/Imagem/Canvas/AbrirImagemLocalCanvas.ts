@@ -91,7 +91,9 @@
                     mimeType);
 
                 imagensCarregada.Add(tamanhoImagem, cache);
-                await this.OrigemImagemLocal.AtualizarDimensaoApresentacao(tamanhoImagem, dimensaoApresentacao);
+                await this.OrigemImagemLocal.AtualizarDimensaoApresentacao(
+                    tamanhoImagem,
+                    dimensaoApresentacao);
             }
             u.ImagemUtil.LimparCanvas(canvas);
             return imagensCarregada;

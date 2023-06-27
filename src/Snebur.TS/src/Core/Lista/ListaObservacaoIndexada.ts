@@ -16,8 +16,7 @@ namespace Snebur
 
         private readonly ItemInterno = ListaObservacaoIndexada.prototype.Item.bind(this);
         private readonly ItemOrDefaultInterno = ListaObservacaoIndexada.prototype.ItemOrDefault.bind(this);
-
-
+         
         /*public AddRangeAsync: (itens: T[], intervalo?: number) => void = ListaObservacaoIndexada.prototype.AddRangeAsync_Prototype.bind(this);*/
         //public ContainsKey :(chave:TChave) => boolean = ListaObservacaoIndexada.prototype.ContainsKey_Prototype.bind(this);
 
@@ -29,9 +28,7 @@ namespace Snebur
             this.ExpressaoChave = expressaoChave;
             this._tipoLista = EnumTipoLista.ListaObservacaoIndexada;
         }
-
- 
-
+         
         private ExisteItemIndexadoInterno_Prototype(item: T): boolean
         {
             const chave = this.RetornarChave(item);
@@ -45,7 +42,7 @@ namespace Snebur
                 const chave = this.RetornarChave(item);
                 if (this.Dicionario.ContainsKey(chave))
                 {
-                    throw new Erro("O item ja está na lista chave + " + chave);
+                    throw new Erro("O item já está na lista chave + " + chave);
                 }
                 this.Dicionario.Add(chave, item);
                 if (posicao >= 0)
@@ -66,7 +63,7 @@ namespace Snebur
             const chave = this.RetornarChave(item);
             if (!this.Dicionario.ContainsKey(chave))
             {
-                throw new Erro("O item não ja está na lista chave + " + chave);
+                throw new Erro("O item não já está na lista chave + " + chave);
             }
             this.Dicionario.Remove(chave);
             return ListaObservacao.Remover(this, item);
@@ -99,7 +96,7 @@ namespace Snebur
             return this.Dicionario.TryItem(chave.toString());
         }
 
-        //#region Métodos estaticos
+        //#region Métodos estáticos
 
         public static ExisteIndexado(lista: ListaObservacaoIndexada<any>, item: any): boolean
         {
