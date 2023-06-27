@@ -230,6 +230,18 @@
         }
         //#endregion
 
+        public Escalar(scalar: number): Margem
+        public Escalar(scalarX: number, scalarY: number): Margem
+        public Escalar(scalarX: number, scalarY?: number): Margem
+        {
+            scalarY = scalarY ?? scalarX;
+            return new Margem({
+                Esquerda: this.Esquerda * scalarX,
+                Superior: this.Superior * scalarY,
+                Direita: this.Direita * scalarX,
+                Inferior: this.Inferior * scalarY
+            });
+        }
 
         public override toString(): string
         {
