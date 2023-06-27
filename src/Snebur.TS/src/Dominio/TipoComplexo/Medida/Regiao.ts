@@ -62,26 +62,44 @@
         }
 
         public constructor();
-        public constructor(posicao: d.Posicao, dimensao: d.Dimensao)
+        public constructor(posicao: IPosicao, dimensao: IDimensao)
         public constructor(x: number, y: number, largura: number, altura: number)
-        public constructor(arg1?: any, arg2?: any, largura?: number, altura?: number) 
+        public constructor(...args: any[]) 
         {
             super();
 
-            if (arg1 instanceof d.Posicao && arg2 instanceof d.Dimensao)
+            const [x, y, largura, altura] = this.RetornarParametrosInicializacao(args);
+            this._x = u.ConverterUtil.ParaNumero(x);
+            this._y = u.ConverterUtil.ParaNumero(y);
+            this._largura = u.ConverterUtil.ParaNumero(largura);
+            this._altura = u.ConverterUtil.ParaNumero(altura);
+        }
+
+        private RetornarParametrosInicializacao(args: any[]): [number, number, number, number]
+        {
+            if (args.length === 0 || (args.length === 1 && args[0] == null))
             {
-                this._x = arg1.X;
-                this._y = arg1.Y;
-                this._largura = arg2.Largura;
-                this._altura = arg2.Altura;
+                return [0, 0, 0, 0];
+
             }
-            else
+              
+            if (args.length === 2)
             {
-                this._x = u.ConverterUtil.ParaNumero(arg1);
-                this._y = u.ConverterUtil.ParaNumero(arg2);
-                this._largura = u.ConverterUtil.ParaNumero(largura);
-                this._altura = u.ConverterUtil.ParaNumero(altura);
+                const posicao =  args[0] as IPosicao;
+                const dimensao = args[1] as IDimensao;
+                return [posicao.X, posicao.Y, dimensao.Largura, dimensao.Altura];
             }
+
+            if (args.length === 4)
+            {
+                return [
+                    ConverterUtil.ParaNumero(args[0]),
+                    ConverterUtil.ParaNumero(args[1]),
+                    ConverterUtil.ParaNumero(args[2]),
+                    ConverterUtil.ParaNumero(args[3])];
+            }
+
+            throw new Erro("Argumentos de construção da região inválidos");
         }
 
         public Clone(): Regiao
