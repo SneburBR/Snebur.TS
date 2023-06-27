@@ -89,16 +89,16 @@
             return new Posicao(this.X, this.Y);
         }
 
-        public Equals(posicao: Posicao): boolean
-        public Equals(posicao: Posicao, sensibilidade: number): boolean
-        public Equals(posicao: Posicao, sensibilidade: number = 0): boolean
+        public Equals(posicao: IPosicao): boolean
+        public Equals(posicao: IPosicao, sensibilidade: number): boolean
+        public Equals(posicao: IPosicao, sensibilidade: number = 0): boolean
         {
-            if (posicao instanceof Posicao)
+            if (posicao != null)
             {
                 if (sensibilidade > 0)
                 {
-                    return Util.IgualSensivel(this.X.ToDecimal(), posicao.X.ToDecimal(), sensibilidade) &&
-                        Util.IgualSensivel(this.Y.ToDecimal(), posicao.Y.ToDecimal(), sensibilidade);
+                    return Util.IgualSensivel(this.X.ToDecimal(), posicao.X?.ToDecimal(), sensibilidade) &&
+                        Util.IgualSensivel(this.Y.ToDecimal(), posicao.Y?.ToDecimal(), sensibilidade);
                 }
                 return this.X.ToDecimal() === posicao.X.ToDecimal() &&
                     this.Y.ToDecimal() === posicao.Y.ToDecimal();
