@@ -1,6 +1,5 @@
 ﻿namespace Snebur.Utilidade
 {
-    
     export class MedidaUtil
     {
         private static readonly DPI_IMPRESSAO_PADRAO = 300;
@@ -124,6 +123,43 @@
         public static RetornarTotaMegaPixels(dimensao: IDimensao)
         {
             return (dimensao.Largura * dimensao.Altura) / (1000 * 1000);
+        }
+
+        public static DimensaoParaCentimetros(dimensao: IDimensao, dpi: number): IDimensao
+        public static DimensaoParaCentimetros(dimensao: IDimensao, dpi: number, isTipar: false): IDimensao
+        public static DimensaoParaCentimetros(dimensao: IDimensao, dpi: number, isTipar: true): Dimensao
+        public static DimensaoParaCentimetros(dimensao: IDimensao, dpi: number, isTipar: boolean = false): IDimensao
+        {
+            if (isTipar)
+            {
+                return new Dimensao({
+                    Largura: u.MedidaUtil.ParaCentimentros(dimensao.Largura, dpi),
+                    Altura: u.MedidaUtil.ParaCentimentros(dimensao.Altura, dpi)
+                });
+            }
+
+            return {
+                Largura: u.MedidaUtil.ParaCentimentros(dimensao.Largura, dpi),
+                Altura: u.MedidaUtil.ParaCentimentros(dimensao.Altura, dpi)
+            };
+        }
+
+        public static PosicaoParaCentimetros(posicao: IPosicao, dpi: number): IPosicao
+        public static PosicaoParaCentimetros(posicao: IPosicao, dpi: number, isTipar: false): IPosicao
+        public static PosicaoParaCentimetros(posicao: IPosicao, dpi: number, isTipar: true): Posicao
+        public static PosicaoParaCentimetros(posicao: IPosicao, dpi: number, isTipar: boolean = false): IPosicao
+        {
+            if (isTipar)
+            {
+                return new Posicao({
+                    X: u.MedidaUtil.ParaCentimentros(posicao.X, dpi),
+                    Y: u.MedidaUtil.ParaCentimentros(posicao.Y, dpi)
+                });
+            }
+            return {
+                X: u.MedidaUtil.ParaCentimentros(posicao.X, dpi),
+                Y: u.MedidaUtil.ParaCentimentros(posicao.Y, dpi)
+            };
         }
     }
 }
