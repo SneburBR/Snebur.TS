@@ -35,7 +35,7 @@
         public abstract Clone(): BaseTipoComplexo;
 
         public abstract override Equals<TIgual extends this = this>(obj: TIgual): boolean;
-        public abstract override Equals(obj: BaseTipoComplexo): boolean;
+        public abstract override Equals(obj: any): boolean;
 
         public override NotificarValorPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor?: any)
         {
@@ -71,6 +71,4 @@
             }
         }
     }
-
-
 }
