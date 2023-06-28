@@ -12,6 +12,8 @@
 
         Telefone = "telefone",
 
+        Margem = "margem",
+
         Moeda = "moeda",
 
         MoedaComSinal = "moedacomsinal",
