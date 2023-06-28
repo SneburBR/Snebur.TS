@@ -210,6 +210,14 @@
                 this.Direita > margem.Direita;
         }
 
+        public IsMaiorOuIgual(margem: IMargem): boolean
+        {
+            return this.Superior >= margem.Superior &&
+                this.Inferior >= margem.Inferior &&
+                this.Esquerda >= margem.Esquerda &&
+                this.Direita >= margem.Direita;
+        }
+
         public Diminuir(valor: number, isAceitarNegativo: boolean): Margem
         {
             const esquerda = this.Esquerda - valor;
@@ -243,9 +251,65 @@
             });
         }
 
+        public IsAlbumMaior(value: number): boolean
+        {
+            if (this.Esquerda > value) return true;
+            if (this.Superior > value) return true;
+            if (this.Direita > value) return true;
+            if (this.Inferior > value) return true;
+            return false;
+        }
+
+        public IsAlbumMaiorOuIgual(value: number): boolean
+        {
+            if (this.Esquerda >= value) return true;
+            if (this.Superior >= value) return true;
+            if (this.Direita >= value) return true;
+            if (this.Inferior >= value) return true;
+            return false;
+        }
+
+        public IsAlbumMenor(value: number): boolean
+        {
+            if (this.Esquerda < value) return true;
+            if (this.Superior < value) return true;
+            if (this.Direita < value) return true;
+            if (this.Inferior < value) return true;
+            return false;
+        }
+
+        public IsAlbumMenorOuIgual(value: number): boolean
+        {
+            if (this.Esquerda <= value) return true;
+            if (this.Superior <= value) return true;
+            if (this.Direita <= value) return true;
+            if (this.Inferior <= value) return true;
+            return false;
+        }
+
+        public NormalizarMaximo(value: number): Margem
+        {
+            return new Margem({
+                Esquerda: Math.min(this.Esquerda, value),
+                Superior: Math.min(this.Superior, value),
+                Direita: Math.min(this.Direita, value),
+                Inferior: Math.min(this.Inferior, value)
+            });
+        }
+
+        public NormalizarMinimo(value: number): Margem
+        {
+            return new Margem({
+                Esquerda: Math.max(this.Esquerda, value),
+                Superior: Math.max(this.Superior, value),
+                Direita: Math.max(this.Direita, value),
+                Inferior: Math.max(this.Inferior, value)
+            });
+        }
+
         public override toString(): string
         {
-            return `${this.___NomeConstrutor} ${this.Esquerda.toFixed(2)}  ${this.Superior.toFixed(2)}  ${this.Direita.toFixed(2)} Y: ${this.Inferior.toFixed(2)}`;
+            return `${this.___NomeConstrutor}${this.Esquerda.toFixed(3)},${this.Superior.toFixed(3)},${this.Direita.toFixed(3)},${this.Inferior.toFixed(3)}`;
         }
 
         private RetornarParametrosInicializacao(args: any[]): [number, number, number, number]
