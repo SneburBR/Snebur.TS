@@ -1207,6 +1207,17 @@
             return ValidacaoUtil.IsNumber(valor) &&
                 valor >= 0 && valor <= 100;
         }
+
+        public static ValidarEnumDefinido<T, TEnum>(obj: T, expressaoPropriedade: (value: T) => TEnum[keyof TEnum], construtorEnum: TEnum): void
+        {
+            const nomePropriedade = ExpressaoUtil.RetornarNomePropriedade(expressaoPropriedade);
+            const valor = (obj as any)[nomePropriedade];
+
+            if (!EnumUtil.IsDefindo(construtorEnum, valor))
+            {
+                throw new Erro(`O propriedade ${nomePropriedade} do tipo enum ${construtorEnum.constructor.name} não está definida no objecto ${obj?.GetType().Nome} '${obj}`);
+            }
+        }
     }
 
     export enum EnumUF
