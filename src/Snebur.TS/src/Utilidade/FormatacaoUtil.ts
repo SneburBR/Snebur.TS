@@ -192,6 +192,10 @@
 
                     return FormatacaoUtil.FormatarDimensaoPixels(valor);
 
+                case EnumFormatacao.Margem:
+
+                    return FormatacaoUtil.FormatarMargem(valor);
+
                 case EnumFormatacao.Nome:
 
                     return FormatacaoUtil.FormatarNome(valor);
@@ -1252,10 +1256,10 @@
             return parseFloat(resultado);
         }
 
-        public static FormatarDimensao(valor: any, isCm:boolean = false): string
+        public static FormatarDimensao(valor: IDimensao, isCm: boolean = false): string
         {
             const cmd = isCm ? "cm" : "";
-            if (valor instanceof Dimensao)
+            if (valor != null)
             {
                 if (ValidacaoUtil.IsInteger(valor.Largura) &&
                     ValidacaoUtil.IsInteger(valor.Altura))
@@ -1267,13 +1271,18 @@
             return `0x0 ${cmd}`;
         }
 
-        public static FormatarDimensaoPixels(valor: any)
+        public static FormatarDimensaoPixels(valor: IDimensao)
         {
-            if (valor instanceof Dimensao)
+            if (valor != null)
             {
-                return `${valor.Largura.toFixed(0)} x ${valor.Altura.toFixed(0)} px`;
+                return `${valor.Largura?.toFixed(0)} x ${valor.Altura?.toFixed(0)} px`;
             }
             return "0 x 0 px";
+        }
+
+        public static FormatarMargem(margem: d.IMargem)
+        {
+            return `${margem.Esquerda.toFixed(1)},${margem.Superior.toFixed(1)},${margem.Direita.toFixed(1)},${margem.Inferior.toFixed(1)}`;
         }
 
         public static FormatarBytes(totalBytes: number): string;
