@@ -81,6 +81,16 @@
             return dimensao.Largura / dimensao.Altura;
         }
 
+        public get LadoMaior(): number
+        {
+            return Math.max(this.Largura, this.Altura);
+        }
+
+        public get LadoMenor(): number
+        {
+            return Math.min(this.Largura, this.Altura);
+        }
+
         //#endregion
 
         //#region Construtor
