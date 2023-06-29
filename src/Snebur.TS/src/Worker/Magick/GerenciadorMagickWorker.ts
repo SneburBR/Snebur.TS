@@ -29,7 +29,7 @@
             this.AtualizarThreads(this.TotalThreas);
         }
 
-        public AtualizarThreads(totalThreads: number)
+        private AtualizarThreads(totalThreads: number)
         {
             if (this.WorkersOcupados.Count > 0)
             {
