@@ -166,12 +166,14 @@
             {
                 this._valorUltimo = valorNormalizado;
                 this.ElementoInput.value = valorNormalizado.toString();
+      
                 this.AlterarValorPropriedade();
                 this.AtualizarTextoValor();
                 this.NotificarValorModificando(this.Valor);
                 if (!isModificando)
                 {
                     this.NotificarAlteracaoConcluido(valorNormalizado, e);
+                    this.ElementoInput.dispatchEvent(new Event("change"));
                 }
             }
         }
