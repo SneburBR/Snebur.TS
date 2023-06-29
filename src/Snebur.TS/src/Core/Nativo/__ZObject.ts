@@ -111,12 +111,12 @@ namespace Snebur
                                 caminhoTipo = this.__CaminhoTipo;
                             }
                         }
-                         
+
                         if ($Reflexao.Tipos.ContainsKey(caminhoTipo))
                         {
                             return $Reflexao.Tipos.Item(caminhoTipo);
                         }
-                        
+
 
                         throw new Erro(`O tipo não foi encontrado ${caminhoTipo}`);
                     }
@@ -152,7 +152,7 @@ namespace Snebur
         "__hashCode": true,
         "__nomeConstrutor": true,
         "__IdentificadorUnico": true,
-        "__PropriedadesAlteradas" : true,
+        "__PropriedadesAlteradas": true,
         "ToString": true,
         "Equals": true,
         "_identificadorUnico": true,
@@ -171,7 +171,7 @@ namespace Snebur
         "_identificadorUnico": true,
         "null": true
     };
- 
+
     Object.defineProperty(Object, "assign", {
         value: function assign(destino: any, origens: any)
         {
@@ -180,7 +180,7 @@ namespace Snebur
                 throw new TypeError("Somente objeto podem ser assinados");
             }
 
-       
+
             for (let index = 1; index < arguments.length; index++)
             {
                 /*eslint-disable*/
@@ -195,9 +195,17 @@ namespace Snebur
                             if (Object.prototype.hasOwnProperty.call(proximaOrigem, proprieade))
                             {
                                 const valor = proximaOrigem[proprieade];
-                                if ((typeof valor !== "function"))
+                                if (valor != null && (typeof valor !== "function"))
                                 {
-                                    destino[proprieade] = valor;
+                                    try
+                                    {
+                                        destino[proprieade] = valor;
+                                    }
+                                    catch
+                                    {
+                                        //ignore erros
+                                    }
+
                                 }
                             }
                         }
