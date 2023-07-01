@@ -19,7 +19,6 @@
             super(controlePai, elemento, AtributosHtml.BindNumero, valorAtributo);
             //this.AdicionarHandlerOnBlur();
 
-           
             const passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, BindNumero.PASSO_PADRAO);
             const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, BindNumero.MINIMO_PADRAO);
             const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, BindNumero.MAXIMO_PADRAO);

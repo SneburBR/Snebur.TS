@@ -5,8 +5,7 @@ sn-caixa-quantidade {
 
     sn-botao[sn-nome=BtnDiminuir],
     sn-botao[sn-nome=BtnAumentar] {
-
-        font-size:inherit !important;
+        font-size: inherit !important;
 
         ap-icone {
             font-size: retornar-em(13px) !important;
@@ -40,6 +39,18 @@ sn-caixa-quantidade {
 
         input {
             text-align: left !important;
+        }
+    }
+
+    &.sn-somente-leitura {
+
+        sn-botao[sn-nome=BtnMenos],
+        sn-botao[sn-nome=BtnMais] {
+            pointer-events: none !important;
+
+            ap-icone {
+                color: #ccc !important;
+            }
         }
     }
 }

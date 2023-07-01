@@ -572,7 +572,6 @@
     <TypeScriptCompile Include="src\Worker\WorkerCliente.ts" />
     <TypeScriptCompile Include="src\Worker\WorkerClienteInterno.ts" />
     <None Include="packages.config" />
-    <None Include="test\JavaScript.text" />
     <Content Include="tsconfig.json" />
     <Content Include="src\Core\Bibliotecas\JQuery.d.ts._" />
     <Content Include="src\Core\Bibliotecas\JSZip.d.ts.bkp" />
@@ -604,12 +603,12 @@
     <None Include="web.Release.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
-    <Content Include="test\prototype.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="build\" />
     <Folder Include="lib\JSZip\Codigo\jszip-Atingo-Sincrono\" />
     <Folder Include="src\Core\Funcoes\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

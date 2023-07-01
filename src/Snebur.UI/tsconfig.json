@@ -15,8 +15,8 @@
     "strict": false,
     "strictPropertyInitialization": false,
     "alwaysStrict": false,
-    "noStrictGenericChecks": false,
-    "stripInternal": false,
+    "noStrictGenericChecks": true,
+    "stripInternal": true,
     "strictNullChecks": false,
     "target": "ES2020",
     "lib": [

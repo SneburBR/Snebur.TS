@@ -229,16 +229,13 @@
 
         protected AtribuirValorDom(valorPropriedade: any): void
         {
-
             let novoValorDom = this.RetornarValorConvertidoParaDom(valorPropriedade);
             const elemento = this.Elemento;
 
             if (elemento instanceof HTMLElement)
             {
-
                 if (elemento instanceof HTMLSpanElement)
                 {
-
                     elemento.innerHTML = " " + novoValorDom + " ";
                     return;
                 }

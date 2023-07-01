@@ -2,7 +2,6 @@
 {
     export class CaixaQuantidade extends BaseCaixaTexto<number>
     {
-
         public Minimo: number;
         public Maximo: number;
         public Passo: number = 1;
@@ -55,48 +54,48 @@
         {
             if (this.Propriedade instanceof r.Propriedade)
             {
-                const [passo, minimo, maximo] = this.RetornarValores();
-
-                this.Passo = passo;
-                this.Minimo = minimo;
-                this.Maximo = maximo;
-
-                const bindNumero = this.Binds.OfType(BindNumero).Where(x => x.Elemento === this.ElementoInput).SingleOrDefault();
-                if (bindNumero instanceof BindNumero)
-                {
-                    bindNumero.AtualizarValores(passo, minimo, maximo);
-                }
-                this.AtualizarValoresElementoInput();
+                this.AtualizarPassosMinimoMaximo();
             }
+        }
+
+        private AtualizarPassosMinimoMaximo()
+        {
+            const [passo, minimo, maximo] = this.RetornarValores();
+
+            this.Passo = passo;
+            this.Minimo = minimo;
+            this.Maximo = maximo;
+
+            const bindNumero = this.Binds.OfType(BindNumero).Where(x => x.Elemento === this.ElementoInput).SingleOrDefault();
+            if (bindNumero instanceof BindNumero)
+            {
+                bindNumero.AtualizarValores(passo, minimo, maximo);
+            }
+            this.AtualizarValoresElementoInput();
         }
 
         private RetornarValores(): [number, number, number]
         {
-            const atributos = this.Propriedade.Atributos;
-
-            const atributoInteiro = atributos.OfType<at.ValidacaoInteiroAttribute>(at.ValidacaoInteiroAttribute).SingleOrDefault();
-            const atributoIntervalo = atributos.OfType<at.ValidacaoIntervaloAttribute>(at.ValidacaoIntervaloAttribute).SingleOrDefault();
-            const atributoMoeda = atributos.OfType<at.ValidacaoMoedaAttribute>(at.ValidacaoMoedaAttribute).SingleOrDefault();
+            const atributos = this.Propriedade?.Atributos;
+            const atributoInteiro = atributos?.OfType(at.ValidacaoInteiroAttribute).SingleOrDefault();
+            const atributoIntervalo = atributos?.OfType(at.ValidacaoIntervaloAttribute).SingleOrDefault();
+            const atributoMoeda = atributos?.OfType(at.ValidacaoMoedaAttribute).SingleOrDefault();
 
             const passo = this.RetornarPasso(atributoInteiro, atributoMoeda);
             const minimo = this.RetornarMinimo(atributoIntervalo, atributoMoeda);
             const maximo = this.RetornarMaximo(atributoIntervalo, atributoMoeda);
-
+ 
             return [passo, minimo, maximo];
         }
 
         private RetornarPasso(atributoInteiro: at.BaseAtributoDominio, atributoMoeda: at.BaseAtributoDominio): number
         {
-            if (this.Passo > 0)
-            {
-                return this.Passo;
-            }
-
             const passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, 0));
             if (passo > 0)
             {
                 return passo;
             }
+
             const tipo = this.Propriedade.Tipo;
             if (atributoInteiro instanceof at.ValidacaoInteiroAttribute || (
                 tipo instanceof r.TipoPrimario &&
@@ -109,17 +108,19 @@
             {
                 return 0.01;
             }
+
+            if (this.Passo > 0)
+            {
+                return this.Passo;
+            }
+
             return BindNumero.PASSO_PADRAO;
         }
 
         private RetornarMinimo(atributoValidacaoIntervalo: at.ValidacaoIntervaloAttribute,
             atributoMoeda: at.ValidacaoMoedaAttribute): any
         {
-            if (this.Minimo > 0)
-            {
-                return this.Minimo;
-            }
-
+        
             const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, null);
             if (minimo !== null)
             {
@@ -133,17 +134,17 @@
             {
                 return atributoMoeda.ValorMinimo;
             }
+
+            if (this.Minimo > 0)
+            {
+                return this.Minimo;
+            }
             return BindNumero.MINIMO_PADRAO;
         }
 
         private RetornarMaximo(atributoValidacaoIntervalo: at.ValidacaoIntervaloAttribute,
             atributoMoeda: at.ValidacaoMoedaAttribute): any
         {
-            if (this.Maximo > 0)
-            {
-                return this.Maximo;
-            }
-
             const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, null);
             if (maximo !== null)
             {
@@ -158,23 +159,31 @@
             {
                 return atributoMoeda.ValorMaximo;
             }
+
+            if (this.Maximo > 0)
+            {
+                return this.Maximo;
+            }
             return BindNumero.MAXIMO_PADRAO;
         }
 
         private Minimo_Alterado(e: PropriedadeAlteradaEventArgs)
         {
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Min, this.Minimo.toString());
+            this.AtualizarPassosMinimoMaximo();
         }
 
         private Maximo_Alterado(e: PropriedadeAlteradaEventArgs)
         {
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Max, this.Maximo.toString());
+            this.AtualizarPassosMinimoMaximo();
         }
 
         private Passo_Alterado(e: PropriedadeAlteradaEventArgs)
         {
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Step, this.Passo.toString());
             this.Valor = this.NormalizarValor(this.Valor);
+            this.AtualizarPassosMinimoMaximo();
         }
 
         private AtualizarValoresElementoInput(): void
@@ -232,7 +241,7 @@
             /*this.ElementoInput?.focus();*/
             /*this.ElementoInput.setSelectionRange(0, 0);*/
             this.Elemento.classList.add(ConstantesCssClasses.CSS_CLASSE_FOCUS);
-            document.activeElement
+      
         }
 
         public NormalizarValor(valor: number): number

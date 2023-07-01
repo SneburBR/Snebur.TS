@@ -7,7 +7,7 @@
 </head>
 <body ap-largura="380px">
 
-    <ap-painel 
+    <ap-painel
         ap-tipo-painel="PilhaVertical"
         ap-margem="16px 12px 0px 8px">
 
