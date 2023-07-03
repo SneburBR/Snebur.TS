@@ -16,13 +16,13 @@
     "strictPropertyInitialization": false,
     "alwaysStrict": false,
     "noStrictGenericChecks": true,
-    "stripInternal": false,
+    "stripInternal": true,
     "strictNullChecks": false,
     "target": "ES2020",
     "lib": [
       "DOM",
-      "ES2020",
-      "ES2020.Promise"
+      "ES2015.Promise",
+      "ES2015"
     ],
     "declaration": true,
     "declarationMap": true
@@ -54,6 +54,7 @@
     "src/Core/Nativo/Number.ts",
     "src/Core/Nativo/NumberConstructor.ts",
     "src/Core/Nativo/ObjectConstructor.ts",
+    "src/Core/Nativo/String.Polyfill.ts",
     "src/Core/Nativo/String.ts",
     "src/Core/Nativo/StringConstructor.ts",
     "src/Core/Bibliotecas/Magickd.ts",
@@ -100,6 +101,7 @@
     "src/Comum/LazyValue.ts",
     "src/Comunicacao/Requisicao/GerenciadorRequisicaoUtil.ts",
     "src/Core/Erro/Erro.ts",
+    "src/Core/Erro/ErroArgumentoNulo.ts",
     "src/Core/Erro/ErroConverter.ts",
     "src/Core/Erro/ErroGlobal.ts",
     "src/Core/Erro/ErroNaoDefinido.ts",
@@ -534,5 +536,5 @@
     "WebAdmin",
     "AdminInterno"
   ],
-  "IsDebugScriptsDepedentes": false
+  "IsDebugScriptsDepedentes": true
 }
