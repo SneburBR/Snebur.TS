@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:10
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -201,11 +199,26 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
-    export class NotificarAlteracaoEntidadeAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
+    export class NotificarTodasAlteracoesPropriedadeGenericaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
+        //#region Propriedades
+    
+        private _flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade = 0;
+    
+        public get Flags(): Snebur.Dominio.EnunFlagAlteracaoPropriedade 
+        {
+            return this._flags;
+        }
+
+        public set Flags(value: Snebur.Dominio.EnunFlagAlteracaoPropriedade) 
+        {
+            this.NotificarValorPropriedadeAlterada("Flags", this._flags, this._flags = value);
+        }
+        //#endregion
+    
         //#region Construtor
     
-        public constructor(inicializador?: Partial<NotificarAlteracaoEntidadeAttribute>) 
+        public constructor(inicializador?: Partial<NotificarTodasAlteracoesPropriedadeGenericaAttribute>) 
         {
             super(inicializador);
             this.Inicializar();

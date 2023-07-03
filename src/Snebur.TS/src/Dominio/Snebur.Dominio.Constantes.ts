@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:11
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -40,9 +38,9 @@ namespace Snebur.Imagens
         public static readonly ALTURA_IMAGEM_PEQUENA : number = 160;
         public static readonly LARGURA_IMAGEM_MEDIA : number = 800;
         public static readonly ALTURA_IMAGEM_MEDIA : number = 500;
-        public static readonly ALTURA_IMAGEM_GRANDE: number = 800;
-        public static readonly LARGURA_IMAGEM_GRANDE: number = 1440;
-        public static readonly QUALIDADE_PADRAO : number = 87;
+        public static readonly LARGURA_IMAGEM_GRANDE : number = 1440;
+        public static readonly ALTURA_IMAGEM_GRANDE : number = 800;
+        public static readonly QUALIDADE_PADRAO : number = 94;
         public static readonly QUALIDADE_PADRAO_THUMBNAIL : number = 70;
         public static readonly QUALIDADE_PADRAO_IMAGEM_REDIMENSIONADA : number = 70;
     }

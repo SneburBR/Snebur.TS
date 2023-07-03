@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:10
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -458,31 +456,31 @@ namespace Snebur.Dominio
     export enum EnumFiltroImagem
     {
         Exposicao = 0,
-        Ciano = 1,
-        Magenta = 2,
-        Amarelo = 3,
-        Contraste = 4,
-        Brilho = 5,
-        Sepia = 6,
-        Saturacao = 7,
-        PretoBranco = 8,
-        Inverter = 9,
-        Matriz = 10,
-        Desfoque = 11,
+        Brilho = 1,
+        Contraste = 2,
+        Saturacao = 3,
+        PretoBranco = 4,
+        Sepia = 5,
+        Matriz = 6,
+        Inverter = 7,
+        Desfoque = 8,
+        Ciano = 9,
+        Magenta = 10,
+        Amarelo = 11,
     }
     (EnumFiltroImagem as any).Rotulos = {};
     (EnumFiltroImagem as any).Rotulos["Exposicao"] = "Exposição";
+    (EnumFiltroImagem as any).Rotulos["Brilho"] = "Brilho";
+    (EnumFiltroImagem as any).Rotulos["Contraste"] = "Contraste";
+    (EnumFiltroImagem as any).Rotulos["Saturacao"] = "Saturação";
+    (EnumFiltroImagem as any).Rotulos["PretoBranco"] = "Preto e branco";
+    (EnumFiltroImagem as any).Rotulos["Sepia"] = "Sépia";
+    (EnumFiltroImagem as any).Rotulos["Matriz"] = "Matriz";
+    (EnumFiltroImagem as any).Rotulos["Inverter"] = "Inverter";
+    (EnumFiltroImagem as any).Rotulos["Desfoque"] = "Desfoque";
     (EnumFiltroImagem as any).Rotulos["Ciano"] = "Ciano";
     (EnumFiltroImagem as any).Rotulos["Magenta"] = "Magenta";
     (EnumFiltroImagem as any).Rotulos["Amarelo"] = "Amarelo";
-    (EnumFiltroImagem as any).Rotulos["Contraste"] = "Contraste";
-    (EnumFiltroImagem as any).Rotulos["Brilho"] = "Brilho";
-    (EnumFiltroImagem as any).Rotulos["Sepia"] = "Sépia";
-    (EnumFiltroImagem as any).Rotulos["Saturacao"] = "Saturação";
-    (EnumFiltroImagem as any).Rotulos["PretoBranco"] = "Preto e branco";
-    (EnumFiltroImagem as any).Rotulos["Inverter"] = "Inverter";
-    (EnumFiltroImagem as any).Rotulos["Matriz"] = "Matriz";
-    (EnumFiltroImagem as any).Rotulos["Desfoque"] = "Desfoque";
 
     export enum EnumFormatoImagem
     {
@@ -1183,6 +1181,7 @@ namespace Snebur.Servicos
         AplicacaoNaoAutorizada = 24,
         AcessoArquivoSuspeito = 25,
         ArquivoVersaoPublicacaoNaoEncontrado = 26,
+        ServicoNaoEncontrado = 27,
     }
     (EnumTipoLogSeguranca as any).Rotulos = {};
     (EnumTipoLogSeguranca as any).Rotulos["TokenExpirado"] = "Token expirado";
@@ -1211,6 +1210,7 @@ namespace Snebur.Servicos
     (EnumTipoLogSeguranca as any).Rotulos["AplicacaoNaoAutorizada"] = "AplicacaoNaoAutorizada";
     (EnumTipoLogSeguranca as any).Rotulos["AcessoArquivoSuspeito"] = "AcessoArquivoSuspeito";
     (EnumTipoLogSeguranca as any).Rotulos["ArquivoVersaoPublicacaoNaoEncontrado"] = "ArquivoVersaoPublicacaoNaoEncontrado";
+    (EnumTipoLogSeguranca as any).Rotulos["ServicoNaoEncontrado"] = "ServicoNaoEncontrado";
 
 }
 namespace Snebur.UI
@@ -6251,14 +6251,20 @@ namespace Snebur.UI
         Vazio = -1,
         Padrao = 0,
         Pequeno = 1,
-        Medio = 2,
-        Grande = 3,
+        PequenoMedio = 2,
+        MediodPequeno = 3,
+        Medio = 4,
+        MedioGrande = 5,
+        Grande = 6,
     }
     (EnumTamanhoIcone as any).Rotulos = {};
     (EnumTamanhoIcone as any).Rotulos["Vazio"] = "Vazio";
     (EnumTamanhoIcone as any).Rotulos["Padrao"] = "Padrao";
     (EnumTamanhoIcone as any).Rotulos["Pequeno"] = "Pequeno";
+    (EnumTamanhoIcone as any).Rotulos["PequenoMedio"] = "PequenoMedio";
+    (EnumTamanhoIcone as any).Rotulos["MediodPequeno"] = "MediodPequeno";
     (EnumTamanhoIcone as any).Rotulos["Medio"] = "Medio";
+    (EnumTamanhoIcone as any).Rotulos["MedioGrande"] = "MedioGrande";
     (EnumTamanhoIcone as any).Rotulos["Grande"] = "Grande";
 
     export enum EnumTipoAnimacao
@@ -6349,12 +6355,13 @@ namespace Snebur.UI
         Titulo = 7,
         SubTitulo = 8,
         SubTitulo2 = 9,
-        Corpo = 10,
-        Corpo2 = 11,
-        Descricao = 12,
-        Descricao2 = 13,
-        BotaoCaixaAlta = 14,
-        LinhaCaixaAlta = 15,
+        Normal = 10,
+        Corpo = 11,
+        Corpo2 = 12,
+        Descricao = 13,
+        Descricao2 = 14,
+        BotaoCaixaAlta = 15,
+        LinhaCaixaAlta = 16,
     }
     (EnumTipografia as any).Rotulos = {};
     (EnumTipografia as any).Rotulos["Vazio"] = "Vazio";
@@ -6368,6 +6375,7 @@ namespace Snebur.UI
     (EnumTipografia as any).Rotulos["Titulo"] = "Titulo";
     (EnumTipografia as any).Rotulos["SubTitulo"] = "SubTitulo";
     (EnumTipografia as any).Rotulos["SubTitulo2"] = "SubTitulo2";
+    (EnumTipografia as any).Rotulos["Normal"] = "Normal";
     (EnumTipografia as any).Rotulos["Corpo"] = "Corpo";
     (EnumTipografia as any).Rotulos["Corpo2"] = "Corpo2";
     (EnumTipografia as any).Rotulos["Descricao"] = "Descricao";
@@ -6556,6 +6564,17 @@ namespace Snebur.Utilidade
     (EnumStatusDiretorio as any).Rotulos["SemPermissaoGravacao"] = "SemPermissaoGravacao";
     (EnumStatusDiretorio as any).Rotulos["EspacoInsuficiente"] = "EspacoInsuficiente";
 
+    export enum EnumDivisorDecimal
+    {
+        CulturaAtual = 0,
+        Ponto = 1,
+        Virgula = 2,
+    }
+    (EnumDivisorDecimal as any).Rotulos = {};
+    (EnumDivisorDecimal as any).Rotulos["CulturaAtual"] = "CulturaAtual";
+    (EnumDivisorDecimal as any).Rotulos["Ponto"] = "Ponto";
+    (EnumDivisorDecimal as any).Rotulos["Virgula"] = "Virgula";
+
     export enum EnumFormatacaoBytes
     {
         Bytes = 1,
@@ -6570,5 +6589,14 @@ namespace Snebur.Utilidade
     (EnumFormatacaoBytes as any).Rotulos["Megabytes"] = "Megabytes";
     (EnumFormatacaoBytes as any).Rotulos["Gigabytes"] = "Gigabytes";
     (EnumFormatacaoBytes as any).Rotulos["Terabytes"] = "Terabytes";
+
+    export enum EnumTipoSerializacao
+    {
+        Javascript = 1,
+        DotNet = 2,
+    }
+    (EnumTipoSerializacao as any).Rotulos = {};
+    (EnumTipoSerializacao as any).Rotulos["Javascript"] = "Javascript";
+    (EnumTipoSerializacao as any).Rotulos["DotNet"] = "DotNet";
 
 }

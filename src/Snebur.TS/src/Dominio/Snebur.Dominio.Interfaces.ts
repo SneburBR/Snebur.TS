@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:11
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -421,6 +419,6 @@ namespace Snebur.Servicos
     }
     export interface IServicoLogSeguranca
     {
-        NotificarLogSeguranca(mensagem : string,stackTrace : string,tipoLogSeguranca : Snebur.Servicos.EnumTipoLogSeguranca,informacaoAdicional : Snebur.Servicos.BaseInformacaoAdicionalServicoCompartilhado) : string;
+        NotificarLogSeguranca(mensagem : string,stackTrace : string,infoRequisicao : Snebur.Comunicacao.InfoRequisicao,tipoLogSeguranca : Snebur.Servicos.EnumTipoLogSeguranca,informacaoAdicional : Snebur.Servicos.BaseInformacaoAdicionalServicoCompartilhado) : string;
     }
 }

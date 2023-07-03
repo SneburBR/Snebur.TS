@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:11
 //@Namespace: Snebur.Dominio
 //@PrioridadeDominio: 0
 //@Globalizar: False
@@ -8,6 +6,54 @@
 
 namespace Snebur.Comunicacao
 {
+    export class InfoRequisicao extends Snebur.Dominio.BaseDominio
+    {
+        //#region Propriedades
+    
+        private _userAgent : string = null;
+        private _ipRequisicao : string = null;
+        private _credencialUsuario : string = null;
+    
+        public get UserAgent(): string 
+        {
+            return this._userAgent;
+        }
+
+        public set UserAgent(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("UserAgent", this._userAgent, this._userAgent = value);
+        }
+    
+        public get IpRequisicao(): string 
+        {
+            return this._ipRequisicao;
+        }
+
+        public set IpRequisicao(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("IpRequisicao", this._ipRequisicao, this._ipRequisicao = value);
+        }
+    
+        public get CredencialUsuario(): string 
+        {
+            return this._credencialUsuario;
+        }
+
+        public set CredencialUsuario(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("CredencialUsuario", this._credencialUsuario, this._credencialUsuario = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<InfoRequisicao>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
     export abstract class BaseResultadoRecuperarSenha extends Snebur.Dominio.BaseDominio
     {
         //#region Propriedades
