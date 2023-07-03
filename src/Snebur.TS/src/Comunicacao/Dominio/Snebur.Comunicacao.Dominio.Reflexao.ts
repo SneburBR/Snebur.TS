@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:13
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False
@@ -23,7 +21,6 @@ namespace Snebur.Reflexao
 	export const __$tipoBaseDominioSnebur_Comunicacao_ChamadaRegraNegocio = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ChamadaRegraNegocio, "ChamadaRegraNegocio", "Snebur.Comunicacao","Snebur.Comunicacao.ChamadaRegraNegocio, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_BaseComunicao, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamada, "ResultadoChamada", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamada, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_BaseComunicao, true);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ConfiguracaoServicoImagem, "ConfiguracaoServicoImagem", "Snebur.Comunicacao","Snebur.Comunicacao.ConfiguracaoServicoImagem, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_BaseComunicao, false);
-	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoExcluir, "ResultadoExcluir", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoExcluir, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_BaseComunicao, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaBaseDominio = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ParametroChamadaBaseDominio, "ParametroChamadaBaseDominio", "Snebur.Comunicacao","Snebur.Comunicacao.ParametroChamadaBaseDominio, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamada, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaEnum = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ParametroChamadaEnum, "ParametroChamadaEnum", "Snebur.Comunicacao","Snebur.Comunicacao.ParametroChamadaEnum, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamada, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaLista = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ParametroChamadaLista, "ParametroChamadaLista", "Snebur.Comunicacao","Snebur.Comunicacao.ParametroChamadaLista, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamada, true);
@@ -38,8 +35,8 @@ namespace Snebur.Reflexao
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaLista, "ResultadoChamadaLista", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaLista, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, true);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaTipoPrimario = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaTipoPrimario, "ResultadoChamadaTipoPrimario", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaTipoPrimario, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaVazio = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaVazio, "ResultadoChamadaVazio", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaVazio, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, false);
-	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, "ResultadoSessaoUsuarioInvalida", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaErroInternoServidor = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaErroInternoServidor, "ResultadoChamadaErroInternoServidor", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaErroInternoServidor, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaErro, false);
+	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, "ResultadoSessaoUsuarioInvalida", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaErro, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaBaseDominio = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaListaBaseDominio, "ResultadoChamadaListaBaseDominio", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaListaBaseDominio, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaEnum = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaListaEnum, "ResultadoChamadaListaEnum", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaListaEnum, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista, false);
 	export const __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaTipoPrimario = new Snebur.Reflexao.TipoBaseDominio(Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario, "ResultadoChamadaListaTipoPrimario", "Snebur.Comunicacao","Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario, Snebur.Comunicacao",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista, false);
@@ -57,7 +54,6 @@ namespace Snebur.Reflexao
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ChamadaRegraNegocio = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ChamadaRegraNegocio", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ChamadaRegraNegocio, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ChamadaRegraNegocio);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamada = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamada", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamada, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ConfiguracaoServicoImagem = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ConfiguracaoServicoImagem", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ConfiguracaoServicoImagem, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem);
-	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoExcluir = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoExcluir", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoExcluir, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaBaseDominio = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ParametroChamadaBaseDominio", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ParametroChamadaBaseDominio, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaBaseDominio);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaEnum = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ParametroChamadaEnum", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ParametroChamadaEnum, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaEnum);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaLista = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ParametroChamadaLista", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ParametroChamadaLista, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaLista);
@@ -72,8 +68,8 @@ namespace Snebur.Reflexao
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaLista = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaLista", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaLista, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaTipoPrimario", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaTipoPrimario, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaTipoPrimario);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaVazio = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaVazio", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaVazio, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaVazio);
-	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoSessaoUsuarioInvalida", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaErroInternoServidor = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaErroInternoServidor", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaErroInternoServidor, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaErroInternoServidor);
+	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoSessaoUsuarioInvalida", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaBaseDominio = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaListaBaseDominio", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaListaBaseDominio, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaBaseDominio);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaEnum = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaListaEnum", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaListaEnum, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaEnum);
 	export const __$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoChamadaListaTipoPrimario", "Snebur.Comunicacao", "System.Collections.Generic.List`1[[Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario, Snebur.Comunicacao]], mscorlib",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaTipoPrimario);
@@ -91,7 +87,6 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ChamadaRegraNegocio",__$tipoBaseDominioSnebur_Comunicacao_ChamadaRegraNegocio);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamada",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ConfiguracaoServicoImagem",__$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem);
-	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoExcluir",__$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ParametroChamadaBaseDominio",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaBaseDominio);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ParametroChamadaEnum",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaEnum);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ParametroChamadaLista",__$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaLista);
@@ -106,8 +101,8 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaLista",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaLista);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaTipoPrimario",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaTipoPrimario);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaVazio",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaVazio);
-	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida",__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaErroInternoServidor",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaErroInternoServidor);
+	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida",__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaListaBaseDominio",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaBaseDominio);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaListaEnum",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaEnum);
 	$Reflexao.Tipos.Adicionar("Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario",__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaTipoPrimario);
@@ -124,7 +119,6 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ChamadaRegraNegocio",__$tipoListaBaseDominio_Snebur_Comunicacao_ChamadaRegraNegocio);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamada",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamada);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ConfiguracaoServicoImagem",__$tipoListaBaseDominio_Snebur_Comunicacao_ConfiguracaoServicoImagem);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoExcluir",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoExcluir);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ParametroChamadaBaseDominio",__$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaBaseDominio);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ParametroChamadaEnum",__$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaEnum);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ParametroChamadaLista",__$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamadaLista);
@@ -139,8 +133,8 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaLista",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaLista);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaTipoPrimario",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaVazio",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaVazio);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaErroInternoServidor",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaErroInternoServidor);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaListaBaseDominio",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaBaseDominio);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaListaEnum",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaEnum);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario",__$tipoListaBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario);
@@ -159,7 +153,6 @@ namespace Snebur.Reflexao
 	Snebur.Comunicacao.ChamadaRegraNegocio.__CaminhoTipo = "Snebur.Comunicacao.ChamadaRegraNegocio";
 	Snebur.Comunicacao.ResultadoChamada.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamada";
 	Snebur.Comunicacao.ConfiguracaoServicoImagem.__CaminhoTipo = "Snebur.Comunicacao.ConfiguracaoServicoImagem";
-	Snebur.Comunicacao.ResultadoExcluir.__CaminhoTipo = "Snebur.Comunicacao.ResultadoExcluir";
 	Snebur.Comunicacao.ParametroChamadaBaseDominio.__CaminhoTipo = "Snebur.Comunicacao.ParametroChamadaBaseDominio";
 	Snebur.Comunicacao.ParametroChamadaEnum.__CaminhoTipo = "Snebur.Comunicacao.ParametroChamadaEnum";
 	Snebur.Comunicacao.ParametroChamadaLista.__CaminhoTipo = "Snebur.Comunicacao.ParametroChamadaLista";
@@ -174,8 +167,8 @@ namespace Snebur.Reflexao
 	Snebur.Comunicacao.ResultadoChamadaLista.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaLista";
 	Snebur.Comunicacao.ResultadoChamadaTipoPrimario.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaTipoPrimario";
 	Snebur.Comunicacao.ResultadoChamadaVazio.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaVazio";
-	Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida.__CaminhoTipo = "Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida";
 	Snebur.Comunicacao.ResultadoChamadaErroInternoServidor.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaErroInternoServidor";
+	Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida.__CaminhoTipo = "Snebur.Comunicacao.ResultadoSessaoUsuarioInvalida";
 	Snebur.Comunicacao.ResultadoChamadaListaBaseDominio.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaListaBaseDominio";
 	Snebur.Comunicacao.ResultadoChamadaListaEnum.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaListaEnum";
 	Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario.__CaminhoTipo = "Snebur.Comunicacao.ResultadoChamadaListaTipoPrimario";
@@ -273,12 +266,9 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoChamada_Operacao = new Snebur.Reflexao.Propriedade("Operacao", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, true);
 	
-	export const __$propriedade_Snebur_Comunicacao_ResultadoChamada_TempoOperacao = new Snebur.Reflexao.Propriedade("TempoOperacao", __$tipoTipoPrimario_Integer, __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, false);
-	
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_NomeServico);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_DataHora);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_Operacao);
-	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_TempoOperacao);
 	
 	export const __$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem = new Snebur.Reflexao.Propriedade("UrlVisualizarImagem", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem, true);
 	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.RotuloAttribute("Url visualiuzar imagem","Url visualiuzar imagem"));
@@ -286,13 +276,6 @@ namespace Snebur.Reflexao
 	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,500));
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem);
-	
-	export const __$propriedade_Snebur_Comunicacao_ResultadoExcluir_IsSucesso = new Snebur.Reflexao.Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir, false);
-	
-	export const __$propriedade_Snebur_Comunicacao_ResultadoExcluir_MensagemErro = new Snebur.Reflexao.Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir, true);
-	
-	__$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoExcluir_IsSucesso);
-	__$tipoBaseDominioSnebur_Comunicacao_ResultadoExcluir.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoExcluir_MensagemErro);
 	
 	export const __$propriedade_Snebur_Comunicacao_ParametroChamadaBaseDominio_BaseDominio = new Snebur.Reflexao.Propriedade("BaseDominio", __$tipoBaseDominioSnebur_Dominio_BaseDominio, __$tipoBaseDominioSnebur_Comunicacao_ParametroChamadaBaseDominio, true);
 	
@@ -376,6 +359,13 @@ namespace Snebur.Reflexao
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaTipoPrimario.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_Valor);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaTipoPrimario.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_TipoPrimarioEnum);
+	
+	export const __$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_StatusSessaoUsuario = new Snebur.Reflexao.Propriedade("StatusSessaoUsuario", __$tipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario, __$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida, false);
+	
+	export const __$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_IdentificadorSessaoUsuario = new Snebur.Reflexao.Propriedade("IdentificadorSessaoUsuario", __$tipoTipoPrimario_Guid, __$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida, false);
+	
+	__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_StatusSessaoUsuario);
+	__$tipoBaseDominioSnebur_Comunicacao_ResultadoSessaoUsuarioInvalida.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_IdentificadorSessaoUsuario);
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoChamadaListaBaseDominio_NomeTipoBaseDominio = new Snebur.Reflexao.Propriedade("NomeTipoBaseDominio", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamadaListaBaseDominio, true);
 	

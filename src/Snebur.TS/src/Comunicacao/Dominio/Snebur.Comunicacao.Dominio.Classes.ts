@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:13
 //@Namespace: Snebur.Comunicacao
 //@PrioridadeDominio: 1
 //@Globalizar: False
@@ -258,7 +256,6 @@ namespace Snebur.Comunicacao
         private _nomeServico : string = null;
         private _dataHora : Date =  new Date();
         private _operacao : string = null;
-        private _tempoOperacao : number = 0;
     
         public get NomeServico(): string 
         {
@@ -289,16 +286,6 @@ namespace Snebur.Comunicacao
         {
             this.NotificarValorPropriedadeAlterada("Operacao", this._operacao, this._operacao = value);
         }
-    
-        public get TempoOperacao(): number 
-        {
-            return this._tempoOperacao;
-        }
-
-        public set TempoOperacao(value: number) 
-        {
-            this.NotificarValorPropriedadeAlterada("TempoOperacao", this._tempoOperacao, this._tempoOperacao = value);
-        }
         //#endregion
     
         //#region Construtor
@@ -323,42 +310,6 @@ namespace Snebur.Comunicacao
         public set UrlVisualizarImagem(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("UrlVisualizarImagem", this._urlVisualizarImagem, this._urlVisualizarImagem = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor() 
-        {
-            super();
-        }
-        //#endregion
-    }
-    export class ResultadoExcluir extends Snebur.Comunicacao.BaseComunicao
-    {
-        //#region Propriedades
-    
-        private _isSucesso : boolean = false;
-        private _mensagemErro : string = null;
-    
-        public get IsSucesso(): boolean 
-        {
-            return this._isSucesso;
-        }
-
-        public set IsSucesso(value: boolean) 
-        {
-            this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
-        }
-    
-        public get MensagemErro(): string 
-        {
-            return this._mensagemErro;
-        }
-
-        public set MensagemErro(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
         //#endregion
     
@@ -713,7 +664,7 @@ namespace Snebur.Comunicacao
     {
         //#region Propriedades
     
-        private _mensagemErro : string = null;
+        protected _mensagemErro : string = null;
         private _erro : any = null;
         private _statusCode : number = 0;
     
@@ -829,7 +780,18 @@ namespace Snebur.Comunicacao
         }
         //#endregion
     }
-    export class ResultadoSessaoUsuarioInvalida extends Snebur.Comunicacao.ResultadoChamada
+    export class ResultadoChamadaErroInternoServidor extends Snebur.Comunicacao.ResultadoChamadaErro
+    {
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ResultadoChamadaErroInternoServidor>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class ResultadoSessaoUsuarioInvalida extends Snebur.Comunicacao.ResultadoChamadaErro
     {
         //#region Propriedades
     
@@ -859,23 +821,13 @@ namespace Snebur.Comunicacao
     
         //#region Construtor
     
-        public constructor( statusSessaoUsuario : Snebur.Dominio.EnumStatusSessaoUsuario ,  identificadorSessaoUsuario : string ) 
+        public constructor( statusSessaoUsuario : Snebur.Dominio.EnumStatusSessaoUsuario ,  identificadorSessaoUsuario : string ,  mensagemErro : string ) 
         {
             super();
             this.Inicializar();
             this._statusSessaoUsuario = statusSessaoUsuario;
             this._identificadorSessaoUsuario = identificadorSessaoUsuario;
-        }
-        //#endregion
-    }
-    export class ResultadoChamadaErroInternoServidor extends Snebur.Comunicacao.ResultadoChamadaErro
-    {
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<ResultadoChamadaErroInternoServidor>) 
-        {
-            super(inicializador);
-            this.Inicializar();
+            this._mensagemErro = mensagemErro;
         }
         //#endregion
     }
