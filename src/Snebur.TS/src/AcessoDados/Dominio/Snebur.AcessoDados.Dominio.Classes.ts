@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : quinta-feira, 15 de junho de 2023
-//Hora : 18:20:42
 //@Namespace: Snebur.AcessoDados
 //@PrioridadeDominio: 2
 //@Globalizar: False

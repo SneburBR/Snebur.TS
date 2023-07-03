@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : segunda-feira, 8 de maio de 2023
-//Hora : 18:16:13
 //@Namespace: Snebur.AcessoDados
 //@PrioridadeDominio: 2
 //@Globalizar: False
@@ -46,7 +44,7 @@ namespace Snebur.Reflexao
 	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaColecao, "RelacaoAbertaColecao", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.RelacaoAbertaEntidade, "RelacaoAbertaEntidade", "Snebur.AcessoDados","Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_BaseRelacaoAberta, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoConsulta, "ResultadoConsulta", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoConsulta, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
-	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoExcluir, "ResultadoExcluir", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
+	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoDeletar = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoDeletar, "ResultadoDeletar", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoDeletar, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
 	export const __$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar = new Snebur.Reflexao.TipoBaseDominio(Snebur.AcessoDados.ResultadoSalvar, "ResultadoSalvar", "Snebur.AcessoDados","Snebur.AcessoDados.ResultadoSalvar, Snebur.AcessoDados",__$tipoBaseDominioSnebur_AcessoDados_Resultado, false);
 	
 	//ListaBaseDominio
@@ -69,7 +67,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaColecao", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaColecao, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_RelacaoAbertaEntidade", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.RelacaoAbertaEntidade, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoConsulta = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoConsulta", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoConsulta, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta);
-	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoExcluir", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoExcluir, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
+	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoDeletar = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoDeletar", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoDeletar, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoDeletar);
 	export const __$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoSalvar = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoSalvar", "Snebur.AcessoDados", "System.Collections.Generic.List`1[[Snebur.AcessoDados.ResultadoSalvar, Snebur.AcessoDados]], mscorlib",__$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar);
 	
 	//Adicionar BasesDominio
@@ -92,7 +90,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaColecao);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoBaseDominioSnebur_AcessoDados_RelacaoAbertaEntidade);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoConsulta",__$tipoBaseDominioSnebur_AcessoDados_ResultadoConsulta);
-	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoExcluir",__$tipoBaseDominioSnebur_AcessoDados_ResultadoExcluir);
+	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoDeletar",__$tipoBaseDominioSnebur_AcessoDados_ResultadoDeletar);
 	$Reflexao.Tipos.Adicionar("Snebur.AcessoDados.ResultadoSalvar",__$tipoBaseDominioSnebur_AcessoDados_ResultadoSalvar);
 	
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.BaseAcessoDados",__$tipoListaBaseDominio_Snebur_AcessoDados_BaseAcessoDados);
@@ -114,7 +112,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaColecao",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.RelacaoAbertaEntidade",__$tipoListaBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoConsulta",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoConsulta);
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoExcluir",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoExcluir);
+	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoDeletar",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoDeletar);
 	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.AcessoDados.ResultadoSalvar",__$tipoListaBaseDominio_Snebur_AcessoDados_ResultadoSalvar);
 	
 	//Associar caminhos BaseDominio
@@ -138,7 +136,7 @@ namespace Snebur.Reflexao
 	Snebur.AcessoDados.RelacaoAbertaColecao.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaColecao";
 	Snebur.AcessoDados.RelacaoAbertaEntidade.__CaminhoTipo = "Snebur.AcessoDados.RelacaoAbertaEntidade";
 	Snebur.AcessoDados.ResultadoConsulta.__CaminhoTipo = "Snebur.AcessoDados.ResultadoConsulta";
-	Snebur.AcessoDados.ResultadoExcluir.__CaminhoTipo = "Snebur.AcessoDados.ResultadoExcluir";
+	Snebur.AcessoDados.ResultadoDeletar.__CaminhoTipo = "Snebur.AcessoDados.ResultadoDeletar";
 	Snebur.AcessoDados.ResultadoSalvar.__CaminhoTipo = "Snebur.AcessoDados.ResultadoSalvar";
 	
 	//Atributos
@@ -192,9 +190,9 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoEntidadeAssemblyQualifiedName = new Snebur.Reflexao.Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, true);
 	
-	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsMostrarDeletados = new Snebur.Reflexao.Propriedade("IsMostrarDeletados", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, false);
+	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirDeletados = new Snebur.Reflexao.Propriedade("IsIncluirDeletados", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, false);
 	
-	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsMostrarInativos = new Snebur.Reflexao.Propriedade("IsMostrarInativos", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, false);
+	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirInativos = new Snebur.Reflexao.Propriedade("IsIncluirInativos", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, false);
 	
 	export const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsDesativarOrdenacao = new Snebur.Reflexao.Propriedade("IsDesativarOrdenacao", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta, false);
 	
@@ -226,8 +224,8 @@ namespace Snebur.Reflexao
 	
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_NomeTipoEntidade);
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoEntidadeAssemblyQualifiedName);
-	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsMostrarDeletados);
-	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsMostrarInativos);
+	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirDeletados);
+	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirInativos);
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsDesativarOrdenacao);
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_Take);
 	__$tipoBaseDominioSnebur_AcessoDados_EstruturaConsulta.Propriedades.Add(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_Skip);
