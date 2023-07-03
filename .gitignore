@@ -435,3 +435,5 @@ Snebur.Globalizacao.Dominio.Classes.ts
 Snebur.Globalizacao.Dominio.Atributos.ts
 
 
+/src/Snebur.WebWorker/workers/Snebur.Cpu.js.map
+/src/Snebur.WebWorker/workers/Snebur.JpegDecoder.js.map
