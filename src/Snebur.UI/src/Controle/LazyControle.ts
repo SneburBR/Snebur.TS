@@ -27,14 +27,16 @@ namespace Snebur.UI
         {
             return this._isAutoCarregar;
         }
+
         private readonly Binds = new List<[constructor: ui.IBindConstrutor, valorAtributo: string]>();
 
         public constructor(
             private readonly ControlePai: BaseControle,
             private readonly ConstrutorControle: ui.IControleConstrutor<TControle>,
-            private readonly Elemento?: HTMLElement)
+            private readonly Elemento?: HTMLElement,
+            isAutoCarregar?:boolean) 
         {
-
+            this._isAutoCarregar = isAutoCarregar ?? this.Elemento == null;
         }
 
         public AddBind<TBind extends ui.BaseBind>(
