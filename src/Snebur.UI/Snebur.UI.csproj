@@ -229,7 +229,7 @@
     <TypeScriptCompile Include="src\Componentes\IComponenteApresentacaoConstrutor.ts" />
     <TypeScriptCompile Include="src\Componentes\IComponenteApresentacaoIcone.ts" />
     <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeApresentacao.ts" />
-    <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeApresentacao.Variaveis.ts" />
+    <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeApresentacao.Mapeamentos.ts" />
     <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeUtil.ts" />
     <TypeScriptCompile Include="src\Componentes\Paineis\BasePainel.Mapeamento.ts" />
     <TypeScriptCompile Include="src\Componentes\Paineis\BasePainel.ts" />
@@ -658,7 +658,7 @@
     <TypeScriptCompile Include="src\ServicoImagem\TarefaAbrirImagemLocal.ts" />
     <TypeScriptCompile Include="src\Snebur.UI.Inicio.ts" />
     <TypeScriptCompile Include="src\Snebur.UI.Referencias.ts" />
-    <TypeScriptCompile Include="src\Snebur.UI.Variaveis.ts" />
+    <TypeScriptCompile Include="src\Snebur.UI.Exports.ts" />
     <TypeScriptCompile Include="src\UIElementoGenerico.ts" />
     <TypeScriptCompile Include="src\Utilidade\BindControleUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ComponenteApresentacaoUtil.ts" />

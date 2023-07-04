@@ -463,7 +463,7 @@
     <TypeScriptCompile Include="src\ServicoArquivo\TarefaEnviarImagemImpressao.ts" />
     <TypeScriptCompile Include="src\Snebur.Inicio.ts" />
     <TypeScriptCompile Include="src\Snebur.Referencias.ts" />
-    <TypeScriptCompile Include="src\Snebur.Variaveis.ts" />
+    <TypeScriptCompile Include="src\Snebur.Exports.ts" />
     <TypeScriptCompile Include="src\Terefa\BaseTarefa.ViewModel.ts" />
     <TypeScriptCompile Include="src\Terefa\EnumEstadoTarefa.ts" />
     <TypeScriptCompile Include="src\Terefa\EnumPreferenciaOrdemFila.ts" />
@@ -539,7 +539,7 @@
     <TypeScriptCompile Include="src\Validacao\Interface\IBaseValidacao.ts" />
     <TypeScriptCompile Include="src\Validacao\Interface\IValidacao.ts" />
     <TypeScriptCompile Include="src\Validacao\Interface\IValidacaoAsync.ts" />
-    <TypeScriptCompile Include="src\Validacao\Snebur.Validacao.Variaveis.ts" />
+    <TypeScriptCompile Include="src\Validacao\Snebur.Validacao.Exports.ts" />
     <TypeScriptCompile Include="src\Validacao\ValidacaoAsync.ts" />
     <TypeScriptCompile Include="src\Validacao\ValidacaoDiferente.ts" />
     <TypeScriptCompile Include="src\Validacao\ValidacaoNormal.ts" />
