@@ -171,9 +171,7 @@
             console.error("timeout enviar pacote  Xmlhttp_Timeout");
             this.Finalizar(EnumResultadoEnvioPacote.TentarNovamente);
         }
-
-
-
+         
         private Finalizar(resultado: EnumResultadoEnvioPacote): void
         {
             window.clearTimeout(this.IdentificadorTimeoutEnviarPacote);

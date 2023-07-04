@@ -2,12 +2,10 @@
 {
     export abstract class BaseDominio extends Snebur.ObjetoControladorPropriedade /*implements IIdentificadorUnico, IIdentificadorReferencia*/
     {
-
         //#region Propriedades 
          
         private __InicializarPropriedades?: Partial<Entidade>
 
-       
         //#endregion
 
         //#region Construtor

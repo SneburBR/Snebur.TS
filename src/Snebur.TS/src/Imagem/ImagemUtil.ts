@@ -94,8 +94,7 @@
                     imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
                     imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));
                     imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
-
-
+                     
                     imagem.MimeType = mimeType;
                     imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
                 }
