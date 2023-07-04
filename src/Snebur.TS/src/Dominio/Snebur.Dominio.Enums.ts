@@ -6536,6 +6536,31 @@ namespace Snebur.Utilidade
     (OpcoesCompararHora as any).Rotulos["HoraMinutoSegundosMilesegundos"] = "HoraMinutoSegundosMilesegundos";
     (OpcoesCompararHora as any).Rotulos["Ignorar"] = "Ignorar";
 
+    export enum QueryType
+    {
+        A = 1,
+        MX = 15,
+        NS = 2,
+        CNAME = 5,
+        SOA = 6,
+        PTR = 12,
+        TXT = 16,
+        AAAA = 28,
+        SRV = 33,
+        ANY = 255,
+    }
+    (QueryType as any).Rotulos = {};
+    (QueryType as any).Rotulos["A"] = "A";
+    (QueryType as any).Rotulos["MX"] = "MX";
+    (QueryType as any).Rotulos["NS"] = "NS";
+    (QueryType as any).Rotulos["CNAME"] = "CNAME";
+    (QueryType as any).Rotulos["SOA"] = "SOA";
+    (QueryType as any).Rotulos["PTR"] = "PTR";
+    (QueryType as any).Rotulos["TXT"] = "TXT";
+    (QueryType as any).Rotulos["AAAA"] = "AAAA";
+    (QueryType as any).Rotulos["SRV"] = "SRV";
+    (QueryType as any).Rotulos["ANY"] = "ANY";
+
     export enum EnumFiltroPropriedadeCampo
     {
         Todas = 1,

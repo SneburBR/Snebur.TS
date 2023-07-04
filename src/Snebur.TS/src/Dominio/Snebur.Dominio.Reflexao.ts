@@ -22,13 +22,14 @@ namespace Snebur.Reflexao
 	export const __$tipoTipoPrimario_Byte = new Snebur.Reflexao.TipoPrimario("Byte", Snebur.Reflexao.EnumTipoPrimario.Byte);
 	
 	//Lista de tipos primarios
-	export const __$tipoListaTipoPrimario_void = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_void);
-	export const __$tipoListaTipoPrimario_Boolean = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Boolean);
 	export const __$tipoListaTipoPrimario_String = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_String);
 	export const __$tipoListaTipoPrimario_Integer = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Integer);
-	export const __$tipoListaTipoPrimario_Long = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Long);
 	export const __$tipoListaTipoPrimario_Decimal = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Decimal);
+	export const __$tipoListaTipoPrimario_Boolean = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Boolean);
+	export const __$tipoListaTipoPrimario_Byte = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Byte);
+	export const __$tipoListaTipoPrimario_Long = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Long);
 	export const __$tipoListaTipoPrimario_Double = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Double);
+	export const __$tipoListaTipoPrimario_void = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_void);
 	export const __$tipoListaTipoPrimario_DateTime = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_DateTime);
 	export const __$tipoListaTipoPrimario_TimeSpan = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_TimeSpan);
 	export const __$tipoListaTipoPrimario_EnumValor = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_EnumValor);
@@ -36,17 +37,17 @@ namespace Snebur.Reflexao
 	export const __$tipoListaTipoPrimario_Object = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Object);
 	export const __$tipoListaTipoPrimario_Single = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Single);
 	export const __$tipoListaTipoPrimario_Char = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Char);
-	export const __$tipoListaTipoPrimario_Byte = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Byte);
 	
 	//Adicionar os tipos
 	//Adicionar  Tipos primarios
-	$Reflexao.Tipos.Adicionar("void",__$tipoTipoPrimario_void);
-	$Reflexao.Tipos.Adicionar("Boolean",__$tipoTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("String",__$tipoTipoPrimario_String);
 	$Reflexao.Tipos.Adicionar("Integer",__$tipoTipoPrimario_Integer);
-	$Reflexao.Tipos.Adicionar("Long",__$tipoTipoPrimario_Long);
 	$Reflexao.Tipos.Adicionar("Decimal",__$tipoTipoPrimario_Decimal);
+	$Reflexao.Tipos.Adicionar("Boolean",__$tipoTipoPrimario_Boolean);
+	$Reflexao.Tipos.Adicionar("Byte",__$tipoTipoPrimario_Byte);
+	$Reflexao.Tipos.Adicionar("Long",__$tipoTipoPrimario_Long);
 	$Reflexao.Tipos.Adicionar("Double",__$tipoTipoPrimario_Double);
+	$Reflexao.Tipos.Adicionar("void",__$tipoTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("DateTime",__$tipoTipoPrimario_DateTime);
 	$Reflexao.Tipos.Adicionar("TimeSpan",__$tipoTipoPrimario_TimeSpan);
 	$Reflexao.Tipos.Adicionar("EnumValor",__$tipoTipoPrimario_EnumValor);
@@ -54,15 +55,15 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Object",__$tipoTipoPrimario_Object);
 	$Reflexao.Tipos.Adicionar("Single",__$tipoTipoPrimario_Single);
 	$Reflexao.Tipos.Adicionar("Char",__$tipoTipoPrimario_Char);
-	$Reflexao.Tipos.Adicionar("Byte",__$tipoTipoPrimario_Byte);
 	
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_void",__$tipoListaTipoPrimario_void);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Boolean",__$tipoListaTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_String",__$tipoListaTipoPrimario_String);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Integer",__$tipoListaTipoPrimario_Integer);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Long",__$tipoListaTipoPrimario_Long);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Decimal",__$tipoListaTipoPrimario_Decimal);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Boolean",__$tipoListaTipoPrimario_Boolean);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Byte",__$tipoListaTipoPrimario_Byte);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Long",__$tipoListaTipoPrimario_Long);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Double",__$tipoListaTipoPrimario_Double);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_void",__$tipoListaTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_DateTime",__$tipoListaTipoPrimario_DateTime);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_TimeSpan",__$tipoListaTipoPrimario_TimeSpan);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_EnumValor",__$tipoListaTipoPrimario_EnumValor);
@@ -70,7 +71,6 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Object",__$tipoListaTipoPrimario_Object);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Single",__$tipoListaTipoPrimario_Single);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Char",__$tipoListaTipoPrimario_Char);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Byte",__$tipoListaTipoPrimario_Byte);
 	
 	//Enum
 	export const __$tipoEnum_Snebur_EnumAmbienteServidor = new Snebur.Reflexao.TipoEnum("EnumAmbienteServidor", "Snebur", "Snebur.EnumAmbienteServidor, Snebur");
@@ -166,6 +166,7 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Utilidade_EnumTipoCaminho = new Snebur.Reflexao.TipoEnum("EnumTipoCaminho", "Snebur.Utilidade", "Snebur.Utilidade.EnumTipoCaminho, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_OpcoesCompararData = new Snebur.Reflexao.TipoEnum("OpcoesCompararData", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararData, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_OpcoesCompararHora = new Snebur.Reflexao.TipoEnum("OpcoesCompararHora", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararHora, Snebur");
+	export const __$tipoEnum_Snebur_Utilidade_QueryType = new Snebur.Reflexao.TipoEnum("QueryType", "Snebur.Utilidade", "Snebur.Utilidade.QueryType, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo = new Snebur.Reflexao.TipoEnum("EnumFiltroPropriedadeCampo", "Snebur.Utilidade", "Snebur.Utilidade.EnumFiltroPropriedadeCampo, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio = new Snebur.Reflexao.TipoEnum("EnumStatusDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumStatusDiretorio, Snebur");
 	export const __$tipoEnum_Snebur_Utilidade_EnumDivisorDecimal = new Snebur.Reflexao.TipoEnum("EnumDivisorDecimal", "Snebur.Utilidade", "Snebur.Utilidade.EnumDivisorDecimal, Snebur");
@@ -266,6 +267,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumTipoCaminho = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumTipoCaminho", "Snebur.Utilidade", "Snebur.Utilidade.EnumTipoCaminho, Snebur", __$tipoEnum_Snebur_Utilidade_EnumTipoCaminho);
 	export const __$tipoListaEnum_Snebur_Utilidade_OpcoesCompararData = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.OpcoesCompararData", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararData, Snebur", __$tipoEnum_Snebur_Utilidade_OpcoesCompararData);
 	export const __$tipoListaEnum_Snebur_Utilidade_OpcoesCompararHora = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.OpcoesCompararHora", "Snebur.Utilidade", "Snebur.Utilidade.OpcoesCompararHora, Snebur", __$tipoEnum_Snebur_Utilidade_OpcoesCompararHora);
+	export const __$tipoListaEnum_Snebur_Utilidade_QueryType = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.QueryType", "Snebur.Utilidade", "Snebur.Utilidade.QueryType, Snebur", __$tipoEnum_Snebur_Utilidade_QueryType);
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumFiltroPropriedadeCampo", "Snebur.Utilidade", "Snebur.Utilidade.EnumFiltroPropriedadeCampo, Snebur", __$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumStatusDiretorio = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumStatusDiretorio", "Snebur.Utilidade", "Snebur.Utilidade.EnumStatusDiretorio, Snebur", __$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	export const __$tipoListaEnum_Snebur_Utilidade_EnumDivisorDecimal = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Utilidade.EnumDivisorDecimal", "Snebur.Utilidade", "Snebur.Utilidade.EnumDivisorDecimal, Snebur", __$tipoEnum_Snebur_Utilidade_EnumDivisorDecimal);
@@ -366,6 +368,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumTipoCaminho",__$tipoEnum_Snebur_Utilidade_EnumTipoCaminho);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.OpcoesCompararData",__$tipoEnum_Snebur_Utilidade_OpcoesCompararData);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.OpcoesCompararHora",__$tipoEnum_Snebur_Utilidade_OpcoesCompararHora);
+	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.QueryType",__$tipoEnum_Snebur_Utilidade_QueryType);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumFiltroPropriedadeCampo",__$tipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumStatusDiretorio",__$tipoEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	$Reflexao.Tipos.Adicionar("Snebur.Utilidade.EnumDivisorDecimal",__$tipoEnum_Snebur_Utilidade_EnumDivisorDecimal);
@@ -465,6 +468,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumTipoCaminho",__$tipoListaEnum_Snebur_Utilidade_EnumTipoCaminho);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_OpcoesCompararData",__$tipoListaEnum_Snebur_Utilidade_OpcoesCompararData);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_OpcoesCompararHora",__$tipoListaEnum_Snebur_Utilidade_OpcoesCompararHora);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_QueryType",__$tipoListaEnum_Snebur_Utilidade_QueryType);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo",__$tipoListaEnum_Snebur_Utilidade_EnumFiltroPropriedadeCampo);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumStatusDiretorio",__$tipoListaEnum_Snebur_Utilidade_EnumStatusDiretorio);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Utilidade_EnumDivisorDecimal",__$tipoListaEnum_Snebur_Utilidade_EnumDivisorDecimal);
@@ -565,6 +569,7 @@ namespace Snebur.Reflexao
 	Snebur.Utilidade.EnumTipoCaminho.__CaminhoTipo = "Snebur.Utilidade.EnumTipoCaminho";
 	Snebur.Utilidade.OpcoesCompararData.__CaminhoTipo = "Snebur.Utilidade.OpcoesCompararData";
 	Snebur.Utilidade.OpcoesCompararHora.__CaminhoTipo = "Snebur.Utilidade.OpcoesCompararHora";
+	Snebur.Utilidade.QueryType.__CaminhoTipo = "Snebur.Utilidade.QueryType";
 	Snebur.Utilidade.EnumFiltroPropriedadeCampo.__CaminhoTipo = "Snebur.Utilidade.EnumFiltroPropriedadeCampo";
 	Snebur.Utilidade.EnumStatusDiretorio.__CaminhoTipo = "Snebur.Utilidade.EnumStatusDiretorio";
 	Snebur.Utilidade.EnumDivisorDecimal.__CaminhoTipo = "Snebur.Utilidade.EnumDivisorDecimal";
