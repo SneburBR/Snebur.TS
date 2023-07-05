@@ -17,6 +17,7 @@
                 console.error(`DPI de impressão inválido ${dpiImpressao}`);
                 return;
             }
+
             if (dpiImpressao < 200)
             {
                 console.error(`O DPI '${dpiImpressao}'' de impressão deve ser superior 200`);
@@ -36,7 +37,7 @@
 
         public static ParaPixels(medidaEmCentimetos: number, dpi: number): number
         {
-            return (medidaEmCentimetos / MedidaUtil.POLEGADA) * dpi;
+            return Math.round((medidaEmCentimetos / MedidaUtil.POLEGADA) * dpi);
         }
 
         public static ParaCentimentros(mediaEmPixels: number, dpi: number)
