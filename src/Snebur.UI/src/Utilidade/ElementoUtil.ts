@@ -386,9 +386,7 @@
             return true;
         }
 
-        public static RetornarPosicaoElemento(idElemento: string): IClientRect;
-        public static RetornarPosicaoElemento(elemento: HTMLElement): IClientRect;
-        public static RetornarPosicaoElemento(refElemento: any): IClientRect
+        public static RetornarPosicaoElemento(refElemento: HTMLElement | string): IClientRect
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             const posicaoElemento = elemento.getBoundingClientRect();
@@ -410,9 +408,7 @@
             return posicaoElemento;
         }
 
-        public static RetornarDimensaoElemento(idElemento: string): d.Dimensao;
-        public static RetornarDimensaoElemento(elemento: HTMLElement): d.Dimensao;
-        public static RetornarDimensaoElemento(refElemento: any): d.Dimensao
+        public static RetornarDimensaoElemento(refElemento: HTMLElement | string): IDimensao
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             const posicaoElemento = elemento.getBoundingClientRect();
@@ -425,7 +421,11 @@
                 altura = EstiloUtil.RetornarValorNumericoPixel(elemento.style.height);
 
             }
-            return new d.Dimensao(largura, altura);
+            return {
+                Largura: largura,
+                Altura: altura
+            };
+            /*new d.Dimensao(largura, altura);*/
         }
 
         //public static RetornarDimensaoElemento(idElemento: string): d.Dimensao;
