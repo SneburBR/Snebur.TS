@@ -141,10 +141,8 @@
             this.InicializarBinds();
             this.__isControleInicializado = true;
             this.AtivarNotificacaoPropriedadeAlterada();
-            this.NotificarControleCarregado();
+        
             //setTimeout(this.NotificarHtmlCarregado.bind(this), 500);
-            $Aplicacao.AdicionarControleCarregado(this);
-
             /* movido para ControleApresentacao
              * this.Legenda = this.RetornarValorLegenda();*/
             //this.RetornarValorAtributo(AtributosHtml.Legenda, null);
@@ -153,6 +151,8 @@
                 this.Desabilitar();
             }
             this.__isControleCarregado = true;
+            $Aplicacao.AdicionarControleCarregado(this);
+            this.NotificarControleCarregado();
         }
 
         protected override Inicializar(): void
