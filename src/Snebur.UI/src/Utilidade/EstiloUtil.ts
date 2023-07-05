@@ -580,8 +580,11 @@
 
         public static DefinirCursorGlogal(cursor: CursorType)
         {
+            document.documentElement.style.setProperty("cursor", cursor, "important");
+            document.body.style.setProperty("cursor", cursor, "important");
             document.documentElement.style.cursor = cursor;
             document.body.style.cursor = cursor;
+            
         }
 
         public static LimparPosicoes(elementoImagem:HTMLElement)
