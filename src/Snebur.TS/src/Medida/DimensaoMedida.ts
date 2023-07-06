@@ -3,11 +3,14 @@ namespace Snebur
 {
     export class DimensaoMedida extends BaseMedida
     {
-        public DimensaoEmCentimetros: d.Dimensao;
+        public readonly DimensaoEmCentimetros: IDimensao;
 
-        public get DimensaoVisualizacao(): d.Dimensao
+        public get DimensaoVisualizacao(): IDimensao
         {
-            return new d.Dimensao(this.LarguraVisualizacao, this.AlturaVisualizacao);
+            return {
+                Largura: this.LarguraVisualizacao,
+                Altura: this.AlturaVisualizacao
+            };
         }
 
         public get LarguraVisualizacao(): number
@@ -30,21 +33,25 @@ namespace Snebur
             return u.MedidaUtil.RetornarPixelsImpressao(this.DimensaoEmCentimetros.Altura);
         }
 
-        public constructor(dimensaoEmCentimetros: d.Dimensao, dpiVisualizacao: number)
-        public constructor(dimensaoEmCentimetros: d.Dimensao, dimensaoElementoRecipienteEmPixels: d.Dimensao)
-        public constructor(dimensaoEmCentimetros: d.Dimensao, argumento: any)
+        public constructor(dimensaoEmCentimetros: IDimensao, dpiVisualizacao: number)
+        public constructor(dimensaoEmCentimetros: IDimensao, dimensaoElementoRecipienteEmPixels: IDimensao)
+        public constructor(dimensaoEmCentimetros: IDimensao, dimensaoClienteOuDpi: IDimensao | number )
         {
-            super((typeof argumento === "number") ? argumento : 0);
+            super((typeof dimensaoClienteOuDpi === "number") ? dimensaoClienteOuDpi : 0);
 
             this.DimensaoEmCentimetros = dimensaoEmCentimetros;
 
-            if (argumento instanceof d.Dimensao)
+            if (DimensaoUtil.IsDimensao(dimensaoClienteOuDpi))
             {
-                this.DpiVisualizacao = this.RetornarDpiVisualizacao(argumento);
+                this.DpiVisualizacao = this.RetornarDpiVisualizacao(dimensaoClienteOuDpi);
+            }
+            else
+            {
+                this.DpiVisualizacao = dimensaoClienteOuDpi;
             }
         }
 
-        private RetornarDpiVisualizacao(dimensaoElementoEmPixels: d.Dimensao): number
+        private RetornarDpiVisualizacao(dimensaoElementoEmPixels: IDimensao): number
         {
             const dpiVisualizacaoX = u.MedidaUtil.RetornarDpiVisualizacao(this.DimensaoEmCentimetros.Largura, dimensaoElementoEmPixels.Largura);
             const dpiVisualizacaoY = u.MedidaUtil.RetornarDpiVisualizacao(this.DimensaoEmCentimetros.Altura, dimensaoElementoEmPixels.Altura);

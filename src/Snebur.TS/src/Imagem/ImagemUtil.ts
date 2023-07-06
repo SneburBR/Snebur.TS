@@ -197,9 +197,9 @@
 
 
         //#endregion
-        public static RetornarTamanhoImagemAutomatico(imagem: d.IImagem, dimensaoRecipiente: d.Dimensao, tamanhoDimensaoVazia?: EnumTamanhoImagem): d.EnumTamanhoImagem
+        public static RetornarTamanhoImagemAutomatico(imagem: d.IImagem, dimensaoRecipiente: IDimensao, tamanhoDimensaoVazia?: EnumTamanhoImagem): d.EnumTamanhoImagem
         {
-            if (dimensaoRecipiente.IsEmpty || dimensaoRecipiente.Largura <= 0)
+            if (dimensaoRecipiente.Largura <= 0)
             {
                 if (tamanhoDimensaoVazia != null)
                 {
@@ -207,6 +207,7 @@
                 }
                 throw new Erro("A dimensão não foi definida ou é invalida");
             }
+
             if (dimensaoRecipiente.Altura <= 0)
             {
                 dimensaoRecipiente.Altura = dimensaoRecipiente.Largura;
