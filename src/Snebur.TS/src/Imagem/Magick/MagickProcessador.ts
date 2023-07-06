@@ -15,11 +15,11 @@
             const maiorDimensao = maiorRedimensionamento.Dimensao;
             const settings = new MagickWasm.MagickReadSettings();
 
-            const lado = maiorRedimensionamento.TamanhoImagem === EnumTamanhoImagem.Impressao ?
-                Math.max(maiorDimensao.Largura, maiorDimensao.Altura) :
-                Math.min(maiorDimensao.Largura, maiorDimensao.Altura);
+            const ladoMenor = Math.min(maiorDimensao.Largura, maiorDimensao.Altura);
+            const dimensao = maiorRedimensionamento.TamanhoImagem === EnumTamanhoImagem.Impressao ?
+                `${maiorDimensao.Largura}x${maiorDimensao.Altura}` :
+                `${ladoMenor}x${ladoMenor}`;
 
-            const dimensao = `${lado}x${lado}`;
             settings.setDefine(
                 MagickWasm.MagickFormat.Jpeg,
                 "size",

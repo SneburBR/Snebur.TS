@@ -4,7 +4,8 @@ namespace Snebur.WebWorker
     export class MagickWorkerCliente  
     {
         private static readonly UrlWorkerDebug: string = "/build/MagickWorker.js?";
-        private static readonly TIMEOUT = 1 * 60 * 1000;
+        private static readonly TIMEOUT_VISUALIZACAO = 1 * 60 * 1000;
+        private static readonly TIMEOUT_IMPRESSAO = 3 * 60 * 1000;
 
         private _isProcessando: boolean = false;
         private _isReciclarPedente: boolean = false;
@@ -74,7 +75,10 @@ namespace Snebur.WebWorker
                     resolver(null);
                 };
 
-                const idTimeout = window.setTimeout(ontimeout.bind(this), MagickWorkerCliente.TIMEOUT);
+                const timeout = $Configuracao.IsDebug ? 20 * 60 * 1000:
+                    opcoes.Redimensinamentos.Any(x => x.TamanhoImagem === EnumTamanhoImagem.Impressao) ?
+                    MagickWorkerCliente.TIMEOUT_IMPRESSAO : MagickWorkerCliente.TIMEOUT_VISUALIZACAO;
+                const idTimeout = window.setTimeout(ontimeout.bind(this), timeout);
 
                 const worker = this.RetornarWorker();
                 worker.onmessage = (e) =>
