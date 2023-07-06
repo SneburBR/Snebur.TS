@@ -286,5 +286,15 @@
                 Altura: proporcaoAltura
             };
         }
+
+        public static IsEmpty(dimensao: IDimensao): boolean
+        {
+            return !DimensaoUtil.IsExisteDimensao(dimensao);
+        }
+
+        public static IsExisteDimensao(dimensao: IDimensao): boolean
+        {
+            return dimensao.Largura > 0 && dimensao.Altura > 0;
+        }
     }
 }
