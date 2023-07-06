@@ -9,7 +9,7 @@
         private _maximo: number = 100;
         public Passo: number;
         public PassoLargo: number;
-        public LarguraTextoValor: string;
+       
 
         public override get Valor(): number
         {
@@ -89,6 +89,15 @@
             this.AtualizarTextoValor();
         }
 
+        protected override HtmlCarregado(): void
+        {
+            super.HtmlCarregado();
+
+            const larguraTextoValor = this.RetornarValorAtributo(AtributosHtml.LarguraTextoValor, "45px");
+            const elementoBlocoTextoValor = this.RetornarItemElemento("ItemBlocoTextoValor");
+            ElementoUtil.AdicionarAtributo(elementoBlocoTextoValor, AtributosHtml.LarguraApresentacao, larguraTextoValor);
+        }
+
         protected override DepoisInicializarComponentesApresentacao(): void
         {
             super.DepoisInicializarComponentesApresentacao();
@@ -97,8 +106,7 @@
             this.PassoLargo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.PassoLargo, 1));
             this.Minimo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Minimo, 0));
             this.Maximo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Maximo, 100));
-            this.LarguraTextoValor = this.RetornarValorAtributo(AtributosHtml.LarguraTextoValor, "45px");
-
+             
             this.PosicaoRotulo = this.RetornarPosicaoRotulo();
             this.AtualizarPosicaoRotulo();
 
@@ -109,9 +117,6 @@
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Min, this.Minimo.toString());
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Max, this.Maximo.toString());
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Step, this.Passo.toString());
-
-            const elementoBlocoTextoValor = this.RetornarItemElemento("ItemBlocoTextoValor");
-            ElementoUtil.AdicionarAtributo(elementoBlocoTextoValor, AtributosHtml.LarguraApresentacao, this.LarguraTextoValor);
         }
 
         public override ValorPropriedadeAlterado(paiPropriedade: ObjetoControladorPropriedade, nomePropriedade: string, proprieade: r.Propriedade, valorPropriedade: any)
