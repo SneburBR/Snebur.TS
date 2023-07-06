@@ -159,7 +159,7 @@
             {
                 /*let elemento = this.ElementoImagem.parentElement;*/
                 const dimensao = ElementoUtil.RetornarDimensaoElemento(this.Elemento);
-                if (dimensao.IsEmpty)
+                if (DimensaoUtil.IsEmpty(dimensao))
                 {
                     console.warn(` O tamanho automático não pode ser definido porque o elemento não possui uma dimensão.
                                    Retornando tamanho médio.

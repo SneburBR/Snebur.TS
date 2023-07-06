@@ -18,6 +18,11 @@ namespace Snebur.UI
             return this._controle;
         }
 
+        public get TryControle(): TControle | null
+        {
+            return this._controle;
+        }
+
         public get IsCarregado()
         {
             return this._controle != null;
@@ -30,11 +35,12 @@ namespace Snebur.UI
 
         private readonly Binds = new List<[constructor: ui.IBindConstrutor, valorAtributo: string]>();
 
+        public FuncaoNovoControle: () => TControle = null;
         public constructor(
             private readonly ControlePai: BaseControle,
             private readonly ConstrutorControle: ui.IControleConstrutor<TControle>,
             private readonly Elemento?: HTMLElement,
-            isAutoCarregar?:boolean) 
+            isAutoCarregar?: boolean) 
         {
             this._isAutoCarregar = isAutoCarregar ?? this.Elemento == null;
         }
@@ -69,7 +75,18 @@ namespace Snebur.UI
 
         private RetornarControle(): TControle
         {
+            if (typeof this.FuncaoNovoControle === "function")
+            {
+                const novoControle = this.FuncaoNovoControle();
+
+                if (novoControle != null && !(novoControle instanceof BaseControle))
+                {
+                    throw new Erro("A FuncaoNovoControlee deve retornar um BaseControle");
+                }
+                return novoControle;
+            }
             const controlePai = this.ControlePai;
+
             const controle = new this.ConstrutorControle(controlePai, this.Elemento);
             controle.InicializarControle();
             controlePai.ControlesFilho.Add(controle);
