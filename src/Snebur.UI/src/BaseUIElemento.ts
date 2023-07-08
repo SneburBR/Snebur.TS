@@ -9,13 +9,17 @@
 
         //#_isDispensado: boolean = false;
         //#idElemento: string;
+        private __controlePai: BaseControle;
         private __isDispensado: boolean = false;
         private __idElemento: string;
         private readonly __AtributosRaizInicializados = new List<string>();
         protected __isReiniciado: boolean = false;
         protected _elemento: HTMLElement;
 
-        public readonly ControlePai: BaseControle;
+        public get ControlePai(): BaseControle
+        {
+            return this.__controlePai;
+        }
 
         public get ControleApresentacao(): ControleApresentacao
         {
@@ -90,7 +94,7 @@
 
         }
 
-        private EventosDom: Array<EventoDom>;
+        private readonly EventosDom = new Array<EventoDom>();
 
         //#endregion
 
@@ -158,7 +162,7 @@
         {
             super();
 
-            this.ControlePai = controlePai;
+            this.__controlePai = controlePai;
             this.EventoDataSourceAlterado = new Evento(this);
             this.EventoDataSourceAntesAlterar = new Evento(this);
 
@@ -167,7 +171,6 @@
             {
                 this._elemento = refElemento;
             }
-            this.EventosDom = new Array<EventoDom>();
         }
 
         protected Inicializar(): void
@@ -921,6 +924,15 @@
 
                 this.DispensarEventosDom();
                 super.Dispose();
+                
+
+                (this as any).EventosDom = null;
+                this._elemento = null;
+                this.__controlePai = null;
+
+                delete (this as any).EventosDom;
+                delete this._elemento;
+                delete this.__controlePai;
                 this.__isDispensado = true;
             }
         }
