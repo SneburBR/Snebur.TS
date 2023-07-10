@@ -250,6 +250,7 @@
             {
                 return null;
             }
+
             if (!nomePropriedade.Contains("."))
             {
                 const propriedade = this.GetType().RetornarPropriedade(nomePropriedade, true);

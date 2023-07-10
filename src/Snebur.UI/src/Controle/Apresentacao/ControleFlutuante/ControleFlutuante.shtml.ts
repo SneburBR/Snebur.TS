@@ -152,11 +152,6 @@
         //#endregion
 
         //#region Construtor
-
-        public constructor(controlePai: BaseControle);
-        public constructor(controlePai: BaseControle, elemento: HTMLElement);
-        public constructor(controlePai: BaseControle, idElemento: string);
-        public constructor(controlePai: BaseControle, elemento: string | HTMLElement);
         public constructor(controlePai: BaseControle, refElemento?: string | HTMLElement)
         {
             super(controlePai, refElemento);
@@ -379,7 +374,9 @@
 
                 if (!this.IsReiniciando)
                 {
-                    this.EventoFechou?.Notificar(this, new FechouControleFlutanteEventArgs(this, isSucesso));
+                    this.EventoFechou?.Notificar(
+                        this,
+                        new FechouControleFlutanteEventArgs(this, isSucesso));
                 }
                 this.RemoverEventoDomGlobal(ui.EnumEventoDom.MouseDown, this.Window_MouseDown);
             }
