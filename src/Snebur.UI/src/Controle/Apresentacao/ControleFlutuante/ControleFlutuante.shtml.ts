@@ -310,11 +310,11 @@
             this._isAberto = true;
             super.MostrarElemento();
 
-           
 
-            if (this.OpcoesControleFlutuante.IsAtualizarPosicaoAoMostrar  )
+
+            if (this.OpcoesControleFlutuante.IsAtualizarPosicaoAoMostrar)
             {
-            this.AtualizarPosicaoAsync("Mostrar");
+                this.AtualizarPosicaoAsync("Mostrar");
             }
 
             this.EventoMostrou.Notificar(this, new MostrouControleFlutanteEventArgs(this));
@@ -476,7 +476,7 @@
             }
         }
 
-        protected RetornarPosicaoElementoRelativo():DOMRect
+        protected RetornarPosicaoElementoRelativo(): DOMRect
         {
             return this.ElementoRelativo?.getBoundingClientRect();
 
@@ -509,7 +509,7 @@
                 case EnumDestinoControleFlutuante.DireitaInferior:
 
                     return posicaoElementoRelativo.left + posicaoElementoRelativo.width;
-                     
+
                 case EnumDestinoControleFlutuante.InferiorEsquerda:
                 case EnumDestinoControleFlutuante.SuperiorEsquerda:
 
@@ -628,12 +628,13 @@
 
         private TentarFecharAutomaticamente(e: MouseEvent): void
         {
+            if (this.IsOcupado || this.IsSistemaOcupado || this.IsDispensado)
+            {
+                return;
+            }
+
             if (this.IsPodeTentarFechar())
             {
-                if (this.IsOcupado || this.IsSistemaOcupado)
-                {
-                    return;
-                }
                 const isExisteAlertaMensagem = this.RetornarIsExisteAlertaMensagem();
                 if (isExisteAlertaMensagem)
                 {
@@ -651,13 +652,6 @@
                 }
 
                 this.Fechar(false);
-
-                //let elementoClique = e.srcElement as HTMLElement;
-                //if (this.IsClicouForaControle(e))
-                //{
-                //    this.RemoverEventoDomGlobal(ui.EnumEventoDom.Click, this.Window_Click);
-                //    this.Fechar(false);
-                //}
             }
         }
         private IsPodeTentarFechar(): boolean 
@@ -861,7 +855,7 @@
 
             this._isAberto = false;
             window.EventoStopPropagation?.AddHandler(this.Window_StopProgration, this);
-            
+
             super.Dispose();
             // ElementoUtil.RemoverElemento(this.RetornarElementoDestino(), this.IDElemento);
         }

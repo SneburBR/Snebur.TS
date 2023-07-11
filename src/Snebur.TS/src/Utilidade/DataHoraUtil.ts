@@ -1,4 +1,4 @@
-﻿
+﻿//https://github.com/microsoft/powerbi-visuals-utils-formattingutils/blob/master/src/date/dateUtils.ts
 namespace Snebur.Utilidade
 {
     export class DataHoraUtil

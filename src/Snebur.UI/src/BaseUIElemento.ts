@@ -12,8 +12,10 @@
         private __controlePai: BaseControle;
         private __isDispensado: boolean = false;
         private __idElemento: string;
-        private readonly __AtributosRaizInicializados = new List<string>();
+        private ___dataSource__: any = undefined;
+        private _visibilidade: EnumVisibilidade = undefined;
         protected __isReiniciado: boolean = false;
+        private readonly __AtributosRaizInicializados = new List<string>();
         protected _elemento: HTMLElement;
 
         public get ControlePai(): BaseControle
@@ -45,18 +47,10 @@
         {
             return this.__isReiniciado;
         }
-
-        private _visibilidade: EnumVisibilidade = undefined;
-
+         
         public get Elemento(): HTMLElement
         {
             return this._elemento;
-            //let elemento = ui.ElementoUtil.RetornarElemento(this.IDElemento, true);
-            ////if (elemento == null && this.Dispensado)
-            ////{
-            ////    throw new Erro("O elemento já foi dispensado", this);
-            ////}
-            //return elemento;
         }
 
         public get HtmlInterno(): string
@@ -99,9 +93,7 @@
         //#endregion
 
         //#region DataSource
-
-        private ___dataSource__: any = undefined;
-
+         
         protected get _dataSource(): any
         {
             return this.___dataSource__;
@@ -237,6 +229,7 @@
                 }
             }
         }
+
         private RetornarNomePropriedadePrefixoPro(nomeAtributo: string): string
         {
             const nomePropriedadeAtributo = nomeAtributo.substr(BaseUIElemento.PREFIXO_PROPRIEDADE.length);
@@ -567,10 +560,14 @@
 
         public RemoverEventoDom<T extends keyof EventoDomMapeado>(evento: T, manipulador: (e: EventoDomMapeado[T]) => void, refElemento?: HTMLElement | string | Window | Document): void
         {
+            if (this.IsDispensado)
+            {
+                return;
+            }
             const nomeEvento = evento;
             const elemento = u.ValidacaoUtil.IsDefinido(refElemento) ? ui.ElementoUtil.RetornarElemento(refElemento) : this.Elemento;
 
-            const eventosDom = this.EventosDom.Where(x => x.NomeEvento === nomeEvento
+            const eventosDom = this.EventosDom?.Where(x => x.NomeEvento === nomeEvento
                 && x.Elemento === elemento
                 && x.Manipulador === manipulador).ToList();
 

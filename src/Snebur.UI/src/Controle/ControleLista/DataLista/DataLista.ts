@@ -279,7 +279,7 @@
         {
             if (this.IsControleInicializado && ValidacaoUtil.IsDefinido(itemReferencia))
             {
-                const linhaItem = this.LinhasColecao.Linhas.Where(x => (x.ItemReferencia as any)?.Equals(itemReferencia)).FirstOrDefault();
+                const linhaItem = this.LinhasColecao.Linhas.Where(x => x.ItemReferencia!= null && (x.ItemReferencia as IEquals).Equals(itemReferencia)).FirstOrDefault();
                 if (linhaItem != null)
                 {
                     linhaItem.Elemento.scrollIntoView({

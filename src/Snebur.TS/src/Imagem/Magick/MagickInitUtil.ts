@@ -10,7 +10,6 @@
 
     export class MagickInitUtil
     {
-
         private static _status: EnumStatusInicializacaoMagick = EnumStatusInicializacaoMagick.Aguardando;
         private static readonly TIMEOUT = 5 * 60 * 1000;
         /*private static readonly DA = "__DA__";*/
