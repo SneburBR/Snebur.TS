@@ -196,9 +196,9 @@
         public AtualizarDimensaoLocal(mimeType: ImagemMimeType, dimensao:IDimensao)
         {
             const imagem = this.Imagem;
-            const formatoImagem = mimeType === u.EnumMimetypeString.Jpeg ? EnumFormatoImagem.JPEG : EnumFormatoImagem.WEBP;
-            const mimeTypeNum = mimeType === u.EnumMimetypeString.Jpeg ? EnumMimeType.Jpeg : EnumMimeType.Webp;
-
+            const formatoImagem = ImagemUtil.RetornarFormatoImagemFromMimeType(mimeType as u.EnumMimeTypeImagemString );
+            const mimeTypeNum = ImagemUtil.RetornarMimeTypeEnumFromString(mimeType as u.EnumMimeTypeImagemString);
+            
             if (ImagemUtil.AtualizarDimensaLocal(imagem, dimensao, formatoImagem, mimeTypeNum, false))
             {
                 this._isSalvarPendente = true;

@@ -42,20 +42,20 @@
             return u.ArquivoUtil.RetornarBufferArrayAsync(imagemCarregada.ArquivoBlob);
         }
 
-        private async ConverterParaWebpAsync(arquivoBlob: Blob): Promise<ArrayBuffer>
-        {
-            const buffer = await ArquivoUtil.RetornarBufferArrayAsync(arquivoBlob);
-            const bytes = new Uint8Array(buffer);
-            return await MagickWasm.ImageMagick.read<ArrayBuffer>(bytes, this.CarregarImagemInternoAsync.bind(this));
-        }
+        //private async ConverterParaWebpAsync(arquivoBlob: Blob): Promise<ArrayBuffer>
+        //{
+        //    const buffer = await ArquivoUtil.RetornarBufferArrayAsync(arquivoBlob);
+        //    const bytes = new Uint8Array(buffer);
+        //    return await MagickWasm.ImageMagick.read<ArrayBuffer>(bytes, this.CarregarImagemInternoAsync.bind(this));
+        //}
 
-        private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<ArrayBuffer>
-        {
-            return await imageMagick.write(MagickWasm.MagickFormat.Webp, (bytes) =>
-            {
-                return new Uint8Array(bytes).buffer;
-            });
-        }
+        //private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<ArrayBuffer>
+        //{
+        //    return await imageMagick.write(MagickWasm.MagickFormat.Webp, (bytes) =>
+        //    {
+        //        return new Uint8Array(bytes).buffer;
+        //    });
+        //}
 
         protected override FinalizarEnviadoSucesso(): void
         {

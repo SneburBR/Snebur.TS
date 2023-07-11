@@ -115,6 +115,13 @@
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
 
+                if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
+                    SistemaUtil.Navegador.VersaoPrincipal < 14)
+                {
+                    console.warn("Versão do Safari não suportada pelo Magick");
+                    return EnumStatusInicializacaoMagick.Erro;
+                }
+
                 const urlPackage = MagickInitUtil.UrlMagick;
                 if (String.IsNullOrWhiteSpace(urlPackage))
                 {
@@ -139,9 +146,7 @@
                 const blobMagick = await zip.file("magick.js").async("blob");
                 const blobMagickWorker = await zip.file("MagickWorker.js").async("blob");
                 const bytessRGB = await zip.file("sRGB.icm").async("uint8array");
-
                 const blobWasm = new Blob([bufferWasm], { type: "application/wasm" });
-
                 const urlBlobMagick = window.URL.createObjectURL(blobMagick);
                 const urlBlobMagickWorker = window.URL.createObjectURL(blobMagickWorker);
                 const urlBlobWasm = window.URL.createObjectURL(blobWasm);
@@ -183,7 +188,7 @@
             }
             catch (erro)
             {
-                console.error("Falha ao carregar o Magick: " + erro);
+                console.warn("Magick não suportado");
             }
 
             return EnumStatusInicializacaoMagick.Erro;

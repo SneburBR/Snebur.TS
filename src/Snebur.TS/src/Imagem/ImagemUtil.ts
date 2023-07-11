@@ -94,7 +94,7 @@
                     imagem.DimensaoImagemPequena = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Pequena));
                     imagem.DimensaoImagemMedia = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Media));
                     imagem.DimensaoImagemGrande = new Dimensao(u.ImagemUtil.RetornarDimensaoImagemApresentacao(dimensao, d.EnumTamanhoImagem.Grande));
-                     
+
                     imagem.MimeType = mimeType;
                     imagem.ChecksumArquivoLocal = info.ChecksumArquivoLocal;
                 }
@@ -322,7 +322,7 @@
             }
         }
 
-        public static RetornarDimensaoApresentacao( tamanahoImagem: d.EnumTamanhoImagem): IDimensao
+        public static RetornarDimensaoApresentacao(tamanahoImagem: d.EnumTamanhoImagem): IDimensao
         {
             switch (tamanahoImagem)
             {
@@ -425,36 +425,76 @@
             //contexto.restore();
         }
 
+        public static RetornarFormatoImagemFromMimeType(mimeType: EnumMimeTypeImagemString, isIgnoreErro: boolean = false): d.EnumFormatoImagem
+        {
+            switch (mimeType)
+            {
+                case EnumMimeTypeImagemString.Jpeg:
+                    return d.EnumFormatoImagem.JPEG;
+                case EnumMimeTypeImagemString.Png:
+                    return d.EnumFormatoImagem.PNG;
+                case EnumMimeTypeImagemString.Ico:
+                    return d.EnumFormatoImagem.ICO;
+                case EnumMimeTypeImagemString.Gif:
+                    return d.EnumFormatoImagem.GIF;
+                case EnumMimeTypeImagemString.Bmp:
+                    return d.EnumFormatoImagem.BMP;
+                case EnumMimeTypeImagemString.Tiff:
+                    return d.EnumFormatoImagem.TIFF;
+                case EnumMimeTypeImagemString.Heic:
+                    return d.EnumFormatoImagem.HEIC;
+                case EnumMimeTypeImagemString.Webp:
+                    return d.EnumFormatoImagem.WEBP;
+                case EnumMimeTypeImagemString.Svg:
+                    return d.EnumFormatoImagem.SVG;
+
+            }
+            if (isIgnoreErro)
+            {
+                return null;
+            }
+            throw new Erro("MimeType não suportado" + mimeType)
+        }
+
+        public static RetornarMimeTypeEnumFromString(mimeType: EnumMimeTypeImagemString, isIgnorarErro:boolean= false): EnumMimeType
+        {
+            switch (mimeType)
+            {
+                case EnumMimeTypeImagemString.Bmp:
+                    return EnumMimeType.Bmp;
+                case EnumMimeTypeImagemString.Gif:
+                    return EnumMimeType.Gif;
+                case EnumMimeTypeImagemString.Ico:
+                    return EnumMimeType.Ico;
+                case EnumMimeTypeImagemString.Jpeg:
+                    return EnumMimeType.Jpeg;
+                case EnumMimeTypeImagemString.Png:
+                    return EnumMimeType.Png;
+                case EnumMimeTypeImagemString.Tiff:
+                    return EnumMimeType.Tiff;
+                case EnumMimeTypeImagemString.Heic:
+                    return EnumMimeType.Heic;
+                case EnumMimeTypeImagemString.Webp:
+                    return EnumMimeType.Webp;
+                case EnumMimeTypeImagemString.Svg:
+                    return EnumMimeType.Svg;
+
+            }
+            if (isIgnorarErro)
+            {
+                return null;
+            }
+            throw new Erro("MimeType não suportado" + mimeType);
+        }
+
         public static RetornarFormatoImagem(arquivoOuPath: string | SnBlob | Blob): d.EnumFormatoImagem
         {
             if ((arquivoOuPath instanceof Blob || arquivoOuPath instanceof SnBlob))
             {
-                switch (arquivoOuPath.type)
+                const mimeType = ImagemUtil.RetornarFormatoImagemFromMimeType(arquivoOuPath.type as EnumMimeTypeImagemString, true);
+                if (mimeType != null)
                 {
-                    case "image/jpg":
-                    case "image/jpeg":
-                        return d.EnumFormatoImagem.JPEG;
-                    case "image/png":
-                        return d.EnumFormatoImagem.PNG;
-                    case "image/ico":
-                        return d.EnumFormatoImagem.ICO;
-                    case "image/gif":
-                        return d.EnumFormatoImagem.GIF;
-                    case "image/bmp":
-                        return d.EnumFormatoImagem.BMP;
-                    case "image/tif":
-                    case "image/tiff":
-                        return d.EnumFormatoImagem.TIFF;
-                    case "image/heic":
-                        return d.EnumFormatoImagem.HEIC;
-                    case "image/webp":
-                        return d.EnumFormatoImagem.WEBP;
-                    case "image/svg+xml":
-                        return d.EnumFormatoImagem.SVG;
-                    case "image/avif":
-                        return d.EnumFormatoImagem.AVIF;
-                    case "image/apng":
-                        return d.EnumFormatoImagem.APNG;
+                    return mimeType;
                 }
             }
 
