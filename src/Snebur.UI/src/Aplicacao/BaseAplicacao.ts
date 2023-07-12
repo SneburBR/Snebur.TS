@@ -76,6 +76,7 @@
         {
             window.EventoStopPropagation = new Snebur.Evento(this);
 
+            this.AdicionarClassBody();
             this.NormalizarConfiguracao();
 
             console.EventoLog?.AddHandler(this.Console_Log, this);
@@ -125,6 +126,14 @@
             this.IncrementarProcessoCarregandoAplicacao();
         }
 
+        private AdicionarClassBody()
+        {
+            const nomeNavegador = SistemaUtil.Navegador.Nome.toLowerCase();
+            const versaoNavegador = SistemaUtil.Navegador.Versao;
+            document.body.classList.add(`sn-${nomeNavegador}`);
+            document.body.classList.add(`sn-${nomeNavegador}-${parseInt(versaoNavegador)}`);
+        }
+
         protected NotificarUsuarioAnonimoNaoSuportado()
         {
 
@@ -141,7 +150,7 @@
             //pode ser sobrescrito
             await this.DesocuparInicializacaoAsync();
         }
-         
+
         public override RetornarBarraEnvio(documentoPrincipal: DocumentoPrincipal): BarraEnvioArquivos
         {
             return new BarraEnvioArquivos(documentoPrincipal);
