@@ -271,6 +271,8 @@
                 }
                 this.Elemento.classList.remove("sn-janela-sair");
                 this.Elemento.classList.add("sn-janela-entrar");
+                await ThreadUtil.QuebrarAsync();
+                this.Centralizar();
             }
         }
 
@@ -699,7 +701,11 @@
             this.PosicaoY = null;
             if (!this.__camposPrivadosJanela.IsJanelaMaximizada)
             {
-                this.Elemento.classList.add(EnumCssClasseJanela.JanelaCentro);
+                const rect = this.ElementoConteudo.getBoundingClientRect();
+                this.Elemento.classList.remove(EnumCssClasseJanela.JanelaCentro);
+                const posicaoX = (window.innerWidth  - rect.width) / 2;
+                const posicaoY = (window.innerHeight - rect.height) /2;
+                this.AtualizarPosicao(posicaoX, posicaoY);
             }
         }
 
