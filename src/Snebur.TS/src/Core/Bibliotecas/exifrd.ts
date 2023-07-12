@@ -93,6 +93,7 @@
         readonly ApertureValue: string;
         readonly ISO: string;
         readonly LensModel: string;
+        readonly ColorSpace: number;
     }
 
     export interface gps
@@ -128,9 +129,10 @@
     {
         readonly ProfileVersion: string;
         readonly ProfileClass: string;
-        readonly ColorSpaceData: string;
+        readonly ColorSpaceData: ColorSpaceData;
         readonly ProfileConnectionSpace: string;
-        readonly ProfileFileSignature: string; DeviceManufacturer: string;
+        readonly ProfileFileSignature: string;
+        readonly DeviceManufacturer: string;
         readonly RenderingIntent: string;
         readonly ProfileCreator: string;
         readonly ProfileDescription: string;

@@ -83,11 +83,8 @@
         //#endregion
 
         //#region Construtor
-
-        public constructor()
-        public constructor(navegadorEnum: d.EnumNavegador, nome: string, codeNome: string, versao: string)
-        public constructor(navegadorEnum: d.EnumNavegador = d.EnumNavegador.Desconhecido,
-            nome: string = null, codeNome: string = null, versao: string = null) 
+         
+        public constructor(navegadorEnum?: d.EnumNavegador, nome?: string, codeNome?: string, versao?: string)
         {
             super();
 

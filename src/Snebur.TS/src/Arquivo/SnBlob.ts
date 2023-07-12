@@ -40,7 +40,7 @@
             return this._nomeArquivo ?? this.RetornarNomeGenerico();
         }
 
-      
+
         public get NameWithOutExtension(): string
         {
             return ArquivoUtil.RetornarNomeArquivoSemExtensao(this.Name);
@@ -88,7 +88,7 @@
             return this._informacaoImagem;
         }
 
-        public constructor(blob: Blob, nomeArquivo?:string)
+        public constructor(blob: Blob, nomeArquivo?: string)
         {
             super();
             if (!(blob instanceof Blob))
@@ -168,7 +168,7 @@
         {
             if (this._informacaoImagem == null)
             {
-                this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();    
+                this._informacaoImagem = await this.RetornarInfoImagemInternoAsync();
             }
             return this._informacaoImagem;
         }
@@ -216,7 +216,7 @@
             return this.Blob.type;
         }
 
-        public get arrayBuffer(): Promise<ArrayBuffer>
+        public arrayBuffer(): Promise<ArrayBuffer>
         {
             return this.Blob.arrayBuffer();
         }
