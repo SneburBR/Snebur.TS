@@ -2,6 +2,8 @@
 {
     export class JanelaMensagem extends Janela<ResultadoJanelaMensagemArgs>
     {
+
+        public TipoPainel: EnumTipoPainel = EnumTipoPainel.PilhaHorizontal;
         private _opcoes: EnumBotoesJanelaMensagem;
         private JanelaMensagemVM: JanelaMensagemVM;
 
@@ -52,6 +54,9 @@
         public constructor(controlePai: BaseControle, titutlo: string = String.Empty, mensagem: string = String.Empty, botoes: ui.EnumBotoesJanelaMensagem | List<BotaoMensagemViewModel> = ui.EnumBotoesJanelaMensagem.Ok)
         {
             super(controlePai);
+
+            this.DeclararPropriedade(x => x.TipoPainel, EnumTipoPainel);
+            this.TipoPainel = EnumTipoPainel.PilhaHorizontal;
 
             if (JanelaMensagem._janelaAtual instanceof JanelaMensagem)
             {
@@ -258,14 +263,14 @@
 
     }
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface JanelaMensagem
-    {
-        readonly PainelListaBotoes: ui.PainelLista;
-    }
+	export interface JanelaMensagem
+	{
+		readonly PainelListaBotoes: ui.PainelLista;
+	}
 
-    //#endregion
+	//#endregion
 
     export interface OptionsMensagem
     {

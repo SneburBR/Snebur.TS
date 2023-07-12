@@ -65,9 +65,7 @@
                     return EnumCor.SistemaPrincipal;
             }
         }
-
-
-
+         
         public constructor(descricao: string, resultado: EnumResultadoOpcaoMensagem)
         {
             super();

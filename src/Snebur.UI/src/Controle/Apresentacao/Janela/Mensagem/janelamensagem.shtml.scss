@@ -20,6 +20,17 @@
             sn-botao {
                 min-width: retornar-rem(120px)
             }
+
+            &.ap-tipo-painel--pilha-vertical {
+
+                ap-bloco {
+                    padding: 0.1rem 0px;
+                }
+
+                sn-botao {
+                    width: 100%;
+                }
+            }
         }
     }
 }

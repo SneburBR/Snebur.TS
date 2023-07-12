@@ -11,34 +11,36 @@
 <body class="sn-janela-mensagem"
     ap-largura--celular="100%">
 
-    <ap-painel ap-tipo-painel="PilhaVertical" ap-margem="16px"  ap-margem--celular="12px 16px"  ap-largura="100%">
+    <ap-painel ap-tipo-painel="PilhaVertical"
+        ap-margem="16px"
+        ap-margem--celular="12px 16px"
+        ap-largura="100%">
 
         <ap-texto ap-tipografia="Titulo" sn-bind="{{Titulo}}">
         </ap-texto>
 
-        <ap-texto ap-tipografia="Corpo"  
-            ap-margem="0px 16px 0px 0px" 
+        <ap-texto ap-tipografia="Corpo"
+            ap-margem="0px 16px 0px 0px"
             sn-bind="{{Mensagem}}">
         </ap-texto>
 
         <ap-bloco ap-margem="16px 24px 16px 0px"
-             ap-margem--celular="4px 24px 4px 0px">
-            <sn-painel-lista 
+            ap-margem--celular="4px 24px 4px 0px">
+
+            <sn-painel-lista
                 sn-nome="PainelListaBotoes"
-                ap-tipo-painel="PilhaHorizontal" 
-                ap-alinhamento-horizontal="Centro" 
+                ap-tipo-painel="{{TipoPainel}}, Origem=this"
+                ap-alinhamento-horizontal="Centro"
                 sn-bind-lista="{{Botoes}}">
                 <sn-bloco-template>
 
                     <sn-botao ap-margem="8px 0px"
                         ap-margem--celular="4px 0px"
-                        
                         sn-click="BtnBotao_Click"
                         sn-rotulo="{{Descricao}}"
                         sn-tipo-botao="{{TipoBotao}}"
                         ap-cor-fundo="{{CorFundo}}"
                         ap-cor-texto="{{CorTexto}}">
-                         
                     </sn-botao>
                 </sn-bloco-template>
             </sn-painel-lista>
@@ -46,7 +48,7 @@
 
 
     </ap-painel>
-     
+
 
 </body>
 </html>
