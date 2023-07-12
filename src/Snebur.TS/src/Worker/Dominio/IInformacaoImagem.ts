@@ -12,5 +12,16 @@
         IsHeic?: boolean;
         IsIcone?: boolean;
         Url?: string;
-   }
+        PerfilCor?: string;
+        IsAlertaPerfilCor?: boolean;
+        ColorSpace?: ColorSpaceData;
+    }
+}
+
+enum ColorSpaceData
+{
+    RGB = "RGB",
+    CMYK = "CMYK",
+    GrayScale = "GrayScale",
+    Desconhecido = "Desconhecido"
 }

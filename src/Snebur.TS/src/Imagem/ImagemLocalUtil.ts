@@ -94,27 +94,57 @@
                 }
             }
 
-            const resultadoCanvas = await ImagemLocalUtil.CarregarImagemArquivoCanvasAsync(
-                arquivo,
-                alturaMaxima);
+            const infoPerfil = await ExifUtil.RetornarNomePerfilCorExifAsync(arquivo);
 
-            if (resultadoCanvas != null)
+            if ($Configuracao.IsDebugOuTeste)
             {
-                return resultadoCanvas;
+                const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
+                console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil.ColorSpace}`);
             }
 
-            return {
-                IsIcone: true,
-                Url: arquivo.UrlIcone,
-                IsErro: false
-            };
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
+                infoPerfil.ColorSpace === ColorSpaceData.CMYK)
+            {
+                return {
+                    IsIcone: true,
+                    Url: arquivo.UrlIcone,
+                    IsErro: false
+                };
+            }
+
+            const resultadoCanvas = await ImagemLocalUtil.CarregarImagemArquivoCanvasAsync(
+                arquivo,
+                alturaMaxima,
+                infoPerfil);
+
+            if (resultadoCanvas == null ||
+                resultadoCanvas?.IsAlertaSemPerfilBrancaOuPreta)
+            {
+                return {
+                    IsIcone: true,
+                    Url: arquivo.UrlIcone,
+                    IsErro: false
+                };
+            }
+
+            const isAlertaPerfilCor = SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
+                infoPerfil.Nome != null &&
+                infoPerfil.Nome !== "sRGB IEC61966-2.1";
+
+            resultadoCanvas.PerfilCor = infoPerfil.Nome;
+            resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
+            resultadoCanvas.IsAlertaPerfilCor = isAlertaPerfilCor;
+            return resultadoCanvas;
+
         }
+
         private static async CarregarImagemArquivoCanvasAsync(
             arquivo: SnBlob,
-            alturaMaxima: number): Promise<ResultadoCarregarImagem>
+            alturaMaxima: number,
+            infoPerfil: InfoPerfilCor): Promise<ResultadoCarregarImagem>
         {
             const dimensao = { Largura: alturaMaxima * 1.5, Altura: alturaMaxima };
-            const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao);
+            const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao, infoPerfil);
             const resultado = await abrirArquivoLocalCanvas.ProcessarAsync();
 
             if (resultado != null &&
@@ -125,6 +155,7 @@
                 return {
                     AlturaImagemOrigem: resultado.AlturaImagemOrigem,
                     LarguraImagemOrigem: resultado.LarguraImagemOrigem,
+                    IsAlertaSemPerfilBrancaOuPreta: resultado.IsAlertaSemPerfilBrancaOuPreta,
                     Url: resultado.Url
                 };
             }
@@ -174,6 +205,10 @@
         IsErro?: boolean;
         IsIcone?: boolean
         Erro?: Error;
+        PerfilCor?: string;
+        IsAlertaPerfilCor?: boolean;
+        ColorSpace?: ColorSpaceData;
+        IsAlertaSemPerfilBrancaOuPreta?: boolean
     }
 
 }

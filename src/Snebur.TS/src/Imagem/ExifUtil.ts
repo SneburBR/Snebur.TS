@@ -2,6 +2,40 @@
 {
     export class ExifUtil
     {
+        public static async RetornarNomePerfilCorExifAsync(arquivo: SnBlob): Promise<InfoPerfilCor>
+        {
+            try
+            {
+                const resultado = await exifr.parse(arquivo.Blob, {
+                    jfif: true,
+                    tiff: true,
+                    iptc: false,
+                    icc: true,
+                    exif: false,
+                    gps: false,
+                    ifd0: true,
+                    interop: false,
+                    silentErrors: true,
+                    mergeOutput: false,
+                }, false);
+
+                const colorSpace: ColorSpaceData =
+                    resultado.icc?.ColorSpaceData ??
+                    ColorSpaceData.Desconhecido;
+                
+                const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo);
+                return {
+                    Nome: resultado.icc?.ProfileDescription,
+                    ColorSpace: colorSpace,
+                    FormatoImagem: formatoImagem
+                };
+            }
+            catch {
+                return null;
+            }
+        }
+
+
         public static async RetornarExifAsync(bytes: Uint8Array): Promise<ExifrJS.MargeOutput>
         {
             try
@@ -53,6 +87,14 @@
                     return 0;
             }
         }
-
     }
+
+    export interface InfoPerfilCor
+    {
+        FormatoImagem: EnumFormatoImagem,
+        Nome?: string;
+        ColorSpace: ColorSpaceData;
+    }
+
+
 }

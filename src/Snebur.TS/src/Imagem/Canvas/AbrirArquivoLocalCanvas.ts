@@ -4,7 +4,8 @@
     {
         public constructor(
             arquivo: SnBlob,
-            private Dimensao: IDimensao)
+            private Dimensao: IDimensao,
+            private InfoPerfilCor: InfoPerfilCor)
         {
             super(arquivo);
         }
@@ -45,6 +46,12 @@
             const canvas = super.RetornarCanvas(imagem, dimensaoCanvas);
             u.ImagemUtil.LimparElementoImagem(imagem);
 
+            const isImagemBrancaOuPreta = ImageDataUtil.IsCanvasImagemBrancaOuPreta(canvas);
+            if (isImagemBrancaOuPreta)
+            {
+                console.error(`${this.ArquivoLocal.name}: Imagem branco preta detectada no canvas`);
+            }
+
             const blob = await this.RetornarBlobAsync(canvas, qualidade, mimeType);
             u.ImagemUtil.LimparCanvas(canvas);
 
@@ -52,8 +59,11 @@
                 LarguraImagemOrigem: larguraImagemOrigem,
                 AlturaImagemOrigem: alturaImagemOrigem,
                 Url: window.URL.createObjectURL(blob),
+                IsAlertaSemPerfilBrancaOuPreta: isImagemBrancaOuPreta
             };
         }
+
+       
     }
 
     export interface IResultadoCanvas
@@ -61,5 +71,6 @@
         Url?: string;
         LarguraImagemOrigem?: number;
         AlturaImagemOrigem?: number;
+        IsAlertaSemPerfilBrancaOuPreta: boolean
     }
 }
