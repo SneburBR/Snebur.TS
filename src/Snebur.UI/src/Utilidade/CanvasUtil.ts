@@ -1,10 +1,50 @@
 namespace Snebur.UI
 {
-    export class RecorteCanvasUtil
+    export class CanvasUtil
     {
+        //Area máxima de 268.435.456 pixels,
+        //Máximo do UInt16 16384 65536  = 16384  * 4
+        public static readonly CANVAS_AREA_MAXIMA = 16384 * 16384;
+        public static readonly LADO_MAXIMO = 65535;
+
         public constructor()
         {
 
+        }
+
+        public static NormalizarDimensaoMaxima(dimensao: IDimensao)
+        {
+            const area = dimensao.Largura * dimensao.Altura;
+            if (area > CanvasUtil.CANVAS_AREA_MAXIMA)
+            {
+                const scalar = Math.sqrt(CanvasUtil.CANVAS_AREA_MAXIMA / area);
+                const larguraLimite = Math.round(dimensao.Largura * scalar);
+                const alturaLimite = Math.round(dimensao.Altura * scalar);
+
+                const dimensaoAreaMaxima = DimensaoUtil.RetornarDimencaoUniformeDentro(
+                    dimensao.Largura,
+                    dimensao.Altura,
+                    larguraLimite,
+                    alturaLimite);
+
+                if (dimensaoAreaMaxima.Largura < CanvasUtil.LADO_MAXIMO &&
+                    dimensaoAreaMaxima.Altura < CanvasUtil.LADO_MAXIMO)
+                {
+                    return dimensaoAreaMaxima;
+                }
+                dimensao = dimensaoAreaMaxima;
+            }
+
+            if (dimensao.Largura > CanvasUtil.LADO_MAXIMO ||
+                dimensao.Altura > CanvasUtil.LADO_MAXIMO)
+            {
+                return DimensaoUtil.RetornarDimencaoUniformeDentro(
+                    dimensao.Largura,
+                    dimensao.Altura,
+                    CanvasUtil.LADO_MAXIMO,
+                    CanvasUtil.LADO_MAXIMO);
+            }
+            return dimensao;
         }
 
         public static RetornarCanvas(
@@ -29,17 +69,21 @@ namespace Snebur.UI
             //    false,
             //    true);
 
-            const imagemDataRecortado = RecorteCanvasUtil.RetornarImagemData(imageDataOrigem, recorte, dimensaoDestino);
+            const imagemDataRecortado = CanvasUtil.RetornarImagemData(
+                imageDataOrigem,
+                recorte,
+                dimensaoDestino);
+
             const canvas = document.createElement("canvas");
             canvas.width = imagemDataRecortado.width;
             canvas.height = imagemDataRecortado.height;
-            const ctx = canvas.getContext("2d"); 
+            const ctx = canvas.getContext("2d");
             ctx.putImageData(imagemDataRecortado, 0, 0);
             return canvas;
         }
 
         public static RetornarImagemData(imageDataOrigem: ImageData, recorte: IRecorte, dimensaoDestino: IDimensao): ImageData
-        { 
+        {
             const imageDataDestino = this.RetornarNovoIamgeData(dimensaoDestino.Largura, dimensaoDestino.Altura);
 
             const colunaInicio = Math.floor(imageDataOrigem.width * recorte.XScalar);
