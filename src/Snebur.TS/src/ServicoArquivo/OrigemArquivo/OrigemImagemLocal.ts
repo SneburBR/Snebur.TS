@@ -261,10 +261,13 @@
 interface Window
 {
     __IS_USAR_CANVAS__: boolean;
+    __IS_USAR_PICA__: boolean;
     __IS_SALVAR_ARQUIVOS__: boolean;
-    __IS_SALVAR_ARQUIVOS__IMPRESSAO: boolean;
+    __IS_SALVAR_ARQUIVOS__IMPRESSAO__: boolean;
+    __TAMANHO_MAXIMO_RESIZE_CANVAS__: number;
 }
 
 window.__IS_USAR_CANVAS__ = false;
 window.__IS_SALVAR_ARQUIVOS__ = false;
-window.__IS_SALVAR_ARQUIVOS__IMPRESSAO = false;
+window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__ = false;
+window.__TAMANHO_MAXIMO_RESIZE_CANVAS__ = 16383;
