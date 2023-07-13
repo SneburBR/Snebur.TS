@@ -4,6 +4,7 @@
     {
         public static async RetornarNomePerfilCorExifAsync(arquivo: SnBlob): Promise<InfoPerfilCor>
         {
+            const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo, true);
             try
             {
                 const resultado = await exifr.parse(arquivo.Blob, {
@@ -22,8 +23,7 @@
                 const colorSpace: ColorSpaceData =
                     resultado.icc?.ColorSpaceData ??
                     ColorSpaceData.Desconhecido;
-                
-                const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo);
+              
                 return {
                     Nome: resultado.icc?.ProfileDescription,
                     ColorSpace: colorSpace,
@@ -31,7 +31,12 @@
                 };
             }
             catch {
-                return null;
+
+                return {
+                    Nome: null,
+                    ColorSpace: ColorSpaceData.Desconhecido,
+                    FormatoImagem: formatoImagem
+                };
             }
         }
 

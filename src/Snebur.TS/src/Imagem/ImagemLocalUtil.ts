@@ -99,7 +99,7 @@
             if ($Configuracao.IsDebugOuTeste)
             {
                 const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
-                console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil.ColorSpace}`);
+                console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil?.ColorSpace}`);
             }
 
             if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&

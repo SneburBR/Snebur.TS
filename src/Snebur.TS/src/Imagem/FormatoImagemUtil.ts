@@ -2,7 +2,7 @@
 {
     export class FormatoImagemUtil
     {
-        public static RetornarFormatoImagemAsync(arquivo: SnBlob): Promise<d.EnumFormatoImagem>
+        public static RetornarFormatoImagemAsync(arquivo: SnBlob, isIgnorarErro:boolean): Promise<d.EnumFormatoImagem>
         {
             return new Promise<d.EnumFormatoImagem>((resolve, reject) =>
             {
@@ -14,6 +14,11 @@
                 };
                 reader.onerror = (e) =>
                 {
+                    if (isIgnorarErro)
+                    {
+                        resolve(d.EnumFormatoImagem.Desconhecido);
+                        return;
+                    }
                     reject(e);
                 };
                 reader.readAsArrayBuffer(arquivo.Blob);
