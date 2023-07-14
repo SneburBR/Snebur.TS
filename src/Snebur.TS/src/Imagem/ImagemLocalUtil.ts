@@ -3,28 +3,31 @@
     export class ImagemLocalUtil
     {
         public static RetornarElementoImagemAsync(urlImagem: string, isIgnorarErro: boolean): Promise<HTMLImageElement>
-        public static RetornarElementoImagemAsync(arquivo: SnBlob | string, isIgnorarErro: boolean, isTentarHeic: boolean): Promise<HTMLImageElement>
-        public static RetornarElementoImagemAsync(arquivoOuUrl: SnBlob | string, isIgnorarErro: boolean, isTentarHeic?: boolean): Promise<HTMLImageElement>
+        public static RetornarElementoImagemAsync(arquivo: SnBlob | string, isIgnorarErro: boolean): Promise<HTMLImageElement>
+        public static RetornarElementoImagemAsync(arquivoOuUrl: SnBlob | string, isIgnorarErro: boolean): Promise<HTMLImageElement>
         {
             if (arquivoOuUrl instanceof SnBlob)
             {
-                return ImagemLocalUtil.RetornarElementoImagemDoArquivoAsync(arquivoOuUrl, isIgnorarErro, isTentarHeic);
+                return ImagemLocalUtil.RetornarElementoImagemDoArquivoAsync(arquivoOuUrl, isIgnorarErro);
             }
             return ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(arquivoOuUrl, isIgnorarErro);
         }
 
         private static async RetornarElementoImagemDoArquivoAsync(
             arquivo: SnBlob,
-            isIgnorarErro: boolean,
-            isTentarHeic: boolean): Promise<HTMLImageElement>
+            isIgnorarErro: boolean ): Promise<HTMLImageElement>
         {
             let imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(arquivo.UrlBlob, true);
-            if (imagem === null && isTentarHeic)
+            if (imagem === null)
             {
-                const urlHeicOuErro = await w.ConverterHeicParaJpeg.RetornarUrlBlobAsync(arquivo);
-                if (ValidacaoUtil.IsUrlBlob(urlHeicOuErro))
+                const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo, true);
+                if (formatoImagem === EnumFormatoImagem.HEIC)
                 {
-                    imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(urlHeicOuErro, true);
+                    const urlHeicOuErro = await w.ConverterHeicParaJpeg.RetornarUrlBlobAsync(arquivo);
+                    if (ValidacaoUtil.IsUrlBlob(urlHeicOuErro))
+                    {
+                        imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(urlHeicOuErro, true);
+                    }
                 }
             }
 
@@ -82,7 +85,9 @@
             alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
 
-            if (i.MagickInitUtil.IsInicializado && !window.__IS_USAR_CANVAS__)
+            if (i.MagickInitUtil.IsInicializado &&
+                !window.__IS_USAR_CANVAS__ &&
+                !window.__IS_USAR_PICA__)
             {
                 const resultadoMagick = await ImagemLocalUtil.CarregarImagemArquivoMagickAsync(
                     arquivo,
@@ -95,7 +100,6 @@
             }
 
             const infoPerfil = await ExifUtil.RetornarNomePerfilCorExifAsync(arquivo);
-
             if ($Configuracao.IsDebugOuTeste)
             {
                 const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
@@ -127,9 +131,10 @@
                 };
             }
 
-            const isAlertaPerfilCor = SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
-                infoPerfil.Nome != null &&
-                infoPerfil.Nome !== "sRGB IEC61966-2.1";
+            const isAlertaPerfilCor = (infoPerfil.ColorSpace === ColorSpaceData.Desconhecido ||
+                String.IsNullOrWhiteSpace(infoPerfil.Nome));
+
+            /*infoPerfil.Nome !== "sRGB IEC61966-2.1";*/
 
             resultadoCanvas.PerfilCor = infoPerfil.Nome;
             resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
