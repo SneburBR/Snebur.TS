@@ -2,6 +2,7 @@
 {
     export class AbrirImagemLocalCanvas extends BaseAbrirImagemLocalCanvas 
     {
+        protected override readonly QualidadePica: number = 0;
         private readonly TamanhosImagem: List<d.EnumTamanhoImagem>;
         private readonly OrigemImagemLocal: sa.OrigemImagemLocal;
         public get Imagem(): d.IImagem
@@ -28,7 +29,7 @@
         {
             try
             {
-                const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
+                const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true);
                 if (!(imagem instanceof HTMLImageElement))
                 {
                     return null;
@@ -64,7 +65,7 @@
                 dimensaoImagemOriginal.Altura,
                 tamanhoImagem);
 
-            let canvas = super.RetornarCanvas(imagemAtual, dimensaoApresentacao);
+            let canvas = await super.RetornarCanvasAsync(imagemAtual, dimensaoApresentacao);
             u.ImagemUtil.LimparElementoImagem(imagemAtual);
 
             const tamanhos = this.TamanhosImagem;
@@ -80,7 +81,7 @@
                 if (tamanhoImagem !== EnumTamanhoImagem.Grande)
                 {
                     const canvasTemp = canvas;
-                    canvas = super.RetornarCanvas(canvas, dimensaoApresentacao);
+                    canvas = await super.RetornarCanvasAsync(canvas, dimensaoApresentacao);
                     u.ImagemUtil.LimparCanvas(canvasTemp);
                 }
 

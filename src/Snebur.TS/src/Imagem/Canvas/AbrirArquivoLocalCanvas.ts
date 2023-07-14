@@ -2,6 +2,7 @@
 {
     export class AbrirArquivoLocalCanvas extends BaseAbrirImagemLocalCanvas 
     {
+        protected override readonly QualidadePica: number = 0;
         public constructor(
             arquivo: SnBlob,
             private Dimensao: IDimensao,
@@ -29,7 +30,7 @@
             const qualidade = (ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS / 100).ToDecimal();
             const mimeType = this.RetornarMimeType();
 
-            const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true, true);
+            const imagem = await ImagemLocalUtil.RetornarElementoImagemAsync(this.ArquivoLocal, true);
             if (!(imagem instanceof HTMLImageElement))
             {
                 return null;
@@ -43,7 +44,7 @@
                 imagem.naturalHeight,
                 dimensao.Largura, dimensao.Altura);
 
-            const canvas = super.RetornarCanvas(imagem, dimensaoCanvas);
+            const canvas = await super.RetornarCanvasAsync(imagem, dimensaoCanvas);
             u.ImagemUtil.LimparElementoImagem(imagem);
 
             const isImagemBrancaOuPreta = ImageDataUtil.IsCanvasImagemBrancaOuPreta(canvas);
@@ -63,7 +64,7 @@
             };
         }
 
-       
+
     }
 
     export interface IResultadoCanvas
