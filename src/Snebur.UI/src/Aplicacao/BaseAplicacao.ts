@@ -128,11 +128,22 @@
 
         private AdicionarClassBody()
         {
-            const nomeNavegador = SistemaUtil.Navegador.Nome.toLowerCase();
-            const versaoNavegador = SistemaUtil.Navegador.Versao;
+            const navegador = SistemaUtil.Navegador;
+            const nomeNavegador = TextoUtil.RetornarSomentesLetrasNumeros(SistemaUtil.Navegador.Nome.toLowerCase());
+            const versaoNavegador = SistemaUtil.Navegador.VersaoPrincipal;
             document.body.classList.add(`sn-${nomeNavegador}`);
             document.body.classList.add(`sn-${nomeNavegador}-${parseInt(versaoNavegador)}`);
-        }
+
+            if (navegador.NavegadorEnum === d.EnumNavegador.Chrome)
+            {
+                if (versaoNavegador >= 49 && versaoNavegador <= 54)
+                {
+                    const cssClass = "sn-chrome-49-54";
+                    document.body.classList.add(cssClass);
+                }
+                return;
+            }
+         }
 
         protected NotificarUsuarioAnonimoNaoSuportado()
         {
