@@ -471,7 +471,7 @@
         {
             if (TextoUtilConstantes._caracteresPadrao == null)
             {
-                TextoUtilConstantes._caracteresPadraoSemPontosSinais = TextoUtilConstantes.TextoParaObjetos(
+                TextoUtilConstantes._caracteresPadrao = TextoUtilConstantes.TextoParaObjetos(
                     TextoUtilConstantes.CARACTERES_PADRAO + TextoUtilConstantes.SINAIS_PADRAO);
 
 
