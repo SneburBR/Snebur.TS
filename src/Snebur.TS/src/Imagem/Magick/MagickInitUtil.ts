@@ -115,10 +115,8 @@
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
 
-                if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
-                    SistemaUtil.Navegador.VersaoPrincipal < 14)
+                if (!MagickInitUtil.IsMagickSuportado())
                 {
-                    console.warn("Versão do Safari não suportada pelo Magick");
                     return EnumStatusInicializacaoMagick.Erro;
                 }
 
@@ -194,6 +192,46 @@
             return EnumStatusInicializacaoMagick.Erro;
         }
 
+        private static IsMagickSuportado():boolean
+        {
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
+                SistemaUtil.Navegador.VersaoPrincipal < 14.1)
+            {
+                console.warn("Versão do Safari não suportada pelo Magick");
+                return false;
+            }
+
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Chrome &&
+                SistemaUtil.Navegador.VersaoPrincipal < 85)
+            {
+                console.warn("Versão do Chrome não suportada pelo Magick");
+                return false;
+            }
+
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Opera &&
+                SistemaUtil.Navegador.VersaoPrincipal < 75)
+            {
+                console.warn("Versão do Opera não suportada pelo Magick");
+                return false;
+            }
+
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Firefox &&
+                SistemaUtil.Navegador.VersaoPrincipal < 80)
+            {
+                console.warn("Versão do Firefox não suportada pelo Magick");
+                return false;
+            }
+
+            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Edge &&
+                SistemaUtil.Navegador.VersaoPrincipal < 80)
+            {
+                console.warn("Versão do Edge não suportada pelo Magick");
+                return false;
+            }
+
+            return true;
+        }
+
 
         private static NotificarProgresso(e: ProgressoEventArgs)
         {
@@ -202,17 +240,6 @@
                 progress(e);
             }
         }
-
-        private static async SimularProgressoAsync()
-        {
-            if ($Configuracao.IsDebugOuTeste)
-            {
-                for (let i = 50; i < 100; i++)
-                {
-                    MagickInitUtil.NotificarProgresso(new ProgressoEventArgs(i));
-                    await ThreadUtil.EsperarAsync(500);
-                }
-            }
-        }
+         
     }
 }
