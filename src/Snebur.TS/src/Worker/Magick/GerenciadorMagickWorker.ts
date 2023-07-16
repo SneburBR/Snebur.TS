@@ -65,7 +65,7 @@
                     {
                         workerCliente.Reciclar();
                         console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
-                        if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO)
+                        if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__)
                         {
                             Salvar.SalvarComo(impressao.Arquivo, `MAGICK-IMPRESSAO-${opcoes?.NomeArquivoOrigem}t-${t.ElapsedMilliseconds}.${resultado.MagickFormat.toLocaleLowerCase()}`);
                         }

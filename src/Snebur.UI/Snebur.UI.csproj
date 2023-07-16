@@ -683,7 +683,7 @@
     <TypeScriptCompile Include="src\Utilidade\MaterialDesignerUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\MdlUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\PaginaUtil.ts" />
-    <TypeScriptCompile Include="src\Utilidade\RecorteCanvasUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CanvasUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\RotacionarImagemUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScrollUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\SelecionarArquivosUtil.ts" />

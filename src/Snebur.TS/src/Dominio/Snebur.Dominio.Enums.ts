@@ -1230,8 +1230,8 @@ namespace Snebur.UI
     (EnumBotoesAlerta as any).Rotulos["Fechar"] = "Fechar";
     (EnumBotoesAlerta as any).Rotulos["FecharVoltar"] = "FecharVoltar";
     (EnumBotoesAlerta as any).Rotulos["Nenhum"] = "Nenhum";
-    (EnumBotoesAlerta as any).Rotulos["Ok"] = "Ok";
-    (EnumBotoesAlerta as any).Rotulos["OkCancelar"] = "OkCancelar";
+    (EnumBotoesAlerta as any).Rotulos["Ok"] = "OK";
+    (EnumBotoesAlerta as any).Rotulos["OkCancelar"] = "OK, cancelar";
     (EnumBotoesAlerta as any).Rotulos["Personalizado"] = "Personalizado";
 
     export enum EnumResultadoAlerta
@@ -1250,7 +1250,7 @@ namespace Snebur.UI
     (EnumResultadoAlerta as any).Rotulos["Continuar"] = "Continuar";
     (EnumResultadoAlerta as any).Rotulos["Cancelar"] = "Cancelar";
     (EnumResultadoAlerta as any).Rotulos["Fechar"] = "Fechar";
-    (EnumResultadoAlerta as any).Rotulos["Ok"] = "Ok";
+    (EnumResultadoAlerta as any).Rotulos["Ok"] = "OK";
     (EnumResultadoAlerta as any).Rotulos["EfetuarPgto"] = "EfetuarPgto";
 
     export enum EnumTipoAlerta

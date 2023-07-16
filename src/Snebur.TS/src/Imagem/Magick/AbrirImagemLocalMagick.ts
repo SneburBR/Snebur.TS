@@ -15,7 +15,6 @@
             private readonly TamanhosImagem: List<d.EnumTamanhoImagem>)
         {
             super(origemImagemLocal.ArquivoLocal);
-
             this.OrigemImagemLocal = origemImagemLocal;
         }
 
@@ -37,7 +36,6 @@
             const resultado = await this.ProcessarAsync();
             if (resultado != null)
             {
-                
                 this.OrigemImagemLocal.AtualizarDimensaoLocal(resultado.MimeType, resultado.DimensaoLocal);
 
                 if (resultado?.IsSucesso === true)
@@ -51,6 +49,7 @@
                             imagemCarregada.TamanhoImagem,
                             imagemCarregada.Arquivo,
                             resultado.MimeType);
+
                         imagensLocalCarregada.Add(imagemCarregada.TamanhoImagem, imagemLocalCarregada);
                     }
                     await this.OrigemImagemLocal.SalvarPedenciasAsync();

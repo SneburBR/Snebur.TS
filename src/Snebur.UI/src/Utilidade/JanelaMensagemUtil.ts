@@ -39,7 +39,7 @@
 
         //public static async MostrarMensagemAsync(controlePai: BaseControle,
         //    titulo: string, mensagem: string,
-        //    opcoes: EnumBotoesJanelaMensagem = EnumBotoesJanelaMensagem.OkEntendi,
+        //    opcoes: EnumBotoesJanelaMensagem = EnumBotoesJanelaMensagem.OKEntendi,
         //    callback: (resultado: ResultadoJanelaMensagemArgs) => void = null) 
         //{
         //    await ThreadUtil.QuebrarAsync();
@@ -146,7 +146,6 @@
                 case (EnumBotoesJanelaMensagem.OkEntendi):
 
                     botoesVM.Add(new BotaoMensagemViewModel("OK, entendi", EnumResultadoOpcaoMensagem.Ok));
-
                     break;
 
                 case (EnumBotoesJanelaMensagem.OkCancelar):

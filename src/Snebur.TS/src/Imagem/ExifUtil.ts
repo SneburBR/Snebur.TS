@@ -4,7 +4,7 @@
     {
         public static async RetornarNomePerfilCorExifAsync(arquivo: SnBlob): Promise<InfoPerfilCor>
         {
-            const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo, true);
+            /*const formatoImagem = await FormatoImagemUtil.RetornarFormatoImagemAsync(arquivo, true);*/
             try
             {
                 const resultado = await exifr.parse(arquivo.Blob, {
@@ -20,6 +20,14 @@
                     mergeOutput: false,
                 }, false);
 
+                if (resultado.exif?.ColorSpace === 1)
+                {
+                    return {
+                        ColorSpace: ColorSpaceData.RGB,
+                        /*FormatoImagem: formatoImagem,*/
+                        Nome: "sRGB IEC61966-2.1",
+                    };
+                }
                 const colorSpace: ColorSpaceData =
                     resultado.icc?.ColorSpaceData ??
                     ColorSpaceData.Desconhecido;
@@ -27,7 +35,7 @@
                 return {
                     Nome: resultado.icc?.ProfileDescription,
                     ColorSpace: colorSpace,
-                    FormatoImagem: formatoImagem
+                    /*FormatoImagem: formatoImagem*/
                 };
             }
             catch {
@@ -35,7 +43,7 @@
                 return {
                     Nome: null,
                     ColorSpace: ColorSpaceData.Desconhecido,
-                    FormatoImagem: formatoImagem
+                    /*FormatoImagem: formatoImagem*/
                 };
             }
         }
@@ -96,7 +104,7 @@
 
     export interface InfoPerfilCor
     {
-        FormatoImagem: EnumFormatoImagem,
+/*        FormatoImagem: EnumFormatoImagem,*/
         Nome?: string;
         ColorSpace: ColorSpaceData;
     }

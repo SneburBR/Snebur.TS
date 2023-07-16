@@ -25,7 +25,8 @@ namespace Snebur.UI
                     dimensao.Largura,
                     dimensao.Altura,
                     larguraLimite,
-                    alturaLimite);
+                    alturaLimite,
+                    false);
 
                 if (dimensaoAreaMaxima.Largura < CanvasUtil.LADO_MAXIMO &&
                     dimensaoAreaMaxima.Altura < CanvasUtil.LADO_MAXIMO)
@@ -42,7 +43,8 @@ namespace Snebur.UI
                     dimensao.Largura,
                     dimensao.Altura,
                     CanvasUtil.LADO_MAXIMO,
-                    CanvasUtil.LADO_MAXIMO);
+                    CanvasUtil.LADO_MAXIMO,
+                    false);
             }
             return dimensao;
         }
@@ -86,14 +88,35 @@ namespace Snebur.UI
         {
             const imageDataDestino = this.RetornarNovoIamgeData(dimensaoDestino.Largura, dimensaoDestino.Altura);
 
-            const colunaInicio = Math.floor(imageDataOrigem.width * recorte.XScalar);
-            let colunaFim = colunaInicio + dimensaoDestino.Largura;
+            const menorColuna = imageDataOrigem.width - dimensaoDestino.Largura;
+            const menorLinha = imageDataOrigem.height - dimensaoDestino.Altura;
 
-            const linhaInicio = Math.floor(imageDataOrigem.height * recorte.YScalar);
-            let linhaFim = linhaInicio + dimensaoDestino.Altura;
+            let colunaInicio = Math.round (imageDataOrigem.width * recorte.XScalar);
+            let linhaInicio = Math.round(imageDataOrigem.height * recorte.YScalar);
 
-            colunaFim = Math.min(imageDataOrigem.width, colunaFim);
-            linhaFim = Math.min(imageDataOrigem.height, linhaFim);
+            if (colunaInicio > menorColuna)
+            {
+                colunaInicio = menorColuna;
+            }
+
+            if (linhaInicio > menorLinha)
+            {
+                linhaInicio = menorLinha;
+            }
+
+            const colunaFim = colunaInicio + dimensaoDestino.Largura;
+            const linhaFim = linhaInicio + dimensaoDestino.Altura;
+
+            if (colunaFim > imageDataOrigem.width)
+            {
+                DebugUtil.ThrowAndContinue("Falha no recorte da imagem, colunaFim > imageDataOrigem.width");
+            }
+
+            if (linhaFim > imageDataOrigem.height)
+            {
+                DebugUtil.ThrowAndContinue("Falha no recorte da imagem, linhaFim > imageDataOrigem.height");
+            }
+
 
             for (let linha = linhaInicio; linha < linhaFim; linha++)
             {
