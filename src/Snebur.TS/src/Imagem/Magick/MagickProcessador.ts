@@ -80,6 +80,7 @@
 
             const isSalvarJpeg = imageMagick.format === MagickWasm.MagickFormat.Jpeg ||
                 imageMagick.format === MagickWasm.MagickFormat.Jpg ||
+                imageMagick.format === MagickWasm.MagickFormat.Bmp ||
                 imageMagick.format === MagickWasm.MagickFormat.Heic;
 
             const formatoDestino = (isSalvarJpeg) ? MagickWasm.MagickFormat.Jpeg :
