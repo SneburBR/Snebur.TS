@@ -431,6 +431,35 @@
             return String.Format(descricao, quantidade);
         }
 
+        public static AdicionarEspacoSeTextoSemEspaco(texto: string, maximoSemEspecao: number): string
+        {
+            if (!(maximoSemEspecao > 0))
+            {
+                throw new Erro("O valor de maximoSemEspecao deve ser maior que zero");
+            }
+
+            const retorno = new StringBuilder();
+            let contador = 0;
+            for (const char of texto)
+            {
+                if (TextoUtil.IsCaraterEspacoBranco(char))
+                {
+                    contador = 0;
+                }
+                else
+                {
+                    contador += 1;
+                }
+
+                if (contador > maximoSemEspecao)
+                {
+                    retorno.Append(" ");
+                    contador = 0;
+                }
+                retorno.Append(char);
+            }
+            return retorno.ToString();
+        }
     }
 
     class TextoUtilConstantes
@@ -597,5 +626,6 @@
             return BytesUtil.ToUTF8ArrayBytes(texto);
         }
 
+  
     }
 }
