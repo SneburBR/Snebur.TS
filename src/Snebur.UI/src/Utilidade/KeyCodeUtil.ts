@@ -140,6 +140,11 @@
             return (keycode === EnumKeyCode.FECHA_PARENTES);
         }
 
+        public static IsKeyCodeNumLock(keycode: number): boolean
+        {
+            return (keycode === EnumKeyCode.NUM_LOCK);
+        }
+
 
         public static IsKeyCodeZero(keyCode: number): boolean
         {
@@ -164,7 +169,33 @@
                 (isNumLockDesativado && keyCode === EnumKeyCode.NUMPAD_DESCER);
         }
 
-        
+
+        public static IsKeyCodeDireita(e: KeyboardEvent): boolean
+        {
+            const keyCode = e.keyCode;
+            const isNumLockDesativado = !e.getModifierState("NumLock");
+            return (keyCode === EnumKeyCode.DIREITA) ||
+                (isNumLockDesativado && keyCode === EnumKeyCode.NUMPAD_DIREITA);
+        }
+
+        public static IsKeyCodeEsquerda(e: KeyboardEvent): boolean
+        {
+            const keyCode = e.keyCode;
+            const isNumLockDesativado = !e.getModifierState("NumLock");
+            return (keyCode === EnumKeyCode.ESQUERDA) ||
+                (isNumLockDesativado && keyCode === EnumKeyCode.NUMPAD_ESQUERDA);
+        }
+
+        public static IsKeyCodeDeleteBackspaceOrDirections(e: KeyboardEvent):boolean
+        {
+            return KeyCodeUtil.IsDelete(e.keyCode) ||
+                KeyCodeUtil.IsBackSpace(e.keyCode) ||
+                KeyCodeUtil.IsKeyCodeParaCima(e) ||
+                KeyCodeUtil.IsKeyCodeParaBaixo(e) ||
+                KeyCodeUtil.IsKeyCodeEsquerda(e) ||
+                KeyCodeUtil.IsKeyCodeDireita(e) ||
+                KeyCodeUtil.IsKeyCodeNumLock(e.keyCode);
+        }
     }
 
     /*eslint-disable*/
@@ -207,6 +238,9 @@
 
         NUMPAD_SUBIR = 104,
         NUMPAD_DESCER = 98,
+
+        NUMPAD_DIREITA = 102,
+        NUMPAD_ESQUERDA = 100,
 
         PAGE_DOWN = 34,
         PAGE_UP = 33,
@@ -255,6 +289,7 @@
         NUMPAD_TRACO = 109,
         ABRE_PARENTES = 57,
         FECHA_PARENTES = 48,
+        NUM_LOCK = 144,
 
         ZERO = 48,
         NUMPAD_ZERO = 96,
