@@ -41,7 +41,7 @@
             this.Gerenciador = GerenciadorRequiscao.Instancia;
             if (!u.ValidacaoUtil.IsUrlServico(urlServico))
             {
-                throw new Erro("O URL do serviço é invalida", this);
+                throw new Erro("O URL do serviço é invalida - precisa ser http ou https e terminar com /", this);
             }
 
             this._urlServico = urlServico;
