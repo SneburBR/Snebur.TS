@@ -5,18 +5,24 @@ namespace Snebur.AcessoDados
     export class ServicoDadosCliente extends Snebur.Comunicacao.BaseComunicacaoCliente implements IServicoDados 
     {
         private readonly CredencialServicoInterno: s.CredencialServico | null;
+        private readonly NomeServicoDados: string;
 
-        public constructor(urlServicoDados: string, urlServicoDebug: string = null, credencialServico: s.CredencialServico | null = null)
+        public constructor(
+            urlServicoDados: string,
+            urlServicoDebug: string = null,
+            credencialServico: s.CredencialServico | null = null,
+            nomeServicoDados: string = null)
         {
             super(urlServicoDados, urlServicoDebug);
             this.CredencialServicoInterno = credencialServico;
+            this.NomeServicoDados = nomeServicoDados;
         }
 
         protected override NormalizarValorParametro(valorParametro: any): any
         {
             return valorParametro;
         }
-  
+
         //#region IServicoDadosAsync
 
         public RetornarDataHoraAsync(): Promise<Date>
@@ -44,7 +50,7 @@ namespace Snebur.AcessoDados
         {
             this.ChamarServicoAsync("RetornarDataHoraUTCAsync", arguments);
         }
-  
+
         public RetornarValorScalarAsync(estruturaConsulta: EstruturaConsulta): Promise<any>
         {
             return new Promise(resolver =>
@@ -115,7 +121,7 @@ namespace Snebur.AcessoDados
 
         protected override RetornarNomeManipulador(): string
         {
-            return "ServicoDados";
+            return this.NomeServicoDados ?? "ServicoDados";
         }
         //#endregion
     }

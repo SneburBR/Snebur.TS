@@ -24,21 +24,19 @@
 
         public override readonly URLServico: string;
         public readonly URLServicoDebug: string;
-
-        public constructor(tipo: r.TipoEntidade, urlServico: string, urlServicoDebug?: string)
-        public constructor(_namespace: string, urlServico: string, urlServicoDebug?: string)
-        public constructor(parametro: any, urlServico: string, urlServicoDebug: string = null)
+ 
+        public constructor(tipoEntidadeOuNamespace: r.TipoEntidade | string , urlServico: string, urlServicoDebug: string = null, nomeServicoDados:string = null)
         {
             super();
             this.URLServico = urlServico;
             this.URLServicoDebug = urlServicoDebug;
 
-            if (!u.ValidacaoUtil.IsDefinido(parametro))
+            if (!u.ValidacaoUtil.IsDefinido(tipoEntidadeOuNamespace))
             {
-                parametro = this.RetornarNamespaceEntidades();
+                tipoEntidadeOuNamespace = this.RetornarNamespaceEntidades();
             }
-            this.NamespaceEntidades = u.NamespaceUtil.RetornarNamespace(parametro);
-            this.ServicoDados = new ServicoDadosCliente(urlServico, this.URLServicoDebug, this.CredencialServico);
+            this.NamespaceEntidades = u.NamespaceUtil.RetornarNamespace(tipoEntidadeOuNamespace);
+            this.ServicoDados = new ServicoDadosCliente(urlServico, this.URLServicoDebug, this.CredencialServico, nomeServicoDados);
 
             if (!$Aplicacao.ContextosDados.ContainsKey(this.NamespaceEntidades))
             {
