@@ -16,7 +16,8 @@
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
-            if (u.ValidacaoUtil.IsNumber(valorPropriedade))
+            if (u.ValidacaoUtil.IsNumber(valorPropriedade, true) &&
+                u.ValidacaoUtil.IsInteger(Number(valorPropriedade)))
             {
                 const valorInteiro = u.ConverterUtil.ParaInteiro(valorPropriedade);
                 return ((valorInteiro > Number.Int32MinValue) && (valorInteiro < Number.Int32MaxValue));

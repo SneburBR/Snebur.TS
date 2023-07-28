@@ -53,7 +53,7 @@
                 const imagem = new Image();
                 imagem.crossOrigin = "*";
                 imagem.crossOrigin = "anonymous";
-                /*imagem.style.imageRendering = "auto";*/
+                imagem.style.imageRendering = "auto";
                 imagem.style.imageOrientation = "from-image";
 
                 //if (dimensaoBase != null)
@@ -99,27 +99,26 @@
                 }
             }
 
-            const infoPerfil = await ExifUtil.RetornarNomePerfilCorExifAsync(arquivo);
-            if ($Configuracao.IsDebugOuTeste)
-            {
-                const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
-                console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil?.ColorSpace}`);
-            }
+            //const infoPerfil = await ExifUtil.RetornarNomePerfilCorExifAsync(arquivo);
+            //if ($Configuracao.IsDebugOuTeste)
+            //{
+            //    const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
+            //    console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil?.ColorSpace}`);
+            //}
 
-            if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
-                infoPerfil.ColorSpace === ColorSpaceData.CMYK)
-            {
-                return {
-                    IsIcone: true,
-                    Url: arquivo.UrlIcone,
-                    IsErro: false
-                };
-            }
+            //if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
+            //    infoPerfil.ColorSpace === ColorSpaceData.CMYK)
+            //{
+            //    return {
+            //        IsIcone: true,
+            //        Url: arquivo.UrlIcone,
+            //        IsErro: false
+            //    };
+            //}
 
             const resultadoCanvas = await ImagemLocalUtil.CarregarImagemArquivoCanvasAsync(
                 arquivo,
-                alturaMaxima,
-                infoPerfil);
+                alturaMaxima );
 
             if (resultadoCanvas == null ||
                 resultadoCanvas?.IsAlertaSemPerfilBrancaOuPreta)
@@ -131,25 +130,24 @@
                 };
             }
 
-            const isAlertaPerfilCor = (infoPerfil.ColorSpace === ColorSpaceData.Desconhecido ||
-                String.IsNullOrWhiteSpace(infoPerfil.Nome));
+            //const isAlertaPerfilCor = (infoPerfil.ColorSpace === ColorSpaceData.Desconhecido ||
+            //    String.IsNullOrWhiteSpace(infoPerfil.Nome));
 
-            /*infoPerfil.Nome !== "sRGB IEC61966-2.1";*/
+            ///*infoPerfil.Nome !== "sRGB IEC61966-2.1";*/
 
-            resultadoCanvas.PerfilCor = infoPerfil.Nome;
-            resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
-            resultadoCanvas.IsAlertaPerfilCor = isAlertaPerfilCor;
+            //resultadoCanvas.PerfilCor = infoPerfil.Nome;
+            //resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
+            //resultadoCanvas.IsAlertaPerfilCor = isAlertaPerfilCor;
             return resultadoCanvas;
 
         }
 
         private static async CarregarImagemArquivoCanvasAsync(
             arquivo: SnBlob,
-            alturaMaxima: number,
-            infoPerfil: InfoPerfilCor): Promise<ResultadoCarregarImagem>
+            alturaMaxima: number ): Promise<ResultadoCarregarImagem>
         {
             const dimensao = { Largura: alturaMaxima * 1.5, Altura: alturaMaxima };
-            const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao, infoPerfil);
+            const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao);
             const resultado = await abrirArquivoLocalCanvas.ProcessarAsync();
 
             if (resultado != null &&

@@ -1,4 +1,6 @@
 ﻿@import "../../../../scss/_cores.variaveis.scss";
+@import "../../../../scss/mixins.scss";
+
 
 .sn-tabela,
 sn-data-lista-ordenacao,
@@ -205,6 +207,35 @@ sn-data-lista {
             tbody {
                 height: 100% !important;
                 overflow-y: auto !important;
+                overflow-x: hidden !important;
+
+                overscroll-behavior-y: contain;
+
+                &::-webkit-scrollbar {
+                    width: 0.5rem;
+                    height: 0;
+
+                    @include Responsivo(celular, tablet) {
+                        width: 1px;
+                        height: 1px;
+                    }
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #999;
+                    border-radius: 0.625rem;
+                }
+
+                &:hover {
+
+                    &::-webkit-scrollbar-thumb {
+                        background: #888;
+                    }
+                }
             }
         }
     }

@@ -5,8 +5,7 @@
         protected override readonly QualidadePica: number = 0;
         public constructor(
             arquivo: SnBlob,
-            private Dimensao: IDimensao,
-            private InfoPerfilCor: InfoPerfilCor)
+            private Dimensao: IDimensao )
         {
             super(arquivo);
         }
@@ -63,8 +62,6 @@
                 IsAlertaSemPerfilBrancaOuPreta: isImagemBrancaOuPreta
             };
         }
-
-
     }
 
     export interface IResultadoCanvas

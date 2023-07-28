@@ -41,11 +41,11 @@
             else
             {
                 this.FinalizarEnviadoSucesso();
-                //throw new Erro("O imagem ja existe no servidor");
+                //throw new Erro("O imagem já existe no servidor");
             }
         }
 
-        //#region Métodos protedigos 
+        //#region Métodos protegidos 
 
         protected override RetornarParametros(checcksumPacote: string): Array<ParChaveValorSimples<string>>
         {

@@ -2,19 +2,17 @@
 {
     export class NamespaceUtil
     {
-        public static RetornarNamespace(tipo: r.TipoEntidade): string
-        public static RetornarNamespace(_namaspace: string): string
-        public static RetornarNamespace(parametro: any): string
+        public static RetornarNamespace(tipoEntidadeOuNamespace: r.TipoEntidade | string): string
         {
             let localNamespace: string;
-            if (parametro instanceof r.TipoEntidade)
+            if (tipoEntidadeOuNamespace instanceof r.TipoEntidade)
             {
-                const tipo: r.TipoEntidade = parametro as r.TipoEntidade;
+                const tipo: r.TipoEntidade = tipoEntidadeOuNamespace as r.TipoEntidade;
                 localNamespace = tipo.Namespace;
             }
-            if (u.ValidacaoUtil.IsString(parametro) && !String.IsNullOrEmpty(parametro))
+            if (u.ValidacaoUtil.IsString(tipoEntidadeOuNamespace) && !String.IsNullOrEmpty(tipoEntidadeOuNamespace))
             {
-                localNamespace = u.ConverterUtil.ParaString(parametro);
+                localNamespace = u.ConverterUtil.ParaString(tipoEntidadeOuNamespace);
             }
             if (String.IsNullOrEmpty(localNamespace))
             {

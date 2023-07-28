@@ -31,6 +31,7 @@
                 case (r.EnumTipoPrimario.Object):
                 case (r.EnumTipoPrimario.Guid):
                 case (r.EnumTipoPrimario.String):
+                case (r.EnumTipoPrimario.Char):
 
                     return ConverterUtil.ParaString(valor);
 
@@ -329,7 +330,7 @@
                     {
                         return new Date(parseInt(milissegundos));
                     }
-                    throw new Erro("Não foi possível deserializar a data");
+                    throw new Erro("Não foi possível desserializar a data");
                 }
 
                 if (dataString.Contains("PB") || dataString.Contains("G"))

@@ -25,7 +25,7 @@
 
         public override RetornarValorConvertidoParaDom(valorPropriedade: any): string
         {
-            if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
+           if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
             {
                 if (valorPropriedade instanceof d.Entidade)
                 {

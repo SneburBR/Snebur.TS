@@ -10,15 +10,15 @@
             super(controlePai, elemento, AtributosHtml.BindEnum, valorAtributo);
 
             this.CaminhoTipoEnum = this.RetornarValorAtributo(AtributosHtml.Tipo);
-            if (!String.IsNullOrWhiteSpace(this.CaminhoTipoEnum))
+            if (String.IsNullOrWhiteSpace(this.CaminhoTipoEnum))
             {
-                console.warn(`O   atributo ${AtributosHtml.Tipo.Nome} não foi definido. Apresentação : ${this.ControleApresentacao.___NomeConstrutor}.${controlePai.___NomeConstrutor}`);
+                console.error(`O atributo ${AtributosHtml.Tipo.Nome} não foi definido. Apresentação : ${this.ControleApresentacao.___NomeConstrutor}.${controlePai.___NomeConstrutor}`);
                 return;
             }
             this.ConstrutorEnum = u.ReflexaoUtil.RetornarConstrutorEnum(this.CaminhoTipoEnum);
             if (!this.ConstrutorEnum)
             {
-                console.warn(`Não foi encontrado o enum '${this.CaminhoTipoEnum }' Apresentação: ${this.ControleApresentacao.___NomeConstrutor}.${controlePai.___NomeConstrutor}`);
+                console.error(`Não foi encontrado o enum '${this.CaminhoTipoEnum }' Apresentação: ${this.ControleApresentacao.___NomeConstrutor}.${controlePai.___NomeConstrutor}`);
             }
         }
 

@@ -403,7 +403,6 @@
     <TypeScriptCompile Include="src\Objeto.ts" />
     <TypeScriptCompile Include="src\ObjetoControladorPropriedade.ts" />
     <TypeScriptCompile Include="src\Reflexao.ts" />
-    <TypeScriptCompile Include="src\Reflexao\Classe.ts" />
     <TypeScriptCompile Include="src\Reflexao\EnumTipoPrimario.ts" />
     <TypeScriptCompile Include="src\Reflexao\EnumTipoReflexao.ts" />
     <TypeScriptCompile Include="src\Reflexao\Namespace\NamespaceFilho.ts" />

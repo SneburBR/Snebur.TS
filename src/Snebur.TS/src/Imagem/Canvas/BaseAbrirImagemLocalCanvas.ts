@@ -8,7 +8,6 @@
         protected readonly Qualidade: number = u.ImagemUtil.QUALIDADE_APRESENTACAO_CANVAS;
         protected readonly ArquivoLocal: SnBlob;
 
-
         public constructor(arquivoLocal: SnBlob)
         {
             this.ArquivoLocal = arquivoLocal;
@@ -26,7 +25,36 @@
             return [canvas, imageData];
         }
 
+        private RetornarScalar(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: d.IDimensao): number
+        {
+            const larguraImagem = imagem instanceof HTMLImageElement ? imagem.naturalWidth : imagem.width;
+            const alturaImagem = imagem instanceof HTMLImageElement ? imagem.naturalHeight : imagem.height;
+
+            if (dimensao.Largura * BaseAbrirImagemLocalCanvas.SCALAR_PADRAO > larguraImagem ||
+                dimensao.Altura * BaseAbrirImagemLocalCanvas.SCALAR_PADRAO > alturaImagem)
+            {
+                return Math.min(
+                    larguraImagem / dimensao.Largura,
+                    alturaImagem / dimensao.Altura);
+            }
+            return BaseAbrirImagemLocalCanvas.SCALAR_PADRAO;
+        }
+
         protected async RetornarCanvasAsync(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: IDimensao)
+        {
+            try
+            {
+                return await this.RetornarCanvasPicaAsync(imagem, dimensao);
+            }
+            catch(erro)
+            {
+                console.error("Falha ao processar imagem com pica.");
+                console.error(erro);
+            }
+            return this.RetornarCanvas_Normal(imagem, dimensao);
+        }
+
+        protected async RetornarCanvasPicaAsync(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: IDimensao)
         {
             const scalar = this.RetornarScalar(imagem, dimensao);
             const canvasOrigem = document.createElement("canvas");
@@ -34,11 +62,11 @@
             canvasOrigem.height = dimensao.Altura * scalar;
             const contexto = canvasOrigem.getContext("2d");
             contexto.drawImage(imagem, 0, 0, canvasOrigem.width, canvasOrigem.height);
-
+             
             const canvasDestino = document.createElement("canvas");
             canvasDestino.width = dimensao.Largura;
             canvasDestino.height = dimensao.Altura;
-
+             
             const opcoes: PicaJS.PicaOptions = {
                 concurrency: 1,
             };
@@ -64,21 +92,6 @@
             }
 
             return resultado;
-        }
-
-        private RetornarScalar(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: d.IDimensao): number
-        {
-            const larguraImagem = imagem instanceof HTMLImageElement ? imagem.naturalWidth : imagem.width;
-            const alturaImagem = imagem instanceof HTMLImageElement ? imagem.naturalHeight : imagem.height;
-
-            if (dimensao.Largura * BaseAbrirImagemLocalCanvas.SCALAR_PADRAO > larguraImagem ||
-                dimensao.Altura * BaseAbrirImagemLocalCanvas.SCALAR_PADRAO > alturaImagem)
-            {
-                return Math.min(
-                    larguraImagem / dimensao.Largura,
-                    alturaImagem / dimensao.Altura);
-            }
-            return BaseAbrirImagemLocalCanvas.SCALAR_PADRAO;
         }
 
         protected RetornarCanvas_Normal(imagem: HTMLImageElement | HTMLCanvasElement, dimensao: IDimensao): HTMLCanvasElement

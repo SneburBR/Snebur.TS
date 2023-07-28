@@ -3,12 +3,10 @@
     export class CaixaSelecao extends ControleFlutuante //implements IControleLista
     {
         private _larguraInicial: number = null;
-
         //#region Propriedades 
 
         protected override get AlturaInicial(): number
         {
-            //var altura = this.PainelLista.ItensColecao.ItensControle.Count * 25;
             let altura = this.PainelLista.ItensBloco.Count * 36;
             if (altura > 400)
             {

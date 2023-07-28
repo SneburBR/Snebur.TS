@@ -4,14 +4,14 @@
     {
         protected static CSS_CLASSE_ROTULO_FLUTUANTE: string = "rotulo-flutuante";
 
+        private _blocooTemplatePadrao: BlocoTemplate;
+        private _itemTemplateSelecionado: ItemTemplateSelecionado;
+
         //#region Propriedades 
 
         public readonly BlocosTemplate = new DicionarioSimples<BlocoTemplate>();
 
         public CaixaSelecao: CaixaSelecao;
-        public BlocoTemplatePadrao: BlocoTemplate;
-
-        public ItemTemplateSelecionado: ItemTemplateSelecionado;
 
         public TipoItemLista: r.BaseTipo;
         protected UltimaPesquisa: string;
@@ -23,6 +23,15 @@
         private ExisteBindLista: boolean;
 
         protected IsRotuloFlutuante: boolean;
+
+        public get BlocoTemplatePadrao(): BlocoTemplate  
+        {
+            return this._blocooTemplatePadrao;
+        }
+        public get ItemTemplateSelecionado(): ItemTemplateSelecionado 
+        {
+            return this._itemTemplateSelecionado;
+        }
 
         public get Lista(): ListaObservacao<any>
         {
@@ -139,18 +148,19 @@
             this.BlocosTemplate.Clear();
             this.PopularBlocosTemplate();
 
-            this.BlocoTemplatePadrao = this.BlocosTemplate.TryItem(BlocoTemplate.CHAVE_PADRAO);
- 
+            this._blocooTemplatePadrao = this.BlocosTemplate.TryItem(BlocoTemplate.CHAVE_PADRAO);
+
             if (!(this.BlocoTemplatePadrao instanceof BlocoTemplate))
             {
                 throw new Error(`O bloco item template do ${this.___NomeConstrutor} não está definido em  ${this.ControleApresentacao.___NomeConstrutor}`);
             }
 
-            this.ItemTemplateSelecionado = this.ControlesFilho.OfType<ItemTemplateSelecionado>(ItemTemplateSelecionado).FirstOrDefault();
+            this._itemTemplateSelecionado = this.RetornarItemTemplateSelecionado();
+
             if (!(this.ItemTemplateSelecionado instanceof ItemTemplateSelecionado))
             {
                 const elementoClone = ElementoUtil.ClonarElemento(this.BlocoTemplatePadrao.Elemento);
-                this.ItemTemplateSelecionado = new ItemTemplateSelecionado(this, elementoClone);
+                this._itemTemplateSelecionado = new ItemTemplateSelecionado(this, elementoClone);
             }
 
             this.ItemTemplateSelecionado.InicializarControle();
@@ -162,9 +172,26 @@
                 blocoTemplate.InicializarControle();
                 blocoTemplate.Atributos.Add(new ParChaveValorSimples(AtributosHtml.Click.Nome, "BtnCaixaListaItem_Click"));
             }
+        }
+
+        private RetornarItemTemplateSelecionado(): ItemTemplateSelecionado  
+        {
+            const itemTemplateSelecionado = this.ControlesFilho.OfType(ItemTemplateSelecionado).FirstOrDefault();
+            if (itemTemplateSelecionado != null)
+            {
+                return itemTemplateSelecionado;
+            }
+            const blocoTemplateSelecinado = this.ControlesFilho.OfType(BlocoTemplateSelecionado).FirstOrDefault();
+            if (blocoTemplateSelecinado != null)
+            {
+                const elementoClone = ElementoUtil.ClonarElemento(blocoTemplateSelecinado.Elemento);
+                return new ItemTemplateSelecionado(this, elementoClone);
+            }
+            return null;
 
         }
-        private PopularBlocosTemplate():  void
+
+        private PopularBlocosTemplate(): void
         {
             const itensOuBlocoTemplates = new List<BlocoTemplate | ItemTemplate>();
             itensOuBlocoTemplates.AddRange(this.ControlesFilho.OfType(ItemTemplate));
@@ -193,6 +220,8 @@
             const elementoClone = ElementoUtil.ClonarElemento(itemTemplate.Elemento);
             return new BlocoTemplate(this, elementoClone);
         }
+
+
 
         //#endregion
 
@@ -379,7 +408,7 @@
             super.OcultarElemento();
             this.CaixaSelecao?.Fechar(false);
         }
-         
+
         //#endregion
 
         //#region IDisposable

@@ -111,7 +111,6 @@
             {
                 this.TentarNovaConexao();
             }
-
         }
 
         private ServicoWebScoket_Timeout(): void

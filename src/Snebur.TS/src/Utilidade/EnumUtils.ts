@@ -26,6 +26,11 @@
 
         public static RetornarDescricao(construtorEnum: any, valor: number | string | any): string
         {
+            if (construtorEnum == null)
+            {
+                return valor;
+            }
+
             if (typeof construtorEnum[valor] === "number")
             {
                 return valor as string;
@@ -44,8 +49,13 @@
         public static RetornarRotulo(construtorEnum: any, valor: number): string
         {
             //pegar o valor do atributo description na globalização
+            if (construtorEnum == null)
+            {
+                return null;
+            }
+
             const descricao = EnumUtil.RetornarDescricao(construtorEnum, valor);
-            if (construtorEnum.Rotulos != null)
+            if (construtorEnum?.Rotulos != null)
             {
                 const rotulo = construtorEnum.Rotulos[descricao];
                 if (!String.IsNullOrWhiteSpace(rotulo))
@@ -53,7 +63,7 @@
                     return rotulo;
                 }
             }
-            return descricao.toString();
+            return descricao?.toString();
         }
 
         public static RetornarValor<TEnum>(

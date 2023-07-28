@@ -253,7 +253,7 @@
             }
         }
 
-        public override  Desabilitar(): void
+        public override Desabilitar(): void
         {
             super.Desabilitar();
         }

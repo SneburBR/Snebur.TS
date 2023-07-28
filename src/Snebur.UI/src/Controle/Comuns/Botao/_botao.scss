@@ -152,6 +152,7 @@ sn-botao {
     &.sn-tipo-botao--icone {
 
         > conteudo-apresentacao {
+            opacity: 0.8;
             padding: 0.25rem !important;
             display: inline-flex !important;
 
@@ -163,17 +164,6 @@ sn-botao {
                 position: relative;
             }
         }
-
-        &:active:hover {
-
-            > conteudo-apresentacao {
-
-                ap-icone {
-                    transform: scale(0.9) translateX(-50%) !important;
-                }
-            }
-        }
-
 
         &.sn-tamanho-icone--pequeno {
             width: $largura-icone-pequeno;
@@ -223,6 +213,23 @@ sn-botao {
             }
         }
 
+        &:active:hover {
+
+            > conteudo-apresentacao {
+
+                ap-icone {
+                    transform: scale(0.9) translateX(-50%) !important;
+                }
+            }
+        }
+
+        > conteudo-apresentacao {
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+                filter: none !important;
+            }
+        }
         color: black;
     }
 

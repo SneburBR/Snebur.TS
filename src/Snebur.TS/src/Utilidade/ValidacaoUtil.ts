@@ -121,8 +121,7 @@
             }
             return false;
         }
-
-
+         
         public static IsInteger(obj: any): obj is number
         {
             if (ValidacaoUtil.IsNumber(obj, false))
