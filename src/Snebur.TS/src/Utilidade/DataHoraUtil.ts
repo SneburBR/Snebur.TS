@@ -345,6 +345,16 @@ namespace Snebur.Utilidade
             const hora = Math.floor(hoje.getHours() / intervaloHora) * intervaloHora;
             return md5(`${hoje.getFullYear() - hoje.getMonth() - hoje.getDate() - hora}`);
         }
+
+        public static Maior(data1: Date, data2: Date): Date
+        {
+            return data1 > data2 ? data1 : data2;
+        }
+
+        public static Menor(data1: Date, data2: Date): Date
+        {
+            return data1 < data2 ? data1 : data2;
+        }
     }
 
 
