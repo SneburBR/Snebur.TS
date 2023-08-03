@@ -4,10 +4,15 @@
     {
         public static Combinar(...caminhos: Array<string>)
         {
+            return CaminhoUtil.CombinarCaminhos(caminhos);
+        }
+
+        public static CombinarCaminhos(caminhos: Array<string | number>)
+        {
             const caminhosNormalizados = new List<string>();
             for (const caminho of caminhos)
             {
-                const caminhoNormalizado = this.NormalizarCaminho(caminho);
+                const caminhoNormalizado = this.NormalizarCaminho(caminho.toString());
                 if (!String.IsNullOrEmpty(caminhoNormalizado))
                 {
                     caminhosNormalizados.Add(caminhoNormalizado);

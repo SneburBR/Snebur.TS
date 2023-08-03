@@ -22,10 +22,9 @@
             return retorno;
         }
 
-        public static Combinar(url: string, caminho: string): string
+        public static Combinar(...caminhos: Array<string | number>): string
         {
-            return CaminhoUtil.Combinar(url, caminho);
-            //return u.UrlUtil.AjustarBarraFinal(url) + UrlUtil.RemoverBarraInicial(caminho);
+            return CaminhoUtil.CombinarCaminhos(caminhos);
         }
 
         public static CombinarQueryChaveValor(urlBase: string, chave: string, valor: string | number): string
