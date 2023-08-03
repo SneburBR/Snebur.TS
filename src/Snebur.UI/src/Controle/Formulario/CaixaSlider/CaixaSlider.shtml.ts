@@ -42,7 +42,7 @@
 
         private PosicaoRotulo: EnumPosicao;
 
-        public readonly EventoValorMotificando: Evento<ValorAlteradoEventArgs<number>>
+        public readonly EventoValorModificando: Evento<ValorAlteradoEventArgs<number>>
         private IsMostrarValor: boolean;
         private FormatacaoValor: string;
         private FormatacaoFuncao: (valor: any) => string;
@@ -56,7 +56,7 @@
             super(controlePai, elemento);
 
             //this.CssClasseControle = "sn-caixa-slider";
-            this.EventoValorMotificando = new Evento<ValorAlteradoEventArgs<number>>(this);
+            this.EventoValorModificando = new Evento<ValorAlteradoEventArgs<number>>(this);
             this.EventoDataSourceAlterado.AddHandler(this.CaixaSlider_DataSourceAlterado, this);
         }
 
@@ -235,7 +235,7 @@
         {
             if (this.IsControleInicializado)
             {
-                this.EventoValorMotificando.Notificar(this, new ValorAlteradoEventArgs(valor));
+                this.EventoValorModificando.Notificar(this, new ValorAlteradoEventArgs(valor));
             }
         }
 
