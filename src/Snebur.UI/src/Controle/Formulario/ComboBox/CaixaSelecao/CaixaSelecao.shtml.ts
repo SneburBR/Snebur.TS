@@ -2,12 +2,14 @@
 {
     export class CaixaSelecao extends ControleFlutuante //implements IControleLista
     {
+        private _alturaItem: number;
         private _larguraInicial: number = null;
+
         //#region Propriedades 
 
         protected override get AlturaInicial(): number
         {
-            let altura = this.PainelLista.ItensBloco.Count * 36;
+            let altura = this.PainelLista.ItensBloco.Count * this._alturaItem;
             if (altura > 400)
             {
                 altura = 400;
@@ -77,7 +79,7 @@
                     return this.ComboBox.ControleItemSelecionado.Elemento;
                 }
             }
-           
+
             return this.RetornarElementoRelativo();
         }
 
@@ -95,6 +97,7 @@
         protected override Inicializar(): void
         {
             super.Inicializar();
+            this._alturaItem = this.ComboBox.AlturaItem;
         }
 
         protected override RetornarElementoRelativo(): HTMLElement
