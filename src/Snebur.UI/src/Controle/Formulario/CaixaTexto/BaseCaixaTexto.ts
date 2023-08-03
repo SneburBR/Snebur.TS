@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class BaseCaixaTexto<TValor = string> extends BaseControleFormulario<TValor>
+    export class BaseCaixaTexto<TValor = string> extends BaseControleFormulario<TValor> implements IControleEventoValorModificando<TValor>
     {
         private _isLimparMensagemValidacaoPendente: boolean;
         private _marcaDagua: string;
@@ -8,6 +8,7 @@
         public IsRotuloFlutuante: boolean;
         public ElementoLocalRotuloFlutuante: HTMLElement;
         protected MaxLength: number;
+
 
         public get MarcaDagua(): string
         {
@@ -20,7 +21,7 @@
         }
 
         public IsAtualizarDigitando: boolean;
-
+        public readonly EventoValorModificando = new Evento<ValorAlteradoEventArgs<TValor>>(this);
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
@@ -37,6 +38,7 @@
                 elemenotInput.autocomplete = "off";
                 elemenotInput.readOnly = true;
                 this.AdicionarEventoDom(EnumEventoDom.Focus, this.DesativarAutoCompletarElementoInput_Focus, elemenotInput);
+
                 this.SetTimeout(this.DesativarReadOnly, 1000);
             }
             this._marcaDagua = this.RetornarValorAtributo(AtributosHtml.MarcaDagua, String.Empty);
@@ -76,19 +78,15 @@
             this.IsAtualizarDigitando = this.RetornarValorAtributoBoolean(AtributosHtml.IsAtualizarDigitando, false);
             this.MaxLength = this.RetornarValorAtributoNumber(AtributosHtml.MaxLength, null, false);
 
-            this.AdicionarEventoDom(EnumEventoDom.Focus, this.ElementoInputIntero_Focus.bind(this), this.ElementoInput, this, true);
+            this.AdicionarEventoDom(EnumEventoDom.Focus, this.BaseCaixaTextoElementoInputInterno_Focus.bind(this), this.ElementoInput, this, true);
             /*this.AdicionarEventoDom(EnumEventoDom.Blur, this.ElementoInputIntero_Blur.bind(this), this.ElementoInput, this, true);*/
-            this.AdicionarEventoDom(EnumEventoDom.KeyUp, this.ElementoInputIntero_KeyPress.bind(this), this.ElementoInput, this, true);
+            this.AdicionarEventoDom(EnumEventoDom.KeyUp, this.BaseCaixaTextoElementoInputInterno_KeyPress.bind(this), this.ElementoInput, this, true);
             //this.AdicionarEventoDom(EnumEventoDom.MouseDown, this.ElementoInputIntero_MouseDown.bind(this), this.ElementoInput, this, true);
 
-            if (this.IsAtualizarDigitando)
-            {
-                this.AdicionarEventoDom(EnumEventoDom.Input, this.ElementoInputIntero_Input.bind(this), this.ElementoInput, this, true);
-            }
 
+            this.AdicionarEventoDom(EnumEventoDom.Input, this.BaseCaixaTextoElementoInputInterno_Input.bind(this), this.ElementoInput, this, true);
             //this.AdicionarEventoDom(EnumEventoDom.KeyUp, this.ElementoInputIntero_KeyPress.bind(this), this.ElementoInput, this, true);
             this.AdicionarEventoPropriedadeApresentacaoAlterada(AtributosHtml.CorTextoApresentacao, this.CorTextoApresentacao_PropriedadeApresentacaoAlterada);
-
 
             const isSomenteLeitura = this.RetornarValorAtributoBoolean(AtributosHtml.IsSomenteLeitura, false);
             this.IsRotuloFlutuante = this.RetornarValorAtributoBoolean(AtributosHtml.IsRotuloFlutuante, true);
@@ -120,7 +118,7 @@
             }
         }
 
-        private ElementoInputIntero_Focus(e: FocusEvent)
+        private BaseCaixaTextoElementoInputInterno_Focus(e: FocusEvent)
         {
             if (!this.IsDesabilitado && !this.IsSomenteLeitura)
             {
@@ -140,8 +138,8 @@
                 e.preventDefault();
             }
         }
-         
-        private ElementoInputIntero_KeyPress(e: KeyboardEvent): void
+
+        private BaseCaixaTextoElementoInputInterno_KeyPress(e: KeyboardEvent): void
         {
             if (this.IsControleInicializado && this._isLimparMensagemValidacaoPendente)
             {
@@ -163,12 +161,13 @@
             }
         }
 
-        private ElementoInputIntero_Input(e: KeyboardEvent): void
+        private BaseCaixaTextoElementoInputInterno_Input(e: KeyboardEvent): void
         {
             if (this.IsAtualizarDigitando)
             {
                 this.AlterarValorPropriedade();
             }
+            this.EventoValorModificando.Notificar(this, new ValorAlteradoEventArgs(this.Valor));
         }
 
         private MarcarLinha(): void

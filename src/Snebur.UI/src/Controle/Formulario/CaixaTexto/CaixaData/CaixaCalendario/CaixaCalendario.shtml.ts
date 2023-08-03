@@ -100,13 +100,20 @@
             this.AnoSelecionado = dataSelecionado.Year;
 
 
-            this.PopularMes(dataSelecionado.Year, dataSelecionado.Month);
+            this.PopularMesIterno(dataSelecionado.Year, dataSelecionado.Month);
             this.Selecionar(this.DataSelecionada);
             this._isAtualizandoCalendario = false;
 
         }
 
         public PopularMes(ano: number, mesAtual: d.EnumMes)
+        {
+            this._isAtualizandoCalendario = true;
+            this.PopularMesIterno(ano, mesAtual);
+            this._isAtualizandoCalendario = false;
+        }
+
+        private PopularMesIterno(ano: number, mesAtual: d.EnumMes)
         {
             const diasMesViewModel = new List<DiaMesViewModel>();
             const ultimoDiaMes = DataHoraUtil.RetornarUltimoDiaMes(ano, mesAtual);
@@ -149,7 +156,7 @@
 
         //#region UI Eventos 
 
-        private BtnSelecionarDia_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        public BtnSelecionarDia_Click(botao: ui.Botao, e: ui.UIEventArgs)
         {
             const diaMesMV = botao.DataSource;
             if (diaMesMV instanceof DiaMesViewModel)
@@ -163,27 +170,27 @@
             }
         }
 
-        private BtnMesAnterior_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
+        public BtnMesAnterior_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
         {
             this.IrAvancarMes(this.MesViewModelSelecionado.Mes - 1);
         }
 
-        private BtnMesPosterior_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
+        public BtnMesPosterior_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
         {
             this.IrAvancarMes(this.MesViewModelSelecionado.Mes + 1);
         }
 
-        private BtnSelecionada_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
+        public BtnSelecionada_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
         {
             this.Fechar(true);
         }
 
-        private BtnCancelar_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
+        public BtnCancelar_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
         {
             this.Fechar(false);
         }
 
-        private IrAvancarMes(mes: number)
+        public IrAvancarMes(mes: number)
         {
             let ano = this.AnoSelecionado;
             if (mes > 12)
@@ -281,7 +288,7 @@
 
         protected override get AlturaInicial(): number
         {
-            return 280;
+            return 290;
         }
 
         protected override get LarguraInicial(): number

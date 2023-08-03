@@ -19,7 +19,7 @@
 
         public override get Valor(): Date
         {
-            return ConverterUtil.ParaData(this.ElementoInput.value);
+            return ConverterUtil.ParaData(this.ElementoInput.value, EnumTipoData.Utc, true);
         }
 
         public override set Valor(value: Date)
