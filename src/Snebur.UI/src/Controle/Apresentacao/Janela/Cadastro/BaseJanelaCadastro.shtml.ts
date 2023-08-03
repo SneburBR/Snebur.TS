@@ -29,11 +29,8 @@
         public readonly TextoTitulo: Snebur.UI.Texto;
         public readonly BlocoFormulario: Bloco;
         public readonly BlocoBotoes: Bloco;
-
-        public constructor(controlePai: BaseControle, entidade: TEntidade)
-        public constructor(controlePai: BaseControle, tipoEntidade: r.BaseTipo)
-        public constructor(controlePai: ui.BaseControle, construtorEntidade: d.EntidadeConstrutor<TEntidade>)
-        public constructor(controlePai: BaseControle, argumento: any) 
+         
+        public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
             super(controlePai);
 
@@ -41,25 +38,25 @@
 
             this.DeclararPropriedade(x => x.Titulo, String, "Titulo", this.Titulo_Alterado);
 
-            if (argumento instanceof d.Entidade)
+            if (entidadeOuTipoConstrutor instanceof d.Entidade)
             {
-                const entidade = argumento as TEntidade;
+                const entidade = entidadeOuTipoConstrutor as TEntidade;
                 this.TipoEntidade = entidade.GetType() as r.TipoEntidade;
                 this.IDEntidade = entidade.Id;
 
                 if (this.IDEntidade === 0)
                 {
-                    this.NovaEntidade = argumento as TEntidade;
+                    this.NovaEntidade = entidadeOuTipoConstrutor as TEntidade;
                 }
             }
-            else if (argumento instanceof r.TipoEntidade)
+            else if (entidadeOuTipoConstrutor instanceof r.TipoEntidade)
             {
-                this.TipoEntidade = argumento;
+                this.TipoEntidade = entidadeOuTipoConstrutor;
                 this.IDEntidade = 0;
             }
-            else if (argumento.GetType)
+            else if (entidadeOuTipoConstrutor.GetType)
             {
-                const tipoEntidade = argumento.GetType();
+                const tipoEntidade = entidadeOuTipoConstrutor.GetType();
                 if (!(tipoEntidade instanceof r.TipoEntidade))
                 {
                     throw new ErroNaoSuportado("O argumento não é suportado", this);
@@ -128,9 +125,11 @@
 
         private async BaseJanelaCadastro_Carregada(janela: Janela, e: EventArgs) 
         {
+            this.OcuparAsync(async () =>
+            {
+                await this.InicializarViewModelAsync();
+            });
             this.Ocupar();
-            await this.InicializarViewModelAsync();
-            await this.DesocuparAsync();
         }
 
         protected async InicializarViewModelAsync(): Promise<void>
@@ -221,11 +220,11 @@
         {
             this.OcuparElemento();
             await ThreadUtil.EsperarAsync(50);
-            const valido = await this.ValidarFormularioAsync();
+            const isValido = await this.ValidarFormularioAsync();
             this.DesocuparElemento();
-            if (valido)
+            if (isValido)
             {
-                this.Salvar();
+                this.SalvarAsync();
             }
         }
 
@@ -275,7 +274,12 @@
             return [true, resultado];
         }
 
-        protected async Salvar(isFechar: boolean = true)
+        protected async SalvarAsync(isFechar: boolean = true)
+        {
+            return this.SalvarInternoAsync(isFechar);
+        }
+
+        private async SalvarInternoAsync(isFechar: boolean = true)
         {
             this.Ocupar();
             const resultado = await this.RetornarResultadoSalvarAsync();
