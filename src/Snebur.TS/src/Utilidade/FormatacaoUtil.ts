@@ -276,6 +276,16 @@
             return FormatacaoUtil.FormatarMascara(telefone, FormatacaoUtil.FORMATACAO_TELEFONE);
         }
 
+        public static FormatarCpf(cpf: string): string
+        {
+            return FormatacaoUtil.FormatarMascara(cpf, FormatacaoUtil.FORMATACAO_CPF);
+        }
+
+        public static FormatarCnpj(cnpj: string): string
+        {
+            return FormatacaoUtil.FormatarMascara(cnpj, FormatacaoUtil.FORMATACAO_CPF);
+        }
+
         public static FormatarCpfCnpj(valor: string): string
         {
             const cpfCnpj = NormalizacaoUtil.NormalizarCpfCnpj(valor);
