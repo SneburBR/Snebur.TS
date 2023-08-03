@@ -2,6 +2,7 @@
 {
     export class Menu extends Snebur.UI.BaseControle
     {
+        private _isAtualizandoMenu: boolean = false;
         private MenuItemSelecionado: MenuItem = null;
         private readonly MenusItemPesquisaViewModel = new List<MenuItemPesquisaViewModel>();
 
@@ -10,6 +11,33 @@
             super(controlePai, elemento);
             this.CssClasseControle = "sn-menu";
             this.EventoCarregado.AddHandler(this.Menu_Carregado, this);
+        }
+
+        public override AtualizarAparencia(): void
+        {
+            super.AtualizarAparencia();
+            this.AtualizarMenuAsync();
+        }
+
+        public async AtualizarMenuAsync()
+        {
+            if (this._isAtualizandoMenu)
+            {
+                return;
+            }
+            try
+            {
+                this._isAtualizandoMenu = true;
+                const menusSanfone = this.ControlesFilho.OfType(MenuSanfona);
+                for (const menuSanfona of menusSanfone)
+                {
+                    await menuSanfona.AtualizarMenuAsync();
+                }
+            }
+            finally
+            {
+                this._isAtualizandoMenu = false;
+            }
         }
 
         private Menu_Carregado(provedor: any, e: EventArgs): void
@@ -26,7 +54,7 @@
 
         private DeselecionarTudo(controleAtual: BaseControle): void
         {
-            const controlesMenuFilhos = controleAtual.ControlesFilho.OfType<BaseMenu>(BaseMenu).ToList();
+            const controlesMenuFilhos = controleAtual.ControlesFilho.OfType(BaseMenu).Where(x => x.IsControleInicializado).ToList();
             for (const controleMenuFilho of controlesMenuFilhos)
             {
                 controleMenuFilho.Deselecionar();
@@ -38,8 +66,8 @@
         private PopularMenusItemPesquisaViewModel()
         {
             const menosViewModel = new List<MenuItemPesquisaViewModel>();
-            const menusItens = this.ControlesFilho.OfType(ui.MenuItem);
-            const menusSanfona = this.ControlesFilho.OfType(ui.MenuSanfona);
+            const menusItens = this.ControlesFilho.OfType(ui.MenuItem).Where(x => x.IsControleInicializado);
+            const menusSanfona = this.ControlesFilho.OfType(ui.MenuSanfona).Where(x => x.IsControleInicializado);
 
             for (const menuIten of menusItens)
             {
@@ -48,7 +76,7 @@
 
             for (const menuSanfona of menusSanfona)
             {
-                for (const menuItem of menuSanfona.ControlesFilho.OfType(ui.MenuItem))
+                for (const menuItem of menuSanfona.ControlesFilho.OfType(ui.MenuItem).Where(x => x.IsControleInicializado))
                 {
                     menosViewModel.Add(new MenuItemPesquisaViewModel(menuItem, menuSanfona));
                 }
@@ -62,9 +90,8 @@
             if (String.IsNullOrWhiteSpace(pesquisa))
             {
                 this.MenusItemPesquisaViewModel.ForEach(x => x.Mostrar());
-
                 const menosSanfona = this.MenusItemPesquisaViewModel.Select(x => x.MenuSanfona).Where(x => x instanceof MenuSanfona).Distinct();
-                menosSanfona.ForEach(x => x.AtualizarMenu(true));
+                menosSanfona.ForEach(x => x.AtualizarMenuAsync(true));
             }
             else
             {
@@ -74,7 +101,7 @@
                 itensMostrar.ForEach(x => x.Mostrar());
 
                 const menosSanfona = itensMostrar.Select(x => x.MenuSanfona).Where(x => x instanceof MenuSanfona).Distinct();
-                menosSanfona.ForEach(x => x.AtualizarMenu(true));
+                menosSanfona.ForEach(x => x.AtualizarMenuAsync(true));
             }
         }
     }
@@ -96,13 +123,13 @@
 
         public Mostrar(): void
         {
-            this.MenuItem.MostrarElemento();
+            this.MenuItem?.MostrarElemento();
             this.MenuSanfona?.MostrarElemento();
         }
 
         public Ocultar(): void
         {
-            this.MenuItem.OcultarElemento();
+            this.MenuItem?.OcultarElemento();
             this.MenuSanfona?.OcultarElemento();
             this.MenuSanfona?.Encolher();
         }

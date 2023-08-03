@@ -115,7 +115,7 @@ namespace Snebur.UI
         public Selecionar(): void
         {
             const nomeClasseCssSelecionar = this.RetornarClassCssSelecionar();
-            this.ElementoConteudo.classList.add(nomeClasseCssSelecionar);
+            this.ElementoConteudo?.classList.add(nomeClasseCssSelecionar);
             if (this.ControlePai instanceof BaseMenu)
             {
                 this.ControlePai.Selecionar();
@@ -129,8 +129,12 @@ namespace Snebur.UI
 
         public Deselecionar(): void
         {
-            const nomeClasseCssSelecionar = this.RetornarClassCssSelecionar();
-            this.ElementoConteudo.classList.remove(nomeClasseCssSelecionar);
+            if (this.IsControleInicializado)
+            {
+                const nomeClasseCssSelecionar = this.RetornarClassCssSelecionar();
+                this.ElementoConteudo?.classList.remove(nomeClasseCssSelecionar);
+            }
+            
         }
 
         //#region Métodos Privados

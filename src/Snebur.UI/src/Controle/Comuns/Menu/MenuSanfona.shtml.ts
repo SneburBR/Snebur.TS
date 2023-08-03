@@ -45,7 +45,6 @@
             {
                 this.ElementoDestinoMenuItem.OcultarElemento();
             }
-
             //ElementoUtil.OcultarElementos(this.ElementosMenuItem);
         }
 
@@ -73,7 +72,7 @@
 
         }
 
-        public async AtualizarMenu(isMostrar?: boolean) 
+        public async AtualizarMenuAsync(isMostrar?: boolean) 
         {
             this.ElementoDestinoMenuItem.style.height = "auto";
             this.ElementoDestinoMenuItem.style.transition = "none";
