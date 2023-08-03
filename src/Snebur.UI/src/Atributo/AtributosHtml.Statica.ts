@@ -191,6 +191,7 @@
 
         //combobox readonly
         public static readonly PermitirLimpar = new AtributoHtml("sn-permitir-limpar", Boolean);
+        public static readonly AlturaItem = new AtributoHtml("sn-altura-item", Number);
 
         public static readonly IsSomenteLeitura = new AtributoHtml("sn-somente-leitura", Boolean);
         public static readonly IsAtualizarDigitando = new AtributoHtml("sn-is-atualizar-digitando", Boolean);
