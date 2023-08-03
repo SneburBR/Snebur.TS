@@ -264,6 +264,12 @@
                 TextoUtilConstantes.NumerosPontoSinaisObjetos);
         }
 
+        public static IsSomenteNumerosPontosSinaisSimbolos(texto: string): boolean
+        {
+            return TextoUtil.IsTextoValidoInterno(texto,
+                TextoUtilConstantes.NumerosPontoSinaisSimbolosObjetos);
+        }
+
         public static IsSomenteNumeros(texto: string): boolean
         {
             return TextoUtil.IsTextoValidoInterno(texto, TextoUtilConstantes.NumerosObjetos);
@@ -469,9 +475,10 @@
         private static readonly LETRAS: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefhgijklmnopqrstuvwxyz";
         private static readonly CAIXA_ALTA: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private static readonly PONTOS: string = ".;:;?!|";
-        private static readonly PONTOS_SINAIS: string = "+-_.,";
+        private static readonly PONTOS_SINAIS: string = "+-_.,()[]{}";
         private static readonly CARACTERES_PADRAO = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ÀÁÂÃÈÉÊÌÍÎÒÓÔÕÚÛÜÇÑàáâãäèéêëìíîòóôõùúûüçñ ";
         private static readonly SINAIS_PADRAO = "_.@,()+=;:~^`´&!|{}?!";
+        private static readonly PONTOS_SINAIS_SIMBOLOS = ",.;:?!|+-_.,@~^`´&$#*/\\§%|(){}[]<>";
         private static readonly ACENTOS: string = "ÀÁÂÃÈÉÊÌÍÎÒÓÔÕÚÛÜÇÑàáâãäèéêëìíîòóôõùúûüçñ´~^¨`";
         private static readonly ACENTOS_MAPEADOS: string = "AAAAEEEIIIOOOOUUUCNaaaaaeeeeiiioooouuuucn     ";
 
@@ -486,6 +493,7 @@
         private static _CaixaAltaObjetos: string = null;
         private static _acentosMapeadoObjetos: string = null;
         private static _numerosPontoSinaisObjetos: string = null;
+        private static _numerosPontoSinaisSimbolosObjetos: string = null;
 
         public static get CaracteresEmBrancoObjetos(): any
         {
@@ -544,6 +552,15 @@
                 TextoUtilConstantes._numerosPontoSinaisObjetos = TextoUtilConstantes.TextoParaObjetos(TextoUtilConstantes.NUMEROS + TextoUtilConstantes.PONTOS_SINAIS);
             }
             return TextoUtilConstantes._numerosPontoSinaisObjetos;
+        }
+
+        public static get NumerosPontoSinaisSimbolosObjetos(): any
+        {
+            if (TextoUtilConstantes._numerosPontoSinaisSimbolosObjetos == null)
+            {
+                TextoUtilConstantes._numerosPontoSinaisSimbolosObjetos = TextoUtilConstantes.TextoParaObjetos(TextoUtilConstantes.NUMEROS + TextoUtilConstantes.PONTOS_SINAIS_SIMBOLOS);
+            }
+            return TextoUtilConstantes._numerosPontoSinaisSimbolosObjetos;
         }
 
         public static get LetrasObjetos(): any

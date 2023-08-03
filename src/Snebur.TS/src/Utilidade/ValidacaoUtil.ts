@@ -1000,6 +1000,10 @@
 
                 switch (tipoPrimario)
                 {
+                    case (r.EnumTipoPrimario.Boolean):
+
+                        return ValidacaoUtil.IsBoolean(valorPropriedade, true);
+
                     case (r.EnumTipoPrimario.String):
 
                         return !String.IsNullOrWhiteSpace(valorPropriedade);
@@ -1072,6 +1076,12 @@
             return TextoUtil.IsSomenteNumerosPontosSinais(texto);
         }
 
+        public static IsSomenteNumerosPontosSinaisSimbolos(texto: string): boolean
+        {
+            return TextoUtil.IsSomenteNumerosPontosSinaisSimbolos(texto);
+        }
+
+        
         public static IsUF(valorPropriedade: string): boolean
         {
             let uf = valorPropriedade?.toUpperCase().trim();
