@@ -101,13 +101,13 @@ namespace Snebur.AcessoDados
         {
             return new Promise(resolver =>
             {
-                this.__ExcluirInternoAsync(entidades, relacoesEmCascata, resolver);
+                this.__DeletarInternoAsync(entidades, relacoesEmCascata, resolver);
             });
         }
 
-        private __ExcluirInternoAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoDeletar>): void
+        private __DeletarInternoAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string, callback: CallbackResultado<ResultadoDeletar>): void
         {
-            return this.ChamarServicoAsync("ExcluirAsync", arguments);
+            return this.ChamarServicoAsync("DeletarAsync", arguments);
         }
 
         //#endregion 

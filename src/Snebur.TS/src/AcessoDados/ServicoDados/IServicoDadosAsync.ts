@@ -10,6 +10,6 @@
 
 //        SalvarAsync(entidades: Array<d.Entidade>, callback: CallbackResultado<ResultadoSalvar>): void;
 
-//        ExcluirAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): void;
+//        DeletarAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): void;
 //    }
 //}
