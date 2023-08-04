@@ -34,7 +34,7 @@
             const xmlHttp = new XMLHttpRequest();
 
             xmlHttp.open("GET", url, true);
-            xmlHttp.setRequestHeader("Content-type", EnumMimetypeString.Bin );
+            xmlHttp.setRequestHeader("Content-type", EnumMimetypeString.Bin);
             xmlHttp.responseType = "blob";
 
             xmlHttp.onreadystatechange = function ()
@@ -123,7 +123,6 @@
             const metodo = formData != null ? u.EnumHttpMethod.POST : u.EnumHttpMethod.GET;
             const xmlHttp = new XMLHttpRequest();
             xmlHttp.open(metodo, url, true);
-
             xmlHttp.setRequestHeader("Content-type", "text/json");
 
             if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
@@ -162,16 +161,27 @@
             url: string,
             token: string,
             timeout: number,
-            callback: CallbackResultado<ArrayBuffer | Error>,
-            callbackProgresso: CallbackResultado<ProgressoEventArgs>): void
+            cabecalhos: DicionarioSimples<string | number> = null,
+            callbackProgresso: CallbackResultado<ProgressoEventArgs>,
+            callback: CallbackResultado<ArrayBuffer | Error>): void
         {
             const xmlHttp = new XMLHttpRequest();
 
             xmlHttp.open(metodo, url, true);
+
+
             if (!String.IsNullOrEmpty(token))
             {
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.NOME_APLICACAO_WEB, encodeURIComponent($Configuracao.IdentificadorAplicacao));
+            }
+
+            if (cabecalhos?.Count > 0)
+            {
+                for (const parChaveValor of cabecalhos.ParesChaveValor)
+                {
+                    xmlHttp.setRequestHeader(parChaveValor.Chave, parChaveValor.Valor?.toString() ?? String.Empty);
+                }
             }
 
             xmlHttp.timeout = timeout;
@@ -228,23 +238,25 @@
             url: string,
             token: string = null,
             timeout: number = 0,
+            cabecalhos: DicionarioSimples<string | number> = null,
             callbackProgresso: CallbackResultado<ProgressoEventArgs> = null): Promise<ArrayBuffer>
         {
             return new Promise<ArrayBuffer>((resolver, reject) =>
             {
-                this.__RetornarConteudoBytesInternoAsync(metodo, url, token, timeout, function (resultado)
-                {
-                    if (resultado instanceof Error)
+                this.__RetornarConteudoBytesInternoAsync(metodo, url, token, timeout, cabecalhos, callbackProgresso,
+                    (resultado) =>
                     {
-                        reject(resultado);
-                        return;
-                    }
-                    resolver(resultado);
-                }, callbackProgresso);
+                        if (resultado instanceof Error)
+                        {
+                            reject(resultado);
+                            return;
+                        }
+                        resolver(resultado);
+                    });
             });
         }
 
-        public static RetornarConteudoBlobAsync(url: string, mimeType?:EnumMimetypeString): Promise<Blob | string | Error>
+        public static RetornarConteudoBlobAsync(url: string, mimeType?: EnumMimetypeString): Promise<Blob | string | Error>
         {
             return new Promise<Blob | string | Error>(resolver =>
             {
@@ -298,6 +310,7 @@
                 urlArquivo,
                 token,
                 timeout,
+                null,
                 (ev: ProgressoEventArgs) =>
                 {
                     callbackProcesso(ev);

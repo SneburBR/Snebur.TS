@@ -132,6 +132,7 @@
                     urlPackage,
                     null,
                     MagickInitUtil.TIMEOUT,
+                    null,
                     (e: ProgressoEventArgs) =>
                     {
                         MagickInitUtil.NotificarProgresso(e);
