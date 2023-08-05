@@ -16,7 +16,7 @@ namespace Snebur.UI
             eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.TextoPesquisa, EventoTextoPesquisa));
             eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.ItemSelecionadoAlterado, EventoItemSelecionadoAlterado));
             eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.ValorAlterado, EventoValorAlterado));
-            eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.ValorModificando, EventoValorMotificando));
+            eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.ValorModificando, EventoValorModificando));
             eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.LinhaDetalhesExpandida, EventoLinhaDetalhesExpandida));
             eventos.AddRange(UIEventoUtil.RetornarUIEventosAtributo(controle, AtributosHtml.ConteudoExpandido, EventoConteudoExpandido));
 

@@ -313,6 +313,7 @@
     "src/Utilidade/HtmlUtil.ts",
     "src/Utilidade/InternetUtil.ts",
     "src/Utilidade/JurosUtil.ts",
+    "src/Utilidade/ListaObservacaoUtil.ts",
     "src/Utilidade/LocalStorageUtil.ts",
     "src/Utilidade/LogUtil.ts",
     "src/Utilidade/Md5Util.ts",

@@ -53,12 +53,19 @@
 
             if (u.ValidacaoUtil.IsDefinido(value))
             {
-                if (!(value instanceof Array && ListaUtil.IsListaObservacao(value)))
+                if (!(value instanceof Array))
+                {
+                    throw new Error("Tipo de lista inválida não suportado pelo bind lista: Objeto: " + value);
+                }
+
+                if (!(ListaUtil.IsListaObservacao(value)))
                 {
                     const tipoLista = EnumTipoLista[(value as any).TipoLista];
                     let mensagemErro = `A lista definida não é do tipo observação, Controle: ${this.___NomeConstrutor} ${this.Nome ?? "Sem nome"} em ${this.ControleApresentacao.___NomeConstrutor}`;
                     mensagemErro += `\r\nAltere do tipo da lista ${tipoLista}  para ListaObservacao `;
-                    throw new ErroOperacaoInvalida(mensagemErro);
+                    mensagemErro += `Itens : ${String.Join("; ", value)}`;
+                    console.error(mensagemErro);
+                    value = u.ListaObservacaoUtil.Criar(value);
                 }
 
                 this._lista = value;

@@ -24,8 +24,8 @@
 
         public override readonly URLServico: string;
         public readonly URLServicoDebug: string;
- 
-        public constructor(tipoEntidadeOuNamespace: r.TipoEntidade | string , urlServico: string, urlServicoDebug: string = null, nomeServicoDados:string = null)
+
+        public constructor(tipoEntidadeOuNamespace: r.TipoEntidade | string, urlServico: string, urlServicoDebug: string = null, nomeServicoDados: string = null)
         {
             super();
             this.URLServico = urlServico;
@@ -184,7 +184,7 @@
 
             }
         }
-      
+
 
         private async SalvarInternoAsync(entidades: d.Entidade[])
         {
@@ -232,7 +232,7 @@
                 MensagemErro: mensagemErro
             });
         }
- 
+
 
         public DeletarAsync(entidade: d.Entidade): Promise<ResultadoDeletar>
         public DeletarAsync(entidade: d.IEntidade): Promise<ResultadoDeletar>
@@ -272,7 +272,7 @@
             const entidadesNaoSalvas = entidades.Where(x => !(x.Id > 0));
             if (entidadesNaoSalvas.Count > 0)
             {
-                throw new Erro(`Não é possível excluir entidades não salvas ${String.Join(", ", entidadesNaoSalvas.Select(k => k.GetType().Nome))}`);
+                throw new Erro(`Não é possível deletar entidades não salvas ${String.Join(", ", entidadesNaoSalvas.Select(k => k.GetType().Nome))}`);
             }
             const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
             return this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
@@ -282,7 +282,7 @@
         //#endregion
 
         //#region Recuperar Propriedades
-
+         
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<ResultadoSalvar>
@@ -308,7 +308,7 @@
             this._isAtualizandoPropriedades = false;
             return resultado;
         }
-
+         
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<void>
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<void>
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<void>
@@ -319,9 +319,9 @@
                 throw new Erro("Não é possível recuperar propriedades de um entidade não salva");
             }
 
-            const clone = (entidade as Entidade).CloneSomenteId();
+            //const clone = (entidade as Entidade).CloneSomenteId();
             const tipoEntidade = entidade.GetType();
-            clone.Id = entidade.Id;
+            //clone.Id = entidade.Id;
 
             const consulta = this.RetornarConsulta(tipoEntidade).
                 Where(x => x.Id === entidade.Id);
@@ -519,7 +519,7 @@
             }
             return entidades;
         }
-         
+
         private ValidarEntidades(entidades: List<d.Entidade>): void
         {
             if (entidades.Any(x => x.__IsSomenteLeitura))

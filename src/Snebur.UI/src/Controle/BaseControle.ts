@@ -151,7 +151,7 @@
                 this.Desabilitar();
             }
             this.__isControleCarregado = true;
-            $Aplicacao.AdicionarControleCarregado(this);
+            $Aplicacao.NotificarControleCarregado(this);
             this.NotificarControleCarregado();
         }
 
@@ -257,10 +257,7 @@
 
         protected NotificarControleCarregado()
         {
-            this.EventoCarregado.Notificar(this, UIEventArgs.Empty);
-
-            ////para evitar que o evento seja chamado mais de uma vez
-            //this.EventoCarregado.Clear();
+            this.EventoCarregado?.Notificar(this, UIEventArgs.Empty);
         }
 
         protected override HtmlCarregado(): void
@@ -953,7 +950,7 @@
                     elemento.parentElement.removeChild(elemento);
                     //ElementoUtil.RemoverElemento(elemento.parentElement, elemento, true);
                 }
-                $Aplicacao.RemoverControleCarregado(this);
+                $Aplicacao.NotificarControleCarregadoDescarregado(this);
 
                 this.EventoControleDispensado.Notificar(this, EventArgs.Empty);
                 this.EventoControleDispensado.Dispose();

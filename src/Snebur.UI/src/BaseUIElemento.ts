@@ -172,9 +172,9 @@
             this.InicializarAtributosElementoRaiz();
             this.InicializarAtributos();
 
-            if (!$Configuracao.IsProducao)
+            if ($Configuracao.IsDebug)
             {
-                this.ValidarAtributosZS(this.Elemento);
+                this.ValidarAtributosSN(this.Elemento);
             }
             this.InicializarPropriedades();
             this.InicializarCores();
@@ -810,18 +810,24 @@
         }
 
         //somente em desenvolvimento, pois prejudica o desempenho
-        private ValidarAtributosZS(elemento: HTMLElement): void
+        private ValidarAtributosSN(elemento: HTMLElement): void
         {
             let len = elemento.attributes.length;
             for (let i = 0; i < len; i++)
             {
                 const atributo = elemento.attributes[i];
+
+                if (atributo.name.StartsWith("zs-"))
+                {
+                    console.error(`Renomear ZS- para SN-. Construtor ${ this.ControleApresentacao.___NomeConstrutor }`);
+                }
+
                 if (atributo.name.StartsWith(PREFIXO_ATRIBUTO_SNEBUR))
                 {
                     if (!AtributosHtml.Atributos.ContainsKey(atributo.name) &&
                         !atributo.name.StartsWith(AtributosHtml.PrefixoPropriedadeSnebur.Nome))
                     {
-                        console.warn(`O atributo ${atributo.name} não é valido. Construtor ${this.ControleApresentacao.___NomeConstrutor}`);
+                        console.error(`O atributo ${atributo.name} não é valido. Construtor ${this.ControleApresentacao.___NomeConstrutor}`);
                     }
                 }
             }
@@ -832,7 +838,7 @@
                 const elementoFilho = elemento.childNodes[i];
                 if (elementoFilho instanceof HTMLElement)
                 {
-                    this.ValidarAtributosZS(elementoFilho);
+                    this.ValidarAtributosSN(elementoFilho);
                 }
             }
         }

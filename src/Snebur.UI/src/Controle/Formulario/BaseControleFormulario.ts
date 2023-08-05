@@ -245,6 +245,7 @@
         
         protected override DepoisInicializarComponentesApresentacao()
         {
+            super.DepoisInicializarComponentesApresentacao();
             this.IsAutoSalvar = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsAutoSalvar));
 
             this._idElementoCaixa = this.RetornarIDElementoItemElemento("Caixa");

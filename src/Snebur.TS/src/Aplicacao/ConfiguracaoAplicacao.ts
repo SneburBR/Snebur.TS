@@ -22,12 +22,14 @@
         AtalhosNamespace?: Array<[string, string]>;
         Versao: string;
         UrlMagick?: string;
+ 
+        UrlServicosWorker?: string;
         UrlServicoDepuracao?: string;
         UrlImagemCarregando?: string;
         UrlImagemPendente?: string;
         UrlImagemSemImagem?: string;
         UrlImagemErro?: string;
         UrlIcone?: string;
-        UrlServicosWorker?: string;
+    
     }
 }

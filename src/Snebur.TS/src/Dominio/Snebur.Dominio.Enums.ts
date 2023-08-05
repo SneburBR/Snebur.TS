@@ -1019,12 +1019,12 @@ namespace Snebur.Dominio.Atributos
 
     export enum EnumTipoExclusaoRelacao
     {
-        NaoExcluir = 1,
+        NaoDeletar = 1,
         Cascata = 2,
         Zerar = 3,
     }
     (EnumTipoExclusaoRelacao as any).Rotulos = {};
-    (EnumTipoExclusaoRelacao as any).Rotulos["NaoExcluir"] = "NaoExcluir";
+    (EnumTipoExclusaoRelacao as any).Rotulos["NaoDeletar"] = "NaoDeletar";
     (EnumTipoExclusaoRelacao as any).Rotulos["Cascata"] = "Cascata";
     (EnumTipoExclusaoRelacao as any).Rotulos["Zerar"] = "Zerar";
 

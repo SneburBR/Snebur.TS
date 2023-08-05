@@ -15,6 +15,6 @@ namespace Snebur.UI
     {
         ElementoInput?: HTMLInputElement;
 
-        EventoValorMotificando: Evento<ValorAlteradoEventArgs<T>>;
+        EventoValorModificando: Evento<ValorAlteradoEventArgs<T>>;
     }
 }

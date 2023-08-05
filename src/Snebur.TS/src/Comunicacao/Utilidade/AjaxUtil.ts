@@ -173,7 +173,7 @@
             if (!String.IsNullOrEmpty(token))
             {
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
-                xmlHttp.setRequestHeader(c.ParametrosComunicacao.NOME_APLICACAO_WEB, encodeURIComponent($Configuracao.IdentificadorAplicacao));
+                xmlHttp.setRequestHeader(c.ParametrosComunicacao.NOME_APLICACAO_WEB, $Configuracao.IdentificadorAplicacao);
             }
 
             if (cabecalhos?.Count > 0)

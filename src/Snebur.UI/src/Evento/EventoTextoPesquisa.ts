@@ -2,21 +2,18 @@
 {
     export class EventoTextoPesquisa extends EventoControleHandler
     {
-
+        private static readonly INTERVALO = 1000;
         private TempoEsperar: TimeSpan;
         private TempoUltimaPesquisa: TimeSpan;
-
         private ValorUltimaPesquisa: string;
-
         private ElementoInput: HTMLInputElement;
-        
+
+        private readonly ExecutarDepois = new ExecutarDepois(this.Continuar.bind(this), EventoTextoPesquisa.INTERVALO);
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento, AtributosHtml.TextoPesquisa, "keydown");
 
-            this.TempoEsperar = TimeSpan.FromSeconds(0.35);
             this.TempoUltimaPesquisa = new Date().TimeOfDay;
-
             this.ElementoInput = this.RetornarElementoInput();
         }
 
@@ -36,37 +33,31 @@
             {
                 return this.ControlePai.ControleInput.ElementoInput;
             }
-
-            throw new Erro("Não possível encontrar o elemeto input dentro do controle {0}", this.ControlePai.___NomeConstrutor);
-
+            throw new Erro("Não possível encontrar o elemento input dentro do controle {0}", this.ControlePai.___NomeConstrutor);
         }
 
         protected override ManipuladorkEventListenerDom(e: KeyboardEvent): void
         {
             this.TempoUltimaPesquisa = new Date().TimeOfDay;
-            setTimeout(this.Continuar.bind(this, e), this.TempoEsperar.TotalMilliseconds);
+            this.ExecutarDepois.Executar(e);
         }
 
         private Continuar(domEvent: KeyboardEvent)
         {
-            const diferenca = (new Date().TimeOfDay.TotalMilliseconds - this.TempoUltimaPesquisa.TotalMilliseconds);
-            if (diferenca > (this.TempoEsperar.TotalMilliseconds - 50))
+            const elemento = this.ElementoInput as HTMLInputElement;
+            if (elemento instanceof HTMLInputElement)
             {
-                const elemento = this.ElementoInput as HTMLInputElement;
-
-                if (elemento instanceof HTMLInputElement)
+                const pesquisa = elemento.value;
+                if (!(String.IsNullOrWhiteSpace(pesquisa)))
                 {
-                    const pesquisa = elemento.value;
-                    if (!(String.IsNullOrWhiteSpace(pesquisa)))
+                    if (pesquisa !== this.ValorUltimaPesquisa)
                     {
-                        if (pesquisa !== this.ValorUltimaPesquisa)
-                        {
-                            this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, pesquisa));
-                        }                        
-                    } else
-                    {
-                        this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, ""));                       
-                    }              
+                        this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, pesquisa));
+                    }
+                }
+                else
+                {
+                    this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, ""));
                 }
             }
         }

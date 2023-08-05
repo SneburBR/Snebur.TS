@@ -100,6 +100,16 @@
 
             const resultado = await this.Gerenciador.ExecutarAsync(requisicao);
 
+            if (resultado instanceof ResultadoSessaoUsuarioInvalida)
+            {
+                if ($Configuracao.IsDebugOuTeste)
+                {
+                    alert("Sessão invalida");
+                    u.SessaoUsuarioUtil.SairAsync();
+                    return;
+                }
+            }
+
             if (u.ValidacaoUtil.IsFunction(callback))
             {
                 callback(resultado);

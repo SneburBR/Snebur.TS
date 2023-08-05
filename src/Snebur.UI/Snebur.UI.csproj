@@ -615,7 +615,7 @@
     <TypeScriptCompile Include="src\Evento\EventoTextoPesquisa.ts" />
     <TypeScriptCompile Include="src\Evento\BaseEventoValorAlterado.ts" />
     <TypeScriptCompile Include="src\Evento\EventoValorAlterado.ts" />
-    <TypeScriptCompile Include="src\Evento\EventoValorMotificando.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoValorModificando.ts" />
     <TypeScriptCompile Include="src\Evento\IUIEventoConstrutor.ts" />
     <TypeScriptCompile Include="src\Evento\UIEvento.ts" />
     <TypeScriptCompile Include="src\Hisorico\ConstantesHistoricoNavegador.ts" />

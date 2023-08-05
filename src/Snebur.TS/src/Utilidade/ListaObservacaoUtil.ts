@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Utilidade
 {
-	export class ListaObservacaoUtil
+	export class ListaObservacaoUtilfa
 	{
 		public static Criar<T>(itens: T[]): ListaObservacao<T>
 		{

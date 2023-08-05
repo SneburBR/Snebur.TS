@@ -131,8 +131,8 @@
                 ImagemUtil.RetornarTamanhoImagemAutomatico(imagem, tamanhoImagemOuDimensao, tamanhoImagemDimensaoVazia) :
                 tamanhoImagemOuDimensao;
 
-            const existeServidor = ImagemUtil.ExisteImagemServidor(imagem, tamanhoImagem);
-            if (existeServidor)
+            const isExisteServidor = ImagemUtil.ExisteImagemServidor(imagem, tamanhoImagem);
+            if (isExisteServidor)
             {
                 return ImagemUtil.RetornarUrlImagemServidor(imagem, tamanhoImagem);
             }

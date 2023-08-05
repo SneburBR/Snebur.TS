@@ -230,6 +230,7 @@ sn-botao {
                 filter: none !important;
             }
         }
+
         color: black;
     }
 
@@ -388,6 +389,10 @@ sn-botao {
             background-color: transparent !important;
             border: 2px solid #ccc;
             box-sizing: border-box;
+            padding-left: $margem-lateral-interna;
+            padding-right: $margem-lateral-interna;
+            padding-top: $margem-vertical-interna - 0.2;
+            padding-bottom: $margem-vertical-interna-inferior - 0.1;
 
             &:hover {
                 background-color: rgba(128, 128, 128, 0.15) !important;

@@ -168,9 +168,7 @@ namespace Snebur
 
     Array.prototype.Select = function (this: Array<any>, funcaoMapear: any)
     {
-        let retorno = this.map(funcaoMapear) as Array<any>;
-        /*retorno.__isQuery = true;*/
-        return retorno;
+        return this.map(funcaoMapear) as Array<any>;
     };
 
     Array.prototype.Zip = function (this: Array<any>, lista: Array<any>)

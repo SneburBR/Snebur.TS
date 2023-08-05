@@ -20,8 +20,8 @@
                 return String.Empty;
             }
             return EnumUtil.RetornarDescricao(EnumBarraRolagem, alinhamento);
-
         }
+
         protected RetornarValorParaComponente(compronenteApresentacao: ComponenteApresentacao, valorDom: string): EnumBarraRolagem
         {
             if (String.IsNullOrEmpty(valorDom))
@@ -30,6 +30,7 @@
             }
             return EnumUtil.RetornarValor(EnumBarraRolagem, valorDom);
         }
+
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, alinhamento: EnumBarraRolagem): void
         {
             const elemento = componenteApresentacao.ElementoApresentacao;
@@ -67,8 +68,8 @@
                     return PropriedadeBarraRolagemVertical.NOME_CLASSE_CSS_BARRA_ROLAGEM_VERTICAL_TRANSBORDAR;
 
                 default:
-
-                    throw new Erro("O alinhamento horizontal não é suportado");
+                    console.error(`Alinhamento não suportado ${alinhamento}`);
+                    return String.Empty;
             }
 
         }

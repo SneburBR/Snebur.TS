@@ -4,7 +4,10 @@
     </ap-bloco>
 
     <ap-bloco>
-        <sn-botao sn-nome="BotaoPesquisa" sn-tipo-botao="Icone" ap-icone="Search" sn-click="BtnPesquisar_Click" ap-margem="8px 16px 0px 0px"></sn-botao>
+        <sn-botao sn-nome="BotaoPesquisa" 
+            sn-tipo-botao="Icone" 
+            ap-icone="Search" sn-click="BtnPesquisar_Click"
+            ap-margem="8px 16px 0px 0px"></sn-botao>
     </ap-bloco>    
 </ap-painel>
 

@@ -206,7 +206,7 @@
             {
                 LogUtil.Desempenho("Lentidão para inicializar aplicação ", tempoTotal);
             }
-            this.NotificarUsuarioLogadoAlterado();
+            //this.NotificarUsuarioLogadoAlterado();
             this._isAplicacaoInicializada = true;
             LogUtil.Depuracao("Aplicação inicializada ");
         }
