@@ -3,6 +3,7 @@
     export abstract class BaseComboBox<TItem = any> extends Snebur.UI.BaseControleFormulario<TItem, HTMLSelectElement> implements IControleLista
     {
         protected static CSS_CLASSE_ROTULO_FLUTUANTE: string = "rotulo-flutuante";
+        private static readonly ALTURA_ITEM_PADRAO = 36;
 
         private _blocooTemplatePadrao: BlocoTemplate;
         private _itemTemplateSelecionado: ItemTemplateSelecionado;
@@ -51,6 +52,11 @@
                 //    throw new ErroOperacaoInvalida("A caixa seleção não foi definida", this);
                 //}
             }
+        }
+
+        public get AlturaItem(): number
+        {
+            return this.RetornarValorAtributoNumber(AtributosHtml.AlturaItem, BaseComboBox.ALTURA_ITEM_PADRAO);
         }
 
         //#endregion
