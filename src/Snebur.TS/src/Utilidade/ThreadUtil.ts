@@ -24,13 +24,12 @@
             return this.EsperarAsync(0);
         }
 
-        public static async BloquearAsync(thisArgs: any, condicaoBloquear: () => boolean): Promise<null>
-        public static async BloquearAsync(thisArgs: any, condicaoBloquear: () => boolean, timeout: number): Promise<Error | null>
-        public static async BloquearAsync(thisArgs: any, condicaoBloquear: () => boolean, timeout: number = Number.Int32MaxValue): Promise<Error | null>
+
+        public static async BloquearAsync<T>(thisArgs: T, cuncaoFiltrar: (value: T) => boolean, timeout: number = Number.Int32MaxValue): Promise<Error | null>
         {
             await ThreadUtil.QuebrarAsync();
             const stopWatch = Stopwatch.StartNew();
-            while (condicaoBloquear.call(thisArgs))
+            while (cuncaoFiltrar.bind(thisArgs)(thisArgs))
             {
                 if (timeout > 0)
                 {
