@@ -1269,7 +1269,9 @@
         public static FormatarDimensao(valor: IDimensao, isCm: boolean = false): string
         {
             const cmd = isCm ? "cm" : "";
-            if (valor != null)
+            if (valor != null &&
+                ValidacaoUtil.IsNumber(valor.Largura) &&
+                ValidacaoUtil.IsNumber(valor.Altura))
             {
                 if (ValidacaoUtil.IsInteger(valor.Largura) &&
                     ValidacaoUtil.IsInteger(valor.Altura))
