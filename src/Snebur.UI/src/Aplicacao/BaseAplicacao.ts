@@ -199,7 +199,7 @@
 
         //#region ControlesCarregados
 
-        public override AdicionarControleCarregado(controle: BaseControle): void
+        public override NotificarControleCarregado(controle: BaseControle): void
         {
             if ($Configuracao.IsDebug)
             {
@@ -217,7 +217,7 @@
             }
         }
 
-        public override RemoverControleCarregado(controle: BaseControle): void
+        public override NotificarControleCarregadoDescarregado(controle: BaseControle): void
         {
             if ($Configuracao.IsDebug)
             {
@@ -607,8 +607,8 @@ namespace Snebur.Aplicacao
         DesocuparAsync(): Promise<void>
 
         RetornarBarraEnvio(documentoPrincipal: ui.DocumentoPrincipal): ui.BarraEnvioArquivos;
-        AdicionarControleCarregado(controle: ui.BaseControle): void;
-        RemoverControleCarregado(controle: BaseControle): void;
+        NotificarControleCarregado(controle: ui.BaseControle): void;
+        NotificarControleCarregadoDescarregado(controle: BaseControle): void;
         AtivarObservacaoHistorico(): void;
         DesativarObservacaoHistorico(): void;
     }
