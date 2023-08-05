@@ -6,12 +6,11 @@
         {
             try
             {
+                console.error(mensagem);
                 if ($Configuracao.IsDebug)
                 {
-                    console.error(mensagem);
                     throw new Erro(mensagem);
                 }
-                console.warn(mensagem);
             }
             catch /*eslint-disable*/
             {
