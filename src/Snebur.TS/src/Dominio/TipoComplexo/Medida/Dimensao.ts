@@ -383,6 +383,11 @@
             return this.ParaPixels(dpi);
         }
 
+        public ToPixelsImpressao(): Dimensao
+        {
+            return this.ParaPixels(MedidaUtil.DPI_IMPRESSAO);
+        }
+
         public ToInteiro(): Dimensao
         {
             return new Dimensao(

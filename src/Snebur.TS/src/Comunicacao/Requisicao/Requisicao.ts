@@ -4,7 +4,6 @@
     {
         private static MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR: number = 10;
         private static readonly TEMPO_ESPERAR_FALHA = 2;
-        private readonly UrlServicoDebug: string;
         private URLServico: string
         private Tentativa: number = 0;
 
@@ -28,7 +27,6 @@
             super();
 
             this.URLServico = this.BaseServico.URLServico;
-            this.UrlServicoDebug = this.BaseServico.UrlServicoDebug;
         }
 
         public async ExecutarAsync(): Promise<any>
@@ -74,8 +72,8 @@
             const tentativa = this.Tentativa;
 
             if (($Configuracao.IsDebug || ($Configuracao.IsTeste && tentativa > 3)) &&
-                this.URLServico !== this.UrlServicoDebug &&
-                !String.IsNullOrEmpty(this.UrlServicoDebug))
+                this.URLServico !== this.BaseServico.UrlServicoDebug &&
+                !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug))
             {
                 this.UsarUrlServicoDEBUG();
             }
@@ -83,14 +81,10 @@
 
         public UsarUrlServicoDEBUG()
         {
-            if (this.URLServico !== this.UrlServicoDebug)
+            if (this.URLServico !== this.BaseServico.UrlServicoDebug)
             {
-                const mensagem = `A URL serviço '${this.NomeManipualdor}' foi alterada para modo DEBUG,
-                                  UrlServicoDEBUG : '${this.UrlServicoDebug}'`;
-
-                console.error(mensagem);
-                alert(mensagem);
-                this.URLServico = this.UrlServicoDebug;
+                this.BaseServico.UsarUrlServicoDEBUG();
+                this.URLServico = this.BaseServico.URLServico;
             }
         }
 

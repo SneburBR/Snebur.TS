@@ -105,9 +105,9 @@
                 if ($Configuracao.IsDebugOuTeste)
                 {
                     alert("Sessão invalida");
-                    u.SessaoUsuarioUtil.SairAsync();
-                    return;
                 }
+                u.SessaoUsuarioUtil.SairAsync();
+                return;
             }
 
             if (u.ValidacaoUtil.IsFunction(callback))

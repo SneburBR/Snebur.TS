@@ -33,7 +33,6 @@
                 MagickWasm.MagickFormat.Jpeg :
                 MagickWasm.MagickFormat.Webp;
 
-
             const dimensaoImpressao = this.DimensaoImpressao;
             imagem.filterType = MagickWasm.FilterType.Lagrange;
             imagem.autoOrient();

@@ -37,6 +37,11 @@
             return retorno;
         }
 
+        public get Entidades(): TChaveEntidade[]
+        {
+          return  this.DicionarioHashCodeEntidade.ParesChaveValor.Select(x => x.Valor);
+        }
+
         public constructor()
         {
             this._length = 0;

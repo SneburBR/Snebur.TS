@@ -151,7 +151,7 @@
 
         private CopiarMensagemDebug()
         {
-            navigator.clipboard.writeText(this.__mensagemErroFalhaConexao);
+            navigator.clipboard?.writeText(this.__mensagemErroFalhaConexao);
         }
     }
 }

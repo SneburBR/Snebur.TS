@@ -260,19 +260,23 @@
                     await ThreadUtil.EsperarAsync(10);
                 }
 
-                this.__camposPrivadosJanela.callbackFechar = callback;
-                this.AtualizarFundo(true);
-                this.__camposPrivadosJanela.isAberta = true;
-
-                if (isReabriando)
+                if (this.IsControleInicializado)
                 {
-                    this.MostrarElemento();
-                    this.NotificarControleCarregado();
+                    this.__camposPrivadosJanela.callbackFechar = callback;
+                    this.AtualizarFundo(true);
+                    this.__camposPrivadosJanela.isAberta = true;
+
+                    if (isReabriando)
+                    {
+                        this.MostrarElemento();
+                        this.NotificarControleCarregado();
+                    }
+
+                    this.Elemento?.classList.remove("sn-janela-sair");
+                    this.Elemento.classList.add("sn-janela-entrar");
+                    await ThreadUtil.QuebrarAsync();
+                    this.Centralizar();
                 }
-                this.Elemento.classList.remove("sn-janela-sair");
-                this.Elemento.classList.add("sn-janela-entrar");
-                await ThreadUtil.QuebrarAsync();
-                this.Centralizar();
             }
         }
 
@@ -703,8 +707,8 @@
             {
                 const rect = this.ElementoConteudo.getBoundingClientRect();
                 this.Elemento.classList.remove(EnumCssClasseJanela.JanelaCentro);
-                const posicaoX = (window.innerWidth  - rect.width) / 2;
-                const posicaoY = (window.innerHeight - rect.height) /2;
+                const posicaoX = (window.innerWidth - rect.width) / 2;
+                const posicaoY = (window.innerHeight - rect.height) / 2;
                 this.AtualizarPosicao(posicaoX, posicaoY);
             }
         }
@@ -734,7 +738,7 @@
             super.OcultarElemento();
         }
 
-        private FecharInterno( ): void
+        private FecharInterno(): void
         {
             this.__camposPrivadosJanela.isAberta = false;
             this.AtualizarFundo(false);

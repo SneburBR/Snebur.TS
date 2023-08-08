@@ -65,7 +65,7 @@
         }
         private async RetornarBufferInternoAsync(): Promise<ArrayBuffer> 
         {
-            if (i.MagickInitUtil.IsInicializado)
+            if (!window.__IS_USAR_CANVAS__ && i.MagickInitUtil.IsInicializado)
             {
                 try
                 {
