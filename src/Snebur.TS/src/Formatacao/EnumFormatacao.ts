@@ -109,6 +109,8 @@
         Peso = "peso",
 
         Prazo = "prazo",
+
+        DoisPontosFinal = "doispontosfinal",
      
 
     }

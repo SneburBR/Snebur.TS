@@ -240,6 +240,10 @@
 
                     return FormatacaoUtil.FormatarPrazo(valor);
 
+                case EnumFormatacao.DoisPontosFinal:
+
+                    return FormatacaoUtil.FormatarDoisPontosFinal(valor);
+
 
                 default:
 
@@ -1466,7 +1470,7 @@
         {
             return TextoUtil.IsTextoContem(formato, "0");
         }
-
+         
         //#endregion
 
         ///#region Ocultações
@@ -1479,6 +1483,16 @@
         }
 
         //#endregion
+
+        public static FormatarDoisPontosFinal(value: string): string
+        {
+            if (String.IsNullOrWhiteSpace(value))
+            {
+                return String.Empty;
+            }
+            value = value.trim();
+            return value.endsWith(":") ? value : `${value}:`;
+        }
     }
 
     export enum EnumTipoFormatacaoDiaSemana
