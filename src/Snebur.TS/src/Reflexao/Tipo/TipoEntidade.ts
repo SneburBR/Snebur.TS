@@ -6,6 +6,8 @@
 
         private _propriedadeDescricao: r.Propriedade = undefined;
         private _propriedadesChaveEstrangeiras: List<r.Propriedade> = null;
+        private _rotulo: string = null;
+
         public PropriedadeChavePrimaria: Propriedade;
         public readonly IsImplementaIDeletado: boolean;
         public readonly IsImplementaIAtivo: boolean;
@@ -22,6 +24,15 @@
                 this._propriedadesChaveEstrangeiras = this.RetornarPropriedadesChaveEstrangeiras();
             }
             return this._propriedadesChaveEstrangeiras;
+        }
+
+        public get Rotulo(): string
+        {
+            if (this._rotulo == null)
+            {
+                this._rotulo = this.RetornarRotulo();
+            }
+            return this._rotulo;
         }
 
         public constructor(construtor: Function, nome: string,
@@ -57,7 +68,7 @@
             }
             throw new ErroOperacaoInvalida(`A propriedade descrição não foi encontrada ma entidade '${this.Nome}'`, this);
         }
-         
+
         private RetornarPropriedadeDescricaoInterno(): Propriedade
         {
             const todasPropriedade = this.RetornarPropriedades(false);
@@ -193,6 +204,16 @@
                 }
             }
             return propriedadesChaveEstrangeiras;
+        }
+
+        private RetornarRotulo(): string
+        {
+            const atributoRotulo = this.Atributos.OfType(at.RotuloAttribute).FirstOrDefault();
+            if (atributoRotulo != null)
+            {
+                return atributoRotulo.Rotulo;
+            }
+            return this.Nome;
         }
     }
 }
