@@ -23,7 +23,7 @@
         {
             return this.Prazo > 0 && EnumUtil.IsDefindo(EnumTipoPrazo, this.TipoPrazo);
         }
- 
+
 
         public get TipoPrazo(): EnumTipoPrazo
         {
@@ -107,6 +107,11 @@
                 }
                 case EnumTipoPrazo.Horas:
 
+                    if (this.Tempo.TotalDays > 1)
+                    {
+                        return `${Math.ceil(this.Tempo.TotalDays).toFixed(0)} dias uteis`;
+                    }
+
                     return u.FormatacaoUtil.FormatarHoraDescricaoMin(this.Tempo);
 
                 default:
@@ -131,11 +136,19 @@
 
         //#region Construtor
 
-        public constructor(prazo: number = 0, tipoPrazo: EnumTipoPrazo = EnumTipoPrazo.DiasUteis, prazoMinimo: number | null = null) 
+        public constructor(prazoOuTempo: number | TimeSpan = 0, tipoPrazo: EnumTipoPrazo = EnumTipoPrazo.DiasUteis) 
         {
             super();
 
-            this.Prazo = prazo;
+            if (prazoOuTempo instanceof TimeSpan)
+            {
+                this.Tempo = prazoOuTempo;
+            }
+            else
+            {
+                this.Prazo = prazoOuTempo;
+            }
+            
             this.TipoPrazo = tipoPrazo;
             //this.PrazoMinimo = prazoMinimo;
         }
