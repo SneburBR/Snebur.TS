@@ -44,6 +44,11 @@
                     return u.EnumUtil.IsDefindo(construtorEnum, u.ConverterUtil.ParaNumero(valorPropriedade));
                 }
             }
+
+            if (propriedade.Tipo instanceof r.TipoBaseDominio)
+            {
+                return valorPropriedade instanceof BaseDominio;
+            }
         }
         return false;
     };
