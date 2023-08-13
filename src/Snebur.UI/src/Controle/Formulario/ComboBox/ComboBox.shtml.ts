@@ -109,6 +109,11 @@
             this.AtualizarVisibilidadeControleItemSelecionado();
         }
 
+        protected override AtualizarRotulo(): void
+        {
+            this.AtualizarRotuloSelecionado();
+        }
+
         public BtnCaixaListaItem_Click(provedor: ItemControle, e: UIEventArgs): void
         {
             const itemSelecionado = provedor.DataSource;

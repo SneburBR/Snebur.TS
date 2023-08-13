@@ -66,7 +66,6 @@
                 const rotulo = this.RetornarRotulo();
                 if (!this.IsExisteBindRotulo || isInicializando)
                 {
-
                     elementoRotulo.innerHTML = rotulo;
                 }
             }
