@@ -92,9 +92,14 @@
             this._totalMilisegundos -= (dias * TimeSpan.MilissegundosPorDia);
         }
 
-        public Add(outroTimeSpan: TimeSpan): void
+        public Add(timespan: TimeSpan): void
         {
-            this._totalMilisegundos += outroTimeSpan.TotalMilliseconds;
+            this._totalMilisegundos += timespan.TotalMilliseconds;
+        }
+
+        public AddNew(timespan: TimeSpan): TimeSpan
+        {
+            return TimeSpan.FromMilliseconds(this._totalMilisegundos + timespan.TotalMilliseconds);
         }
 
         public Subtract(outroTimeSpan: TimeSpan): void
