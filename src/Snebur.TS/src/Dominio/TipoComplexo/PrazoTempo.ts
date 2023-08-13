@@ -31,9 +31,7 @@
         }
         public set TipoPrazo(value: EnumTipoPrazo)
         {
-            if (this._tipoPrazo === EnumTipoPrazo.Horas &&
-                value !== EnumTipoPrazo.Horas &&
-                this.Prazo > 30)
+            if (this.IsResetarPrazo(value))
             {
                 this.Prazo = 0;
             }
@@ -41,6 +39,8 @@
             this.NotificarPropriedadeAlterada(x => x.Descricao);
             this.NotificarPropriedadeAlterada(x => x.Tempo);
         }
+
+       
 
         public get Tempo(): TimeSpan
         {
@@ -52,6 +52,7 @@
                     return TimeSpan.FromDays(this.Prazo);
 
                 case EnumTipoPrazo.Horas:
+                case EnumTipoPrazo.HorasUteis:
 
                     return TimeSpan.FromMilliseconds(this.Prazo);
 
@@ -69,10 +70,11 @@
                     case EnumTipoPrazo.DiasUteis:
                     case EnumTipoPrazo.DiasCorrido:
 
-                        this.Prazo = value.TotalDays;
+                        this.Prazo = Math.ceil(value.TotalDays);
                         break;
 
                     case EnumTipoPrazo.Horas:
+                    case EnumTipoPrazo.HorasUteis:
 
                         this.Prazo = value.TotalMilliseconds;
                         break;
@@ -109,9 +111,16 @@
 
                     if (this.Tempo.TotalDays > 1)
                     {
+                        return `${Math.ceil(this.Tempo.TotalDays).toFixed(0)} dias`;
+                    }
+                    return u.FormatacaoUtil.FormatarHoraDescricaoMin(this.Tempo);
+
+                case EnumTipoPrazo.HorasUteis:
+
+                    if (this.Tempo.TotalDays > 1)
+                    {
                         return `${Math.ceil(this.Tempo.TotalDays).toFixed(0)} dias uteis`;
                     }
-
                     return u.FormatacaoUtil.FormatarHoraDescricaoMin(this.Tempo);
 
                 default:
@@ -140,6 +149,8 @@
         {
             super();
 
+            this.TipoPrazo = tipoPrazo;
+
             if (prazoOuTempo instanceof TimeSpan)
             {
                 this.Tempo = prazoOuTempo;
@@ -149,8 +160,20 @@
                 this.Prazo = prazoOuTempo;
             }
             
-            this.TipoPrazo = tipoPrazo;
+           
             //this.PrazoMinimo = prazoMinimo;
+        }
+
+        private IsResetarPrazo(value: EnumTipoPrazo): boolean
+        {
+            if (this.Prazo > 30)
+            {
+                if (this._tipoPrazo === EnumTipoPrazo.Horas || this._tipoPrazo === EnumTipoPrazo.HorasUteis)
+                {
+                    return value !== EnumTipoPrazo.Horas && value === EnumTipoPrazo.HorasUteis;
+                }
+            }
+            return false;
         }
 
         //#endregion
