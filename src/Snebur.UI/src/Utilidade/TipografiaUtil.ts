@@ -9,7 +9,7 @@
             return `${TipograficaUtil.PREFIXO_CSS_CLASSE}${TipograficaUtil.RetornarSufixoCssClasseEnum(tipografia)}`;
         }
 
-        public static  RetornarSufixoCssClasseEnum(tipografia: EnumTipografia): string
+        public static RetornarSufixoCssClasseEnum(tipografia: EnumTipografia): string
         {
             switch (tipografia)
             {
@@ -85,9 +85,9 @@
 
                 default:
 
-                    throw new Erro("A tipografia não é suportada");
+                    console.error(`A tipografia '${tipografia}'' não é suportada`);
+                    return "";
             }
-
         }
-	}
+    }
 }
