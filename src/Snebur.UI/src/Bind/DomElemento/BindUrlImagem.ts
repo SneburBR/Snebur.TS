@@ -2,12 +2,27 @@
 {
     export class BindUrlImagem extends BindDomElemento
     {
-        private TamanhoImagem: d.EnumTamanhoImagem;
+        private readonly TamanhoImagem: d.EnumTamanhoImagem;
+        private readonly ElementoImageem: HTMLImageElement;
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement, valorAtributo: string)
         {
             super(controlePai, elemento, AtributosHtml.BindUrlImagem, valorAtributo);
             this.TamanhoImagem = this.RetornarTamanhoImagem();
+
+            if (elemento instanceof HTMLImageElement)
+            {
+                this.AdicionarEventoDom(EnumEventoDom.Error, this.ElementoImagem_Error, elemento);
+                this.ElementoImageem = elemento as HTMLImageElement;
+            }
+        }
+
+        private ElementoImagem_Error(): void
+        {
+            if (this.ElementoImageem != null && ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem))
+            {
+                this.ElementoImageem.src = Snebur.$Configuracao.UrlImagemSemImagem;
+            }
         }
 
         private RetornarTamanhoImagem(): d.EnumTamanhoImagem
@@ -25,7 +40,7 @@
 
         public override RetornarValorConvertidoParaDom(valorPropriedade: any): string
         {
-           if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
+            if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
             {
                 if (valorPropriedade instanceof d.Entidade)
                 {
