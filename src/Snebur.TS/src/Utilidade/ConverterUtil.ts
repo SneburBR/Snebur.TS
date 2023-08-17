@@ -147,8 +147,12 @@
             return valor.toString();
         }
 
-        public static ParaNumero(valor: number | string | boolean, inteiro?: boolean): number
+        public static ParaNumero(valor: number | string | boolean, inteiro: boolean = false, isNullable: boolean= false): number
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             inteiro = u.ConverterUtil.ParaBoolean(inteiro);
             if (typeof valor === "number" && !isNaN(valor))
             {
@@ -205,8 +209,12 @@
             return valorNumero;
         }
 
-        public static ParaInteiro(valor: any, isNaNRetornarNull: boolean = false): number | null
+        public static ParaInteiro(valor: any, isNullable: boolean = false): number | null
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             if (typeof valor === "number" && !isNaN(valor)) 
             {
                 return Math.round(valor);
@@ -221,42 +229,58 @@
 
             if (isNaN(valor))
             {
-                if (isNaNRetornarNull)
-                {
-                    return null;
-                }
-                return 0;
+                return isNullable ? null : 0;
             }
             return valor;
         }
 
-        public static ParaDouble(valor: any): number
+        public static ParaDouble(valor: any, isNullable: boolean = false): number
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             return ConverterUtil.ParaNumero(valor, false);
         }
 
-        public static ParaDecimal(valor: any): number
+        public static ParaDecimal(valor: any, isNullable: boolean = false): number
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             const valorTipado = ConverterUtil.ParaNumero(valor, false);
             return Math.round(valorTipado * 100) / 100;
         }
 
-        public static ParaDecimal1(valor: any): number
+        public static ParaDecimal1(valor: any, isNullable: boolean = false): number
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             const valorTipado = ConverterUtil.ParaNumero(valor, false);
             return Math.round(valorTipado * 10) / 10;
         }
 
-        public static ParaDecimal3(valor: any): number
+        public static ParaDecimal3(valor: any, isNullable: boolean = false): number
         {
+            if (valor == null)
+            {
+                return isNullable ? null : 0;
+            }
             const valorTipado = ConverterUtil.ParaNumero(valor, false);
             return Math.round(valorTipado * 1000) / 1000;
         }
 
         /*private static readonly EXPRESSAO_FALSO = /^(?:f(?:alse)?|no?|0+)$/i;*/
 
-        public static ParaBoolean(valor: any): boolean
+        public static ParaBoolean(valor: any, isNullable: boolean = false): boolean
         {
+            if (valor == null)
+            {
+                return isNullable ? null : false;
+            }
             if (typeof valor === "boolean")
             {
                 return valor;
@@ -295,8 +319,12 @@
 
         public static ParaDataHora(valor: any): Date;
         public static ParaDataHora(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean): Date;
-        public static ParaDataHora(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false): Date | null
+        public static ParaDataHora(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean= true): Date | null
         {
+            if (valor == null)
+            {
+                return isNullable ? null : new Date();
+            }
             if (!u.ValidacaoUtil.IsDefinido(valor))
             {
                 return null;
@@ -312,14 +340,14 @@
             {
                 if (String.IsNullOrWhiteSpace(valor))
                 {
-                    return null;
+                    return isNullable ? null : new Date();
                 }
 
                 let dataString = valor.trim();
                 const numeros = u.TextoUtil.RetornarSomenteNumeros(dataString);
                 if (String.IsNullOrWhiteSpace(numeros))
                 {
-                    return null;
+                    return isNullable ? null : new Date();
                 }
 
                 const procurar = "Date(";
@@ -350,7 +378,7 @@
                 {
                     if (isIgnorarErro)
                     {
-                        return null;
+                        return isNullable ? null : new Date();
                     }
                     throw new Erro(`Não foi possível converter a data string ${valor} para o objeto Date`);
                 }
@@ -387,18 +415,18 @@
 
             if (isIgnorarErro)
             {
-                return null;
+                return isNullable ? null : new Date();
             }
             throw new ErroNaoImplementado(`não foi possível valor ${valor} o argumento para data`);
         }
 
         public static ParaData(valor: any): Date;
         public static ParaData(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean): Date;
-        public static ParaData(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false): Date
+        public static ParaData(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean= true): Date
         {
             if (String.IsNullOrWhiteSpace(valor))
             {
-                return null;
+                return isNullable ? null : new Date();
             }
 
             if (u.ValidacaoUtil.IsDate(valor))
@@ -412,7 +440,7 @@
 
             if (isIgnorarErro)
             {
-                return null;
+                return isNullable ? null : new Date();
             }
             throw new Erro(`Não foi possível converter o valor ${valor} para o tipo data`);
         }
@@ -594,7 +622,7 @@
             }
             if (ValidacaoUtil.IsString(valor))
             {
-                if(valor === "null")
+                if (valor === "null")
                 {
                     return null;
                 }
@@ -658,7 +686,7 @@
         {
             return (valor) ? 1 : 0;
         }
-         
+
         private static NormalizarPontosVirgula(valor: string): string
         {
             const posicaoPonto = valor.lastIndexOf(".");
