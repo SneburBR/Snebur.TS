@@ -359,6 +359,7 @@
                 }
                 case (r.EnumTipoPrimario.String):
                 case (r.EnumTipoPrimario.Guid):
+                case (r.EnumTipoPrimario.Char):
 
                     return JSON.stringify(u.ConverterUtil.ParaString(valorPrimario));
 
