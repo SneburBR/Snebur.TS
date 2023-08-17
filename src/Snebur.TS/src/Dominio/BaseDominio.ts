@@ -20,7 +20,8 @@
 
         //#endregion
 
-        public NotificarValorPropriedadeAlteradaTipoCompleto(nomePropriedade: string, antigoValor: BaseTipoComplexo, novoValor: BaseTipoComplexo)
+        
+        protected NotificarValorPropriedadeAlteradaTipoCompleto(nomePropriedade: string, antigoValor: BaseTipoComplexo, novoValor: BaseTipoComplexo)
         {
             novoValor.__IsIndependente = true;
             this.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);

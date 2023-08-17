@@ -13,6 +13,10 @@
 
         public static RetornarRotuloPropriedade(propriedade: r.Propriedade): string
         {
+            if (propriedade == null)
+            {
+                return String.Empty;
+            }
             if ($Configuracao.IsGlobalizar)
             {
                 throw new ErroNaoImplementado(this);

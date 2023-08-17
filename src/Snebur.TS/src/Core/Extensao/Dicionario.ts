@@ -253,6 +253,14 @@
             }
         }
 
+        public RemoveAll(chaves: TChave[]): void
+        {
+            for (const chave of chaves)
+            {
+                  this.TryRemove(chave);
+            }
+        }
+ 
         public Remove(chave: TChave): boolean
         {
             return this.Remover(chave);

@@ -22,13 +22,17 @@
             <ap-bloco ap-margem="0px 16px 0px 0px" sn-nome="BlocoBotoes">
                 <ap-painel ap-tipo-painel="PilhaHorizontal" ap-alinhamento-horizontal="Centro">
                     <sn-botao ap-largura="140px" ap-altura-linha="24px" sn-nome="BtnCancelarInterno"
-                        class="sn-botao-cancelar" ap-cor-texto="Cinza" ap-cor-fundo="SistemaFalha" sn-tipo-botao="FlatBox" sn-click="BtnCancelarInterno_Click">CANCELAR</sn-botao>
+                        class="sn-botao-cancelar" ap-cor-texto="Cinza" 
+                        sn-tipo-botao="FlatBox"
+                        sn-click="BtnCancelarInterno_Click">CANCELAR</sn-botao>
+                
                     <sn-botao  ap-largura="140px"
                         ap-altura-linha="24px"
                         sn-nome="BtnSalvarInterno_" 
                         class="sn-botao-salvar"
                         ap-cor-fundo="SistemaPrincipal"
-                        ap-cor-texto="Branca" sn-click="BtnSalvarInterno_Click">SALVAR</sn-botao>
+                        ap-cor-texto="Branca" 
+                        sn-click="BtnSalvarInterno_Click">SALVAR</sn-botao>
 
                 </ap-painel>
             </ap-bloco>

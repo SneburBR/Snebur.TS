@@ -699,11 +699,13 @@ namespace Snebur.Dominio
         DiasUteis = 0,
         DiasCorrido = 1,
         Horas = 2,
+        HorasUteis = 3,
     }
     (EnumTipoPrazo as any).Rotulos = {};
     (EnumTipoPrazo as any).Rotulos["DiasUteis"] = "Dias úteis";
     (EnumTipoPrazo as any).Rotulos["DiasCorrido"] = "Dias corridos";
     (EnumTipoPrazo as any).Rotulos["Horas"] = "Horas";
+    (EnumTipoPrazo as any).Rotulos["HorasUteis"] = "Horas úteis";
 
     export enum EnumMimeType
     {

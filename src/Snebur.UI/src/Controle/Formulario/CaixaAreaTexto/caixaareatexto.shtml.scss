@@ -31,7 +31,8 @@ sn-caixa-area-texto {
             outline: none;
             font-size: $tamanho-fonte-input;
             font-family: $fonte-padrao;
-            user-select:auto !important;
+            user-select: auto !important;
+
             &:focus {
                 /*background-color: silver;*/
             }
@@ -89,6 +90,20 @@ sn-caixa-area-texto {
     }
 
     &.sn-is-valicacao--falha {
-        background-color: $cor-falha;
+        > conteudo-apresentacao {
+            color: $cor-falha !important;
+
+            .rotulo {
+                color: $cor-falha !important;
+            }
+
+            .linha-horizontal-externa {
+                background-color: $cor-falha !important;
+
+                .linha-horizontal {
+                    background-color: $cor-falha !important;
+                }
+            }
+        }
     }
 }

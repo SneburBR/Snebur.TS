@@ -251,7 +251,8 @@
         OPCAO_CONVERTER = "Converter",
         OPCAO_FORMATAR = "Formatar",
         OPCAO_MAXIMO_CARACTERES = "MaximoCaracteres",
-        OPCAO_PADRAO = "Padrao"
+        OPCAO_PADRAO = "Padrao",
+        OPCAO_URL_SEM_IMAGEM = "UrlSemImagem",
     }
 
     export interface FuncaoBindExpressao

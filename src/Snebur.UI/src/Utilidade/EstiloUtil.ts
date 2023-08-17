@@ -109,8 +109,7 @@
                 }
             }
         }
-
-
+         
         /**
          * Atualizar classes no elemento
          * @param elemento elemento de destino
@@ -584,20 +583,20 @@
             document.body.style.setProperty("cursor", cursor, "important");
             document.documentElement.style.cursor = cursor;
             document.body.style.cursor = cursor;
-            
+
         }
 
-        public static LimparPosicoes(elementoImagem:HTMLElement)
+        public static LimparPosicoes(elementoImagem: HTMLElement)
         {
             elementoImagem.style.left = "";
-            elementoImagem.style.right = ""; 
-            elementoImagem.style.top = ""; 
-            elementoImagem.style.bottom = ""; 
-            elementoImagem.style.width = ""; 
-            elementoImagem.style.height = ""; 
+            elementoImagem.style.right = "";
+            elementoImagem.style.top = "";
+            elementoImagem.style.bottom = "";
+            elementoImagem.style.width = "";
+            elementoImagem.style.height = "";
         }
 
-        public static RetornarRotacao(transform: string):number
+        public static RetornarRotacao(transform: string): number
         {
             if (String.IsNullOrWhiteSpace(transform))
             {
@@ -654,7 +653,7 @@
         QuebraLinhaIncial,
     }
 
-   export type CursorType =
+    export type CursorType =
         | "auto"
         | "default"
         | "none"

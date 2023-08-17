@@ -258,13 +258,14 @@
 
         public static RetornarConteudoBlobAsync(url: string, mimeType?: EnumMimetypeString): Promise<Blob | string | Error>
         {
-            return new Promise<Blob | string | Error>(resolver =>
+            return new Promise<Blob | string | Error>((resolver, reject) =>
             {
                 this.__RetornarConteudoBlobInternoAsync(url, mimeType, function (resultado)
                 {
                     if (resultado instanceof Error)
                     {
-                        throw resultado;
+                        resolver(resultado);
+                        return;
                     }
                     resolver(resultado);
                 });

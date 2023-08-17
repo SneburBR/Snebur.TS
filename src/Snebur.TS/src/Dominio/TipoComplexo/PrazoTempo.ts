@@ -94,32 +94,36 @@
                     const diasUtil = parseInt(this.Prazo);
                     if (diasUtil === 1)
                     {
-                        return diasUtil.toFixed(0) + " dia útil";
+                        return diasUtil + " dia útil";
                     }
-                    return diasUtil.toFixed(0) + " dias úteis";
+                    return diasUtil + " dias úteis";
                 }
                 case EnumTipoPrazo.DiasCorrido: {
 
                     const diasCorrido = parseInt(this.Prazo);
                     if (diasCorrido === 1)
                     {
-                        return diasCorrido.toFixed(0) + " dia";
+                        return diasCorrido + " dia";
                     }
-                    return diasCorrido.toFixed(0) + " dias";
+                    return diasCorrido + " dias";
                 }
                 case EnumTipoPrazo.Horas:
 
-                    if (this.Tempo.TotalDays > 1)
+                    if (this.Tempo.TotalDays >= 1)
                     {
-                        return `${Math.ceil(this.Tempo.TotalDays).toFixed(0)} dias`;
+                        const dias = Math.ceil(this.Tempo.TotalDays);
+                        const formatacao = dias === 1 ? "dia" : "dias";
+                        return `${dias} ${formatacao}`;
                     }
                     return u.FormatacaoUtil.FormatarHoraDescricaoMin(this.Tempo);
 
                 case EnumTipoPrazo.HorasUteis:
 
-                    if (this.Tempo.TotalDays > 1)
+                    if (this.Tempo.TotalDays >= 1)
                     {
-                        return `${Math.ceil(this.Tempo.TotalDays).toFixed(0)} dias uteis`;
+                        const dias = Math.ceil(this.Tempo.TotalDays);
+                        const formatacao = dias === 1 ? "dia útil" : "dias úteis";
+                        return `${dias} ${formatacao}`;
                     }
                     return u.FormatacaoUtil.FormatarHoraDescricaoMin(this.Tempo);
 

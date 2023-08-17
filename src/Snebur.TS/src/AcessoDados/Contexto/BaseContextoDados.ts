@@ -282,7 +282,6 @@
         //#endregion
 
         //#region Recuperar Propriedades
-         
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<ResultadoSalvar>
@@ -305,10 +304,18 @@
             }
             this._isAtualizandoPropriedades = true;
             const resultado = await this.SalvarAvancadoAsync(entidadesClonada, []);
+            if (resultado.IsSucesso)
+            {
+                for (const entidade of entidades)
+                {
+                    const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(entidade as TEntidade, expressoesOuPropriedades);
+                    entidade.__PropriedadesAlteradas.RemoveAll(nomesPropriedades);
+                }
+            }
             this._isAtualizandoPropriedades = false;
             return resultado;
         }
-         
+
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<void>
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<void>
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<void>
@@ -402,14 +409,20 @@
             const entidadeRecuperada = await consulta.SingleAsync();
             for (const propriedade of entidade.GetType().RetornarPropriedades())
             {
-                if ((entidade as any)[propriedade.Nome] !== (entidadeRecuperada as any)[propriedade.Nome])
+                const valorPropriedade = (entidade as any)[propriedade.Nome];
+                const valorPropriedadeRecuperada = (entidadeRecuperada as any)[propriedade.Nome];
+                if (valorPropriedade !== valorPropriedadeRecuperada)
                 {
                     if (propriedade.Tipo instanceof r.TipoPrimario ||
                         propriedade.Tipo instanceof r.TipoEnum ||
-                        propriedade.Tipo instanceof r.TipoComplexo ||
-                        propriedade.Tipo instanceof d.Entidade)
+                        propriedade.Tipo instanceof r.TipoComplexo)
                     {
-                        (entidade as any)[propriedade.Nome] = (entidadeRecuperada as any)[propriedade.Nome];
+                        (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                    }
+                    else if (propriedade.Tipo instanceof d.Entidade &&
+                        valorPropriedadeRecuperada instanceof d.Entidade)
+                    {
+                        (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
                     }
                 }
             }
