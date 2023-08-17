@@ -126,7 +126,7 @@
             this.IDElementoDestino = ElementoUtil.RetornarNovoIDElemento(this, "tr");
             const elementoTr = document.createElement("tr");
             elementoTr.id = this.IDElementoDestino;
-            ElementoUtil.AdicionarElemento(this.IDElemento, elementoTr);
+            ElementoUtil.AdicionarElemento(this.Elemento, elementoTr);
         }
 
         private AdicionarColunas(): void

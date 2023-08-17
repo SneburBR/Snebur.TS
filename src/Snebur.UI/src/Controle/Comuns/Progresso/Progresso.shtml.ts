@@ -26,7 +26,7 @@
 
             const estilo = new Estilo();
             estilo.display = "block";
-            EstiloUtil.AtualizarEstilo(this.IDElemento, estilo);
+            EstiloUtil.AtualizarEstilo(this.Elemento, estilo);
         }
 
         private AtualizarProgresso(progresso: number): void

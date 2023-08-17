@@ -19,8 +19,8 @@
         public override HtmlCarregado(): void
         {
             super.HtmlCarregado();
-            EstiloUtil.AdicionarCssClasse(this.IDElemento, "sn-proxima-pagina");
-            ElementoUtil.OcultarElemento(this.IDElemento);
+            EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-proxima-pagina");
+            ElementoUtil.OcultarElemento(this.Elemento);
         }
 
         protected override Inicializar(): void
@@ -106,11 +106,11 @@
         {
             if (this.TotalPaginas > 0 && this.TotalPaginas > this.PaginaAtual)
             {
-                ElementoUtil.MostrarElemento(this.IDElemento);
+                ElementoUtil.MostrarElemento(this.Elemento);
             }
             else
             {
-                ElementoUtil.OcultarElemento(this.IDElemento);
+                ElementoUtil.OcultarElemento(this.Elemento);
             }
         }
 

@@ -86,7 +86,7 @@ namespace Snebur.UI
             if (this.ExisteSeparador)
             {
                 this.ControlesFilho.Remove(this.SeparadorTemplate);
-                ElementoUtil.RemoverElemento(this.IDElemento, this.SeparadorTemplate.IDElemento);
+                ElementoUtil.RemoverElemento(this.Elemento, this.SeparadorTemplate.Elemento);
             }
             this.AdicionarControleItensColecao();
             this.ReposicionarRodape();

@@ -56,16 +56,16 @@
             const template: BaseTemplate = this.Template;
             if (!String.IsNullOrWhiteSpace(template.CssClasse))
             {
-                EstiloUtil.AdicionarCssClasse(this.IDElemento, template.CssClasse);
+                EstiloUtil.AdicionarCssClasse(this.Elemento, template.CssClasse);
             }
 
-            EstiloUtil.AtualizarCssTexto(this.IDElemento, template.CssTexto);
+            EstiloUtil.AtualizarCssTexto(this.Elemento, template.CssTexto);
             const len = template.Atributos.length;
             const elemento = this.Elemento;
             for (let i = 0; i < len; i++)
             {
                 const atributo = template.Atributos[i];
-                ElementoUtil.AdicionarAtributo(this.IDElemento, atributo.Chave, atributo.Valor);
+                ElementoUtil.AdicionarAtributo(this.Elemento, atributo.Chave, atributo.Valor);
             }
             const elementosDesabilitados = Util.CopiarArray(elemento.getElementsByClassName(ConstantesCssClasses.CSS_CLASSE_DESABILITADO));
             for (const elementoDesabilitado of elementosDesabilitados)

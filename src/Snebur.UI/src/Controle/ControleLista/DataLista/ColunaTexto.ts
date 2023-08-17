@@ -43,7 +43,7 @@
             {
                 this.Ordenacao = EnumOrdenacaoColuna.Nenhuma;
 
-                ElementoUtil.AdicionarAtributo(this.IDElemento,
+                ElementoUtil.AdicionarAtributo(this.Elemento,
                     AtributosHtml.Click,
                     "ColunaOrdenacao_Click");
             }

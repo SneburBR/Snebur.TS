@@ -108,7 +108,7 @@
 
             this.TemplateColunasColecao = this.RetornarTemplateColunas();
 
-            ElementoUtil.RemoverElemento(this.IDElemento, this.TemplateColunasColecao.IDElemento);
+            ElementoUtil.RemoverElemento(this.Elemento, this.TemplateColunasColecao.Elemento);
 
             this._blocoCabecalho = this.ComponentesApresentacaoFilhos.OfType(BlocoCabecalho).SingleOrDefault();
             this._blocoListaVazia = this.ComponentesApresentacaoFilhos.OfType(BlocoListaVazia).SingleOrDefault();

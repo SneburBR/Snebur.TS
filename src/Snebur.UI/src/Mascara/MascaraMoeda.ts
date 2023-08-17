@@ -45,7 +45,7 @@
         {
             if (!this.BaseCaixaTexto.IsSomenteLeitura && !this.BaseCaixaTexto.IsDesabilitado)
             {
-                const elemento = ElementoUtil.RetornarElemento(this.IDElemento) as HTMLInputElement;
+                const elemento = this.Elemento as HTMLInputElement;
                 elemento.value = this.FormatarValorDomComFocus(elemento.value);
                 elemento.select();
                 e.preventDefault();

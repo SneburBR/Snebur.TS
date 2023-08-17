@@ -29,7 +29,7 @@
             const caixaPesquisa = this.ControlesFilho.OfType<CaixaPesquisa>(CaixaPesquisa).SingleOrDefault();
             if (caixaPesquisa != null)
             {
-                ElementoUtil.AdicionarAtributo(caixaPesquisa.IDElemento, AtributosHtml.TextoPesquisa, Cabecalho.HANDLER_PESQUISA);
+                ElementoUtil.AdicionarAtributo(caixaPesquisa.Elemento, AtributosHtml.TextoPesquisa, Cabecalho.HANDLER_PESQUISA);
             }
             super.InicializarControlesFilho();
         }

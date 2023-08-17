@@ -64,7 +64,7 @@
 
             if (this.Propriedade instanceof r.Propriedade)
             {
-                EstiloUtil.AdicionarCssClasse(this.IDElemento, this.RetornarCssClasse());
+                EstiloUtil.AdicionarCssClasse(this.Elemento, this.RetornarCssClasse());
             }
         }
 

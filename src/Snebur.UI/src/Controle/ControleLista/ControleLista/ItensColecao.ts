@@ -46,7 +46,7 @@
 
             if (!String.IsNullOrWhiteSpace(this.CssClassElementoItensColecao))
             {
-                EstiloUtil.AdicionarCssClasse(this.IDElemento, this.CssClassElementoItensColecao);
+                EstiloUtil.AdicionarCssClasse(this.Elemento, this.CssClassElementoItensColecao);
             }
         }
 
