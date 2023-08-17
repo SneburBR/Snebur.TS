@@ -71,7 +71,7 @@
                 }
                 else
                 {
-                    (elementoApresentacao.style as any)[this.NomePropriedadeEstiloDom] = cor + ui.EstiloUtil.IMPORTANT;
+                    (elementoApresentacao.style as any)[this.NomePropriedadeEstiloDom] = cor;
                 }
             }
         }
