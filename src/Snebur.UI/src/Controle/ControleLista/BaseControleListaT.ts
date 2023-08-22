@@ -5,12 +5,17 @@
     export abstract class BaseControleLista<T extends TipoItemLista = any> extends BaseControleApresentacaoFormulario implements IControleLista
     {
         public static REGISTROS_POR_PAGINA_PADRAO = 100;
-        //#region Propriedades
+        
 
-        private _lista: ListaObservacao<T> = null;
+        /*@internal*/
         public __FuncaoRetornarConsulta: FuncaoConsulta;
+        /*@internal*/
         public __FuncaoRetornarConsultaAsync: FuncaoConsultaAsync;
+        /*@internal*/
         public __FuncaoNormalizar: FuncaoNormalizar;
+
+        private _isPopularFila : boolean = false;
+        private _lista: ListaObservacao<T> = null;
         protected _sentidoOrdenacao: EnumSentidoOrdenacao;
 
         public __FuncaoRetornarViewModelAsync: (item: T) => Promise<Entidade | BaseViewModel>;
@@ -20,8 +25,6 @@
 
         public Pesquisa: string = String.Empty;
         public CaminhoPropriedadeOrdenacao: string;
-
-     
         public RelacoesAberta: string;
         public IsConsultarTipoAutomaticamente: boolean = false;
 
@@ -29,7 +32,7 @@
 
         public TipoItemLista: r.BaseTipo;
 
-        private Fila: Array<T>;
+        private readonly Fila = new Fila<T>();
 
         public get Lista(): ListaObservacao<T>
         {
@@ -111,7 +114,6 @@
         {
             super(controlePai, elemento);
 
-            this.Fila = new Array<T>();
             this.CssClasseControle = "sn-nao-selecionar";
             this.EventoItemAdicionado = new Evento<ItemEventArgs<T>>(this);
             this.EventoItemInserido = new Evento<InserirItemEventArgs<T>>(this);
@@ -230,9 +232,9 @@
         {
             while (this.Fila?.Count > 0)
             {
-                await ThreadUtil.EsperarAsync(250);
+                await ThreadUtil.EsperarAsync(200);
             }
-            await ThreadUtil.EsperarAsync(250);
+            await ThreadUtil.EsperarAsync(200);
         }
 
         //#region AcessoDados - Pesquisa - Ordenação - Paginação
@@ -344,7 +346,6 @@
 
         private async AtualizarResultadoConsultaAsync(resultadoConsulta: a.ResultadoConsulta): Promise<void>
         {
-
             if (!this.IsControleInicializado)
             {
                 return;
@@ -352,8 +353,13 @@
 
             let entidades = (resultadoConsulta.Entidades as any) as ListaObservacao<T>;
             entidades = this.NormalizarEntidades(entidades);
+
+
+
             if (this.ControlePaginacao instanceof ControleProximaPagina)
             {
+                this.ControlePaginacao.TotalRegistros = resultadoConsulta.TotalRegistros;
+
                 if (!((this.Lista instanceof Array) && ListaUtil.IsListaObservacao(this.Lista)))
                 {
                     this.Lista = new ListaObservacao<any>();
@@ -365,17 +371,13 @@
                     this.Lista.push(viewModelOuEntidade as any);
                 }
                 this.Fila.AddRange(entidades);
-                this.AdicionarProximoItem();
+                await this.PopularFilaAsync();
             }
             else 
             {
                 this.Lista = entidades;
             }
 
-            if (this.ControlePaginacao != null)
-            {
-                this.ControlePaginacao.TotalRegistros = resultadoConsulta.TotalRegistros;
-            }
         }
 
         private NormalizarEntidades(entidades: ListaObservacao<any>): ListaObservacao<any>
@@ -474,30 +476,49 @@
         {
             this.Fila.Clear();
             this.Fila.AddRange(this._lista);
-            this.AdicionarProximoItem();
+            this.PopularFilaAsync();
         }
 
-        private AdicionarProximoItem(): void
+        private async PopularFilaAsync(): Promise<void>
         {
-            if (this.IsControleInicializado)
+            await ThreadUtil.BloquearAsync(this, x => x._isPopularFila);
+            try
             {
-                if (this.Fila.Count === 0)
-                {
-                    this.EventoListaAtualizada.Notificar(this, EventArgs.Empty);
-                    return;
-                }
-                this.AdicionarItemFila();
+                this._isPopularFila = true;
+                await this.PopularFilaInternoAsync();
+            }
+            finally
+            {
+                this._isPopularFila = false;
             }
         }
+
+        private async PopularFilaInternoAsync(): Promise<void>
+        {
+            while (this.Fila.Count > 0)
+            {
+                const proximoItem = this.Fila.Dequeue();
+                this.AdicionarItem(proximoItem);
+                await ThreadUtil.QuebrarAsync();
+            }
+        }
+
+        //private AdicionarProximoItem(): void
+        //{
+        //    if (this.IsControleInicializado)
+        //    {
+        //        if (this.Fila.Count === 0)
+        //        {
+        //            this.EventoListaAtualizada.Notificar(this, EventArgs.Empty);
+        //            return;
+        //        }
+        //        this.AdicionarItemFila();
+        //    }
+        //}
 
         private AdicionarItemFila(): void
         {
-            const proximoItem = this.Fila.shift();
-            if (u.ValidacaoUtil.IsDefinido(proximoItem))
-            {
-                this.AdicionarItem(proximoItem);
-                this.AdicionarProximoItem();
-            }
+
         }
 
         private RetornarTipoItemLista(): r.BaseTipo
