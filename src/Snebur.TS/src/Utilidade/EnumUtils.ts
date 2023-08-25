@@ -9,39 +9,68 @@
 
         public static RetornarValoresEnum<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
         {
-            const valores = EnumUtil.RetornarItemsEnum(construtorEnum).Where(x => u.ValidacaoUtil.IsNumber(x));
-            return valores as Array<TEnum[keyof TEnum]>;
-        }
-
-        public static RetornarValoresEnumString<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
-        {
-            const valores = EnumUtil.RetornarItemsEnum(construtorEnum).Where(x => u.ValidacaoUtil.IsString(x));
-            return valores as Array<TEnum[keyof TEnum]>;
+            const valores = Object.values(construtorEnum as any);
+            const valoresNumeros = valores.Where(x => typeof x === "number");
+            if (valoresNumeros.Count > 0)
+            {
+                return valoresNumeros;
+            }
+            return valores;
         }
 
         public static RetornarDescricoes(construtorEnum: any): Array<string>
         {
-            return EnumUtil.RetornarItemsEnum(construtorEnum).Where(x => u.ValidacaoUtil.IsString(x));
+            const keys = Object.keys(construtorEnum);
+            const keysNumbers = keys.Where(x => u.ValidacaoUtil.IsNumber(x, true));
+            if (keysNumbers.Count > 0)
+            {
+                return keysNumbers.Select(x => construtorEnum[x]);
+            }
+            return keys;
         }
 
-        public static RetornarDescricao(construtorEnum: any, valor: number | string | any): string
+        public static RetornarDescricao(construtorEnum: any, valor: number | string | any, isIngorarErro: boolean = false): string
         {
-            if (construtorEnum == null)
+            if (construtorEnum != null && valor != null)
             {
-                return valor;
+                if (typeof construtorEnum[valor] === "number")
+                {
+                    const descricao = construtorEnum[construtorEnum[valor]];
+                    if (typeof descricao === "string")
+                    {
+                        return descricao;
+                    }
+                }
+
+                const descricao = construtorEnum[valor];
+                if (typeof descricao === "string" &&
+                    typeof construtorEnum[descricao] === "number")
+                {
+                    return descricao;
+                }
+
+                if (valor in construtorEnum &&
+                    typeof construtorEnum[valor] === "string")
+                {
+                    return valor;
+                }
+
+                const index = Object.values(construtorEnum).indexOf(valor);
+                if (index !== -1)
+                {
+                    const key = Object.keys(construtorEnum)[index];
+                    if (typeof key === "string")
+                    {
+                        return key;
+                    }
+                }
             }
 
-            if (typeof construtorEnum[valor] === "number")
+            if (isIngorarErro)
             {
-                return valor as string;
+                return null;
             }
-
-            const descricao = construtorEnum[valor];
-            if (String.IsNullOrWhiteSpace(descricao))
-            {
-                return valor as string;
-            }
-            return descricao;
+            throw new Erro(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${construtorEnum.constructor.name}`);
         }
 
         public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum]): string
@@ -58,7 +87,7 @@
             if (construtorEnum?.Rotulos != null)
             {
                 const rotulo = construtorEnum.Rotulos[descricao];
-                if (!String.IsNullOrWhiteSpace(rotulo))
+                if (typeof rotulo === "string")
                 {
                     return rotulo;
                 }
@@ -76,12 +105,13 @@
             {
                 return valor;
             }
-            
+
             if (isIgnorarErro)
             {
                 if (typeof descricao === "string")
                 {
-                    const descricaoSensivel = EnumUtil.RetornarDescricoes(construtorEnum).Where(x => x.toLowerCase().trim() === descricao).SingleOrDefault();
+                    const descricoes = EnumUtil.RetornarDescricoes(construtorEnum);
+                    const descricaoSensivel = descricoes.Where(x => x.toLowerCase().trim() === descricao).SingleOrDefault();
                     if (descricaoSensivel != null)
                     {
                         const valor = EnumUtil.RetornarValorInterno(construtorEnum, descricaoSensivel, isIgnorarErro);
@@ -100,24 +130,53 @@
 
         private static RetornarValorInterno(construtorEnum: any, descricao: string | number, isIngorarErro: boolean): any
         {
-            const objectoEnum = (construtorEnum as any);
-            const valor = objectoEnum[descricao];
-            if (valor != null)
+            if (construtorEnum != null && descricao != null)
             {
-                if (typeof valor === "number" && isFinite(valor))
+                const objectoEnum = (construtorEnum as any);
+                const valor = objectoEnum[descricao];
+                if (valor == null)
                 {
-                    return valor;
-                }
-                 
-                if (typeof objectoEnum[valor] === "number" && isFinite(objectoEnum[valor]))
-                {
-                    return objectoEnum[valor];
+                    const descricaoTemp = EnumUtil.RetornarDescricao(construtorEnum, descricao, isIngorarErro);
+                    if (typeof descricaoTemp === "string" &&
+                        typeof objectoEnum[descricaoTemp] === "string")
+                    {
+                        return objectoEnum[descricaoTemp];
+                    }
                 }
 
-                if (typeof valor === "string" &&
-                    typeof descricao === "string")
+                if (valor != null)
                 {
-                    return valor;
+                    if (typeof valor === "string" &&
+                        typeof objectoEnum[valor] === "number")
+                    {
+                        return objectoEnum[valor];
+                    }
+
+                    if (typeof valor === "number" &&
+                        typeof objectoEnum[valor] === "string")
+                    {
+                        return valor;
+                    }
+
+                    if (typeof valor === "string" &&
+                        typeof descricao === "string")
+                    {
+                        if (valor in construtorEnum)
+                        {
+                            return construtorEnum[valor];
+                        }
+
+                        const valores = Object.values(construtorEnum);
+                        const index = valores.indexOf(valor);
+                        if (index !== -1)
+                        {
+                            const key = Object.keys(construtorEnum)[index];
+                            if (typeof key === "string")
+                            {
+                                return construtorEnum[key];
+                            }
+                        }
+                    }
                 }
             }
 
@@ -126,11 +185,6 @@
                 return null;
             }
             throw new Erro(`Não foi possível encontrar o valor '${descricao}'  no enum  ${construtorEnum.constructor.name}`);
-        }
-
-        public static RetornarListaDescricao(construtorEnum: any): Array<string>
-        {
-            return EnumUtil.RetornarItemsEnum(construtorEnum).Where(x => u.ValidacaoUtil.IsString(x)) as Array<string>;
         }
 
         //public static RetornarFlags<T>(construtorEnum: any, valor: number): Array<T>
@@ -187,9 +241,14 @@
             return false;
         }
 
-        private static RetornarItemsEnum(construtorEnum: any): any[]
-        {
-            return Object.keys(construtorEnum).Select(x => construtorEnum[x]);
-        }
+        //private static RetornarItemsEnum(construtorEnum: any): any[]
+        //{
+        //    const keys = Object.keys(construtorEnum); 
+        //    if (keys.Any(x => construtorEnum[x] == construtorEnum[construtorEnum[x]]))
+        //    {
+        //        return Object.keys(construtorEnum).Select(x => construtorEnum[x]);
+        //    }
+        //    return keys;
+        //}
     }
 }
