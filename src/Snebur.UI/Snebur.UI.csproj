@@ -913,6 +913,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Fila.ts" />
     <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\GerenciadorFalhaConexao.ts" />
     <TypeScriptCompile Include="src\Controle\Apresentacao\MenuContexto\BaseMenuContexto.ts" />
     <TypeScriptCompile Include="src\Controle\LazyControle.ts" />

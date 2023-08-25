@@ -268,3 +268,43 @@
         readonly NomeExpressao: string;
     }
 }
+
+
+
+//const obj = {
+//    quantity: 5,
+//    price: 10,
+//    name: "Teste"
+//};
+
+////https://github.com/vuejs/core/blob/e7d5a41758013966c3d9ce47c01f13da7d8c395a/packages/compiler-core/src/validateExpression.ts#L43
+//const code = "Math.round(quantity * price) * 0.1";  // dynamic code
+//function extractVariableNames(code: string)
+//{
+//    // Regular expression to match variable names
+//    const variableRegex = /[a-zA-Z_][a-zA-Z0-9_]*(?=\s*[\\[({]|$)/g;
+//    // Extract variable names from the code using the regular expression
+//    const variableNames = code.match(variableRegex);
+//    return variableNames || [];
+//}
+
+//function evaluateCode(obj: any, code: string)
+//{
+//    try
+//    {
+//        const variableNames = extractVariableNames(code);
+//        const variableValues = variableNames.map(name => obj[name]);
+
+//        const evaluator = new Function(...variableNames, "return " + code);
+//        const result = evaluator(...variableValues);
+
+//        return result;
+//    } catch (error)
+//    {
+//        console.error("Error while evaluating code:", error);
+//        return null;
+//    }
+//}
+
+//const result = evaluateCode(obj, code);
+//console.log("Result:", result);

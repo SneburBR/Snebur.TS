@@ -94,7 +94,9 @@ namespace Snebur.UI
 
         private ControleLista_Carregado(provedor: any, e: EventArgs): void
         {
-            if (this.Lista instanceof Array && this.Lista.Count > 0 && this.ItensColecao.ControlesFilho.Count === 0)
+            if (this.Lista instanceof Array &&
+                this.Lista.Count > 0 &&
+                this.ItensColecao.ControlesFilho.Count === 0)
             {
                 this.AdicionarItens();
             }

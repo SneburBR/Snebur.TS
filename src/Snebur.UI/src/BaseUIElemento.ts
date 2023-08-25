@@ -47,7 +47,7 @@
         {
             return this.__isReiniciado;
         }
-         
+
         public get Elemento(): HTMLElement
         {
             return this._elemento;
@@ -93,7 +93,7 @@
         //#endregion
 
         //#region DataSource
-         
+
         protected get _dataSource(): any
         {
             return this.___dataSource__;
@@ -264,11 +264,13 @@
                 {
                     const nomeMetodo = valorAtributoVisibilidade.replace("this.", String.Empty);
                     const metodo = this.RetornarMetodo(nomeMetodo);
-                    const valorTipado = metodo();
+                    let valorTipado = metodo();
+
                     if (!u.EnumUtil.IsDefindo(EnumVisibilidade, valorTipado) &&
                         !ValidacaoUtil.IsBoolean(valorTipado))
                     {
-                        throw new ErroOperacaoInvalida(`O valor do enum visibilidade retornado pelo método ${valorAtributoVisibilidade} não  é inválido`, this);
+                        console.error(`O valor do enum visibilidade retornado pelo método ${valorAtributoVisibilidade} não  é inválido, em ${this.ControleApresentacao?.___NomeConstrutor}`, this);
+                        valorTipado = EnumVisibilidade.Visivel;
                     }
                     this.Visibilidade = valorTipado;
                 }
@@ -280,7 +282,14 @@
                         console.error(`O valo atributo ${AtributosHtml.Visibilidade.Nome}="${valorAtributoVisibilidade}" não é suportado, em ${this.ControleApresentacao?.___NomeConstrutor}`);
                         return;
                     }
-                    this.Visibilidade = u.EnumUtil.RetornarValor(EnumVisibilidade, valorAtributoVisibilidade);
+
+                    let visibilidade = u.EnumUtil.RetornarValor(EnumVisibilidade, valorAtributoVisibilidade, true);
+                    if (visibilidade == null)
+                    {
+                        console.error(`O valo atributo ${AtributosHtml.Visibilidade.Nome}="${valorAtributoVisibilidade}" não é suportado, em ${this.ControleApresentacao?.___NomeConstrutor}`);
+                        visibilidade = EnumVisibilidade.Visivel;
+                    }
+                    this.Visibilidade = visibilidade;
                 }
             }
         }
@@ -819,7 +828,7 @@
 
                 if (atributo.name.StartsWith("zs-"))
                 {
-                    console.error(`Renomear ZS- para SN-. Construtor ${ this.ControleApresentacao.___NomeConstrutor }`);
+                    console.error(`Renomear ZS- para SN-. Construtor ${this.ControleApresentacao.___NomeConstrutor}`);
                 }
 
                 if (atributo.name.StartsWith(PREFIXO_ATRIBUTO_SNEBUR))
@@ -928,7 +937,7 @@
 
                 this.DispensarEventosDom();
                 super.Dispose();
-                
+
 
                 (this as any).EventosDom = null;
                 this._elemento = null;

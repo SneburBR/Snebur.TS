@@ -9,6 +9,8 @@
             return (this.Template as TemplateLinhaDetalhes);
         }
 
+      
+
         public constructor(controlePai: BaseControle, template: TemplateLinhaDetalhes, numeroColunas: number, )
         {
             super(controlePai, ElementoUtil.RetornarNovoIDElemento(controlePai, "conteudo-linha-detalhes"), template);

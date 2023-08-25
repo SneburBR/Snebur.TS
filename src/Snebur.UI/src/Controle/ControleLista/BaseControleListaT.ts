@@ -5,8 +5,6 @@
     export abstract class BaseControleLista<T extends TipoItemLista = any> extends BaseControleApresentacaoFormulario implements IControleLista
     {
         public static REGISTROS_POR_PAGINA_PADRAO = 100;
-        
-
         /*@internal*/
         public __FuncaoRetornarConsulta: FuncaoConsulta;
         /*@internal*/
@@ -14,7 +12,8 @@
         /*@internal*/
         public __FuncaoNormalizar: FuncaoNormalizar;
 
-        private _isPopularFila : boolean = false;
+        private _isAsync: boolean = false;
+        private _isPopularFila: boolean = false;
         private _lista: ListaObservacao<T> = null;
         protected _sentidoOrdenacao: EnumSentidoOrdenacao;
 
@@ -33,6 +32,22 @@
         public TipoItemLista: r.BaseTipo;
 
         private readonly Fila = new Fila<T>();
+
+        public get StatusControleLista(): EnumStatusControleLista
+        {
+            return this.RetornarStatusControleLista();
+
+        }
+
+        public get SentidoOrdenacao(): d.EnumSentidoOrdenacao
+        {
+            return this._sentidoOrdenacao;
+        }
+
+        public get IsAsync(): boolean
+        {
+            return this._isAsync;
+        }
 
         public get Lista(): ListaObservacao<T>
         {
@@ -84,16 +99,7 @@
             this.EventoListaAlterada.Notificar(this, EventArgs.Empty);
         }
 
-        public get StatusControleLista(): EnumStatusControleLista
-        {
-            return this.RetornarStatusControleLista();
 
-        }
-
-        public get SentidoOrdenacao(): d.EnumSentidoOrdenacao
-        {
-            return this._sentidoOrdenacao;
-        }
 
         public abstract get IsMarcarItem(): boolean;
         public abstract get TotalItens(): number;
@@ -125,6 +131,7 @@
         {
             super.Inicializar();
 
+            this._isAsync =this.RetornarValorAtributoBoolean(AtributosHtml.IsAsync, false);
             this.TipoItemLista = this.RetornarTipoItemLista();
             this.RelacoesAberta = this.RetornarValorAtributo(AtributosHtml.RelacoesAberta, null);
             this.IsConsultarTipoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.ConultarTipoAutomaticamente, false);
@@ -476,7 +483,14 @@
         {
             this.Fila.Clear();
             this.Fila.AddRange(this._lista);
-            this.PopularFilaAsync();
+            if (this.IsAsync)
+            {
+                this.PopularFilaAsync();
+            }
+            else
+            {
+                this.PopularFilaSync();
+            }
         }
 
         private async PopularFilaAsync(): Promise<void>
@@ -490,6 +504,15 @@
             finally
             {
                 this._isPopularFila = false;
+            }
+        }
+
+        private PopularFilaSync(): void
+        {
+            while (this.Fila.Count > 0)
+            {
+                const proximoItem = this.Fila.Dequeue();
+                this.AdicionarItem(proximoItem);
             }
         }
 

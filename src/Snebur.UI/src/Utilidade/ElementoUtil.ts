@@ -365,26 +365,32 @@
             {
                 return false;
             }
+            const rect = elemento.getBoundingClientRect();
+            return (rect.width > 0 && rect.height > 0);
 
-            const estilosComputado = window.getComputedStyle(elemento, null);
-            const displayComputado = estilosComputado.getPropertyValue("display");
-            /* const visibilityComputado = estilosComputado.getPropertyValue("visibility");  */
+            //const estilosComputado = window.getComputedStyle(elemento, null);
+            //const displayComputado = estilosComputado.getPropertyValue("display");
+            ///* const visibilityComputado = estilosComputado.getPropertyValue("visibility");  */
 
-            if (displayComputado === "none" /*   ||
-                visibilityComputado === "hidden" ||
-                visibilityComputado === "collapse*/)
-            {
-                if ($Configuracao.IsDebug)
-                {
-                    if (!EstiloUtil.IsPosicaoZerada(elemento.getBoundingClientRect()))
-                    {
-                        throw new Erro("Falha analisar visibilidade do elemento");
-                    }
-                }
-                return false;
-            }
-            return true;
+
+            //if (displayComputado === "none" /*   ||
+            //    visibilityComputado === "hidden" ||
+            //    visibilityComputado === "collapse*/)
+            //{
+            //    if ($Configuracao.IsDebug)
+            //    {
+            //        if (!EstiloUtil.IsPosicaoZerada(rect))
+            //        {
+            //            throw new Erro("Falha analisar visibilidade do elemento");
+            //        }
+            //    }
+            //    return false;
+            //}
+            //return true;
+
         }
+
+
 
         public static RetornarPosicaoElemento(refElemento: HTMLElement | string): IClientRect
         {
