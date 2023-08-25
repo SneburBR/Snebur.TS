@@ -124,8 +124,7 @@
                 this._isSalvando = false;
             }
         }
-
-
+         
         public async SalvarAvancadoAsync(
             argsEntidades: List<IEntidade> | IEntidade,
             argsEntidadesAlvos?: List<IEntidade> | IEntidade)
@@ -171,7 +170,6 @@
 
         }
 
-
         private async TrySalvarInternoAsync(entidades: d.Entidade[]): Promise<a.ResultadoSalvar>
         {
             try
@@ -184,7 +182,6 @@
 
             }
         }
-
 
         private async SalvarInternoAsync(entidades: d.Entidade[])
         {
@@ -232,8 +229,7 @@
                 MensagemErro: mensagemErro
             });
         }
-
-
+         
         public DeletarAsync(entidade: d.Entidade): Promise<ResultadoDeletar>
         public DeletarAsync(entidade: d.IEntidade): Promise<ResultadoDeletar>
         public DeletarAsync(entidade: d.Entidade, relacoesEmCascata: string): Promise<ResultadoDeletar>
@@ -283,32 +279,54 @@
 
         //#region Recuperar Propriedades
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<ResultadoSalvar>
-        public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<ResultadoSalvar>
-        public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<ResultadoSalvar>
+        public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade> | Array<string>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidades: List<TEntidade>, ...expressoes: Array<(value: TEntidade) => any>): Promise<ResultadoSalvar>
         public async SalvarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(argumentoEntidades: TEntidade, ...expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Promise<ResultadoSalvar>
         {
             const entidades = this.RetornarEntidades(argumentoEntidades);
-            const entidadesClonada = new List<Entidade>();
+            if (entidades.length === 0)
+            {
+                return new ResultadoSalvar({
+                    IsSucesso: true
+                });
+            }
+
+            if (entidades.Any(x => x.Id === 0))
+            {
+                throw new Erro("Não é possível recuperar propriedades de um entidade não salva");
+            }
+
+            const entidadesSalvar = new List<Entidade>();
             for (const entidade of entidades)
             {
-                const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(entidade as TEntidade, expressoesOuPropriedades);
-                const clone = entidade.CloneSomenteId();
-                clone.Id = entidade.Id;
-                for (const nomePropriedade of nomesPropriedades)
+                if (entidade.__IsExisteAlteracao)
                 {
-                    //var nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressão);
-                    (clone as any)[nomePropriedade] = (entidade as any)[nomePropriedade];
+                    const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(expressoesOuPropriedades);
+                    const clone = entidade.CloneSomenteId();
+                    clone.__PropriedadesAlteradas.Clear();
+                    (clone as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+                    clone.Id = entidade.Id;
+
+                    for (const nomePropriedade of nomesPropriedades)
+                    {
+                        if (entidade.__PropriedadesAlteradas.ContainsKey(nomePropriedade))
+                        {
+                            (clone as any)[nomePropriedade] = (entidade as any)[nomePropriedade];
+                            clone.__PropriedadesAlteradas.AddOrUpdate(nomePropriedade, entidade.__PropriedadesAlteradas.Item(nomePropriedade));
+                        }
+                    }
+                    (clone as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+                    entidadesSalvar.Add(clone);
                 }
-                entidadesClonada.Add(clone);
+
             }
             this._isAtualizandoPropriedades = true;
-            const resultado = await this.SalvarAvancadoAsync(entidadesClonada, []);
+            const resultado = await this.SalvarAvancadoAsync(entidadesSalvar, []);
             if (resultado.IsSucesso)
             {
+                const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(expressoesOuPropriedades);
                 for (const entidade of entidades)
                 {
-                    const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(entidade as TEntidade, expressoesOuPropriedades);
                     entidade.__PropriedadesAlteradas.RemoveAll(nomesPropriedades);
                 }
             }
@@ -317,23 +335,26 @@
         }
 
         public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoes: Array<(value: TEntidade) => any>): Promise<void>
-        public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...propriedades: Array<r.Propriedade>): Promise<void>
-        public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...nomesPropriedades: Array<string>): Promise<void>
-        public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidade: TEntidade, ...expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Promise<void>
+        public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(entidades: List<TEntidade>, ...expressoes: Array<(value: TEntidade) => any>): Promise<void>
+        public async RecuperarPropriedadesAsync<TEntidade extends Entidade | IEntidade>(argumentoEntidades: TEntidade, ...expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Promise<void>
         {
-            if (!(entidade.Id > 0))
+            const entidades = this.RetornarEntidades(argumentoEntidades);
+            if (entidades.length === 0)
+            {
+                return;
+            }
+
+            if (entidades.Any(x => x.Id === 0))
             {
                 throw new Erro("Não é possível recuperar propriedades de um entidade não salva");
             }
 
-            //const clone = (entidade as Entidade).CloneSomenteId();
-            const tipoEntidade = entidade.GetType();
-            //clone.Id = entidade.Id;
+            const tipoEntidade = entidades[0].GetType();
+            const ids = entidades.Select(x => x.Id);
+            const consulta = this.RetornarConsulta(tipoEntidade).WhereIds(ids);
+            consulta.IncluirDeletados();
+            const nomesPropriedades = this.RetornarNomesProprieades(expressoesOuPropriedades);
 
-            const consulta = this.RetornarConsulta(tipoEntidade).
-                Where(x => x.Id === entidade.Id);
-            //let propriedades = expressoesPropriedades.Select(x => ExpressaoUtil.RetornarCaminhoPropriedade(x));
-            const nomesPropriedades = this.RetornarNomesProprieades(entidade, expressoesOuPropriedades);
             for (const nomePropriedade of nomesPropriedades)
             {
                 //###### o serializador não está serializando o tipo HashSet
@@ -346,57 +367,36 @@
                 consulta.EstruturaConsulta.PropriedadesAbertas.Add(nomePropriedade);
             }
 
-            const resultado = await consulta.SingleAsync() as any;
-            const entidadeAny = entidade as any;
-            for (const nomePropriedade of nomesPropriedades)
+            const entidadesRecuperada = await consulta.ToListAsync();
+            for (const entidadeRecuperada of entidadesRecuperada)
             {
-                entidadeAny[nomePropriedade] = resultado[nomePropriedade];
-            }
-        }
-
-        private RetornarNomesProprieades<TEntidade extends IEntidade | Entidade>(
-            entidade: TEntidade,
-            expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Array<string>
-        {
-            const retorno = new Array<string>();
-            for (const expressaoOuPropriedade of expressoesOuPropriedades)
-            {
-                const tipo = typeof expressaoOuPropriedade;
-                switch (tipo)
+                const entidade = entidades.Where(x => x.Id === entidadeRecuperada.Id).Single();
+                for (const nomePropriedade of nomesPropriedades)
                 {
-                    case "string":
-
-                        retorno.Add(expressaoOuPropriedade as string);
-                        break;
-
-                    case "function": {
-                        const nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressaoOuPropriedade as Function);
-                        retorno.Add(nomePropriedade);
-                        break;
-                    }
-                    case "object":
-                        if (expressaoOuPropriedade instanceof r.Propriedade)
-                        {
-                            retorno.Add(expressaoOuPropriedade.Nome);
-                            break;
-                        }
-                        break;
-                    default:
-
-                        throw new Erro("O tipo  '{0}' da expressão ou propriedade não é suportado");
+                    (entidade as any)[nomePropriedade] = (entidadeRecuperada as any)[nomePropriedade];
                 }
+                entidade.__PropriedadesAlteradas.RemoveAll(nomesPropriedades);
             }
-            return retorno;
         }
-
-        public async RecuperarAsync<TEntidade extends Entidade>
-            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+         
+        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(argumentoEntidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         {
-            if (entidade.Id === 0)
+            const entidades = this.RetornarEntidades(argumentoEntidades);
+            if (entidades.length === 0)
             {
-                throw new Erro("Não é possível atualizar uma entidade não salva");
+                return;
             }
-            const consulta = this.RetornarConsulta(entidade.GetType());
+
+            if (entidades.Any(x => x.Id === 0))
+            {
+                throw new Erro("Não é possível recuperar propriedades de um entidade não salva");
+            }
+
+            const tipoEntidade = entidades[0].GetType();
+            const consulta = this.RetornarConsulta(tipoEntidade);
+
             if (expressoesAbrirRelacao?.length > 0)
             {
                 for (const expresaoAbrirRelacao of expressoesAbrirRelacao)
@@ -405,26 +405,35 @@
                 }
             }
 
-            consulta.Where(x => x.Id === entidade.Id);
-            const entidadeRecuperada = await consulta.SingleAsync();
-            for (const propriedade of entidade.GetType().RetornarPropriedades())
+            const ids = entidades.Select(x => x.Id);
+            consulta.WhereIds(ids);
+
+            const propriedades = tipoEntidade.RetornarPropriedades();
+            const entidadesRecuperada = await consulta.ToListAsync();
+
+            for (const entidadeRecuperada of entidadesRecuperada)
             {
-                const valorPropriedade = (entidade as any)[propriedade.Nome];
-                const valorPropriedadeRecuperada = (entidadeRecuperada as any)[propriedade.Nome];
-                if (valorPropriedade !== valorPropriedadeRecuperada)
+                const entidade= entidades.Where(x => x.Id === entidadeRecuperada.Id).Single();
+                for (const propriedade of propriedades)
                 {
-                    if (propriedade.Tipo instanceof r.TipoPrimario ||
-                        propriedade.Tipo instanceof r.TipoEnum ||
-                        propriedade.Tipo instanceof r.TipoComplexo)
+                    const valorPropriedade = (entidade as any)[propriedade.Nome];
+                    const valorPropriedadeRecuperada = (entidadeRecuperada as any)[propriedade.Nome];
+                    if (valorPropriedade !== valorPropriedadeRecuperada)
                     {
-                        (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
-                    }
-                    else if (propriedade.Tipo instanceof d.Entidade &&
-                        valorPropriedadeRecuperada instanceof d.Entidade)
-                    {
-                        (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                        if (propriedade.Tipo instanceof r.TipoPrimario ||
+                            propriedade.Tipo instanceof r.TipoEnum ||
+                            propriedade.Tipo instanceof r.TipoComplexo)
+                        {
+                            (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                        }
+                        else if (propriedade.Tipo instanceof d.Entidade &&
+                            valorPropriedadeRecuperada instanceof d.Entidade)
+                        {
+                            (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                        }
                     }
                 }
+                entidade.__PropriedadesAlteradas.Clear();
             }
         }
 
@@ -515,7 +524,6 @@
         protected RetornarEntidades(parametro: any): Array<d.Entidade>
         {
             const entidades = new Array<d.Entidade>();
-
             if (parametro instanceof d.Entidade)
             {
                 entidades.Add(parametro);
@@ -551,7 +559,39 @@
             return retorno;
         }
 
+        private RetornarNomesProprieades<TEntidade extends IEntidade | Entidade>(expressoesOuPropriedades: Array<(value: TEntidade) => any> | Array<r.Propriedade> | Array<string>): Array<string>
+        {
+            const retorno = new Array<string>();
+            for (const expressaoOuPropriedade of expressoesOuPropriedades)
+            {
+                const tipo = typeof expressaoOuPropriedade;
+                switch (tipo)
+                {
+                    case "string":
 
+                        retorno.Add(expressaoOuPropriedade as string);
+                        break;
+
+                    case "function": {
+                        const nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressaoOuPropriedade as Function);
+                        retorno.Add(nomePropriedade);
+                        break;
+                    }
+                    case "object":
+                        if (expressaoOuPropriedade instanceof r.Propriedade)
+                        {
+                            retorno.Add(expressaoOuPropriedade.Nome);
+                            break;
+                        }
+                        break;
+                    default:
+
+                        throw new Erro("O tipo  '{0}' da expressão ou propriedade não é suportado");
+                }
+            }
+            return retorno;
+        }
+         
         //#endregion
 
         //#region IDisposable
