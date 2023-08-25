@@ -35,9 +35,40 @@
             {
                 this.ConteudoLinhaDetalhes.DataSource = this.ItemReferencia;
             }
-            this.Visibilidade = EnumVisibilidade.Oculto;
+            const visibilidade = this.RetornarVisibilidade();
+            if (visibilidade != null)
+            {
+                this.Visibilidade = visibilidade;
+            }
         }
 
+        public override OcultarElemento(): void
+        {
+            super.OcultarElemento();
+            this.ConteudoLinhaDetalhes.OcultarElemento();
+        }
+
+        public override MostrarElemento(): void
+        {
+            super.MostrarElemento();
+            this.ConteudoLinhaDetalhes.MostrarElemento();
+        }
+
+        public override get IsVisivel(): boolean
+        {
+            return this.Elemento.IsVisivel &&
+                this.ConteudoLinhaDetalhes.IsVisivel;
+        }
+
+
+        public RetornarVisibilidade(): EnumVisibilidade
+        {
+            if (this.Template.Atributos.Any(x => x.Chave === "sn-visibilidade"))
+            {
+                return null;
+            }
+            return EnumVisibilidade.Oculto;
+        }
 
         //public override Ocupar(): void
         //public override Ocupar(titulo: string, mensagem: string): void
