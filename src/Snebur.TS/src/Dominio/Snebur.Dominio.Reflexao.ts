@@ -80,6 +80,7 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Arquivo_EnumTipoArquivo = new Snebur.Reflexao.TipoEnum("EnumTipoArquivo", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoArquivo, Snebur");
 	export const __$tipoEnum_Snebur_Arquivo_EnumTipoXFG = new Snebur.Reflexao.TipoEnum("EnumTipoXFG", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoXFG, Snebur");
 	export const __$tipoEnum_Snebur_Comparer_EnumCompararPropriedade = new Snebur.Reflexao.TipoEnum("EnumCompararPropriedade", "Snebur.Comparer", "Snebur.Comparer.EnumCompararPropriedade, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade = new Snebur.Reflexao.TipoEnum("EnumOpcoesAlterarPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnumOpcoesAlterarPropriedade, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade = new Snebur.Reflexao.TipoEnum("EnunFlagAlteracaoPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnunFlagAlteracaoPropriedade, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTipoDesbloqueio = new Snebur.Reflexao.TipoEnum("EnumTipoDesbloqueio", "Snebur.Dominio", "Snebur.Dominio.EnumTipoDesbloqueio, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao = new Snebur.Reflexao.TipoEnum("EnumSentidoOrdenacao", "Snebur.Dominio", "Snebur.Dominio.EnumSentidoOrdenacao, Snebur");
@@ -181,6 +182,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Arquivo_EnumTipoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Arquivo.EnumTipoArquivo", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoArquivo, Snebur", __$tipoEnum_Snebur_Arquivo_EnumTipoArquivo);
 	export const __$tipoListaEnum_Snebur_Arquivo_EnumTipoXFG = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Arquivo.EnumTipoXFG", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoXFG, Snebur", __$tipoEnum_Snebur_Arquivo_EnumTipoXFG);
 	export const __$tipoListaEnum_Snebur_Comparer_EnumCompararPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Comparer.EnumCompararPropriedade", "Snebur.Comparer", "Snebur.Comparer.EnumCompararPropriedade, Snebur", __$tipoEnum_Snebur_Comparer_EnumCompararPropriedade);
+	export const __$tipoListaEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumOpcoesAlterarPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnumOpcoesAlterarPropriedade, Snebur", __$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	export const __$tipoListaEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnunFlagAlteracaoPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnunFlagAlteracaoPropriedade, Snebur", __$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTipoDesbloqueio = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTipoDesbloqueio", "Snebur.Dominio", "Snebur.Dominio.EnumTipoDesbloqueio, Snebur", __$tipoEnum_Snebur_Dominio_EnumTipoDesbloqueio);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumSentidoOrdenacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumSentidoOrdenacao", "Snebur.Dominio", "Snebur.Dominio.EnumSentidoOrdenacao, Snebur", __$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao);
@@ -282,6 +284,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Arquivo.EnumTipoArquivo",__$tipoEnum_Snebur_Arquivo_EnumTipoArquivo);
 	$Reflexao.Tipos.Adicionar("Snebur.Arquivo.EnumTipoXFG",__$tipoEnum_Snebur_Arquivo_EnumTipoXFG);
 	$Reflexao.Tipos.Adicionar("Snebur.Comparer.EnumCompararPropriedade",__$tipoEnum_Snebur_Comparer_EnumCompararPropriedade);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumOpcoesAlterarPropriedade",__$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnunFlagAlteracaoPropriedade",__$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTipoDesbloqueio",__$tipoEnum_Snebur_Dominio_EnumTipoDesbloqueio);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumSentidoOrdenacao",__$tipoEnum_Snebur_Dominio_EnumSentidoOrdenacao);
@@ -382,6 +385,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Arquivo_EnumTipoArquivo",__$tipoListaEnum_Snebur_Arquivo_EnumTipoArquivo);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Arquivo_EnumTipoXFG",__$tipoListaEnum_Snebur_Arquivo_EnumTipoXFG);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Comparer_EnumCompararPropriedade",__$tipoListaEnum_Snebur_Comparer_EnumCompararPropriedade);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade",__$tipoListaEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade",__$tipoListaEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTipoDesbloqueio",__$tipoListaEnum_Snebur_Dominio_EnumTipoDesbloqueio);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumSentidoOrdenacao",__$tipoListaEnum_Snebur_Dominio_EnumSentidoOrdenacao);
@@ -483,6 +487,7 @@ namespace Snebur.Reflexao
 	Snebur.Arquivo.EnumTipoArquivo.__CaminhoTipo = "Snebur.Arquivo.EnumTipoArquivo";
 	Snebur.Arquivo.EnumTipoXFG.__CaminhoTipo = "Snebur.Arquivo.EnumTipoXFG";
 	Snebur.Comparer.EnumCompararPropriedade.__CaminhoTipo = "Snebur.Comparer.EnumCompararPropriedade";
+	Snebur.Dominio.EnumOpcoesAlterarPropriedade.__CaminhoTipo = "Snebur.Dominio.EnumOpcoesAlterarPropriedade";
 	Snebur.Dominio.EnunFlagAlteracaoPropriedade.__CaminhoTipo = "Snebur.Dominio.EnunFlagAlteracaoPropriedade";
 	Snebur.Dominio.EnumTipoDesbloqueio.__CaminhoTipo = "Snebur.Dominio.EnumTipoDesbloqueio";
 	Snebur.Dominio.EnumSentidoOrdenacao.__CaminhoTipo = "Snebur.Dominio.EnumSentidoOrdenacao";

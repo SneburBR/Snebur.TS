@@ -206,6 +206,23 @@ namespace Snebur.Dne
 }
 namespace Snebur.Dominio
 {
+    export enum EnumOpcoesAlterarPropriedade
+    {
+        Nenhuma = 0,
+        NotificarNovoCadastro = 2,
+        VerificarAlteracaoNoBanco = 4,
+        AtualizarDataHoraFimAlteracao = 8,
+        IgnorarZeroIgualNull = 16,
+        IgnorarValorAntigoNull = 32,
+    }
+    (EnumOpcoesAlterarPropriedade as any).Rotulos = {};
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["Nenhuma"] = "Nenhuma";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["NotificarNovoCadastro"] = "NotificarNovoCadastro";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["VerificarAlteracaoNoBanco"] = "VerificarAlteracaoNoBanco";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["AtualizarDataHoraFimAlteracao"] = "AtualizarDataHoraFimAlteracao";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["IgnorarZeroIgualNull"] = "IgnorarZeroIgualNull";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["IgnorarValorAntigoNull"] = "IgnorarValorAntigoNull";
+
     export enum EnunFlagAlteracaoPropriedade
     {
         None = 0,

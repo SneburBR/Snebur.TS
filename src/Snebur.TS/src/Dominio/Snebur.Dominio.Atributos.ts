@@ -86,7 +86,7 @@ namespace Snebur.Dominio.Atributos
         private _propriedadeRelacao : r.Propriedade | string = null;
         private _propriedadeValorAlterado : r.Propriedade | string = null;
         private _propriedadeValorAntigo : r.Propriedade | string = null;
-        private _flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade = 0;
+        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
     
         public get TipoEntidadeAlteracaoPropriedade(): r.BaseTipo | string 
         {
@@ -148,27 +148,27 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("PropriedadeValorAntigo", this._propriedadeValorAntigo, this._propriedadeValorAntigo = value);
         }
     
-        public get Flags(): Snebur.Dominio.EnunFlagAlteracaoPropriedade 
+        public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
-            return this._flags;
+            return this._opcoes;
         }
 
-        public set Flags(value: Snebur.Dominio.EnunFlagAlteracaoPropriedade) 
+        public set Opcoes(value: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
-            this.NotificarValorPropriedadeAlterada("Flags", this._flags, this._flags = value);
+            this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
         }
         //#endregion
     
         //#region Construtor
     
-        public constructor( tipoEntidadeAlteracaoPropriedade : r.BaseTipo | string ,  nomePropriedadeRelacao : string ,  nomePropriedadeAlterada : string ,  flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade ) 
+        public constructor( tipoEntidadeAlteracaoPropriedade : r.BaseTipo | string ,  nomePropriedadeRelacao : string ,  nomePropriedadeAlterada : string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
         {
             super();
             this.Inicializar();
             this._tipoEntidadeAlteracaoPropriedade = tipoEntidadeAlteracaoPropriedade;
             this._nomePropriedadeRelacao = nomePropriedadeRelacao;
             this._nomePropriedadeAlterada = nomePropriedadeAlterada;
-            this._flags = flags;
+            this._opcoes = opcoes;
         }
         //#endregion
     }
@@ -176,26 +176,50 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        private _flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade = 0;
+        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
+        private _formatacao : string = null;
+        private _tipoPropriedade : r.BaseTipo | string = null;
     
-        public get Flags(): Snebur.Dominio.EnunFlagAlteracaoPropriedade 
+        public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
-            return this._flags;
+            return this._opcoes;
         }
 
-        public set Flags(value: Snebur.Dominio.EnunFlagAlteracaoPropriedade) 
+        public set Opcoes(value: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
-            this.NotificarValorPropriedadeAlterada("Flags", this._flags, this._flags = value);
+            this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
+        }
+    
+        public get Formatacao(): string 
+        {
+            return this._formatacao;
+        }
+
+        public set Formatacao(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Formatacao", this._formatacao, this._formatacao = value);
+        }
+    
+        public get TipoPropriedade(): r.BaseTipo | string 
+        {
+            return this._tipoPropriedade;
+        }
+
+        public set TipoPropriedade(value: r.BaseTipo | string) 
+        {
+            this.NotificarValorPropriedadeAlterada("TipoPropriedade", this._tipoPropriedade, this._tipoPropriedade = value);
         }
         //#endregion
     
         //#region Construtor
     
-        public constructor( flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade ) 
+        public constructor( formatacao : string ,  tipoPropriedade : r.BaseTipo | string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
         {
             super();
             this.Inicializar();
-            this._flags = flags;
+            this._formatacao = formatacao;
+            this._tipoPropriedade = tipoPropriedade;
+            this._opcoes = opcoes;
         }
         //#endregion
     }
@@ -203,16 +227,16 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        private _flags : Snebur.Dominio.EnunFlagAlteracaoPropriedade = 0;
+        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
     
-        public get Flags(): Snebur.Dominio.EnunFlagAlteracaoPropriedade 
+        public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
-            return this._flags;
+            return this._opcoes;
         }
 
-        public set Flags(value: Snebur.Dominio.EnunFlagAlteracaoPropriedade) 
+        public set Opcoes(value: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
-            this.NotificarValorPropriedadeAlterada("Flags", this._flags, this._flags = value);
+            this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
         }
         //#endregion
     

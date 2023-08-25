@@ -246,5 +246,22 @@ namespace Snebur
         configurable: false,
         enumerable: false
     });
+
+
+    Object.defineProperty(Object, "values", {
+        value: function (obj: any): any
+        {
+            if (obj == null)
+            {
+                return [];
+            }
+            const chaves = Object.keys(obj);
+            return chaves.Select(x => obj[x]);
+        },
+        writable: false,
+        configurable: false,
+        enumerable: false
+    });
+
 }
 

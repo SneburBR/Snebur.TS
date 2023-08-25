@@ -241,6 +241,16 @@
             this.Adicionar(chave, objeto);
         }
 
+        public AddOrUpdate(chave: TChave, objeto: TItem): void
+        {
+            if (this.ContainsKey(chave))
+            {
+                this.AtribuirItem(chave, objeto);
+                return;
+            }
+            this.Adicionar(chave, objeto);
+        }
+
         public AddRange(dicionario: DicionarioSimples<TItem, TChave>)
         {
             for (let chave of dicionario.Chaves)

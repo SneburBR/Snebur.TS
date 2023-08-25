@@ -329,7 +329,7 @@
 
         public ExisteExpressaoPropriedadeMetodo(expressaoTexto: string): boolean
         {
-            const metodos = u.EnumUtil.RetornarListaDescricao(EnumOperadorMetodo);
+            const metodos = u.EnumUtil.RetornarDescricoes(EnumOperadorMetodo);
             for (const metodo of metodos)
             {
                 if (expressaoTexto.Contains(metodo + "["))
