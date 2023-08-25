@@ -154,7 +154,8 @@
         public static readonly IsMostrarContadorCaracteres = new AtributoHtml("sn-is-mostrar-contador-caracteres", Boolean);
         public static readonly IsNaoPermitirValorZero = new AtributoHtml("sn-is-nao-permitir-zero", Boolean);
         public static readonly IsNaoFormatarValorVazio = new AtributoHtml("sn-is-nao-formatar-valor-vazio", Boolean);
-         
+
+        public static readonly IsAsync = new AtributoHtml("sn-is-async", Boolean);
         public static readonly Passo = new AtributoHtml("sn-passo", String);
         public static readonly PassoLargo = new AtributoHtml("sn-passo-largo", String);
         public static readonly IsMostrarValor = new AtributoHtml("sn-is-mostrar-valor", Boolean);

@@ -239,9 +239,9 @@
                 throw new Erro("A linha detalhes não foi definida");
             }
 
-            if (linhaDetalhes.Visibilidade === EnumVisibilidade.Oculto)
+            if (!linhaDetalhes.IsVisivel)
             {
-                linhaDetalhes.Visibilidade = EnumVisibilidade.Visivel;
+                linhaDetalhes.MostrarElemento();
                 if (botaoAlterarIcone instanceof ui.Botao)
                 {
                     botaoAlterarIcone.Icone = iconeEncolher;
@@ -257,6 +257,7 @@
             }
             else
             {
+                linhaDetalhes.OcultarElemento();
                 linhaDetalhes.Visibilidade = EnumVisibilidade.Oculto;
                 if (botaoAlterarIcone instanceof ui.Botao)
                 {
@@ -264,7 +265,6 @@
                 }
             }
         }
-
 
         private RetornarLinha(linhaOuProvedor: ui.BaseUIElemento)
         {
@@ -298,7 +298,6 @@
         }
 
         //#endregion
-
 
         //#region Métodos privados
 
@@ -404,8 +403,7 @@
 
             throw new Erro(mensagem);
         }
-
-
+         
         //#endregion
 
         private RetornarManipuladorLinhaClick(): EventoHandler
