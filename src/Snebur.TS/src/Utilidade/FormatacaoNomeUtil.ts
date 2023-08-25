@@ -15,12 +15,12 @@ namespace Snebur.Utilidade
             return String.Empty;
         }
 
-        public static Formatarnome(nome: string): string
+        public static FormatarNome(nome: string): string
         {
             const partes = FormatacaoNomeUtil.RetornarPartes(nome);
             return String.Join(" ", partes);
         }
-         
+
         public static FormatarNomeSobrenome(nomeCompleto: string): [string, string]
         {
             const partesNomeCompleto = FormatacaoNomeUtil.RetornarPartes(nomeCompleto);
@@ -53,7 +53,9 @@ namespace Snebur.Utilidade
 
         private static RetornarPartes(nome: string): string[]
         {
-            const partes = nome.Split(" ");
+           
+
+            const partes = nome.toString().Split(" ");
             return partes.Where(x => !String.IsNullOrEmpty(x)).
                 Select(x => FormatacaoNomeUtil.FormatarParte(x.toLowerCase())).ToList();
         }

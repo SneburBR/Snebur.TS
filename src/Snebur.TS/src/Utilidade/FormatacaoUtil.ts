@@ -15,16 +15,26 @@
 
         // #region Formatar
 
-        public static Formatar(valor: any, argumento: EnumFormatacao | string, isCompletar: boolean = false, isNaoFormatarValorVazio: boolean = false): string
+        public static Formatar(valor: any, formatacao: EnumFormatacao | string, isCompletar: boolean = false, isNaoFormatarValorVazio: boolean = false): string
         {
-            if (isNaoFormatarValorVazio && String.IsNullOrWhiteSpace(valor))
+            if (isNaoFormatarValorVazio &&
+                String.IsNullOrWhiteSpace(valor))
             {
                 return String.Empty;
             }
 
-            const formato = FormatacaoUtil.RetornarFormato(argumento);
-            switch (formato)
+            if (String.IsNullOrWhiteSpace(formatacao))
             {
+                return valor;
+            }
+
+
+            switch (formatacao)
+            {
+                case EnumFormatacao.Nenhuma:
+
+                    return valor;
+
                 case EnumFormatacao.Bytes:
 
                     return FormatarByteUtil.Formatar(valor);
@@ -52,6 +62,10 @@
                 case EnumFormatacao.MoedaComSinal:
 
                     return FormatacaoUtil.FormatarMoeda(valor, true);
+
+                case EnumFormatacao.MoedaIgnorarSemValor:
+
+                    return FormatacaoUtil.FormatarMoedaIgnorarSemValor(valor);
 
                 case EnumFormatacao.Inteiro:
 
@@ -247,17 +261,17 @@
 
                 default:
 
-                    if (FormatacaoUtil.IsMascara(formato))
+                    if (FormatacaoUtil.IsMascara(formatacao))
                     {
-                        return this.FormatarMascara(valor, formato, isCompletar);
+                        return this.FormatarMascara(valor, formatacao, isCompletar);
                     }
 
-                    if (FormatacaoUtil.IsFormatarNumero(formato))
+                    if (FormatacaoUtil.IsFormatarNumero(formatacao))
                     {
-                        return this.FormatarNumero(valor, formato);
+                        return this.FormatarNumero(valor, formatacao);
                     }
 
-                    console.error(`Formatado ${formato} para formatação não é suportado`);
+                    console.error(`Formatado ${formatacao} para formatação não é suportado`);
                     return valor;
 
             }
@@ -1147,6 +1161,16 @@
             //return `${sinal}R$ ${formatacaoDecimal}`;
         }
 
+        public static FormatarMoedaIgnorarSemValor(valor: any): string
+        {
+            if (!String.IsNullOrWhiteSpace(valor?.toString()) &&
+                parseFloat(valor) !== 0)
+            {
+                return FormatacaoUtil.FormatarMoeda(valor);
+            }
+            return String.Empty;
+        }
+
         public static FormatarSimNao(valor: string): string
         {
             const sim = ConverterUtil.ParaBoolean(valor);
@@ -1410,7 +1434,11 @@
 
         public static FormatarNome(nome: string): string
         {
-            return FormatacaoNomeUtil.Formatarnome(nome);
+            if (String.IsNullOrWhiteSpace(nome))
+            {
+                return String.Empty;
+            }
+            return FormatacaoNomeUtil.FormatarNome(nome);
         }
 
         public static FormatarNomeArquivo(nomeArquivo: string)
@@ -1444,12 +1472,7 @@
 
         //#region Métodos privados
 
-        private static RetornarFormato(formatoEnum: string): string;
-        private static RetornarFormato(formato: string): string;
-        private static RetornarFormato(argumento: any): string
-        {
-            return u.ConverterUtil.ParaString(argumento).toLowerCase();
-        }
+
 
         private static RetornarFormatoNumeroDecimal(casesDecimal: number): string
         {
@@ -1470,7 +1493,7 @@
         {
             return TextoUtil.IsTextoContem(formato, "0");
         }
-         
+
         //#endregion
 
         ///#region Ocultações

@@ -383,10 +383,7 @@
                     throw new Erro(`Não foi possível converter a data string ${valor} para o objeto Date`);
                 }
 
-
                 dataString = DataHoraUtil.NormalizarDataHoraString(dataString);
-
-
                 const partes = dataString.split(" ").Where(x => !String.IsNullOrWhiteSpace(x)).ToList();
                 const parteHora = partes.Where(x => x.Contains(":")).FirstOrDefault();
 
@@ -490,7 +487,8 @@
                                     parteHora = parte1;
                                     parteMilissegundos = parte2;
 
-                                } else if (parte2.split(":").length === 3)
+                                }
+                                else if (parte2.split(":").length === 3)
                                 {
                                     parteDia = parte1;
                                     parteHora = parte2;
@@ -819,5 +817,5 @@
             }
             return valor;
         }
-    }
+     }
 }
