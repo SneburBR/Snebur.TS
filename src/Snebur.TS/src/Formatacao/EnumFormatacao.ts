@@ -2,6 +2,8 @@
 {
     export enum EnumFormatacao
     {
+        Nenhuma = "nenhuma",
+
         Bytes = "bytes",
 
         Cep = "cep",
@@ -15,6 +17,8 @@
         Margem = "margem",
 
         Moeda = "moeda",
+
+        MoedaIgnorarSemValor = "moedaignorarsemvalor",
 
         MoedaComSinal = "moedacomsinal",
 
