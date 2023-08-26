@@ -54,6 +54,11 @@
             return this.GerenciadorAbrirImagemLocal?.IsCarregandoImagem ?? false;
         }
 
+        public override get IsMostrarLegendasToolTips(): boolean
+        {
+            return true;
+        }
+
         public constructor(construtorJanelaEntrar?: IJanelaAutenticacaoConstrutor,
             construtorDocumentoPrincipal?: IDocumentoPrincipalConstrutor<TDocumentoPrincipal>)
         {
@@ -587,6 +592,7 @@ namespace Snebur.Aplicacao
     export interface BaseAplicacao
     {
         readonly IsReinicializandoControles: boolean;
+        readonly IsMostrarLegendasToolTips: boolean;
         /*readonly IsObservacaoHistoricoAtiva: boolean;*/
         readonly DicionarControlesCarregado: DicionarioSimples<HashSet<ui.BaseControle>>;
         readonly DocumentoPrincipal: Snebur.UI.DocumentoPrincipal;
@@ -595,6 +601,7 @@ namespace Snebur.Aplicacao
 
         /**Parâmetros adicionais do histórico */
         readonly ParametrosHistorico?: DicionarioSimples<string>;
+
 
         readonly IsOcupado: boolean;
         Ocupar(): void;

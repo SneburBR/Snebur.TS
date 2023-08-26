@@ -37,6 +37,7 @@
         }
         public set Legenda(value: string)
         {
+           
             if (this.__legenda !== value)
             {
                 this.__legenda = value;
@@ -192,6 +193,12 @@
         {
             if (this.IsLegendaInicializada && this.Elemento instanceof HTMLElement)
             {
+                if (!$Aplicacao.IsMostrarLegendasToolTips)
+                {
+                    this.OcultarLegenda();
+                    return;
+                }
+
                 this.AdicionarElementoLegenda();
                 this.ElementoLegenda.style.display = "block";
                 this.ElementoLegenda.MostrarElemento();
