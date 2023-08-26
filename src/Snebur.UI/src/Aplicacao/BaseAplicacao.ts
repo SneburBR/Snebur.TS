@@ -357,6 +357,7 @@
                 {
                     const novaUrlEstilo = elementoEstilo.href.split("?").First() + "?" + GuidUtil.RetornarNovoGuid();
                     elementoEstilo.href = novaUrlEstilo;
+                    console.WarmDebug(`Estilo atualizado: ${mensagem.NomeArquivo}`);
                 }
             }
         }
