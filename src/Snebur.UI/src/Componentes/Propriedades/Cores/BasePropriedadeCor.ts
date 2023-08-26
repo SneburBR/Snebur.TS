@@ -38,7 +38,12 @@
 
         protected RetornarValorParaAtributo(compronenteApresentacao: ComponenteApresentacao, valorApresentacao: string | EnumCor): string
         {
-            return EnumUtil.RetornarDescricao(EnumCor, valorApresentacao, true);
+            const cor = EnumUtil.RetornarDescricao(EnumCor, valorApresentacao, true);
+            if (cor == null)
+            {
+                return valorApresentacao as string;
+            }
+            return cor;
         }
 
         protected RetornarValorParaComponente(compronenteApresentacao: ComponenteApresentacao, valorDom: string): string | EnumCor
