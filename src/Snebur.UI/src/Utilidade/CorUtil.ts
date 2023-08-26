@@ -928,6 +928,12 @@
             return Array.isArray(cores) && cores.All(x => x instanceof d.Cor);
         }
 
+        public static IsCorEscura(corString: string): boolean
+        {
+            const cor = new Cor(corString);
+            return cor.IsCorEscura;
+        }
+
     }
 
     export enum EnumPrefixoCor

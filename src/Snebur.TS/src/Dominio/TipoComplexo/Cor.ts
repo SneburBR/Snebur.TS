@@ -102,6 +102,27 @@ namespace Snebur.Dominio
             return clone;
         }
 
+        public get IsCorClara(): boolean
+        {
+            return this.IsCorEscura === false;
+
+        }
+        public get IsCorEscura(): boolean
+        {
+            if (this.A < 0.5)
+            {
+                return false;
+            }
+
+            const [r, g, b] = [this.R, this.G, this.B];
+            const hsp = Math.sqrt(
+                0.299 * (r * r) +
+                0.587 * (g * g) +
+                0.114 * (b * b)
+            );
+            return hsp < 127.5;
+        }
+
         //#endregion
 
         //#region Construtor
