@@ -206,10 +206,7 @@
         {
             const itemBlocoReferencia = this.ItensBloco[posicao];
             const itemBloco = this.RetornarNovoItemBloco(item);
-
-
-            itemBloco.ElementoInserirAntes = itemBlocoReferencia.Elemento;
-
+            itemBloco.SetElementoInserirAntes(itemBlocoReferencia.Elemento);
             this.ControlesFilho.Insert(posicao, itemBloco);
             this.DicionarioItensBloco.Add(item, itemBloco);
 

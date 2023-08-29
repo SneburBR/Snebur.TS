@@ -4,7 +4,7 @@
     {
         public readonly Template: TemplateColunasColecao;
         public readonly TipoItemLista: r.BaseTipo;
-        public readonly ColunasColecao : ColunasColecao
+        public readonly ColunasColecao: ColunasColecao
         public readonly Linhas = new Array<Linha<TItem>>();
 
         public get DataLista(): DataLista
@@ -51,7 +51,19 @@
 
         public InserirItem(posicao: number, item: any): void
         {
-            throw new ErroNaoImplementado(this);
+            if (posicao >= this.Linhas.length)
+            {
+                this.AdicionarItem(item);
+                return;
+            }
+
+            const elementoInserirAntes = this.Linhas[posicao].Elemento;
+            const id = ElementoUtil.RetornarNovoIDElemento(this, "linha");
+            const linha = this.RetornarNovaLinha(id, item);
+            linha.SetElementoInserirAntes(elementoInserirAntes);
+            this.Linhas.Insert(posicao, linha);
+            this.ControlesFilho.Add(linha);
+            linha.InicializarControle();
         }
 
         public RemoverItem(item: any): void 
@@ -96,9 +108,9 @@
             //    this.Elemento.style.maxHeight = alturaMaxima.ToPixels();
             //}
         }
-         
+
         //#endregion
-         
+
         //#region IDisposable
 
         public override Dispose(): void
@@ -107,6 +119,6 @@
             super.Dispose();
         }
 
-           //#endregion
+        //#endregion
     }
 }

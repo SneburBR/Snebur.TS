@@ -79,14 +79,13 @@
         {
 
         }
-
-
+         
         protected override RetornarElementosPossuiAtrubitoSnebur(): DicionarioSimples<Array<Element>>
         {
             return super.RetornarElementosPossuiAtrubitoSnebur();
         }
-
-        //#region Metodos privados
+          
+        //#region Methods privados
 
         private AdicionarCelulas(): void
         {

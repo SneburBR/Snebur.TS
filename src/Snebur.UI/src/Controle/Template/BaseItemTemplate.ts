@@ -4,13 +4,17 @@
     {
         protected readonly IsNaoUserHtmlTemplate: boolean;
         private _template: TTemplate;
+        private _elementoInserirAntes: HTMLElement;
 
         public get Template(): TTemplate
         {
             return this.NormalizarTemplate(this._template);
         }
 
-        public ElementoInserirAntes: HTMLElement;
+        public get ElementoInserirAntes(): HTMLElement
+        {
+            return this._elementoInserirAntes;
+        }
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement, template: TTemplate)
         public constructor(controlePai: BaseControle, idElemento: string, template: TTemplate)
@@ -18,7 +22,7 @@
         {
             super(controlePai, refElemento);
 
-            this.ElementoInserirAntes = null;
+            this._elementoInserirAntes = null;
             this._template = template;
             this.IsAdicionarElementoConteudoApresentacao = false;
         }
@@ -105,9 +109,14 @@
             return super.RetornarTagNovoElemento();
         }
 
-        public override RetornarRefElementoAntesDe(): any
+        public override RetornarRefElementoAntesDe(): HTMLElement
         {
             return this.ElementoInserirAntes;
+        }
+
+        public SetElementoInserirAntes(elemento: HTMLElement): void
+        {
+            this._elementoInserirAntes = elemento;
         }
     }
 }

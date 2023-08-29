@@ -208,7 +208,6 @@ sn-data-lista {
                 height: 100% !important;
                 overflow-y: auto !important;
                 overflow-x: hidden !important;
-
                 overscroll-behavior-y: contain;
 
                 &::-webkit-scrollbar {
@@ -235,6 +234,34 @@ sn-data-lista {
                     &::-webkit-scrollbar-thumb {
                         background: #888;
                     }
+                }
+            }
+        }
+    }
+
+    &.sn-cabecalho-negrito {
+
+
+
+
+        thead {
+            font-weight: bold !important;
+
+            tr {
+                th, td {
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+
+    thead {
+        font-weight: bold !important;
+
+        tr {
+            th, td {
+                &.sn-cabecalho-negrito {
+                    font-weight: bold !important;
                 }
             }
         }
