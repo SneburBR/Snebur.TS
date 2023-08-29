@@ -103,10 +103,11 @@
             }
         }
 
-        public get IsExisteControleFilhoJanela(): boolean
+        public get IsExisteJanelaAberta(): boolean
         {
-            return this.ControlesFilho.OfType(Janela).Count > 0 ||
-                this.DicionarioControlesFilho.Valores.OfType(Janela).Count > 0;
+            return this.ControlesFilho.Any(x => x instanceof Janela && x.IsAberta) ||
+                this.DicionarioControlesFilho.Valores.Any(x => x instanceof Janela && x.IsAberta) ||
+                this.ControlesFilho.Any(x => x.IsExisteJanelaAberta);
         }
 
         //#endregion
@@ -119,9 +120,9 @@
 
             if (controlePai)
             {
-                if (!this.ControlePai.DicionarioControlesFilho.ContainsKey(this.GetHashCode()))
+                if (!controlePai.DicionarioControlesFilho.ContainsKey(this.GetHashCode()))
                 {
-                    this.ControlePai.DicionarioControlesFilho.Add(this.GetHashCode(), this);
+                    controlePai.DicionarioControlesFilho.Add(this.GetHashCode(), this);
                 }
             }
 
@@ -141,7 +142,7 @@
             this.InicializarBinds();
             this.__isControleInicializado = true;
             this.AtivarNotificacaoPropriedadeAlterada();
-        
+
             //setTimeout(this.NotificarHtmlCarregado.bind(this), 500);
             /* movido para ControleApresentacao
              * this.Legenda = this.RetornarValorLegenda();*/
@@ -386,6 +387,7 @@
             //pode ser sobre escrito
         }
 
+          //@internal
         protected AtualizarControlesFilho(atualizarDicionarioElementosSnebur: boolean = true): void
         {
             if (atualizarDicionarioElementosSnebur)
@@ -398,6 +400,7 @@
             this.InicializarControlesFilho();
         }
 
+        //@internal
         protected DispensarControlesFilhos(): void
         {
             if (this.ControlesFilho instanceof Array)
@@ -413,7 +416,11 @@
                 }
                 this.ControlesFilho.Clear();
             }
+            this.DispensarControlesFilhosInterno();
+        }
 
+        private DispensarControlesFilhosInterno()
+        {
             const controlesRestante = this.DicionarioControlesFilho.ToArray();
             if (controlesRestante.Count > 0)
             {
@@ -426,11 +433,6 @@
                     controleFilho.Dispose();
                 }
             }
-
-            //if (this.DiciionarioControlesFilho.ContainsKey(this.__HashCode))
-            //{
-            //    this.DiciionarioControlesFilho.Add(this.__HashCode, this);
-            //}
         }
 
         //#endregion
@@ -526,12 +528,12 @@
 
                 this.DispensarBinds();
                 this.Binds.AddRange(this.RetornarBinds());
-                this.AtualizarBindsControleFormumatio();
+                this.AtualizarBindsControleFormumario();
                 this.InicializarBinds();
             }
         }
 
-        private AtualizarBindsControleFormumatio()
+        private AtualizarBindsControleFormumario()
         {
             for (const bind of this.Binds.OfType(BindControleFormulario))
             {
@@ -757,7 +759,7 @@
                 await this.DesocuparAsync();
             }
         }
-          
+
         //#region
         //#region Habilitar e desabilitar 
 
