@@ -375,11 +375,11 @@
             {
                 case EnumTipoAnimacao.Nenhuma:
 
-                    this.NavegarInterno(paginaPagametros.Pagina, paginaPagametros.Parametros, null, false, true);
+                    this.NavegarInterno(paginaPagametros.Pagina, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
                     break;
                 case EnumTipoAnimacao.Deslizante:
 
-                    this.NavegarAnimadoInternoAsync(paginaPagametros.Pagina, EnumSentidoAnimacao.Voltar, paginaPagametros.Parametros, null, false, true);
+                    this.NavegarAnimadoInternoAsync(paginaPagametros.Pagina, EnumSentidoAnimacao.Voltar, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
                     break;
                 default:
                     throw new Erro("tipo de animação não suportada");

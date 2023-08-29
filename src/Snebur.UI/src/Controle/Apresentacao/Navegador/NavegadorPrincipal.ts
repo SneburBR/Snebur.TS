@@ -54,7 +54,16 @@
 
         private async Window_PopState(e: PopStateEvent)
         {
+            if ($Aplicacao.DocumentoPrincipal.IsExisteJanelaAberta)
+            {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                e.stopPropagation();
+                history.go(1);
+                return false;
+            }
             this.NavegarRotaAsync();
+            return true;
         }
 
         private async NavegarRotaAsync(): Promise<boolean>
