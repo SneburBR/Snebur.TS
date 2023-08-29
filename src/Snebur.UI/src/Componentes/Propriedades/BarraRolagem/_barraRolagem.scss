@@ -31,10 +31,10 @@
     @extend .sn-barra-rolagem-padrao;
     overflow: scroll !important;
 
-    > sn-controle-usuario {
+   /* > sn-controle-usuario {
         width: auto;
         height: auto;
-    }
+    }*/
 }
 
 .ap-barra-rolagem--transbordar {
