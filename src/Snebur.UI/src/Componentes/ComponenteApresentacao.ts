@@ -566,7 +566,6 @@
                     throw new Error(`O atributo '"sn-nome-elemento"' está obsoleto utilizar ${AtributosHtml.Nome}`);
                 }
             }
-
             return ElementoUtil.RetornarValorAtributo(elemento, AtributosHtml.Nome);
         }
 
@@ -599,7 +598,7 @@
         {
             this.Elemento?.blur();
         }
-         
+
         //#region Debug e
 
         protected NomeAlterado(): void

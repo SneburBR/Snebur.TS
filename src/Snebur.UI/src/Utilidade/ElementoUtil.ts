@@ -93,9 +93,7 @@
             throw new ErroNaoDefinido(`A referencia ${refEelemento} do elemento não foi encontrado`, this);
         }
 
-        public static ClonarElemento(elemento: HTMLElement, removerElementosConteudoApresentacao?: boolean): HTMLElement;
-        public static ClonarElemento(idElemento: string, removerElementosConteudoApresentacao?: boolean): HTMLElement;
-        public static ClonarElemento(refEelemento: HTMLElement | string, removerElementosConteudoApresentacao = true): HTMLElement
+        public static ClonarElemento(refEelemento: HTMLElement | string, removerElementosConteudoApresentacao: boolean = true): HTMLElement
         {
             const elemento = ElementoUtil.RetornarElemento(refEelemento);
             /*const elementoClone = elemento.cloneNode(true);*/
@@ -118,10 +116,7 @@
             return elemento;
         }
 
-        public static RemoverTodosAtributos(elemento: HTMLElement, atributo: AtributoHtml): void
-        public static RemoverTodosAtributos(elemento: HTMLElement, nomeAtributo: string): void
-        public static RemoverTodosAtributos(idElemento: string, atributo: AtributoHtml): void
-        public static RemoverTodosAtributos(idElemento: string, nomeAtributo: string): void
+
         public static RemoverTodosAtributos(refEelemento: HTMLElement | string, refAtributo: AtributoHtml | string): void
         {
             const nomeAtributo = refAtributo instanceof AtributoHtml ? refAtributo.Nome : refAtributo;
@@ -139,9 +134,7 @@
             }
         }
 
-        public static OcultarElemento(elemento: HTMLElement): void;
-        public static OcultarElemento(idElemento: string): void;
-        public static OcultarElemento(refEelemento: any): void
+        public static OcultarElemento(refEelemento: HTMLElement | string): void
         {
             let elemento = ElementoUtil.RetornarElemento(refEelemento);
             elemento.style.display = "none";
@@ -149,9 +142,7 @@
             elemento = undefined;
         }
 
-        public static OcultarElementos(arrElementos: Array<HTMLElement>): void;
-        public static OcultarElementos(arrIdElementos: Array<string>): void;
-        public static OcultarElementos(arrRefElementos: Array<any>): void
+        public static OcultarElementos(arrRefElementos: Array<HTMLElement | string>): void
         {
             for (let i = 0; i < arrRefElementos.length; i++)
             {
@@ -159,9 +150,7 @@
             }
         }
 
-        public static MostrarElemento(elemento: HTMLElement): void;
-        public static MostrarElemento(idElemento: string): void;
-        public static MostrarElemento(refEelemento: any): void
+        public static MostrarElemento(refEelemento: HTMLElement | string): void
         {
             let elemento = ElementoUtil.RetornarElemento(refEelemento);
             elemento.style.display = "";
@@ -169,9 +158,7 @@
             elemento = undefined;
         }
 
-        public static MostrarElementos(arrElementos: Array<HTMLElement>): void;
-        public static MostrarElementos(arrIdElementos: Array<string>): void;
-        public static MostrarElementos(arrRefElementos: Array<any>): void
+        public static MostrarElementos(arrRefElementos: Array<HTMLElement | string>): void
         {
             for (let i = 0; i < arrRefElementos.length; i++)
             {
@@ -179,20 +166,15 @@
             }
         }
 
-        public static AdicionarElemento(elemento: HTMLElement, novoElemento: HTMLElement): void;
-        public static AdicionarElemento(idElemento: string, novoElemento: HTMLElement): void;
-        public static AdicionarElemento(refElemento: any, novoElemento: HTMLElement): void
+        public static AdicionarElemento(refElemento: HTMLElement | string, novoElemento: HTMLElement): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             elemento.appendChild(novoElemento);
             //delete (elemento as any);
         }
 
-        public static InserirElementoAntes(elemento: HTMLElement, novoElemento: HTMLElement, nodeReferencia: Node): void;
-        public static InserirElementoAntes(idElemento: string, novoElemento: HTMLElement, nodeReferencia: Node): void;
-        public static InserirElementoAntes(elemento: HTMLElement, novoElemento: HTMLElement, elementoReferencia: HTMLElement): void;
-        public static InserirElementoAntes(idElemento: string, novoElemento: HTMLElement, idElementoReferencia: string): void;
-        public static InserirElementoAntes(refElemento: any, novoElemento: HTMLElement, refElementoReferencia: any): void
+
+        public static InserirElementoAntes(refElemento: string | HTMLElement, novoElemento: HTMLElement, refElementoReferencia: string | HTMLElement): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             const elementoReferencia = ElementoUtil.RetornarElemento(refElementoReferencia);
@@ -200,11 +182,7 @@
             //delete (elemento as any);
         }
 
-        public static InserirElementoDepois(elemento: HTMLElement, novoElemento: HTMLElement, nodeReferencia: Node): void;
-        public static InserirElementoDepois(idElemento: string, novoElemento: HTMLElement, nodeReferencia: Node): void;
-        public static InserirElementoDepois(elemento: HTMLElement, novoElemento: HTMLElement, elementoReferencia: HTMLElement): void;
-        public static InserirElementoDepois(idElemento: string, novoElemento: HTMLElement, idElementoReferencia: string): void;
-        public static InserirElementoDepois(refElemento: any, novoElemento: HTMLElement, refElementoReferencia: any): void
+        public static InserirElementoDepois(refElemento: HTMLElement | string, novoElemento: HTMLElement, refElementoReferencia: HTMLElement | string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             const elementoReferencia = ElementoUtil.RetornarElemento(refElementoReferencia);
@@ -219,15 +197,7 @@
             //delete (elemento as any);
         }
 
-        public static RemoverElemento(elemento: HTMLElement, elementoRemover: HTMLElement, ignorarElementoNaoEncotrato: boolean): void;
-        public static RemoverElemento(elemento: HTMLElement, idElementoRemover: string, ignorarElementoNaoEncotrato: boolean): void;
-        public static RemoverElemento(idElemento: string, elementoRemover: HTMLElement, ignorarElementoNaoEncotrato: boolean): void;
-        public static RemoverElemento(idElemento: string, idElementoRemover: string, ignorarElementoNaoEncotrato: boolean): void;
-        public static RemoverElemento(elemento: HTMLElement, elementoRemover: HTMLElement): void;
-        public static RemoverElemento(elemento: HTMLElement, idElementoRemover: string): void;
-        public static RemoverElemento(idElemento: string, elementoRemover: HTMLElement): void;
-        public static RemoverElemento(idElemento: string, idElementoRemover: string): void;
-        public static RemoverElemento(refElemento: any, refElementoRemover: any, ignorarElementoNaoEncotrato?: boolean): void
+        public static RemoverElemento(refElemento: HTMLElement | string, refElementoRemover: HTMLElement | string, ignorarElementoNaoEncotrato: boolean = false): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento, ignorarElementoNaoEncotrato);
             const elementoRemover = ElementoUtil.RetornarElemento(refElementoRemover, ignorarElementoNaoEncotrato);
@@ -272,23 +242,15 @@
             //delete (elemento as any);
         }
 
-        public static RemoverAtributo(elemento: Element, atributo: AtributoHtml): void;
-        public static RemoverAtributo(elemento: Element, nomeAtributo: string): void;
-        public static RemoverAtributo(idElemento: string, atributo: AtributoHtml): void;
-        public static RemoverAtributo(idElemento: string, nomeAtributo: string): void;
-        public static RemoverAtributo(refElemento: any, atributo: any): void
+
+        public static RemoverAtributo(refElemento: Element | string, atributo: AtributoHtml | string): void
         {
             const nomeAtributo: string = (atributo instanceof AtributoHtml) ? (atributo as AtributoHtml).Nome : atributo;
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             elemento.removeAttribute(nomeAtributo);
-            //delete (elemento as any);
         }
 
-        public static RetornarValorAtributo(elemento: Element, atributo: AtributoHtml): string;
-        public static RetornarValorAtributo(elemento: Element, nomeAtributo: string): string;
-        public static RetornarValorAtributo(idElemento: string, atributo: AtributoHtml): string;
-        public static RetornarValorAtributo(idElemento: string, nomeAtributo: string): string;
-        public static RetornarValorAtributo(refElemento: any, atributo: any): string
+        public static RetornarValorAtributo(refElemento: Element | string, atributo: AtributoHtml | string): string
         {
             let valorAtributo: string = null;
             const nomeAtributo: string = (atributo instanceof AtributoHtml) ? (atributo as AtributoHtml).Nome : atributo;
@@ -301,9 +263,7 @@
             return valorAtributo;
         }
 
-        public static LimparElementosFilho(idElemento: string): void
-        public static LimparElementosFilho(elemento: HTMLElement): void
-        public static LimparElementosFilho(refElemento: any): void
+        public static LimparElementosFilho(refElemento: HTMLElement| string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
             while (elemento.firstChild != null)
@@ -312,40 +272,23 @@
             }
             //delete (elemento as any);
         }
-
-        public static AtualizarValorInput(idElemento: string, valor: string): void
-        public static AtualizarValorInput(elemento: HTMLElement, valor: string): void
-        public static AtualizarValorInput(refElemento: any, valor: string): void
+         
+        public static AtualizarValorInput(refElemento: HTMLElement | string, valor: string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
             elemento.value = valor;
             //delete (elemento as any);
         }
 
-        public static InputSomenteLeitura(idElemento: string, ativar: boolean): void
-        public static InputSomenteLeitura(elemento: HTMLElement, ativar: boolean): void
-        public static InputSomenteLeitura(refElemento: any, ativar: boolean = true): void
+ 
+        public static InputSomenteLeitura(refElemento: HTMLElement | string, ativar: boolean = true): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
             elemento.readOnly = ativar;
             //delete (elemento as any);
         }
-
-
-        //public static AtualizarSrcImagem(refElemento: HTMLElement | string, urlImagem: string, forcar: boolean = false): void
-        //{
-        //    let elementoImagem = ElementoUtil.RetornarElemento(refElemento) as HTMLImageElement;
-        //    if (elementoImagem.src != urlImagem || forcar)
-        //    {
-        //        elementoImagem.src = urlImagem;
-        //    }
-
-        //    //delete (elementoImagem as any);
-        //}
-
-        public static FocarElemento(idElemento: string): void
-        public static FocarElemento(elemento: HTMLElement): void
-        public static FocarElemento(refElemento: any): void
+ 
+        public static FocarElemento(refElemento: HTMLElement | string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
             elemento.focus();
@@ -367,26 +310,7 @@
             }
             const rect = elemento.getBoundingClientRect();
             return (rect.width > 0 && rect.height > 0);
-
-            //const estilosComputado = window.getComputedStyle(elemento, null);
-            //const displayComputado = estilosComputado.getPropertyValue("display");
-            ///* const visibilityComputado = estilosComputado.getPropertyValue("visibility");  */
-
-
-            //if (displayComputado === "none" /*   ||
-            //    visibilityComputado === "hidden" ||
-            //    visibilityComputado === "collapse*/)
-            //{
-            //    if ($Configuracao.IsDebug)
-            //    {
-            //        if (!EstiloUtil.IsPosicaoZerada(rect))
-            //        {
-            //            throw new Erro("Falha analisar visibilidade do elemento");
-            //        }
-            //    }
-            //    return false;
-            //}
-            //return true;
+             
 
         }
 
@@ -433,43 +357,10 @@
             };
             /*new d.Dimensao(largura, altura);*/
         }
-
-        //public static RetornarDimensaoElemento(idElemento: string): d.Dimensao;
-        //public static RetornarDimensaoElemento(elemento: HTMLElement): d.Dimensao;
-        //public static RetornarDimensaoElemento(refElemento: any): d.Dimensao
-        //{
-        //    let elemento = ElementoUtil.RetornarElemento(refElemento);
-
-        //    let larguraElemento: number = 0;
-        //    let alturaElemento: number = 0;
-
-        //    while (larguraElemento == 0 || alturaElemento == 0)
-        //    {
-        //        let posicaoElemento = elemento.getBoundingClientRect();
-
-        //        if (larguraElemento == 0)
-        //        {
-        //            larguraElemento = posicaoElemento.width;
-        //        }
-        //        if (alturaElemento == 0)
-        //        {
-        //            alturaElemento = posicaoElemento.height;
-        //        }
-        //        elemento = elemento.parentElement;
-        //    }
-        //    return new d.Dimensao(larguraElemento, alturaElemento);
-        //}
-
+         
         public static DesabilitarElemento(elemento: HTMLElement, isRecursivo: boolean): void
         {
-            //if (elemento.tagName.StartsWith(ElementoControleUtil.PREFIXO_CONTROLE) ||
-            //    (elemento instanceof HTMLInputElement) ||
-            //    (elemento instanceof HTMLButtonElement) ||
-            //    (elemento instanceof HTMLAnchorElement))
-            //{
-
-            //}
-
+          
             if (elemento instanceof HTMLInputElement)
             {
                 elemento.disabled = true;
@@ -522,10 +413,8 @@
                 }
             }
         }
-
-        public static IsImagmeCarregada(idElemento: string): boolean;
-        public static IsImagmeCarregada(elemento: HTMLElement): boolean;
-        public static IsImagmeCarregada(refElemento: any): boolean
+ 
+        public static IsImagmeCarregada(refElemento: HTMLElement | string): boolean
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento, true);
             if (elemento instanceof HTMLImageElement)

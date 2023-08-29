@@ -399,6 +399,10 @@
         {
             switch (estilo)
             {
+                case EnumEstiloHtml.Nada:
+
+                    return valor?.toString();
+
                 case EnumEstiloHtml.Negrito:
 
                     return `<strong> ${valor} </strong>`;
@@ -648,6 +652,7 @@
 
     export enum EnumEstiloHtml
     {
+        Nada,
         Negrito,
         QuebraLinhaFinal,
         QuebraLinhaIncial,

@@ -506,7 +506,7 @@
         }
         //O elemento vai ser adicionar antes elemento retorno
         //se null, será adiciona por ultimo
-        protected RetornarRefElementoAntesDe(): any
+        protected RetornarRefElementoAntesDe(): HTMLElement
         {
             return null;
         }
@@ -730,6 +730,7 @@
             {
                 return ElementoUtil.RetornarNovoIDElemento(this);
             }
+
             if (refElemento instanceof HTMLElement)
             {
                 const elemento: HTMLElement = refElemento;
