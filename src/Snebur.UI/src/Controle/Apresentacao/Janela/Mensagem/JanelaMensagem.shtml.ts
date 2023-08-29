@@ -107,7 +107,8 @@
 
         private JanelaMensagem_KeyDown(e: KeyboardEvent): void
         {
-            if (KeyCodeUtil.IsKeyCodeEnter(e.keyCode) && !this.IsExisteControleFilhoJanela)
+            if (KeyCodeUtil.IsKeyCodeEnter(e.keyCode)
+                && !this.IsExisteJanelaAberta)
             {
                 const botaoVM = this.Botoes.Where(x =>
                     x.Resultado === EnumResultadoOpcaoMensagem.Ok ||

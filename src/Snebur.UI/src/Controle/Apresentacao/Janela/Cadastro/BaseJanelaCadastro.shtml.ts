@@ -201,7 +201,7 @@
 
         private SalvarDocument_KeyDown(e: KeyboardEvent): void
         {
-            if (this.AtivarEnterSalvar && KeyCodeUtil.IsKeyCodeEnter(e.keyCode) && !this.IsExisteControleFilhoJanela)
+            if (this.AtivarEnterSalvar && KeyCodeUtil.IsKeyCodeEnter(e.keyCode) && !this.IsExisteJanelaAberta)
             {
                 if (!this.IsOcupado)
                 {

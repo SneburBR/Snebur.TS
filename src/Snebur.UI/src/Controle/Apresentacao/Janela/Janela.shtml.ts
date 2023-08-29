@@ -10,16 +10,13 @@
         protected Estilo: EnumEstiloJanela = EnumEstiloJanela.SemEstilo;
         protected EstiloBarraAcao: EnumEstiloBarraAcao = EnumEstiloBarraAcao.Transparente;
 
+        protected IsFecharClicouFora = false;
         protected IsFecharEsc: boolean = true;
         protected IsMostrarBotaoFechar = true;
         protected IsMostrarBotaoRestaurarMaximizar: boolean = false;
         protected IsMostrarBarraAcoes: boolean = true;
         protected IsDispensarAoFechar: boolean = true;
-
-        public readonly BtnFecharJanelaInterno: Botao;
-        public readonly BtnMaximizarJaenlaInterno: Botao;
-        public readonly BtnRestaurarJanelaInterno: Botao;
-
+         
         public readonly ElementoBarraAcao: HTMLDivElement;
         public readonly ElementoConteudoInterno: HTMLDivElement;
 
@@ -61,9 +58,7 @@
             }
             return new ResultadoFecharJanelaArgs(this, false, null) as TResultadoFecharJanelaArgs;
         }
-
-        protected IsFecharClicouFora = false;
-
+         
         public readonly EventoPosicaoAlterada = new Evento(this);
 
         public constructor(controlePai?: BaseControle)
@@ -585,7 +580,6 @@
 
         private AtualizarFundo(isMostrar: boolean, isJanelaTop: boolean = false)
         {
-
             if (isMostrar && this.IsMostrarFundoJanelaInterno())
             {
                 $Aplicacao.DocumentoPrincipal?.MostrarFundoOcupado((this.__camposPrivadosJanela.__zIndex - 1));
@@ -705,6 +699,11 @@
             this.PosicaoY = null;
             if (!this.__camposPrivadosJanela.IsJanelaMaximizada)
             {
+                if (TelaUtil.IsCelular)
+                {
+                    this.Elemento.classList.add(EnumCssClasseJanela.JanelaCentro);
+                    return;
+                }
                 const rect = this.ElementoConteudo.getBoundingClientRect();
                 this.Elemento.classList.remove(EnumCssClasseJanela.JanelaCentro);
                 const posicaoX = (window.innerWidth - rect.width) / 2;
@@ -740,14 +739,14 @@
 
         private FecharInterno(): void
         {
-            this.__camposPrivadosJanela.isAberta = false;
-            this.AtualizarFundo(false);
             if (this.IsDispensarAoFechar)
             {
                 this.Dispose();
             }
             else
             {
+                this.__camposPrivadosJanela.isAberta = false;
+                this.AtualizarFundo(false);
                 this.OcultarElemento();
             }
         }
@@ -756,6 +755,8 @@
         {
             if (!this.IsDispensado)
             {
+                this.__camposPrivadosJanela.isAberta = false;
+                this.AtualizarFundo(false);
                 this.EventoTelaAlterada?.RemoveHandler(this.JanelaTela_Alterada, this);
                 $Aplicacao.DocumentoPrincipal?.EventoJanelaDescarregada.Notificar(this, EventArgs.Empty);
                 super.Dispose();
