@@ -13,10 +13,10 @@
         public ValorPropriedadeAlterado(antigoValor: EnumIcone | number, novoValor: EnumIcone | number): void
         {
             const icone = this.RetornarIconeInterno(novoValor);
-
-            const destino = this.Elemento.querySelector("ap-icone") ??
-                this.Elemento.querySelector(".material-icons") ??
-                this.Elemento;
+            const elemento = this.Elemento;
+            const destino = elemento.querySelector("ap-icone") ??
+                elemento.querySelector(".material-icons") ??
+                ElementoIconeUtil.RetornarElementoIcone(elemento, this.Controle);
 
             destino.innerHTML = icone;
         }
