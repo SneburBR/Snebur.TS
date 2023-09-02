@@ -147,7 +147,7 @@
         {
             if (String.IsNullOrWhiteSpace(texto))
             {
-                return texto;
+                return "";
             }
             return TextoUtil.RetornarTextoCaracteresPermitidoInterno(texto, TextoUtilConstantes.CaracteresPadrao, true, substituir);
         }

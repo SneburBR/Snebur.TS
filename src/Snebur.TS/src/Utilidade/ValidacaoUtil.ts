@@ -121,7 +121,7 @@
             }
             return false;
         }
-         
+
         public static IsInteger(obj: any): obj is number
         {
             if (ValidacaoUtil.IsNumber(obj, false))
@@ -221,6 +221,16 @@
             if (ValidacaoUtil.IsString(valor))
             {
                 const exp = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/;
+                return exp.test(valor);
+            }
+            return false;
+        }
+
+        public static IsMd5(valor: any): boolean
+        {
+            if (ValidacaoUtil.IsString(valor))
+            {
+                const exp = /^[a-f0-9]{32}$/;
                 return exp.test(valor);
             }
             return false;
@@ -1081,7 +1091,7 @@
             return TextoUtil.IsSomenteNumerosPontosSinaisSimbolos(texto);
         }
 
-        
+
         public static IsUF(valorPropriedade: string): boolean
         {
             let uf = valorPropriedade?.toUpperCase().trim();

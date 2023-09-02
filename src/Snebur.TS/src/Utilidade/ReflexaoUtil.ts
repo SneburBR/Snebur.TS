@@ -312,8 +312,13 @@
 
         public static RetornarValorPaiPropriedade(obj: any, caminhoPropriedade: string, ignorarValorNaoEncontrado: boolean): any
         {
-            if (ValidacaoUtil.IsDefinido(obj))
+            if (obj !== undefined)
             {
+                if (caminhoPropriedade === ".")
+                {
+                    return obj;
+                }
+
                 const partes = caminhoPropriedade.toString().split(".");
                 const propriedade = partes.Last();
                 let valorPai = obj;

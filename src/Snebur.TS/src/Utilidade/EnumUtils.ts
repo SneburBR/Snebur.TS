@@ -68,14 +68,16 @@
 
             if (isIngorarErro)
             {
-                return null;
+                return "";
             }
-            throw new Erro(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${construtorEnum.constructor.name}`);
+            
+            console.error(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${construtorEnum.constructor.name}`);
+            return valor?.toString() ?? "";
         }
 
-        public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum]): string
-        public static RetornarRotulo(construtorEnum: any, valor: number): string
-        public static RetornarRotulo(construtorEnum: any, valor: number): string
+        public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum], isIgnorarErro?:boolean): string
+        public static RetornarRotulo(construtorEnum: any, valor: number, isIgnorarErro?: boolean): string
+        public static RetornarRotulo(construtorEnum: any, valor: number, isIgnorarErro:boolean = false): string
         {
             //pegar o valor do atributo description na globalização
             if (construtorEnum == null)
@@ -83,7 +85,7 @@
                 return null;
             }
 
-            const descricao = EnumUtil.RetornarDescricao(construtorEnum, valor);
+            const descricao = EnumUtil.RetornarDescricao(construtorEnum, valor, isIgnorarErro);
             if (construtorEnum?.Rotulos != null)
             {
                 const rotulo = construtorEnum.Rotulos[descricao];
