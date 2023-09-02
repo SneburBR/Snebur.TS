@@ -87,7 +87,7 @@
 	export interface ControlePaginacao
 	{
 		readonly BtnPaginacaoVoltar: ui.Botao;
-		readonly ControleListaPaginas: ui.ControleLista;
+		readonly ControleListaPaginas: ui.PainelLista;
 		readonly BtnPaginacaoAvancar: ui.Botao;
 	}
 

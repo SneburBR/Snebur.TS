@@ -35,6 +35,8 @@
 
                 //elementoApresentacao.style.height = unidadeComprimento.ValorFormatado;
                 elementoApresentacao.style.lineHeight = unidadeComprimento.ValorFormatado;
+                elementoApresentacao.style.setProperty("line-height", unidadeComprimento.ValorFormatado, "important");
+                componenteApresentacao.Elemento.classList.add("sn-ui-altura-linha");
                 //elementoApresentacao.style.whiteSpace = "nowrap";
 
             }

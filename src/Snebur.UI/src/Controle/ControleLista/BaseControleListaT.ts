@@ -13,7 +13,7 @@
         public __FuncaoNormalizar: FuncaoNormalizar;
 
         private _isAsync: boolean = false;
-        private _isPopularFila: boolean = false;
+        private _isCarregando: boolean = false;
         private _lista: ListaObservacao<T> = null;
         protected _sentidoOrdenacao: EnumSentidoOrdenacao;
 
@@ -235,15 +235,15 @@
         }
         //#endregion
 
-        public async AguardarCarregandoItensAsync()
+        public async AguardarCarregandoAsync()
         {
-            while (this.Fila?.Count > 0)
+            while (this._isCarregando)
             {
                 await ThreadUtil.EsperarAsync(200);
             }
             await ThreadUtil.EsperarAsync(200);
         }
-
+         
         //#region AcessoDados - Pesquisa - Ordenação - Paginação
 
         public ControlePaginacao_PaginacaoAlterada(provedor: ControlePaginacao, e: PaginacaoAlteradaEventArgs): void
@@ -495,15 +495,15 @@
 
         private async PopularFilaAsync(): Promise<void>
         {
-            await ThreadUtil.BloquearAsync(this, x => x._isPopularFila);
+            await this.AguardarCarregandoAsync();
             try
             {
-                this._isPopularFila = true;
+                this._isCarregando = true;
                 await this.PopularFilaInternoAsync();
             }
             finally
             {
-                this._isPopularFila = false;
+                this._isCarregando = false;
             }
         }
 
@@ -518,11 +518,17 @@
 
         private async PopularFilaInternoAsync(): Promise<void>
         {
+            let c = 0;
             while (this.Fila.Count > 0)
             {
                 const proximoItem = this.Fila.Dequeue();
                 this.AdicionarItem(proximoItem);
-                await ThreadUtil.QuebrarAsync();
+                c += 1;
+
+                if (c % 5 === 0)
+                {
+                    await ThreadUtil.QuebrarAsync();
+                }
             }
         }
 

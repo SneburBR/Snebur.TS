@@ -274,6 +274,7 @@
     <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorFundoTonalidade.ts" />
     <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorTexto.ts" />
     <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorTextoTonalidade.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\ElementoIconeUtil.ts" />
     <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeIconeCategoria.ts" />
     <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeIcone.ts" />
     <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeTamanhoIcone.ts" />
@@ -462,6 +463,7 @@
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhaDetalhes.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhaDetalhesExpandidaEventArgs.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhasColecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\OrdenacaoColunaAlteradaEventArgs.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColuna.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaExibirDetalhes.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaPersonalizada.ts" />
@@ -617,6 +619,7 @@
     <TypeScriptCompile Include="src\Evento\EventoValorAlterado.ts" />
     <TypeScriptCompile Include="src\Evento\EventoValorModificando.ts" />
     <TypeScriptCompile Include="src\Evento\IUIEventoConstrutor.ts" />
+    <TypeScriptCompile Include="src\Evento\OrdenacaoColunaAlterada.ts" />
     <TypeScriptCompile Include="src\Evento\UIEvento.ts" />
     <TypeScriptCompile Include="src\Hisorico\ConstantesHistoricoNavegador.ts" />
     <TypeScriptCompile Include="src\Hisorico\HistoricoNavegadorUtil.ts" />

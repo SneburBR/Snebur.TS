@@ -22,10 +22,7 @@
         {
             this.Manipulador(proverdor, e);
         }
-
-        //public ManipuladorkEventListenerDom(domEvent: UIEvent)
-        //{
-        //    this.Manipulador(this.ControlePai, new UIEventArgs(this.Elemento, this.RetornarParametros(), domEvent));
-        //}
     }
+
+  
 }

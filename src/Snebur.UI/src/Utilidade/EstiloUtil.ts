@@ -233,6 +233,10 @@
         }
         private static RetornarEstiloVisibilidade(visibilidade: EnumVisibilidade | boolean): string
         {
+            if (visibilidade == null)
+            {
+                return "visible";
+            }
 
             switch (visibilidade)
             {

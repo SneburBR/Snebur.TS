@@ -17,8 +17,7 @@
     }
 }
 
-
-.sn-data-lista-coluna-ordenacao-nenhuma {
+.sn-data-lista-coluna-ordenacao--nenhuma {
     cursor: pointer;
 
     &::before {
@@ -48,8 +47,9 @@
     }
 }
 
-.sn-data-lista-coluna-ordenacao-crescente {
+.sn-data-lista-coluna-ordenacao--crescente {
     cursor: pointer;
+    color: blue;
 
     &::before {
         content: "";
@@ -66,8 +66,9 @@
     }
 }
 
-.sn-data-lista-coluna-ordenacao-decrescente {
+.sn-data-lista-coluna-ordenacao--decrescente {
     cursor: pointer;
+    color:red;
 
     &::before {
         content: "";

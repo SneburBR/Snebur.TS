@@ -1,24 +1,23 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class BaseControlePaginacao extends Snebur.UI.BaseControle
+    export abstract class BaseControlePaginacao extends Snebur.UI.ControleUsuario
     {
         //#region Propriedades
 
         private _totalPaginas: number = 0;
-        private _isAtualizando: boolean = false;
+        protected readonly ControleLista: BaseControleLista;
 
         public IsMostrarControleRegistrosPorPagina: boolean = false;
-        public IsCarregado: boolean = false;
+        public IsCarregando: boolean = false;
         public TotalRegistros: number = 0;
         public PaginaAtual: number = 1;
         public MaximoPaginas: number;
         public RegistroPorPagina: number = ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO
-
-        protected readonly ControleLista: BaseControleLista;
+ 
         public DescricaoItem: string = "item";
         public DescricaoItens: string = "itens";
 
-        public get Pular():number
+        public get Pular(): number
         {
             return (this.PaginaAtual - 1) * this.RegistroPorPagina;
         }
@@ -26,6 +25,11 @@
         public get TotalPaginas(): number
         {
             return this._totalPaginas;
+        }
+
+        public get IsExistePaginacao(): boolean
+        {
+            return !this.IsCarregando && this.TotalPaginas > 1;
         }
 
         public readonly Limites = new ListaObservacao<number>();
@@ -43,7 +47,7 @@
             this.DeclararPropriedade(x => x.PaginaAtual, Number, this.AtualizarPaginacao);
             this.DeclararPropriedade(x => x.RegistroPorPagina, Number, this.RegistroPorPagina_Alterado);
             this.DeclararPropriedade(x => x.IsMostrarControleRegistrosPorPagina, Boolean);
-            this.DeclararPropriedade(x => x.IsCarregado, Boolean);
+            this.DeclararPropriedade(x => x.IsCarregando, Boolean, this.IsCarregando_Alterado);
 
             this.ControleLista = this.RetornarControleLista();
 
@@ -69,7 +73,7 @@
             this.RegistroPorPagina = this.Limites.First();
 
             super.Inicializar();
-              
+
             if (!(this.RegistroPorPagina > 0))
             {
                 throw new Erro(`O registro por pagina não pode ser inferior a 0 controle ${this.ControleApresentacao.__CaminhoTipo}`);
@@ -84,22 +88,21 @@
 
         public AtualizarPaginacao(): void
         {
-            if (this.__isControleInicializado && !this._isAtualizando)
+            if (this.__isControleInicializado)
             {
-                this._isAtualizando = true;
-
                 this.AtualizarValores();
                 this.AtualizarPaginas();
 
                 this.IsMostrarControleRegistrosPorPagina = this.TotalRegistros > this.Limites.Min();
-                this.IsCarregado = this.TotalRegistros > 0;
-                this._isAtualizando = false;
+
+                this.NotificarPropriedadeAlterada(x => x.TotalPaginas);
+                this.NotificarPropriedadeAlterada(x => x.IsExistePaginacao);
             }
         }
 
         public Resetar()
         {
-            this.IsCarregado = false;
+            this._totalPaginas = 0;
             this.TotalRegistros = 0;
             this.PaginaAtual = 1;
         }
@@ -114,6 +117,14 @@
         //#endregion
 
         //#region Métodos Privados
+
+        private IsCarregando_Alterado()
+        {
+            this.NotificarPropriedadeAlterada(x => x.RegistroPorPagina);
+            this.NotificarPropriedadeAlterada(x => x.TotalRegistros);
+            this.NotificarPropriedadeAlterada(x => x.TotalPaginas);
+            this.NotificarPropriedadeAlterada(x => x.IsExistePaginacao);
+        }
 
         private AtualizarPaginas(): void
         {
@@ -139,7 +150,7 @@
             {
                 this.PaginaAtual = this.TotalPaginas;
             }
-            this.NotificarPropriedadeAlterada(x => x.TotalPaginas);
+
         }
 
         private RetornarNumerosLimite(): Array<number>

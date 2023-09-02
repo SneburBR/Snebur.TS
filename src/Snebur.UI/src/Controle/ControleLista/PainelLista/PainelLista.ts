@@ -366,7 +366,7 @@
         public async ScrollIntoViewAsync(item: TItem, options?: OptionsScrollPainelLista)
         {
             await ThreadUtil.QuebrarAsync();
-            await this.AguardarCarregandoItensAsync();
+            await this.AguardarCarregandoAsync();
             this.ScrollIntoView(item, options);
             await ThreadUtil.EsperarAsync(200);
         }

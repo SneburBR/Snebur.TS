@@ -53,12 +53,15 @@
 
             if ($Configuracao.IsDebug)
             {
-                if (colunas.Count === 0 && quantidadeVazio === 0)
+                if (colunas.Count > 0 && quantidadeVazio === 0)
                 {
                     console.warn(`Nenhuma coluna com largura automática está definida no controle ${this.ControleApresentacao.___NomeConstrutor} para largura automática, é precisa remover o atributo sn-altura`);
                 }
 
-                const constrolesNaoSuportado = this.ComponentesApresentacaoFilhos.Where(x => !(x instanceof BaseColuna)).ToList();
+                const constrolesNaoSuportado = this.ComponentesApresentacaoFilhos.
+                    Where(x => !(x instanceof BaseColuna)).
+                    ToList();
+
                 if (constrolesNaoSuportado.Count > 0)
                 {
                     const descricao = String.Join(", ", constrolesNaoSuportado.Select(x => x.GetType().Nome));

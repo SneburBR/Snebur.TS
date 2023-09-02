@@ -202,7 +202,6 @@
         private RetornarPosicaoRotulo(): EnumPosicao
         {
             const posicaoRotulo = this.RetornarValorAtributo(AtributosHtml.PosicaoRotulo);
-
             if (String.IsNullOrWhiteSpace(posicaoRotulo))
             {
                 return null;

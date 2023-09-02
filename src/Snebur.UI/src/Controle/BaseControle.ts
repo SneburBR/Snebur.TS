@@ -744,6 +744,7 @@
 
             if ((this as any)[nomeFlagDeBloqueio])
             {
+                console.error("Sistema ocupado");
                 return null;
             }
 
@@ -753,10 +754,15 @@
                 this.Ocupar();
                 return await funcAsync();
             }
+            catch (erro)
+            {
+                console.error(erro);
+                throw erro;
+            }
             finally
             {
-                (this as any)[nomeFlagDeBloqueio] = false;
                 await this.DesocuparAsync();
+                (this as any)[nomeFlagDeBloqueio] = false;
             }
         }
 

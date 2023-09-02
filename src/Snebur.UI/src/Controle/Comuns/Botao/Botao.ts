@@ -89,6 +89,7 @@
              
             this._elementoInput = document.createElement("input");
             this._elementoInput.type = "button";
+
             if (this.IsSkipTab())
             {
                 this._elementoInput.tabIndex = -1;
@@ -199,7 +200,6 @@
             {
                 e.preventDefault();
                 this.ClickInterno(e);
-
             }
         }
 
@@ -288,8 +288,8 @@
             const eventoClique = this.EventosAmarrados.OfType(EventoClick).FirstOrDefault();
             eventoClique?.Click(e);
 
-            const eventosCliqueAsync = this.EventosAmarrados.OfType(EventoClickAsync).FirstOrDefault();
-            eventosCliqueAsync?.Click(e);
+            //const eventosCliqueAsync = this.EventosAmarrados.OfType(EventoClickAsync).FirstOrDefault();
+            //eventosCliqueAsync?.Click(e);
 
             const eventoSelecionarArquivos = this.EventosAmarrados.OfType(EventoSelecionarArquivos).FirstOrDefault();
             eventoSelecionarArquivos?.DispararAsync();

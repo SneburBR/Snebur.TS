@@ -458,14 +458,17 @@ sn-botao {
     &.sn-tipo-botao--flat-box,
     &.sn-tipo-botao--normal {
         /*height: retornar-rem(40px);*/
-
         > conteudo-apresentacao {
-
-            rotulo-botao {
-                line-height: retornar-rem(28px);
-            }
-
             border-radius: 4px !important;
+        }
+
+        &:not(.sn-ui-altura-linha) {
+
+            > conteudo-apresentacao {
+                rotulo-botao {
+                    line-height: retornar-rem(24px);
+                }
+            }
         }
     }
 }

@@ -854,6 +854,8 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.Atributos.ValidacaoIntervaloAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoIntervaloAttribute";
 	Snebur.Dominio.Atributos.ValidacaoIPAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoIPAttribute";
 	Snebur.Dominio.Atributos.ValidacaoLongoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoLongoAttribute";
+	Snebur.Dominio.Atributos.ValidacaoMdr5Attribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoMdr5Attribute";
+	Snebur.Dominio.Atributos.ValidacaoGuidAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoGuidAttribute";
 	Snebur.Dominio.Atributos.ValidacaoMoedaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoMoedaAttribute";
 	Snebur.Dominio.Atributos.ValidacaoNomeCompletoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoNomeCompletoAttribute";
 	Snebur.Dominio.Atributos.ValidacaoPalavraTamanhoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoPalavraTamanhoAttribute";
@@ -1037,7 +1039,7 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Senha = new Snebur.Reflexao.Propriedade("Senha", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
 	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
-	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoSenhaAttribute(4,16));
+	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoSenhaAttribute(4,36));
 	
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Nome);
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Email);

@@ -81,6 +81,8 @@
     <TypeScriptCompile Include="src\Core\Bibliotecas\Magick.dom.d.ts" />
     <TypeScriptCompile Include="src\Core\Erro\ErroArgumentoNulo.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\String.Polyfill.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoGuid.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoMdr5.Partial.ts" />
     <TypeScriptCompile Include="src\Imagem\Canvas\AbrirArquivoLocalCanvas.ts" />
     <TypeScriptCompile Include="src\Imagem\FormatoImagemUtil.ts" />
     <TypeScriptCompile Include="src\Imagem\ImageDataUtil.ts" />
