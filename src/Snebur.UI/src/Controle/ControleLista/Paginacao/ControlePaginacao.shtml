@@ -10,120 +10,147 @@
 </head>
 
 
-<body class="sn-controle-paginacao">
+<body class="sn-controle-paginacao"
+    ap-altura="100%" >
 
-    <ap-painel-horizontal class="rodape-paginacao" ap-altura="60px" ap-tipografia="Descricao">
-        <ap-coluna ap-margem="10px 0px">
-            <ap-painel
-                ap-tipo-painel="PilhaHorizontal"
-                sn-visibilidade="{{TotalRegistros > 0}}"
-                ap-alinhamento-vertical="Centro">
+    <ap-bloco 
+        sn-visibilidade="{{IsCarregando}}"
+        ap-altura="100%">
+        <ap-texto ap-alinhamento-vertical="Centro">
+            Carregando...
+        </ap-texto>
+    </ap-bloco>
 
-                <ap-texto sn-bind-texto="{{TotalRegistros}}"></ap-texto>
-                <ap-texto ap-margem="4px 0px">registros encontrados</ap-texto>
+    <ap-bloco sn-visibilidade="{{IsCarregando == false}}, Origem=this" ap-altura="100%">
+         
+        <ap-painel
+            ap-tipo-painel="PilhaHorizontalCheia"
+            ap-altura="100%"
+            ap-tipografia="Descricao"  >
 
-            </ap-painel>
+            <ap-bloco ap-largura="200px"
+                ap-altura="100%">
 
-            <ap-painel
-                ap-tipo-painel="PilhaHorizontal"
-                sn-visibilidade="{{TotalRegistros == 0}}"
-                ap-alinhamento-vertical="Centro">
+                <ap-painel ap-tipo-painel="PilhaVertical"
+                    ap-alinhamento-vertical="Centro">
+                    <ap-texto 
+                        ap-quebrar="NaoQuebrar"
+                        sn-bind="{{ TotalRegistros }}, Converter=this.FormatarTotalRegistros">
+                    </ap-texto>
+                    <ap-texto sn-bind="{{ TotalPaginas === 1 ? '1 página' :  TotalPaginas + ' páginas' }}"></ap-texto>
+                </ap-painel>
+            </ap-bloco>
 
-                <ap-texto ap-alinhamento-horizontal="Esquerda">Nenhum registro foi encontrado</ap-texto>
-            </ap-painel>
+            <ap-bloco
+                ap-altura="100%">
 
-        </ap-coluna>
+                <ap-painel
+                    ap-tipo-painel="PilhaHorizontal"
+                    ap-altura="100%"
+                    ap-alinhamento-horizontal="Centro">
 
-        <ap-coluna ap-largura="60%">
-
-            <ap-painel-horizontal>
-                <ap-coluna ap-largura="65%">
-
-                    <ap-painel
-                        
-                        ap-tipo-painel="PilhaHorizontal"
-                        ap-alinhamento-vertical="Centro"
-                        ap-margem="48px 0px 0px 0px">
+                    <ap-bloco
+                        ap-altura="100%">
 
                         <sn-botao
-                            sn-click="BtnPaginacao_Click"
+                            sn-nome="BtnPaginacaoVoltar"
+                            sn-visibilidade="Oculto"
                             sn-parametros="Pagina=Anterior"
                             sn-tipo-botao="Icone"
                             ap-icone="KeyboardArrowLeft"
-                            sn-nome="BtnPaginacaoVoltar"
-                            ap-margem="0px 0px 10px 0px"
-                            sn-legenda="Anterior">
+                            sn-legenda="Anterior"
+                            sn-click="BtnPaginacao_Click">
                         </sn-botao>
 
-                        <ap-bloco ap-cor-fundo="Amarelo">
-                            <sn-painel-lista
-                                sn-nome="ControleListaPaginas"
-                                sn-bind-lista="{{Paginas}}"
-                                ap-tipo-painel="PilhaHorizontal">
+                    </ap-bloco>
 
-                                <sn-bloco-template
-                                    class="sn-paginacao-item-lista"
-                                    ap-margem="2px 0px">
-                                    <sn-botao
-                                        sn-click="BtnPaginacao_Click"
-                                        sn-parametros="Pagina={{Pagina}}"
-                                        sn-bind-texto="{{Pagina}}"
-                                        sn-bind-css-classe="{{CssClasse}}"
-                                        sn-tipo-botao="MiniCirculo">
-                                    </sn-botao>
-                                </sn-bloco-template>
+                    <ap-bloco>
 
-                            </sn-painel-lista>
-                        </ap-bloco>
+                        <sn-painel-lista
+                            sn-nome="ControleListaPaginas"
+                            sn-bind-lista="{{Paginas}}"
+                            ap-tipo-painel="PilhaHorizontal" ap-alinhamento-vertical="Centro">
 
-                        <ap-bloco ap-margem="15px 0px 0px 0px">
-                            <sn-botao
-                                sn-click="BtnPaginacao_Click"
-                                sn-parametros="Pagina=Proxima"
-                                sn-tipo-botao="Icone"
-                                ap-icone="KeyboardArrowRight"
-                                sn-nome="BtnPaginacaoAvancar"
-                               
-                                sn-legenda="Próxima">
-                            </sn-botao>
-                        </ap-bloco>
+                            <sn-bloco-template
+                                class="sn-paginacao-item-lista"
+                                ap-margem="4px 0px">
+                                <sn-botao
+                                    sn-click="BtnPaginacao_Click"
+                                    sn-parametros="Pagina={{Pagina}}"
+                                    sn-bind-texto="{{Pagina}}"
+                                    sn-bind-css-classe="{{CssClasse}}"
+                                    sn-tipo-botao="MiniCirculo">
+                                </sn-botao>
+                            </sn-bloco-template>
 
-                    </ap-painel>
+                        </sn-painel-lista>
+                    </ap-bloco>
 
-                </ap-coluna>
+                    <ap-bloco ap-altura="100%">
+                        <sn-botao
+                            sn-nome="BtnPaginacaoAvancar"
+                            sn-visibilidade="Oculto"
+                            sn-click="BtnPaginacao_Click"
+                            sn-parametros="Pagina=Proxima"
+                            sn-tipo-botao="Icone"
+                            ap-icone="KeyboardArrowRight"
+                            sn-legenda="Próxima">
+                        </sn-botao>
+                    </ap-bloco>
 
-                <ap-coluna>
-                    <ap-painel
-                        ap-tipo-painel="PilhaHorizontal"
-                        ap-alinhamento-vertical="Centro"
-                        ap-alinhamento-horizontal="Direita"
-                        ap-margem="0px 0px 10px 0px"
-                        sn-visibilidade="{{IsMostrarControleRegistrosPorPagina}}, Converter=VerdadeiroParaVisibilidade">
+                </ap-painel>
 
-                        <ap-texto ap-margem="0px 4px 0px 0px">Registros por página</ap-texto>
+            </ap-bloco>
 
+            <ap-bloco
+                ap-largura="220px"
+                ap-altura="100%">
+
+                <ap-painel
+                    ap-tipo-painel="PilhaHorizontal"
+                    ap-alinhamento-vertical="Centro"
+                    ap-alinhamento-horizontal="Direita"
+                    ap-altura="100%"
+                    sn-visibilidade="{{IsMostrarControleRegistrosPorPagina}}, Converter=VerdadeiroParaVisibilidade">
+
+                    <ap-bloco>
+                        <ap-painel ap-alinhamento-vertical="Centro"
+                            ap-tipo-painel="PilhaHorizontal">
+                            <ap-texto sn-bind="{{DescricaoItens}}, Origem=this" >  </ap-texto>
+                            <ap-texto ap-margem="8px 0px">por página</ap-texto>
+                        </ap-painel>
+                        
+                    </ap-bloco>
+                    <ap-bloco ap-altura="100%"
+                        ap-margem="8px -8px 0px 0px">
                         <sn-combobox
                             sn-bind-lista="{{Limites}}"
-                            sn-bind="{{RegistroPorPagina}}"
+                            sn-bind="{{RegistrosPorPagina}}"
                             sn-permitir-limpar="false"
                             sn-is-rotulo-vazio="true"
-                            ap-largura="50px"
-                            ap-margem="50px 0px 0px 0px">
+                            sn-is-rotulo-flutuante="false"
+                            ap-alinhamento-vertical="Centro"
+                            ap-largura="60px">
 
                             <sn-item-template>
-                                <span sn-bind="{{Descricao}}" ap-altura-linha="28px" ap-margem="8px 0px"></span>
+                                <ap-bloco sn-bind="{{.}}"
+                                    ap-altura-linha="28px"
+                                    ap-largura="100%">
+                                </ap-bloco>
                             </sn-item-template>
 
                         </sn-combobox>
-                    </ap-painel>
 
-                </ap-coluna>
+                    </ap-bloco>
+                </ap-painel>
+
+            </ap-bloco>
 
 
-            </ap-painel-horizontal>
-        </ap-coluna>
-    </ap-painel-horizontal>
-
+        </ap-painel>
+    </ap-bloco>
 
 </body>
-</html> 
+</html>
+
+ 

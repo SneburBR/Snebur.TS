@@ -1,11 +1,17 @@
 ﻿namespace Snebur.UI
 {
-    export class ControlePaginacao extends BaseControlePaginacao
+    export class ControlePaginacao extends Snebur.UI.BaseControlePaginacao
     {
-
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
+
+            this.EventoCarregado.AddHandler(this.ControlePaginacao_Carregado, this);
+        }
+
+        private ControlePaginacao_Carregado()
+        {
+            this.AtualizarPaginacao();
         }
 
         protected override Inicializar()
@@ -21,12 +27,11 @@
         public override AtualizarPaginacao(): void
         {
             super.AtualizarPaginacao();
-
             this.AtualizarVisibilidadeBotaoAnterior();
             this.AtualizarVisibilidadeBotaoProximo();
         }
-         
-        private BtnPaginacao_Click(botao: ui.Botao, e: UIEventArgs): void
+
+        public BtnPaginacao_Click(botao: ui.Botao, e: ui.UIEventArgs): void
         {
             const pagina = e.Parametros.Item("Pagina");
             if (pagina === "Proxima")
@@ -45,16 +50,8 @@
             this.NotificarEventoPaginacaoAlterada();
         }
 
-        private BtnLimite_Click(botao: ui.Botao, e: UIEventArgs): void
-        {
-            const limite = u.ConverterUtil.ParaInteiro(e.Parametros.Item("Limite"));
-            this.RegistroPorPagina = limite;
-            this.AtualizarPaginacao();
-            this.NotificarEventoPaginacaoAlterada();
-        }
+        //#region Visibilidades
 
-     
-         
         private AtualizarVisibilidadeBotaoAnterior(): void
         {
             if (this.PaginaAtual === 1)
@@ -79,18 +76,33 @@
             }
         }
 
-     
+        //#endregion
+
+        private FormatarNumeroRegistros(totalRegistros: any, dataSource: any): any
+        {
+            if (typeof totalRegistros === "number")
+            {
+                if (totalRegistros === 0)
+                {
+                    return "Nenhum registro encontrado";
+                }
+                return `${totalRegistros} ${totalRegistros === 1 ? "registro" : "registros"}`;
+            }
+            return String.Empty;
+        }
     }
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface ControlePaginacao
-	{
-		readonly BtnPaginacaoVoltar: ui.Botao;
-		readonly ControleListaPaginas: ui.PainelLista;
-		readonly BtnPaginacaoAvancar: ui.Botao;
-	}
+    export interface ControlePaginacao
+    {
+        readonly BtnPaginacaoVoltar: ui.Botao;
+        readonly ControleListaPaginas: ui.PainelLista;
+        readonly BtnPaginacaoAvancar: ui.Botao;
+    }
 
-	//#endregion
+    //#endregion
+
+  
 
 }
