@@ -49,50 +49,32 @@
 
         public ColunaOrdenacao_Click(colunaAtual: ColunaTexto, e: UIEventArgs): void
         {
-            const colunas = this.ControlesFilho.OfType<ColunaTexto>(ColunaTexto).Where(x => x.IsOrdenacaoAtiva).ToList();
+            const colunas = this.ControlesFilho.OfType(ColunaTexto).Where(x => x.IsAtivarOrdenacao).ToList();
             colunas.Remove(colunaAtual);
 
             for (const coluna of colunas)
             {
-                coluna.Ordenacao = EnumOrdenacaoColuna.Nenhuma;
+                coluna.SentidoOrdenacao = EnumSentidoOrdenacaoColuna.Nenhuma;
             }
-            colunaAtual.Ordenacao = this.RetornarProximaOrdenacao(colunaAtual.Ordenacao);
-
-            /*this.DataLista.EventoOrdenacaoAlterada*/
-            throw new ErroNaoImplementado("Implementar evento EventoOrdenacaoAlterada");
-
-
-            //if (colunaAtual.Ordenacao == EnumOrdenacaoColuna.Nenhuma)
-            //{
-            //    this.DataLista.DesativarOrdenacao();
-            //}
-            //else
-            //{
-            //    let caminhoPropriedade = colunaAtual.CaminhoPropriedade;
-            //    if (String.IsNullOrEmpty(caminhoPropriedade))
-            //    {
-            //        throw new Erro("o caminho da propriedade não foi encontrado, definir o sn-tipo");
-            //    }
-            //    let sentido = this.RetornarSentidoOrdenacao(colunaAtual.Ordenacao);
-            //    this.DataLista.OrdenacaoLista(caminhoPropriedade, sentido);
-            //}
+            colunaAtual.SentidoOrdenacao = this.RetornarProximaOrdenacao(colunaAtual.SentidoOrdenacao);
+            this.DataLista.NotificarOrdenacaoAlterada(colunaAtual, e);
         }
 
-        private RetornarProximaOrdenacao(ordenacao: EnumOrdenacaoColuna): EnumOrdenacaoColuna
+        private RetornarProximaOrdenacao(ordenacao: EnumSentidoOrdenacaoColuna): EnumSentidoOrdenacaoColuna
         {
             switch (ordenacao)
             {
-                case (EnumOrdenacaoColuna.Nenhuma):
+                case (EnumSentidoOrdenacaoColuna.Nenhuma):
 
-                    return EnumOrdenacaoColuna.Crescente;
+                    return EnumSentidoOrdenacaoColuna.Crescente;
 
-                case (EnumOrdenacaoColuna.Crescente):
+                case (EnumSentidoOrdenacaoColuna.Crescente):
 
-                    return EnumOrdenacaoColuna.Decrescente;
+                    return EnumSentidoOrdenacaoColuna.Decrescente;
 
-                case (EnumOrdenacaoColuna.Decrescente):
+                case (EnumSentidoOrdenacaoColuna.Decrescente):
 
-                    return EnumOrdenacaoColuna.Nenhuma;
+                    return EnumSentidoOrdenacaoColuna.Nenhuma;
 
                 default:
 
@@ -100,23 +82,7 @@
             }
         }
 
-        private RetornarSentidoOrdenacao(ordenacao: EnumOrdenacaoColuna): d.EnumSentidoOrdenacao
-        {
-            switch (ordenacao)
-            {
-                case (EnumOrdenacaoColuna.Crescente):
-
-                    return d.EnumSentidoOrdenacao.Crescente;
-
-                case (EnumOrdenacaoColuna.Decrescente):
-
-                    return d.EnumSentidoOrdenacao.Decrescente;
-
-                default:
-
-                    throw new ErroNaoSuportado("A ordenação não é suportada", this);
-            }
-        }
+       
         //#endregion
 
         //#region Métodos privados

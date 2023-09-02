@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.UI
 {
-    export enum EnumOrdenacaoColuna
+    export enum EnumSentidoOrdenacaoColuna
     {
         Nenhuma = 0,
 

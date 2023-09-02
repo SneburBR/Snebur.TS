@@ -29,4 +29,6 @@ namespace Snebur.UI
             this.Linha = linha;
         }
     }
+
+    
 }

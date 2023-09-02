@@ -2,23 +2,21 @@
 {
     export class ColunaTexto extends Coluna
     {
-        private _ordenacao: EnumOrdenacaoColuna;
-        private IDElementoSpanOrdenacao: string;
+        private _sentidoOrdenacao: EnumSentidoOrdenacaoColuna;
+        public IsAtivarOrdenacao: boolean;
 
-        public IsOrdenacaoAtiva: boolean;
-
-        public get Ordenacao(): EnumOrdenacaoColuna
+        public get SentidoOrdenacao(): EnumSentidoOrdenacaoColuna
         {
-            return this._ordenacao;
+            return this._sentidoOrdenacao;
         }
 
-        public set Ordenacao(value: EnumOrdenacaoColuna)
+        public set SentidoOrdenacao(value: EnumSentidoOrdenacaoColuna)
         {
-            this._ordenacao = value;
+            this._sentidoOrdenacao = value;
             this.AtualizarEstiloOrdenacao();
         }
 
-        public override get  ColunasColecao(): ColunasColecao
+        public override get ColunasColecao(): ColunasColecao
         {
             return this.ControlePai as ColunasColecao;
         }
@@ -37,11 +35,11 @@
         {
             super.HtmlCarregado();
 
-            this.IsOrdenacaoAtiva = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.AtivarOrdenacao));
+            this.IsAtivarOrdenacao = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao));
 
-            if (this.IsOrdenacaoAtiva)
+            if (this.IsAtivarOrdenacao)
             {
-                this.Ordenacao = EnumOrdenacaoColuna.Nenhuma;
+                this.SentidoOrdenacao = EnumSentidoOrdenacaoColuna.Nenhuma;
 
                 ElementoUtil.AdicionarAtributo(this.Elemento,
                     AtributosHtml.Click,
@@ -53,7 +51,7 @@
         {
             this.IDElementoRotulo = ElementoUtil.RetornarNovoIDElemento(this, "SPAN");
             const html = `<span id="${this.IDElementoRotulo}"> ${this.RetornarRotulo()} </span>`;
-            if (this.IsOrdenacaoAtiva)
+            if (this.IsAtivarOrdenacao)
             {
                 return `<div class="sn-data-lista-div-ordenacao">${html}</div>`;
             }
@@ -64,36 +62,25 @@
 
         private AtualizarEstiloOrdenacao(): void
         {
-            this.RemoverTodosEstiloOrdencao();
-            EstiloUtil.AdicionarCssClasse(this.IDElementoRotulo, this.RetornarCssClasseOrdencao(this.Ordenacao));
+            const cssClass = this.RetornarCssClasseOrdencao(this.SentidoOrdenacao);
+            EstiloUtil.AdicionarCssClasse(this.IDElementoRotulo, cssClass);
         }
 
-        private RemoverTodosEstiloOrdencao(): void
-        {
-            const classes = new Array<string>();
-            classes.Add(this.RetornarCssClasseOrdencao(EnumOrdenacaoColuna.Nenhuma));
-            classes.Add(this.RetornarCssClasseOrdencao(EnumOrdenacaoColuna.Crescente));
-            classes.Add(this.RetornarCssClasseOrdencao(EnumOrdenacaoColuna.Decrescente));
-
-            const juntar = String.Join(" ", classes);
-            EstiloUtil.RemoverCssClasse(this.IDElementoRotulo, juntar);
-        }
-
-        private RetornarCssClasseOrdencao(ordenacao: EnumOrdenacaoColuna): string
+        private RetornarCssClasseOrdencao(ordenacao: EnumSentidoOrdenacaoColuna): string
         {
             switch (ordenacao)
             {
-                case (EnumOrdenacaoColuna.Nenhuma):
+                case (EnumSentidoOrdenacaoColuna.Nenhuma):
 
-                    return "sn-data-lista-coluna-ordenacao-nenhuma";
+                    return "sn-data-lista-coluna-ordenacao--nenhuma";
 
-                case (EnumOrdenacaoColuna.Crescente):
+                case (EnumSentidoOrdenacaoColuna.Crescente):
 
-                    return "sn-data-lista-coluna-ordenacao-crescente";
+                    return "sn-data-lista-coluna-ordenacao--crescente";
 
-                case (EnumOrdenacaoColuna.Decrescente):
+                case (EnumSentidoOrdenacaoColuna.Decrescente):
 
-                    return "sn-data-lista-coluna-ordenacao-decrescente";
+                    return "sn-data-lista-coluna-ordenacao--decrescente";
 
                 default:
 

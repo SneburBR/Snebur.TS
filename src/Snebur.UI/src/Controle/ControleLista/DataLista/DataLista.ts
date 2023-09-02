@@ -71,7 +71,8 @@
         }
 
         public readonly EventoLinhaDetalhesExpandida = new Evento<LinhaDetalhesExpandidaEventArgs<TItem>>(this);
-        public readonly EventoPaginacaoAlterada = new Evento<PaginacaoAlteradaEventArgs>(this);
+        public readonly EventoOrdenacaoColunaAlterada = new Evento<OrdenacaoColunaAlteradaEventArgs>(this);
+        
 
         public get IsMarcarItem(): boolean
         {
@@ -387,6 +388,12 @@
                     }
                 }
             }
+        }
+
+        public NotificarOrdenacaoAlterada(coluna: ColunaTexto, e: UIEventArgs)
+        {
+            const args = new OrdenacaoColunaAlteradaEventArgs(coluna, e.Elemento, e.Parametros, e.DomEvent);
+            this.EventoOrdenacaoColunaAlterada.Notificar(this, args);
         }
 
         private RetornarTemplateColunas(): TemplateColunasColecao
