@@ -257,9 +257,10 @@
         public static readonly PaginacaoDescricaoItens = new AtributoHtml("sn-paginacao-descricao-itens", String);
 
         //DataLista
-        public static readonly AtivarOrdenacao = new AtributoHtml("sn-ativar-ordenacao", Boolean);
+        public static readonly IsAtivarOrdenacao = new AtributoHtml("sn-is-ativar-ordenacao", Boolean);
         public static readonly DesativarEfeitoHover = new AtributoHtml("sn-desativar-efeito-hover", Boolean);
         public static readonly LinhaDetalhesExpandida = new AtributoHtml("sn-linha-detalhes-expandida", Event);
+        public static readonly OrdenacaoColunaAlterada = new AtributoHtml("sn-ordenacao-coluna-alterada", Event);
         public static readonly LinhaClick = new AtributoHtml("sn-linha-click", Event);
 
         //Expandir
@@ -268,7 +269,7 @@
         //Eventos
         public static readonly Click = new AtributoHtml("sn-click", Event);
         public static readonly Enter = new AtributoHtml("sn-enter", Event);
-        public static readonly ClickAsync = new AtributoHtml("sn-click-async", Event);
+        /*public static readonly ClickAsync = new AtributoHtml("sn-click-async", Event);*/
          
         //public static DuploClick = new AtributoHtml("sn-duplo-click", Event);
         public static readonly ItemClick = new AtributoHtml("sn-item-click", Event);
