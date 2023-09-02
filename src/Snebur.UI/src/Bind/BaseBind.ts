@@ -53,7 +53,7 @@
         {
             return this._tipoPrimarioProprieadeLigacao;
         }
-         
+
         public constructor(controlePai: BaseControle,
             elemento: HTMLElement,
             atributo: AtributoHtml,
@@ -92,7 +92,8 @@
             if (u.ValidacaoUtil.IsDefinido(this.Origem))
             {
                 this.PaiPropriedadeLigacao = u.ReflexaoUtil.RetornarValorPaiPropriedade(this.Origem, this.CaminhoPropriedadeLigacao, false);
-                this.PropriedadeLigacao = this.PaiPropriedadeLigacao?.GetType().RetornarPropriedade(this.NomePropriedadeLigacao);
+                this.PropriedadeLigacao = this.RetornarPropriedadeLigacao();
+
                 if (this.PaiPropriedadeLigacao instanceof ObjetoControladorPropriedade)
                 {
                     this.PaiPropriedadeLigacao.AdicionarManipuladorPropriedadeAlterada(this.NomePropriedadeLigacao, this.ValorPropriedadeOrigem_Alterado, this);
@@ -103,6 +104,15 @@
                 this.EventoDataSourceAlterado.AddHandler(this.DataSource_Alterado, this);
                 this.EventoDataSourceAntesAlterar.AddHandler(this.DataSource_AntesAlterar, this);
             }
+        }
+
+        private RetornarPropriedadeLigacao(): sn.r.Propriedade
+        {
+            if (String.IsNullOrWhiteSpace(this.NomePropriedadeLigacao))
+            {
+                return null;
+            }
+            return this.PaiPropriedadeLigacao?.GetType().RetornarPropriedade(this.NomePropriedadeLigacao) ?? null;
         }
 
         private ValidarValorAtributo()
