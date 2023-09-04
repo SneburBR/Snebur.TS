@@ -49,7 +49,7 @@
 
 .sn-data-lista-coluna-ordenacao--crescente {
     cursor: pointer;
-    color: blue;
+    /*color: blue;*/
 
     &::before {
         content: "";
@@ -68,7 +68,7 @@
 
 .sn-data-lista-coluna-ordenacao--decrescente {
     cursor: pointer;
-    color:red;
+  /*  color:red;*/
 
     &::before {
         content: "";

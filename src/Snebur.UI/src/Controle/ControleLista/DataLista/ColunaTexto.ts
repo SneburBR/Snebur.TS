@@ -2,8 +2,13 @@
 {
     export class ColunaTexto extends Coluna
     {
+        private _isAtivarOdernacao: boolean;
         private _sentidoOrdenacao: EnumSentidoOrdenacaoColuna;
-        public IsAtivarOrdenacao: boolean;
+
+        public get IsAtivarOrdenacao(): boolean
+        {
+            return this._isAtivarOdernacao;
+        }
 
         public get SentidoOrdenacao(): EnumSentidoOrdenacaoColuna
         {
@@ -35,27 +40,28 @@
         {
             super.HtmlCarregado();
 
-            this.IsAtivarOrdenacao = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao));
-
+            this._isAtivarOdernacao = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao));
             if (this.IsAtivarOrdenacao)
             {
-                this.SentidoOrdenacao = EnumSentidoOrdenacaoColuna.Nenhuma;
-
+                const elementoRotulo = ElementoUtil.RetornarElemento(this.IDElementoRotulo, true);
+                elementoRotulo.remove();
+                this._idElementoDivOrdenacao = ElementoUtil.RetornarNovoIDElemento(this, "div");
+                const div = document.createElement("div");
+                div.className = "sn-data-lista-div-ordenacao";
+                div.id = this.IDElementoDivOrdenacao;
+                div.appendChild(elementoRotulo);
+                this.Elemento.appendChild(div);
+                this.SentidoOrdenacao = this.RetornarValorAtributoEnum(EnumSentidoOrdenacaoColuna, AtributosHtml.SentidoOrdenacao, EnumSentidoOrdenacaoColuna.Nenhuma);
                 ElementoUtil.AdicionarAtributo(this.Elemento,
                     AtributosHtml.Click,
                     "ColunaOrdenacao_Click");
             }
         }
 
-        protected override RetornarHtmlInterno(): string
+        protected override RetornarHtmlInterno(atributos: DicionarioSimples<string>): string
         {
-            this.IDElementoRotulo = ElementoUtil.RetornarNovoIDElemento(this, "SPAN");
-            const html = `<span id="${this.IDElementoRotulo}"> ${this.RetornarRotulo()} </span>`;
-            if (this.IsAtivarOrdenacao)
-            {
-                return `<div class="sn-data-lista-div-ordenacao">${html}</div>`;
-            }
-            return html;
+            this._idElementoRotulo = ElementoUtil.RetornarNovoIDElemento(this, "SPAN");
+            return `<span id="${this.IDElementoRotulo}"> ${this.RetornarRotulo()} </span>`;
         }
 
         //#region Estilo Ordenação
@@ -63,7 +69,7 @@
         private AtualizarEstiloOrdenacao(): void
         {
             const cssClass = this.RetornarCssClasseOrdencao(this.SentidoOrdenacao);
-            EstiloUtil.AdicionarCssClasse(this.IDElementoRotulo, cssClass);
+            EstiloUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, cssClass);
         }
 
         private RetornarCssClasseOrdencao(ordenacao: EnumSentidoOrdenacaoColuna): string

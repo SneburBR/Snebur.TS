@@ -2,11 +2,22 @@
 {
     export abstract class Coluna extends BaseItemTemplate<TemplateColuna>
     {
+        protected _idElementoRotulo: string;
+        protected _idElementoDivOrdenacao: string;
+
         public readonly Propriedade: r.Propriedade;
         public readonly CaminhoPropriedade: string;
         public readonly IsPropriedadeEntidade: boolean;
 
-        public IDElementoRotulo: string;
+        public get IDElementoRotulo(): string
+        {
+            return this._idElementoRotulo;
+        }
+
+        public get IDElementoDivOrdenacao(): string
+        {
+            return this._idElementoDivOrdenacao;
+        }
 
         public get TemplateColuna(): TemplateColuna
         {
@@ -64,7 +75,7 @@
 
             if (this.Propriedade instanceof r.Propriedade)
             {
-                EstiloUtil.AdicionarCssClasse(this.Elemento, this.RetornarCssClasse());
+                EstiloUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, this.RetornarCssClasse());
             }
         }
 
@@ -74,7 +85,7 @@
         }
 
         //#region Css 
-         
+
         protected RetornarCssClasse(): string
         {
             if (!u.ReflexaoUtil.TipoRetronarTipoNumerico(this.Propriedade.Tipo))
