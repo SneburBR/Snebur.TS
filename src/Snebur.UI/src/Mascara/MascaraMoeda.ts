@@ -58,7 +58,7 @@
             {
                 return String.Empty;
             }
-            return FormatacaoUtil.FormatarDecimal(value);
+            return FormatacaoUtil.FormatarDecimal(TextoUtil.RetornarSomenteNumeros(value, false, true));
         }
 
         private Elemento_Keydown(e: KeyboardEvent): void
