@@ -4,49 +4,53 @@
     export abstract class BaseBind extends BaseUIElemento
     {
         public readonly Priority: number = 0;
-
         public static readonly THIS = "this.";
 
-        private readonly __ValorPropriedadeAlterado: PropriedadeAlteradaHandlder;
-        private readonly __ValorPropriedadeOrigem_Alterado: PropriedadeAlteradaHandlder;
+        private _paiPropriedadeLigacao: ObjetoControladorPropriedade;
         private _valorPropriedade: any = undefined;
         private _propriedadeLigacao: r.Propriedade;
         private _tipoPrimarioProprieadeLigacao: r.EnumTipoPrimario;
         private _isAlertaFalhaBindMostrado: boolean;
+        private _valorPadrao: any;
 
-        protected readonly AtributoHtml: AtributoHtml;
-        protected readonly ValorAtributo: string;
-        protected readonly Origem: any;
-        protected readonly IsNaoPermitirValorZero: boolean;
+        public readonly AtributoHtml: AtributoHtml;
+        public readonly ValorAtributo: string;
+        public readonly Origem: any;
+        public readonly IsNaoPermitirValorZero: boolean;
+        public readonly NomePropriedadeLigacao: string;
+        public readonly Opcoes: string;
+        public readonly ExpressaoBind: string;
+        public readonly CaminhoPropriedadeLigacao: string;
 
         protected FuncaoConverter: (valor: any, dataSource: any, bind: BaseBind) => any;
         protected FuncaoExpressao: FuncaoBindExpressao;
         protected Formatar: string;
         protected MaximoCaracteres: number;
-        protected ValorPadrao: any;
-
         protected IsValorNormalizado: boolean = false;
 
-        protected PaiPropriedadeLigacao: ObjetoControladorPropriedade;
+        public get PropriedadeLigacao(): r.Propriedade
+        {
+            return this._propriedadeLigacao;
+        }
+        protected SetPropriedadeLigacao(value: r.Propriedade)
+        {
+            this._propriedadeLigacao = value;
+            this._tipoPrimarioProprieadeLigacao = (value?.Tipo instanceof r.TipoPrimario) ? value.Tipo.TipoPrimarioEnum : r.EnumTipoPrimario.Desconhecido;
+        }
 
-        protected readonly NomePropriedadeLigacao: string;
-        protected readonly Opcoes: string;
-        protected readonly ExpressaoBind: string;
-        protected readonly CaminhoPropriedadeLigacao: string;
+        public get PaiPropriedadeLigacao(): ObjetoControladorPropriedade
+        {
+            return this._paiPropriedadeLigacao;
+        }
+
+        public get ValorPadrao(): any
+        {
+            return this._valorPadrao;
+        }
 
         private get IsFormatar(): boolean
         {
             return this.Formatar != null;
-        }
-
-        protected get PropriedadeLigacao(): r.Propriedade
-        {
-            return this._propriedadeLigacao;
-        }
-        protected set PropriedadeLigacao(value: r.Propriedade)
-        {
-            this._propriedadeLigacao = value;
-            this._tipoPrimarioProprieadeLigacao = (value?.Tipo instanceof r.TipoPrimario) ? value.Tipo.TipoPrimarioEnum : r.EnumTipoPrimario.Desconhecido;
         }
 
         public get TipoPrimarioProprieadeLigacao(): r.EnumTipoPrimario
@@ -76,7 +80,6 @@
 
             this.ValidarValorAtributo();
 
-
             this.Opcoes = BindOpcoesUtil.RetornarOpcoes(this.ValorAtributo);
             this.NomePropriedadeLigacao = BindUtil.RetornarNomePropriedade(this.CaminhoPropriedadeLigacao);
 
@@ -85,14 +88,14 @@
 
             this.Formatar = this.RetornarFormatar();
             this.MaximoCaracteres = this.RetornarMaximoCaracteres();
-            this.ValorPadrao = this.RetornarValorPadrao();
+            this._valorPadrao = this.RetornarValorPadrao();
             this.Origem = BindOpcoesUtil.RetornarOrigem(this.Opcoes, this.ControlePai);
             this.IsNaoPermitirValorZero = this.RetornarValorAtributoBoolean(AtributosHtml.IsNaoPermitirValorZero, false);
 
             if (u.ValidacaoUtil.IsDefinido(this.Origem))
             {
-                this.PaiPropriedadeLigacao = u.ReflexaoUtil.RetornarValorPaiPropriedade(this.Origem, this.CaminhoPropriedadeLigacao, false);
-                this.PropriedadeLigacao = this.RetornarPropriedadeLigacao();
+                this._paiPropriedadeLigacao = u.ReflexaoUtil.RetornarValorPaiPropriedade(this.Origem, this.CaminhoPropriedadeLigacao, false);
+                this._propriedadeLigacao = this.RetornarPropriedadeLigacao();
 
                 if (this.PaiPropriedadeLigacao instanceof ObjetoControladorPropriedade)
                 {
@@ -235,6 +238,10 @@
                 u.ReflexaoUtil.AtribuirValorPropriedade(this.PaiPropriedadeLigacao,
                     this.NomePropriedadeLigacao,
                     valorPropriedade, true);
+                if (this.ControlePai instanceof BaseControleFormulario)
+                {
+                    this.ControlePai.VerificarValorPropriedadeAlterada();
+                }
             }
         }
 
@@ -318,11 +325,11 @@
         {
             if (u.ValidacaoUtil.IsDefinido(this.DataSource))
             {
-                this.PaiPropriedadeLigacao = u.ReflexaoUtil.RetornarValorPaiPropriedade(this.DataSource, this.CaminhoPropriedadeLigacao, true);
+                this._paiPropriedadeLigacao = u.ReflexaoUtil.RetornarValorPaiPropriedade(this.DataSource, this.CaminhoPropriedadeLigacao, true);
 
                 if ((this.CaminhoPropriedadeLigacao !== ".") && (u.ValidacaoUtil.IsDefinido(this.PaiPropriedadeLigacao)))
                 {
-                    this.PropriedadeLigacao = this.PaiPropriedadeLigacao.GetType().RetornarPropriedade(this.NomePropriedadeLigacao);
+                    this._propriedadeLigacao = this.PaiPropriedadeLigacao.GetType().RetornarPropriedade(this.NomePropriedadeLigacao);
                     if (this.PaiPropriedadeLigacao instanceof ObjetoControladorPropriedade)
                     {
                         this.PaiPropriedadeLigacao.AdicionarManipuladorPropriedadeAlterada(this.NomePropriedadeLigacao, this.ValorPropriedade_Alterada, this);
@@ -630,8 +637,8 @@
                 this.EventoDataSourceAlterado.RemoveHandler(this.DataSource_Alterado, this);
                 this.EventoDataSourceAntesAlterar.RemoveHandler(this.DataSource_AntesAlterar, this);
 
-                this.PaiPropriedadeLigacao = null;
-                this.PropriedadeLigacao = null;
+                this._paiPropriedadeLigacao = null;
+                this._propriedadeLigacao = null;
 
                 if (typeof this.FuncaoExpressao === "function")
                 {
@@ -641,7 +648,7 @@
                 delete this.FuncaoConverter;
                 delete this.FuncaoExpressao;
                 delete this.Formatar;
-                delete this.ValorPadrao;
+                delete this._valorPadrao;
                 //this.CaminhoPropriedadeLigacao = null;
                 //this.NomePropriedadeLigacao = null;
 

@@ -3,11 +3,19 @@ namespace Snebur.UI
 {
     export class BindData extends BindTexto
     {
+        private _ultimoValorDomDataNull: string;
+
+        public get ElementoInput(): HTMLInputElement
+        {
+            return this.Elemento as HTMLInputElement;
+        }
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement, valorAtributo: string)
         {
             super(controlePai, elemento, valorAtributo);
 
-            if (!(controlePai instanceof CaixaData))
+            if (!(elemento instanceof HTMLInputElement &&
+                (controlePai instanceof CaixaData || controlePai instanceof CaixaTexto)))
             {
                 throw new Erro("O controle não é suportado");
             }
@@ -17,6 +25,11 @@ namespace Snebur.UI
         {
             if (valorPropriedade == null)
             {
+                if (this.ElementoInput != null &&
+                    this.ElementoInput.value === this._ultimoValorDomDataNull)
+                {
+                    return this.ElementoInput.value;
+                }
                 return String.Empty;
             }
 
@@ -31,6 +44,11 @@ namespace Snebur.UI
 
         public override RetornarValorConvertidoParaPropriedade(valorDom: string): Date | string
         {
+            if (this.PropriedadeLigacao.Tipo === String.GetType())
+            {
+                return valorDom;
+            }
+
             if (u.ValidacaoUtil.IsDate(valorDom, true))
             {
                 if (this.PropriedadeLigacao instanceof r.Propriedade)
@@ -40,15 +58,11 @@ namespace Snebur.UI
                         return ConverterUtil.ParaData(valorDom, $Configuracao.TipoData, true);
                     }
 
-                    if (this.PropriedadeLigacao.Tipo === String.GetType())
-                    {
-                        return valorDom;
-                    }
-
                     throw new Erro(`O BindData não é suportado para a Propriedade ${this.PropriedadeLigacao.Nome} do tipo ${this.PropriedadeLigacao.Tipo.Nome}`);
                 }
                 return ConverterUtil.ParaData(valorDom, $Configuracao.TipoData, true);
             }
+            this._ultimoValorDomDataNull = valorDom;
             return null;
         }
     }

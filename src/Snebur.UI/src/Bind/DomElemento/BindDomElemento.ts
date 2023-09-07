@@ -415,7 +415,7 @@
                         `\r\n Propriedade ? ${this.CaminhoPropriedadeLigacao}` +
                         `\r\n DataSource tipo: ${this.DataSource?.GetType().Nome}`);
                 }
-                return u.ConverterUtil.Para(valorDom, tipo);
+                return u.ConverterUtil.Para(valorDom, tipo, true, true);
             }
             return valorDom;
         }
