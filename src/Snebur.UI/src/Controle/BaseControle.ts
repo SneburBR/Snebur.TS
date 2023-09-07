@@ -130,7 +130,7 @@
             this.IsOcupadoInterno = false;
 
             //this.ControlesFilho = this.RetornarControleFilhos();
-            this.DesativarNotificacaoPropriedadeAlterada();
+            this.DesativarObservadorPropriedadeAlterada();
             this.DicionarioElementosSnebur = new DicionarioSimples<Array<HTMLElement>>();
             this.EventoDataSourceAlterado.AddHandler(this.BaseControle_DataSource_Alterado, this);
         }
@@ -141,7 +141,7 @@
 
             this.InicializarBinds();
             this.__isControleInicializado = true;
-            this.AtivarNotificacaoPropriedadeAlterada();
+            this.AtivarObservadorPropriedadeAlterada();
 
             //setTimeout(this.NotificarHtmlCarregado.bind(this), 500);
             /* movido para ControleApresentacao

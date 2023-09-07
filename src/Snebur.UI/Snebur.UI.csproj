@@ -632,6 +632,7 @@
     <TypeScriptCompile Include="src\Mascara\MascaraCpfCnpj.ts" />
     <TypeScriptCompile Include="src\Mascara\MascaraFormatacao.ts" />
     <TypeScriptCompile Include="src\Mascara\MascaraHora.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraDecimal.ts" />
     <TypeScriptCompile Include="src\Mascara\MascaraMoeda.ts" />
     <TypeScriptCompile Include="src\Mascara\MascaraTelefone.ts" />
     <TypeScriptCompile Include="src\Nativo\Document.ts" />
@@ -684,7 +685,7 @@
     <TypeScriptCompile Include="src\Utilidade\KeyCodeUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\MascaraUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\MaterialDesignerUtil.ts" />
-    <TypeScriptCompile Include="src\Utilidade\MdlUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\NavegadorUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\PaginaUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\CanvasUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\RotacionarImagemUtil.ts" />

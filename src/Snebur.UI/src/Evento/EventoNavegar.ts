@@ -31,7 +31,7 @@
         public ManipuladorkEventListenerDom(domEvent: UIEvent)
         {
             const navegador = this.RetornarNavegador();
-            const construtorPagina = PaginaUtil.RetornarConstrutorPagina(this.ControlePai, this.CaminhoPagina);
+            const construtorPagina = NavegadorUtil.RetornarConstrutorPagina(this.ControlePai, this.CaminhoPagina);
             const parametros = this.RetornarParametros();
             navegador.Navegar(construtorPagina, parametros);
         }

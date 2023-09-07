@@ -72,7 +72,8 @@
 
         protected async NavegarPaginaInicialAsync(): Promise<void>
         {
-            const paginaInicial = this.RetornarConstrutorPaginaInicial();
+            const caminho = this.RetornarValorAtributo(AtributosHtml.PaginaInicial);
+            const paginaInicial = NavegadorUtil.RetornarConstrutorPaginaInicial(this, caminho);
             if (paginaInicial instanceof Function)
             {
                 const parametros = this.RetornarParametrosParaInicial();
@@ -520,46 +521,46 @@
             }
         }
 
-        private RetornarConstrutorPaginaInicial(): IPaginaConstrutor
-        {
-            const caminhoPaginaInicial = this.RetornarValorAtributo(AtributosHtml.PaginaInicial, null);
-            if (!String.IsNullOrWhiteSpace(caminhoPaginaInicial))
-            {
-                if (caminhoPaginaInicial.StartsWith(BaseBind.THIS))
-                {
-                    const metodo = this.RetornarMetodo(caminhoPaginaInicial);
-                    const construtorOuNome = metodo();
+        //private RetornarConstrutorPaginaInicial(): IPaginaConstrutor
+        //{
+        //    const caminhoPaginaInicial = this.RetornarValorAtributo(AtributosHtml.PaginaInicial, null);
+        //    if (!String.IsNullOrWhiteSpace(caminhoPaginaInicial))
+        //    {
+        //        if (caminhoPaginaInicial.StartsWith(BaseBind.THIS))
+        //        {
+        //            const metodo = this.RetornarMetodo(caminhoPaginaInicial);
+        //            const construtorOuNome = metodo();
 
-                    switch (typeof construtorOuNome)
-                    {
-                        case "function":
-                            return construtorOuNome;
-                        case "string":
-                            return this.RetornarConstrutorPaginaInicialInterno(construtorOuNome);
-                        default:
+        //            switch (typeof construtorOuNome)
+        //            {
+        //                case "function":
+        //                    return construtorOuNome;
+        //                case "string":
+        //                    return this.RetornarConstrutorPaginaInicialInterno(construtorOuNome);
+        //                default:
 
-                            throw new Erro(`Não foi possível retornar pagina inicial do navegador, o método ${caminhoPaginaInicial} não foi encontrado em ${this.ControleApresentacao.___NomeConstrutor}`);
-                    }
-                }
-                return this.RetornarConstrutorPaginaInicialInterno(caminhoPaginaInicial);
-            }
-            return null;
-        }
+        //                    throw new Erro(`Não foi possível retornar pagina inicial do navegador, o método ${caminhoPaginaInicial} não foi encontrado em ${this.ControleApresentacao.___NomeConstrutor}`);
+        //            }
+        //        }
+        //        return this.RetornarConstrutorPaginaInicialInterno(caminhoPaginaInicial);
+        //    }
+        //    return null;
+        //}
 
-        private RetornarConstrutorPaginaInicialInterno(construtorOuNome: string): IPaginaConstrutor<Pagina>
-        {
-            const construtor = PaginaUtil.RetornarConstrutorPagina(this, construtorOuNome, true);
-            if (construtor == null)
-            {
-                let caminho = this.RetornarValorAtributo(AtributosHtml.PaginaInicial, null);
-                if (construtorOuNome !== caminho)
-                {
-                    caminho += ` result ${construtorOuNome}`;
-                }
-                throw new Erro(`Não foi possível retornar pagina inicial do navegador, sn-pagina-inciial=${caminho} não foi encontrado em ${this.ControleApresentacao.___NomeConstrutor}`);
-            }
-            return construtor;
-        }
+        //private RetornarConstrutorPaginaInicialInterno(construtorOuNome: string): IPaginaConstrutor<Pagina>
+        //{
+        //    const construtor = PaginaUtil.RetornarConstrutorPagina(this, construtorOuNome, true);
+        //    if (construtor == null)
+        //    {
+        //        let caminho = this.RetornarValorAtributo(AtributosHtml.PaginaInicial, null);
+        //        if (construtorOuNome !== caminho)
+        //        {
+        //            caminho += ` result ${construtorOuNome}`;
+        //        }
+        //        throw new Erro(`Não foi possível retornar pagina inicial do navegador, sn-pagina-inciial=${caminho} não foi encontrado em ${this.ControleApresentacao.___NomeConstrutor}`);
+        //    }
+        //    return construtor;
+        //}
 
         private RetornarParametrosParaInicial(): DicionarioSimples<any>
         {

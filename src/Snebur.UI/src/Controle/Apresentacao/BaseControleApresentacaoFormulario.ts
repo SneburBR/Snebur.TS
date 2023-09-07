@@ -26,6 +26,37 @@
         //#endregion
 
         //#region Validação
+        public VerificarValoresPropriedadeAlteradaControlesFormulario(): void
+        {
+            const todosControles = this.RetornarTodosControlesFormulario(true);
+            for (const controle of todosControles)
+            {
+                controle.VerificarValorPropriedadeAlterada();
+            }
+        }
+
+        public RetornarTodosControlesFormulario(isSomenteControlesVisiveis: boolean): BaseControleFormulario[]
+        {
+            let controlesApresentacao = this.ControlesFilho.OfType(BaseControleApresentacaoFormulario);
+            if (isSomenteControlesVisiveis)
+            {
+                controlesApresentacao = controlesApresentacao.Where(x => x.IsVisivel).ToList();
+            }
+             
+            const todosControlesFormularios = new List<ui.BaseControleFormulario>();
+            for (const controleApresenta of controlesApresentacao)
+            {
+                todosControlesFormularios.AddRange(controleApresenta.RetornarTodosControlesFormulario(isSomenteControlesVisiveis));
+            }
+
+            let controlesFumulario = this.ControlesFilho.OfType(BaseControleFormulario);
+            if (isSomenteControlesVisiveis)
+            {
+                controlesFumulario = controlesFumulario.Where(x => x.IsVisivel).ToList();
+            }
+            todosControlesFormularios.AddRange(controlesFumulario);
+            return todosControlesFormularios;
+        }
 
         public async ValidarFormularioAsync(isSomenteControlesVisiveis: boolean = true): Promise<boolean>
         {
@@ -34,7 +65,9 @@
             if (!resultado.IsSucesso && !TelaUtil.IsCelularOuTablet)
             {
                 resultado.ControleInvalido.Elemento.scrollIntoView({
-                    block: "nearest", inline: "nearest", behavior: "smooth"
+                    block: "nearest",
+                    inline: "nearest",
+                    behavior: "smooth"
                 });
 
                 await u.ThreadUtil.QuebrarAsync();
