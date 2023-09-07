@@ -21,7 +21,7 @@
         }
 
         public IsAtualizarDigitando: boolean;
-        public readonly EventoValorModificando = new Evento<ValorAlteradoEventArgs<TValor>>(this);
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);

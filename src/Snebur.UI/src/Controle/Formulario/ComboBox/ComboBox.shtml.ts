@@ -376,6 +376,18 @@
             return null;
         }
 
+        public override VerificarValorPropriedadeAlterada()
+        {
+            const elementoSelecioando = this.ControleItemSelecionado.Elemento;
+            if (elementoSelecioando != null)
+            {
+                const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
+                EstiloUtil.AtualizarCssClass(elementoSelecioando,
+                    ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
+                    isPropriedadeAlterada);
+            }
+        }
+
         //#region IDisposable 
 
         public override  Dispose(): void

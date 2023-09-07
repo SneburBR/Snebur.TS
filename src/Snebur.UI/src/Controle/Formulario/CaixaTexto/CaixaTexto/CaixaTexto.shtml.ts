@@ -36,7 +36,6 @@
         protected override Inicializar(): void
         {
             super.Inicializar();
-
         }
 
         protected override DepoisInicializarComponentesApresentacao(): void
@@ -47,13 +46,23 @@
             
             this._pattern = this.RetornarValorAtributo(AtributosHtml.Pattern, String.Empty);
             this._tipoEntrada = this.RetornarValorAtributoEnum(EnumTipoEntrada, AtributosHtml.TipoEntrada, EnumTipoEntrada.Texto);
-
-            ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindTexto, this.CaminhoBind);
-
+             
             if (!String.IsNullOrWhiteSpace(this.Mascara))
             {
                 ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Mascara, this.Mascara);
+
+                const atributoBind = this.Mascara?.toLowerCase() === "data"
+                    ? AtributosHtml.BindData
+                    : AtributosHtml.BindTexto;
+
+                ElementoUtil.AdicionarAtributo(this.ElementoInput, atributoBind, this.CaminhoBind);
             }
+            else
+            {
+                ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindTexto, this.CaminhoBind);
+            }
+
+        
             
             this.AtualizarTipoEntrada();
             this.AtualizarPattern();

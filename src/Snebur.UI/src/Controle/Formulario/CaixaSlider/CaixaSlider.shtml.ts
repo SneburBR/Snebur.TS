@@ -42,7 +42,7 @@
 
         private PosicaoRotulo: EnumPosicao;
 
-        public readonly EventoValorModificando: Evento<ValorAlteradoEventArgs<number>>
+        /*public readonly EventoValorModificando: Evento<ValorAlteradoEventArgs<number>>*/
         private IsMostrarValor: boolean;
         private FormatacaoValor: string;
         private FormatacaoFuncao: (valor: any) => string;
@@ -56,7 +56,6 @@
             super(controlePai, elemento);
 
             //this.CssClasseControle = "sn-caixa-slider";
-            this.EventoValorModificando = new Evento<ValorAlteradoEventArgs<number>>(this);
             this.EventoDataSourceAlterado.AddHandler(this.CaixaSlider_DataSourceAlterado, this);
         }
 

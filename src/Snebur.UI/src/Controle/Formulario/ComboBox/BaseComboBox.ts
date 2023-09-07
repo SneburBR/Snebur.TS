@@ -414,7 +414,7 @@
             super.OcultarElemento();
             this.CaixaSelecao?.Fechar(false);
         }
-
+         
         //#endregion
 
         //#region IDisposable

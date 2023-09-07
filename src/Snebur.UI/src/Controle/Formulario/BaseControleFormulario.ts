@@ -3,7 +3,9 @@
     export abstract class BaseControleFormulario<TValor = any, THTMLElementInput extends HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement = HTMLInputElement> extends Snebur.UI.ControleRotulo implements IControleEventoValorAlterado
     {
         //#region Propriedade
-
+        private static TEMPO_EXPIRACAO_ULTIMA_VALIDACAO: number = 10000;
+         
+        private readonly Stopwatch = Stopwatch.StartNew();
         private _bindControleFormulario: BindControleFormulario;
         private _isSomenteLeitura: boolean = false;
         private _isValido: boolean = false;
@@ -39,8 +41,10 @@
         protected IsGanhoPrimeiroFocusUsuario: boolean;
         protected IsRotuloDaPropriedadeInicializado: boolean = false;
 
-        public IsManterEspacoMensagemValidacao: boolean = true;
+        private IsManterEspacoMensagemValidacao: boolean = true;
         private UltimaMensagemValidacao: string;
+        private ValorPropriedadeUltimaValidacao: any;
+        private DataHoraUltimaValidacao: Date;
 
         protected get ValorProprieade(): any
         {
@@ -163,8 +167,9 @@
 
         //#region Eventos
 
-        public readonly EventoValorAlterado: Evento<ValorAlteradoEventArgs<any>>
-        public readonly EventoValidacaoAlterada: Evento<ValidoEventArgs>;
+        public readonly EventoValorAlterado = new Evento<ValorAlteradoEventArgs<any>>(this);
+        public readonly EventoValorModificando = new Evento<ValorAlteradoEventArgs<TValor>>(this);
+        public readonly EventoValidacaoAlterada = new Evento<ValidoEventArgs>(this);
         public readonly EventoPropriedadeAlterada = new Evento(this);
 
         //#endregion
@@ -176,10 +181,7 @@
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-
-            //this.FilaAtributosValidacaoAsync = new Array<d.Atributos.BaseAtributoValidacaoAsync>();
-            this.EventoValorAlterado = new Evento<ValorAlteradoEventArgs<any>>(this);
-            this.EventoValidacaoAlterada = new Evento<ValidoEventArgs>(this);
+             
         }
 
         protected override Inicializar()
@@ -293,6 +295,7 @@
                 }
             }
             this.ValidarDepois.Executar();
+            this.VerificarValorPropriedadeAlterada();
         }
 
         private ValidarDepoisInterno()
@@ -424,14 +427,7 @@
         //#endregion
 
         //#region Validação 
-
-        private ValorPropriedadeUltimaValidacao: any;
-
-        private DataHoraUltimaValidacao: Date;
-        private static TEMPO_EXPIRACAO_ULTIMA_VALIDACAO: number = 10000;
-
-        private readonly Stopwatch = Stopwatch.StartNew();
-
+         
         protected async ValidarAsyncInterno(isForcar: boolean = false)
         {
             await this.ValidarAsync(isForcar);
@@ -797,6 +793,7 @@
 
         protected ElementoInput_Click(e: Event): void
         {
+            this.EventoValorModificando?.Notificar(this, new ValorAlteradoEventArgs(this.Valor, e));
             this.IsGanhoPrimeiroFocusUsuario = true;
         }
 
@@ -952,6 +949,7 @@
             super.AdicionarEventoDom(evento, manipulador, elemento, objetoThis, options);
 
         }
+
         public override RemoverEventoDom<T extends keyof EventoDomMapeado>(evento: T, manipulador: (e: EventoDomMapeado[T]) => void): void
         public override RemoverEventoDom<T extends keyof EventoDomMapeado>(evento: T, manipulador: (e: EventoDomMapeado[T]) => void, refElemento?: HTMLElement | string | Window | Document): void
         public override RemoverEventoDom<T extends keyof EventoDomMapeado>(evento: T, manipulador: (e: EventoDomMapeado[T]) => void, refElemento?: HTMLElement | string | Window | Document): void
@@ -960,27 +958,9 @@
         }
 
         //#endregion
-
-        //#region IDisposable 
-
-        public override Dispose(): void
-        {
-            if (this._isMostrarMensagemValidacaoFlutuante)
-            {
-                this.RemoverMensagemValidacaoFlutuante();
-            }
-            super.Dispose();
-
-            this.Propriedade = null;
-            this.PaiPropriedade = null;
-        }
-
-        //#endregion
-
-
+         
         private ValidarElementosDebug(elemento: HTMLElement, _idElemento: string, isThrow:boolean = true)
         {
-           
             if ($Configuracao.IsDebug)
             {
                 //if (!this._isElementosInicializado)
@@ -1004,5 +984,29 @@
                 }
             }
         }
+
+        public VerificarValorPropriedadeAlterada()
+        {
+            const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
+            EstiloUtil.AtualizarCssClass(this.Elemento,
+                ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
+                isPropriedadeAlterada);
+        }
+
+        //#region IDisposable 
+
+        public override Dispose(): void
+        {
+            if (this._isMostrarMensagemValidacaoFlutuante)
+            {
+                this.RemoverMensagemValidacaoFlutuante();
+            }
+            super.Dispose();
+
+            this.Propriedade = null;
+            this.PaiPropriedade = null;
+        }
+
+        //#endregion
     }
 }
