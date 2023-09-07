@@ -71,12 +71,22 @@
         //    return resultado;
         //}
 
-        public static async MostrarMensagemPersonalizadaAsync(controlePai: BaseControle, titulo: string, mensagem: string,
-            ...resultadosRotuilo: List<[EnumResultadoOpcaoMensagem, string] | EnumResultadoOpcaoMensagem>): Promise<ResultadoJanelaMensagemArgs>
+        public static async MostrarMensagemPersonalizadaAsync(controlePai: BaseControle,
+            titulo: string, mensagem: string, ...resultadosRotuilo: List<[EnumResultadoOpcaoMensagem, string] | EnumResultadoOpcaoMensagem>): Promise<ResultadoJanelaMensagemArgs>
         {
             await JanelaMensagem.AguardarFecharMensagemAsync();
             const botoesViewModel = this.RetornarBotoesMensagemViewModel(resultadosRotuilo);
             const janela = new JanelaMensagem(controlePai, titulo, mensagem, botoesViewModel);
+            return await janela.MostrarAsync();
+        }
+
+        public static async MostrarMensagemPersonalizadaComFecharAsync(controlePai: BaseControle,
+            titulo: string, mensagem: string, ...resultadosRotuilo: List<[EnumResultadoOpcaoMensagem, string] | EnumResultadoOpcaoMensagem>): Promise<ResultadoJanelaMensagemArgs>
+        {
+            await JanelaMensagem.AguardarFecharMensagemAsync();
+            const botoesViewModel = this.RetornarBotoesMensagemViewModel(resultadosRotuilo);
+            const janela = new JanelaMensagem(controlePai, titulo, mensagem, botoesViewModel);
+            janela.MostrarBotaoFechar();
             return await janela.MostrarAsync();
         }
 

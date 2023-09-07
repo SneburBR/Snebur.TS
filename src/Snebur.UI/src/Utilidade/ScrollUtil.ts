@@ -93,6 +93,15 @@
             }
             return ScrollUtil.RetornarElementoScrollHorizontalPai(elemento.parentElement, isIgnorarErro);
         }
+
+        public static ScrollTo(elemento: HTMLElement)
+        {
+            elemento.scrollIntoView({
+                block: "center",
+                inline: "center",
+                behavior: "smooth"
+            });
+        }
     }
 
     

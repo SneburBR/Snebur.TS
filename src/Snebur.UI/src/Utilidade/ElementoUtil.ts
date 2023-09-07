@@ -440,7 +440,7 @@
             return false;
         }
 
-        public static RetornarAtributos(elemento: HTMLElement): any
+        public static RetornarAtributos(elemento: HTMLElement): DicionarioSimples<string>
         {
             const len = elemento.attributes.length;
             const di = new DicionarioSimples<string>();

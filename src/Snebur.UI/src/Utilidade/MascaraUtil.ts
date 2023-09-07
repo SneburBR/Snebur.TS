@@ -2,24 +2,31 @@
 {
     export class MascaraUtil
     {
-        public static RetornarMascara(controlePai:BaseControle, elemento:HTMLElement, formato:string) :BaseMascara
+        public static RetornarMascara(controlePai: BaseControle, elemento: HTMLElement, formato: string): BaseMascara
         {
             formato = formato.toLowerCase();
 
             switch (formato)
             {
-                case "moeda": 
+                case "moeda":
 
                     return new MascaraMoeda(controlePai, elemento, formato);
 
-                case "telefone": 
+                case "inteiro":
+                case "decimal":
+                case "decimal1":
+                case "decimal2":
+
+                    return new MascaraDecimal(controlePai, elemento, formato);
+               
+                case "telefone":
 
                     return new MascaraTelefone(controlePai, elemento, formato);
 
                 case "hora":
 
                     return new MascaraHora(controlePai, elemento, formato);
-                    //return new MascaraFormatacao(controlePai, elemento, "##:##");
+                //return new MascaraFormatacao(controlePai, elemento, "##:##");
 
                 case "cpfcnpj":
 

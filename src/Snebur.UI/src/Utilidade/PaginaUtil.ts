@@ -62,10 +62,7 @@
             }
         }
 
-        public static RetornarConstrutorPagina(controlePai: BaseControle, caminho: string, isIgnorarErro: boolean = false): IPaginaConstrutor
-        {
-            return ControleUtil.RetornarConstrutorControle(controlePai, caminho, isIgnorarErro) as IPaginaConstrutor;
-        }
+      
          
         public static IsMesmoTipo(pagina: Pagina,
             refPagina: Pagina | IPaginaConstrutor<Pagina> | typeof Pagina,

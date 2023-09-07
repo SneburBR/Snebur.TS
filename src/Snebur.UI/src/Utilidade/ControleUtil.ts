@@ -11,7 +11,7 @@
                 isIgnorarErro,
                 (construtores) =>
                 {
-                    const mensagemErro = `Ambiguidade, Existem maisum construtor para o caminho '${caminho}' em: ${controlePai.ControleApresentacao.___NomeConstrutor}, 
+                    const mensagemErro = `Ambiguidade, Existem mais um construtor para o caminho '${caminho}' em: ${controlePai.ControleApresentacao.___NomeConstrutor}, 
                                            Utilizar o caminho do namespace para evitar essa mensagem <br />
                                            Construtores: ${construtores.Select(x => x.GetType().__CaminhoTipo)}`;
                     if ($Configuracao.IsDebug)
