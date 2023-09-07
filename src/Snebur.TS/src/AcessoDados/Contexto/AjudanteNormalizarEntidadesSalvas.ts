@@ -45,7 +45,7 @@
 
                 const entidadeInfo = dicionarEntidades.Item(resultadoEntidadeSalvada.IdentificadorUnicoEntidade);
                 const entidade = (entidadeInfo.Entidade as any as IObjetoControladorPropriedade);
-                entidade.DesativarNotificacaoPropriedadeAlterada();
+                entidade.DesativarObservadorPropriedadeAlterada();
 
                 const tipo = entidade.GetType();
                 if (entidadeInfo.Entidade.Id === 0)
@@ -69,7 +69,7 @@
                         
                     }
                 }
-                entidade.AtivarNotificacaoPropriedadeAlterada();
+                entidade.AtivarObservadorPropriedadeAlterada();
             }
         }
     }

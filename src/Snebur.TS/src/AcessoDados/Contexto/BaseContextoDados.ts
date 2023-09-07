@@ -124,7 +124,7 @@
                 this._isSalvando = false;
             }
         }
-         
+
         public async SalvarAvancadoAsync(
             argsEntidades: List<IEntidade> | IEntidade,
             argsEntidadesAlvos?: List<IEntidade> | IEntidade)
@@ -229,20 +229,20 @@
                 MensagemErro: mensagemErro
             });
         }
-         
-        public DeletarAsync(entidade: d.Entidade): Promise<ResultadoDeletar>
-        public DeletarAsync(entidade: d.IEntidade): Promise<ResultadoDeletar>
-        public DeletarAsync(entidade: d.Entidade, relacoesEmCascata: string): Promise<ResultadoDeletar>
-        public DeletarAsync<TEntidade extends d.Entidade>(entidade: TEntidade, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
-        public DeletarAsync(entidades: Array<d.Entidade>): Promise<ResultadoDeletar>
-        public DeletarAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
-        public DeletarAsync(entidades: ListaEntidades<d.Entidade>): Promise<ResultadoDeletar>
-        public DeletarAsync(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
-        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>): Promise<ResultadoDeletar>
-        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
-        public DeletarAsync<TEntidade>(entidades: Array<TEntidade>, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
-        public DeletarAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): Promise<ResultadoDeletar>
-        public DeletarAsync(argumento: any, relacoesEmCascata: any = ""): Promise<ResultadoDeletar>
+
+        public async DeletarAsync(entidade: d.Entidade): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidade: d.IEntidade): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidade: d.Entidade, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public async DeletarAsync<TEntidade extends d.Entidade>(entidade: TEntidade, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidades: Array<d.Entidade>): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidades: Array<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidades: ListaEntidades<d.Entidade>): Promise<ResultadoDeletar>
+        public async DeletarAsync(entidades: ListaEntidades<d.Entidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public async DeletarAsync<TEntidade>(entidades: Array<TEntidade>): Promise<ResultadoDeletar>
+        public async DeletarAsync<TEntidade>(entidades: Array<TEntidade>, relacoesEmCascata: string): Promise<ResultadoDeletar>
+        public async DeletarAsync<TEntidade>(entidades: Array<TEntidade>, expressaoRelacoesAberta: (value: TEntidade, index: number, array: TEntidade[]) => void): Promise<ResultadoDeletar>
+        public async DeletarAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): Promise<ResultadoDeletar>
+        public async DeletarAsync(argumento: any, relacoesEmCascata: any = ""): Promise<ResultadoDeletar>
         {
             if (typeof relacoesEmCascata === "undefined")
             {
@@ -258,7 +258,10 @@
             /*eslint-enable*/
             if (entidades.length === 0)
             {
-                throw new ErroNaoDefinido("Nenhum entidade foi passa nos parâmetros", this);
+                return new ResultadoDeletar({
+                    IsSucesso: true,
+                    MensagemErro: "Nenhuma entidade foi passada nos parâmetros",
+                });
             }
             if (!u.ValidacaoUtil.IsDefinido(relacoesEmCascata))
             {
@@ -270,8 +273,9 @@
             {
                 throw new Erro(`Não é possível deletar entidades não salvas ${String.Join(", ", entidadesNaoSalvas.Select(k => k.GetType().Nome))}`);
             }
+
             const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
-            return this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
+            return await this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
 
         }
 
@@ -304,7 +308,7 @@
                     const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(expressoesOuPropriedades);
                     const clone = entidade.CloneSomenteId();
                     clone.__PropriedadesAlteradas.Clear();
-                    (clone as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+                    (clone as any as IObjetoControladorPropriedade).DesativarObservadorPropriedadeAlterada();
                     clone.Id = entidade.Id;
 
                     for (const nomePropriedade of nomesPropriedades)
@@ -315,7 +319,7 @@
                             clone.__PropriedadesAlteradas.AddOrUpdate(nomePropriedade, entidade.__PropriedadesAlteradas.Item(nomePropriedade));
                         }
                     }
-                    (clone as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+                    (clone as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
                     entidadesSalvar.Add(clone);
                 }
 
@@ -378,7 +382,7 @@
                 entidade.__PropriedadesAlteradas.RemoveAll(nomesPropriedades);
             }
         }
-         
+
         public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         public async RecuperarAsync<TEntidade extends Entidade>(argumentoEntidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
@@ -413,7 +417,7 @@
 
             for (const entidadeRecuperada of entidadesRecuperada)
             {
-                const entidade= entidades.Where(x => x.Id === entidadeRecuperada.Id).Single();
+                const entidade = entidades.Where(x => x.Id === entidadeRecuperada.Id).Single();
                 for (const propriedade of propriedades)
                 {
                     const valorPropriedade = (entidade as any)[propriedade.Nome];
@@ -591,7 +595,7 @@
             }
             return retorno;
         }
-         
+
         //#endregion
 
         //#region IDisposable

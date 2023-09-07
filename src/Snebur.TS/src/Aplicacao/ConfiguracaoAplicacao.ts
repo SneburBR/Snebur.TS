@@ -2,9 +2,10 @@
 {
     export interface ConfiguracaoAplicacao
     {
+        readonly IsDebugOuTeste?: boolean;
         IsDebug: boolean;
         IsTeste?: boolean;
-        readonly IsDebugOuTeste?: boolean;
+
         IsNaoAlertarErro?: boolean;
         IsDesativarServicoDepuracao?: boolean;
         IsProtegerUrl?: boolean;
@@ -30,6 +31,5 @@
         UrlImagemSemImagem?: string;
         UrlImagemErro?: string;
         UrlIcone?: string;
-    
     }
 }

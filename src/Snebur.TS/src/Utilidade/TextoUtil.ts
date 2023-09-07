@@ -97,18 +97,20 @@
 
         public static FormatarPrimeiraLetraMaiuscula(texto: string): string
         {
+            const indicePrimeiraLetra = texto.search(/\S/);
             if (!String.IsNullOrWhiteSpace(texto))
             {
-                return texto.trim().substring(0, 1).toUpperCase() + texto.substring(1);
+                return `${texto.substring(0, indicePrimeiraLetra)}${texto.substring(indicePrimeiraLetra, indicePrimeiraLetra + 1).toUpperCase()}${texto.substring(indicePrimeiraLetra + 1)}`;
             }
             return String.Empty;
         }
 
         public static RetornarSomentePrimeiraLetraMaiuscula(texto: string): string
         {
+            const indicePrimeiraLetra = texto.search(/\S/);
             if (!String.IsNullOrWhiteSpace(texto))
             {
-                return texto.trim().substring(0, 1).toUpperCase();
+                return `${texto.substring(0, indicePrimeiraLetra)}${texto.substring(indicePrimeiraLetra, indicePrimeiraLetra + 1).toLowerCase()}${texto.substring(indicePrimeiraLetra + 1)}`;
             }
             return String.Empty;
         }
@@ -643,6 +645,6 @@
             return BytesUtil.ToUTF8ArrayBytes(texto);
         }
 
-  
+
     }
 }

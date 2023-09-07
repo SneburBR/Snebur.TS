@@ -100,6 +100,11 @@
         {
             return this.__RetornarTipo();
         }
+
+        public override Select<TResult>(selector: (value: TEntidade) => TResult): TResult[]
+        {
+            return [...this].map(selector);
+        }
         //#endretion
     }
 }

@@ -5,15 +5,15 @@
         private static readonly REG_DATA_JSON_MS = /\/Date\(-*[0-9]+\)\//
         /*/^\/Date\([-|0-9][0-9]+\)\/$/;*/
 
-        public static Para(valor: any, tipo: r.BaseTipo, ignorarErro?: boolean): any
+        public static Para(valor: any, tipo: r.BaseTipo, ignorarErro?: boolean, isNullable?:boolean): any
         {
             if (tipo instanceof r.TipoPrimario)
             {
-                return ConverterUtil.ParaTipoPrimario(valor, tipo.TipoPrimarioEnum);
+                return ConverterUtil.ParaTipoPrimario(valor, tipo.TipoPrimarioEnum, ignorarErro, isNullable);
             }
             if (tipo instanceof r.TipoEnum)
             {
-                return ConverterUtil.ParaInteiro(valor);
+                return ConverterUtil.ParaInteiro(valor, isNullable);
             }
 
             if (ignorarErro)
@@ -24,7 +24,7 @@
             throw new ErroNaoSuportado(`O tipo não é suportado ${tipo.Nome}`, this);
         }
 
-        public static ParaTipoPrimario(valor: any, tipoPrimarioEnum: r.EnumTipoPrimario): any
+        public static ParaTipoPrimario(valor: any, tipoPrimarioEnum: r.EnumTipoPrimario, isNullable: boolean = false, isIgnorarErro: boolean = false): any
         {
             switch (tipoPrimarioEnum)
             {
@@ -33,30 +33,30 @@
                 case (r.EnumTipoPrimario.String):
                 case (r.EnumTipoPrimario.Char):
 
-                    return ConverterUtil.ParaString(valor);
+                    return ConverterUtil.ParaString(valor, isNullable);
 
                 case (r.EnumTipoPrimario.Boolean):
 
-                    return ConverterUtil.ParaBoolean(valor);
+                    return ConverterUtil.ParaBoolean(valor, isNullable);
 
                 case (r.EnumTipoPrimario.EnumValor):
                 case (r.EnumTipoPrimario.Byte):
                 case (r.EnumTipoPrimario.Long):
                 case (r.EnumTipoPrimario.Integer):
 
-                    return ConverterUtil.ParaInteiro(valor);
+                    return ConverterUtil.ParaInteiro(valor, isNullable);
 
                 case (r.EnumTipoPrimario.Double):
 
-                    return ConverterUtil.ParaDouble(valor);
+                    return ConverterUtil.ParaDouble(valor, isNullable);
 
                 case (r.EnumTipoPrimario.Decimal):
 
-                    return ConverterUtil.ParaDecimal(valor);
+                    return ConverterUtil.ParaDecimal(valor, isNullable);
 
                 case (r.EnumTipoPrimario.DateTime):
 
-                    return ConverterUtil.ParaDataHora(valor);
+                    return ConverterUtil.ParaDataHora(valor, $Configuracao.TipoData, isIgnorarErro, isNullable);
 
                 case (r.EnumTipoPrimario.TimeSpan):
 
@@ -134,8 +134,13 @@
             }
         }
 
-        public static ParaString(valor: any): string
+        public static ParaString(valor: any, isNullable: boolean = false): string
         {
+            if (valor == null)
+            {
+                return isNullable ? null : String.Empty;
+            }
+
             if (ValidacaoUtil.IsString(valor))
             {
                 return valor;
@@ -147,7 +152,7 @@
             return valor.toString();
         }
 
-        public static ParaNumero(valor: number | string | boolean, inteiro: boolean = false, isNullable: boolean= false): number
+        public static ParaNumero(valor: number | string | boolean, inteiro: boolean = false, isNullable: boolean = false): number
         {
             if (valor == null)
             {
@@ -318,8 +323,8 @@
         }
 
         public static ParaDataHora(valor: any): Date;
-        public static ParaDataHora(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean): Date;
-        public static ParaDataHora(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean= true): Date | null
+        public static ParaDataHora(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean, isNullable?:boolean): Date;
+        public static ParaDataHora(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean = true): Date | null
         {
             if (valor == null)
             {
@@ -419,7 +424,7 @@
 
         public static ParaData(valor: any): Date;
         public static ParaData(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean): Date;
-        public static ParaData(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean= true): Date
+        public static ParaData(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean = true): Date
         {
             if (String.IsNullOrWhiteSpace(valor))
             {
@@ -817,5 +822,5 @@
             }
             return valor;
         }
-     }
+    }
 }
