@@ -42,9 +42,9 @@
             {
                 //var objetoPai = this.NormalizarObjetoPai(referencia.ObjetoPai);
                 const objetoPai = referencia.ObjetoPai;
-                (objetoPai as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+                (objetoPai as any as IObjetoControladorPropriedade).DesativarObservadorPropriedadeAlterada();
                 referencia.Propriedade.AtribuirValor(objetoPai, baseDominio);
-                (objetoPai as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+                (objetoPai as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
                 return;
             }
 

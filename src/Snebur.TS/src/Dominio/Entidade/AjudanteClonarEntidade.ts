@@ -102,7 +102,7 @@
             const entidadeClonada = (new this.TipoEntidade.Construtor() as any) as IEntidadeClonada;
 
             entidadeClonada.___is_entidade_clonada__ = true;
-            (entidadeClonada as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+            (entidadeClonada as any as IObjetoControladorPropriedade).DesativarObservadorPropriedadeAlterada();
             this.EntidadeClonada = entidadeClonada;
 
         }
@@ -224,7 +224,7 @@
                 entidadeClonada.Id = this.EntidadeOrigem.Id;
             }
 
-            (entidadeClonada as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+            (entidadeClonada as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
             /*     return entidadeClonada as TEntidade;*/
         }
 

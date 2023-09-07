@@ -96,7 +96,7 @@
                 throw new ErroNaoSuportado("O tipo não suportado", this);
             }
             const baseDominio: d.BaseDominio = new (tipoEspecializado.Construtor as any);
-            (baseDominio as any as IObjetoControladorPropriedade).DesativarNotificacaoPropriedadeAlterada();
+            (baseDominio as any as IObjetoControladorPropriedade).DesativarObservadorPropriedadeAlterada();
 
             if ((objeto as IBaseDominioReferencia).__IdentificadorUnico != null)
             {
@@ -132,7 +132,7 @@
             {
                 (baseDominio as any as d.IImagem).InicializarImagem(null, null);
             }
-            (baseDominio as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+            (baseDominio as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
             return baseDominio;
         }
 

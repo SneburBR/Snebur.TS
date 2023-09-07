@@ -7,7 +7,7 @@
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
 
-        private __isNotificacaoAlteracaoPropriedadeAtiva: boolean = true;
+        private __isObservadorPropriedadesAtivo: boolean = true;
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
 
         private static readonly __EventosProtegidos = [ObjetoControladorPropriedade.__NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO];
@@ -51,7 +51,7 @@
 
         protected get IsNotificacaoAlteracaoPropriedadeAtiva(): boolean
         {
-            return this.__isNotificacaoAlteracaoPropriedadeAtiva;
+            return this.__isObservadorPropriedadesAtivo;
         }
 
         public get __IsMontarValorAntigoInicial(): boolean
@@ -416,9 +416,7 @@
                 }
             }
         }
-
-
-
+         
         public AdicionarManipuladorPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
         public AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
         public AdicionarManipuladorPropriedadeAlterada(nomePropriedadeOuExpressao: string | Function, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void
@@ -444,15 +442,15 @@
             }
         }
 
-        protected AtivarNotificacaoPropriedadeAlterada(): void
+        protected AtivarObservadorPropriedadeAlterada(): void
         {
-            this.__isNotificacaoAlteracaoPropriedadeAtiva = true;
+            this.__isObservadorPropriedadesAtivo = true;
             /*this.__IsControladorPropriedadesAlteradaAtivo = true;*/
         }
 
-        protected DesativarNotificacaoPropriedadeAlterada(): void
+        protected DesativarObservadorPropriedadeAlterada(): void
         {
-            this.__isNotificacaoAlteracaoPropriedadeAtiva = false;
+            this.__isObservadorPropriedadesAtivo = false;
         }
 
         protected RemoverTodosHandlersPropriedadeAlterada(): void
@@ -573,8 +571,8 @@
         AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;
         RemoverManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder): void;
 
-        AtivarNotificacaoPropriedadeAlterada(): void;
-        DesativarNotificacaoPropriedadeAlterada(): void;
+        AtivarObservadorPropriedadeAlterada(): void;
+        DesativarObservadorPropriedadeAlterada(): void;
         RemoverTodosHandlersPropriedadeAlterada(): void;
     }
 }

@@ -85,10 +85,10 @@
 //                                this.BasesDominio.Existe((valorPropriedade as d.BaseDominio).__IdentificadorUnico))
 //                            {
 //                                // let valorPropriedadeBaseDominio: d.BaseDominio = valorPropriedade as d.BaseDominio;
-//                                baseDominio.DesativarNotificacaoPropriedadeAlterada();
+//                                baseDominio.DesativarObservadorPropriedadeAlterada();
 //                                (baseDominio as any)[propriedade.Nome] = this.RetornarBaseDominioReferencia(valorPropriedade);
 //                                // obj[nomePropriedade] = this.RetornarBaseNegocioReferencia(valorPropriedade);
-//                                (baseDominio as any as IObjetoControladorPropriedade).AtivarNotificacaoPropriedadeAlterada();
+//                                (baseDominio as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
 //                            } else
 //                            {
 //                                this.PrepararParaSerializacao(valorPropriedade);
