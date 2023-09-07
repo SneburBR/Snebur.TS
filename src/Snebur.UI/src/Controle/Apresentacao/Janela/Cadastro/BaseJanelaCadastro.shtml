@@ -11,7 +11,7 @@
 <body>
     <ap-painel-vertical ap-margem="16px">
         <ap-cabecalho ap-altura="30px">
-            <ap-texto sn-nome="TextoTitulo" sn-item-elemento="Titulo" sn-bind="{{Titulo}}" ap-tipografia="Titulo"> Titulo</ap-texto>
+            <ap-texto sn-nome="TextoTitulo" sn-item-elemento="Titulo" sn-bind="{{Titulo}}" ap-tipografia="Titulo">Titulo</ap-texto>
         </ap-cabecalho>
         <ap-linha>
             <ap-bloco sn-nome="BlocoFormulario" ap-margem="0px 16px 0px 0px" ap-altura="100%">
@@ -21,18 +21,29 @@
         <ap-rodape ap-altura="65px">
             <ap-bloco ap-margem="0px 16px 0px 0px" sn-nome="BlocoBotoes">
                 <ap-painel ap-tipo-painel="PilhaHorizontal" ap-alinhamento-horizontal="Centro">
-                    <sn-botao ap-largura="140px" ap-altura-linha="24px" sn-nome="BtnCancelarInterno"
-                        class="sn-botao-cancelar" ap-cor-texto="Cinza" 
-                        sn-tipo-botao="FlatBox"
-                        sn-click="BtnCancelarInterno_Click">CANCELAR</sn-botao>
-                
-                    <sn-botao  ap-largura="140px"
-                        ap-altura-linha="24px"
-                        sn-nome="BtnSalvarInterno_" 
-                        class="sn-botao-salvar"
-                        ap-cor-fundo="SistemaPrincipal"
-                        ap-cor-texto="Branca" 
-                        sn-click="BtnSalvarInterno_Click">SALVAR</sn-botao>
+                   <ap-bloco>
+                        <sn-botao
+                            ap-largura="140px" ap-altura-linha="24px"
+                            sn-nome="BtnCancelarInterno"
+                            class="sn-botao-cancelar" ap-cor-texto="Cinza"
+                            sn-tipo-botao="FlatBox"
+                            sn-click="BtnCancelarInterno_Click">
+                            CANCELAR
+
+                        </sn-botao>
+                    </ap-bloco>
+                    <ap-bloco ap-margem="16px 0px 0px 0px">
+                        <sn-botao ap-largura="140px"
+                            ap-altura-linha="24px"
+                            sn-nome="BtnSalvarInterno"
+                            class="sn-botao-salvar"
+                            ap-cor-fundo="SistemaPrincipal"
+                            ap-cor-texto="Branca"
+                            sn-click="BtnSalvarInterno_Click">
+                            SALVAR</sn-botao>
+                    </ap-bloco>
+
+
 
                 </ap-painel>
             </ap-bloco>

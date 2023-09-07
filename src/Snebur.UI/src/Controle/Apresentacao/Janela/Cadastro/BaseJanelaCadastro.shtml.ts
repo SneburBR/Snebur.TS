@@ -3,10 +3,7 @@
     export abstract class BaseJanelaCadastro<TEntidade extends Entidade = Entidade> extends Janela   
     {
         private __SalvarDocument_KeyDown: EventListener;
-
-        public readonly BtnCancelar: Botao;
-        public readonly BtnSalvar: Botao;
-
+         
         public readonly NovaEntidade: TEntidade;
         public readonly TipoEntidade: r.TipoEntidade;
         public readonly IDEntidade: number;
@@ -34,6 +31,7 @@
         {
             super(controlePai);
 
+            this.CssClasseControle = "sn-base-janela-cadastro";
             this._dataSource = null;
 
             this.DeclararPropriedade(x => x.Titulo, String, "Titulo", this.Titulo_Alterado);
@@ -375,17 +373,17 @@
         //#endregion
     }
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>
-    {
-        readonly TextoTitulo: ui.Texto;
-        readonly BlocoFormulario: ui.Bloco;
-        readonly BlocoBotoes: ui.Bloco;
-        readonly BtnCancelarInterno: ui.Botao;
-        readonly BtnSalvarInterno_: ui.Botao;
-    }
+	export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>
+	{
+		readonly TextoTitulo: ui.Texto;
+		readonly BlocoFormulario: ui.Bloco;
+		readonly BlocoBotoes: ui.Bloco;
+		readonly BtnCancelarInterno: ui.Botao;
+		readonly BtnSalvarInterno: ui.Botao;
+	}
 
-    //#endregion
+	//#endregion
 
 }
