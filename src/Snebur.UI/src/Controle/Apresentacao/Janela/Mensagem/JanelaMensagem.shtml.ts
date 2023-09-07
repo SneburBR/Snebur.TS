@@ -86,14 +86,22 @@
 
             this.IsMostrarBotaoRestaurarMaximizar = false;
 
-            this.IsMostrarBotaoFechar = this.Botoes.Any(x => x.Resultado === EnumResultadoOpcaoMensagem.Cancelar) ||
+            const isMostrarBotaoFechar = this.Botoes.Any(x => x.Resultado === EnumResultadoOpcaoMensagem.Cancelar) ||
                 this.Botoes.Any(x => x.Resultado === EnumResultadoOpcaoMensagem.Nao);
 
-            this.IsFecharEsc = this.IsMostrarBotaoFechar;
+            if (isMostrarBotaoFechar)
+            {
+                this.MostrarBotaoFechar();
+            }
+            else
+            {
+                this.OcultarBotaoFechar();
+            }
+  
             this.EventoCarregado.AddHandler(this.JanelaMensagem_Carregada, this);
             this.ControlePai?.ControlesFilho?.Add(this);
         }
-
+         
         private JanelaMensagem_Carregada(): void
         {
             this.DataSource = this.JanelaMensagemVM;
@@ -167,20 +175,22 @@
 
         protected override Cancelar()
         {
-            this.FecharAsync(false);
+            this.FecharAsync(false, false);
         }
 
-        public override async FecharAsync(args: boolean | ResultadoJanelaMensagemArgs) 
+        public override async FecharAsync(args: boolean | ResultadoJanelaMensagemArgs): Promise<any>
+        public override async FecharAsync(args: boolean | ResultadoJanelaMensagemArgs, isFechou: boolean): Promise<any>
+        public override async FecharAsync(args: boolean | ResultadoJanelaMensagemArgs, isFechou: boolean = true): Promise<any>
         {
             if (typeof args === "boolean" && args === false)
             {
                 const resultadoCancelar = this.RetornarRetornarResultadoCancelar();
-                args = new ResultadoJanelaMensagemArgs(this, resultadoCancelar);
+                args = new ResultadoJanelaMensagemArgs(this, resultadoCancelar, isFechou );
             }
             if (typeof args === "boolean" && args === true)
             {
                 const resultadoOk = this.RetornarRetornarResultadoOk();
-                args = new ResultadoJanelaMensagemArgs(this, resultadoOk);
+                args = new ResultadoJanelaMensagemArgs(this, resultadoOk, isFechou);
             }
 
             if (!(args instanceof ResultadoJanelaMensagemArgs))
@@ -201,7 +211,9 @@
             {
                 return EnumResultadoOpcaoMensagem.Nao;
             }
-            throw new Erro("Não foi possível definir o botão cancelar");
+
+            return EnumResultadoOpcaoMensagem.Cancelar;
+            /*throw new Erro("Não foi possível definir o botão cancelar");*/
         }
 
         private RetornarRetornarResultadoOk(): EnumResultadoOpcaoMensagem

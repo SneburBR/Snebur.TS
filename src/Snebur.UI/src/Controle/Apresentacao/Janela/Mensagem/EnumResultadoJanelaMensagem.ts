@@ -16,5 +16,6 @@ namespace Snebur.UI
         Botao2 = 6,
 
         Botao3 = 7,
+
     }
 }
