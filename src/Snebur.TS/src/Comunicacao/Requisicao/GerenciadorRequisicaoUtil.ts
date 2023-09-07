@@ -27,9 +27,9 @@
             return GerenciadorRequisicaoUtil.Instancia.ExecutarAsync(requisicao);
         }
 
-        public static NotificarFalhaRequisicao(): void
+        public static SetIsExiteFalhaRequisicao(isFalha:boolean  ): void
         {
-            GerenciadorRequisicaoUtil.Instancia.NotificarFalhaRequisicao();
+            GerenciadorRequisicaoUtil.Instancia.SetIsExiteFalhaRequisicao(isFalha);
         }
 
         public static async AguardarFilaRequisicoesAsync(progressHandler?: (e: ProgressoEventArgs) => void): Promise<void>

@@ -11,5 +11,7 @@
         {
             BaseRequisicao.Contador += 1;
         }
+
+        public abstract ExecutarAsync(): Promise<any>;
     }
 }

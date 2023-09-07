@@ -23,7 +23,7 @@
             return this.Fila.length + (this._requisicaoAtual != null ? 1 : 0);
         }
 
-        public ExecutarAsync(requisicao: Requisicao): Promise<any>
+        public ExecutarAsync(requisicao: BaseRequisicao): Promise<any>
         {
             return new Promise(resolver =>
             {
@@ -99,12 +99,22 @@
             resolver(resultado);
         }
 
-        public NotificarFalhaRequisicao()
+        public SetIsExiteFalhaRequisicao(isFalha: boolean)
         {
-            this._isExisteFalhaRequisicao = true;
+            this._isExisteFalhaRequisicao = isFalha;    
         }
 
-        private GerarLogRequisicaoAguardandoNaFila(requisicao: Requisicao)
+        //public NotificarFalhaRequisicao()
+        //{
+        //    this._isExisteFalhaRequisicao = true;
+        //}
+
+        //public NotificarFalhaRequisicao()
+        //{
+        //    this._isExisteFalhaRequisicao = true;
+        //}
+
+        private GerarLogRequisicaoAguardandoNaFila(requisicao: BaseRequisicao)
         {
             if (this._requisicaoAtual != null &&
                 this._requisicaoAtual.Requisicao !== requisicao &&
@@ -142,7 +152,7 @@
 
     interface RequisicaoResolver
     {
-        readonly Requisicao: Requisicao;
+        readonly Requisicao: BaseRequisicao;
         readonly Resolver: (resultado: any) => void;
     }
 

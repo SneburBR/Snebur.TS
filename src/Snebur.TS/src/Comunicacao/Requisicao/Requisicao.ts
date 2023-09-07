@@ -29,12 +29,12 @@
             this.URLServico = this.BaseServico.URLServico;
         }
 
-        public async ExecutarAsync(): Promise<any>
+        public override async ExecutarAsync(): Promise<any>
         {
             const resultado = await this.ExecutarInternoAsync();
             if (this.Gerencaidor.IsExisteFalhaRequisicao)
             {
-                this.Gerencaidor.NotificarFalhaRequisicao();
+                this.Gerencaidor.SetIsExiteFalhaRequisicao(false);
                 $Aplicacao.EventoConexaoRestabelecida.Notificar(this, EventArgs.Empty);
             }
             return this.RetornarValorResultado(resultado);
@@ -60,8 +60,7 @@
                 this.NotificarErroRequisicao(
                     chamadaServico,
                     resultadoChamada);
-
-
+                     
                 return await this.TentarNovamenteAsync(resultadoChamada);
             }
             return resultadoChamada;
@@ -146,7 +145,7 @@
 
             if (!isErroInternoServidor && !this.Gerencaidor.IsExisteFalhaRequisicao)
             {
-                GerenciadorRequiscao.Instancia.NotificarFalhaRequisicao();
+                GerenciadorRequiscao.Instancia.SetIsExiteFalhaRequisicao(true);
                 await u.InternetUtil.AguardarConexaoInternerAsync();
             }
 
