@@ -72,7 +72,7 @@
             const caminhoPagina = this.RetornarValorAtributo(AtributosHtml.Navegar, null);
             if (!String.IsNullOrEmpty(caminhoPagina))
             {
-                return PaginaUtil.RetornarConstrutorPagina(this, caminhoPagina);
+                return NavegadorUtil.RetornarConstrutorPagina(this, caminhoPagina);
             }
             return null;
         }

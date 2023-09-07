@@ -11,6 +11,7 @@
         public static readonly CSS_CLASSE_POSSUI_CONTEUDO: string = "sn-possui-conteudo";
         public static readonly CSS_CLASSE_SOMENTE_LEITURA = "sn-somente-leitura";
         public static readonly CSS_CLASSE_DESABILITADO: string = "sn-desabilitado";
+        public static readonly CSS_CLASSE_PROPRIEDADE_ALTERADA: string = "sn-formulario-propriedade-alterada";
         //public static readonly CSS_CLASSE_DESABILITADO = "sn-desabilitado";
     }
 }

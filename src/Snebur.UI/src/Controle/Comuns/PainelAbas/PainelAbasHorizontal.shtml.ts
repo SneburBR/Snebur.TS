@@ -5,7 +5,7 @@ namespace Snebur.UI
     {
         private _abaAtual: Aba;
         private _funcaoIsPodeNavegar: (construtorPagina: IPaginaConstrutor, parametros: DicionarioSimples<string, string>) => Promise<boolean> | boolean;
-        
+
         private readonly IdentificadorNavegador: string;
         private readonly DicionarioAbas = new DicionarioSimples<Aba>();
 
@@ -178,10 +178,11 @@ namespace Snebur.UI
         {
             if (this.IsCarregarAbaInicial)
             {
-                const caminhoConstrutorPagina = this.RetornarValorAtributo(AtributosHtml.PaginaInicial);
-                if (!String.IsNullOrEmpty(caminhoConstrutorPagina))
+                const caminho = this.RetornarValorAtributo(AtributosHtml.PaginaInicial);
+                const construtorPaginaInicial = NavegadorUtil.RetornarConstrutorPaginaInicial(this, caminho);
+                if (typeof construtorPaginaInicial === "function")
                 {
-                    const construtorPaginaInicial = PaginaUtil.RetornarConstrutorPagina(this, caminhoConstrutorPagina);
+                    /*const construtorPaginaInicial = PaginaUtil.RetornarConstrutorPagina(this, caminhoConstrutorPagina);*/
                     return this.Abas.FirstOrDefault(x => x.ConstrutorPagina === construtorPaginaInicial);
                 }
                 return this.Abas.FirstOrDefault();
@@ -278,18 +279,18 @@ namespace Snebur.UI
             super.Dispose();
         }
     }
-     
-	//#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface PainelAbasHorizontal
-	{
-		readonly PainelVertical: ui.PainelVertical;
-		readonly Cabecalho: ui.CabecalhoPainel;
-		readonly PainelAbasInterno: ui.Painel;
-		readonly DivMarcador: HTMLDivElement;
-		readonly Navegador: ui.Navegador;
-	}
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	//#endregion
+    export interface PainelAbasHorizontal
+    {
+        readonly PainelVertical: ui.PainelVertical;
+        readonly Cabecalho: ui.CabecalhoPainel;
+        readonly PainelAbasInterno: ui.Painel;
+        readonly DivMarcador: HTMLDivElement;
+        readonly Navegador: ui.Navegador;
+    }
+
+    //#endregion
 
 }
