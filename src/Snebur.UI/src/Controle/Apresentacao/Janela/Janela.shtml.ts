@@ -428,7 +428,9 @@
 
         public OcultarBotaoFechar(): void
         {
-            this.BtnFecharJanelaInterno.OcultarElemento();
+            this.IsMostrarBotaoFechar = false;
+            this.IsFecharEsc = false;
+            this.BtnFecharJanelaInterno?.OcultarElemento();
         }
 
         protected OcultarBotaoMaximiar(): void
@@ -443,7 +445,9 @@
 
         public MostrarBotaoFechar(): void 
         {
-            this.BtnFecharJanelaInterno.MostrarElemento();
+            this.IsMostrarBotaoFechar = true;
+            this.BtnFecharJanelaInterno?.MostrarElemento();
+            this.IsFecharEsc = true;
         }
 
         protected MostrarBarraAcoes(): void
