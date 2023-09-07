@@ -1,25 +1,30 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class BaseControlePaginacao extends Snebur.UI.ControleUsuario
+    export abstract class BaseControlePaginacao extends Snebur.UI.ControleUsuario implements IPaginacao
     {
         //#region Propriedades
 
         private _totalPaginas: number = 0;
+
         protected readonly ControleLista: BaseControleLista;
 
         public IsMostrarControleRegistrosPorPagina: boolean = false;
+        public RegistrosPorPagina: number = ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO
+         
+        public readonly Limites = new ListaObservacao<number>();
+        public readonly Paginas = new ListaObservacao<NumeroPaginaViewModel>();
+
         public IsCarregando: boolean = false;
         public TotalRegistros: number = 0;
         public PaginaAtual: number = 1;
         public MaximoPaginas: number;
-        public RegistroPorPagina: number = ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO
- 
+
         public DescricaoItem: string = "item";
         public DescricaoItens: string = "itens";
 
         public get Pular(): number
         {
-            return (this.PaginaAtual - 1) * this.RegistroPorPagina;
+            return (this.PaginaAtual - 1) * this.RegistrosPorPagina;
         }
 
         public get TotalPaginas(): number
@@ -32,11 +37,11 @@
             return !this.IsCarregando && this.TotalPaginas > 1;
         }
 
-        public readonly Limites = new ListaObservacao<number>();
-        public readonly Paginas = new ListaObservacao<NumeroPaginaViewModel>();
+      
+     
+
 
         //#endregion
-
         public readonly EventoPaginacaoAlterada = new Evento<PaginacaoAlteradaEventArgs>(this);
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
@@ -45,7 +50,7 @@
 
             this.DeclararPropriedade(x => x.TotalRegistros, Number, this.AtualizarPaginacao);
             this.DeclararPropriedade(x => x.PaginaAtual, Number, this.AtualizarPaginacao);
-            this.DeclararPropriedade(x => x.RegistroPorPagina, Number, this.RegistroPorPagina_Alterado);
+            this.DeclararPropriedade(x => x.RegistrosPorPagina, Number, this.RegistrosPorPagina_Alterado);
             this.DeclararPropriedade(x => x.IsMostrarControleRegistrosPorPagina, Boolean);
             this.DeclararPropriedade(x => x.IsCarregando, Boolean, this.IsCarregando_Alterado);
 
@@ -70,17 +75,17 @@
             this.DescricaoItens = this.RetornarValorAtributo(ui.AtributosHtml.PaginacaoDescricaoItens, "itens");
             this.MaximoPaginas = this.RetornarMaximoPaginas();
             this.Limites.AddRangeNew(this.RetornarNumerosLimite());
-            this.RegistroPorPagina = this.Limites.First();
+            this.RegistrosPorPagina = this.Limites.First();
 
             super.Inicializar();
 
-            if (!(this.RegistroPorPagina > 0))
+            if (!(this.RegistrosPorPagina > 0))
             {
                 throw new Erro(`O registro por pagina não pode ser inferior a 0 controle ${this.ControleApresentacao.__CaminhoTipo}`);
             }
         }
 
-        private RegistroPorPagina_Alterado()
+        private RegistrosPorPagina_Alterado()
         {
             this.AtualizarPaginacao();
             this.NotificarEventoPaginacaoAlterada();
@@ -111,7 +116,7 @@
 
         protected NotificarEventoPaginacaoAlterada(): void
         {
-            this.EventoPaginacaoAlterada.Notificar(this, new PaginacaoAlteradaEventArgs(this.PaginaAtual, this.RegistroPorPagina));
+            this.EventoPaginacaoAlterada.Notificar(this, new PaginacaoAlteradaEventArgs(this.PaginaAtual, this.RegistrosPorPagina));
         }
 
         //#endregion
@@ -120,8 +125,6 @@
 
         private IsCarregando_Alterado()
         {
-            this.NotificarPropriedadeAlterada(x => x.RegistroPorPagina);
-            this.NotificarPropriedadeAlterada(x => x.TotalRegistros);
             this.NotificarPropriedadeAlterada(x => x.TotalPaginas);
             this.NotificarPropriedadeAlterada(x => x.IsExistePaginacao);
         }
@@ -145,7 +148,7 @@
 
         protected AtualizarValores(): void
         {
-            this._totalPaginas = Math.ceil(this.TotalRegistros / this.RegistroPorPagina);
+            this._totalPaginas = Math.ceil(this.TotalRegistros / this.RegistrosPorPagina);
             if ((this.TotalPaginas > 0) && (this.TotalPaginas < this.PaginaAtual))
             {
                 this.PaginaAtual = this.TotalPaginas;
@@ -155,14 +158,14 @@
 
         private RetornarNumerosLimite(): Array<number>
         {
-            const registroPorPagina = this.RetornarValorAtributo(AtributosHtml.RegistroPorPagina, null);
-            if (String.IsNullOrWhiteSpace(registroPorPagina))
+            const RegistrosPorPagina = this.RetornarValorAtributo(AtributosHtml.RegistrosPorPagina, null);
+            if (String.IsNullOrWhiteSpace(RegistrosPorPagina))
             {
                 return ConstantesPaginacao.NUMEROS_LIMITE_PADRAO;
             }
 
             const limites = new Array<number>();
-            const partes = registroPorPagina.split(",");
+            const partes = RegistrosPorPagina.split(",");
             const len = partes.length;
             for (let i = 0; i < len; i++)
             {
@@ -293,4 +296,12 @@
         public static readonly REGISTROS_POR_PAGINA_PADRAO: number = 25;
     }
 
+    export interface IPaginacao
+    {
+        readonly TotalPaginas: number;
+        readonly PaginaAtual: number;
+        readonly RegistrosPorPagina: number;
+        TotalRegistros: number
+        IsCarregando: boolean;
+    }
 }

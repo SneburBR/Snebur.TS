@@ -27,7 +27,7 @@
         {
             super.Inicializar();
 
-            this.RegistroPorPagina = this.RetornarRegistrosPorPagina();
+            this.RegistrosPorPagina = this.RetornarRegistrosPorPagina();
             this.IDElementoScroll = this.RetornarIDElementoScroll();
             this.AdicionarEventosDom();
         }
@@ -116,7 +116,7 @@
 
         private RetornarRegistrosPorPagina(): number
         {
-            const valorAtributo = this.RetornarValorAtributo(AtributosHtml.RegistroPorPagina, null);
+            const valorAtributo = this.RetornarValorAtributo(AtributosHtml.RegistrosPorPagina, null);
             if (String.IsNullOrWhiteSpace(valorAtributo))
             {
                 return ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO;

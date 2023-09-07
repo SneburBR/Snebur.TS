@@ -452,7 +452,7 @@
         {
             if (this.ControlePaginacao != null)
             {
-                return this.ControlePaginacao.RegistroPorPagina;
+                return this.ControlePaginacao.RegistrosPorPagina;
             }
             return BaseControleLista.REGISTROS_POR_PAGINA_PADRAO;
         }
