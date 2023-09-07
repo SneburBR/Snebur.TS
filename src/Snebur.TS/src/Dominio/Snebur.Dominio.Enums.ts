@@ -214,6 +214,7 @@ namespace Snebur.Dominio
         AtualizarDataHoraFimAlteracao = 8,
         IgnorarZeroIgualNull = 16,
         IgnorarValorAntigoNull = 32,
+        Proteger = 64,
     }
     (EnumOpcoesAlterarPropriedade as any).Rotulos = {};
     (EnumOpcoesAlterarPropriedade as any).Rotulos["Nenhuma"] = "Nenhuma";
@@ -222,6 +223,24 @@ namespace Snebur.Dominio
     (EnumOpcoesAlterarPropriedade as any).Rotulos["AtualizarDataHoraFimAlteracao"] = "AtualizarDataHoraFimAlteracao";
     (EnumOpcoesAlterarPropriedade as any).Rotulos["IgnorarZeroIgualNull"] = "IgnorarZeroIgualNull";
     (EnumOpcoesAlterarPropriedade as any).Rotulos["IgnorarValorAntigoNull"] = "IgnorarValorAntigoNull";
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["Proteger"] = "Proteger";
+
+    export enum EnumTipoValorPadrao
+    {
+        Nenhum = 0,
+        IndentificadorProprietario = 1,
+        SessaoUsuario_Id = 2,
+        UsuarioLogado_Id = 3,
+        Comum = 4,
+        ValorPropriedadeNull = 5,
+    }
+    (EnumTipoValorPadrao as any).Rotulos = {};
+    (EnumTipoValorPadrao as any).Rotulos["Nenhum"] = "Nenhum";
+    (EnumTipoValorPadrao as any).Rotulos["IndentificadorProprietario"] = "IndentificadorProprietario";
+    (EnumTipoValorPadrao as any).Rotulos["SessaoUsuario_Id"] = "SessaoUsuario_Id";
+    (EnumTipoValorPadrao as any).Rotulos["UsuarioLogado_Id"] = "UsuarioLogado_Id";
+    (EnumTipoValorPadrao as any).Rotulos["Comum"] = "Comum";
+    (EnumTipoValorPadrao as any).Rotulos["ValorPropriedadeNull"] = "ValorPropriedadeNull";
 
     export enum EnunFlagAlteracaoPropriedade
     {

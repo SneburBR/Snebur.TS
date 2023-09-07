@@ -1194,6 +1194,24 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
+    export class ValidacaoGuidAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        public static MensagemValidacao : string = "O campo {0} é invalido."; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<ValidacaoGuidAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
     export class ValidacaoIndentificador extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
@@ -1278,24 +1296,6 @@ namespace Snebur.Dominio.Atributos
         //#region Construtor
     
         public constructor(inicializador?: Partial<ValidacaoMdr5Attribute>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class ValidacaoGuidAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
-    {
-        //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<ValidacaoGuidAttribute>) 
         {
             super(inicializador);
             this.Inicializar();
