@@ -233,6 +233,7 @@ namespace Snebur.Dominio
         UsuarioLogado_Id = 3,
         Comum = 4,
         ValorPropriedadeNull = 5,
+        ValorPropriedadeNullOrWhiteSpace = 6,
     }
     (EnumTipoValorPadrao as any).Rotulos = {};
     (EnumTipoValorPadrao as any).Rotulos["Nenhum"] = "Nenhum";
@@ -241,6 +242,7 @@ namespace Snebur.Dominio
     (EnumTipoValorPadrao as any).Rotulos["UsuarioLogado_Id"] = "UsuarioLogado_Id";
     (EnumTipoValorPadrao as any).Rotulos["Comum"] = "Comum";
     (EnumTipoValorPadrao as any).Rotulos["ValorPropriedadeNull"] = "ValorPropriedadeNull";
+    (EnumTipoValorPadrao as any).Rotulos["ValorPropriedadeNullOrWhiteSpace"] = "ValorPropriedadeNullOrWhiteSpace";
 
     export enum EnunFlagAlteracaoPropriedade
     {

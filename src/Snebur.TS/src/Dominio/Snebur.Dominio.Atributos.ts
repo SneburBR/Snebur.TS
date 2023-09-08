@@ -178,7 +178,9 @@ namespace Snebur.Dominio.Atributos
     
         private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
         private _formatacao : string = null;
-        private _tipoPropriedade : r.BaseTipo | string = null;
+        private _tipoPropriedadeRelacao : r.BaseTipo | string = null;
+        private _caminhoTipoPropriedadeRelacao : string = null;
+        private _isEnum : boolean = false;
     
         public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
@@ -200,25 +202,46 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Formatacao", this._formatacao, this._formatacao = value);
         }
     
-        public get TipoPropriedade(): r.BaseTipo | string 
+        public get TipoPropriedadeRelacao(): r.BaseTipo | string 
         {
-            return this._tipoPropriedade;
+            return this._tipoPropriedadeRelacao;
         }
 
-        public set TipoPropriedade(value: r.BaseTipo | string) 
+        public set TipoPropriedadeRelacao(value: r.BaseTipo | string) 
         {
-            this.NotificarValorPropriedadeAlterada("TipoPropriedade", this._tipoPropriedade, this._tipoPropriedade = value);
+            this.NotificarValorPropriedadeAlterada("TipoPropriedadeRelacao", this._tipoPropriedadeRelacao, this._tipoPropriedadeRelacao = value);
+        }
+    
+        public get CaminhoTipoPropriedadeRelacao(): string 
+        {
+            return this._caminhoTipoPropriedadeRelacao;
+        }
+
+        public set CaminhoTipoPropriedadeRelacao(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("CaminhoTipoPropriedadeRelacao", this._caminhoTipoPropriedadeRelacao, this._caminhoTipoPropriedadeRelacao = value);
+        }
+    
+        public get IsEnum(): boolean 
+        {
+            return this._isEnum;
+        }
+
+        public set IsEnum(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsEnum", this._isEnum, this._isEnum = value);
         }
         //#endregion
     
         //#region Construtor
     
-        public constructor( formatacao : string ,  tipoPropriedade : r.BaseTipo | string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
+        public constructor( formatacao : string ,  tipoPropriedadeRelacao : r.BaseTipo | string ,  caminhoTipoPropriedadeRelacao : string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
         {
             super();
             this.Inicializar();
             this._formatacao = formatacao;
-            this._tipoPropriedade = tipoPropriedade;
+            this._tipoPropriedadeRelacao = tipoPropriedadeRelacao;
+            this._caminhoTipoPropriedadeRelacao = caminhoTipoPropriedadeRelacao;
             this._opcoes = opcoes;
         }
         //#endregion

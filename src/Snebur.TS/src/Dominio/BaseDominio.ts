@@ -31,14 +31,12 @@
         {
             if (this.__InicializarPropriedades !== undefined)
             {
-                this.InicializarPropriedades(this.__InicializarPropriedades, true);
-
+                this.__MapearPropriedades(this.__InicializarPropriedades, true);
                 delete this.__InicializarPropriedades;
-
             }
         }
 
-        public InicializarPropriedades(init: Partial<this>, isDesativarObservadorPropriedades: boolean = false)
+        public __MapearPropriedades(init: Partial<this>, isDesativarObservadorPropriedades: boolean = false)
         {
             if (isDesativarObservadorPropriedades)
             {
