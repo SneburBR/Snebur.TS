@@ -61,15 +61,11 @@
             {
                 ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindTexto, this.CaminhoBind);
             }
-
-        
-            
+             
             this.AtualizarTipoEntrada();
             this.AtualizarPattern();
         }
-
-     
-
+         
         //#region TipoEntrada 
         private AtualizarTipoEntrada(): void
         {

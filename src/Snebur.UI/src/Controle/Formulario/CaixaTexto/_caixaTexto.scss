@@ -130,7 +130,7 @@ sn-caixa-texto {
                     }
 
                     &::placeholder {
-                        color: $cor-rotulo-sem-focus;
+                        color: transparent!important;
                         font-size: $tamanho-fonte-padrao;
                         font-weight: 400;
                         color: #505050;
@@ -138,7 +138,7 @@ sn-caixa-texto {
 
                     &:focus {
                         &::placeholder {
-                            color: #505050;
+                            color: #505050 !important;
                         }
                     }
                 }

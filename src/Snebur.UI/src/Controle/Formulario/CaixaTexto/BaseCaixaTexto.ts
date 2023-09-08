@@ -9,7 +9,6 @@
         public ElementoLocalRotuloFlutuante: HTMLElement;
         protected MaxLength: number;
 
-
         public get MarcaDagua(): string
         {
             return this._marcaDagua;
@@ -36,6 +35,7 @@
             {
                 const elemenotInput = elemento.querySelector("input");
                 elemenotInput.autocomplete = "off";
+                elemenotInput.autocapitalize = "off";
                 elemenotInput.readOnly = true;
                 this.AdicionarEventoDom(EnumEventoDom.Focus, this.DesativarAutoCompletarElementoInput_Focus, elemenotInput);
 
