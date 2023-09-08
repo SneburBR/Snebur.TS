@@ -283,7 +283,13 @@
             const _namespace = u.NamespaceUtil.RetornarNamespace(parametro);
             if (!this.ContextosDados.ContainsKey(_namespace))
             {
-                throw new Erro(`Não foi encontrado o contexto para o namespace ${_namespace}`, this);
+                const mensagemErro = `Não foi encontrado o contexto para o namespace ${_namespace}`;
+                console.error(mensagemErro, this);
+                if ($Configuracao.IsDebug)
+                {
+                    throw new Erro(mensagemErro, this);
+                }
+                return null;
             }
             return this.ContextosDados.Item(_namespace);
         }

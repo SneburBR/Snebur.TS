@@ -70,8 +70,12 @@
                 {
                     this.__ultimoValorDom = valorDom;
                     this.SetTimeout(this.LimparUltimoValorDom, 1000);
-                    const valorPropriedade = this.RetornarValorConvertidoParaPropriedade(valorDom);
-                    this.AlterarValorPropriedade(valorPropriedade);
+                    if (this.PaiPropriedadeLigacao != null &&
+                        this.PropriedadeLigacao != null)
+                    {
+                        const valorPropriedade = this.RetornarValorConvertidoParaPropriedade(valorDom);
+                        this.AlterarValorPropriedade(valorPropriedade);
+                    }
                 }
             }
         }

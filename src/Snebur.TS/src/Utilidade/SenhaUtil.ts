@@ -18,7 +18,7 @@
 
         public static RetornarNomePropriedadeValorNormal(propriedade: r.Propriedade)
         {
-            return `__${propriedade.Nome}_ValorNormal`;
+            return `__${propriedade?.Nome}_ValorNormal`;
         }
     }
 }
