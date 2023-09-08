@@ -33,6 +33,11 @@
             super.Inicializar();
         }
 
+        protected override RetornarItemTemplateSelecionado(): ItemTemplateSelecionado
+        {
+            return super.RetornarItemTemplateSelecionado();
+        }
+
         protected override DepoisInicializarComponentesApresentacao(): void
         {
             super.DepoisInicializarComponentesApresentacao();
@@ -98,8 +103,6 @@
 
         public override async ValidarAsync(isForcar: boolean = false): Promise<boolean>
         {
-            const controleApresetencao = this.ControleApresentacao;
-            this.IsValido
             return super.ValidarAsync(isForcar);
         }
         //#endregion

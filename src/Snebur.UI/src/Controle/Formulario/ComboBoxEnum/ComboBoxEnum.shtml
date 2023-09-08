@@ -1,18 +1,20 @@
-﻿<!--<div sn-item-elemento="Caixa" class="mdl-textfield  mdl-textfield--floating-label">
-    <input sn-item-elemento="ControleInput" class="mdl-textfield__input sn-combobox-input" type="text" />
-    <label sn-item-elemento="Rotulo" class="mdl-textfield__label">Rotulo não encontrado</label>
-    <sn-combobox-item-selecionado sn-nome="ControleItemSelecionado" class="sn-combobox-item-selecionado">
-    </sn-combobox-item-selecionado>
-    <div sn-item-elemento="MensagemValidacao" class="mdl-textfield__error">Mensagem erro</div>
-</div>-->
+﻿ <sn-item-selecionado-template 
+     >
+    <ap-texto 
+        sn-item-elemento="SpanItemSelecionado" 
+        sn-bind-enum="{{.}}"  
+        ap-altura-linha="24px"
+        ap-altura="24px" 
+        ap-margem="4px 4px">
+    </ap-texto>
 
-<sn-item-selecionado-template>
-    <ap-texto sn-item-elemento="SpanItemSelecionado" sn-bind-enum="{{.}}"  
-        ap-altura-linha="28px" ap-altura="28px" 
-        ap-margem="4px 0px"></ap-texto>
 </sn-item-selecionado-template>
-<sn-item-template>
-    <ap-texto sn-item-elemento="SpanItemTemplate" sn-bind-enum="{{.}}" 
-        ap-altura-linha="28px" ap-altura="28px" ap-margem="4px 0px">
+<sn-item-template  >
+    <ap-texto 
+        sn-item-elemento="SpanItemTemplate" 
+        sn-bind-enum="{{.}}" 
+        ap-altura-linha="28px"
+        ap-altura="28px" 
+        ap-margem="4px 0px">
     </ap-texto>
 </sn-item-template>

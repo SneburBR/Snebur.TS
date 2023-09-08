@@ -180,7 +180,7 @@
             }
         }
 
-        private RetornarItemTemplateSelecionado(): ItemTemplateSelecionado  
+        protected RetornarItemTemplateSelecionado(): ItemTemplateSelecionado  
         {
             const itemTemplateSelecionado = this.ControlesFilho.OfType(ItemTemplateSelecionado).FirstOrDefault();
             if (itemTemplateSelecionado != null)
@@ -194,7 +194,6 @@
                 return new ItemTemplateSelecionado(this, elementoClone);
             }
             return null;
-
         }
 
         private PopularBlocosTemplate(): void
