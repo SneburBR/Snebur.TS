@@ -3,7 +3,7 @@
     export abstract class BaseJanelaCadastro<TEntidade extends Entidade = Entidade> extends Janela   
     {
         private __SalvarDocument_KeyDown: EventListener;
-         
+
         public readonly NovaEntidade: TEntidade;
         public readonly TipoEntidade: r.TipoEntidade;
         public readonly IDEntidade: number;
@@ -26,7 +26,7 @@
         public readonly TextoTitulo: Snebur.UI.Texto;
         public readonly BlocoFormulario: Bloco;
         public readonly BlocoBotoes: Bloco;
-         
+
         public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
             super(controlePai);
@@ -272,12 +272,12 @@
             return [true, resultado];
         }
 
-        protected async SalvarAsync(isFechar: boolean = true)
+        protected async SalvarAsync(isFechar: boolean = true): Promise<boolean>
         {
             return this.SalvarInternoAsync(isFechar);
         }
 
-        private async SalvarInternoAsync(isFechar: boolean = true)
+        private async SalvarInternoAsync(isFechar: boolean = true): Promise<boolean>
         {
             this.Ocupar();
             const resultado = await this.RetornarResultadoSalvarAsync();
@@ -286,6 +286,7 @@
             {
                 this.FecharAsync(true);
             }
+            return resultado.IsSucesso;
         }
 
         protected async RetornarResultadoSalvarAsync(): Promise<a.ResultadoSalvar>
@@ -314,7 +315,7 @@
                     /*throw new Erro(mensagem);*/
                 }
 
-                const tituloErro = "Erro ao salvar";
+                const tituloErro = "OPS!";
                 const mensagemErro = "Desculpe, mas não possível salvar a alteração";
 
                 await ui.MensagemUtil.MostrarMensagemAsync(this, tituloErro, mensagemErro, EnumBotoesJanelaMensagem.Ok);
@@ -373,17 +374,17 @@
         //#endregion
     }
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>
-	{
-		readonly TextoTitulo: ui.Texto;
-		readonly BlocoFormulario: ui.Bloco;
-		readonly BlocoBotoes: ui.Bloco;
-		readonly BtnCancelarInterno: ui.Botao;
-		readonly BtnSalvarInterno: ui.Botao;
-	}
+    export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>
+    {
+        readonly TextoTitulo: ui.Texto;
+        readonly BlocoFormulario: ui.Bloco;
+        readonly BlocoBotoes: ui.Bloco;
+        readonly BtnCancelarInterno: ui.Botao;
+        readonly BtnSalvarInterno: ui.Botao;
+    }
 
-	//#endregion
+    //#endregion
 
 }

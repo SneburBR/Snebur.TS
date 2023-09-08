@@ -4,12 +4,11 @@
     {
         protected readonly __isControleZIndex: boolean = false;
 
-
         private _isPontilharAreas: boolean;
+        private _isFocarPrimeiraCaixaTexto: boolean;
 
         public get IsPontilharAreas(): boolean
         {
-
             return $Configuracao.IsDebug &&
                 this._isPontilharAreas;
         }
@@ -24,18 +23,23 @@
             return $Aplicacao.GerenciadorServioArquivoPadrao;
         }
 
-        protected IsFocarPrimeiraCaixaTexto: boolean = true;
+        protected get IsFocarPrimeiraCaixaTexto(): boolean
+        {
+            return typeof this._isFocarPrimeiraCaixaTexto === "boolean"
+                ? this._isFocarPrimeiraCaixaTexto
+                : this.ControleApresentacaoPai?.IsFocarPrimeiraCaixaTexto ?? false;
+        }
+        protected set IsFocarPrimeiraCaixaTexto(valor: boolean)
+        {
+            this._isFocarPrimeiraCaixaTexto = valor;
+        }
 
-
-        public constructor(controlePai: BaseControle);
-        public constructor(controlePai: BaseControle, refElemento?: HTMLElement | string);
         public constructor(controlePai: BaseControle, refElemento?: HTMLElement | string)
         {
             super(controlePai, refElemento);
 
             this.EventoDataSourceAlterado.AddHandler(this.ControleApresentacao_Carregado, this);
             this.EventoCarregado.AddHandler(this.ControleApresentacao_Carregado, this);
-
         }
 
         protected override Inicializar(): void
@@ -88,7 +92,7 @@
                 }
             }
         }
-         
+
         //#region Ocultar 
 
         public override OcultarElemento()
@@ -109,7 +113,7 @@
         {
             if (!this.__isControleZIndex)
             {
-                throw new Erro("O controle apresentacao não ativado IsControleZIndex");
+                throw new Erro("O controle apresentação não ativado IsControleZIndex");
             }
             return this.Elemento;
         }
@@ -125,7 +129,6 @@
                 }
                 controleAtual = controleAtual.ControlePai;
             }
-
             return null;
         }
 
@@ -135,7 +138,6 @@
         {
             super.Dispose();
         }
-
     }
 
     export interface ControleApresentacaoZIndex

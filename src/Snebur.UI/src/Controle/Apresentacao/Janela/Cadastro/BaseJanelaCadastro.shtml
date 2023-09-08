@@ -20,23 +20,23 @@
         </ap-linha>
         <ap-rodape ap-altura="65px">
             <ap-bloco ap-margem="0px 16px 0px 0px" sn-nome="BlocoBotoes">
-                <ap-painel ap-tipo-painel="PilhaHorizontal" ap-alinhamento-horizontal="Centro">
+                <ap-painel ap-tipo-painel="PilhaHorizontal"
+                    ap-alinhamento-horizontal="Centro">
                    <ap-bloco>
                         <sn-botao
-                            ap-largura="140px" ap-altura-linha="24px"
+                            ap-largura="140px" 
                             sn-nome="BtnCancelarInterno"
-                            class="sn-botao-cancelar" ap-cor-texto="Cinza"
-                            sn-tipo-botao="FlatBox"
+                            ap-cor-texto="Cinza"
+                            sn-tipo-botao="FlatBox" 
                             sn-click="BtnCancelarInterno_Click">
-                            CANCELAR
+                            CANCELAR 
 
                         </sn-botao>
                     </ap-bloco>
                     <ap-bloco ap-margem="16px 0px 0px 0px">
-                        <sn-botao ap-largura="140px"
-                            ap-altura-linha="24px"
+                        <sn-botao 
+                            ap-largura="140px"
                             sn-nome="BtnSalvarInterno"
-                            class="sn-botao-salvar"
                             ap-cor-fundo="SistemaPrincipal"
                             ap-cor-texto="Branca"
                             sn-click="BtnSalvarInterno_Click">
