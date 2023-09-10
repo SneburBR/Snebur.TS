@@ -374,6 +374,11 @@
         //#endregion
     }
 
+    export interface IJanelaCadastro<TEntidade extends Entidade = Entidade>  
+    {
+        new(controlePai: BaseControle, entidade: TEntidade): BaseJanelaCadastro<TEntidade>;
+    }
+
     //#region Elementos da apresentação - código gerado automaticamente #
 
     export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>

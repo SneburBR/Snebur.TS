@@ -202,6 +202,11 @@
 
         //#region Métodos públicos
 
+        public DesmarcarTodasLinha()
+        {
+            this.MarcarLinha(null);
+
+        }
         public MarcarLinha(item: TItem, isRolarScroll: boolean = true)
         {
             if (this.IsControleInicializado && this.IsMarcarItem)

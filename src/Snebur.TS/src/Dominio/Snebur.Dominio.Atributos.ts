@@ -1048,6 +1048,9 @@ namespace Snebur.Dominio.Atributos
         private _dataMaxima : Date = null;
         private _dataMinima : Date = null;
         private _tipoData : Snebur.Dominio.EnumTipoData = 0;
+        private _isPrimeiraHoraDoDia : boolean = false;
+        private _isUltimaHoraDoDia : boolean = false;
+        private _isHoraFimD : boolean = false;
     
         public get DataMaxima(): Date 
         {
@@ -1077,6 +1080,36 @@ namespace Snebur.Dominio.Atributos
         public set TipoData(value: Snebur.Dominio.EnumTipoData) 
         {
             this.NotificarValorPropriedadeAlterada("TipoData", this._tipoData, this._tipoData = value);
+        }
+    
+        public get IsPrimeiraHoraDoDia(): boolean 
+        {
+            return this._isPrimeiraHoraDoDia;
+        }
+
+        public set IsPrimeiraHoraDoDia(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsPrimeiraHoraDoDia", this._isPrimeiraHoraDoDia, this._isPrimeiraHoraDoDia = value);
+        }
+    
+        public get IsUltimaHoraDoDia(): boolean 
+        {
+            return this._isUltimaHoraDoDia;
+        }
+
+        public set IsUltimaHoraDoDia(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsUltimaHoraDoDia", this._isUltimaHoraDoDia, this._isUltimaHoraDoDia = value);
+        }
+    
+        public get IsHoraFimD(): boolean 
+        {
+            return this._isHoraFimD;
+        }
+
+        public set IsHoraFimD(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsHoraFimD", this._isHoraFimD, this._isHoraFimD = value);
         }
     
         public static MensagemValidacao : string = "O campo {0} é invalido."; 

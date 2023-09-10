@@ -761,8 +761,8 @@
             }
             finally
             {
-                await this.DesocuparAsync();
                 (this as any)[nomeFlagDeBloqueio] = false;
+                await this.DesocuparAsync();
             }
         }
 

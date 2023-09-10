@@ -194,7 +194,8 @@ sn-data-lista {
 .sn-tabela,
 sn-data-lista-ordenacao,
 sn-data-lista {
-
+    
+    &.sn-cabecalho-fixo,
     &.sn-fixa-cabecalho {
         height: 100% !important;
 

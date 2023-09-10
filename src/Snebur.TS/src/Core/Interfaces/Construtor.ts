@@ -14,4 +14,9 @@ namespace Snebur
         prototype: T;
     }
 
+    export interface IConstrutorEntidade<T extends IEntidade = IEntidade> extends Function
+    {
+        new(init?: Partial<T>): T;
+        prototype: T;
+    }
 }
