@@ -53,8 +53,6 @@
         {
             super.Inicializar();
             this.EventoValorAlterado.AddHandler(this.CaixaMoeda_ValorAlterado, this);
-            //this.AdicionarEventoDom(EnumEventoDom.TouchStart, this.ElementoInputMoeda_EvitarMenuCopiarColar, this.ElementoInput);
-            //this.AdicionarEventoDom(EnumEventoDom.TouchEnd, this.ElementoInputMoeda_EvitarMenuCopiarColar, this.ElementoInput);
 
         }
 
@@ -113,7 +111,7 @@
             return valor;
         }
 
-        protected override  AtualizarConteudoDom(): void
+        protected override AtualizarConteudoDom(): void
         {
             if (this.IsNaoPermitirValorZero && this.Valor === null)
             {

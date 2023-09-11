@@ -10,7 +10,7 @@ namespace Snebur.UI
             {
                 return null;
             }
-            return ConverterUtil.ParaTimeSpan(this.ElementoInput.value);
+            return ConverterUtil.ParaTimeSpan(this.ElementoInput.value, true);
         }
 
         public override  set Valor(value: TimeSpan)

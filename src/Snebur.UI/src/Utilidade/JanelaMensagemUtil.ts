@@ -53,7 +53,7 @@
 
         public static async MostrarMensagemAsync(controlePai: BaseControle,
             titulo: string, mensagem: string,
-            opcoes: EnumBotoesJanelaMensagem): Promise<ResultadoJanelaMensagemArgs>
+            opcoes: EnumBotoesJanelaMensagem = EnumBotoesJanelaMensagem.OkEntendi): Promise<ResultadoJanelaMensagemArgs>
         {
             await JanelaMensagem.AguardarFecharMensagemAsync();
 

@@ -94,10 +94,6 @@
         protected override HtmlCarregado(): void
         {
             super.HtmlCarregado();
-
-            //this.IDElementoTitulo = this.RetornarIDElementoItemElemento("Titulo");
-            //this.IDElementoFormulario = this.RetornarIDElementoItemElemento("Formulario");
-            //this.IDElementoBotoes = this.RetornarIDElementoItemElemento("Botoes");
         }
 
         protected override RetornarHtmlParcialJanela(): string
@@ -123,11 +119,12 @@
 
         private async BaseJanelaCadastro_Carregada(janela: Janela, e: EventArgs) 
         {
-            this.OcuparAsync(async () =>
+            await this.OcuparAsync(async () =>
             {
                 await this.InicializarViewModelAsync();
             });
-            this.Ocupar();
+            await ThreadUtil.QuebrarAsync();
+            this.FocarPrimeiroControle();
         }
 
         protected async InicializarViewModelAsync(): Promise<void>
