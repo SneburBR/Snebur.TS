@@ -69,6 +69,42 @@
             return false;
         }
 
+        public static IsMaior(valorPropriedadeAuxiliar: any, valorPropriedade: any): boolean
+        {
+            if (valorPropriedade == null && valorPropriedadeAuxiliar != null)
+            {
+                return true;
+            }
+            return valorPropriedadeAuxiliar > valorPropriedade;
+        }
+
+        public static IsMaiorOuIgual(valorPropriedadeAuxiliar: any, valorPropriedade: any): boolean
+        {
+            if (valorPropriedade == null && valorPropriedadeAuxiliar != null)
+            {
+                return true;
+            }
+            return valorPropriedadeAuxiliar >= valorPropriedade;
+        }
+
+        public static IsMenor(valorPropriedadeAuxiliar: any, valorPropriedade: any): boolean
+        {
+            if (valorPropriedadeAuxiliar == null && valorPropriedade != null)
+            {
+                return true;
+            }
+            return valorPropriedadeAuxiliar < valorPropriedade;
+        }
+
+        public static IsMenorOuIgual(valorPropriedadeAuxiliar: any, valorPropriedade: any): boolean
+        {
+            if (valorPropriedadeAuxiliar == null && valorPropriedade != null)
+            {
+                return true;
+            }
+            return valorPropriedadeAuxiliar <= valorPropriedade;
+        }
+
         public static CopiarArray(atributos: NamedNodeMap): Array<Attr>
         public static CopiarArray(nodeList: NodeList): Array<Node>
         public static CopiarArray(nodeList: NodeListOf<ChildNode>): Array<Node>
@@ -235,7 +271,7 @@
             }
             return null;
         }
-         
+
         public static get SafeGlobalThis(): any
         {
             return Util._globalThis

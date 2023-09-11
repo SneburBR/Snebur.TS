@@ -1806,6 +1806,40 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
+        private _opcoesComparacaoAuxiliar : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null = null;
+        private _nomePropridadeAuxiliar : string = null;
+        private _isValidoSeAuxiliarInvalido : boolean = false;
+    
+        public get OpcoesComparacaoAuxiliar(): Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null 
+        {
+            return this._opcoesComparacaoAuxiliar;
+        }
+
+        public set OpcoesComparacaoAuxiliar(value: Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null) 
+        {
+            this.NotificarValorPropriedadeAlterada("OpcoesComparacaoAuxiliar", this._opcoesComparacaoAuxiliar, this._opcoesComparacaoAuxiliar = value);
+        }
+    
+        public get NomePropridadeAuxiliar(): string 
+        {
+            return this._nomePropridadeAuxiliar;
+        }
+
+        public set NomePropridadeAuxiliar(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("NomePropridadeAuxiliar", this._nomePropridadeAuxiliar, this._nomePropridadeAuxiliar = value);
+        }
+    
+        public get IsValidoSeAuxiliarInvalido(): boolean 
+        {
+            return this._isValidoSeAuxiliarInvalido;
+        }
+
+        public set IsValidoSeAuxiliarInvalido(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsValidoSeAuxiliarInvalido", this._isValidoSeAuxiliarInvalido, this._isValidoSeAuxiliarInvalido = value);
+        }
+    
         public static MensagemValidacao : string = "O campo {0} deve ser preenchido."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
@@ -1813,9 +1847,12 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor() 
+        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isValidoSeAuxiliarInvalido? : boolean ) 
         {
             super();
+            this._opcoesComparacaoAuxiliar = opcoesComparacaoAuxiliar;
+            this._nomePropridadeAuxiliar = nomePropridadeAuxiliar;
+            this._isValidoSeAuxiliarInvalido = isValidoSeAuxiliarInvalido;
         }
         //#endregion
     }

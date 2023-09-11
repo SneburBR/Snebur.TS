@@ -10,7 +10,7 @@
             {
                 return u.ReflexaoUtil.RetornarValorPropriedade(entidade, propriedadeDescricao);
             }
-            return `${entidade.Id} ${entidade.GetType()}`;
+            return `${entidade.GetType()} (${entidade.Id})`;
         }
 
         public static RetornarPropriedadeChaveEstrangeira(

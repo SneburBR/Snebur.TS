@@ -1085,6 +1085,29 @@ namespace Snebur.Dominio.Atributos
     (EnumOperadorComparacao as any).Rotulos["MaiorIgualA"] = "MaiorIgualA";
     (EnumOperadorComparacao as any).Rotulos["MenorIgualA"] = "MenorIgualA";
 
+    export enum EnumOpcoesComparacaoAuxiliar
+    {
+        Nenhuma = 0,
+        True = 1,
+        False = 2,
+        Igual = 3,
+        Diferente = 4,
+        Maior = 5,
+        Menor = 6,
+        MaiorIgual = 7,
+        MenorIgual = 8,
+    }
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos = {};
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Nenhuma"] = "Nenhuma";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["True"] = "True";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["False"] = "False";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Igual"] = "Igual";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Diferente"] = "Diferente";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Maior"] = "Maior";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Menor"] = "Menor";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["MaiorIgual"] = "MaiorIgual";
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["MenorIgual"] = "MenorIgual";
+
 }
 namespace Snebur.Dominio.Interface.Media
 {

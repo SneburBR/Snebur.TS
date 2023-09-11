@@ -50,7 +50,7 @@
         {
             return this.GetType().Nome;
         }
-
+         
         public override get __IsExisteAlteracao(): boolean
         {
             if (this.Id === 0 || this.__PropriedadesAlteradas.Count > 0)
@@ -75,7 +75,8 @@
             return false;
         }
 
-        //Inicializar construtor Partial
+        //Inicializar construtor Partial3
+
         private readonly __InicializarConstrutor?: Function;
 
         //#endregion
@@ -116,6 +117,11 @@
             {
                 this.__InicializarConstrutor.call(this);
             }
+        }
+
+        public RetornarMelhorDescricao(): string
+        {
+            return u.EntidadeUtil.RetornarDescricaoEntidade(this);
         }
 
         public override NotificarValorPropriedadeAlteradaTipoCompleto(nomePropriedade: string, antigoValor: BaseTipoComplexo, novoValor: BaseTipoComplexo)
@@ -301,13 +307,13 @@
             }
             return super.toString();
         }
-        
+
         private GetTypeTipado(): r.TipoEntidade  
         {
             return super.GetType() as r.TipoEntidade;
         }
 
-         
+
     }
 
     export declare type FuncaoClonarPropriedade = (propriedade: r.Propriedade, valorPropriedade: Entidade) => any | undefined;

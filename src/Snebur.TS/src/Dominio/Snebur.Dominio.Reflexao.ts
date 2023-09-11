@@ -115,6 +115,7 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados = new Snebur.Reflexao.TipoEnum("EnumFormatacaoDados", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumFormatacaoDados, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro = new Snebur.Reflexao.TipoEnum("EnumOrdenacaoNovoRegistro", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao = new Snebur.Reflexao.TipoEnum("EnumTipoExclusaoRelacao", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao, Snebur");
+	export const __$tipoEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar = new Snebur.Reflexao.TipoEnum("EnumOpcoesComparacaoAuxiliar", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc = new Snebur.Reflexao.TipoEnum("EnumFamiliaPerfilIcc", "Snebur.Dominio.Interface.Media", "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc, Snebur");
 	export const __$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente = new Snebur.Reflexao.TipoEnum("EnumDirecaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumDirecaoGradiente, Snebur");
 	export const __$tipoEnum_Snebur_Imagens_EnumMixagem = new Snebur.Reflexao.TipoEnum("EnumMixagem", "Snebur.Imagens", "Snebur.Imagens.EnumMixagem, Snebur");
@@ -218,6 +219,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumFormatacaoDados", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumFormatacaoDados, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados);
 	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
+	export const __$tipoListaEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar", "Snebur.Dominio.Atributos", "Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar, Snebur", __$tipoEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar);
 	export const __$tipoListaEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc", "Snebur.Dominio.Interface.Media", "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc, Snebur", __$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
 	export const __$tipoListaEnum_Snebur_Imagens_EnumDirecaoGradiente = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumDirecaoGradiente", "Snebur.Imagens", "Snebur.Imagens.EnumDirecaoGradiente, Snebur", __$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente);
 	export const __$tipoListaEnum_Snebur_Imagens_EnumMixagem = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Imagens.EnumMixagem", "Snebur.Imagens", "Snebur.Imagens.EnumMixagem, Snebur", __$tipoEnum_Snebur_Imagens_EnumMixagem);
@@ -321,6 +323,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumFormatacaoDados",__$tipoEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro",__$tipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao",__$tipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
+	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar",__$tipoEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc",__$tipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
 	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumDirecaoGradiente",__$tipoEnum_Snebur_Imagens_EnumDirecaoGradiente);
 	$Reflexao.Tipos.Adicionar("Snebur.Imagens.EnumMixagem",__$tipoEnum_Snebur_Imagens_EnumMixagem);
@@ -423,6 +426,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumFormatacaoDados);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumOrdenacaoNovoRegistro);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumTipoExclusaoRelacao);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar",__$tipoListaEnum_Snebur_Dominio_Atributos_EnumOpcoesComparacaoAuxiliar);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc",__$tipoListaEnum_Snebur_Dominio_Interface_Media_EnumFamiliaPerfilIcc);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumDirecaoGradiente",__$tipoListaEnum_Snebur_Imagens_EnumDirecaoGradiente);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Imagens_EnumMixagem",__$tipoListaEnum_Snebur_Imagens_EnumMixagem);
@@ -526,6 +530,7 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.Atributos.EnumFormatacaoDados.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumFormatacaoDados";
 	Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumOrdenacaoNovoRegistro";
 	Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao";
+	Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar";
 	Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc.__CaminhoTipo = "Snebur.Dominio.Interface.Media.EnumFamiliaPerfilIcc";
 	Snebur.Imagens.EnumDirecaoGradiente.__CaminhoTipo = "Snebur.Imagens.EnumDirecaoGradiente";
 	Snebur.Imagens.EnumMixagem.__CaminhoTipo = "Snebur.Imagens.EnumMixagem";
@@ -1031,19 +1036,19 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_Dominio_InformacaoSessao.Propriedades.Add(__$propriedade_Snebur_Dominio_InformacaoSessao_NomeComputador);
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Nome = new Snebur.Reflexao.Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Email = new Snebur.Reflexao.Propriedade("Email", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoEmailAttribute());
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Telefone = new Snebur.Reflexao.Propriedade("Telefone", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTelefoneAttribute());
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Senha = new Snebur.Reflexao.Propriedade("Senha", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoSenhaAttribute(4,36));
 	
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Nome);
@@ -1263,10 +1268,10 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_Dominio_Borda.Propriedades.Add(__$propriedade_Snebur_Dominio_Borda_Arredondamento);
 	
 	export const __$propriedade_Snebur_Dominio_Dimensao_Largura = new Snebur.Reflexao.Propriedade("Largura", __$tipoTipoPrimario_Double, __$tipoBaseDominioSnebur_Dominio_Dimensao, false);
-	__$propriedade_Snebur_Dominio_Dimensao_Largura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_Dimensao_Largura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	
 	export const __$propriedade_Snebur_Dominio_Dimensao_Altura = new Snebur.Reflexao.Propriedade("Altura", __$tipoTipoPrimario_Double, __$tipoBaseDominioSnebur_Dominio_Dimensao, false);
-	__$propriedade_Snebur_Dominio_Dimensao_Altura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute());
+	__$propriedade_Snebur_Dominio_Dimensao_Altura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
 	
 	__$tipoBaseDominioSnebur_Dominio_Dimensao.Propriedades.Add(__$propriedade_Snebur_Dominio_Dimensao_Largura);
 	__$tipoBaseDominioSnebur_Dominio_Dimensao.Propriedades.Add(__$propriedade_Snebur_Dominio_Dimensao_Altura);

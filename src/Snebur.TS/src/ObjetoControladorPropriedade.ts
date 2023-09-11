@@ -6,7 +6,7 @@
 
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
-
+        private _propriedadesValidacoes: DicionarioSimples<PropriedadeValidacoes>;
         private __isObservadorPropriedadesAtivo: boolean = true;
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
 
@@ -37,9 +37,7 @@
         }
 
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
-
-        private _propriedadesValidacoes: DicionarioSimples<PropriedadeValidacoes>;
-
+         
         private get PropriedadesValidacoes(): DicionarioSimples<PropriedadeValidacoes>
         {
             if (!this._propriedadesValidacoes)
@@ -62,9 +60,6 @@
         public constructor()
         {
             super();
-
-            //this.PropriedadesAlterada = new Array<PropriedadeAlteradaEventArgs>();
-            //this.EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
         }
 
         //#region Validação

@@ -504,7 +504,6 @@
     "src/Core/Interfaces/IIdentificadorUnico.ts",
     "src/Core/Nativo/Object.ts",
     "src/Decoracao/Rotulo.Decoracao.ts",
-    "src/Dominio/Atributos/Validacao/ValidacaoRequeridoCondicional.Partial.ts",
     "src/Dominio/Atributos/ValidacaoAwait/BaseAtributoValidacaoAwait.ts",
     "src/Dominio/Interface/TipoComplexo/IDimensao.ts",
     "src/Dominio/Partial/ICredencial.ts",

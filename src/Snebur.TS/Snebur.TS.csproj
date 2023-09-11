@@ -304,7 +304,6 @@
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoPrimeiroNome.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoPalavraTamanho.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRequerido.Partial.ts" />
-    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRequeridoCondicional.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRequeridoDebug.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoSenha.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoSubDominio.Partial.ts" />
