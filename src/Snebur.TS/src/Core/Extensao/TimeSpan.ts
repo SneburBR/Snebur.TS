@@ -216,6 +216,11 @@
             return new TimeSpan(0, 0, 0, 0, data.Utc.valueOf());
         }
 
+        public static get Empty(): TimeSpan
+        {
+            return TimeSpan.FromMilliseconds(0);
+        }
+
         //#endregion
 
         //#region ITipo
