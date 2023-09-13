@@ -2,24 +2,20 @@
 {
     export class EntidadeCadastroViewModel<TEntidade extends Entidade = Entidade> extends Snebur.Dominio.EntidadeViewModel<TEntidade>
     {
-        private _titulo: string;
+        public Titulo: string
+        public SubTitulo: string
 
-        public get Titulo(): string
-        {
-            return this._titulo;
-        }
-
-        public set Titulo(value: string)
-        {
-            this._titulo = value;
-            this.NotificarValorPropriedadeAlterada("Titulo", value);
-        }
-
-        public constructor(entidade: TEntidade, titulo: string = null)
+        public constructor(entidade: TEntidade, titulo: string = null, subTitulo: string = null)
         {
             super();
+
             this.Entidade = entidade;
+
+            this.DeclararPropriedade(x => x.Titulo, String);
+            this.DeclararPropriedade(x => x.SubTitulo, String);
+
             this.Titulo = titulo;
+            this.SubTitulo = subTitulo;
 
             if (String.IsNullOrWhiteSpace(titulo))
             {
@@ -29,10 +25,9 @@
 
         public async InicializarViewModelAsync(): Promise<void>
         {
-          
+
         }
-
-
+         
         private RetornarTitulo(): string
         {
             const tipoEntidade = this.Entidade.GetType();

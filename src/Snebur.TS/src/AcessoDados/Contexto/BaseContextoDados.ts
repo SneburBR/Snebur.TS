@@ -275,8 +275,13 @@
             }
 
             const entidadesClonada = this.RetornarEntidadesCloneSomenteId(entidades);
-            return await this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
-
+            const resultado = await this.ServicoDados.DeletarAsync(entidadesClonada, relacoesEmCascata);
+            if (resultado.IsSucesso)
+            {
+                const entidadesIsDeletado = entidades.Where(x => (x as any as IDeletado).IsDeletado !== undefined).Cast<d.IDeletado>();
+                entidadesIsDeletado.ForEach(x => x.IsDeletado = true);
+            }
+            return resultado;
         }
 
         //#endregion
@@ -532,8 +537,7 @@
             {
                 entidades.Add(parametro);
             }
-
-            if (u.ValidacaoUtil.IsArray(parametro))
+            else if (u.ValidacaoUtil.IsArray(parametro))
             {
                 const len = (parametro as Array<any>).length;
                 for (let i = 0; i < len; i++)
@@ -541,6 +545,10 @@
                     const item = parametro[i];
                     entidades.AddRange(this.RetornarEntidades(item));
                 }
+            }
+            else if (parametro != null)
+            {
+                throw new Erro(`O objeto  ${parametro?.GetType().Name ?? parametro.constructor?.name ?? parametro} não é do tipo entidade`);
             }
             return entidades;
         }

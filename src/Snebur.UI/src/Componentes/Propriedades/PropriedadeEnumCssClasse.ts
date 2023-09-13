@@ -28,7 +28,8 @@
 
             if (!EnumUtil.IsDefindo(this.ConstrutorEnum, valorDom))
             {
-                throw new Erro(`O valor do atributo ${valorDom} não está definido no Enum ${this.ConstrutorEnum.GetType().Nome}  em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor} `);
+                console.error(`O valor do atributo ${valorDom} não está definido no Enum ${this.ConstrutorEnum.GetType().Nome}  em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor} `);
+                return this.ValorPadraoVazio as TEnum;
             }
 
             return EnumUtil.RetornarValor(this.ConstrutorEnum, valorDom);

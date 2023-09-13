@@ -201,6 +201,7 @@
     "src/Controle/Apresentacao/DocumentoPrincipal/BarraEnvioArquivo/BarraEnvioArquivos.shtml.ts",
     "src/Controle/Apresentacao/DocumentoPrincipal/GerenciadorFalhaConexao.ts",
     "src/Controle/Apresentacao/Janela/Cadastro/JanelaCadastroAutomatico.ts",
+    "src/Controle/Apresentacao/Janela/Cadastro/JanelaInfo.shtml.ts",
     "src/Controle/Apresentacao/Janela/Mensagem/JanelaMensagem.shtml.ts",
     "src/Controle/Apresentacao/Janela/Ocupado/JanelaOcupado.shtml.ts",
     "src/Controle/Apresentacao/Janela/ArrastarJanela.ts",

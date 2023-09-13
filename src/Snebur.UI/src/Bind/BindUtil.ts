@@ -202,7 +202,17 @@
             const funcaoString = `window.__ExpressoesBind.${nomeExpressao} =  (function(x, _this) { return ${expressao} });` +
                 `window.__ExpressoesBind.${nomeExpressao}.Options = {IsDataSource: ${isDataSource}, IsThis : ${isThis}, NomeExpressao : "${nomeExpressao}" }`;
 
-            eval(funcaoString);
+            try
+            {
+                eval(funcaoString);
+            }
+            catch(ex)
+            {
+                console.error(`Falha ao executar a expressão do bind ${expressao}, expressão: ${funcaoString.toString()}.
+                               Erro: ${ex} `);
+                throw ex;
+            }
+            
 
             if (typeof window.__ExpressoesBind[nomeExpressao] !== "function")
             {

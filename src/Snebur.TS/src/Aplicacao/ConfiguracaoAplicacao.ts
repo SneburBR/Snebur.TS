@@ -22,8 +22,9 @@
         NamespacesDependecia: Array<string>;
         AtalhosNamespace?: Array<[string, string]>;
         Versao: string;
+
+        IsAlterarUrlDebug?: boolean;
         UrlMagick?: string;
- 
         UrlServicosWorker?: string;
         UrlServicoDepuracao?: string;
         UrlImagemCarregando?: string;

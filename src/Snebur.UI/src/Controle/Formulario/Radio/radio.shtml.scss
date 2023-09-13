@@ -15,6 +15,7 @@ sn-radio,
 
     &:not([class*='ap-tipografia--']) {
         font-size: 16px;
+        font-size: var(--tamanho-fonte-documento);
     }
     /*display: inline-flex;*/
     display: inline-block;

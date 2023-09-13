@@ -95,6 +95,7 @@
     <TypeScriptCompile Include="src\Imagem\Magick\MagickUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ListaObservacaoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
+    <TypeScriptCompile Include="src\Dominio\IRetornarEntidade.ts" />
     <Content Include="src\Worker\worker.txt" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\BaseConsultaEntidade.ts" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\ConsultaEntidade.ts" />

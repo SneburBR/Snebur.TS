@@ -26,7 +26,7 @@
 
         protected override IsKeyCodeValido(keycode: number): boolean
         {
-            return KeyCodeUtil.IsKeyCodeNumero(keycode) ||
+          return KeyCodeUtil.IsKeyCodeNumero(keycode) ||
                 KeyCodeUtil.IsKeyCodeDoisPontos(keycode);
         }
 

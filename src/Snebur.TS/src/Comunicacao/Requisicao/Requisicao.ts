@@ -68,14 +68,23 @@
 
         private TentarUtilizarUrlServicoDebug()
         {
-            const tentativa = this.Tentativa;
-
-            if (($Configuracao.IsDebug || ($Configuracao.IsTeste && tentativa > 3)) &&
-                this.URLServico !== this.BaseServico.UrlServicoDebug &&
-                !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug))
+            if (this.IsUsarUrlServicoDEBUG())
             {
                 this.UsarUrlServicoDEBUG();
             }
+        }
+        private IsUsarUrlServicoDEBUG()
+        {
+            if ($Configuracao.IsTeste &&
+                $Configuracao.IsAlterarUrlDebug)
+            {
+                return this.Tentativa > 10;
+            }
+
+            return $Configuracao.IsDebug &&
+                $Configuracao.IsAlterarUrlDebug &&
+                this.URLServico !== this.BaseServico.UrlServicoDebug &&
+                !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug);
         }
 
         public UsarUrlServicoDEBUG()

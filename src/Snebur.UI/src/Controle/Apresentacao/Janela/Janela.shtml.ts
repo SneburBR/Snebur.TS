@@ -71,7 +71,7 @@
             this.__camposPrivadosJanela.windowsResizeDepois = new ExecutarDepois(this.WindowsResizeDepois_Executar.bind(this), 250);
         }
 
-        protected override Inicializar()
+        protected override Inicializar():void
         {
             super.Inicializar();
 

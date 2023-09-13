@@ -386,6 +386,7 @@
     "src/Dominio/Interface/Media/IImagem.ts",
     "src/Dominio/Interface/IRotulo.ts",
     "src/Dominio/BaseDominioConstrutor.ts",
+    "src/Dominio/IRetornarEntidade.ts",
     "src/Validacao/Interface/IBaseValidacao.ts",
     "src/Validacao/Interface/IValidacao.ts",
     "src/Validacao/Interface/IValidacaoAsync.ts",

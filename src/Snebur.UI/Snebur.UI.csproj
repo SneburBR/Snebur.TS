@@ -323,6 +323,9 @@
     <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\EntidadeCadastroViewModel.ts" />
     <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\IJanelaCadastroConstrutor.ts" />
     <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaCadastroAutomatico.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaInfo.shtml.ts">
+      <DependentUpon>JanelaInfo.shtml</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\EnumEstiloJanela.ts" />
     <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Janela.shtml.ts">
       <DependentUpon>Janela.shtml</DependentUpon>
@@ -893,6 +896,7 @@
     <Content Include="src\Controle\Formulario\ComboBox\_combobox.Delineada.scss" />
     <Content Include="src\Componentes\Propriedades\Icone\_icone-categoria.scss" />
     <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\_falha-conexao.scss" />
+    <Content Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaInfo.shtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

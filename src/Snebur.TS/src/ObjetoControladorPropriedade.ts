@@ -37,7 +37,7 @@
         }
 
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
-         
+
         private get PropriedadesValidacoes(): DicionarioSimples<PropriedadeValidacoes>
         {
             if (!this._propriedadesValidacoes)
@@ -310,13 +310,13 @@
 
         //#region Notificação das propriedades
 
-        protected NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any): void;
-        protected NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any): void;
-        protected NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any, novoValor: any): void;
-        protected NotificarPropriedadeAlterada(nomePropriedade: string): void;
-        protected NotificarPropriedadeAlterada(nomePropriedade: string, valor: any): void;
-        protected NotificarPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
-        protected NotificarPropriedadeAlterada(nomePropriedade: string | Function, antigoValor?: any, novoValor?: any): void
+        public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any): void;
+        public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any): void;
+        public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any, novoValor: any): void;
+        public NotificarPropriedadeAlterada(nomePropriedade: string): void;
+        public NotificarPropriedadeAlterada(nomePropriedade: string, valor: any): void;
+        public NotificarPropriedadeAlterada(nomePropriedade: string, antigoValor: any, novoValor: any): void;
+        public NotificarPropriedadeAlterada(nomePropriedade: string | Function, antigoValor?: any, novoValor?: any): void
         {
             if (typeof nomePropriedade === "function")
             {
@@ -411,7 +411,7 @@
                 }
             }
         }
-         
+
         public AdicionarManipuladorPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
         public AdicionarManipuladorPropriedadeAlterada(nomePropriedade: string, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void;
         public AdicionarManipuladorPropriedadeAlterada(nomePropriedadeOuExpressao: string | Function, callbackEvento: PropriedadeAlteradaHandlder, objetoBind: any): void

@@ -124,6 +124,9 @@
         public static readonly Tipo = new AtributoHtml("sn-tipo", String);
         public static readonly TipoItem = new AtributoHtml("sn-tipo-item", String);
         public static readonly Titulo = new AtributoHtml("sn-titulo", String);
+        public static readonly SubTitulo = new AtributoHtml("sn-sub-titulo", String);
+        public static readonly MensagemInfo = new AtributoHtml("ap-mensagem-info", String);
+        public static readonly TituloInfo = new AtributoHtml("ap-titulo-info", String);
         public static readonly Legenda = new AtributoHtml("sn-legenda", String);
         public static readonly Mensagem = new AtributoHtml("sn-mensagem", String);
         public static readonly Exibicao = new AtributoHtml("sn-exibicao", String);
