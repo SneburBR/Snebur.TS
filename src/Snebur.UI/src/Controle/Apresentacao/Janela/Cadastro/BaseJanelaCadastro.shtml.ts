@@ -10,6 +10,10 @@
 
         public Contexto: a.BaseContextoDados;
         public Titulo: string;
+        public SubTitulo: string;
+        public TituloInfo: string;
+        public Info: string
+        public IsMostrarInfo: boolean = false;
 
         protected AtivarEnterSalvar: boolean;
 
@@ -23,9 +27,15 @@
             return this.ViewModel?.Entidade;
         }
 
-        public readonly TextoTitulo: Snebur.UI.Texto;
-        public readonly BlocoFormulario: Bloco;
-        public readonly BlocoBotoes: Bloco;
+        public get IsExisteAlteracao(): boolean
+        {
+            const entidade = this.ViewModel?.Entidade;
+            if (entidade?.Id > 0)
+            {
+                return entidade.__IsExisteAlteracao;
+            }
+            return entidade?.__PropriedadesAlteradas?.Count > 0;
+        }
 
         public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
@@ -34,7 +44,11 @@
             this.CssClasseControle = "sn-base-janela-cadastro";
             this._dataSource = null;
 
-            this.DeclararPropriedade(x => x.Titulo, String, "Titulo", this.Titulo_Alterado);
+            this.DeclararPropriedade(x => x.Titulo, String, this.Titulo_Alterado);
+            this.DeclararPropriedade(x => x.SubTitulo, String, this.SubTitulo_Alterado);
+            this.DeclararPropriedade(x => x.TituloInfo, String);
+            this.DeclararPropriedade(x => x.Info, String);
+            this.DeclararPropriedade(x => x.IsMostrarInfo, Boolean);
 
             if (entidadeOuTipoConstrutor instanceof d.Entidade)
             {
@@ -76,10 +90,32 @@
             super.Inicializar();
 
             const titulo = this.RetornarValorAtributo(AtributosHtml.Titulo);
+            const subTitulo = this.RetornarValorAtributo(AtributosHtml.SubTitulo);
+            const tituloInfo = this.RetornarValorAtributo(AtributosHtml.TituloInfo);
+            const info = this.RetornarValorAtributo(AtributosHtml.MensagemInfo);
+
             if (!String.IsNullOrEmpty(titulo))
             {
                 this.Titulo = titulo;
             }
+
+            if (!String.IsNullOrEmpty(subTitulo))
+            {
+                this.SubTitulo = subTitulo;
+            }
+
+            if (!String.IsNullOrEmpty(tituloInfo))
+            {
+                this.TituloInfo = tituloInfo;
+            }
+
+            if (!String.IsNullOrEmpty(info))
+            {
+                this.Info = info;
+            }
+
+            this.IsMostrarInfo = !String.IsNullOrWhiteSpace(this.Info);
+
             this.AdicionarEventosDom();
         }
 
@@ -88,6 +124,14 @@
             if (this.ViewModel instanceof EntidadeCadastroViewModel)
             {
                 this.ViewModel.Titulo = this.Titulo;
+            }
+        }
+
+        private SubTitulo_Alterado(e: PropriedadeAlteradaEventArgs)
+        {
+            if (this.ViewModel instanceof EntidadeCadastroViewModel)
+            {
+                this.ViewModel.SubTitulo = this.SubTitulo;
             }
         }
 
@@ -100,6 +144,7 @@
         {
             const procurar = "[[CONTEUDO_FORMULARIO]]";
             const htmlFormulario = this.RetornarHtmlFormulario();
+
             const html = HtmlReferenciaUtil.RetornarHtml(BaseJanelaCadastro.GetType() as r.TipoUIHtml);
             const posicao = html.indexOf(procurar);
             const sb = new StringBuilder();
@@ -151,7 +196,7 @@
 
         protected RetornarViewModel(entidade: TEntidade): EntidadeCadastroViewModel<TEntidade>
         {
-            return new EntidadeCadastroViewModel(entidade, this.Titulo);
+            return new EntidadeCadastroViewModel(entidade, this.Titulo, this.SubTitulo);
         }
 
         protected RetornarNovaEntidade(): TEntidade
@@ -180,6 +225,18 @@
         {
             this.ValidarFomularioESalvarAsync();
         }
+
+        protected BtnInfoInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        {
+            this.MostrarInfoAsync();
+        }
+
+        protected async MostrarInfoAsync(): Promise<void>
+        {
+            const janelaInfo = new JanelaInfo(this, this.TituloInfo, this.Info);
+            await janelaInfo.MostrarAsync();
+        }
+
         //#endregion
 
         //#region Enter teclado
@@ -233,8 +290,7 @@
                 this.Elemento.focus();
                 await ThreadUtil.QuebrarAsync();
 
-                if ((this.ViewModel.Entidade.Id > 0 && this.ViewModel.Entidade.__IsExisteAlteracao) ||
-                    (this.ViewModel.Entidade.Id === 0 && this.ViewModel.Entidade.__PropriedadesAlteradas.Count > 0))
+                if (this.IsExisteAlteracao)
                 {
                     const mensagem = "Deseja salvar as alterações antes de sair?";
 
@@ -375,6 +431,9 @@
     {
         new(controlePai: BaseControle, entidade: TEntidade): BaseJanelaCadastro<TEntidade>;
     }
+
+    //#endregion
+
 
     //#region Elementos da apresentação - código gerado automaticamente #
 

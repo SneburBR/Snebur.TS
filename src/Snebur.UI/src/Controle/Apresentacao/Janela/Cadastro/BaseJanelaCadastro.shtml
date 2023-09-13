@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿IsMostrarInfo<!DOCTYPE html>
 
 <html>
 <head>
@@ -11,30 +11,72 @@
 <body>
     <ap-painel-vertical ap-margem="16px">
         <ap-cabecalho ap-altura="30px">
-            <ap-texto sn-nome="TextoTitulo" sn-item-elemento="Titulo" sn-bind="{{Titulo}}" ap-tipografia="Titulo">Titulo</ap-texto>
+            <ap-painel 
+                ap-tipo-painel="PilhaHorizontal">
+                
+                <ap-bloco>
+                    <ap-texto
+                        sn-nome="TextoTitulo"
+                        sn-item-elemento="Titulo"
+                        sn-bind="{{Titulo}}"
+                        ap-tipografia="Titulo">
+                        Titulo
+                    </ap-texto>
+                </ap-bloco>
+            </ap-painel>
+
         </ap-cabecalho>
+        <ap-linha
+            ap-altura="16px">
+            <ap-texto
+                ap-cor-texto="Cinza"
+                ap-tipografia="Corpo"
+                sn-bind="{{SubTitulo}}, Origem=this">
+            </ap-texto>
+        </ap-linha>
         <ap-linha>
-            <ap-bloco sn-nome="BlocoFormulario" ap-margem="0px 16px 0px 0px" ap-altura="100%">
+            <ap-bloco 
+                sn-nome="BlocoFormulario" 
+                ap-margem="0px 0px 0px 0px" 
+                ap-altura="100%">
                 [[CONTEUDO_FORMULARIO]]
             </ap-bloco>
         </ap-linha>
         <ap-rodape ap-altura="65px">
-            <ap-bloco ap-margem="0px 16px 0px 0px" sn-nome="BlocoBotoes">
-                <ap-painel ap-tipo-painel="PilhaHorizontal"
+            <ap-bloco 
+                ap-margem="0px 16px 0px 0px" 
+                sn-nome="BlocoBotoes">
+
+                <ap-bloco 
+                    ap-largura="50px"
+                    ap-margem="24px 0px 0px 0px" 
+                    ap-alinhamento-horizontal="EsquerdaAbsoluto" 
+                    sn-visibilidade="{{IsMostrarInfo}}, Origem=this">
+                    <sn-botao
+                        sn-tipo-botao="Icone"
+                        ap-icone="Info"
+                        ap-icone-categoria="Outlined" 
+                        sn-click="BtnInfoInterno_Click" >
+                    </sn-botao>
+                </ap-bloco>
+
+                <ap-painel
+                    ap-tipo-painel="PilhaHorizontal" 
                     ap-alinhamento-horizontal="Centro">
-                   <ap-bloco>
+
+                    <ap-bloco>
                         <sn-botao
-                            ap-largura="140px" 
+                            ap-largura="140px"
                             sn-nome="BtnCancelarInterno"
                             ap-cor-texto="Cinza"
-                            sn-tipo-botao="FlatBox" 
-                            sn-click="BtnCancelarInterno_Click">
+                            sn-tipo-botao="FlatBox"
+                            sn-click="BtnInfoInterno_Click">
                             CANCELAR 
 
                         </sn-botao>
                     </ap-bloco>
                     <ap-bloco ap-margem="16px 0px 0px 0px">
-                        <sn-botao 
+                        <sn-botao
                             ap-largura="140px"
                             sn-nome="BtnSalvarInterno"
                             ap-cor-fundo="SistemaPrincipal"
@@ -46,6 +88,7 @@
 
 
                 </ap-painel>
+
             </ap-bloco>
         </ap-rodape>
     </ap-painel-vertical>
