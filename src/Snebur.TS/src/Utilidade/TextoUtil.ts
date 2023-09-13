@@ -63,6 +63,11 @@
 
         private static RetornarTextoCaracteresPermitidoInterno(texto: string, caractesObjets: any, isPermitirEspacoEmBranco: boolean, substituir: string = null): string
         {
+            if (String.IsNullOrEmpty(texto))
+            {
+                return String.Empty;
+            }
+
             texto = ConverterUtil.ParaString(texto);
             const sb = new StringBuilder();
             if (ValidacaoUtil.IsString(texto))
@@ -92,11 +97,20 @@
 
         public static FormatarPrimeiraLetraMinuscula(texto: string): string
         {
+            if (String.IsNullOrEmpty(texto))
+            {
+                return String.Empty;
+            }
             return texto.substring(0, 1).toLowerCase() + texto.substring(1);
         }
 
         public static FormatarPrimeiraLetraMaiuscula(texto: string): string
         {
+            if (String.IsNullOrEmpty(texto))
+            {
+                return String.Empty;
+            }
+
             const indicePrimeiraLetra = texto.search(/\S/);
             if (!String.IsNullOrWhiteSpace(texto))
             {
@@ -107,6 +121,10 @@
 
         public static RetornarSomentePrimeiraLetraMaiuscula(texto: string): string
         {
+            if (String.IsNullOrEmpty(texto))
+            {
+                return String.Empty;
+            }
             const indicePrimeiraLetra = texto.search(/\S/);
             if (!String.IsNullOrWhiteSpace(texto))
             {

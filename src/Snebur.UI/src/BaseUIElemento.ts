@@ -433,7 +433,7 @@
 
         }
 
-        private InicializarAtributosElementoRaiz(): void
+        protected InicializarAtributosElementoRaiz(): void
         {
             const tipo = this.GetType();
             if (tipo instanceof r.BaseTipoUI)

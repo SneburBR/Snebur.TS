@@ -7,6 +7,7 @@
         public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessaoUsuario
         {
             const dados = SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
+
             const informacao = new Snebur.Dominio.InformacaoSessaoUsuario();
             informacao.IdentificadorAplicacao = $Configuracao.IdentificadorAplicacao;
             informacao.VersaoAplicacao = $Configuracao.Versao;

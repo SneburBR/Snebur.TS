@@ -2,7 +2,7 @@
 {
     export class MensagemUtil
     {
-        public static get IsAberta()
+        public static get IsAberta(): boolean
         {
             return JanelaMensagem.IsAberta;
         }
@@ -16,7 +16,8 @@
             const descricao = u.EntidadeUtil.RetornarDescricaoEntidade(entidade);
             if (String.IsNullOrWhiteSpace(mensagem))
             {
-                mensagem = `Tem certeza de que deseja excluir ${rotuloEntidade.toLowerCase()} '${descricao}'`;
+                mensagem = `Tem certeza de que deseja excluir ${rotuloEntidade.toLowerCase()}:<br />
+                           '${descricao}'`;
             }
 
             const titulo = `Excluir ${rotuloEntidade.toLowerCase()}`;
@@ -259,7 +260,14 @@
                 EnumBotoesJanelaMensagem.OkEntendi);
 
             return true;
+        }
 
+        public static async MensageFalhaAoExcluirEntidadeAsync(controlePai: BaseControle)
+        {
+            await MensagemUtil.MostrarMensagemAsync(controlePai,
+                "OPS!",
+                `Não foi possível deletar esse item.
+                Tente novamente mais tarde ou entre em contato com o suporte.`);
         }
     }
 }
