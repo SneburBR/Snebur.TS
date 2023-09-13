@@ -9,48 +9,60 @@
 
     ValidacaoRequeridoAttribute.prototype.RetornarMensagemValidacao = function (paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any, controle?: IRotulo): string
     {
+        const rotuloPropriedade = controle?.Rotulo?.toLowerCase() ?? u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
         const opcao = this.OpcoesComparacaoAuxiliar;
-        if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma)
+        if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma && paiPropriedade!= null)
         {
+            const propriedadeAuxiliar = paiPropriedade.GetType()?.RetornarPropriedade(this.NomePropridadeAuxiliar);
             const valorPropriedadeAuxiliza = this.RetornarValorPropriedadeAuxiliar(paiPropriedade);
+            const rotuloPropriedadeAuxiliar = propriedadeAuxiliar == null
+                ? this.NomePropridadeAuxiliar.toLowerCase()
+                : u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedadeAuxiliar).toLowerCase();
+
             switch (opcao)
             {
                 case EnumOpcoesComparacaoAuxiliar.Igual:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser igual a ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.Diferente:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser diferente de ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser diferente de ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.Maior:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser maior que ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser maior que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.MaiorIgual:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser maior ou igual a ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser maior ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.Menor:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser menor que ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser menor que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.MenorIgual:
 
-                    return `O valor da propriedade ${propriedade.Nome} deve ser menor ou igual a ${valorPropriedadeAuxiliza}.`;
+                    return `O valor da propriedade ${rotuloPropriedade} deve ser menor ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
                 case EnumOpcoesComparacaoAuxiliar.True:
 
-                    return `O valor da propriedade ${this.NomePropridadeAuxiliar} deve ser verdadeiro.`;
+                    if (!this.IsValidoSeAuxiliarInvalido)
+                    {
+                        return `O valor da propriedade ${rotuloPropriedadeAuxiliar} deve ser verdadeiro.`;
+                    }
+                    break;
 
                 case EnumOpcoesComparacaoAuxiliar.False:
 
-                    return `O valor da propriedade ${this.NomePropridadeAuxiliar} deve ser falso.`;
+                    if (!this.IsValidoSeAuxiliarInvalido)
+                    {
+                        return `O valor da propriedade ${rotuloPropriedadeAuxiliar} deve ser falso.`;
+                    }
+                    break;
             }
-
-
         }
-        const rotuloPropriedade = controle?.Rotulo ?? u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade);
+
         const mensagemValidacao = u.GlobalizacaoUil.RetornarMensagemValidacao(this, ValidacaoRequeridoAttribute.IDENTIFICADOR_MENSAGEM_VALIDACAO, rotuloPropriedade.toLowerCase());
         return mensagemValidacao;
     };
