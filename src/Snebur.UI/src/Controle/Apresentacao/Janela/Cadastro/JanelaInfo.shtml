@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+</head>
+<body ap-largura="600px"
+    
+     >
+
+    <ap-painel ap-tipo-painel="PilhaVertical" ap-margem="14px">
+        <ap-bloco ap-altura="50px">
+            <ap-texto sn-bind="{{Titulo}}, Padrao=Info" ap-tipografia="Titulo"></ap-texto>
+        </ap-bloco>
+        <ap-bloco>
+            <ap-bloco
+                sn-bind="{{Info}}"
+                ap-tipografia="Corpo"
+                sn-formatar="QuebrarLinhasHtml"
+                ap-quebrar="Quebrar">
+            </ap-bloco>
+        </ap-bloco>
+        <ap-bloco ap-altura="24px">
+
+        </ap-bloco>
+        <ap-bloco  >
+            <sn-botao
+                ap-alinhamento-horizontal="Direita"
+                ap-largura="120px"
+                ap-cor-texto="Branca"
+                ap-cor-fundo="SistemaPrincipal" 
+                sn-click="BtnOk_Click">
+                OK
+            </sn-botao>
+        </ap-bloco>
+    </ap-painel>
+
+</body>
+</html>
