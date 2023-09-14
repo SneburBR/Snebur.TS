@@ -61,16 +61,6 @@ namespace Snebur.Utilidade
             }
             return total;
         }
-
-        public static ClearAll()
-        {
-            for (let i = 0; i < localStorage.length; i++)
-            {
-                const chave = localStorage.key(i);
-                localStorage.removeItem(chave);
-            }
-            localStorage.clear();
-        }
     }
 
     export class SessionStorageUtil

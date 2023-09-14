@@ -16,6 +16,33 @@
             });
         }
 
+        public static ExecutarWithTimeOutAsync(tempo: TimeSpan | number, callback: () => Promise<void>): Promise<void>
+        {
+            const totalMilisegundos = ThreadUtil.RetornarTotalMilesegundos(tempo);
+            /* eslint-disable-next-line*/
+            return new Promise<void>(async (resolver, rejeitar) =>
+            {
+                const idTimeout = setTimeout(async () =>
+                {
+                    resolver = null;
+                    rejeitar(new Error("Tempo limite atingido"));
+
+                }, totalMilisegundos);
+
+                try
+                {
+                    await callback();
+                    window.clearTimeout(idTimeout);
+                    resolver?.();
+                }
+                catch (erro)
+                {
+                    rejeitar?.(erro);
+                }
+            });
+
+        }
+
         /**Quebrar, a pilha das chamadas (callstack), 
          * Elementos adicionar neste pilhas serão  renderizados pelo navegador*/
 
@@ -63,9 +90,7 @@
             }
         }
 
-        private static RetornarTotalMilesegundos(tempo: TimeSpan): number
-        private static RetornarTotalMilesegundos(totalMilisegundos: number): number
-        private static RetornarTotalMilesegundos(argumento: any): number
+        private static RetornarTotalMilesegundos(argumento: TimeSpan | number): number
         {
             if (!u.ValidacaoUtil.IsDefinido(argumento))
             {

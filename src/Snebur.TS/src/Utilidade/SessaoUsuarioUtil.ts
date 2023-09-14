@@ -2,7 +2,7 @@
 {
     export class SessaoUsuarioUtil
     {
-        private static CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
+        public static readonly  CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
 
         public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessaoUsuario
         {
@@ -41,7 +41,8 @@
 
         public static SalvarSessaoUsuario(
             credencial: s.CredencialUsuario,
-            identificadorSessaoUsuario: string, manterConectado: boolean): void
+            identificadorSessaoUsuario: string,
+            isManterConectado: boolean): void
         {
             const cache = new ap.CacheSessaoUsuario();
             cache.IdentificadorSessaoUsuario = identificadorSessaoUsuario;
@@ -51,14 +52,14 @@
             cache.Credencial.Nome = credencial.Nome;
 
             const json = JSON.stringify(cache);
-            CookieUtil.SalvarCookie(SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO, json, manterConectado);
+            CookieUtil.SalvarCookie(SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO, json, isManterConectado);
         }
 
         public static async InicializarNovaSessaoUsuarioAsync(
             credencial: s.CredencialUsuario,
             usuario: d.IUsuario,
             identificadorAmiguavel: string,
-            manterConectado: boolean): Promise<void>
+            isManterConectado: boolean): Promise<void>
         {
             if (usuario == null)
             {
@@ -71,7 +72,7 @@
             credencialCache.IdentificadorAmigavel = identificadorAmiguavel;
             credencialCache.IdentificadorUsuario = usuario.IdentificadorUsuario;
             credencialCache.Senha = credencial.Senha;
-            this.SalvarSessaoUsuario(credencialCache, identificadorSessaoUsuario, manterConectado);
+            SessaoUsuarioUtil.SalvarSessaoUsuario(credencialCache, identificadorSessaoUsuario, isManterConectado);
             $Aplicacao.Usuario = usuario;
             await $Aplicacao.InicializarSessaoUsuarioAsync();
         }
@@ -106,29 +107,21 @@
 
         public static IniciarNovaSessaoUsuarioAnonima(): void   
         {
-            this.SalvarSessaoUsuario(s.CredencialAnonimo.Anonimo, GuidUtil.RetornarNovoGuid(), true);
+            this.SalvarSessaoUsuario(
+                s.CredencialAnonimo.Anonimo,
+                GuidUtil.RetornarNovoGuid(),
+                $Aplicacao.IsManterSessaoUsuarioConectada);
+
             if ($Aplicacao instanceof Snebur.Aplicacao.BaseAplicacao)
             {
                 $Aplicacao.Usuario = null;
             }
         }
 
-        public static async SairAsync(isRecerregar: boolean = true)
+        public static async SairAsync( )
         {
-            /*u.CookieUtil.Clear();*/
-            const identificadorSessaoUsuario = $Aplicacao.IdentificadorSessaoUsuario;
-            await $Aplicacao.ServicoUsuario?.FinalizarSessaoUsuarioAsync(identificadorSessaoUsuario);
-
-            LocalStorageUtil.ClearAll();
-            SessionStorageUtil.ClearAll();
-            u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
-            $Aplicacao.EventoUsuarioSaiu.Notificar($Aplicacao, EventArgs.Empty);
-
-            if (isRecerregar)
-            {
-                const documentoPrincipal = (window.top !== window.self) ? window.parent.document : window.document;
-                documentoPrincipal.location.reload();
-            }
+            
+            return $Aplicacao.SairAsync();
         }
 
         public static get LocalAtiva(): d.ISessaoUsuario

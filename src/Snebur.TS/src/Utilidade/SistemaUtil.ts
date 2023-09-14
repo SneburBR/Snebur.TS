@@ -18,10 +18,10 @@
 
         public static readonly IsDebug = location.origin.indexOf("localhost") >= 0 || /\W[D|d]ebug\W/.test(location.href);
 
-        public static get IsCookieAtivo(): boolean
-        {
-            return CookieUtil.IsCookieAtivo;
-        }
+        //public static get IsCookieAtivo(): boolean
+        //{
+        //    return CookieUtil.IsCookieAtivo;
+        //}
          
         public static get Resolucao(): d.Dimensao
         {

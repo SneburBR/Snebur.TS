@@ -7,8 +7,18 @@
         private static readonly CHAVE_LOCAL_STORAGE = "sn-cookie";
 
         private static _idSessaoLocalStore: string = null;
-        private static _isNCookieNativoAtivo: boolean = null;
         private static _chaveLocalStorage: string = null;
+         
+        private static get StorageAtual(): Storage
+        {
+            if ($Aplicacao?.IsManterSessaoUsuarioConectada)
+            {
+                console.warn("usando local storage");
+                return localStorage;    
+            }
+            console.warn("usando session storage");
+            return sessionStorage;
+        }
 
         private static get IdSessaoLocalStorage()
         {
@@ -23,23 +33,10 @@
             }
             return CookieUtil._chaveLocalStorage;
         }
-
-        public static get IsCookieAtivo(): boolean
+         
+        public static RetornarCookie(chave: string, storage: Storage = CookieUtil.StorageAtual) 
         {
-            if (CookieUtil._isNCookieNativoAtivo == null)
-            {
-                CookieUtil._isNCookieNativoAtivo = CookieUtil.CheckCookieAtivo();
-                if (!CookieUtil._isNCookieNativoAtivo)
-                {
-                    CookieUtil._idSessaoLocalStore = GuidUtil.RetornarNovoGuid();
-                }
-            }
-            return CookieUtil._isNCookieNativoAtivo;
-        }
-
-        public static RetornarCookie(chave: string)
-        {
-            const cookie = CookieUtil.RetornarCookieInterno(chave);
+            const cookie = CookieUtil.RetornarCookieInterno(chave, storage);
             const pares = cookie.split(";");
             const len = pares.length;
             for (let i = 0; i < len; i++)
@@ -60,28 +57,27 @@
             }
             return null;
         }
-
-
+         
         public static ExisteCookie(chave: string)
         {
             const valor = CookieUtil.RetornarCookie(chave);
             return (!String.IsNullOrWhiteSpace(valor));
         }
 
-        public static SalvarCookie(chave: string, valor: string, isManterConectado: boolean)
+        public static SalvarCookie(chave: string, valor: string, isManter: boolean, storage: Storage = null)
         {
-            const conteudo = CookieUtil.RetornarConteudoCookie(chave, valor, isManterConectado);
-            CookieUtil.SalvarCookieInternal(chave, conteudo, isManterConectado);
+            const conteudo = CookieUtil.RetornarConteudoCookie(chave, valor, isManter);
+            if (storage == null)
+            {
+                storage = isManter ? localStorage : sessionStorage;  
+            }
+            CookieUtil.SalvarCookieInternal(chave, conteudo, isManter, storage);
         }
-
-        public static Clear()
-        {
-            localStorage.clear();
-        }
-
+         
         public static Remover(chave: string)
         {
             localStorage.removeItem(CookieUtil.ChaveLocalStorage + "-" + chave);
+            sessionStorage.removeItem(CookieUtil.ChaveLocalStorage + "-" + chave);
         }
 
         private static RetornarConteudoCookie(chave: string, valor: string, isManterConectado: boolean)
@@ -102,15 +98,10 @@
             return String.Join(";", partes);
         }
 
-        private static RetornarCookieInterno(chave: string)
+        private static RetornarCookieInterno(chave: string, storate:Storage)
         {
-            if (CookieUtil.IsCookieAtivo)
-            {
-                return document.cookie;
-            }
-
             chave = `${CookieUtil.ChaveLocalStorage}-${chave}`;
-            const localStoreItemString = localStorage.getItem(chave);
+            const localStoreItemString = storate.getItem(chave);
             if (localStoreItemString != null)
             {
                 try
@@ -141,14 +132,14 @@
             return String.Empty;
         }
 
-        private static SalvarCookieInternal(chave: string, conteudo: string, isManterConectado: boolean)
+        private static SalvarCookieInternal(
+            chave: string,
+            conteudo: string,
+            isManterConectado:boolean,
+            storage: Storage)
         {
-            if (CookieUtil.IsCookieAtivo)
-            {
-                document.cookie = conteudo;
-                return;
-            }
-
+            CookieUtil.Remover(chave);
+             
             const expireDate = CookieUtil.RetornarDataManterConectado(isManterConectado);
             const localStoreItem: LocalStoreCookieItem = {
                 conteudo: conteudo,
@@ -157,39 +148,9 @@
             };
 
             chave = `${CookieUtil.ChaveLocalStorage}-${chave}`;
-            localStorage.setItem(chave, JSON.stringify(localStoreItem));
+            storage.setItem(chave, JSON.stringify(localStoreItem));
         }
-
-        private static CheckCookieAtivo(): boolean
-        {
-            if (CookieUtil.IsPreferirLocalStore)
-            {
-                return false;
-            }
-
-            if (typeof document !== "undefined")
-            {
-                if (navigator.cookieEnabled)
-                {
-                    return true;
-                }
-
-            }
-            if (String.IsNullOrWhiteSpace(document.cookie))
-            {
-                try
-                {
-                    const conteudo = CookieUtil.RetornarConteudoCookie("cookieEnabled", "true", false);
-                    document.cookie = conteudo;
-                }
-                catch
-                {
-                    console.warn("Cookie desativado");
-                }
-            }
-            return document.cookie.indexOf("cookieEnabled") >= 0;
-        }
-
+         
         private static RetornarDataManterConectado(isManterConectado: boolean)
         {
             const dias = isManterConectado ? CookieUtil.DIAS_EM_CACHE : 1;
