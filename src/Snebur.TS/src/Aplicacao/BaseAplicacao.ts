@@ -136,6 +136,11 @@
             return this._isAplicacaoInicializada;
         }
 
+        public get IsManterSessaoUsuarioConectada(): boolean
+        {
+            return false;
+        }
+
         //public get IsNavegadorSuportarOrientacaoExif(): boolean
         //{
         //    return this._isNavegadorSuportarOrientacaoExif;
@@ -152,7 +157,7 @@
         public readonly EventoConexaoRestabelecida = new Evento(this);
         public readonly EventoFalhaConexao = new Evento<Snebur.Comunicacao.FalhaConexaoEventArgs>(this);
         public readonly EventoUsuarioConectadoAlterado = new Evento<UsuarioConectadoAlteradoEventArgs>(this);
-        public readonly EventoUsuarioSaiu = new Evento(this);
+        /*public readonly EventoUsuarioSaiu = new Evento(this);*/
 
         public get IsExisteFalhaRequisicao()
         {
@@ -394,6 +399,51 @@
             }
             return null;
 
+        }
+
+        public async SairAsync(): Promise<void>
+        {
+            await this.FinalizarSessaoUsuarioAsync();
+            await this.AntesSairAsync();
+
+            u.CookieUtil.Remover(u.SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO);
+            u.SessionStorageUtil.ClearAll();
+            u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
+         
+            this.RedirecionarAoSair();
+            console.warn("Redirecionando");
+            throw new Error("Saindo da aplicação ");
+            /*await ThreadUtil.EsperarAsync(10 * 60 * 1000);*/
+        }
+
+        protected async AntesSairAsync(): Promise<void>
+        {
+
+        }
+
+        private async FinalizarSessaoUsuarioAsync()
+        {
+            if (this.ServicoUsuario != null)
+            {
+                const identificadorSessaoUsuario = $Aplicacao.IdentificadorSessaoUsuario;
+                try
+                {
+                    await ThreadUtil.ExecutarWithTimeOutAsync(2000, async () =>
+                    {
+                        await $Aplicacao.ServicoUsuario?.FinalizarSessaoUsuarioAsync(identificadorSessaoUsuario);
+                    });
+                }
+                catch (erro)
+                {
+                    console.error(`Falha ao finalizar sessão usuário ${identificadorSessaoUsuario} ${erro}`);
+                }
+            }
+        }
+
+        protected RedirecionarAoSair()
+        {
+            const documentoPrincipal = (window.top !== window.self) ? window.parent.document : window.document;
+            documentoPrincipal.location.reload();
         }
         //#endregion
 

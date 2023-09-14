@@ -112,9 +112,11 @@
                 await this.DesocuparInicializacaoAsync();
                 await u.AutenticacaoUtil.EntrarAsync();
 
-                if (!$Aplicacao.IsUsuarioLogado)
+                if (!this.IsUsuarioLogado)
                 {
                     this.NotificarUsuarioAnonimoNaoSuportado();
+                    
+                    await this.SairAsync();
                     throw new ErroOperacaoInvalida("Quando não é permitido usuário anonimo, a Janela entrar, não pode retornar o resultado até autenticação seja concluída com sucesso", this);
                 }
             }
@@ -130,6 +132,8 @@
             await this.DepoisInicializarDocumentoPrincipalAsync();
             this.IncrementarProcessoCarregandoAplicacao();
         }
+
+        
 
         private AdicionarClassBody()
         {

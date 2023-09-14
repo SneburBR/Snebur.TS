@@ -22,7 +22,7 @@
             return this.HistoricoLocal.length > 0;
         }
 
-        public get IsMantarCache(): boolean
+        public get IsManterCache(): boolean
         {
             return this._isManterCache ??
                 this.TipoAnimacao === EnumTipoAnimacao.Deslizante;
@@ -308,7 +308,7 @@
                 return;
             }
 
-            if (this.IsMantarCache &&
+            if (this.IsManterCache &&
                 PaginaUtil.IsMesmoTipo(this.PaginaAtual, refPagina, expressoesParametrosOuChave))
             {
                 return;
@@ -440,7 +440,7 @@
 
             if (u.ValidacaoUtil.IsConstrutor(refPagina))
             {
-                if (this.IsMantarCache)
+                if (this.IsManterCache)
                 {
                     const paginasEmCache = this.PaginasEmCache.Where(x => x.IsControleInicializado && PaginaUtil.IsMesmoTipo(x, refPagina, parametros)).ToList();
                     if (paginasEmCache.Count > 0)
@@ -498,7 +498,7 @@
             {
                 this.ControlesFilho.Add(pagina);
             }
-            if (this.IsMantarCache && !this.PaginasEmCache.Contains(pagina))
+            if (this.IsManterCache && !this.PaginasEmCache.Contains(pagina))
             {
                 this.PaginasEmCache.Add(pagina);
             }
@@ -508,7 +508,7 @@
         {
             if (this.IsControleInicializado)
             {
-                if (!this.IsMantarCache && this._resolverNavegacaoAsync == null)
+                if (!this.IsManterCache && this._resolverNavegacaoAsync == null)
                 {
                     this.ControlesFilho.Remove(pagina);
                     pagina.Dispose();
