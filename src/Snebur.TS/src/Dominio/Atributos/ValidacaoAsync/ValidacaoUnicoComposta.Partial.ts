@@ -24,8 +24,7 @@
             propriedade: Snebur.Reflexao.Propriedade,
             valorPropriedade: any): Promise<boolean> 
         {
-
-            if (!this.NomesPropriedadeOuFiltro.Contains(propriedade.Nome))
+            if (!this.NomesPropriedadeOuFiltro.Contains(propriedade.Nome, new CompararPropriedade()))
             {
                 const nomesPropriedadeString = String.Join(",  ", this.NomesPropriedadeOuFiltro);
                 console.error(`A propriedade ${propriedade.Nome} não está configurada na validação único composta, ${nomesPropriedadeString}`);
@@ -115,9 +114,41 @@
                 return entidade;
             }
         }
+
         const nomeTipo = paiPropriedade?.GetType().Name ?? paiPropriedade.constructor?.name ?? paiPropriedade;
         console.error(`Não foi possível retornar a entidade do pai da propriedade. 
-                        Implemente a interface IRetonarEntidade no objeto ${nomeTipo} e retornar a entidade da validação`);
+                       Implemente a interface IRetonarEntidade no objeto ${nomeTipo} e retornar a entidade da validação.`);
         return null;
     };
+
+    class CompararPropriedade implements IEqualityComparer<string>
+    {
+        public Equals(x: string, y: string): boolean
+        {
+            x = this.Normalizar(x);
+            y = this.Normalizar(y);
+            // eslint-disable-next-line eqeqeq
+            return x == y;
+        }
+
+        public GetHashCode(obj: string): number
+        {
+            return this.Normalizar(obj).GetHashCode();
+        }
+
+        private Normalizar(valor: string): string
+        {
+            if (valor == null)
+            {
+                return String.Empty;
+            }
+            valor = valor.trim().toUpperCase();
+            if (valor.endsWith("?"))
+            {
+                return valor.substr(0, valor.length - 1);
+            }
+            return valor;
+        }
+    }
+
 }

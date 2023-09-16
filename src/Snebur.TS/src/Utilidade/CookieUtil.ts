@@ -13,10 +13,8 @@
         {
             if ($Aplicacao?.IsManterSessaoUsuarioConectada)
             {
-                console.warn("usando local storage");
                 return localStorage;    
             }
-            console.warn("usando session storage");
             return sessionStorage;
         }
 

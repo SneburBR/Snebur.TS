@@ -101,7 +101,12 @@
             {
                 return String.Empty;
             }
-            return texto.substring(0, 1).toLowerCase() + texto.substring(1);
+            const indicePrimeiraLetra = texto.search(/\S/);
+            if (!String.IsNullOrWhiteSpace(texto))
+            {
+                return `${texto.substring(0, indicePrimeiraLetra)}${texto.substring(indicePrimeiraLetra, indicePrimeiraLetra + 1).toLowerCase()}${texto.substring(indicePrimeiraLetra + 1)}`;
+            }
+            return String.Empty;
         }
 
         public static FormatarPrimeiraLetraMaiuscula(texto: string): string
@@ -121,16 +126,11 @@
 
         public static RetornarSomentePrimeiraLetraMaiuscula(texto: string): string
         {
-            if (String.IsNullOrEmpty(texto))
+            if (String.IsNullOrWhiteSpace(texto))
             {
                 return String.Empty;
             }
-            const indicePrimeiraLetra = texto.search(/\S/);
-            if (!String.IsNullOrWhiteSpace(texto))
-            {
-                return `${texto.substring(0, indicePrimeiraLetra)}${texto.substring(indicePrimeiraLetra, indicePrimeiraLetra + 1).toLowerCase()}${texto.substring(indicePrimeiraLetra + 1)}`;
-            }
-            return String.Empty;
+            return texto.trim()[0].toUpperCase();
         }
 
         public static RemoverAcentos(texto: string): string

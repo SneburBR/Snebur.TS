@@ -38,7 +38,7 @@
         {
             const atributo: ValidacaoTextoTamanhoAttribute = this;
             const texto = u.ConverterUtil.ParaString(valorPropriedade);
-            const comprimento = texto.trim().length;
+            const comprimento = texto.length;
             return ((comprimento >= atributo.TamanhoMinimo) && (comprimento <= atributo.TamanhoMaximo));
         }
         return true;

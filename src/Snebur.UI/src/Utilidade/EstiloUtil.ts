@@ -109,7 +109,7 @@
                 }
             }
         }
-         
+
         /**
          * Atualizar classes no elemento
          * @param elemento elemento de destino
@@ -145,11 +145,18 @@
                 if (typeof propriedade !== "undefined")
                 {
                     /*eslint-disable*/
-                    if (estilo.hasOwnProperty(propriedade))
+                    if (estilo.hasOwnProperty(propriedade) && propriedade !== "length")
                     {
                         if ((elemento.style as any)[propriedade] !== (estilo as any)[propriedade])
                         {
-                            (elemento.style as any)[propriedade] = (estilo as any)[propriedade];
+                            try
+                            {
+                                (elemento.style as any)[propriedade] = (estilo as any)[propriedade];
+                            }
+                            catch {
+
+                            }
+
                         }
 
                     }

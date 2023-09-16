@@ -110,7 +110,7 @@
         {
             return this._diferencaDataHoraUtcServidor;
         }
- 
+
         public get FuncaoNormalizarRequisicao(): (
             metodo: u.EnumHttpMethod, url: string, request: XMLHttpRequest) => void
         {
@@ -409,7 +409,7 @@
             u.CookieUtil.Remover(u.SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO);
             u.SessionStorageUtil.ClearAll();
             u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
-         
+
             this.RedirecionarAoSair();
             console.warn("Redirecionando");
             throw new Error("Saindo da aplicação ");
@@ -450,7 +450,7 @@
 
         //#region Static
 
-       private static __instancia: BaseAplicacao = null;
+        private static __instancia: BaseAplicacao = null;
 
         public static get Instancia(): BaseAplicacao
         {
