@@ -2,6 +2,21 @@
 {
     export class EntidadeUtil
     {
+        public static IsAlterouPropriedade(entidade: d.Entidade, nomePropriedade:string): boolean
+        {
+            if (entidade.__PropriedadesAlteradas.ContainsKey(nomePropriedade))
+            {
+                return true;
+            }
+
+            const propriedade = entidade.GetType().RetornarPropriedade(nomePropriedade);
+            if (propriedade?.Tipo.IsTipoCompleto )
+            {
+                return propriedade.Tipo.Propriedades.Any(x => entidade.__PropriedadesAlteradas.ContainsKey(`${nomePropriedade}_${x.Nome}`));
+            }
+            return false;
+        }
+
         public static RetornarDescricaoEntidade(entidade: d.Entidade): string
         {
             const tipoEntidade = entidade.GetType() as r.TipoEntidade;

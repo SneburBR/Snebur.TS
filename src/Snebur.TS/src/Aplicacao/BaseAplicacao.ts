@@ -421,7 +421,7 @@
 
         }
 
-        private async FinalizarSessaoUsuarioAsync()
+        protected async FinalizarSessaoUsuarioAsync()
         {
             if (this.ServicoUsuario != null)
             {

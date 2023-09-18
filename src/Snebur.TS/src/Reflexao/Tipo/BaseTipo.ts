@@ -79,6 +79,11 @@
                 this instanceof r.TipoEnum;
         }
 
+        public get IsTipoCompleto(): boolean
+        {
+            return this instanceof r.TipoComplexo;
+        }
+
         public constructor(nome: string, _namespace: string, assemblyQualifiedName: string, tipoBase: BaseTipo, abstrato: boolean)
         public constructor(nome: string, _namespace: string, assemblyQualifiedName: string, caminhoTipoBase: string, abstrato: boolean)
         public constructor(nome: string, _namespace: string, assemblyQualifiedName: string, tipoBaseOuCaminho: BaseTipo | string, abstrato: boolean)

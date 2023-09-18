@@ -251,15 +251,66 @@
             this.Adicionar(chave, objeto);
         }
 
-        public AddRange(dicionario: DicionarioSimples<TItem, TChave>)
+        public AddRange(dicionarioOuArrayParChaveValor: DicionarioSimples<TItem, TChave> | ParChaveValorTipada<TChave, TItem>[])
         {
-            for (let chave of dicionario.Chaves)
+            if (dicionarioOuArrayParChaveValor == null)
             {
-                if (!this.ContainsKey(chave))
+                return;
+            }
+
+            if (dicionarioOuArrayParChaveValor instanceof DicionarioSimples)
+            {
+                for (let chave of dicionarioOuArrayParChaveValor.Chaves)
                 {
-                    let valor = dicionario.Item(chave);
-                    this.Add(chave, valor);
+                    if (!this.ContainsKey(chave))
+                    {
+                        let valor = dicionarioOuArrayParChaveValor.Item(chave);
+                        this.Add(chave, valor);
+                    }
                 }
+            }
+            else if (Array.isArray(dicionarioOuArrayParChaveValor))
+            {
+                for (const parChaveValor of dicionarioOuArrayParChaveValor)
+                {
+                    if (!this.ContainsKey(parChaveValor.Chave))
+                    {
+                        this.Add(parChaveValor.Chave, parChaveValor.Valor);
+                    }
+                }
+            }
+            else
+            {
+                throw new Erro(` O tipo ${u.ReflexaoUtil.RetornarNomeTipo(dicionarioOuArrayParChaveValor)} não é suportado`);
+            }
+        }
+
+        public AddRangeOrUpdate(dicionarioOuArrayParChaveValor: DicionarioSimples<TItem, TChave> | ParChaveValorTipada<TChave, TItem>[])
+        {
+            if (dicionarioOuArrayParChaveValor == null)
+            {
+                return;
+            }
+
+            if (dicionarioOuArrayParChaveValor instanceof DicionarioSimples)
+            {
+                for (let chave of dicionarioOuArrayParChaveValor.Chaves)
+                {
+                    let valor = dicionarioOuArrayParChaveValor.Item(chave);
+                    this.AddOrUpdate(chave, valor);
+                }
+            }
+
+            else if (Array.isArray(dicionarioOuArrayParChaveValor))
+            {
+                for (const parChaveValor of dicionarioOuArrayParChaveValor)
+                {
+                    this.AddOrUpdate(parChaveValor.Chave, parChaveValor.Valor);
+                }
+            }
+            else
+            {
+                throw new Erro(` O tipo ${u.ReflexaoUtil.RetornarNomeTipo(dicionarioOuArrayParChaveValor)} não é suportado`);
             }
         }
 
@@ -267,10 +318,10 @@
         {
             for (const chave of chaves)
             {
-                  this.TryRemove(chave);
+                this.TryRemove(chave);
             }
         }
- 
+
         public Remove(chave: TChave): boolean
         {
             return this.Remover(chave);
@@ -386,7 +437,7 @@
         {
             return this.Existe(chave);
         }
-         
+
         public ToArray(): Array<TItem>
         {
             let array = new Array<TItem>();

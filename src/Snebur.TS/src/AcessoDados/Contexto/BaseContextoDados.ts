@@ -316,13 +316,28 @@
                     (clone as any as IObjetoControladorPropriedade).DesativarObservadorPropriedadeAlterada();
                     clone.Id = entidade.Id;
 
+                    const tipoEntidade = entidade.GetType();
                     for (const nomePropriedade of nomesPropriedades)
                     {
-                        if (entidade.__PropriedadesAlteradas.ContainsKey(nomePropriedade))
+                        const propriedade = tipoEntidade.RetornarPropriedade(nomePropriedade);
+                        if (propriedade != null)
                         {
-                            (clone as any)[nomePropriedade] = (entidade as any)[nomePropriedade];
-                            clone.__PropriedadesAlteradas.AddOrUpdate(nomePropriedade, entidade.__PropriedadesAlteradas.Item(nomePropriedade));
+                            if (u.EntidadeUtil.IsAlterouPropriedade(entidade, nomePropriedade))
+                            {
+                                (clone as any)[nomePropriedade] = (entidade as any)[nomePropriedade];
+
+                                if (propriedade.Tipo.IsTipoCompleto)
+                                {
+                                    const propriedadesTipoCompleto =entidade.__PropriedadesAlteradas.ParesChaveValor.Where(x => x.Chave.startsWith(`${nomePropriedade}_`));
+                                    clone.__PropriedadesAlteradas.AddRangeOrUpdate(propriedadesTipoCompleto);
+                                }
+                                else
+                                {
+                                    clone.__PropriedadesAlteradas.AddOrUpdate(nomePropriedade, entidade.__PropriedadesAlteradas.Item(nomePropriedade));
+                                }
+                            }
                         }
+                        
                     }
                     (clone as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
                     entidadesSalvar.Add(clone);
@@ -336,7 +351,20 @@
                 const nomesPropriedades = this.RetornarNomesProprieades<TEntidade>(expressoesOuPropriedades);
                 for (const entidade of entidades)
                 {
-                    entidade.__PropriedadesAlteradas.RemoveAll(nomesPropriedades);
+                    const tipoEntidade = entidade.GetType();
+                    for (const nomePropriedade of nomesPropriedades)
+                    {
+                        const propriedade = tipoEntidade.RetornarPropriedade(nomePropriedade);
+                        if (propriedade.Tipo.IsTipoCompleto)
+                        {
+                            const propriedadesTipoCompleto = entidade.__PropriedadesAlteradas.ParesChaveValor.Where(x => x.Chave.startsWith(`${nomePropriedade}_`));
+                            entidade.__PropriedadesAlteradas.RemoveAll(propriedadesTipoCompleto.Select(x => x.Chave));
+                        }
+                        else
+                        {
+                            entidade.__PropriedadesAlteradas.Remove(nomePropriedade);
+                        }
+                    }
                 }
             }
             this._isAtualizandoPropriedades = false;
