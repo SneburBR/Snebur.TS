@@ -169,7 +169,7 @@
                 this.FinalizarTarefa(new ErroEnviarPacote("Não foi possível carregar o ArrayBuffer(bytes) do arquivo"));
                 return;
             }
-            
+
             this.Checksum = await Snebur.WebWorker.Checksum.RetornarChecksumAsync(this.Buffer) as string;
             this.IniciarEnvio();
         }
@@ -209,7 +209,7 @@
             this.EnviarProximoPacoteAsync();
         }
 
-       
+
         private async EnviarProximoPacoteAsync()
         {
             const tempoEsperaEnviarProximoPacote = this.TempoEsperarEnvioProximoPacote;
@@ -220,7 +220,7 @@
                 console.error("já existe um pacote sendo enviado ");
                 return;
             }
-       
+
 
             if (this.Status === t.EnumStatusTarefa.Pausada ||
                 this.Status === t.EnumStatusTarefa.Cancelada ||
@@ -235,12 +235,12 @@
             }
             if (!(this.Buffer instanceof ArrayBuffer))
             {
-                
+
                 this.Reiniciar();
                 return;
             }
 
-           
+
             const inicio = (this.ParteAtual - 1) * this.TamanhoPacote;
             let fim = inicio + this.TamanhoPacote;
             if (fim > this.TotalBytes)
@@ -287,10 +287,10 @@
                 default:
 
                     console.error(this.toString() + " O resultado do envio do pacote não é suportado ");
-                    throw new ErroNaoSuportado(`O resultado do envio do pacote não é suportado ${ u.EnumUtil.RetornarDescricao(sa.EnumResultadoEnvioPacote, resultado)}`, this);
+                    throw new ErroNaoSuportado(`O resultado do envio do pacote não é suportado ${u.EnumUtil.RetornarDescricao(sa.EnumResultadoEnvioPacote, resultado)}`, this);
             }
         }
-     
+
         private PacoteEnviadoSucesso(tamanhoPacote: number): void
         {
             this.Gerenciador.TotalBytesMedidorVelocidade += tamanhoPacote;
@@ -305,18 +305,21 @@
             }
             else
             {
-                this.FinalizarEnviadoSucesso();
+                this.FinalizarEnviadoSucessoAsync();
             }
         }
 
-        protected FinalizarEnviadoSucesso(): void
+        private FinalizarEnviadoSucesso(): void
+        {
+
+        }
+        protected async FinalizarEnviadoSucessoAsync(): Promise<void>
         {
             this.Progresso = 100;
             if (this.Buffer instanceof ArrayBuffer)
             {
                 this.Buffer.slice(0, this.Buffer.byteLength);
             }
-
             delete this.Buffer;
             this.Buffer = undefined;
             this.FinalizarTarefa(null);
@@ -348,7 +351,7 @@
             parametros.Add(new ParChaveValorSimples(ConstantesServicoArquivo.IDENTIFICADOR_USUARIO, $Aplicacao.CredencialUsuario.IdentificadorUsuario));
             parametros.Add(new ParChaveValorSimples(ConstantesServicoArquivo.SENHA, $Aplicacao.CredencialUsuario.Senha));
             parametros.Add(new ParChaveValorSimples(ConstantesServicoArquivo.NOME_TIPO_ARQUIVO, this.NomeTipoArquivo));
-            
+
             return parametros;
         }
         //#endregion

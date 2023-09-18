@@ -2,7 +2,7 @@
 {
     export class GerenciadorEnvioArquivo extends Snebur.Tarefa.GerenciadorTarefa<BaseTarefaEnviarArquivo, ProgressoGerenciadorEnvioArquivoEventArgs>
     {
-                private _velocidadeMedia: number = 0;
+        private _velocidadeMedia: number = 0;
 
         public IdentificadorLog: string;
         public ServicoLog: Snebur.Comunicacao.BaseServicoLogServicoArquivo;
@@ -99,7 +99,7 @@
             this._maximoTarefasSimultaneas = u.ProcessadorUtil.RetornarTotalThreadsWorker();
             this.Status = t.EnumStatusTarefa.Finalizada;
         }
- 
+
         protected override AtualizarProgressoGerenciadorTarefa(): void
         {
             const tarefasImagem = this.Tarefas.OfType(TarefaEnviarImagem).ToList();
@@ -427,9 +427,9 @@
             await super.IniciarAsync();
 
             this.DispensarMedidorVelocidade();
-           this.IdLimparTarefas = window.setTimeout(this.LimparTarefas.bind(this), 5000);
+            this.IdLimparTarefas = window.setTimeout(this.LimparTarefas.bind(this), 5000);
         }
-         
+
         private LimparTarefas(): void
         {
             if (this.IsFinalizado)

@@ -4,6 +4,7 @@
     {
         public readonly DimensaoImpressao: d.Dimensao;
         private readonly IsProcessarImagem: boolean;
+        private _isImagemProcessada: boolean = false;
 
         public get DimensaoSaida(): d.Dimensao
         {
@@ -28,17 +29,19 @@
             super(gerenciador, imagem, EnumTamanhoImagem.Impressao);
 
             this.DimensaoImpressao = dimensaoImpressao;
-            this.IsProcessarImagem = isProcessarImagem && !imagem.IsIcone;
+            this.IsProcessarImagem = isProcessarImagem && !imagem.IsIcone && !DimensaoUtil.IsEmpty(dimensaoImpressao);
 
-            if (this.IsProcessarImagem && this.DimensaoImpressao !== null && (!(this.DimensaoImpressao instanceof d.Dimensao) || this.DimensaoImpressao.IsEmpty))
+            if (isProcessarImagem &&
+                (dimensaoImpressao == null || DimensaoUtil.IsEmpty(dimensaoImpressao)))
             {
-                throw new Erro("A dimensão de impressão não foi definida");
+                console.log("A dimensão de impressão não foi definida");
+                /*throw new Erro("A dimensão de impressão não foi definida");*/
             }
         }
 
         protected override async IniciarEnvioAsync()
         {
-            super.IniciarEnvioAsync();
+            return super.IniciarEnvioAsync();
         }
 
         protected async RetornarBufferAsync(): Promise<ArrayBuffer>
@@ -52,9 +55,9 @@
                         bytes.byteLength > 1024 &&
                         bytes.byteLength < this.OrigemImagem.ArquivoLocal.size)
                     {
+                        this._isImagemProcessada = true;
                         return bytes;
                     }
-
                 }
                 catch (erro)
                 {
@@ -91,14 +94,27 @@
             this.DimensaoImpressao.Altura = dimensao.Altura;
         }
 
-        protected override FinalizarEnviadoSucesso(): void
+        protected override async FinalizarEnviadoSucessoAsync(): Promise<void>
         {
-            if (!this.Imagem.IsExisteArquivo)
+            const imagem = this.Imagem;
+
+            imagem.IsExisteArquivo = true;
+            imagem.DataHoraFimEnvio = new Date();
+            imagem.IsImagemProcessada = this._isImagemProcessada;
+
+            if (!this._isImagemProcessada)
             {
-                this.Imagem.IsExisteArquivo = true;
-                this.Imagem.DataHoraFimEnvio = new Date();
+                imagem.DimensaoImagemImpressao = imagem.DimensaoImagemLocal;
             }
-            super.FinalizarEnviadoSucesso();
+
+            const contexto = $Aplicacao.RetornarContextoDados(imagem.GetType() as r.TipoEntidade);
+            await contexto.SalvarPropriedadesAsync(imagem,
+                x => x.IsExisteArquivo,
+                x => x.DataHoraFimEnvio,
+                x => x.IsImagemProcessada,
+                x => x.DimensaoImagemImpressao);
+
+            await super.FinalizarEnviadoSucessoAsync();
         }
     }
 }

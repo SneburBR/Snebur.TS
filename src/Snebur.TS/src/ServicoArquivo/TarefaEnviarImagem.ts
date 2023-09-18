@@ -32,15 +32,15 @@
             this.NomeTipoImagem = imagem.GetType().Nome;
         }
 
-        protected override async IniciarEnvioAsync()
+        protected override   IniciarEnvioAsync(): Promise<void>
         {
             if (!u.ImagemUtil.ExisteImagemServidor(this.Imagem, this.TamanhoImagem) || this.IsReenviar)
             {
-                super.IniciarEnvioAsync();
+                return super.IniciarEnvioAsync();
             }
             else
             {
-                this.FinalizarEnviadoSucesso();
+                return this.FinalizarEnviadoSucessoAsync();
                 //throw new Erro("O imagem já existe no servidor");
             }
         }
@@ -63,10 +63,10 @@
         //#endregion
 
 
-        protected override FinalizarEnviadoSucesso(): void
+        protected override async FinalizarEnviadoSucessoAsync(): Promise<void>
         {
+            await super.FinalizarEnviadoSucessoAsync();
             this.SinalizarExisteImagemServidor();
-            super.FinalizarEnviadoSucesso();
         }
 
         private SinalizarExisteImagemServidor(): void

@@ -57,8 +57,9 @@
         //    });
         //}
 
-        protected override FinalizarEnviadoSucesso(): void
+        protected override async FinalizarEnviadoSucessoAsync(): Promise<void>
         {
+            await super.FinalizarEnviadoSucessoAsync();
             const args = new ImagemServidorCarregadaEventArgs(this.Imagem, this.TamanhoImagem, null);
             if (this.Imagem.OrigemImagem instanceof OrigemImagemLocal)
             {
@@ -66,7 +67,7 @@
             }
             this.Imagem.EventoImagemServidorCarregada.NotificarAsync(this, args);
 
-            super.FinalizarEnviadoSucesso();
+            
         }
 
     }

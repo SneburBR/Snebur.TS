@@ -20,9 +20,9 @@
             return u.ArquivoUtil.RetornarBufferArrayAsync(this.ArquivoLocal);
         }
 
-        protected override FinalizarEnviadoSucesso(): void
+        protected override async FinalizarEnviadoSucessoAsync(): Promise<void>
         {
-            super.FinalizarEnviadoSucesso();
+            await super.FinalizarEnviadoSucessoAsync();
             this.EntidadeArquivo.IsExisteArquivo = true;
         }
     }
