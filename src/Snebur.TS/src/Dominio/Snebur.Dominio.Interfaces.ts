@@ -195,6 +195,7 @@ namespace Snebur.Dominio
         TotalBytesMedia : number;
         TotalBytesGrande : number;
         IsIcone : boolean;
+        IsImagemProcessada : boolean;
         DimensaoImagemMiniatura : Snebur.Dominio.Dimensao;
         DimensaoImagemPequena : Snebur.Dominio.Dimensao;
         DimensaoImagemMedia : Snebur.Dominio.Dimensao;

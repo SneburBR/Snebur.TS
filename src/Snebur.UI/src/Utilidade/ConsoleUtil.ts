@@ -7,7 +7,7 @@
         private static ElementoBotaoExpandir: HTMLElement;
         private static CSS_CLASS_EXPANDIDO = "sn-expandido";
         private static ALTURA_NORMAL = 50;
-        private static IsExpandido: boolean= false;
+        private static IsExpandido: boolean = false;
 
         public static InicializarVisualizacaoConsole(e: ConsoleLogArgs)
         {
@@ -77,7 +77,7 @@
             const destino = document.createElement("destino");
             estiloDestino.AplicarEm(destino);
 
-           
+
             const botaoExpandir = document.createElement("span");
             botaoExpandir.addEventListener("click", ConsoleUtil.BtnExpandir_Click.bind(ConsoleUtil));
             botaoExpandir.innerHTML = "&#x25B2;";
@@ -123,6 +123,7 @@
             {
                 ConsoleUtil.ElementoConsole.classList.remove(ConsoleUtil.CSS_CLASS_EXPANDIDO);
             }
+
             ConsoleUtil.IsExpandido = isExpandir;
             const destino = ConsoleUtil.ElementoConsole.querySelector("destino");
             destino.lastElementChild?.scrollIntoView({
@@ -149,13 +150,18 @@
             {
                 if (e.Tipo === EnumTipoLog.Alerta)
                 {
+                    if (!$Configuracao.IsDebug && $Configuracao.IsTeste)
+                    {
+                        return;
+                    }
+
                     if (ConsoleUtil.AltertasDisparados.Contains(e.Mensagem.GetHashCode()))
                     {
                         return;
                     }
                     ConsoleUtil.AltertasDisparados.Add(e.Mensagem.GetHashCode());
-
                 }
+
                 if (e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta)
                 {
                     if (e.Mensagem?.Contains("ignore:"))
@@ -179,7 +185,7 @@
                             behavior: "smooth"
                         });
                     }
-                    
+
                 }
             }
         }

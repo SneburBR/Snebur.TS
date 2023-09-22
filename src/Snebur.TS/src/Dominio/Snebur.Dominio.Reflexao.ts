@@ -882,6 +882,7 @@ namespace Snebur.Reflexao
 	Snebur.Dominio.Atributos.ValidacaoUrlAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoUrlAttribute";
 	Snebur.Dominio.Atributos.ValidacaoVersaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoVersaoAttribute";
 	Snebur.Dominio.Atributos.BaseValidacaoEntidadeAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.BaseValidacaoEntidadeAttribute";
+	Snebur.Dominio.Atributos.ChaveEstrangeiraExternaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ChaveEstrangeiraExternaAttribute";
 	Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute";
 	Snebur.Dominio.Atributos.ChavePrimariaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ChavePrimariaAttribute";
 	Snebur.Dominio.Atributos.IgnorarValidacaoTipoComplexo.__CaminhoTipo = "Snebur.Dominio.Atributos.IgnorarValidacaoTipoComplexo";

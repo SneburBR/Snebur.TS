@@ -16,6 +16,44 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
+    export class ChaveEstrangeiraExternaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IChaveEstrangeiraAttribute 
+    {
+        //#region Propriedades
+    
+        private _nomePropriedade : string = null;
+        private _name : string = null;
+    
+        public get NomePropriedade(): string 
+        {
+            return this._nomePropriedade;
+        }
+
+        public set NomePropriedade(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
+        }
+    
+        public get Name(): string 
+        {
+            return this._name;
+        }
+
+        public set Name(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("Name", this._name, this._name = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor( nomePropriedade : string ) 
+        {
+            super();
+            this.Inicializar();
+            this._nomePropriedade = nomePropriedade;
+        }
+        //#endregion
+    }
     export class ChaveEstrangeiraRelacaoUmUmAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IChaveEstrangeiraAttribute 
     {
         //#region Propriedades

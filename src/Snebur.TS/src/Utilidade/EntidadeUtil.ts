@@ -39,16 +39,22 @@
 
         public static RetornarAtributoChaveEstrangeira(propriedade: r.Propriedade, ignorarErro = false): d.Atributos.IChaveEstrangeiraAttribute
         {
-            const atributoChaveEstrangeira = propriedade.Atributos.OfType<Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute>(Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute).SingleOrDefault();
+            const atributoChaveEstrangeira = propriedade.Atributos.OfType(Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute).SingleOrDefault();
             if (atributoChaveEstrangeira != null)
             {
                 return atributoChaveEstrangeira;
             }
 
-            const atributoChaveEstrangeiraRelacaoUmUm = propriedade.Atributos.OfType<Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute>(Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute).SingleOrDefault();
+            const atributoChaveEstrangeiraRelacaoUmUm = propriedade.Atributos.OfType(Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute).SingleOrDefault();
             if (atributoChaveEstrangeiraRelacaoUmUm != null)
             {
                 return atributoChaveEstrangeiraRelacaoUmUm;
+            }
+
+            const atributoChaveEstrangeiraExterna = propriedade.Atributos.OfType(Snebur.Dominio.Atributos.ChaveEstrangeiraExternaAttribute).SingleOrDefault();
+            if (atributoChaveEstrangeiraExterna != null)
+            {
+                return atributoChaveEstrangeiraExterna;
             }
 
             if (!ignorarErro)

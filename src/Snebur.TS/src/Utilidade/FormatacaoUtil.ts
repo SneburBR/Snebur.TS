@@ -28,7 +28,7 @@
                 return valor;
             }
 
-
+            formatacao = formatacao.trim().toLowerCase();
             switch (formatacao)
             {
                 case EnumFormatacao.Nenhuma:

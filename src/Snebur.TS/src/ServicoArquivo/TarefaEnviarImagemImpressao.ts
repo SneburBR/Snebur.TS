@@ -21,7 +21,8 @@
             super.Progresso = value;
         }
 
-        public constructor(gerenciador: GerenciadorEnvioArquivo,
+        public constructor(
+            gerenciador: GerenciadorEnvioArquivo,
             imagem: d.IImagem,
             dimensaoImpressao: d.Dimensao,
             isProcessarImagem: boolean)

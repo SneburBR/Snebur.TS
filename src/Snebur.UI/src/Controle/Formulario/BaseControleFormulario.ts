@@ -174,14 +174,12 @@
 
         //#endregion
 
-
         private readonly ValidarDepois = new ExecutarDepois(this.ValidarDepoisInterno.bind(this), 100);
         //#region Inicialização 
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-             
         }
 
         protected override Inicializar()
@@ -451,8 +449,13 @@
             }
             if (isForcar)
             {
-                this.ElementoInput.blur();
+                this.ElementoInput?.blur();
                 await u.ThreadUtil.QuebrarAsync();
+            }
+
+            if (!this.IsControleCarregado)
+            {
+                return true;
             }
 
             if (isForcar || this.IsExecutarValidacao())

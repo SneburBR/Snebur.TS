@@ -50,9 +50,7 @@
                 (data) =>
                 {
                     return new Uint8Array(data).buffer;
-
                 });
-
             return buffer;
         }
     }
