@@ -90,7 +90,8 @@
 
         //#region Propriedades de Apresentação Responsivas
 
-        protected readonly MapeamentoPropriedadeApresentacao: MapeamentoPropriedadeApresentacao;
+        /*@internal*/
+        public readonly MapeamentoPropriedadeApresentacao: MapeamentoPropriedadeApresentacao;
         private readonly DicionariosPropriedadesApresentacao: DicionarioSimples<IPropriedadeApresentacao>;
         private readonly EventoPropriedadeApresentacaoAlterada = new DicionarioSimples<List<ManipuladorEventoPropriedadeApresentacaoAlterada>>();
 

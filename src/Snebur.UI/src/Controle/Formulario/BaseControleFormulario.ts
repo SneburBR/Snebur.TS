@@ -4,7 +4,7 @@
     {
         //#region Propriedade
         private static TEMPO_EXPIRACAO_ULTIMA_VALIDACAO: number = 10000;
-         
+
         private readonly Stopwatch = Stopwatch.StartNew();
         private _bindControleFormulario: BindControleFormulario;
         private _isSomenteLeitura: boolean = false;
@@ -236,13 +236,13 @@
             {
                 this.CaminhoBind = this.RetornarValorAtributo(AtributosHtml.Bind, null, true);
             }
-            this._idElementoRotulo = this.RetornarIDElementoItemElemento("Rotulo"); 
+            this._idElementoRotulo = this.RetornarIDElementoItemElemento("Rotulo");
             //u.ValidacaoUtil.ValidarReferenciaNula(this.CaminhoBind, "CaminhoBind");
-             
+
             //this.InicializarRotuloInput();
         }
 
-        
+
         protected override DepoisInicializarComponentesApresentacao()
         {
             super.DepoisInicializarComponentesApresentacao();
@@ -288,7 +288,7 @@
             {
                 if (!this.IsRotuloDaPropriedadeInicializado)
                 {
-                    this.AtualizarRotulo();
+                    this.AtualizarRotulo(false);
                     this.IsRotuloDaPropriedadeInicializado = true;
                 }
             }
@@ -327,9 +327,9 @@
 
         //#region Rotulo
 
-        protected override AtualizarRotulo(): void
+        protected override AtualizarRotulo(isInicializar: boolean): void
         {
-            super.AtualizarRotulo();
+            super.AtualizarRotulo(isInicializar);
             this.VinalizarRotuloInput();
         }
 
@@ -339,7 +339,7 @@
             elementoRotulo.htmlFor = this.ElementoInput?.id ?? String.Empty;
         }
 
-        protected override RetornarRotulo(): string
+        public override RetornarRotulo(): string
         {
             const rotulo = super.RetornarRotulo();
             if (String.IsNullOrWhiteSpace(rotulo))
@@ -425,7 +425,7 @@
         //#endregion
 
         //#region Validação 
-         
+
         protected async ValidarAsyncInterno(isForcar: boolean = false)
         {
             await this.ValidarAsync(isForcar);
@@ -873,7 +873,7 @@
         {
             if (this.IsControleInicializado)
             {
-                this.AtualizarRotulo();
+                this.AtualizarRotulo(false);
                 if (this.IsExisteConteudoDom)
                 {
                     this.Elemento.classList.add(ConstantesCssClasses.CSS_CLASSE_POSSUI_CONTEUDO);
@@ -961,8 +961,8 @@
         }
 
         //#endregion
-         
-        private ValidarElementosDebug(elemento: HTMLElement, _idElemento: string, isThrow:boolean = true)
+
+        private ValidarElementosDebug(elemento: HTMLElement, _idElemento: string, isThrow: boolean = true)
         {
             if ($Configuracao.IsDebug)
             {

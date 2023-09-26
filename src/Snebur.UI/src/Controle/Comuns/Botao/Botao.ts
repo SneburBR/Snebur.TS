@@ -160,7 +160,7 @@
             return this.Elemento.getElementsByTagName(Botao.TAG_ROTULO_BOTAO).item(0) as HTMLElement;
         }
 
-        protected override RetornarRotuloInterno(): string
+        public override RetornarRotuloInterno(): string
         {
             if (this._isBotaoMenu)
             {

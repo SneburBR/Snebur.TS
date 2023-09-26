@@ -134,7 +134,7 @@
                 {
                     this.MarcarLinha();
                 }
-                this.AtualizarRotulo();
+                this.AtualizarRotulo(false);
                 e.preventDefault();
             }
         }
@@ -247,7 +247,7 @@
 
         //#region Rotulo
 
-        protected override RetornarRotulo(): string
+        public override RetornarRotulo(): string
         {
             const valorAtributoRotuloFlutuante = this.RetornarValorAtributo(AtributosHtml.RotuloFlutuante, null, false);
             if (!String.IsNullOrWhiteSpace(valorAtributoRotuloFlutuante) &&

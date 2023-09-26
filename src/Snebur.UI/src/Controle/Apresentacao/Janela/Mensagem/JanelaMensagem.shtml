@@ -21,7 +21,7 @@
 
         <ap-texto ap-tipografia="Corpo"
             ap-margem="0px 16px 0px 0px"
-            sn-bind="{{Mensagem}}">
+            sn-bind="{{Mensagem}}" sn-formatar="QuebrarLinhasHtml">
         </ap-texto>
 
         <ap-bloco ap-margem="16px 24px 16px 0px"

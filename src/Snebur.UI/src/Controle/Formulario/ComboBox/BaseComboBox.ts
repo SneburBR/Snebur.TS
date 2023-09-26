@@ -7,6 +7,7 @@
 
         private _blocooTemplatePadrao: BlocoTemplate;
         private _itemTemplateSelecionado: ItemTemplateSelecionado;
+        private _isExisteBindLista: boolean;
 
         //#region Propriedades 
 
@@ -20,9 +21,7 @@
         private __FuncaoRetornarConsulta: FuncaoConsulta;
         private __FuncaoRetornarConsultaAsync: FuncaoConsultaAsync;
         private __FuncaoNormalizar: FuncaoConsultaAsync;
-
-        private ExisteBindLista: boolean;
-
+         
         protected IsRotuloFlutuante: boolean;
 
         public get BlocoTemplatePadrao(): BlocoTemplate  
@@ -58,6 +57,8 @@
         {
             return this.RetornarValorAtributoNumber(AtributosHtml.AlturaItem, BaseComboBox.ALTURA_ITEM_PADRAO);
         }
+
+       
 
         //#endregion
 
@@ -101,7 +102,7 @@
         {
             super.DepoisInicializarComponentesApresentacao();
 
-            this.ExisteBindLista = !String.IsNullOrWhiteSpace(this.RetornarValorAtributo(AtributosHtml.BindLista));
+            this._isExisteBindLista = !String.IsNullOrWhiteSpace(this.RetornarValorAtributo(AtributosHtml.BindLista));
             this.TipoItemLista = this.RetornarTipoItemLista();
 
             const consulta = this.RetornarValorAtributo(AtributosHtml.Consulta);

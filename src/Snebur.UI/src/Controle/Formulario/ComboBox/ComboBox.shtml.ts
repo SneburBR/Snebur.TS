@@ -3,12 +3,26 @@
     export class ComboBox<TItem = any> extends BaseComboBox<TItem> implements IControleLista
     {
         private _idElementoSeta: string;
+        private _isExisteBindRotuloFlutuante: boolean;
+        private _bindRotuloFlutuante: BindPropriedadeComum;
+        private _rotuloFlutuante: string = null;
+
         protected readonly IsPemitirLimparPadrao: boolean = true;
         public readonly BlocoMensagemValidacao: Bloco;
+        public IsPemitirLimpar: boolean;
 
         //private readonly BlocoSeta: HTMLElement;
         public IDElementoSelecionado: string;
 
+        public get RotuloFlutuante(): string
+        {
+            return this._rotuloFlutuante;
+        }
+        public set RotuloFlutuante(value: string)
+        {
+            this._rotuloFlutuante = value;
+            this.AtualizarRotulo(false);
+        }
         public get ItemSelecionado(): TItem
         {
             return this.ControleItemSelecionado?.DataSource;
@@ -52,11 +66,7 @@
         {
             return document.getElementById(this._idElementoSeta);
         }
-
-
-
-        public IsPemitirLimpar: boolean;
-
+         
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
@@ -74,9 +84,7 @@
             super.Inicializar();
 
             this.IsRotuloFlutuante = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsRotuloFlutuante, true));
-
             this.AdicionarEventoDom(ui.EnumEventoDom.MouseDown, this.ElementoCaixa_MouseDown, this.ElementoCaixa);
-
             this.CaixaSelecao.EventoFechou.AddHandler(this.CaixaSelecao_Fechou, this);
 
             if (!this.IsRotuloFlutuante)
@@ -109,9 +117,43 @@
             this.AtualizarVisibilidadeControleItemSelecionado();
         }
 
-        protected override AtualizarRotulo(): void
+        protected override InicializarBindRotulo()
         {
-            this.AtualizarRotuloSelecionado();
+            super.InicializarBindRotulo();
+
+            const rotuloFluante = this.RetornarValorAtributo(AtributosHtml.RotuloFlutuante, null, true);
+            if (BindUtil.IsCaminhoBind(rotuloFluante))
+            {
+                this._isExisteBindRotuloFlutuante = true;
+                if (this._bindRotuloFlutuante == null)
+                {
+                    const nomePropriedadeRotulo = this.RetornarNomePropriedade(x => x.RotuloFlutuante);
+
+                    this._bindRotuloFlutuante = new BindPropriedadeComum(this.ControlePai, this.Elemento, rotuloFluante, nomePropriedadeRotulo);
+                    this._bindRotuloFlutuante.InicializarBind();
+                    this.Binds.Add(this._bindRotuloFlutuante);
+                }
+            }
+            else
+            {
+                this._rotuloFlutuante = rotuloFluante;
+            }
+        }
+
+        protected override AtualizarRotulo(isInicializar:boolean): void
+        {
+            if (isInicializar)
+            {
+                super.AtualizarRotulo(isInicializar);
+            }
+            
+            const rotuloSelecionado = this.RotuloFlutuante;
+            if (!String.IsNullOrEmpty(rotuloSelecionado))
+            {
+                const rotulo = this.Rotulo;
+                const rotuloNormalizado = this.IsItemSelecionado ? rotuloSelecionado : rotulo;
+                this.Rotulo = rotuloNormalizado;
+            }
         }
 
         public BtnCaixaListaItem_Click(provedor: ItemControle, e: UIEventArgs): void
@@ -137,19 +179,10 @@
 
         private ItemSelecionado_ValorAlterado(provedor: any, e: EventArgs)
         {
-            this.AtualizarRotuloSelecionado();
+            this.AtualizarRotulo(false);
         }
 
-        private AtualizarRotuloSelecionado()
-        {
-            const rotuloSelecionado = this.RetornarValorAtributo(AtributosHtml.RotuloFlutuante);
-            if (!String.IsNullOrEmpty(rotuloSelecionado))
-            {
-                const rotulo = this.RetornarValorAtributo(AtributosHtml.Rotulo);
-                const rotuloNormalizado = this.IsItemSelecionado ? rotuloSelecionado : rotulo;
-                this.Rotulo = rotuloNormalizado;
-            }
-        }
+        
 
         //#region Elementos dom eventos
 
@@ -183,8 +216,7 @@
             ElementoUtil.AtualizarValorInput(this.ElementoInput, String.Empty);
             this.AtualizarVisibilidadeControleItemSelecionado();
         }
-
-
+         
         public ElementoInputOnBlur(): void
         {
             //ElementoUtil.AtualizarValorInput(this.IDElementoInput, String.Empty);
@@ -193,6 +225,7 @@
 
         public ElementoInputOnFocus(): void
         {
+
         }
 
         public ElementoInputOnKeyDown(): void
@@ -267,13 +300,13 @@
         {
             super.Habilitar();
         }
-
-
+         
         //#endregion
 
         protected override ElementoInput_Focus(e: FocusEvent)
         {
             super.ElementoInput_Focus(e);
+
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();

@@ -129,7 +129,7 @@
 
         protected override AtualizarRotulo(): void
         {
-            super.AtualizarRotulo();
+            super.AtualizarRotulo(false);
         }
 
         //#endregion

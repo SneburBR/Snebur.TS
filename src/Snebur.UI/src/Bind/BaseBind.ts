@@ -1,6 +1,5 @@
 ﻿namespace Snebur.UI
 {
-
     export abstract class BaseBind extends BaseUIElemento
     {
         public readonly Priority: number = 0;
@@ -541,11 +540,11 @@
 
         //#region Retornar valor dos atributos
 
-        protected override RetornarValorAtributo(atributo: AtributoHtml): string;
-        protected override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any): string;
-        protected override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean): string;
-        protected override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean, elemento: HTMLElement): string;
-        protected override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
+        public override RetornarValorAtributo(atributo: AtributoHtml): string;
+        public override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any): string;
+        public override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean): string;
+        public override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, aceitarBind: boolean, elemento: HTMLElement): string;
+        public override RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
         {
             const valorAtributo = super.RetornarValorAtributo(atributo, null, aceitarBind, elemento);
             if (!String.IsNullOrWhiteSpace(valorAtributo))

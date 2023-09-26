@@ -600,11 +600,11 @@
 
         //#region Métodos protegidos
 
-        protected RetornarValorAtributo(atributo: AtributoHtml): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean, elemento: HTMLElement): string;
-        protected RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, isAceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
+        public RetornarValorAtributo(atributo: AtributoHtml): string;
+        public RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any): string;
+        public RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean): string;
+        public RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any, isAceitarBind: boolean, elemento: HTMLElement): string;
+        public RetornarValorAtributo(atributo: AtributoHtml, valorPadrao: any = null, isAceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): string
         {
             const valorAtributo = elemento.getAttribute(atributo.Nome);
             if (!String.IsNullOrEmpty(valorAtributo))
@@ -636,11 +636,11 @@
             return null;
         }
 
-        protected RetornarValorAtributoBoolean(atributo: AtributoHtml): boolean;
-        protected RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean): boolean;
-        protected RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean, aceitarBind: boolean): boolean;
-        protected RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean, aceitarBind: boolean, elemento: HTMLElement): boolean;
-        protected RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean = false, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): boolean
+        public RetornarValorAtributoBoolean(atributo: AtributoHtml): boolean;
+        public RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean): boolean;
+        public RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean, aceitarBind: boolean): boolean;
+        public RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean, aceitarBind: boolean, elemento: HTMLElement): boolean;
+        public RetornarValorAtributoBoolean(atributo: AtributoHtml, valorPadrao: boolean = false, aceitarBind: boolean = false, elemento: HTMLElement = this.Elemento): boolean
         {
             const valorAtributo = this.RetornarValorAtributo(atributo, null, aceitarBind, elemento);
             if (!String.IsNullOrEmpty(valorAtributo))
