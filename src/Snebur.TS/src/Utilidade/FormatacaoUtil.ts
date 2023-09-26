@@ -1383,6 +1383,10 @@
 
         public static FormatarEspacosHtml(texto: string)
         {
+            if (String.IsNullOrEmpty(texto))
+            {
+                return String.Empty;
+            }
             return texto.replace(" ", "&nbsp;").
                 replace("\t", "&nbsp;".repeat(4));
         }
@@ -1391,6 +1395,12 @@
         {
             if (!String.IsNullOrEmpty(texto))
             {
+                const regExistElementoBR = /<br\s*\/?>/gi;
+                if (regExistElementoBR.test(texto))
+                {
+                    return texto;
+                }
+                
                 const linhas = TextoUtil.RetornarLinhas(texto);
                 if (isFormatarEspaco)
                 {
