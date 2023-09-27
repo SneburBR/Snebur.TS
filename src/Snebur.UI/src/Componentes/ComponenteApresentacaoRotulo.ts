@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class ComponenteApresentacaoRotulo extends Snebur.UI.ComponenteApresentacaoConteudo  
+    export abstract class ComponenteApresentacaoRotulo extends Snebur.UI.ComponenteApresentacaoConteudo implements IControleRotulo
     {
         private _elementoRotulo: HTMLElement;
         private _rotulo: string;
@@ -13,7 +13,7 @@
         public IsRotuloVazio: boolean = false;
         /*@internal*/
         public IsRotuloHtmlInterno: boolean = true;
-        
+
         public RotuloApresentacao: string;
 
         public get ElementoRotulo(): HTMLElement
@@ -27,7 +27,7 @@
 
         public get Rotulo(): string
         {
-            return this._rotulo ?? this.ElementoRotulo.innerHTML;
+            return this._rotulo ?? this.ElementoRotulo?.innerHTML ?? String.Empty;
         }
         public set Rotulo(value: string)
         {
@@ -37,7 +37,7 @@
             }
             this._rotulo = value;
         }
-         
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement, componenteApresentacaoPai: ComponenteApresentacao)
         {
             super(controlePai, elemento, componenteApresentacaoPai);
@@ -65,12 +65,11 @@
             ControleRotuloUtil.InicializarBindRotulo(this);
         }
 
-        protected AtualizarRotulo(isInicializar:boolean)
+        protected AtualizarRotulo(isInicializar: boolean)
         {
             ControleRotuloUtil.AtualizarRotulo(this, isInicializar);
         }
 
-        /*@internal*/
         public RetornarRotulo(): string
         {
             return ControleRotuloUtil.RetornarRotulo(this);
@@ -96,7 +95,7 @@
         {
             return super.RetornarMapeamento();
         }
-         
+
         protected abstract RetornarElementoRotulo(): HTMLElement;
 
         public override Dispose()

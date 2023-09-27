@@ -19,14 +19,19 @@
 
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, rotulo: string): void
         {
-            if (!(componenteApresentacao instanceof ControleRotulo ||
-                 componenteApresentacao instanceof ComponenteApresentacaoRotulo ))
+            if ($Configuracao.IsDebugOuTeste)
             {
-                throw new ErroNaoSuportado(` o componente não é suportado pelo atributo ${AtributosHtml.RotuloApresentacao}`);
+                if (!(componenteApresentacao instanceof ControleRotulo ||
+                    componenteApresentacao instanceof ComponenteApresentacaoRotulo ||
+                    componenteApresentacao instanceof Coluna))
+                {
+                    throw new ErroNaoSuportado(` o componente não é suportado pelo atributo ${AtributosHtml.RotuloApresentacao}`);
+                }
             }
+            
             if (!String.IsNullOrWhiteSpace(rotulo))
             {
-                componenteApresentacao.Rotulo = rotulo === "$vazio$" ? "" : rotulo;
+                (componenteApresentacao as IControleRotulo).Rotulo = rotulo === "$vazio$" ? "" : rotulo;
             }
         }
     }

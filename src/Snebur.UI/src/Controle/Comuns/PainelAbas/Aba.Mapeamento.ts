@@ -12,4 +12,6 @@
             //this.Mapear(x => x.TamanhoIcone, new PropriedadeTamanhoIcone());
         }
     }
+
+    
 }

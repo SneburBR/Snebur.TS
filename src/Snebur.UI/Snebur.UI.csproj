@@ -456,6 +456,7 @@
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaTexto.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaVazia.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Coluna.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Coluna.Mapeamento.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunasColecao.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunaTexto.ts" />
     <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunaTituloPersonalizado.ts" />

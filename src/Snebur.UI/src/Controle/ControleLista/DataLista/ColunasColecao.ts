@@ -128,7 +128,8 @@
             const idElementoColuna = ElementoUtil.RetornarNovoIDElemento(this, "coluna");
             if (templateColuna.TemplateTituloColuna instanceof TemplateTiluloColuna)
             {
-                return new ColunaTituloPersonalizado(this, idElementoColuna, templateColuna, templateColuna.TemplateTituloColuna);
+                throw new Erro(`Não implementado a coluna com título personalizado`);
+                /*return new ColunaTituloPersonalizado(this, idElementoColuna, templateColuna, templateColuna.TemplateTituloColuna);*/
             }
             else
             {

@@ -3,19 +3,23 @@
     export interface IControleRotulo extends Snebur.IRotulo, Snebur.UI.ComponenteApresentacaoConteudo
     {
         readonly ElementoRotulo: HTMLElement;
-        /*@internal*/
-         BindRotulo: BindPropriedadeComum;
-        /*@internal*/
-         IsExisteBindRotulo: boolean;
-        /*@internal*/
-         IsRotuloVazio: boolean ;
-        /*@internal*/
-         IsRotuloHtmlInterno: boolean ;
-        
-         RotuloApresentacao: string;
-          Rotulo: string;
-        
+        RotuloApresentacao: string;
+        Rotulo: string;
         RetornarRotulo(): string;
+     }
+
+    /*@internal*/
+    export interface IControleRotulo extends Snebur.IRotulo, Snebur.UI.ComponenteApresentacaoConteudo
+    {
+        /*@internal*/
+        BindRotulo: BindPropriedadeComum;
+        /*@internal*/
+        IsExisteBindRotulo: boolean;
+        /*@internal*/
+        IsRotuloVazio: boolean;
+        /*@internal*/
+        IsRotuloHtmlInterno: boolean;
+        /*@internal*/
         RetornarRotuloInterno(): string;
     }
 
@@ -45,7 +49,7 @@
                     {
                         throw new Error("Tipo de controle não suportado");
                     }
-                    
+
                 }
             }
         }
@@ -92,17 +96,21 @@
 
         public static RetornarRotuloInterno(controleRotulo: IControleRotulo): string
         {
-            const valorAtributoRotulo = controleRotulo.RetornarValorAtributo(AtributosHtml.Rotulo, null, true);
+            const valorAtributoRotulo = ControleRotuloUtil.RetornarMelhorRotulo(controleRotulo);
+
+
             if (controleRotulo.IsRotuloHtmlInterno && String.IsNullOrEmpty(valorAtributoRotulo))
             {
                 return (controleRotulo as any).HtmlInternoInicial.trim();
             }
+
             if (!ValidacaoUtil.IsDefinido(valorAtributoRotulo))
             {
                 return String.Empty;
             }
             return valorAtributoRotulo.toString().trim();
         }
+
 
         public static AtualizarRotuloApresentacao(controleRotulo: IControleRotulo): void
         {
@@ -113,6 +121,16 @@
             }
             propriedadeRorutloApresetancao.Atualizar(controleRotulo);
         }
-  
+
+        public static RetornarMelhorRotulo(controleRotulo: IControleRotulo)
+        {
+            const rotulo = controleRotulo.RetornarValorAtributo(AtributosHtml.Rotulo, null, true);
+            if (String.IsNullOrWhiteSpace(rotulo))
+            {
+                return rotulo;
+            }
+            return rotulo;
+        }
+
     }
 }

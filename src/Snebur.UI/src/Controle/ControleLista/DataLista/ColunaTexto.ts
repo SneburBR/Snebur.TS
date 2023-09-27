@@ -43,7 +43,7 @@
             this._isAtivarOdernacao = u.ConverterUtil.ParaBoolean(this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao));
             if (this.IsAtivarOrdenacao)
             {
-                const elementoRotulo = ElementoUtil.RetornarElemento(this.IDElementoRotulo, true);
+                const elementoRotulo = ElementoUtil.RetornarElemento(this.ElementoRotulo, true);
                 elementoRotulo.remove();
                 this._idElementoDivOrdenacao = ElementoUtil.RetornarNovoIDElemento(this, "div");
                 const div = document.createElement("div");
@@ -61,7 +61,7 @@
         protected override RetornarHtmlInterno(atributos: DicionarioSimples<string>): string
         {
             this._idElementoRotulo = ElementoUtil.RetornarNovoIDElemento(this, "SPAN");
-            return `<span id="${this.IDElementoRotulo}"> ${this.RetornarRotulo()} </span>`;
+            return `<span id="${this._idElementoRotulo}"> ${this.RetornarRotulo()} </span>`;
         }
 
         //#region Estilo Ordenação

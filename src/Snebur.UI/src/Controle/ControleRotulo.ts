@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class ControleRotulo extends Snebur.UI.BaseControle  
+    export abstract class ControleRotulo extends Snebur.UI.BaseControle implements IControleRotulo
     {
         private _elementoRotulo: HTMLElement;
         private _rotulo: string;
@@ -27,8 +27,9 @@
 
         public get Rotulo(): string
         {
-            return this._rotulo ?? this.ElementoRotulo.innerHTML;
+            return this._rotulo ?? this.ElementoRotulo?.innerHTML ?? String.Empty;
         }
+
         public set Rotulo(value: string)
         {
             if (this.ElementoRotulo instanceof HTMLElement)
@@ -70,7 +71,6 @@
             ControleRotuloUtil.AtualizarRotulo(this, isInicializar);
         }
 
-        /*@internal*/
         public RetornarRotulo(): string
         {
             return ControleRotuloUtil.RetornarRotulo(this);

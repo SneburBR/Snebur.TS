@@ -29,4 +29,7 @@
     $MapeamentosPropriedades.Add(PainelAbasHorizontal.GetType().Nome, new PainelAbasMapeamento());
     $MapeamentosPropriedades.Add(Aba.GetType().Nome, new AbaMapeamento());
     $MapeamentosPropriedades.Add(BaseNavegador.GetType().Nome, new NavegadorMapeamento());
+
+
+    $MapeamentosPropriedades.Add(Coluna.GetType().Nome, new ColunaMapeamento());
 }
