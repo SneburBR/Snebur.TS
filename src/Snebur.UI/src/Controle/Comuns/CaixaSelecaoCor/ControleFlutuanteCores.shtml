@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
 </head>
-<body ap-largura="380px">
+<body ap-largura="380px" ap-largura-maxima="100%" >
 
     <ap-painel
         ap-tipo-painel="PilhaVertical"

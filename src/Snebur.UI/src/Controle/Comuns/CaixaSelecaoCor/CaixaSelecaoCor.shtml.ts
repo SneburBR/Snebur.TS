@@ -41,7 +41,7 @@
 
         public get CorSelecionada(): d.Cor
         {
-            if (SistemaUtil.IsAndroidOrIOS)
+            if (this.IsAndroidOrIOS)
             {
                 return new Cor(this.InputColorNativo.value);
             }
@@ -49,7 +49,7 @@
         }
         public set CorSelecionada(value: d.Cor)
         {
-            if (SistemaUtil.IsAndroidOrIOS)
+            if (this.IsAndroidOrIOS)
             {
                 if (this.InputColorNativo.value !== value.Rgba)
                 {
@@ -67,7 +67,7 @@
 
         public get CorSelecionadaRgba(): string
         {
-            if (SistemaUtil.IsAndroidOrIOS)
+            if (this.IsAndroidOrIOS)
             {
                 return ConverterUtil.ConverterHexaParaRgba(this.InputColorNativo.value);
             }
@@ -75,7 +75,7 @@
         }
         public set CorSelecionadaRgba(value: string)
         {
-            if (SistemaUtil.IsAndroidOrIOS)
+            if (this.IsAndroidOrIOS)
             {
                 this.InputColorNativo.value = value;
             }
@@ -176,7 +176,7 @@
         }
         private AtualizarMobabilidade()
         {
-            if (u.SistemaUtil.IsAndroidOrIOS)
+            if (this.IsAndroidOrIOS)
             {
                 this.BotaoIcone.OcultarElemento();
                 this.ElementoVisualizacaoCor.OcultarElemento();
@@ -227,7 +227,15 @@
 
         private async BtnMostrarCores_Click(provedor: ui.BaseUIElemento, e: ui.UIEventArgs)
         {
-            this.ControleFlutuanteCores.Mostrar();
+            if (this.IsAndroidOrIOS)
+            {
+                this.InputColorNativo.click();
+            }
+            else
+            {
+                this.ControleFlutuanteCores.Mostrar();
+            }
+            
         }
 
         public AtualizarSugestaoCor(cores: Array<d.Cor>): void
@@ -246,6 +254,11 @@
         public SalvarHistorico(): void
         {
             this.ControleFlutuanteCores.SalvarHistorico();
+        }
+
+        private get IsAndroidOrIOS(): boolean
+        {
+            return false;
         }
 
 
