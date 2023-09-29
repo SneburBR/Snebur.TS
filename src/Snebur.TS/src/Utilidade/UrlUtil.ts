@@ -238,9 +238,24 @@
             }
 
             const dominioSubtituir = this.RetornarDominioSuperiorSubstituir(ambienteServidor);
-            return url.Replace(ConstantesDominioSuperior.DOMIMIO_SUPERIOR_PRODUCAO, dominioSubtituir).
-                Replace("https://", "http://");
+            return UrlUtil.NormalizarHttps(url.Replace(ConstantesDominioSuperior.DOMIMIO_SUPERIOR_PRODUCAO, dominioSubtituir));
+        }
 
+        public static NormalizarHttps(url: string): string
+        {
+            url = url.toLowerCase().trim();
+
+            if (url.startsWith("https://"))
+            {
+                return url;
+            }
+
+            if (url.startsWith("http://"))
+            {
+                return url.Replace("http://", "https://");
+            }
+            url = UrlUtil.RemoverBarraInicial(url);
+            return `https://${url}`;
         }
 
         private static RetornarDominioSuperiorSubstituir(ambienteServidor: EnumAmbienteServidor)
