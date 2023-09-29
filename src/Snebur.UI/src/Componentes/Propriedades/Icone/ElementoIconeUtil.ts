@@ -6,8 +6,8 @@
             elementoRecipienteIcone: HTMLElement,
             componenteApresentacao?: ComponenteApresentacao): HTMLElement
         {
-            const elementosIcones = elementoRecipienteIcone.getElementsByTagName(PropriedadeIcone.TAG_COMPONENTE_ICONE);
-            if (elementosIcones.length === 0)
+            const elementoIcone = elementoRecipienteIcone.querySelector(PropriedadeIcone.TAG_COMPONENTE_ICONE) as HTMLElement;
+            if (elementoIcone == null)
             {
                 const elementoIcone = document.createElement(PropriedadeIcone.TAG_COMPONENTE_ICONE);
                 if (elementoRecipienteIcone.firstChild instanceof HTMLElement)
@@ -21,12 +21,20 @@
                 return elementoIcone;
             }
 
-            if (elementosIcones.length > 1)
+            if (elementoIcone.nextElementSibling != null)
             {
                 console.error(`Mais de um elemento Ícone foi encontrado em ${componenteApresentacao?.ControleApresentacao?.___NomeConstrutor}
                                   OuterHTML: ${componenteApresentacao?.Elemento?.outerHTML.substring(0, 255)}`);
             }
-            return elementosIcones.item(0) as HTMLElement;
+
+            const elementoIconeFilho = elementoIcone.querySelector(PropriedadeIcone.TAG_COMPONENTE_ICONE) as HTMLElement;
+            if (elementoIconeFilho == null) 
+            {
+                return elementoIcone;
+            }
+            return ElementoIconeUtil.RetornarElementoIcone(elementoIcone as HTMLElement, componenteApresentacao);
+
+            
         }
 
 
