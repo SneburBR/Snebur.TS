@@ -5,7 +5,7 @@
         public readonly IsElementoInterno: boolean = false;
         public static readonly TAG_COMPONENTE_ICONE: string = "AP-ICONE";
 
-        public constructor(isElementoInterno:boolean)
+        public constructor(isElementoInterno: boolean)
         {
             super(AtributosHtml.Icone);
             this.IsElementoInterno = isElementoInterno;
@@ -33,7 +33,7 @@
                 {
                     return IconeUtil.RetornarIconeEnum(valorDom);
                 }
-                console.error(`O icone ${valorDom} não for encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
+                console.error(`O ícone ${valorDom} não for encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
                 return EnumIcone.Warning;
             }
             return EnumIcone.Vazio;
@@ -44,7 +44,9 @@
             const elementoIcone = this.RetornarElementoIcone(componenteApresentacao);
             elementoIcone.innerHTML = this.RetornaarConteudoIcone(icone);
 
-            if (icone === EnumIcone.Vazio && this.IsElementoInterno)
+            if (icone === EnumIcone.Vazio &&
+                this.IsElementoInterno &&
+                !this.__isValorDomBind)
             {
                 elementoIcone.remove();
             }
@@ -81,6 +83,6 @@
         }
     }
 
-   
+
 
 }

@@ -52,6 +52,7 @@
             valorDom = this.NormalizarValorDom(valorDom);
             return this.RetornarValorParaComponente(componenteApresentacao, valorDom);
         }
+
         private NormalizarValorDom(valorDom: string): string
         {
             if (BindUtil.IsCaminhoBind(valorDom))

@@ -6,7 +6,7 @@
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement, valorAtributo: string)
         {
-            super(controlePai, elemento, AtributosHtml.CorFundo, valorAtributo);
+            super(controlePai, elemento, AtributosHtml.Icone, valorAtributo);
             this.Controle = this.ControlePai.ControlesFilho.Where(x => x.IDElemento === this.IDElemento).SingleOrDefault();
         }
 
@@ -26,6 +26,11 @@
             if (u.EnumUtil.IsDefindo(EnumIcone, novoValor))
             {
                 return IconeUtil.RetornarIconeDomMaterial(novoValor);
+            }
+            // eslint-disable-next-line eqeqeq
+            if (novoValor != null && (novoValor as any)  != "")
+            {
+                throw new Error(`O valor ${novoValor} não é um ícone válido.`);
             }
             return null;
         }
