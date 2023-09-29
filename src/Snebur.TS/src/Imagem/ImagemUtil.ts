@@ -197,7 +197,9 @@
 
 
         //#endregion
-        public static RetornarTamanhoImagemAutomatico(imagem: d.IImagem, dimensaoRecipiente: IDimensao, tamanhoDimensaoVazia?: EnumTamanhoImagem): d.EnumTamanhoImagem
+        public static RetornarTamanhoImagemAutomatico(
+            imagem: d.IImagem,
+            dimensaoRecipiente: IDimensao, tamanhoDimensaoVazia?: EnumTamanhoImagem): d.EnumTamanhoImagem
         {
             if (dimensaoRecipiente.Largura <= 0)
             {

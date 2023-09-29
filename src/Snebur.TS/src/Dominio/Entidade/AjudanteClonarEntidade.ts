@@ -109,7 +109,6 @@
 
         public Clonar(): void
         {
-
             const tipoEntidade = this.TipoEntidade;
             const entidadeClonada = this.EntidadeClonada;
             const opcoes = this.Opcoes;

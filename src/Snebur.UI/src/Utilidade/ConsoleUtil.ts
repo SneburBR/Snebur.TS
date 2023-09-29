@@ -9,6 +9,8 @@
         private static ALTURA_NORMAL = 50;
         private static IsExpandido: boolean = false;
 
+        private static AltertasDisparados = new HashSet<number>();
+
         public static InicializarVisualizacaoConsole(e: ConsoleLogArgs)
         {
             if (ConsoleUtil._isInicializando)
@@ -86,8 +88,7 @@
             botaoFechar.addEventListener("click", ConsoleUtil.BtnFechar_Click.bind(ConsoleUtil));
             botaoFechar.innerHTML = "Fechar";
             estiloBotao.AplicarEm(botaoFechar);
-
-
+             
             estiloConsole.AplicarEm(elementoConsole);
             estiloBotao.AplicarEm(botaoExpandir);
 
@@ -103,7 +104,6 @@
 
             this.ElementoBotaoExpandir = botaoExpandir;
             this.ElementoConsole = elementoConsole;
-
         }
 
         private static BtnExpandir_Click(): void
@@ -142,7 +142,7 @@
             delete ConsoleUtil.ElementoBotaoExpandir;
         }
 
-        private static AltertasDisparados = new HashSet<number>();
+        
 
         private static ConsoleUtil_Log(provedcor: any, e: ConsoleLogArgs)
         {
@@ -150,7 +150,7 @@
             {
                 if (e.Tipo === EnumTipoLog.Alerta)
                 {
-                    if (!$Configuracao.IsDebug && $Configuracao.IsTeste)
+                    if ($Configuracao.IsTeste)
                     {
                         return;
                     }

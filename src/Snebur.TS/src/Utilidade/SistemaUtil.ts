@@ -187,9 +187,7 @@
         private static RetornarNavegador(): Snebur.Dominio.Navegador
         {
             const navegadorEnum = this.RetornarNavegadorEnum(this.Resultado.browser.name);
-
             return new d.Navegador(navegadorEnum, this.Resultado.browser.name, this.Resultado.browser.version, this.Resultado.browser.major);
-
         }
 
         private static RetornarLocalizacao(): Snebur.Dominio.Localizacao
@@ -214,8 +212,6 @@
                     return Snebur.Dominio.EnumSistemaOperacional.iOS;
                 case "windows phone":
                     return Snebur.Dominio.EnumSistemaOperacional.WindowsPhone;
-                default:
-
             }
 
             if (nomeSistemaOperacional.Contains("windows phone"))
