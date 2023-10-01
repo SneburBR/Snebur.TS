@@ -141,19 +141,17 @@
             delete ConsoleUtil.ElementoConsole;
             delete ConsoleUtil.ElementoBotaoExpandir;
         }
-
-        
-
+         
         private static ConsoleUtil_Log(provedcor: any, e: ConsoleLogArgs)
         {
             if (ConsoleUtil._isInicializando)
             {
                 if (e.Tipo === EnumTipoLog.Alerta)
                 {
-                    if ($Configuracao.IsTeste)
-                    {
-                        return;
-                    }
+                    //if ($Configuracao.IsTeste)
+                    //{
+                    //    return;
+                    //}
 
                     if (ConsoleUtil.AltertasDisparados.Contains(e.Mensagem.GetHashCode()))
                     {
@@ -185,7 +183,6 @@
                             behavior: "smooth"
                         });
                     }
-
                 }
             }
         }

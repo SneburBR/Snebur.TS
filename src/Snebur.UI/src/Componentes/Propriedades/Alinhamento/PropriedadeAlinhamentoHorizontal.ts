@@ -2,9 +2,7 @@
 {
     export class PropriedadeAlinhamentoHorizontal extends PropriedadeApresentacao<EnumAlinhamentoHorizontal>
     {
-       
         private static readonly PREFIXO_CLASSE_CSS_ALINHAMENTO_HORIZONTAL = "ap-alinhamento-horizontal--";
-
         private static readonly NOME_CLASSE_CSS_ALINHAMENTO_HORIZONTAL_ESQUERDA = "ap-alinhamento-horizontal--esquerda";
         private static readonly NOME_CLASSE_CSS_ALINHAMENTO_HORIZONTAL_CENTRO = "ap-alinhamento-horizontal--centro";
         private static readonly NOME_CLASSE_CSS_ALINHAMENTO_HORIZONTAL_DIREITA = "ap-alinhamento-horizontal--direita";
