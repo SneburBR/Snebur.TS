@@ -7,7 +7,9 @@
         private IdTimeout: number;
         private readonly DimensaoImpressao: d.Dimensao;
 
-        public constructor(origemImagemLocal: sa.OrigemImagemLocal, dimensaoImpressao: d.Dimensao)
+        public constructor(
+            origemImagemLocal: sa.OrigemImagemLocal,
+            dimensaoImpressao: d.Dimensao)
         {
             super(origemImagemLocal.ArquivoLocal);
             this.DimensaoImpressao = dimensaoImpressao;
@@ -30,7 +32,7 @@
             const blob = await this.RetornarBlobAsync(canvas, u.ImagemUtil.QUALIDADE_IMPRESSAO_CANVAS / 100, mimeType);
             if (blob != null)
             {
-                console.warn(`Processado Magick Canvas  : Arquivo: ${this.ArquivoLocal.name} - t ${t.TotalSeconds} `);
+                console.warn(`Processado Canvas  : Arquivo: ${this.ArquivoLocal.name} - t ${t.TotalSeconds} `);
                 if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__)
                 {
                     const extensao = mimeType.substring(mimeType.indexOf("/") + 1);

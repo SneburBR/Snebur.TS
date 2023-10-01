@@ -120,7 +120,6 @@
 
         public static async SairAsync( )
         {
-            
             return $Aplicacao.SairAsync();
         }
 
