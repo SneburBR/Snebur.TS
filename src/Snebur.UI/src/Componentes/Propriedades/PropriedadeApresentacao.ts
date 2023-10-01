@@ -3,9 +3,6 @@
 
     export abstract class PropriedadeApresentacao<TValor> extends Snebur.Objeto implements IPropriedadeApresentacao<TValor>
     {
-        protected __isValorDomBind: boolean;
-        protected __caminhoBind: string;
-
         public static readonly VAZIO = "Vazio";
 
         //o nome da propriedade é definido no momento do mapeamento
@@ -27,7 +24,7 @@
             super();
 
             this.Atributo = atributo;
- 
+
             this.DicionarioNomesAtributoResponsivo.Add(this.Atributo.Nome, new NomesAtributoApresentacaoResponsivo(this.Atributo));
             this.AtributosOpcionais.AddRange(atributosOpcional);
 
@@ -49,16 +46,19 @@
         public RetornarValor(componenteApresentacao: ComponenteApresentacao): TValor
         {
             let valorDom = this.RetornarValorAtributoDom(componenteApresentacao);
-            valorDom = this.NormalizarValorDom(valorDom);
+            valorDom = this.NormalizarValorDom(componenteApresentacao, valorDom);
             return this.RetornarValorParaComponente(componenteApresentacao, valorDom);
         }
 
-        private NormalizarValorDom(valorDom: string): string
+        private NormalizarValorDom(componenteApresentacao: ComponenteApresentacao, valorDom: string): string
         {
             if (BindUtil.IsCaminhoBind(valorDom))
             {
-                this.__isValorDomBind = true;
-                this.__caminhoBind = valorDom;
+                const propriedadeApresentacao = componenteApresentacao.__atributosBindsPropriedadeApresetencao__;
+                propriedadeApresentacao[this.NomePropriedade] = {
+                    _isBind_: true,
+                    _caminhoBind_: valorDom
+                };
                 return String.Empty;
             }
             return valorDom;
@@ -177,4 +177,10 @@
 
     }
 
+    /*@internal*/
+    export class AtributosBindPropriedadeApresentacao
+    {
+        _isBind_: boolean;
+        _caminhoBind_: string;
+    }
 }

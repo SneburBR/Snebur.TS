@@ -33,7 +33,7 @@
                 {
                     return IconeUtil.RetornarIconeEnum(valorDom);
                 }
-                console.error(`O ícone ${valorDom} não for encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
+                console.error(`O ícone ${valorDom} não foi encontrado em ${compronenteApresentacao.ControleApresentacao.___NomeConstrutor}`);
                 return EnumIcone.Warning;
             }
             return EnumIcone.Vazio;
@@ -41,12 +41,17 @@
 
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, icone: EnumIcone): void
         {
+            const atributosBin = componenteApresentacao.__atributosBindsPropriedadeApresetencao__[this.NomePropriedade];
+            if (atributosBin?._isBind_)
+            {
+                return;
+            }
+
             const elementoIcone = this.RetornarElementoIcone(componenteApresentacao);
             elementoIcone.innerHTML = this.RetornaarConteudoIcone(icone);
 
-            if (icone === EnumIcone.Vazio &&
-                this.IsElementoInterno &&
-                !this.__isValorDomBind)
+            if (icone === EnumIcone.Vazio && this.IsElementoInterno &&
+                componenteApresentacao.Elemento !== elementoIcone)
             {
                 elementoIcone.remove();
             }

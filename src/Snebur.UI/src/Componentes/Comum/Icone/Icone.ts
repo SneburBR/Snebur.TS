@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class Icone extends ComponenteApresentacaoConteudo  
+    export class Icone extends ComponenteApresentacaoConteudo implements IComponenteApresentacaoIcone 
     {
         public Icone: EnumIcone;
         public TamanhoIcone: EnumTamanhoIcone;
@@ -8,6 +8,7 @@
 
         public get ElementoRecipienteIcone(): HTMLElement
         {
+            /*return this.ElementoApresentacao;*/
             return this.ElementoApresentacao.querySelector("ap-icone") ?? this.ElementoApresentacao;
         }
 

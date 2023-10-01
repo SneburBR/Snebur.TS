@@ -14,9 +14,10 @@
         {
             const icone = this.RetornarIconeInterno(novoValor);
             const elemento = this.Elemento;
-            const destino = elemento.querySelector("ap-icone") ??
-                elemento.querySelector(".material-icons") ??
-                ElementoIconeUtil.RetornarElementoIcone(elemento, this.Controle);
+            const destino = ElementoIconeUtil.RetornarElementoIcone(elemento, this.Controle);
+                //elemento.querySelector("ap-icone") ??
+                //elemento.querySelector(".material-icons") ??
+                //ElementoIconeUtil.RetornarElementoIcone(elemento, this.Controle);
 
             destino.innerHTML = icone;
         }

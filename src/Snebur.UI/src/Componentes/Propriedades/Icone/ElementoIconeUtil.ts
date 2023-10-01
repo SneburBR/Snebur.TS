@@ -9,6 +9,12 @@
             const elementoIcone = elementoRecipienteIcone.querySelector(PropriedadeIcone.TAG_COMPONENTE_ICONE) as HTMLElement;
             if (elementoIcone == null)
             {
+                if (elementoRecipienteIcone.tagName === PropriedadeIcone.TAG_COMPONENTE_ICONE &&
+                    elementoRecipienteIcone.parentElement?.tagName === PropriedadeIcone.TAG_COMPONENTE_ICONE)
+                {
+                    return elementoRecipienteIcone;
+                }
+          
                 const elementoIcone = document.createElement(PropriedadeIcone.TAG_COMPONENTE_ICONE);
                 if (elementoRecipienteIcone.firstChild instanceof HTMLElement)
                 {
@@ -34,7 +40,7 @@
             }
             return ElementoIconeUtil.RetornarElementoIcone(elementoIcone as HTMLElement, componenteApresentacao);
 
-            
+
         }
 
 

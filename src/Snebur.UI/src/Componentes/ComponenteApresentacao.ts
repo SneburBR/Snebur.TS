@@ -10,6 +10,10 @@
         private _estiloItems: EstilosItens;
         protected __isBaseControle__ = false;
 
+        /*@internal*/
+        public __atributosBindsPropriedadeApresetencao__: { [x: string]: AtributosBindPropriedadeApresentacao } = {};
+;
+
         public readonly ComponenteApresentacaoPai: ComponenteApresentacao;
         public readonly ComponentesApresentacaoFilhos: ListaObservacao<ComponenteApresentacao> = new ListaObservacao<ComponenteApresentacao>();
         public readonly DicionariosObjetosNomeados = new DicionarioSimples<ComponenteApresentacao | Element>();
