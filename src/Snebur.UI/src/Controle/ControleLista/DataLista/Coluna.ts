@@ -122,7 +122,6 @@
 
         public RetornarRotulo(): string
         {
-            const xx = this.RetornarRotuloObsoleto();
             return ControleRotuloUtil.RetornarRotulo(this);
         }
 

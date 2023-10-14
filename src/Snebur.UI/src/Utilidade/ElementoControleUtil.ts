@@ -26,10 +26,6 @@
 
         public static IsElementoControle(elemento: Element): boolean
         {
-            if (elemento.tagName === "SN-CAIXA-SUGESTAO")
-            {
-                const xx = "'";
-            }
             return (elemento.tagName.substring(0, PREFIXO_TAG_CONTROLE.length).toUpperCase() === PREFIXO_TAG_CONTROLE);
         }
     }

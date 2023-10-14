@@ -326,12 +326,7 @@
                         console.error(`O elemento inicialização do controle ${controleFilho.___NomeConstrutor} foi rejeitado, em ${this.___NomeConstrutor}. 
                                        Verifique o método construtor se o elemento referencia está sendo passado para a class super 
                                        Ex:  public constructor(controlePai: Snebur.UI.BaseControle, refElemento: HTMLElement| string)
-                                                   &nbsp;&nbsp;&nbsp;&nbsp;super(controlePai, refElemento); `);
-
-                        if ($Configuracao.IsDebug)
-                        {
-                            const xxx = new construtor(this, elementoFilho);
-                        }
+                                                    super(controlePai, refElemento);`);
                     }
                 }
 

@@ -4,6 +4,7 @@
     {
         public static get IsOnline(): boolean
         {
+            
             return navigator.onLine;
         }
 

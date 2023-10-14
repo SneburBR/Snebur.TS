@@ -59,11 +59,9 @@
 
         private async TentarChamarServicoInternoAsync(nomeMetodo: string, argumentos: IArguments)
         { 
-            const resultado = await this.ChamarServicoInternoAsync(
+             await this.ChamarServicoInternoAsync(
                 nomeMetodo,
                 argumentos);
-
-            let x = "";
         }
 
         protected async ChamarServicoInternoAsync(

@@ -136,11 +136,6 @@
                 this.ElementoVisualizacaoCor.OcultarElemento();
                 //this.ElementoVisualizacaoIcone.MostrarElemento();
                 this.AdicionarEventoDom(ui.EnumEventoDom.MouseDown, this.ElementoVisualizacaoIcone_MouseDown);
-                //this.ElementoIcone.innerHTML = this.Icone;
-                if (this.IconeCategoria === EnumIconeCategoria.Outlined)
-                {
-                    const xx = "";
-                }
 
                 this.BotaoIcone.MostrarElemento();
                 this.BotaoIcone.Icone = this.Icone;
