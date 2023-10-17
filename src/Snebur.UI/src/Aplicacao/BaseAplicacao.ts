@@ -115,7 +115,7 @@
                 if (!this.IsUsuarioLogado)
                 {
                     this.NotificarUsuarioAnonimoNaoSuportado();
-                    
+
                     await this.SairAsync();
                     throw new ErroOperacaoInvalida("Quando não é permitido usuário anonimo, a Janela entrar, não pode retornar o resultado até autenticação seja concluída com sucesso", this);
                 }
@@ -133,7 +133,7 @@
             this.IncrementarProcessoCarregandoAplicacao();
         }
 
-        
+
 
         private AdicionarClassBody()
         {
@@ -152,7 +152,7 @@
                 }
                 return;
             }
-         }
+        }
 
         protected NotificarUsuarioAnonimoNaoSuportado()
         {
@@ -421,12 +421,22 @@
             }
             return new Promise<void>(resolver => this.CarregarFonteIconesInternoAsync(resolver));
         }
-        private async CarregarFonteIconesInternoAsync(resolver: () => void): Promise<void>  
+        private async CarregarFonteIconesInternoAsync(_baseResolver: () => void): Promise<void>  
         {
             if (document.fonts == null)
             {
                 return;
             }
+
+            let isFinalzizado = false;
+            const resolver = () =>
+            {
+                if (!isFinalzizado)
+                {
+                    isFinalzizado = true;
+                    _baseResolver();
+                }
+            };
 
             /*eslint-disable*/
 
@@ -435,20 +445,9 @@
             {
                 let tempo = Stopwatch.StartNew();
                 this.__CarregarFonteIconesInternoAsync(resolver);
-
-                (resolver as any).Chamar = function ()
-                {
-                    if (!(resolver as any).__isOk)
-                    {
-                        console.log(`Fonte dos icones carregada ${tempo.ElapsedMilliseconds}`);
-
-                        (resolver as any).__isOk = true;
-                        resolver();
-                    }
-                }
-
+                 
                 let isLogNotificado = false;
-                while (!isFonteCarregada && !(resolver as any).__isOk)
+                while (!isFonteCarregada && !isFinalzizado)
                 {
                     if (tempo.ElapsedMilliseconds > BaseAplicacao.TEMPO_MAXIMO_CARREGAR_FONTES_ICONE)
                     {
@@ -459,23 +458,23 @@
                     if (tempo.ElapsedMilliseconds > 1000 && !isLogNotificado)
                     {
                         isLogNotificado = true;
-                        console.warn("Aguardando carregar fontes dos icones");
+                        console.warn("Aguardando carregar fontes dos ícones");
                     }
                     await ThreadUtil.EsperarAsync(20);
                     isFonteCarregada = document.fonts.check(BaseAplicacao.FONTE_ICONES);
 
                 }
             }
-            (resolver as any).Chamar();
+            resolver();
 
         }
-        private async __CarregarFonteIconesInternoAsync(resolver: (agrs: void | PromiseLike<void>) => void)
+        private async __CarregarFonteIconesInternoAsync(resolver: () => void)
         {
             document.fonts.ready.then(function ()
             {
                 if (document.fonts.check(BaseAplicacao.FONTE_ICONES))
                 {
-                    (resolver as any).Chamar();
+                    resolver();
                 }
             });
 
@@ -485,7 +484,7 @@
             {
                 if (fontes.length > 0)
                 {
-                    (resolver as any).Chamar();
+                    resolver();
                 }
             });
         }
