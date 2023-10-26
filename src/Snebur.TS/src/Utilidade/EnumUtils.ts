@@ -71,7 +71,7 @@
                 return "";
             }
             
-            console.error(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${construtorEnum.constructor.name}`);
+            console.error(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${u.ReflexaoUtil.RetornarNomeTipo(construtorEnum)}`);
             return valor?.toString() ?? "";
         }
 
@@ -127,7 +127,7 @@
                 return null;
             }
 
-            throw new Erro(`Não foi possível encontrar o valor '${valor}'  no enum  ${construtorEnum.constructor.name}`);
+            throw new Erro(`Não foi possível encontrar o valor '${valor}'  no enum  ${ u.ReflexaoUtil.RetornarNomeTipo( construtorEnum)}`);
         }
 
         private static RetornarValorInterno(construtorEnum: any, descricao: string | number, isIngorarErro: boolean): any

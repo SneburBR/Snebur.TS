@@ -11,8 +11,8 @@
             e.IsNotificado = true;
 
             const sb = new StringBuilder();
-            sb.AppendLine(`Tipo: ${erroInterno?.constructor?.name ?? " desconhecido "}`);
-            sb.AppendLine(`Event: ${e.constructor?.name}`);
+            sb.AppendLine(`Tipo: ${u.ReflexaoUtil.RetornarNomeTipo(erroInterno)}`);
+            sb.AppendLine(`Event: ${u.ReflexaoUtil.RetornarNomeTipo(e.constructor)}`);
             sb.AppendLine(`Data: ${FormatacaoUtil.FormatarDataHora(new Date())}`);
 
             if (e instanceof ErrorEvent)

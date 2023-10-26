@@ -93,7 +93,6 @@
                 throw new Erro(`Não é possível criar um tipo genérico, o caminho '${construtor.name}' já existe`);
             }
             const novoTipoGenerico = new r.TipoGenerico(construtor, tipoBase);
-
             if (novoTipoGenerico.CaminhoTipo !== caminhoTipo)
             {
                 throw new Erro("Caminho invalido");

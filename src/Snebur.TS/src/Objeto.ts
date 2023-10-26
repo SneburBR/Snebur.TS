@@ -15,7 +15,7 @@ namespace Snebur
          */
         public get ___NomeConstrutor(): string
         {
-            return this.constructor.name;
+            return   this.constructor.name;
         }
 
         public get __CaminhoTipo(): string

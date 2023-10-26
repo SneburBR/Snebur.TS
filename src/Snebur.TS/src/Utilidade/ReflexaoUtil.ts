@@ -366,7 +366,7 @@
         //#endregion
 
         //#region Construtor
-         
+
         public static RetornarConstrutorEntidade(nomeTipoEntidade: string): IConstrutor<Entidade>
         {
             return r.ReflexaoNamespaceUtil.RetornarConstrutorEntidade(nomeTipoEntidade);
@@ -386,7 +386,7 @@
             }
             throw new Erro(`Não foi encontrado o construtor enum ${tipoOrCaminho}`);
         }
-          
+
         //#endregion
 
         public static RetornarTipoItemLista(lista: Array<any>): Snebur.Reflexao.BaseTipoLista
@@ -426,7 +426,7 @@
             return $Reflexao.TipoListaItemDesconhecido;
         }
 
-        public static RetornarNomeTipo(obj: Function | Objeto | string | any, isIgnorarErro: boolean = false): string
+        public static RetornarNomeTipo(obj: Function | Objeto | string | any, isIgnorarErro: boolean = true): string
         {
             if (obj === undefined)
             {
@@ -454,6 +454,11 @@
                 {
                     return tipo.Nome;
                 }
+            }
+
+            if (typeof obj.constructor?.name === "string")
+            {
+                return obj.constructor.name;
             }
 
             const nomeConstrutor = this.RetornarNomeConstrutor(obj);

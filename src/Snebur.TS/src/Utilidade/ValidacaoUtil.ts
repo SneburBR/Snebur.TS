@@ -1234,7 +1234,7 @@
 
             if (!EnumUtil.IsDefindo(construtorEnum, valor))
             {
-                throw new Erro(`O propriedade ${nomePropriedade} do tipo enum ${construtorEnum.constructor.name} não está definida no objecto ${obj?.GetType().Nome} '${obj}`);
+                throw new Erro(`O propriedade ${nomePropriedade} do tipo enum ${u.ReflexaoUtil.RetornarNomeTipo(construtorEnum)} não está definida no objecto ${obj?.GetType().Nome} '${obj}`);
             }
         }
     }
