@@ -2,6 +2,12 @@
 {
     export class RotaUtil
     {
+        public static RetornarPrimeroCaminho(caminho: string)
+        {
+            caminho = UrlUtil.AdicionarBarraInicial(caminho);
+            return  "/" + caminho.split("/")[1];
+        }
+
         public static NormalizarCaminho(caminho: string, isAdicionarBarraFinal:boolean = false): string
         {
             if (caminho == null)

@@ -64,12 +64,12 @@
             const tipoUI = this.RetornarTipoUIInterno(tipoOuConstrutor);
             if (tipoUI == null)
             {
-                throw new ErroNaoDefinido("O TipoUI não foi definido para" + tipoOuConstrutor.constructor.name, this);
+                throw new ErroNaoDefinido("O TipoUI não foi definido para" + u.ReflexaoUtil.RetornarNomeTipo(tipoOuConstrutor), this);
             }
             const htmlReferencia = tipoUI.RetornarHtmlReferencia();
             if (htmlReferencia == null)
             {
-                throw new ErroNaoDefinido(`O html referencia não está definido '${tipoOuConstrutor.constructor.name}'`, this);
+                throw new ErroNaoDefinido(`O html referencia não está definido '${u.ReflexaoUtil.RetornarNomeTipo(tipoOuConstrutor) }'`, this);
             }
             return htmlReferencia;
         }

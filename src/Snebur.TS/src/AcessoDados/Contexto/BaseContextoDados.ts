@@ -254,7 +254,7 @@
             }
 
             /*eslint-disable*/
-            const entidades = this.RetornarEntidades(arguments);
+            const entidades = this.RetornarEntidades(argumento);
             /*eslint-enable*/
             if (entidades.length === 0)
             {
@@ -475,19 +475,39 @@
         }
 
         public async AbrirColecaoAsync<TEntidade extends Entidade>
-            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade[])[]): Promise<void>
+            (entidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade[])[]): Promise<void>
         {
-            await this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
-
+            await this.AbrirRelacaoOuColecaoAsync(entidades, expressoesAbrirRelacao);
         }
 
-        public async AbrirRelacaoAsync<TEntidade extends Entidade>
-            (entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        public async AbrirRelacaoAsync<TEntidade extends Entidade>(entidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
         {
-            await this.AbrirRelacaoOuColecaoAsync(entidade, expressoesAbrirRelacao);
+            await this.AbrirRelacaoOuColecaoAsync(entidades, expressoesAbrirRelacao);
         }
 
         public async AbrirRelacaoOuColecaoAsync<TEntidade extends Entidade>
+            (entidades: TEntidade | TEntidade[], expressoesAbrirRelacao: ((value: TEntidade) => any)[]): Promise<void>
+        {
+            if (entidades instanceof Entidade)
+            {
+                await this.AbrirRelacaoOuColecaoInternoAsync(entidades, expressoesAbrirRelacao);
+                return;
+            }
+
+            if (Array.isArray(entidades))
+            {
+                for (const entidade of entidades)
+                {
+                    await this.AbrirRelacaoOuColecaoInternoAsync(entidade, expressoesAbrirRelacao);
+                }
+                return;
+            }
+
+            throw new Erro("O parâmetro entidades não é do tipo Entidade ou Array");
+
+        }
+
+        private async AbrirRelacaoOuColecaoInternoAsync<TEntidade extends Entidade>
             (entidade: TEntidade, expressoesAbrirRelacao: ((value: TEntidade) => any)[]): Promise<void>
         {
             if (entidade.Id === 0)

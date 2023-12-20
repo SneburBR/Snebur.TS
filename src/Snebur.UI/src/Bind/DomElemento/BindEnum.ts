@@ -48,7 +48,7 @@
             if (u.ValidacaoUtil.IsNumber(valorPropriedade))
             {
                 const valorEnum = u.ConverterUtil.ParaNumero(valorPropriedade);
-                const rotulo = u.EnumUtil.RetornarRotulo(this.ConstrutorEnum, valorEnum);
+                const rotulo = u.EnumUtil.RetornarRotulo(this.ConstrutorEnum, valorEnum, true);
                 return super.NormalizarValorPropriedade(rotulo);
             }
             return String.Empty;

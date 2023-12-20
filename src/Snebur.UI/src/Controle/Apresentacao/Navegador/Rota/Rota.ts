@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class Rota
+    export abstract class BaseRota
     {
         public readonly ConstrutorPagina: IPaginaConstrutor;
         public readonly Caminho: string;
@@ -10,7 +10,9 @@
         public Parametros: any;
         public IsIgnorarRotaRecarregar: boolean = false;
 
-        public constructor(partial: Partial<Rota>)
+        public FuncaoExecutarRota : (...args: any) => void;
+
+        public constructor(partial: Partial<BaseRota>)
         {
             this.ConstrutorPagina = partial.ConstrutorPagina;
             Object.assign(this, partial);
@@ -25,10 +27,6 @@
                 throw new Erro("O caminho da rota de iniciar com '/' ");
             }
 
-            if (typeof this.ConstrutorPagina !== "function")
-            {
-                throw new Erro("O construtor da página não foi definido");
-            }
             this.Caminho = RotaUtil.NormalizarCaminho(partial.Caminho);
         }
 
@@ -98,7 +96,7 @@
                 return true;
             }
 
-            if (rota instanceof Rota)
+            if (rota instanceof BaseRota)
             {
                 return this.ConstrutorPagina === rota.ConstrutorPagina &&
                     this.IsParametrosIgual(rota.Parametros);
@@ -121,4 +119,27 @@
             return false;
         }
     }
+
+    export class RotaPagina extends BaseRota
+    {
+        public constructor(partial: Partial<RotaPagina>)
+        {
+            super(partial);
+            
+            if (typeof this.ConstrutorPagina !== "function")
+            {
+                throw new Erro("O construtor da página não foi definido");
+            }
+        }
+    }
+
+    export class RotaEspecial extends BaseRota
+    {
+        public constructor(partial: Partial<RotaEspecial>)
+        {
+            super(partial);
+            this.FuncaoExecutarRota = partial.FuncaoExecutarRota;
+        }
+    }
+   
 }

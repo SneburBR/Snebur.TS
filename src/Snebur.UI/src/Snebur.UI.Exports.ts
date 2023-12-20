@@ -58,7 +58,7 @@ namespace Snebur
 
     export import Estilo = Snebur.UI.Estilo;
     export import GerenciadorRotas = Snebur.UI.GerenciadorRotas;
-    export import Rota = Snebur.UI.Rota;
+    export import Rota = Snebur.UI.BaseRota;
 
 }
 

@@ -2,6 +2,16 @@
 {
     export class TextoUtil
     {
+        public static FormatarRota(texto: string)
+        {
+            let rota = TextoUtil.RemoverAcentos(TextoUtil.RemoverCaracteresEspecial(texto, "-", false));
+            while (rota.Contains("--"))
+            {
+                rota = rota.replace("--", "-");
+            }
+            return rota;
+        }
+
         public static IsIniciaComNumero(texto: string): boolean
         {
             if (u.ValidacaoUtil.IsString(texto) && texto.length > 0)
@@ -163,13 +173,13 @@
             return TextoUtil.RetornarTextoCaracteresPermitidoInterno(texto, TextoUtilConstantes.PontosSinais, true);
         }
 
-        public static RemoverCaracteresEspecial(texto: string, substituir?: string): string
+        public static RemoverCaracteresEspecial(texto: string, substituir?: string, isPermitirEspacoEmBranco: boolean = true): string
         {
             if (String.IsNullOrWhiteSpace(texto))
             {
                 return "";
             }
-            return TextoUtil.RetornarTextoCaracteresPermitidoInterno(texto, TextoUtilConstantes.CaracteresPadrao, true, substituir);
+            return TextoUtil.RetornarTextoCaracteresPermitidoInterno(texto, TextoUtilConstantes.CaracteresPadrao, isPermitirEspacoEmBranco, substituir);
         }
 
         public static RemoverCaracteresEspecialPontosSinais(texto: string, substituir?: string): string

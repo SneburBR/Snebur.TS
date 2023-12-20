@@ -5,7 +5,6 @@
         public static readonly IDENTIFICADOR = "NavegadorPrincipal";
         public override readonly CaminhoRota: string = $Configuracao.CaminhoRotaNavegadorPrincipal ?? "/";
         public override readonly IsHistoricoAtivo: boolean = true;
-
         public override readonly IdentificadorNavegador: string = NavegadorPrincipal.IDENTIFICADOR;
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement) 
@@ -21,6 +20,7 @@
             console.log("Rota do navegador principal" + this.CaminhoRota);
 
             const identificadorNavegador = this.RetornarValorAtributo(AtributosHtml.IdentificadorNavegador, null);
+
             if (!String.IsNullOrWhiteSpace(identificadorNavegador) &&
                 identificadorNavegador !== NavegadorPrincipal.IDENTIFICADOR)
             {
@@ -80,6 +80,12 @@
                 if (this.PaginaAtual?.Rota?.Equals(rota))
                 {
                     return false;
+                }
+
+                if (typeof rota.FuncaoExecutarRota === "function")
+                {
+                    rota.FuncaoExecutarRota();
+                    return true;
                 }
 
                 console.log(`Navegando para a rota ${rota.Caminho}`);
@@ -157,7 +163,5 @@
                 meta.setAttribute("content", content);
             }
         }
-
     }
-
 }

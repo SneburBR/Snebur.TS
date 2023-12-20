@@ -21,7 +21,7 @@
             throw new Erro("O controle pai não é  do tipo navegador", this);
         }
 
-        public get Rota(): Rota
+        public get Rota(): BaseRota
         {
             if (!this.Navegador.IsHistoricoAtivo)
             {
@@ -228,7 +228,7 @@
             return this.constructor === construtor;
         }
 
-        protected RetornarRota(): Rota
+        protected RetornarRota(): BaseRota
         {
             const rota = GerenciadorRotas.RetornarRota(
                 this.Navegador.IdentificadorNavegador,
@@ -242,7 +242,7 @@
             console.warn(`ignore: não foi definido uma rota para a página ${this.___NomeConstrutor}`);
 
             const caminho = `${this.Navegador.CaminhoRota}/${this.___NomeConstrutor}`;
-            return new Rota({
+            return new RotaPagina({
                 ConstrutorPagina: this.constructor as IPaginaConstrutor,
                 Caminho: caminho
             });

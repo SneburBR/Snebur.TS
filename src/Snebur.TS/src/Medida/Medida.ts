@@ -8,6 +8,7 @@
         {
             return u.MedidaUtil.RetornarPixelsVisualizacao(this.MediaEmCentimetros, this.DpiVisualizacao);
         }
+
         public get Impressao(): number
         {
             return u.MedidaUtil.RetornarPixelsImpressao(this.MediaEmCentimetros);

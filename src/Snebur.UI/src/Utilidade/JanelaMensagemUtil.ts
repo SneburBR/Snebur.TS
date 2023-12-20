@@ -255,8 +255,8 @@
         public static async MostrarMensagemNaoImplementaoAsync(controlePai: BaseControle = $Aplicacao.DocumentoPrincipal): Promise<boolean>
         {
             await MensagemUtil.MostrarMensagemAsync(controlePai,
-                "Não disponível",
-                "Recurso não está  implementado ou disponível",
+                "OPS!",
+                "Este recurso não está implementado ou disponível",
                 EnumBotoesJanelaMensagem.OkEntendi);
 
             return true;
