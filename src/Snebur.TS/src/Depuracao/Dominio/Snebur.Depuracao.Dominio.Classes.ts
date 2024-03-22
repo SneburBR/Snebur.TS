@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:03
 //@Namespace: Snebur.Depuracao
 //@PrioridadeDominio: 4
 //@Globalizar: False
@@ -19,7 +17,7 @@ namespace Snebur.Depuracao
             return this._mensagem;
         }
 
-        public set Mensagem(value: Snebur.Depuracao.Mensagem)  
+        public set Mensagem(value: Snebur.Depuracao.Mensagem) 
         {
             this.NotificarValorPropriedadeAlterada("Mensagem", this._mensagem, this._mensagem = value);
         }
@@ -45,32 +43,6 @@ namespace Snebur.Depuracao
         }
         //#endregion
     }
-    export class MensagemScriptAlterado extends Snebur.Depuracao.Mensagem
-    {
-        //#region Propriedades
-    
-        private _nomeArquivo : string = null;
-    
-        public get NomeArquivo(): string 
-        {
-            return this._nomeArquivo;
-        }
-
-        public set NomeArquivo(value: string)  
-        {
-            this.NotificarValorPropriedadeAlterada("NomeArquivo", this._nomeArquivo, this._nomeArquivo = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor(inicializador?: Partial<MensagemScriptAlterado>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
     export class MensagemControleAlterado extends Snebur.Depuracao.Mensagem
     {
         //#region Propriedades
@@ -85,7 +57,7 @@ namespace Snebur.Depuracao
             return this._isScript;
         }
 
-        public set IsScript(value: boolean)  
+        public set IsScript(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsScript", this._isScript, this._isScript = value);
         }
@@ -95,7 +67,7 @@ namespace Snebur.Depuracao
             return this._urlScriptRuntime;
         }
 
-        public set UrlScriptRuntime(value: string)  
+        public set UrlScriptRuntime(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("UrlScriptRuntime", this._urlScriptRuntime, this._urlScriptRuntime = value);
         }
@@ -105,7 +77,7 @@ namespace Snebur.Depuracao
             return this._caminhoConstrutor;
         }
 
-        public set CaminhoConstrutor(value: string)  
+        public set CaminhoConstrutor(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("CaminhoConstrutor", this._caminhoConstrutor, this._caminhoConstrutor = value);
         }
@@ -115,7 +87,7 @@ namespace Snebur.Depuracao
             return this._nomeControle;
         }
 
-        public set NomeControle(value: string)  
+        public set NomeControle(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeControle", this._nomeControle, this._nomeControle = value);
         }
@@ -141,7 +113,7 @@ namespace Snebur.Depuracao
             return this._nomeArquivo;
         }
 
-        public set NomeArquivo(value: string)  
+        public set NomeArquivo(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("NomeArquivo", this._nomeArquivo, this._nomeArquivo = value);
         }
@@ -168,7 +140,7 @@ namespace Snebur.Depuracao
             return this._mensagem;
         }
 
-        public set Mensagem(value: string)  
+        public set Mensagem(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Mensagem", this._mensagem, this._mensagem = value);
         }
@@ -178,7 +150,7 @@ namespace Snebur.Depuracao
             return this._tipoLog;
         }
 
-        public set TipoLog(value: Snebur.Depuracao.EnumTipoLog)  
+        public set TipoLog(value: Snebur.Depuracao.EnumTipoLog) 
         {
             this.NotificarValorPropriedadeAlterada("TipoLog", this._tipoLog, this._tipoLog = value);
         }
@@ -205,7 +177,7 @@ namespace Snebur.Depuracao
             return this._ping;
         }
 
-        public set Ping(value: boolean)  
+        public set Ping(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("Ping", this._ping, this._ping = value);
         }
@@ -215,7 +187,7 @@ namespace Snebur.Depuracao
             return this._dataHora;
         }
 
-        public set DataHora(value: Date)  
+        public set DataHora(value: Date) 
         {
             this.NotificarValorPropriedadeAlterada("DataHora", this._dataHora, this._dataHora = value);
         }
@@ -224,6 +196,32 @@ namespace Snebur.Depuracao
         //#region Construtor
     
         public constructor(inicializador?: Partial<MensagemPing>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        //#endregion
+    }
+    export class MensagemScriptAlterado extends Snebur.Depuracao.Mensagem
+    {
+        //#region Propriedades
+    
+        private _nomeArquivo : string = null;
+    
+        public get NomeArquivo(): string 
+        {
+            return this._nomeArquivo;
+        }
+
+        public set NomeArquivo(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("NomeArquivo", this._nomeArquivo, this._nomeArquivo = value);
+        }
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor(inicializador?: Partial<MensagemScriptAlterado>) 
         {
             super(inicializador);
             this.Inicializar();

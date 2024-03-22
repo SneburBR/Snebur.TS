@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.js",
+    "outFile": "build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,

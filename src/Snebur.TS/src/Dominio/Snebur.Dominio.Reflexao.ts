@@ -22,52 +22,52 @@ namespace Snebur.Reflexao
 	export const __$tipoTipoPrimario_Byte = new Snebur.Reflexao.TipoPrimario("Byte", Snebur.Reflexao.EnumTipoPrimario.Byte);
 	
 	//Lista de tipos primarios
-	export const __$tipoListaTipoPrimario_void = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_void);
-	export const __$tipoListaTipoPrimario_Boolean = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Boolean);
 	export const __$tipoListaTipoPrimario_String = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_String);
+	export const __$tipoListaTipoPrimario_DateTime = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_DateTime);
+	export const __$tipoListaTipoPrimario_Boolean = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Boolean);
 	export const __$tipoListaTipoPrimario_Integer = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Integer);
+	export const __$tipoListaTipoPrimario_Object = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Object);
+	export const __$tipoListaTipoPrimario_Guid = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Guid);
 	export const __$tipoListaTipoPrimario_Long = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Long);
+	export const __$tipoListaTipoPrimario_void = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_void);
 	export const __$tipoListaTipoPrimario_Decimal = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Decimal);
 	export const __$tipoListaTipoPrimario_Double = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Double);
-	export const __$tipoListaTipoPrimario_DateTime = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_DateTime);
 	export const __$tipoListaTipoPrimario_TimeSpan = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_TimeSpan);
 	export const __$tipoListaTipoPrimario_EnumValor = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_EnumValor);
-	export const __$tipoListaTipoPrimario_Guid = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Guid);
-	export const __$tipoListaTipoPrimario_Object = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Object);
 	export const __$tipoListaTipoPrimario_Single = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Single);
 	export const __$tipoListaTipoPrimario_Char = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Char);
 	export const __$tipoListaTipoPrimario_Byte = new Snebur.Reflexao.TipoListaTipoPrimario(__$tipoTipoPrimario_Byte);
 	
 	//Adicionar os tipos
 	//Adicionar  Tipos primarios
-	$Reflexao.Tipos.Adicionar("void",__$tipoTipoPrimario_void);
-	$Reflexao.Tipos.Adicionar("Boolean",__$tipoTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("String",__$tipoTipoPrimario_String);
+	$Reflexao.Tipos.Adicionar("DateTime",__$tipoTipoPrimario_DateTime);
+	$Reflexao.Tipos.Adicionar("Boolean",__$tipoTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("Integer",__$tipoTipoPrimario_Integer);
+	$Reflexao.Tipos.Adicionar("Object",__$tipoTipoPrimario_Object);
+	$Reflexao.Tipos.Adicionar("Guid",__$tipoTipoPrimario_Guid);
 	$Reflexao.Tipos.Adicionar("Long",__$tipoTipoPrimario_Long);
+	$Reflexao.Tipos.Adicionar("void",__$tipoTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("Decimal",__$tipoTipoPrimario_Decimal);
 	$Reflexao.Tipos.Adicionar("Double",__$tipoTipoPrimario_Double);
-	$Reflexao.Tipos.Adicionar("DateTime",__$tipoTipoPrimario_DateTime);
 	$Reflexao.Tipos.Adicionar("TimeSpan",__$tipoTipoPrimario_TimeSpan);
 	$Reflexao.Tipos.Adicionar("EnumValor",__$tipoTipoPrimario_EnumValor);
-	$Reflexao.Tipos.Adicionar("Guid",__$tipoTipoPrimario_Guid);
-	$Reflexao.Tipos.Adicionar("Object",__$tipoTipoPrimario_Object);
 	$Reflexao.Tipos.Adicionar("Single",__$tipoTipoPrimario_Single);
 	$Reflexao.Tipos.Adicionar("Char",__$tipoTipoPrimario_Char);
 	$Reflexao.Tipos.Adicionar("Byte",__$tipoTipoPrimario_Byte);
 	
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_void",__$tipoListaTipoPrimario_void);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Boolean",__$tipoListaTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_String",__$tipoListaTipoPrimario_String);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_DateTime",__$tipoListaTipoPrimario_DateTime);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Boolean",__$tipoListaTipoPrimario_Boolean);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Integer",__$tipoListaTipoPrimario_Integer);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Object",__$tipoListaTipoPrimario_Object);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Guid",__$tipoListaTipoPrimario_Guid);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Long",__$tipoListaTipoPrimario_Long);
+	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_void",__$tipoListaTipoPrimario_void);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Decimal",__$tipoListaTipoPrimario_Decimal);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Double",__$tipoListaTipoPrimario_Double);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_DateTime",__$tipoListaTipoPrimario_DateTime);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_TimeSpan",__$tipoListaTipoPrimario_TimeSpan);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_EnumValor",__$tipoListaTipoPrimario_EnumValor);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Guid",__$tipoListaTipoPrimario_Guid);
-	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Object",__$tipoListaTipoPrimario_Object);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Single",__$tipoListaTipoPrimario_Single);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Char",__$tipoListaTipoPrimario_Char);
 	$Reflexao.Tipos.Adicionar("ListaTipoPrimario_Byte",__$tipoListaTipoPrimario_Byte);

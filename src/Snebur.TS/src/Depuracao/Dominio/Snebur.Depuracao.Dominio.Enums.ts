@@ -1,6 +1,4 @@
 ﻿/*eslint-disable*/
-//Data : terça-feira, 16 de agosto de 2022
-//Hora : 13:36:03
 //@Namespace: Snebur.Depuracao
 //@PrioridadeDominio: 4
 //@Globalizar: False
