@@ -476,7 +476,7 @@
     "build"
   ],
   "PrioridadeProjeto": 1,
-  "UrlDesenvolvimento": "http://ui-snebur.localhost",
+  "UrlDesenvolvimento": "https://ui-localhost.sigi.com.br",
   "IsIgnorar": false,
   "Depedencias": {
     "Snebur": "../Snebur.TS/build/Snebur.d.ts"
