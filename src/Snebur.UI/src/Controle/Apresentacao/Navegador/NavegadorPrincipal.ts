@@ -130,6 +130,8 @@
             return RotaUtil.NormalizarCaminho(caminho);
         }
 
+        public static readonly HistoryState = {};
+
         public override SalvarHistoricoNavegador(
             pagina: Pagina,
             parametros: DicionarioSimples<any, string>): void
@@ -145,7 +147,7 @@
                     console.log(`Atualizando rota: ${location.pathname}
                                  Nova rota: ${novaRota} `);
 
-                    history.pushState({}, "", novaRota);
+                    history.pushState(null, "", novaRota);
                 }
 
                 const documentoPrincipal = $Aplicacao.DocumentoPrincipal;

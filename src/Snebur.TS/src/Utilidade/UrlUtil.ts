@@ -321,6 +321,11 @@
             return url;
         }
 
+        public static AjustarBarraInicialFinal(endereco:string)
+        {
+            return UrlUtil.AdicionarBarraInicial(UrlUtil.AdicionarBarraFinal(endereco));
+        }
+
         public static IsHash(hash: string): boolean
         {
             return !String.IsNullOrWhiteSpace(hash) &&

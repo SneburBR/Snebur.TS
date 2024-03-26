@@ -4,12 +4,24 @@
     {
         public static FormatarRota(texto: string)
         {
-            let rota = TextoUtil.RemoverAcentos(TextoUtil.RemoverCaracteresEspecial(texto, "-", false));
+            let rota = TextoUtil.RetornarSomentesLetrasNumeros(texto.trim(), true);
+            rota = rota.Replace(" ", "-").toLowerCase();
+
+            while (rota.Contains(" "))
+            {
+                rota = rota.replace(" ", "-");
+            }
+
             while (rota.Contains("--"))
             {
                 rota = rota.replace("--", "-");
             }
-            return rota;
+
+            if (String.IsNullOrWhiteSpace(rota))
+            {
+                return "sem-nome";
+            }
+            return UrlUtil.AjustarBarraInicialFinal(rota);
         }
 
         public static IsIniciaComNumero(texto: string): boolean
