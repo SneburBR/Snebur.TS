@@ -1,6 +1,5 @@
 ﻿
 snebur-console {
-   
     background: rgba(255,255,255,0.2);
     color: white;
     position: fixed;
@@ -8,7 +7,7 @@ snebur-console {
     margin-bottom: 4px;
     margin-top: 4px;
     font-family: 'Lucida Console' !important;
-    z-index: 2147483648;
+    z-index: 2147483647 !important;
 
 
     &.sn-expandido {
