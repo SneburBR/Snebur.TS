@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.UI.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -18,7 +18,7 @@
     "noStrictGenericChecks": true,
     "stripInternal": true,
     "strictNullChecks": false,
-    "target": "ES2015",
+    "target": "ES2020",
     "lib": [
       "DOM",
       "ES2015.Promise",
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/Snebur.d.ts",
+    "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
