@@ -355,6 +355,7 @@ sn-botao {
         padding: 0;
 
         > conteudo-apresentacao {
+
             background-color: transparent !important;
 
             &:hover {
@@ -403,7 +404,7 @@ sn-botao {
             }
 
             ap-icone + rotulo-botao {
-                top: -0.5rem !important;
+                /*top: 0.5rem !important;*/
             }
         }
     }

@@ -168,7 +168,7 @@
                 {
                     return this.DicionarioCaminhos.Item(caminho);
                 }
-                console.error(`Não foi encontrada a rota para o caminho: ${caminho} `);
+                console.warn(`Não foi encontrada a rota para o caminho: ${caminho} `);
                 return null;
             }
 

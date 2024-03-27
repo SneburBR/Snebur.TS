@@ -56,7 +56,7 @@
 
         public static AtualizarRotulo(controleRotulo: IControleRotulo, isInicializando: boolean = false): void
         {
-            const elementoRotulo = controleRotulo.ElementoRotulo;
+            const elementoRotulo = controleRotulo.ElementoRotulo ?? controleRotulo.ElementoApresentacao;
             controleRotulo.IsRotuloVazio = u.ConverterUtil.ParaBoolean(controleRotulo.RetornarValorAtributo(AtributosHtml.IsRotuloVazio));
             if (controleRotulo.IsRotuloVazio)
             {
