@@ -87,7 +87,7 @@
         SumAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number): Promise<number>;
 
         //#endregion
-         
+
         Where(expressaoFuncaoFiltro: (value: TEntidade, index: number, array: Array<TEntidade>) => boolean, ...argumentos: any[]): ConsultaEntidade<TEntidade>;
 
         WhereOr(expressaoFuncaoFiltro: (value: TEntidade, index: number, array: Array<TEntidade>) => boolean, ...argumentos: any[]): ConsultaEntidade<TEntidade>;
@@ -103,6 +103,8 @@
         //AbrirRelacao(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => ListaEntidades<d.Entidade>): ConsultaEntidade<TEntidade>;
 
         AbrirColecao(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => ListaEntidades<d.Entidade>): ConsultaEntidade<TEntidade>;
+
+        AbrirRelacaoOuColecao(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => d.Entidade | d.Entidade[]): ConsultaEntidade<TEntidade>;
 
         OrderBy(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => string | number | Date): ConsultaEntidade<TEntidade>;
 

@@ -416,10 +416,10 @@
             }
         }
 
-        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
-        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
-        public async RecuperarAsync<TEntidade extends Entidade>(entidade: IEntidade, ...expressoesAbrirRelacao: ((value: IEntidade) => d.Entidade)[]): Promise<void>
-        public async RecuperarAsync<TEntidade extends Entidade>(argumentoEntidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade)[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade | d.Entidade[])[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(entidade: TEntidade, ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade | d.Entidade[])[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(entidade: IEntidade, ...expressoesAbrirRelacao: ((value: IEntidade) => d.Entidade | d.Entidade[])[]): Promise<void>
+        public async RecuperarAsync<TEntidade extends Entidade>(argumentoEntidades: TEntidade | TEntidade[], ...expressoesAbrirRelacao: ((value: TEntidade) => d.Entidade | d.Entidade[])[]): Promise<void>
         {
             const entidades = this.RetornarEntidades(argumentoEntidades);
             if (entidades.length === 0)
@@ -439,7 +439,7 @@
             {
                 for (const expresaoAbrirRelacao of expressoesAbrirRelacao)
                 {
-                    consulta.AbrirRelacao(expresaoAbrirRelacao);
+                    consulta.AbrirRelacaoOuColecao(expresaoAbrirRelacao);
                 }
             }
 

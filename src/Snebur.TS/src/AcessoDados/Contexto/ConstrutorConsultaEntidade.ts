@@ -16,6 +16,7 @@
             this.ContextoDados = contextoDados;
             this.TipoEntidadeConsulta = tipoEntidade;
         }
+
         //#region Chamadas Sincronas 
 
         //public RetornarResultadoConsulta(): ResultadoConsulta
@@ -258,6 +259,11 @@
         public AbrirColecao(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => ListaEntidades<d.Entidade>): ConsultaEntidade<TEntidade>
         {
             return new ConsultaEntidade<TEntidade>(this.ContextoDados, this.TipoEntidadeConsulta).AbrirColecao(expressaoPropriedade);
+        }
+
+        public AbrirRelacaoOuColecao(expressaoPropriedade: (value: TEntidade, index: number, array: TEntidade[]) => d.Entidade | d.Entidade[]): ConsultaEntidade<TEntidade>
+        {
+            return new ConsultaEntidade<TEntidade>(this.ContextoDados, this.TipoEntidadeConsulta).AbrirRelacaoOuColecao(expressaoPropriedade);
         }
         //#endregion
 

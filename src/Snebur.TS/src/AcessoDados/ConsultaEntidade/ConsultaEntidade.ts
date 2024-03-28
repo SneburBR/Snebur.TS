@@ -7,7 +7,7 @@
         {
             super(contextoDados, tipoEntidadeConsulta);
         }
-
+        
         public get IsIncluirDeletados(): boolean
         {
             return this.EstruturaConsulta.IsIncluirDeletados;
@@ -408,6 +408,14 @@
         }
 
         public AbrirColecao(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => ListaEntidades<d.Entidade>): ConsultaEntidade<TEntidade>
+        {
+            const caminhoPropriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
+            const propriedades = u.ReflexaoUtil.RetornarPropriedadesCaminho(this.TipoEntidadeConsulta, caminhoPropriedade, false, true);
+            this.AbrirRelacaoPropriedades(this.EstruturaConsulta, propriedades, false);
+            return this;
+        }
+
+       public AbrirRelacaoOuColecao(expressaoPropriedade: (value: TEntidade, index: number, array: TEntidade[]) => d.Entidade | d.Entidade[]): ConsultaEntidade<TEntidade>
         {
             const caminhoPropriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
             const propriedades = u.ReflexaoUtil.RetornarPropriedadesCaminho(this.TipoEntidadeConsulta, caminhoPropriedade, false, true);
