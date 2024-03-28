@@ -60,8 +60,27 @@
 
         public async ValidarFormularioAsync(isSomenteControlesVisiveis: boolean = true): Promise<boolean>
         {
-            const indeficadorTimeout = ValidacaoUtil.ValidarTimeout("Validação do formulário", 10000, true);
-            const resultado = await this.ValidarFormularioInternoAsync(isSomenteControlesVisiveis);
+            this.OcuparElemento();
+            try
+            {
+                await ThreadUtil.EsperarAsync(10);
+                return await this.ValidarFormularioInternoAsync(isSomenteControlesVisiveis);
+            }
+            catch (erro)
+            {
+                console.error(erro);
+                return false;
+            }
+            finally
+            {
+                this.DesocuparElemento();
+            }
+        }
+
+        private async ValidarFormularioInternoAsync(isSomenteControlesVisiveis:boolean)
+        {
+            const indeficadorTimeout = ValidacaoUtil.ValidarTimeout("Validação do formulário", 5000, true);
+            const resultado = await this.ValidarControlesFormularioInternoAsync(isSomenteControlesVisiveis);
             if (!resultado.IsSucesso && !TelaUtil.IsCelularOuTablet)
             {
                 resultado.ControleInvalido.Elemento.scrollIntoView({
@@ -78,7 +97,8 @@
             return resultado.IsSucesso;
         }
 
-        private async ValidarFormularioInternoAsync(isSomenteControlesVisiveis: boolean): Promise<ResultadoValidacao>
+
+        private async ValidarControlesFormularioInternoAsync(isSomenteControlesVisiveis: boolean): Promise<ResultadoValidacao>
         {
             await ElementoUtil.DesfocarElementoAtualAtivoAsync();
 
@@ -87,7 +107,7 @@
 
             for (const controleApresenta of controlesApresentacao)
             {
-                const resultadoValidacao = await controleApresenta.ValidarFormularioInternoAsync(isSomenteControlesVisiveis);
+                const resultadoValidacao = await controleApresenta.ValidarControlesFormularioInternoAsync(isSomenteControlesVisiveis);
                 if (!resultadoValidacao.IsSucesso)
                 {
                     return resultadoValidacao;
@@ -136,8 +156,7 @@
 
         public LimparValidacoesControleFormulario(isSomenteMensagemFlutuante = true): void
         {
-
-            const controlesApresentacao = this.ControlesFilho.OfType<BaseControleApresentacaoFormulario>(BaseControleApresentacaoFormulario).
+            const controlesApresentacao = this.ControlesFilho.OfType(BaseControleApresentacaoFormulario).
                 Where(x => x.IsVisivel).ToList();
 
             for (const controleApresenta of controlesApresentacao)
@@ -145,7 +164,7 @@
                 controleApresenta.LimparValidacoesControleFormulario(isSomenteMensagemFlutuante);
             }
 
-            let controles = this.ControlesFilho.OfType<BaseControleFormulario>(BaseControleFormulario).
+            let controles = this.ControlesFilho.OfType(BaseControleFormulario).
                 Where(x => !x.IsIgnorarValidacao).ToList();
 
             if (isSomenteMensagemFlutuante)
@@ -161,7 +180,7 @@
 
         public MostrarSomenteMensagemValidacaoFlutuante(isForcar: boolean): any
         {
-            const controles = this.ControlesFilho.OfType<BaseControleFormulario>(BaseControleFormulario).
+            const controles = this.ControlesFilho.OfType(BaseControleFormulario).
                 Where(x => !x.IsIgnorarValidacao && !x.IsValido && x.IsVisivel &&
                     x.IsMostrarMensagemValidacaoFlutuante).ToList();
 
@@ -177,7 +196,7 @@
 
         public AtualizarPosicoesMensagemValidacao(): void
         {
-            let controlesApresentacao = this.DicionarioControlesFilho.Valores.OfType<BaseControleApresentacaoFormulario>(BaseControleApresentacaoFormulario);
+            let controlesApresentacao = this.DicionarioControlesFilho.Valores.OfType(BaseControleApresentacaoFormulario);
             controlesApresentacao = controlesApresentacao.Where(x => x.IsControleInicializado && x.IsVisivel).ToList();
 
             for (const controle of controlesApresentacao)
@@ -185,7 +204,7 @@
                 controle.AtualizarPosicoesMensagemValidacao();
             }
 
-            const controles = this.ControlesFilho.OfType<BaseControleFormulario>(BaseControleFormulario).
+            const controles = this.ControlesFilho.OfType(BaseControleFormulario).
                 Where(x => x.IsControleInicializado &&
                     !x.IsIgnorarValidacao &&
                     x.IsVisivel &&
@@ -239,7 +258,7 @@
         {
             super.InicializarControlesFilho();
 
-            const controlesLista = this.ControlesFilho.OfType<DataLista>(DataLista).ToList();
+            const controlesLista = this.ControlesFilho.OfType(DataLista).ToList();
             for (const controlaLista of controlesLista)
             {
                 controlaLista.EventoListaAtualizada.AddHandler(this.BaseControleLista_ListaAtualizada, this);

@@ -1,6 +1,6 @@
 ﻿namespace Snebur.Dominio
 {
-	export class EntidadeViewModel<TEntidade extends d.Entidade = d.Entidade> extends BaseViewModel
+	export class EntidadeViewModel<TEntidade extends IEntidade = Entidade> extends BaseViewModel
     {
         private _entidade: TEntidade;
 

@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class EntidadeCadastroViewModel<TEntidade extends Entidade = Entidade> extends Snebur.Dominio.EntidadeViewModel<TEntidade>
+    export class EntidadeCadastroViewModel<TEntidade extends IEntidade = Entidade> extends Snebur.Dominio.EntidadeViewModel<TEntidade>
     {
         public Titulo: string
         public SubTitulo: string

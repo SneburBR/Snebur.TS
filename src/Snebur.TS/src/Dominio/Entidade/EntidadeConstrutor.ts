@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.Dominio
 {
-    export interface EntidadeConstrutor<TEntidade extends Entidade = Entidade>
+    export interface EntidadeConstrutor<TEntidade extends IEntidade = Entidade>
     {
         new(): TEntidade;
         prototype: TEntidade;

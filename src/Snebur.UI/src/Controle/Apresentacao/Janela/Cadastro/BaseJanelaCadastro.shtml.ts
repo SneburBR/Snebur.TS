@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export abstract class BaseJanelaCadastro<TEntidade extends Entidade = Entidade> extends Janela   
+    export abstract class BaseJanelaCadastro<TEntidade extends IEntidade = Entidade> extends Janela   
     {
         private __SalvarDocument_KeyDown: EventListener;
 
@@ -270,10 +270,7 @@
 
         protected async ValidarFomularioESalvarAsync()
         {
-            this.OcuparElemento();
-            await ThreadUtil.EsperarAsync(50);
             const isValido = await this.ValidarFormularioAsync();
-            this.DesocuparElemento();
             if (isValido)
             {
                 this.SalvarAsync();
@@ -427,7 +424,7 @@
         //#endregion
     }
 
-    export interface IJanelaCadastro<TEntidade extends Entidade = Entidade>  
+    export interface IJanelaCadastro<TEntidade extends IEntidade = Entidade>  
     {
         new(controlePai: BaseControle, entidade: TEntidade): BaseJanelaCadastro<TEntidade>;
     }
@@ -437,7 +434,7 @@
 
     //#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface BaseJanelaCadastro<TEntidade extends Entidade = Entidade>
+    export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
     {
         readonly TextoTitulo: ui.Texto;
         readonly BlocoFormulario: ui.Bloco;

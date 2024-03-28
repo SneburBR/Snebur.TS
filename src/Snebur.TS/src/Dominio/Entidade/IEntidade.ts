@@ -7,6 +7,8 @@
         CloneSomenteId<TEntidade extends Entidade>(): TEntidade;
         CloneSomenteId<TEntidade extends IEntidade>(): TEntidade;
 
+        RetornarMelhorDescricao(): string;
+
         //Inicializar(): void;
     }
 }
