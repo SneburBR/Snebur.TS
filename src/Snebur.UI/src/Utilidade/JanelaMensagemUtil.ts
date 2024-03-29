@@ -262,7 +262,7 @@
             return true;
         }
 
-        public static async MensageFalhaAoExcluirEntidadeAsync(controlePai: BaseControle)
+        public static async MensagemFalhaAoExcluirEntidadeAsync(controlePai: BaseControle)
         {
             await MensagemUtil.MostrarMensagemAsync(controlePai,
                 "OPS!",

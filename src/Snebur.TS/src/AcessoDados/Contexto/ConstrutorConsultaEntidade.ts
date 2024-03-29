@@ -8,13 +8,18 @@
 
         public get EstruturaConsulta(): a.EstruturaConsulta
         {
-            throw new Erro("a consulta não foi inicializada", this);
+            throw new Erro("a consulta não foi criar, utilize o método criar caso não precisa fazer nenhuma consulta", this);
         }
 
         public constructor(contextoDados: BaseContextoDados, tipoEntidade: r.TipoEntidade)
         {
             this.ContextoDados = contextoDados;
             this.TipoEntidadeConsulta = tipoEntidade;
+        }
+
+        public Criar(): IConsultaEntidade<TEntidade>
+        {
+            return new ConsultaEntidade(this.ContextoDados, this.TipoEntidadeConsulta);
         }
 
         //#region Chamadas Sincronas 
