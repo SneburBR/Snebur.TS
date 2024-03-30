@@ -249,5 +249,15 @@
             const blob = new Blob([conteudo], { type: mimeType });
             Salvar.SalvarComo(blob, nomeArquivo);
         }
+
+        public static NormalizarExtensao(extensao: string): string
+        {
+            extensao = extensao.trim();
+            if (extensao.StartsWith("."))
+            {
+                return extensao;
+            }
+            return `.${extensao}`;
+        }
     }
 }
