@@ -233,7 +233,38 @@
             }
         }
 
+        public ExpandirTodasLinhasDetalhes(iconeEncolher = EnumIcone.ExpandLess)
+        {
+            for (const linha of this.LinhasColecao.Linhas)
+            {
+                const linhaDetalhes = linha.LinhaDetalhes;
+                if (linhaDetalhes instanceof ui.LinhaDetalhes)
+                {
+                    linhaDetalhes.MostrarElemento();
 
+                    const elementoBotao = linha.Elemento.querySelector(`sn-botao[data-expandir-detalhes="true"]`);
+                    if (elementoBotao instanceof HTMLElement)
+                    {
+                        const botaoAlterarIcone = linha.RetornarControleFilhos(ui.Botao, true).
+                            First(x => x.Elemento === elementoBotao);
+
+                        if (botaoAlterarIcone instanceof ui.Botao)
+                        {
+                            botaoAlterarIcone.Icone = iconeEncolher;
+                        }
+                    }
+                    
+                    if (!linhaDetalhes.IsExpandidoPrimeiraVez)
+                    {
+                        linhaDetalhes.IsExpandidoPrimeiraVez = true;
+
+                        const args = new LinhaDetalhesExpandidaEventArgs(linha, linha.Elemento, null, null);
+                        this.EventoLinhaDetalhesExpandida.Notificar(this, args);
+                    }
+                }
+            }
+        }
+         
         public ExpandirLinhaDatalhes(linha: ui.Linha<TItem>, e: UIEventArgs, botaoAlterarIcone?: ui.Botao): void
         public ExpandirLinhaDatalhes(provedor: ui.BaseUIElemento, e: UIEventArgs, botaoAlterarIcone?: ui.Botao, iconeExpandir?: EnumIcone, iconeEncolher?: EnumIcone): void
         public ExpandirLinhaDatalhes(provedor: ui.BaseUIElemento, e: UIEventArgs, botaoAlterarIcone?: ui.Botao, iconeExpandir = EnumIcone.ExpandMore, iconeEncolher = EnumIcone.ExpandLess): void

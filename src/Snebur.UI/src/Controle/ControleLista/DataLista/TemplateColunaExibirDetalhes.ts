@@ -4,7 +4,7 @@
     {
         public override get Html(): string
         {
-            return '<sn-botao sn-tipo-botao="Icone" ap-icone="ExpandMore" sn-click="BtnExpandir_Click"></sn-botao>';
+            return '<sn-botao data-expandir-detalhes="true" sn-tipo-botao="Icone" ap-icone="ExpandMore" sn-click="BtnExpandir_Click"></sn-botao>';
         }
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
