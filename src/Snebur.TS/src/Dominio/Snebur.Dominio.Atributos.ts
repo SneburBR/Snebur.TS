@@ -375,6 +375,8 @@ namespace Snebur.Dominio.Atributos
     
         private _isTipoNullableRequerido : boolean = false;
         private _isValorPadraoOnUpdate : boolean = false;
+        private _isPermitirValorGlboal : boolean = false;
+        private _valorGlobal : string = null;
     
         public get IsTipoNullableRequerido(): boolean 
         {
@@ -394,6 +396,26 @@ namespace Snebur.Dominio.Atributos
         public set IsValorPadraoOnUpdate(value: boolean) 
         {
             this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
+        }
+    
+        public get IsPermitirValorGlboal(): boolean 
+        {
+            return this._isPermitirValorGlboal;
+        }
+
+        public set IsPermitirValorGlboal(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsPermitirValorGlboal", this._isPermitirValorGlboal, this._isPermitirValorGlboal = value);
+        }
+    
+        public get ValorGlobal(): string 
+        {
+            return this._valorGlobal;
+        }
+
+        public set ValorGlobal(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("ValorGlobal", this._valorGlobal, this._valorGlobal = value);
         }
         //#endregion
     
