@@ -972,6 +972,7 @@
 
             if (typeof valor === "string")
             {
+                valor = valor.replace(",", ".");
                 valor = parseFloat(valor);
             }
 
