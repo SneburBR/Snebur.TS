@@ -93,6 +93,7 @@
     <TypeScriptCompile Include="src\Imagem\ImagemLocalUtil.ts" />
     <TypeScriptCompile Include="src\Imagem\Magick\MagickProcessador.ts" />
     <TypeScriptCompile Include="src\Imagem\Magick\MagickUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\HashCodeUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ListaObservacaoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
     <TypeScriptCompile Include="src\Dominio\IRetornarEntidade.ts" />
