@@ -42,7 +42,7 @@
             case EnumTipoLista.ListaObservacaoIndexada:
             case EnumTipoLista.ListaEntidadesIndexada:
 
-                ListaObservacao.ListaNovaAlerada(this as ListaObservacao<any>);
+                ListaObservacao.ListaNovaAlterada(this as ListaObservacao<any>);
 
                 let listaTiapada = this as ListaObservacao<any>;
                 listaTiapada.EventoItemRemovido.Notificar(this, new ItemEventArgs(primeiro));
@@ -69,7 +69,7 @@
             case EnumTipoLista.ListaEntidadesIndexada:
 
                 let listaTiapada = this as ListaObservacao<any>;
-                ListaObservacao.ListaNovaAlerada(listaTiapada, true);
+                ListaObservacao.ListaNovaAlterada(listaTiapada, true);
                 listaTiapada.EventoItemRemovido.Notificar(listaTiapada, new ItemEventArgs(ultimo));
                 listaTiapada.EventoItemAlterado.Notificar(listaTiapada, new ItemAlteradoEventArgs(ultimo, EnumAcaoItemAlterado.Removido));
                 break;
@@ -122,7 +122,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let _this = this as Array<any>;
@@ -175,7 +175,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this as ListaObservacao<any>);
+            ListaObservacao.ListaNovaAlterada(this as ListaObservacao<any>);
         }
 
         if (index < this.length)
@@ -208,7 +208,7 @@
             {
                 this.__isLimpandoListaNova = false;
             }
-            ListaObservacao.ListaNovaAlerada(this, true, isDefinirListaNova);
+            ListaObservacao.ListaNovaAlterada(this, true, isDefinirListaNova);
         }
         else
         {
@@ -220,7 +220,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let lista = this as Array<any>;
@@ -262,7 +262,7 @@
 
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this, true);
+            ListaObservacao.ListaNovaAlterada(this, true);
         }
 
         if (valores && valores.length)
@@ -301,7 +301,7 @@
 
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this, true);
+            ListaObservacao.ListaNovaAlterada(this, true);
         }
 
         if (items?.length)
@@ -329,7 +329,7 @@
     {
         if (this.IsListaObservacao)
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let lista = this as Array<any>;
@@ -351,7 +351,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let lista = this as Array<any>;
@@ -373,7 +373,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let lista = this as Array<any>;
@@ -395,7 +395,7 @@
     {
         if (Snebur.Utilidade.ListaUtil.IsListaObservacao(this))
         {
-            ListaObservacao.ListaNovaAlerada(this);
+            ListaObservacao.ListaNovaAlterada(this);
         }
 
         let lista = this as Array<any>;

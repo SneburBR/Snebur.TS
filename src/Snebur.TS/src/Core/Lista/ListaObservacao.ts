@@ -89,7 +89,7 @@
             return lista.length;
         }
 
-        public static ListaNovaAlerada(lista: ListaObservacao<any>, isForcar?: boolean, isDefinirListaNova?: boolean)
+        public static ListaNovaAlterada(lista: ListaObservacao<any>, isForcar?: boolean, isDefinirListaNova?: boolean)
         {
             const isNotificador = lista.ListaNovaAlteradaInterno(isDefinirListaNova);
             if (!isNotificador && isForcar)
