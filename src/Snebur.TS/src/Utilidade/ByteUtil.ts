@@ -89,24 +89,5 @@
         }
     }
 
-    export class HashCodeUtil
-    {
-        public static RetronarHashCode(...ids: number[]): number
-        {
-            let hash = 0;
-            for (let i = 0; i < ids.length; i++)
-            {
-                const id = ids[i];
-                hash = ((hash << 5) - hash) + id;
-                hash = hash & hash;
-            }
-            return hash;
-        }
-
-        public static get HashDataHora()
-        {
-            const d = new Date();
-            return Md5Util.RetornarHash((d.getDate() + d.getMonth() + d.getHours()).toString());
-        }
-    }
+    
 }
