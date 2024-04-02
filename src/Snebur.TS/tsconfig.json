@@ -310,6 +310,7 @@
     "src/Utilidade/FuncaoUtil.ts",
     "src/Utilidade/GlobalizacaoUtil.ts",
     "src/Utilidade/GuidUtil.ts",
+    "src/Utilidade/HashCodeUtil.ts",
     "src/Utilidade/HtmlUtil.ts",
     "src/Utilidade/InternetUtil.ts",
     "src/Utilidade/JurosUtil.ts",

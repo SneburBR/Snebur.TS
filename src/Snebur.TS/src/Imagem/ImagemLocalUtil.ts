@@ -139,13 +139,13 @@
             //resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
             //resultadoCanvas.IsAlertaPerfilCor = isAlertaPerfilCor;
             return resultadoCanvas;
-
         }
 
         private static async CarregarImagemArquivoCanvasAsync(
             arquivo: SnBlob,
-            alturaMaxima: number ): Promise<ResultadoCarregarImagem>
+            alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
+
             const dimensao = { Largura: alturaMaxima * 1.5, Altura: alturaMaxima };
             const abrirArquivoLocalCanvas = new AbrirArquivoLocalCanvas(arquivo, dimensao);
             const resultado = await abrirArquivoLocalCanvas.ProcessarAsync();
@@ -158,6 +158,9 @@
                 return {
                     AlturaImagemOrigem: resultado.AlturaImagemOrigem,
                     LarguraImagemOrigem: resultado.LarguraImagemOrigem,
+                    LarguraImagem: resultado.LarguraImagem,
+                    AlturaImagem: resultado.AlturaImagem,
+                    Blob: resultado.Blob,
                     IsAlertaSemPerfilBrancaOuPreta: resultado.IsAlertaSemPerfilBrancaOuPreta,
                     Url: resultado.Url
                 };
@@ -176,13 +179,17 @@
                 const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
                 if (resultado != null && resultado.ImagensCarregada.Count === 1)
                 {
-                    const blob = resultado.ImagensCarregada[0].Arquivo;
+                    const imagemCarregada = resultado.ImagensCarregada[0];
+                    const blob = imagemCarregada.Arquivo;
                     const url = window.URL.createObjectURL(blob);
 
                     return {
                         AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
                         LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
                         Url: url,
+                        Blob: blob,
+                        LarguraImagem: imagemCarregada.Dimensao.Largura,
+                        AlturaImagem: imagemCarregada.Dimensao.Altura
                     };
                 }
             }
@@ -204,6 +211,9 @@
         Url?: string
         LarguraImagemOrigem?: number;
         AlturaImagemOrigem?: number;
+        LarguraImagem?: number;
+        AlturaImagem?: number;
+        Blob?: Blob;
         IsHeic?: boolean;
         IsErro?: boolean;
         IsIcone?: boolean

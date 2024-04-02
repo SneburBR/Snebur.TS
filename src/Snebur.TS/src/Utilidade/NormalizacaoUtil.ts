@@ -2,7 +2,7 @@
 {
     export class NormalizacaoUtil
     {
-         
+
         private static readonly THIS: string = "this.";
 
         public static NormalizarAngulo(angulo: number): number
@@ -55,7 +55,7 @@
         {
             return this.NormalizarIntervalo(valor, Number.Int64MinValue, Number.Int64MaxValue);
         }
-         
+
         public static NormalizarIntervalo(valor: number, minimo: number, maximo: number): number
         {
             if (valor < minimo)
@@ -117,7 +117,7 @@
             }
             return valor;
         }
-         
+
         public static NormalizarPasso(valor: number, passo: number, opcoes: EnumOpcoesNormalizarPasso = EnumOpcoesNormalizarPasso.Media)
         {
             if ((valor % passo) !== 0)
@@ -179,6 +179,30 @@
                 default:
                     throw new Erro("Ratação da imagem  não suportada: " + rotacao);
             }
+        }
+
+        public static NormalizarDecimalToInvariantCulture(valor: string): string
+        {
+            const lastIndexPonto = valor.lastIndexOf(".");
+            const lastIndexVirgula = valor.lastIndexOf(",");
+
+            if (lastIndexPonto > 0 && lastIndexVirgula > 0)
+            {
+                valor = valor.Replace(".", "");
+                valor = valor.Replace(",", ".");
+                return valor;
+            }
+
+            if (lastIndexVirgula > 0)
+            {
+                return valor.Replace(",", ".");
+            }
+            return valor;
+
+
+
+
+
         }
 
     }

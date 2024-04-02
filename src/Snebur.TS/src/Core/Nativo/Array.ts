@@ -609,6 +609,7 @@ namespace Snebur
             let mensagem = "A coleção não contem elementos" + mensagens?.call(null).Vazia;
             throw new Erro(mensagem, this);
         }
+         
         if (this.length > 1)
         {
             let mensagem = "A coleção contem mais de um elemento. " + mensagens?.call(null).MaisDeUm;

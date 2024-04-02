@@ -965,6 +965,7 @@
             isFormatarParteInteira: boolean = false,
             casasDecimal: number = 2): string
         {
+            
             if (valor == null)
             {
                 valor = 0;
@@ -972,7 +973,7 @@
 
             if (typeof valor === "string")
             {
-                valor = valor.replace(",", ".");
+                valor = NormalizacaoUtil.NormalizarDecimalToInvariantCulture(valor);
                 valor = parseFloat(valor);
             }
 

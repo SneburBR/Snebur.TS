@@ -745,7 +745,6 @@
             return ValidacaoUtil.IsNumber(valor) && valor >= 0;
         }
 
-
         public static ValidarByte(valor: number): void
         {
             if (!ValidacaoUtil.IsByte(valor))

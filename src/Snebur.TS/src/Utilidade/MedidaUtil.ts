@@ -35,12 +35,12 @@
             return MedidaUtil.ParaPixels(medidiaEmCentimetros, dpiVisualizacao);
         }
 
-        public static ParaPixels(medidaEmCentimetos: number, dpi: number): number
+        public static ParaPixels(medidaEmCentimetos: number, dpi: number = MedidaUtil.DPI_IMPRESSAO): number
         {
             return Math.round((medidaEmCentimetos / MedidaUtil.POLEGADA) * dpi);
         }
 
-        public static ParaCentimentros(mediaEmPixels: number, dpi: number)
+        public static ParaCentimentros(mediaEmPixels: number, dpi: number = MedidaUtil.DPI_IMPRESSAO)
         {
             return (mediaEmPixels / dpi) * MedidaUtil.POLEGADA;
         }

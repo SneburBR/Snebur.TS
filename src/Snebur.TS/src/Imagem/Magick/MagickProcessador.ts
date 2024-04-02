@@ -98,11 +98,19 @@
             const imagensCarregada = new Array<ImagemCarregada>();
             for (const redimensionamento of redimensionamentos)
             {
-                imageMagick.resize(redimensionamento.Dimensao.Largura, redimensionamento.Dimensao.Altura);
+                const dimensaoResize = this.RetornarDimencaoUniformeDentro(
+                    dimensaoLocal.Largura,
+                    dimensaoLocal.Altura,
+                    redimensionamento.Dimensao.Largura,
+                    redimensionamento.Dimensao.Altura,
+                    false,
+                    false);
+
+                imageMagick.resize(dimensaoResize.Largura, dimensaoResize.Altura);
 
                 if (redimensionamento.Recorte != null && redimensionamento.DimensaoRecorte != null)
                 {
-                    const recorte = this.RetornarRecorte(redimensionamento);
+                    const recorte = this.RetornarRecorte(redimensionamento, dimensaoResize);
                     imageMagick.crop(recorte);
                 }
 
@@ -147,11 +155,13 @@
         }
     }
 
-    private RetornarRecorte(redimensionamento: RedimensionarImagemMagick): MagickWasm.MagickGeometry
+    private RetornarRecorte(
+        redimensionamento: RedimensionarImagemMagick,
+        dimensaoRedimensionamento: IDimensao): MagickWasm.MagickGeometry
     {
-        const x = redimensionamento.Dimensao.Largura * redimensionamento.Recorte.XScalar;
-        const y = redimensionamento.Dimensao.Altura * redimensionamento.Recorte.YScalar;
-        return new MagickWasm.MagickGeometry(x, y, redimensionamento.DimensaoRecorte.Largura, redimensionamento.DimensaoRecorte.Altura);
+        const x = dimensaoRedimensionamento.Largura * redimensionamento.Recorte.XScalar;
+        const y = dimensaoRedimensionamento.Altura * redimensionamento.Recorte.YScalar;
+        return new MagickWasm.MagickGeometry(x, y, dimensaoRedimensionamento.Largura, dimensaoRedimensionamento.Altura);
 
     }
 
@@ -171,6 +181,66 @@
         return {
             Largura: menorLado,
             Altura: maiorLado
+        };
+    }
+
+    public RetornarDimencaoUniformeDentro(
+        largura: number,
+        altura: number,
+        larguraRecipiente: number,
+        alturaRecipente: number, isDecimal: boolean = true,
+        isAumentar: boolean =false): IDimensao
+    {
+        let novaLargura = 0;
+        let novaAltura = 0;
+
+        if (largura > altura)
+        {
+            //IMAGEM NA HORIZONTAL
+            novaLargura = larguraRecipiente;
+            novaAltura = altura * (novaLargura / largura);
+            if (novaAltura > alturaRecipente)
+            {
+                novaAltura = alturaRecipente;
+                novaLargura = largura * (novaAltura / altura);
+            }
+        }
+        else if (altura > largura)
+        {
+            //IMAGEM NA VERTICAL
+            novaAltura = alturaRecipente;
+            novaLargura = largura * (novaAltura / altura);
+
+            if (novaLargura > larguraRecipiente)
+            {
+                novaLargura = larguraRecipiente;
+                novaAltura = altura * (novaLargura / largura);
+            }
+        }
+        else if (largura === altura)
+        {
+            //IMAGEM QUADRADA ' SELECIONAR O MENOR LADO
+            novaLargura = Math.min(alturaRecipente, larguraRecipiente);
+            novaAltura = novaLargura;
+        }
+
+        if (!isAumentar && (largura < novaLargura || altura < novaAltura))
+        {
+            novaLargura = largura;
+            novaAltura = altura;
+        }
+        if (!isDecimal)
+        {
+            novaLargura = Math.round(novaLargura);
+            novaAltura = Math.round(novaAltura);
+        }
+
+        novaLargura = Math.max(novaLargura, 0);
+        novaAltura = Math.max(novaAltura, 0);
+         
+        return {
+            Largura: novaLargura,
+            Altura: novaAltura
         };
     }
 }

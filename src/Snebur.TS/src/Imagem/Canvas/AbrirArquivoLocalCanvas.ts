@@ -41,7 +41,10 @@
             const dimensaoCanvas = DimensaoUtil.RetornarDimencaoUniformeDentro(
                 imagem.naturalWidth,
                 imagem.naturalHeight,
-                dimensao.Largura, dimensao.Altura);
+                dimensao.Largura,
+                dimensao.Altura,
+                true,
+                false);
 
             const canvas = await super.RetornarCanvasAsync(imagem, dimensaoCanvas);
             u.ImagemUtil.LimparElementoImagem(imagem);
@@ -58,6 +61,9 @@
             return {
                 LarguraImagemOrigem: larguraImagemOrigem,
                 AlturaImagemOrigem: alturaImagemOrigem,
+                Blob: blob,
+                LarguraImagem: dimensaoCanvas.Largura,
+                AlturaImagem: dimensaoCanvas.Altura,
                 Url: window.URL.createObjectURL(blob),
                 IsAlertaSemPerfilBrancaOuPreta: isImagemBrancaOuPreta
             };
@@ -69,6 +75,9 @@
         Url?: string;
         LarguraImagemOrigem?: number;
         AlturaImagemOrigem?: number;
+        LarguraImagem: number;
+        AlturaImagem: number;
+        Blob: Blob;
         IsAlertaSemPerfilBrancaOuPreta: boolean
     }
 }

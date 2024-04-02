@@ -63,7 +63,7 @@
         {
             try
             {
-                if (MagickUtil.IsWorker)
+                if (MagickUtil.IsWorker && !$Configuracao.IsDebug)
                 {
                     const resultado = await this.ProcessarWorkerAsync(opcoes);
                     if (!(resultado instanceof Error) && resultado != null)

@@ -2,7 +2,7 @@
 class MagickUtil
 {
     /*@internal*/
-    public static IsWorker: boolean = true;
+    public static readonly IsWorker: boolean = true;
 
     public static  Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"]
 
