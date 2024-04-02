@@ -22,7 +22,8 @@
 
             const titulo = `Excluir ${rotuloEntidade.toLowerCase()}`;
 
-            return MensagemUtil.MostrarMensagemPersonalizadaAsync(controlePai, titulo, mensagem,
+            return MensagemUtil.MostrarMensagemPersonalizadaAsync(controlePai,
+                titulo, mensagem,
                 EnumResultadoOpcaoMensagem.Cancelar,
                 [EnumResultadoOpcaoMensagem.Sim, "Sim, excluir"]);
 

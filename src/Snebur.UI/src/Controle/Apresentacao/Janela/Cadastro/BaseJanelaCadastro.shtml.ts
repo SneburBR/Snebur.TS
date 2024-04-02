@@ -2,6 +2,10 @@
 {
     export abstract class BaseJanelaCadastro<TEntidade extends IEntidade = Entidade> extends Janela   
     {
+
+        public IsMostrarBotaoCancelar: boolean = true;
+        public IsMostrarBotaoSalvar: boolean = true;
+
         private __SalvarDocument_KeyDown: EventListener;
 
         public readonly NovaEntidade: TEntidade;
@@ -14,6 +18,8 @@
         public TituloInfo: string;
         public Info: string
         public IsMostrarInfo: boolean = false;
+        public RotuloBotaoCancelar: string = "CANCELAR";
+        public RotuloBotaoSalvar: string = "SALVAR";
 
         protected AtivarEnterSalvar: boolean;
 
@@ -41,8 +47,16 @@
         {
             super(controlePai);
 
+            
+
+
             this.CssClasseControle = "sn-base-janela-cadastro";
             this._dataSource = null;
+
+            this.DeclararPropriedade(x => x.RotuloBotaoSalvar, String);
+            this.DeclararPropriedade(x => x.RotuloBotaoCancelar, String);
+            this.DeclararPropriedade(x => x.IsMostrarBotaoCancelar, Boolean);
+            this.DeclararPropriedade(x => x.IsMostrarBotaoSalvar, Boolean);
 
             this.DeclararPropriedade(x => x.Titulo, String, this.Titulo_Alterado);
             this.DeclararPropriedade(x => x.SubTitulo, String, this.SubTitulo_Alterado);
@@ -432,17 +446,17 @@
     //#endregion
 
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
-    {
-        readonly TextoTitulo: ui.Texto;
-        readonly BlocoFormulario: ui.Bloco;
-        readonly BlocoBotoes: ui.Bloco;
-        readonly BtnCancelarInterno: ui.Botao;
-        readonly BtnSalvarInterno: ui.Botao;
-    }
+	export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
+	{
+		readonly TextoTitulo: ui.Texto;
+		readonly BlocoFormulario: ui.Bloco;
+		readonly BlocoBotoes: ui.Bloco;
+		readonly BtnCancelarInterno: ui.Botao;
+		readonly BtnSalvarInterno: ui.Botao;
+	}
 
-    //#endregion
+	//#endregion
 
 }

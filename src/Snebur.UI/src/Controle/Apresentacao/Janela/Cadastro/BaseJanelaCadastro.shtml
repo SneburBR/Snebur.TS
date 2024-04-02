@@ -52,12 +52,14 @@
                     ap-margem="24px 0px 0px 0px" 
                     ap-alinhamento-horizontal="EsquerdaAbsoluto" 
                     sn-visibilidade="{{IsMostrarInfo}}, Origem=this">
+
                     <sn-botao
                         sn-tipo-botao="Icone"
                         ap-icone="Info"
                         ap-icone-categoria="Outlined" 
                         sn-click="BtnInfoInterno_Click" >
                     </sn-botao>
+
                 </ap-bloco>
 
                 <ap-painel
@@ -70,8 +72,9 @@
                             sn-nome="BtnCancelarInterno"
                             ap-cor-texto="Cinza"
                             sn-tipo-botao="FlatBox"
-                            sn-click="BtnInfoInterno_Click">
-                            CANCELAR 
+                            sn-click="BtnInfoInterno_Click"
+                            sn-visibilidade="{{IsMostrarBotaoCancelar}}, Origem=this"
+                            sn-rotulo="{{RotuloBotaoCancelar}}, Origem=this" >
 
                         </sn-botao>
                     </ap-bloco>
@@ -81,6 +84,8 @@
                             sn-nome="BtnSalvarInterno"
                             ap-cor-fundo="SistemaPrincipal"
                             ap-cor-texto="Branca"
+                             sn-visibilidade="{{IsMostrarBotaoSalvar}}, Origem=this"
+                             sn-rotulo="{{RotuloBotaoSalvar}}, Origem=this"
                             sn-click="BtnSalvarInterno_Click">
                             SALVAR</sn-botao>
                     </ap-bloco>
