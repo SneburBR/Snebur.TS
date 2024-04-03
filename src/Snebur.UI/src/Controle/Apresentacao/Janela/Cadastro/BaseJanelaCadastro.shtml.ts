@@ -293,7 +293,6 @@
 
         protected override async IsPodeFecharJanelaAsync(resultado: ResultadoFecharJanelaArgs): Promise<[boolean, ResultadoFecharJanelaArgs]>
         {
-
             if (!resultado.IsSucesso)
             {
                 await ElementoUtil.DesfocarElementoAtualAtivoAsync();
@@ -304,7 +303,6 @@
                 if (this.IsExisteAlteracao)
                 {
                     const mensagem = "Deseja salvar as alterações antes de sair?";
-
                     const resultadoMensagem = await MensagemUtil.MostrarMensagemPersonalizadaAsync(this,
                         "Existem alterações não salvas",
                         mensagem,

@@ -66,13 +66,14 @@
                     ap-tipo-painel="PilhaHorizontal" 
                     ap-alinhamento-horizontal="Centro">
 
+
                     <ap-bloco>
                         <sn-botao
                             ap-largura="140px"
                             sn-nome="BtnCancelarInterno"
                             ap-cor-texto="Cinza"
                             sn-tipo-botao="FlatBox"
-                            sn-click="BtnInfoInterno_Click"
+                            sn-click="BtnCancelarInterno_Click"
                             sn-visibilidade="{{IsMostrarBotaoCancelar}}, Origem=this"
                             sn-rotulo="{{RotuloBotaoCancelar}}, Origem=this" >
 
