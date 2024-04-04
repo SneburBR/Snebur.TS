@@ -422,32 +422,10 @@
             return new Dimensao(0, 0);
         }
 
-        public RetornarOrientacao(tolerenciaPercentual: number): d.EnumOrientacao
+        public RetornarOrientacao(tolerenciaPercentual: number = 0): d.EnumOrientacao
         {
-            if (tolerenciaPercentual > 1)
-            {
-                tolerenciaPercentual /= 100;
-            }
-
-            if (tolerenciaPercentual < 0)
-            {
-                throw new Erro("tolerenciaPercentual deve ser maior que 0");
-            }
-
-            const larguraPercentual = this.Largura + (this.Largura * tolerenciaPercentual);
-            const alturaPercentual = this.Altura + (this.Altura * tolerenciaPercentual);
-             
-            if (this.Largura > alturaPercentual)
-            {
-                return d.EnumOrientacao.Horizontal;
-            }
-
-            if (this.Altura > larguraPercentual)
-            {
-                return d.EnumOrientacao.Vertical;
-            }
-
-            return d.EnumOrientacao.Quadrado;
+            return DimensaoUtil.RetornarOrientacao(this, tolerenciaPercentual);
+            
         }
     }
 }

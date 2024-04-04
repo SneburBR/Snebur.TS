@@ -143,6 +143,25 @@
             return valor1 >= minimo && valor1 <= maximo;
         }
 
+        public static IgualSensivelPercentual(valor1: number, valor2: number, sensibilidadePercentual: number = 0): boolean
+        {
+            if (sensibilidadePercentual === 0 || sensibilidadePercentual== null)
+            {
+                return valor1 === valor2;
+            }
+
+            if (sensibilidadePercentual < 0)
+            {
+                throw new Erro("sensibilidadePercentual não pode ser negativa");
+            }
+
+            sensibilidadePercentual /= 100;
+
+            const minimo = valor2 - (valor2 *  sensibilidadePercentual);
+            const maximo = valor2 + (valor2 * sensibilidadePercentual);
+            return valor1 >= minimo && valor1 <= maximo;
+        }
+
         public static Maior(valor1: number, valor2: number): boolean
         {
             return valor1 > valor2;

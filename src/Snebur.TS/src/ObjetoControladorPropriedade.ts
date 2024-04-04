@@ -5,6 +5,7 @@
         private static readonly __NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO = "EventoControleDispensado";
 
         private readonly __propriedadesAlteradas__ = new DicionarioSimples<d.PropriedadeAlterada>();
+        private readonly __propriedadesSomenteLeituras__ = new DicionarioSimples<r.Propriedade>();
         private readonly __EventosNotificarPropriedadeAlterada = new DicionarioSimples<EventoPropriedadeAlterada>();
         private _propriedadesValidacoes: DicionarioSimples<PropriedadeValidacoes>;
         private __isObservadorPropriedadesAtivo: boolean = true;
@@ -24,6 +25,11 @@
         public get __PropriedadesAlteradas(): DicionarioSimples<d.PropriedadeAlterada>
         {
             return this.__propriedadesAlteradas__;
+        }
+
+        protected get __PropriedadesSomenteLeituras(): DicionarioSimples<r.Propriedade>
+        {
+            return this.__propriedadesSomenteLeituras__;
         }
 
         //public set __PropriedadesAlteradas(value: DicionarioSimples<d.PropriedadeAlterada>)
@@ -264,6 +270,20 @@
         {
             return "_" + TextoUtil.FormatarPrimeiraLetraMinuscula(nomePropriedade);
         }
+
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>( expressaoPropriedade: (value: TThis) => TPropriedade[keyof TPropriedade], construtorEnum: TPropriedade): void
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>( expressaoPropriedade: (value: TThis) => TPropriedade, construtor: IConstrutor<TPropriedade>): void
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade, construtor: Function):void
+        {
+            const nomePropriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
+            if (!this.__propriedadesSomenteLeituras__.ContainsKey(nomePropriedade))
+            {
+                const tipo = this.RetornarTipoPropriedadeDeclarada(construtor);
+                const propriedade = new r.Propriedade(nomePropriedade, tipo, this.GetType(), true);
+                this.__propriedadesSomenteLeituras__.Add(nomePropriedade, propriedade);
+            }
+        }
+
 
         //public AdicionarManipuladorPropriedadeAlterada
 

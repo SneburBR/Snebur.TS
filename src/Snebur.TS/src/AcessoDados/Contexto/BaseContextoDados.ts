@@ -471,6 +471,8 @@
                         }
                     }
                 }
+                
+                entidadeRecuperada.NotificarTodasPropriedadesAlteradas();
                 entidade.__PropriedadesAlteradas.Clear();
             }
         }

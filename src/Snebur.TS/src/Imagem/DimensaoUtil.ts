@@ -167,17 +167,33 @@
             };
         }
 
-        public static RetornarOrientacao(dimensao: IDimensao): EnumOrientacao
+        public static RetornarOrientacao(
+            dimensao: IDimensao,
+            tolerenciaPercentual: number = 0): EnumOrientacao
         {
-            if (dimensao.Largura.ToDecimal() === dimensao.Altura.ToDecimal())
+            if (tolerenciaPercentual > 1)
             {
-                return EnumOrientacao.Quadrado;
+                tolerenciaPercentual /= 100;
             }
+
+            if (tolerenciaPercentual < 0)
+            {
+                throw new Erro("tolerenciaPercentual deve ser maior que 0");
+            }
+
+            if (Util.IgualSensivelPercentual(dimensao.Largura.ToDecimal(), dimensao.Altura.ToDecimal(), tolerenciaPercentual))
+            {
+                return d.EnumOrientacao.Quadrado;
+            }
+
             if (dimensao.Largura > dimensao.Altura)
             {
-                return EnumOrientacao.Horizontal;
+                return d.EnumOrientacao.Horizontal;
             }
-            return EnumOrientacao.Vertical;
+
+            return d.EnumOrientacao.Vertical;
+
+             
         }
 
         public static NormalizarDimensao(dimensao: IDimensao, dimensaoOuOrientacao: IDimensao | EnumOrientacao): IDimensao
