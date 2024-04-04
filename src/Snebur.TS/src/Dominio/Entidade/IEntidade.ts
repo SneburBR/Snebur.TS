@@ -8,7 +8,6 @@
         CloneSomenteId<TEntidade extends IEntidade>(): TEntidade;
 
         RetornarMelhorDescricao(): string;
-
-        //Inicializar(): void;
+        NotificarTodasPropriedadesAlteradas(): void;
     }
 }

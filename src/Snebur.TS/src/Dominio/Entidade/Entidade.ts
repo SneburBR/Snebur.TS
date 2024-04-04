@@ -266,6 +266,20 @@
 
         //#endregion
 
+        public NotificarTodasPropriedadesAlteradas()
+        {
+            const propriedades = this.GetType().TodasPropriedades.Valores;
+            for (const propriedade of propriedades)
+            {
+                this.NotificarPropriedadeAlterada(propriedade.Nome);
+            }
+
+            const propriedadesSomenteLeitura = this.__PropriedadesSomenteLeituras;
+            for (const propriedade of propriedadesSomenteLeitura.Valores)
+            {
+                this.NotificarPropriedadeAlterada(propriedade.Nome);
+            }
+        }
 
         //#region IEquals
 
