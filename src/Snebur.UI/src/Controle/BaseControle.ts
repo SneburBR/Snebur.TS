@@ -739,7 +739,12 @@
 
             if ((this as any)[nomeFlagDeBloqueio])
             {
-                console.error("Sistema ocupado");
+                const mensagem = "OcuparAsync - o sistema já está ocupado";
+                console.error(mensagem);
+                if ($Configuracao.IsDebug)
+                {
+                    throw mensagem;
+                }
                 return null;
             }
 

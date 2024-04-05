@@ -77,7 +77,7 @@
                 {
                     return null;
                 }
-                throw new Erro(`Não foi encontrando uma instancia para o caminho '${caminho}`);
+                throw new Erro(`Não foi encontrando uma instancia para o caminho '${caminho}'`);
             }
 
             if (instancias.length > 1)
