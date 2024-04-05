@@ -42,7 +42,7 @@
         //public static async MostrarMensagemAsync(controlePai: BaseControle,
         //    titulo: string, mensagem: string,
         //    opcoes: EnumBotoesJanelaMensagem = EnumBotoesJanelaMensagem.OKEntendi,
-        //    callback: (resultado: ResultadoJanelaMensagemArgs) => void = null) 
+        //    callback: (resultado: ResultadoJanelaMensagemArgs) => void = null)
         //{
         //    await ThreadUtil.QuebrarAsync();
 
@@ -52,6 +52,17 @@
         //        callback(resultado);
         //    }
         //}
+
+        public static async MostrarMensagemErroAsync(
+            controlePai: BaseControle,
+             mensagem: string ): Promise<ResultadoJanelaMensagemArgs>
+        {
+            await JanelaMensagem.AguardarFecharMensagemAsync();
+
+            const titulo = "Opps!!";
+            const janela = new JanelaMensagem(controlePai, titulo, mensagem, EnumBotoesJanelaMensagem.Ok);
+            return await janela.MostrarAsync();
+        }
 
         public static async MostrarMensagemAsync(controlePai: BaseControle,
             titulo: string, mensagem: string,
