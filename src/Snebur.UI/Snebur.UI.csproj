@@ -67,6 +67,7 @@
     <Content Include="scss\_imagem.scss" />
     <Content Include="scss\Cores\Combinacoes\DuasCores\--cor-rosa-azul.scss" />
     <None Include="packages.config" />
+    <Content Include="scss\_filtros.scss" />
     <None Include="scss\_loader.scss" />
     <Content Include="scss\_responsividade.scss" />
     <None Include="scss\_scroll.scss" />

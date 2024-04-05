@@ -8,6 +8,7 @@
         private _passo: number;
         private _isSalvarOrdenacaoAutomaticamente: boolean = true;
         private _isAnimarOrdenacao: boolean = true;
+        private _isAtivarOdernacao: boolean = true;
         private _isCloneGlobal: boolean = true;
      
 
@@ -40,6 +41,15 @@
             return this._isAnimarOrdenacao;
         }
 
+        public get IsAtivarOrdenacao(): boolean
+        {
+            return this._isAtivarOdernacao;
+        }
+        public set IsAtivarOrdenacao(value: boolean)
+        {
+            this._isAtivarOdernacao = value;
+        }
+
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
@@ -58,10 +68,10 @@
             this._isAnimarOrdenacao = this.RetornarValorAtributoBoolean(AtributosHtml.IsAnimarOrdenacao, true);
             this._isCloneGlobal = this.RetornarValorAtributoBoolean(AtributosHtml.IsCloneGlobal, true);
             this._sentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
+            this._isAtivarOdernacao =  this.RetornarValorAtributoBoolean(AtributosHtml.IsAtivarOrdenacao, true);
 
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();
-
-
+             
 
             if (this.BlocoTemplateSeparador != null)
             {

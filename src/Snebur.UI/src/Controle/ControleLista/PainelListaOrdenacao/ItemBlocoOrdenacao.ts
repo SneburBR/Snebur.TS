@@ -132,7 +132,7 @@
 
         private async Elemento_MouseDown(e: MouseEvent)
         {
-            if (!e.IsBotaoEsquerdo)
+            if (!e.IsBotaoEsquerdo || !this.PainelLista.IsAtivarOrdenacao)
             {
                 return;
             }
@@ -154,7 +154,7 @@
 
         private ElementoAlvo_MouseDown(e: MouseEvent)
         {
-            if (!e.IsBotaoEsquerdo)
+            if (!e.IsBotaoEsquerdo || !this.PainelLista.IsAtivarOrdenacao)
             {
                 return;
             }
@@ -231,6 +231,11 @@
 
         private ElementoAlvo_TouchStart(e: TouchEvent)
         {
+            if (!this.PainelLista.IsAtivarOrdenacao)
+            {
+                return;
+            }
+
             if (e.touches.length === 1)
             {
                 window.clearTimeout(this.IdentificadorTouchStart);

@@ -475,7 +475,12 @@
                             {
                                 if (this.PaiPropriedade instanceof ObjetoControladorPropriedade)
                                 {
-                                    this.UltimaMensagemValidacao = validacao.RetornarMensagemValidacao(this.PaiPropriedade, this.Propriedade, valorPropriedade);
+                                    this.UltimaMensagemValidacao = validacao.RetornarMensagemValidacao(
+                                        this.PaiPropriedade,
+                                        this.Propriedade,
+                                        valorPropriedade,
+                                        this.Rotulo);
+
                                     this.MostrarMensagemValidacao(isForcar);
                                     if (validacao.IsAlerta === true)
                                     {

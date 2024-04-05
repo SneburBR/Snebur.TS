@@ -80,5 +80,7 @@
         Audio = "audio/*",
         Video = "video/*",
         Image = "image/*",
+        Png = "image/png",
+        Jpeg = "image/jpeg",
     }
 }
