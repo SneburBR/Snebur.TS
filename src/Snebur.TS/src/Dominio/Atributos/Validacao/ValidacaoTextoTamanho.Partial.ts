@@ -2,14 +2,14 @@
 {
     export interface ValidacaoTextoTamanhoAttribute
     {
-        RetornarMensagemValidacao(paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): string;
+        RetornarMensagemValidacao(paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any, rutoloControle?:string): string;
 
         IsValido(paiPropriedade: Snebur.Dominio.BaseDominio, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): boolean;
     }
-    ValidacaoTextoTamanhoAttribute.prototype.RetornarMensagemValidacao = function (paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): string
+    ValidacaoTextoTamanhoAttribute.prototype.RetornarMensagemValidacao = function (paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any, rutoloControle?:string): string
     {
         const atributo: ValidacaoTextoTamanhoAttribute = this;
-        const rotuloPropriedade = u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
+        const rotuloPropriedade = rutoloControle?.toLowerCase() ??  u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
 
         if (atributo.TamanhoMinimo > 0 && atributo.TamanhoMaximo > 0)
         {

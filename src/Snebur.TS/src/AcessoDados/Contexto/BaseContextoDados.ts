@@ -38,11 +38,14 @@
             this.NamespaceEntidades = u.NamespaceUtil.RetornarNamespace(tipoEntidadeOuNamespace);
             this.ServicoDados = new ServicoDadosCliente(urlServico, this.URLServicoDebug, this.CredencialServico, nomeServicoDados);
 
-            if (!$Aplicacao.ContextosDados.ContainsKey(this.NamespaceEntidades))
+            if ($Aplicacao.ContextosDados.ContainsKey(this.NamespaceEntidades))
             {
-                const construtorContexto = (this as any).constructor;
-                $Aplicacao.AdicionarContextosDados(this.NamespaceEntidades, urlServico, construtorContexto);
+                throw new Erro(`Já existe um contexto dados instanciado na aplicação para o namespace ${this.NamespaceEntidades}
+                                \rA instancia dos contexto dados devem ser únicas para mesmo namaspace das entidades`);
             }
+
+            /*const construtorContexto = (this as any).constructor;*/
+            $Aplicacao.AdicionarContextosDados(this.NamespaceEntidades, this);
         }
 
         //#region IServicoDadosAsync
@@ -328,7 +331,7 @@
 
                                 if (propriedade.Tipo.IsTipoCompleto)
                                 {
-                                    const propriedadesTipoCompleto =entidade.__PropriedadesAlteradas.ParesChaveValor.Where(x => x.Chave.startsWith(`${nomePropriedade}_`));
+                                    const propriedadesTipoCompleto = entidade.__PropriedadesAlteradas.ParesChaveValor.Where(x => x.Chave.startsWith(`${nomePropriedade}_`));
                                     clone.__PropriedadesAlteradas.AddRangeOrUpdate(propriedadesTipoCompleto);
                                 }
                                 else
@@ -337,7 +340,7 @@
                                 }
                             }
                         }
-                        
+
                     }
                     (clone as any as IObjetoControladorPropriedade).AtivarObservadorPropriedadeAlterada();
                     entidadesSalvar.Add(clone);
@@ -471,7 +474,7 @@
                         }
                     }
                 }
-                
+
                 entidadeRecuperada.NotificarTodasPropriedadesAlteradas();
                 entidade.__PropriedadesAlteradas.Clear();
             }
@@ -601,8 +604,13 @@
             {
                 throw new Erro(`O objeto  ${parametro?.GetType().Name ?? parametro.constructor?.name ?? parametro} não é do tipo entidade`);
             }
+            if ($Configuracao.IsDebug)
+            {
+                this.ValidarContexto(entidades);
+            }
             return entidades;
         }
+
 
         private ValidarEntidades(entidades: List<d.Entidade>): void
         {
@@ -655,6 +663,19 @@
             return retorno;
         }
 
+        private ValidarContexto(entidades: d.Entidade[])
+        {
+            for (const entidade of entidades)
+            {
+                const tipo = entidade.GetType() as r.TipoEntidade;
+                const contexto = $Aplicacao.RetornarContextoDados(tipo);
+                if (contexto !== this)
+                {
+                    const descricao = u.EntidadeUtil.RetornarDescricaoEntidade(entidade);
+                    throw new Erro(`A entidade ${descricao} do tipo ${tipo.Nome} não pertence ao contexto ${this.___NomeConstrutor}`);
+                }
+            }
+        }
         //#endregion
 
         //#region IDisposable

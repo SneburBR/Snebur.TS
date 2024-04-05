@@ -21,6 +21,7 @@
             {
                 throw new ErroNaoImplementado(this);
             }
+
             const atributoRotulo = propriedade.Atributos.OfType<d.Atributos.RotuloAttribute>(d.Atributos.RotuloAttribute).SingleOrDefault();
             if (atributoRotulo == null)
             {

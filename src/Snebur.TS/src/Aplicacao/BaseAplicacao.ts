@@ -268,16 +268,16 @@
 
         //#region ContextoDados
 
-        public AdicionarContextosDados(tipo: r.TipoEntidade, urlServicoDados: string, construtor: { new(_nemspace: string, urlServicoDados: string): Snebur.AcessoDados.BaseContextoDados }): void
-        public AdicionarContextosDados(_namespace: string, urlServicoDados: string, construtor: { new(_nemspace: string, urlServicoDados: string): Snebur.AcessoDados.BaseContextoDados }): void
-        public AdicionarContextosDados(parametro: any, urlServicoDados: string, construtor: { new(_nemspace: string, urlServicoDados: string): Snebur.AcessoDados.BaseContextoDados }): void
+        public AdicionarContextosDados(
+            _namespace: string,
+            contextoDados: a.BaseContextoDados): void
         {
-            const _namespace = u.NamespaceUtil.RetornarNamespace(parametro);
+            /*const _namespace = u.NamespaceUtil.RetornarNamespace(parametro);*/
             if (!this.ContextosDados.ContainsKey(_namespace))
             {
-                this.ContextosDados.Adicionar(_namespace, null);
-                const contexto = new construtor(_namespace, urlServicoDados);
-                this.ContextosDados.AtribuirItem(_namespace, contexto);
+                this.ContextosDados.Adicionar(_namespace, contextoDados);
+                //const contexto = new construtor(_namespace, urlServicoDados);
+                //this.ContextosDados.AtribuirItem(_namespace, contexto);
             }
         }
 

@@ -2,14 +2,18 @@
 {
     export interface ValidacaoRequeridoAttribute
     {
-        RetornarMensagemValidacao(paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): string;
+        RetornarMensagemValidacao(paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any, rotuloControle?: string): string;
 
         IsValido(paiPropriedade: Snebur.Dominio.BaseDominio, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): boolean;
     }
 
-    ValidacaoRequeridoAttribute.prototype.RetornarMensagemValidacao = function (paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any, controle?: IRotulo): string
+    ValidacaoRequeridoAttribute.prototype.RetornarMensagemValidacao = function (
+        paiPropriedade: any,
+        propriedade: Snebur.Reflexao.Propriedade,
+        valorPropriedade: any,
+        rotuloControle?: string): string
     {
-        const rotuloPropriedade = controle?.Rotulo?.toLowerCase() ?? u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
+        const rotuloPropriedade = rotuloControle?.toLowerCase() ?? u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
         const opcao = this.OpcoesComparacaoAuxiliar;
         if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma && paiPropriedade!= null)
         {
@@ -107,6 +111,11 @@
             if (propriedade.Tipo instanceof r.TipoBaseDominio)
             {
                 return valorPropriedade instanceof BaseDominio;
+            }
+
+            if (propriedade.Tipo instanceof r.BaseTipoLista)
+            {
+                return Array.isArray(valorPropriedade) && valorPropriedade.length > 0 ;
             }
         }
         return false;
