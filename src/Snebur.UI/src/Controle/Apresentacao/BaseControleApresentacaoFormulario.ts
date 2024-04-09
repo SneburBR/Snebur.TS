@@ -31,7 +31,7 @@
             const todosControles = this.RetornarTodosControlesFormulario(true);
             for (const controle of todosControles)
             {
-                controle.VerificarValorPropriedadeAlterada();
+                controle.VerificarValorPropriedadeAlteradaAsync();
             }
         }
 

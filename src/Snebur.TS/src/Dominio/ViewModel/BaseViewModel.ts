@@ -12,18 +12,19 @@
         public constructor(inicializador?: Partial<BaseViewModel>) 
         {
             super(inicializador);
+            setTimeout(this.__InicializarInternoAsync__.bind(this), 0);
+        }
+
+        private async __InicializarInternoAsync__()
+        {
             this.Inicializar();
             this.__PropriedadesAlteradas.Clear();
         }
-  
-
+         
         public override Dispose(): void
         {
             super.Dispose();
         }
     }
-
-  
 }
 
- 

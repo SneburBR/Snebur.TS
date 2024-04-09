@@ -365,7 +365,7 @@
                         }
                         else
                         {
-                            entidade.__PropriedadesAlteradas.Remove(nomePropriedade);
+                            entidade.__PropriedadesAlteradas.TryRemove(nomePropriedade);
                         }
                     }
                 }

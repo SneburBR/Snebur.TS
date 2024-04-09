@@ -234,12 +234,14 @@
         {
             if (u.ValidacaoUtil.IsDefinido(this.PaiPropriedadeLigacao))
             {
-                u.ReflexaoUtil.AtribuirValorPropriedade(this.PaiPropriedadeLigacao,
+                u.ReflexaoUtil.AtribuirValorPropriedade(
+                    this.PaiPropriedadeLigacao,
                     this.NomePropriedadeLigacao,
                     valorPropriedade, true);
+
                 if (this.ControlePai instanceof BaseControleFormulario)
                 {
-                    this.ControlePai.VerificarValorPropriedadeAlterada();
+                    this.ControlePai.VerificarValorPropriedadeAlteradaAsync();
                 }
             }
         }

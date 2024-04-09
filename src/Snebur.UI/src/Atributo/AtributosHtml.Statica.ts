@@ -147,6 +147,7 @@
         public static readonly DestinoMensagemValidacao = new AtributoHtml("sn-destino-mensagem-validacao", String);
         public static readonly ManterEspacoMensagemValidacao = new AtributoHtml("sn-manter-espaco-mensagem-validacao", Boolean);
         public static readonly MensagemValidacaoFlutuante = new AtributoHtml("sn-mensagem-validacao-flutuante", Boolean);
+        public static readonly IsNegritoValorAlterado = new AtributoHtml("sn-is-negrito-valor-alterado", Boolean);
 
         public static readonly Grupo = new AtributoHtml("sn-grupo", String);
 

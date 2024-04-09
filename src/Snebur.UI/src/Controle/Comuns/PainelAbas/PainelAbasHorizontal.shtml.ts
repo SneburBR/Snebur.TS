@@ -72,7 +72,7 @@ namespace Snebur.UI
             this.Navegador.EventoPaginaAlterada.AddHandler(this.Navegador_PaginaAterada, this);
 
             this.Abas.AddRangeNew(this.ControlesFilho.OfType<Aba>(Aba).Where(x => x.ConstrutorPagina != null).ToList());
-            this.IsAbasCheia = this.RetornarValorAtributoBoolean(AtributosHtml.IsAbasCheia, true);
+            this.IsAbasCheia = this.RetornarValorAtributoBoolean(AtributosHtml.IsAbasCheia, false);
             this.IsCarregarAbaInicial = this.RetornarValorAtributoBoolean(AtributosHtml.IsCarregarAbaInicial, true);
             this._funcaoIsPodeNavegar = this.RetornarFuncaoIsPodeNavegar();
 

@@ -409,7 +409,7 @@
             return null;
         }
 
-        public override VerificarValorPropriedadeAlterada()
+        public override async VerificarValorPropriedadeAlteradaAsync()
         {
             const elementoSelecioando = this.ControleItemSelecionado.Elemento;
             if (elementoSelecioando != null)

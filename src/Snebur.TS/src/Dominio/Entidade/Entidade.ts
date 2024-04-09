@@ -274,11 +274,7 @@
                 this.NotificarPropriedadeAlterada(propriedade.Nome);
             }
 
-            const propriedadesSomenteLeitura = this.__PropriedadesSomenteLeituras;
-            for (const propriedade of propriedadesSomenteLeitura.Valores)
-            {
-                this.NotificarPropriedadeAlterada(propriedade.Nome);
-            }
+            this.NotificarPropriedadesSomenteLeituraAlteradas();
         }
 
         //#region IEquals

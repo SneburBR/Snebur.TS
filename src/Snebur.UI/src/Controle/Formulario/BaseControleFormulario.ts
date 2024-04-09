@@ -31,6 +31,7 @@
         public IsIgnorarValidacao: boolean = false;
         public IsValidarSempre: boolean = false;
         public IsValidarValorPropriedadeAlterado = true;
+        public IsNegritoValorAlterado: boolean = true;
 
         protected PaiPropriedade: ObjetoControladorPropriedade;
         protected NomePropriedade: string;
@@ -190,7 +191,7 @@
             this.IsValidarSempre = this.RetornarValorAtributoBoolean(AtributosHtml.ValidarSempre, false);
             this.IsValidarValorPropriedadeAlterado = this.RetornarValorAtributoBoolean(AtributosHtml.ValidarValorPropriedadeAlterado, true);
             this.IsManterEspacoMensagemValidacao = this.RetornarValorAtributoBoolean(AtributosHtml.ManterEspacoMensagemValidacao, this.IsManterEspacoMensagemValidacao);
-
+            this.IsNegritoValorAlterado = this.RetornarValorAtributoBoolean(AtributosHtml.IsNegritoValorAlterado, true);
             this.AdicionarEventoDom(ui.EnumEventoDom.Change, this.ElementoInput_Change.bind(this));
             this.AdicionarEventoDom(ui.EnumEventoDom.Focus, this.ElementoInput_Focus.bind(this));
             this.AdicionarEventoDom(ui.EnumEventoDom.Click, this.ElementoInput_Click.bind(this));
@@ -293,7 +294,7 @@
                 }
             }
             this.ValidarDepois.Executar();
-            this.VerificarValorPropriedadeAlterada();
+            this.VerificarValorPropriedadeAlteradaAsync();
         }
 
         private ValidarDepoisInterno()
@@ -993,12 +994,22 @@
             }
         }
 
-        public VerificarValorPropriedadeAlterada()
+        public async VerificarValorPropriedadeAlteradaAsync()
         {
-            const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
-            EstiloUtil.AtualizarCssClass(this.Elemento,
-                ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
-                isPropriedadeAlterada);
+            await ThreadUtil.QuebrarAsync();
+            if (!this.IsControleInicializado)
+            {
+                return;
+            }
+
+            if (this.IsNegritoValorAlterado)
+            {
+                const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
+
+                EstiloUtil.AtualizarCssClass(this.Elemento,
+                    ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
+                    isPropriedadeAlterada);
+            }
         }
 
         //#region IDisposable 

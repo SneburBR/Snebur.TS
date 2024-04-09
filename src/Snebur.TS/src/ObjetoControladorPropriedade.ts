@@ -330,6 +330,14 @@
 
         //#region Notificação das propriedades
 
+        public NotificarPropriedadesSomenteLeituraAlteradas()
+        {
+            for(const propriedade of this.__PropriedadesSomenteLeituras.Valores)
+            {
+                this.NotificarPropriedadeAlteraSimples(propriedade.Nome);
+            }
+        }
+
         public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any): void;
         public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any): void;
         public NotificarPropriedadeAlterada<T extends this = this>(expressaoPropriedade: (value: T) => any, antigoValor: any, novoValor: any): void;

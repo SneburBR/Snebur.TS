@@ -69,6 +69,8 @@
                     this.__NomePropriedadeEntidade,
                     propriedade.Nome);
             }
+
+            this.NotificarPropriedadesSomenteLeituraAlteradas();
         }
     }
 }
