@@ -55,11 +55,10 @@
 
         public static async MostrarMensagemErroAsync(
             controlePai: BaseControle,
-             mensagem: string ): Promise<ResultadoJanelaMensagemArgs>
+            mensagem: string,
+            titulo: string = "Oops!!"): Promise<ResultadoJanelaMensagemArgs>
         {
             await JanelaMensagem.AguardarFecharMensagemAsync();
-
-            const titulo = "Opps!!";
             const janela = new JanelaMensagem(controlePai, titulo, mensagem, EnumBotoesJanelaMensagem.Ok);
             return await janela.MostrarAsync();
         }

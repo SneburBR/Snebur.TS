@@ -1017,6 +1017,7 @@
 
                         return !String.IsNullOrWhiteSpace(valorPropriedade);
 
+                    case (r.EnumTipoPrimario.Byte):
                     case (r.EnumTipoPrimario.Integer):
                     case (r.EnumTipoPrimario.Long):
                     case (r.EnumTipoPrimario.Decimal):

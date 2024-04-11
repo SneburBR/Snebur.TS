@@ -324,6 +324,44 @@
         }
 
 
+        public async IsValidoAsync(): Promise<boolean>
+        {
+            for (const propriedade of this.GetType().TodasPropriedades.Valores)
+            {
+                const atributos = propriedade.Atributos;
+                if (atributos.Count > 0)
+                {
+                    const valorPropriedade = (this as any)[propriedade.Nome];
+                    for (const atributo of atributos)
+                    {
+                        if (atributo instanceof at.BaseAtributoValidacao ||
+                            atributo instanceof at.BaseAtributoValidacaoAsync)
+                        {
+                            const isValido = await atributo.IsValidoAsync(this, propriedade, valorPropriedade);
+                            if (!isValido)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+            for (const propriedadeValidacao of this.PropriedadesValidacoes.Valores)
+            {
+                const valorPropriedade = (this as any)[propriedadeValidacao.NomePropriedade];
+                const propriedade = propriedadeValidacao.Propriedade;
+                for (const validacao of propriedadeValidacao.Validacoes)
+                {
+                    const isValido = await validacao.IsValidoAsync(this, propriedade, valorPropriedade);
+                    if (!isValido)
+                    {
+                        return false; 
+                    }
+                }
+            }
+            return true;
+        }
+
     }
 
     export declare type FuncaoClonarPropriedade = (propriedade: r.Propriedade, valorPropriedade: Entidade) => any | undefined;

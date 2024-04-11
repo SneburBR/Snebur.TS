@@ -75,7 +75,21 @@
     {
         if (!this.IsAuxiliarValido(paiPropriedade, valorPropriedade))
         {
-            return false;
+            return this.IsValidoSeAuxiliarInvalido;
+        }
+
+
+        if (propriedade.Tipo instanceof r.TipoEntidade)
+        {
+            if (paiPropriedade instanceof d.Entidade)
+            {
+                if (valorPropriedade == null)
+                {
+                    const idChaveEstrangeira = u.EntidadeUtil.RetornarIdChaveEstrangeira(paiPropriedade, propriedade);
+                    return idChaveEstrangeira > 0;
+                }
+            }
+            return (valorPropriedade instanceof Entidade);
         }
 
         if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
@@ -85,20 +99,7 @@
                 const tipoPrimario = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
                 return ValidacaoUtil.IsTipoPrimarioDefinido(valorPropriedade, tipoPrimario, true);
             }
-
-            if (propriedade.Tipo instanceof r.TipoEntidade)
-            {
-                if (paiPropriedade instanceof d.Entidade)
-                {
-                    if (!u.ValidacaoUtil.IsDefinido(valorPropriedade))
-                    {
-                        const idChaveEstrangeira = u.EntidadeUtil.RetornarIdChaveEstrangeira(paiPropriedade, propriedade);
-                        return idChaveEstrangeira > 0;
-                    }
-                }
-                return (valorPropriedade instanceof Entidade);
-            }
-
+             
             if (propriedade.Tipo instanceof r.TipoEnum)
             {
                 if (u.ValidacaoUtil.IsNumber(valorPropriedade))
@@ -118,6 +119,7 @@
                 return Array.isArray(valorPropriedade) && valorPropriedade.length > 0 ;
             }
         }
+
         return false;
     };
 

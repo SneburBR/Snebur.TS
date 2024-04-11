@@ -44,7 +44,7 @@
 
         /*protected __IsControladorPropriedadesAlteradaAtivo: boolean = false;*/
 
-        private get PropriedadesValidacoes(): DicionarioSimples<PropriedadeValidacoes>
+        protected get PropriedadesValidacoes(): DicionarioSimples<PropriedadeValidacoes>
         {
             if (!this._propriedadesValidacoes)
             {
@@ -123,9 +123,30 @@
         public async RetornarMensagemValidacoesPendenteAsync(): Promise<List<string>>
         {
             const retorno = new List<string>();
-            const propriedades = this.GetType().RetornarPropriedades(false);
+            const propriedades = this.GetType().TodasPropriedades.Valores;
+          
             for (const propriedade of propriedades)
             {
+                const atributos = propriedade.Atributos;
+                if (atributos.Count > 0)
+                {
+                    const valorPropriedade = (this as any)[propriedade.Nome];
+                    for (const atributo of atributos)
+                    {
+                        if (atributo instanceof at.BaseAtributoValidacao ||
+                            atributo instanceof at.BaseAtributoValidacaoAsync)
+                        {
+                            const isValido = await atributo.IsValidoAsync(this, propriedade, valorPropriedade);
+                            if (!isValido)
+                            {
+                                const mensagem = atributo.RetornarMensagemValidacao(this, propriedade, valorPropriedade);
+                                retorno.Add(mensagem);
+                                break;
+                            }
+                        }
+                    }
+                }
+
                 const propriedadeValidacoes = this.PropriedadesValidacoes.TryItem(propriedade.Nome);
                 if (propriedadeValidacoes instanceof PropriedadeValidacoes)
                 {

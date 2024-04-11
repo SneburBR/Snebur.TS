@@ -46,10 +46,7 @@
         public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
             super(controlePai);
-
-            
-
-
+             
             this.CssClasseControle = "sn-base-janela-cadastro";
             this._dataSource = null;
 
@@ -341,9 +338,11 @@
 
         private async SalvarInternoAsync(isFechar: boolean = true): Promise<boolean>
         {
-            this.Ocupar();
-            const resultado = await this.RetornarResultadoSalvarAsync();
-            await this.DesocuparAsync();
+            const resultado = await this.OcuparAsync(async () =>
+            {
+                return await this.RetornarResultadoSalvarAsync();
+            });
+             
             if (isFechar && resultado.IsSucesso)
             {
                 this.FecharAsync(true);
@@ -359,7 +358,12 @@
                 if (mensagensValidacao.Count > 0)
                 {
                     const mensagem = String.Join("<br>", mensagensValidacao);
-                    throw new Erro(mensagem);
+                    await MensagemUtil.MostrarMensagemErroAsync(this, mensagem);
+                    DebugUtil.ThrowAndContinue(mensagem);
+                    return new a.ResultadoSalvar({
+                        IsSucesso: false,
+                        MensagemErro: mensagem
+                    });
                 }
             }
 

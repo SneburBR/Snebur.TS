@@ -36,24 +36,29 @@
         }
         throw new ErroOperacaoInvalida("Operação invalida, não possível retornar um mensagem de validação de moeda", this);
     };
+
     ValidacaoMoedaAttribute.prototype.IsValido = function (paiPropriedade: Snebur.Dominio.BaseDominio, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): boolean
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
             const atributo: ValidacaoMoedaAttribute = this;
+            if (valorPropriedade == null)
+            {
+                return atributo.AceitarNulo;
+            }
+
             if (!u.ValidacaoUtil.IsNumber(valorPropriedade))
             {
                 return false;
             }
             const valor = u.ConverterUtil.ParaDecimal(valorPropriedade);
+           
+
             if (!atributo.AceitarNegativo && valor < 0)
             {
                 return false;
             }
-            if (!atributo.AceitarNulo && valor === 0)
-            {
-                return false;
-            }
+             
             if (atributo.ValorMaximo > 0 && valor > atributo.ValorMaximo)
             {
                 return false;
@@ -63,7 +68,6 @@
                 return false;
             }
         }
-
         return true;
     };
 }

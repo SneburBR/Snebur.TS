@@ -675,7 +675,7 @@
             if ($Configuracao.IsDebug)
             {
                 const nomePaginaAtual = this.PaginaAtual?.___NomeConstrutor;
-                this.Elemento.setAttribute("debug-pagina-atual", nomePaginaAtual ?? "null");
+                this.Elemento?.setAttribute("debug-pagina-atual", nomePaginaAtual ?? "null");
             }
         }
 

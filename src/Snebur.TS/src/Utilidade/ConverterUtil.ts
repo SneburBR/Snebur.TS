@@ -112,6 +112,7 @@
                 case (r.EnumTipoPrimario.Double):
                 case (r.EnumTipoPrimario.Single):
                 case (r.EnumTipoPrimario.Long):
+                case (r.EnumTipoPrimario.Byte):
 
                     return 0;
 
