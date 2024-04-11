@@ -451,6 +451,7 @@
 
             const propriedades = tipoEntidade.RetornarPropriedades();
             const entidadesRecuperada = await consulta.ToListAsync();
+            const nomesPropriedesRelacoesAberta = expressoesAbrirRelacao.Select(x => u.ExpressaoUtil.RetornarNomePropriedade(x));
 
             for (const entidadeRecuperada of entidadesRecuperada)
             {
@@ -467,10 +468,20 @@
                         {
                             (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
                         }
-                        else if (propriedade.Tipo instanceof d.Entidade &&
-                            valorPropriedadeRecuperada instanceof d.Entidade)
+                        else if (propriedade.Tipo instanceof r.TipoEntidade)
                         {
-                            (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                            if (nomesPropriedesRelacoesAberta.Contains(propriedade.Nome))
+                            {
+                                (entidade as any)[propriedade.Nome] = valorPropriedadeRecuperada;
+                            }
+                        }
+                        else if (propriedade.Tipo instanceof r.BaseTipoLista &&
+                            Array.isArray(valorPropriedadeRecuperada))
+                        {
+                            if (nomesPropriedesRelacoesAberta.Contains(propriedade.Nome))
+                            {
+                                ((entidade as any)[propriedade.Nome] as Array<any>).AddRangeNew(valorPropriedadeRecuperada);
+                            }
                         }
                     }
                 }
