@@ -70,7 +70,7 @@
             }
         }
 
-        public static RetornarUFEnumDaSingla(sigla: EnumUFSigla | string): EnumUF
+        public static RetornarUFEnumDaSingla(sigla: EnumUFSigla | string, isIgnorarErro?:boolean): EnumUF
         {
             if (String.IsNullOrWhiteSpace(sigla))
             {
@@ -134,6 +134,11 @@
                 case EnumUFSigla.Tocantins:
                     return EnumUF.Tocantins;
                 default:
+
+                    if (isIgnorarErro)
+                    {
+                        return null;
+                    }
                     throw new Error(`Sigla não suportada: ${sigla}`);
             }
         }

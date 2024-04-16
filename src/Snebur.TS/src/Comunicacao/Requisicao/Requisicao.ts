@@ -158,7 +158,9 @@
                 await u.InternetUtil.AguardarConexaoInternerAsync();
             }
 
-            await u.ThreadUtil.EsperarAsync(TimeSpan.FromSeconds(Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this.Tentativa, 10)));
+            const totalSegundos = Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this.Tentativa, 10);
+            const esperarProximaTentativa = TimeSpan.FromSeconds(Math.min(totalSegundos, 60));
+            await u.ThreadUtil.EsperarAsync(esperarProximaTentativa);
             return await this.ExecutarInternoAsync();
         }
          

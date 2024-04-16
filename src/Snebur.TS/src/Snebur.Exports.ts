@@ -105,6 +105,9 @@ namespace Snebur
     export import EnumMimeType = Snebur.Dominio.EnumMimeType;
     export import EnumMimetypeString = Snebur.Utilidade.EnumMimetypeString;
 
+    export  import EnumUF = Snebur.Dne.EnumUF;
+    export  import EnumUFSigla = Snebur.Dne.EnumUFSigla;
+
     //acesso a dados
     export import IConsultaEntidade = Snebur.AcessoDados.IConsultaEntidade;
     export import ConsultaEntidade = Snebur.AcessoDados.ConsultaEntidade;

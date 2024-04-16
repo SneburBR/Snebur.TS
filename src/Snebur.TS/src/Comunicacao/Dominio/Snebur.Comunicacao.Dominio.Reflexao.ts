@@ -272,7 +272,7 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem = new Snebur.Reflexao.Propriedade("UrlVisualizarImagem", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem, true);
 	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.RotuloAttribute("Url visualiuzar imagem","Url visualiuzar imagem"));
-	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,500));
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem);

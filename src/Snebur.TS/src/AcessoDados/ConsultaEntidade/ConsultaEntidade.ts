@@ -151,6 +151,11 @@
         }
         //Funções Async
 
+        private __AnyInternoAsync(callback: CallbackResultado<boolean>): void
+        {
+            this.__RetornarValorFuncaoInternoAsync(EnumTipoFuncao.Existe, null, callback);
+        }
+
         private __CountInternoAsync(callback: CallbackResultado<number>): void
         {
             this.__RetornarValorFuncaoInternoAsync(EnumTipoFuncao.Contar, null, callback);
@@ -250,6 +255,17 @@
             });
         }
         //Funções
+
+        public AnyAsync(): Promise<boolean>
+        {
+            return new Promise<boolean>(resolver =>
+            {
+                this.__AnyInternoAsync(function (resultado: boolean)
+                {
+                    resolver(ConverterUtil.ParaBoolean(resultado));
+                });
+            });
+        }
 
         public CountAsync(): Promise<number>
         {
@@ -521,7 +537,7 @@
             }.bind(this, callback));
         }
 
-        private async __RetornarValorFuncaoInternoAsync(tipoFuncaoEnum: EnumTipoFuncao, expressao: Function, callback: CallbackResultado<number> | CallbackResultado<Date> | null)
+        private async __RetornarValorFuncaoInternoAsync(tipoFuncaoEnum: EnumTipoFuncao, expressao: Function, callback: CallbackResultado<number | Date | boolean  | null>   )
         {
             const consultaValorScalar = this.RetornarEstruturaConsultaValorScalar(tipoFuncaoEnum, expressao);
             const resultado = await this.ContextoDados.RetornarValorScalarAsync(consultaValorScalar);

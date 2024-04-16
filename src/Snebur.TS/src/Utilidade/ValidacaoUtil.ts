@@ -1095,7 +1095,7 @@
         public static IsUF(valorPropriedade: string): boolean
         {
             let uf = valorPropriedade?.toUpperCase().trim();
-            return EnumUtil.IsDefindo(EnumUF, uf);
+            return EnumUtil.IsDefindo(Dne.EnumUFSigla, uf);
         }
 
         public static IsJson(json: string): boolean
@@ -1239,34 +1239,5 @@
         }
     }
 
-    export enum EnumUF
-    {
-        Acre = "AC",
-        Alagoas = "AL",
-        Amapa = "AP",
-        Amazonas = "AM",
-        Bahia = "BA",
-        Ceara = "CE",
-        DistritoFederal = "DF",
-        EspiritoSanto = "ES",
-        Goias = "GO",
-        Maranhão = "MA",
-        MatoGrosso = "MT",
-        MatoGrossoDoSul = "MS",
-        MinasGerais = "MG",
-        Para = "PA",
-        Paraiba = "PB",
-        Parana = "PR",
-        Pernambuco = "PE",
-        Piaui = "PI",
-        RioDeJaneiro = "RJ",
-        RioGrandeDoNorte = "RN",
-        RioGrandeDoSul = "RS",
-        Rondonia = "RO",
-        Roraima = "RR",
-        SantaCatarina = "SC",
-        SaoPaulo = "SP",
-        Sergipe = "SE",
-        Tocantins = "TO"
-    }
+  
 }

@@ -14,6 +14,7 @@ namespace Snebur.AcessoDados
         Maximo = 4,
         Minimo = 5,
         Media = 6,
+        Existe = 7,
     }
     (EnumTipoFuncao as any).Rotulos = {};
     (EnumTipoFuncao as any).Rotulos["Consulta"] = "Consulta";
@@ -22,6 +23,7 @@ namespace Snebur.AcessoDados
     (EnumTipoFuncao as any).Rotulos["Maximo"] = "Maximo";
     (EnumTipoFuncao as any).Rotulos["Minimo"] = "Minimo";
     (EnumTipoFuncao as any).Rotulos["Media"] = "Media";
+    (EnumTipoFuncao as any).Rotulos["Existe"] = "Existe";
 
     export enum EnumPosicaoOrdenacao
     {

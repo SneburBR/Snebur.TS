@@ -80,6 +80,7 @@ namespace Snebur.Reflexao
 	export const __$tipoEnum_Snebur_Arquivo_EnumTipoArquivo = new Snebur.Reflexao.TipoEnum("EnumTipoArquivo", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoArquivo, Snebur");
 	export const __$tipoEnum_Snebur_Arquivo_EnumTipoXFG = new Snebur.Reflexao.TipoEnum("EnumTipoXFG", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoXFG, Snebur");
 	export const __$tipoEnum_Snebur_Comparer_EnumCompararPropriedade = new Snebur.Reflexao.TipoEnum("EnumCompararPropriedade", "Snebur.Comparer", "Snebur.Comparer.EnumCompararPropriedade, Snebur");
+	export const __$tipoEnum_Snebur_Dne_EnumUF = new Snebur.Reflexao.TipoEnum("EnumUF", "Snebur.Dne", "Snebur.Dne.EnumUF, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade = new Snebur.Reflexao.TipoEnum("EnumOpcoesAlterarPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnumOpcoesAlterarPropriedade, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnumTipoValorPadrao = new Snebur.Reflexao.TipoEnum("EnumTipoValorPadrao", "Snebur.Dominio", "Snebur.Dominio.EnumTipoValorPadrao, Snebur");
 	export const __$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade = new Snebur.Reflexao.TipoEnum("EnunFlagAlteracaoPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnunFlagAlteracaoPropriedade, Snebur");
@@ -184,6 +185,7 @@ namespace Snebur.Reflexao
 	export const __$tipoListaEnum_Snebur_Arquivo_EnumTipoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Arquivo.EnumTipoArquivo", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoArquivo, Snebur", __$tipoEnum_Snebur_Arquivo_EnumTipoArquivo);
 	export const __$tipoListaEnum_Snebur_Arquivo_EnumTipoXFG = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Arquivo.EnumTipoXFG", "Snebur.Arquivo", "Snebur.Arquivo.EnumTipoXFG, Snebur", __$tipoEnum_Snebur_Arquivo_EnumTipoXFG);
 	export const __$tipoListaEnum_Snebur_Comparer_EnumCompararPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Comparer.EnumCompararPropriedade", "Snebur.Comparer", "Snebur.Comparer.EnumCompararPropriedade, Snebur", __$tipoEnum_Snebur_Comparer_EnumCompararPropriedade);
+	export const __$tipoListaEnum_Snebur_Dne_EnumUF = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dne.EnumUF", "Snebur.Dne", "Snebur.Dne.EnumUF, Snebur", __$tipoEnum_Snebur_Dne_EnumUF);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumOpcoesAlterarPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnumOpcoesAlterarPropriedade, Snebur", __$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	export const __$tipoListaEnum_Snebur_Dominio_EnumTipoValorPadrao = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnumTipoValorPadrao", "Snebur.Dominio", "Snebur.Dominio.EnumTipoValorPadrao, Snebur", __$tipoEnum_Snebur_Dominio_EnumTipoValorPadrao);
 	export const __$tipoListaEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.Dominio.EnunFlagAlteracaoPropriedade", "Snebur.Dominio", "Snebur.Dominio.EnunFlagAlteracaoPropriedade, Snebur", __$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
@@ -288,6 +290,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("Snebur.Arquivo.EnumTipoArquivo",__$tipoEnum_Snebur_Arquivo_EnumTipoArquivo);
 	$Reflexao.Tipos.Adicionar("Snebur.Arquivo.EnumTipoXFG",__$tipoEnum_Snebur_Arquivo_EnumTipoXFG);
 	$Reflexao.Tipos.Adicionar("Snebur.Comparer.EnumCompararPropriedade",__$tipoEnum_Snebur_Comparer_EnumCompararPropriedade);
+	$Reflexao.Tipos.Adicionar("Snebur.Dne.EnumUF",__$tipoEnum_Snebur_Dne_EnumUF);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumOpcoesAlterarPropriedade",__$tipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnumTipoValorPadrao",__$tipoEnum_Snebur_Dominio_EnumTipoValorPadrao);
 	$Reflexao.Tipos.Adicionar("Snebur.Dominio.EnunFlagAlteracaoPropriedade",__$tipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
@@ -391,6 +394,7 @@ namespace Snebur.Reflexao
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Arquivo_EnumTipoArquivo",__$tipoListaEnum_Snebur_Arquivo_EnumTipoArquivo);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Arquivo_EnumTipoXFG",__$tipoListaEnum_Snebur_Arquivo_EnumTipoXFG);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Comparer_EnumCompararPropriedade",__$tipoListaEnum_Snebur_Comparer_EnumCompararPropriedade);
+	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dne_EnumUF",__$tipoListaEnum_Snebur_Dne_EnumUF);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade",__$tipoListaEnum_Snebur_Dominio_EnumOpcoesAlterarPropriedade);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnumTipoValorPadrao",__$tipoListaEnum_Snebur_Dominio_EnumTipoValorPadrao);
 	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade",__$tipoListaEnum_Snebur_Dominio_EnunFlagAlteracaoPropriedade);
@@ -495,6 +499,7 @@ namespace Snebur.Reflexao
 	Snebur.Arquivo.EnumTipoArquivo.__CaminhoTipo = "Snebur.Arquivo.EnumTipoArquivo";
 	Snebur.Arquivo.EnumTipoXFG.__CaminhoTipo = "Snebur.Arquivo.EnumTipoXFG";
 	Snebur.Comparer.EnumCompararPropriedade.__CaminhoTipo = "Snebur.Comparer.EnumCompararPropriedade";
+	Snebur.Dne.EnumUF.__CaminhoTipo = "Snebur.Dne.EnumUF";
 	Snebur.Dominio.EnumOpcoesAlterarPropriedade.__CaminhoTipo = "Snebur.Dominio.EnumOpcoesAlterarPropriedade";
 	Snebur.Dominio.EnumTipoValorPadrao.__CaminhoTipo = "Snebur.Dominio.EnumTipoValorPadrao";
 	Snebur.Dominio.EnunFlagAlteracaoPropriedade.__CaminhoTipo = "Snebur.Dominio.EnunFlagAlteracaoPropriedade";
@@ -1037,19 +1042,19 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_Dominio_InformacaoSessao.Propriedades.Add(__$propriedade_Snebur_Dominio_InformacaoSessao_NomeComputador);
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Nome = new Snebur.Reflexao.Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Nome.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0,255));
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Email = new Snebur.Reflexao.Propriedade("Email", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Email.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoEmailAttribute());
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Telefone = new Snebur.Reflexao.Propriedade("Telefone", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Telefone.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoTelefoneAttribute());
 	
 	export const __$propriedade_Snebur_Dominio_NovoUsuario_Senha = new Snebur.Reflexao.Propriedade("Senha", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, true);
-	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoSenhaAttribute(4,36));
 	
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Nome);
@@ -1269,10 +1274,10 @@ namespace Snebur.Reflexao
 	__$tipoBaseDominioSnebur_Dominio_Borda.Propriedades.Add(__$propriedade_Snebur_Dominio_Borda_Arredondamento);
 	
 	export const __$propriedade_Snebur_Dominio_Dimensao_Largura = new Snebur.Reflexao.Propriedade("Largura", __$tipoTipoPrimario_Double, __$tipoBaseDominioSnebur_Dominio_Dimensao, false);
-	__$propriedade_Snebur_Dominio_Dimensao_Largura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_Dimensao_Largura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	
 	export const __$propriedade_Snebur_Dominio_Dimensao_Altura = new Snebur.Reflexao.Propriedade("Altura", __$tipoTipoPrimario_Double, __$tipoBaseDominioSnebur_Dominio_Dimensao, false);
-	__$propriedade_Snebur_Dominio_Dimensao_Altura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false));
+	__$propriedade_Snebur_Dominio_Dimensao_Altura.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	
 	__$tipoBaseDominioSnebur_Dominio_Dimensao.Propriedades.Add(__$propriedade_Snebur_Dominio_Dimensao_Largura);
 	__$tipoBaseDominioSnebur_Dominio_Dimensao.Propriedades.Add(__$propriedade_Snebur_Dominio_Dimensao_Altura);

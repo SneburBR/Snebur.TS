@@ -1869,6 +1869,7 @@ namespace Snebur.Dominio.Atributos
         private _opcoesComparacaoAuxiliar : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null = null;
         private _nomePropridadeAuxiliar : string = null;
         private _isValidoSeAuxiliarInvalido : boolean = false;
+        private _valorComparar : any = null;
     
         public get OpcoesComparacaoAuxiliar(): Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null 
         {
@@ -1900,6 +1901,16 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("IsValidoSeAuxiliarInvalido", this._isValidoSeAuxiliarInvalido, this._isValidoSeAuxiliarInvalido = value);
         }
     
+        public get ValorComparar(): any 
+        {
+            return this._valorComparar;
+        }
+
+        public set ValorComparar(value: any) 
+        {
+            this.NotificarValorPropriedadeAlterada("ValorComparar", this._valorComparar, this._valorComparar = value);
+        }
+    
         public static MensagemValidacao : string = "O campo {0} deve ser preenchido."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
@@ -1907,12 +1918,13 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isValidoSeAuxiliarInvalido? : boolean ) 
+        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isValidoSeAuxiliarInvalido? : boolean ,  valorComparar? : any ) 
         {
             super();
             this._opcoesComparacaoAuxiliar = opcoesComparacaoAuxiliar;
             this._nomePropridadeAuxiliar = nomePropridadeAuxiliar;
             this._isValidoSeAuxiliarInvalido = isValidoSeAuxiliarInvalido;
+            this._valorComparar = valorComparar;
         }
         //#endregion
     }

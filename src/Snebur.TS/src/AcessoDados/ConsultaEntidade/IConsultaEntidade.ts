@@ -76,6 +76,8 @@
 
         FirstOrDefaultAsync(): Promise<TEntidade>;
 
+        AnyAsync(): Promise<boolean>;
+
         CountAsync(): Promise<number>;
 
         MinAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number | Date): Promise<number | Date>;

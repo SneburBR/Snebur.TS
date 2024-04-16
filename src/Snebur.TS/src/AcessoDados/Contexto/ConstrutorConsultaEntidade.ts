@@ -188,7 +188,13 @@
         {
             return new ConsultaEntidade<TEntidade>(this.ContextoDados, this.TipoEntidadeConsulta).FirstOrDefaultAsync();
         }
+
         //Funcoes
+
+        public AnyAsync(): Promise<boolean>
+        {
+            return new ConsultaEntidade<TEntidade>(this.ContextoDados, this.TipoEntidadeConsulta).AnyAsync();
+        }
 
         public CountAsync(): Promise<number>
         {
