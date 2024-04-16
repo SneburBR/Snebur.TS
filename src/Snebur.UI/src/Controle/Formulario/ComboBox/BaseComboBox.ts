@@ -88,7 +88,7 @@
             const elementoApresentacao = this.Elemento.getElementsByTagName(ComponenteApresentacaoConteudo.TAG_ELEMENTO_CONTEUDO_APRESENTACAO)[0];
             if (!(elementoApresentacao instanceof HTMLElement))
             {
-                throw new Erro("O elemento apresentacao não foi encontrado");
+                throw new Erro("O elemento apresentação não foi encontrado");
             }
             elementoApresentacao.innerHTML = this.HtmlInternoInicial;
         }

@@ -271,7 +271,7 @@
                     this.OcuparElemento();
                     //o bind são atualizando quando os controles perdem o focus
                     window.focus();
-                    window.setTimeout(this.ValidarFomularioESalvarAsync.bind(this));
+                    window.setTimeout(this.ValidarFomularioESalvarAsync.bind(this, false));
                 }
             }
         }
@@ -279,12 +279,12 @@
 
         //#region Salvar
 
-        protected async ValidarFomularioESalvarAsync()
+        protected async ValidarFomularioESalvarAsync(isFechar:boolean= true)
         {
             const isValido = await this.ValidarFormularioAsync();
             if (isValido)
             {
-                this.SalvarAsync();
+                this.SalvarAsync(true);
             }
         }
 

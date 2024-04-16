@@ -53,10 +53,20 @@
         //    }
         //}
 
+        public static async MostrarMensagemErroPadraoAsync( controlePai: BaseControle, ): Promise<ResultadoJanelaMensagemArgs>
+        {
+            const mensagem = `<br /> Verifique os dados e tente novamente.
+                                     Caso o problema persista, entre em contato com o suporte.`;
+
+            await JanelaMensagem.AguardarFecharMensagemAsync();
+            const janela = new JanelaMensagem(controlePai, "Oops!! Algo deu erro", mensagem, EnumBotoesJanelaMensagem.Ok);
+            return await janela.MostrarAsync();
+        }
+
         public static async MostrarMensagemErroAsync(
             controlePai: BaseControle,
             mensagem: string,
-            titulo: string = "Oops!!"): Promise<ResultadoJanelaMensagemArgs>
+            titulo: string = "Oops!! Algo deu erro"): Promise<ResultadoJanelaMensagemArgs>
         {
             await JanelaMensagem.AguardarFecharMensagemAsync();
             const janela = new JanelaMensagem(controlePai, titulo, mensagem, EnumBotoesJanelaMensagem.Ok);

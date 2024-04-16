@@ -1,18 +1,18 @@
-﻿
+﻿@import "../../../../scss/mixins";
 
 .sn-data-lista-div-ordenacao {
     display: inline-block;
     position: relative;
-    padding-right: 20px;
+    padding-right: retornar-rem(20px);
 }
 
 .sn-lista-padrao {
     tr {
-        height: 40px;
+        height: retornar-rem(40px);
 
         td {
-            padding: 5px 18px;
-            height: 40px;
+            padding: retornar-rem(5px) retornar-rem(18px);
+            height: retornar-rem(40px);
         }
     }
 }
@@ -76,7 +76,7 @@
         border-style: solid;
         border-color: #000 transparent;
         visibility: visible;
-        right: 5px;
+        right: retornar-rem(5px);
         top: 50%;
         position: absolute;
         /*opacity: 0.3;*/
@@ -85,6 +85,6 @@
 }
 
 .sn-data-lista-ordenacao-rodape {
-    font-size: 12px;
+    font-size: retornar-rem(12px);
     color: #444;
 }
