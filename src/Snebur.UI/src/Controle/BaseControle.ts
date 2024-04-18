@@ -752,6 +752,11 @@
             {
                 (this as any)[nomeFlagDeBloqueio] = true;
                 this.Ocupar();
+
+                if (!funcAsync.IsBoundThis)
+                {
+                    funcAsync = funcAsync.bind(this);
+                }
                 return await funcAsync();
             }
             catch (erro)

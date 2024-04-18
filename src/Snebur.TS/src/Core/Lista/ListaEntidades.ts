@@ -32,14 +32,14 @@
             if (entidade instanceof d.Entidade)
             {
 
-                if (lista.EntidadesRemovida.Contains(entidade))
-                {
-                    lista.EntidadesRemovida.Remove(entidade);
-                }
-                if (!lista.EntidadesAdicionada.Contains(entidade))
-                {
-                    lista.EntidadesAdicionada.Add(entidade);
-                }
+                //if (lista.EntidadesRemovida.Contains(entidade))
+                //{
+                //    lista.EntidadesRemovida.Remove(entidade);
+                //}
+                //if (!lista.EntidadesAdicionada.Contains(entidade))
+                //{
+                //    lista.EntidadesAdicionada.Add(entidade);
+                //}
                 return ListaObservacao.Adicionar(lista as ListaObservacao<any>, entidade);
             }
             return lista.length;
@@ -49,14 +49,14 @@
         {
             if (entidade instanceof d.Entidade)
             {
-                if (!lista.EntidadesRemovida.Contains(entidade))
-                {
-                    lista.EntidadesRemovida.Add(entidade);
-                }
-                if (lista.EntidadesAdicionada.Contains(entidade))
-                {
-                    lista.EntidadesAdicionada.Remove(entidade);
-                }
+                //if (!lista.EntidadesRemovida.Contains(entidade))
+                //{
+                //    lista.EntidadesRemovida.Add(entidade);
+                //}
+                //if (lista.EntidadesAdicionada.Contains(entidade))
+                //{
+                //    lista.EntidadesAdicionada.Remove(entidade);
+                //}
                 return ListaObservacao.Remover(lista as ListaObservacao<any>, entidade);
             }
             return false;
@@ -66,14 +66,14 @@
         {
             if (entidade instanceof d.Entidade)
             {
-                if (lista.EntidadesRemovida.Contains(entidade))
-                {
-                    lista.EntidadesRemovida.Remove(entidade);
-                }
-                if (!lista.EntidadesAdicionada.Contains(entidade))
-                {
-                    lista.EntidadesAdicionada.Add(entidade);
-                }
+                //if (lista.EntidadesRemovida.Contains(entidade))
+                //{
+                //    lista.EntidadesRemovida.Remove(entidade);
+                //}
+                //if (!lista.EntidadesAdicionada.Contains(entidade))
+                //{
+                //    lista.EntidadesAdicionada.Add(entidade);
+                //}
                 ListaObservacao.Inserir(lista as ListaObservacao<any>, posicao, entidade);
             }
             return lista.length;

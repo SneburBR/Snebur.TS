@@ -76,6 +76,7 @@ namespace Snebur.Dominio
     export interface IDeletado extends Snebur.Dominio.IEntidade 
     {
         IsDeletado : boolean;
+        DataHoraCadastro? : Date;
         DataHoraDeletado? : Date;
         SessaoUsuarioDeletado_Id? : number;
         SessaoUsuarioDeletado : Snebur.Dominio.ISessaoUsuario;

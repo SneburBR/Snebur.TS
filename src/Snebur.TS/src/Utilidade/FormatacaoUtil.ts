@@ -250,6 +250,9 @@
 
                     return FormatacaoUtil.FormatarPeso(valor);
 
+                case EnumFormatacao.PesoKg:
+
+                    return FormatacaoUtil.FormatarPesoKg(valor);
                 case EnumFormatacao.Prazo:
 
                     return FormatacaoUtil.FormatarPrazo(valor);
@@ -1476,6 +1479,15 @@
                     return `${FormatacaoUtil.FormatarDecimal(pesoEmGramas, false, true, 1)} kg`;
                 }
                 return `${parseInt(pesoEmGramas)} g`;
+            }
+            return String.Empty;
+        }
+
+        public static FormatarPesoKg(pesoEmKg: number): string
+        {
+            if (ValidacaoUtil.IsNumber(pesoEmKg, true))
+            {
+                return `${FormatacaoUtil.FormatarDecimal(pesoEmKg, false, true, 1)} kg`;
             }
             return String.Empty;
         }

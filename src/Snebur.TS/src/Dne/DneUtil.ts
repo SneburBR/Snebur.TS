@@ -1,7 +1,27 @@
 ﻿namespace Snebur.Utilidade
 {
-     export class DneUtil
+    export class DneUtil
     {
+        public static RetornarUFDescricao(estado: EnumUF | EnumUFSigla | string): string
+        {
+            if (estado == null)
+            {
+                return null;
+            }
+
+            if (typeof estado === "string" &&
+                EnumUtil.IsDefindo(EnumUFSigla, estado))
+            {
+                estado = DneUtil.RetornarUFEnumDaSingla(estado);
+            }
+
+            if (EnumUtil.IsDefindo(EnumUF, estado))
+            {
+                return EnumUtil.RetornarRotulo(EnumUF, estado);
+            }
+            return null;
+        }
+
         public static RetornarSigla(estado: EnumUF): EnumUFSigla
         {
             if (estado == null)
@@ -70,13 +90,13 @@
             }
         }
 
-        public static RetornarUFEnumDaSingla(sigla: EnumUFSigla | string, isIgnorarErro?:boolean): EnumUF
+        public static RetornarUFEnumDaSingla(sigla: EnumUFSigla | string, isIgnorarErro?: boolean): EnumUF
         {
             if (String.IsNullOrWhiteSpace(sigla))
             {
                 return null;
             }
-  
+
             switch (sigla)
             {
                 case EnumUFSigla.Acre:
@@ -144,4 +164,3 @@
         }
     }
 }
- 

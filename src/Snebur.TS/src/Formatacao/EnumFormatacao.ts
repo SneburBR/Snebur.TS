@@ -112,6 +112,8 @@
 
         Peso = "peso",
 
+        PesoKg = "Pesokg",
+
         Prazo = "prazo",
 
         DoisPontosFinal = "doispontosfinal",
