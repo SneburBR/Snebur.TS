@@ -137,11 +137,7 @@
                 const itemBloco = this.PainelLista.ItensBloco.Where(x => x.ItemReferencia === itemSelecionao).SingleOrDefault();
                 if (itemBloco != null)
                 {
-                    itemBloco.Elemento?.scrollIntoView({
-                        block: "center",
-                        inline: "center",
-                        behavior: "smooth"
-                    });
+                    ElementoUtil.ScrollTo(itemBloco.Elemento);
                 }
             }
         }
@@ -163,11 +159,7 @@
                 if (isSelecionado)
                 {
                     isJaSelecionado = true;
-                    itemBloco.Elemento.scrollIntoView({
-                        block: "center",
-                        inline: "center",
-                        behavior: "smooth"
-                    });
+                    ElementoUtil.ScrollTo(itemBloco.Elemento);
                 }
 
                 EstiloUtil.AtualizarCssClass(itemBloco.Elemento,

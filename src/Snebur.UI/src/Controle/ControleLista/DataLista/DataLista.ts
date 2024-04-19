@@ -219,10 +219,7 @@
 
                         if (isRolarScroll)
                         {
-                            linha.Elemento.scrollIntoView({
-                                block: "center",
-                                behavior: "smooth",
-                            });
+                            ElementoUtil.ScrollTo(linha.Elemento);
                         }
                     }
                     else
@@ -319,11 +316,7 @@
                 const linhaItem = this.LinhasColecao.Linhas.Where(x => x.ItemReferencia!= null && (x.ItemReferencia as IEquals).Equals(itemReferencia)).FirstOrDefault();
                 if (linhaItem != null)
                 {
-                    linhaItem.Elemento.scrollIntoView({
-                        block: "center",
-                        inline: "center",
-                        behavior: "smooth"
-                    });
+                    ElementoUtil.ScrollTo(linhaItem.Elemento);
 
                     if (isMarcarLinha)
                     {

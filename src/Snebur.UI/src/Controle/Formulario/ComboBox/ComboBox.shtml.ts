@@ -311,9 +311,20 @@
             e.stopPropagation();
             e.stopImmediatePropagation();
 
-            if (this.IsControleInicializado)
+            if (this.IsControleInicializado )
             {
                 this.CaixaSelecao.Mostrar(this.ItemSelecionado);
+            }
+        }
+
+        protected override async FocusInternoAsync()
+        {
+            if (this.IsControleInicializado)
+            {
+                this.AtualizarCssClassePossuiConteudo();
+                await ThreadUtil.QuebrarAsync();
+                ElementoUtil.ScrollTo(this.Elemento);
+                this.Elemento.focus();
             }
         }
 

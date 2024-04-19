@@ -532,9 +532,9 @@
             return ` <span class="${classCss}""> ${conteudo} </span> `;
         }
 
-        public static ScrollTo(elemento: HTMLElement)
+        public static ScrollTo(elemento: Element)
         {
-            elemento.scrollIntoView({
+            elemento?.scrollIntoView({
                 block: "center",
                 inline: "center",
                 behavior: "smooth"

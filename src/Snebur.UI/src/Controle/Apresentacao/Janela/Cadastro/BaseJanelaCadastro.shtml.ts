@@ -2,7 +2,7 @@
 {
     export abstract class BaseJanelaCadastro<TEntidade extends IEntidade = Entidade> extends Janela   
     {
-
+        private _isNovaEntidade: boolean = false;
         public IsMostrarBotaoCancelar: boolean = true;
         public IsMostrarBotaoSalvar: boolean = true;
 
@@ -43,6 +43,11 @@
             return entidade?.__PropriedadesAlteradas?.Count > 0;
         }
 
+        public get IsNovaEntidade(): boolean
+        {
+            return this._isNovaEntidade;
+        }
+
         public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
             super(controlePai);
@@ -69,6 +74,7 @@
 
                 if (this.IDEntidade === 0)
                 {
+                    this._isNovaEntidade = true;
                     this.NovaEntidade = entidadeOuTipoConstrutor as TEntidade;
                 }
             }
@@ -76,6 +82,7 @@
             {
                 this.TipoEntidade = entidadeOuTipoConstrutor;
                 this.IDEntidade = 0;
+                this._isNovaEntidade = true;
             }
             else if (entidadeOuTipoConstrutor.GetType)
             {
@@ -86,6 +93,7 @@
                 }
                 this.TipoEntidade = tipoEntidade;
                 this.IDEntidade = 0;
+                this._isNovaEntidade = true;
             }
             this.Contexto = $Aplicacao.RetornarContextoDados(this.TipoEntidade);
             this.EventoCarregado.AddHandler(this.BaseJanelaCadastro_Carregada, this);
@@ -284,7 +292,7 @@
             const isValido = await this.ValidarFormularioAsync();
             if (isValido)
             {
-                this.SalvarAsync(true);
+                this.SalvarAsync(isFechar);
             }
         }
 

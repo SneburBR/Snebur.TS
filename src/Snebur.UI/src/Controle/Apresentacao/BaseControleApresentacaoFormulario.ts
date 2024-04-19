@@ -83,11 +83,7 @@
             const resultado = await this.ValidarControlesFormularioInternoAsync(isSomenteControlesVisiveis);
             if (!resultado.IsSucesso && !TelaUtil.IsCelularOuTablet)
             {
-                resultado.ControleInvalido.Elemento.scrollIntoView({
-                    block: "nearest",
-                    inline: "nearest",
-                    behavior: "smooth"
-                });
+                ElementoUtil.ScrollTo(resultado.ControleInvalido.Elemento);
 
                 await u.ThreadUtil.QuebrarAsync();
                 resultado.ControleInvalido.FocusNaoOcultarValidacao();

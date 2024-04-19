@@ -88,7 +88,7 @@
             botaoFechar.addEventListener("click", ConsoleUtil.BtnFechar_Click.bind(ConsoleUtil));
             botaoFechar.innerHTML = "Fechar";
             estiloBotao.AplicarEm(botaoFechar);
-             
+
             estiloConsole.AplicarEm(elementoConsole);
             estiloBotao.AplicarEm(botaoExpandir);
 
@@ -126,11 +126,7 @@
 
             ConsoleUtil.IsExpandido = isExpandir;
             const destino = ConsoleUtil.ElementoConsole.querySelector("destino");
-            destino.lastElementChild?.scrollIntoView({
-                block: "center",
-                inline: "center",
-                behavior: "smooth"
-            });
+            ElementoUtil.ScrollTo(destino.lastElementChild);
         }
 
         private static BtnFechar_Click(): void
@@ -141,7 +137,7 @@
             delete ConsoleUtil.ElementoConsole;
             delete ConsoleUtil.ElementoBotaoExpandir;
         }
-         
+
         private static ConsoleUtil_Log(provedcor: any, e: ConsoleLogArgs)
         {
             if (ConsoleUtil._isInicializando)
@@ -177,11 +173,7 @@
 
                     if (!ConsoleUtil.IsExpandido)
                     {
-                        log.scrollIntoView({
-                            block: "center",
-                            inline: "center",
-                            behavior: "smooth"
-                        });
+                        ElementoUtil.ScrollTo(log);
                     }
                 }
             }

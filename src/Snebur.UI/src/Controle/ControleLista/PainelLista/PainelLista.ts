@@ -348,11 +348,7 @@
                         itemBloco.MarcarConteudo();
                         if (isParaScroll)
                         {
-                            itemBloco.Elemento.scrollIntoView({
-                                block: "center",
-                                inline: "center",
-                                behavior: "smooth"
-                            });
+                            ElementoUtil.ScrollTo(itemBloco.Elemento);
                         }
                     }
                     else
