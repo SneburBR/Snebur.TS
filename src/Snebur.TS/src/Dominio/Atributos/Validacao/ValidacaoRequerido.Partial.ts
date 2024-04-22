@@ -85,11 +85,21 @@
             {
                 if (valorPropriedade == null)
                 {
-                    const idChaveEstrangeira = u.EntidadeUtil.RetornarIdChaveEstrangeira(paiPropriedade, propriedade);
+                    const propriedadeChaveEstrangeira = u.EntidadeUtil.RetornarPropriedadeChaveEstrangeira(paiPropriedade.GetType() as r.TipoEntidade, propriedade);
+                    if (propriedadeChaveEstrangeira.IsIdentificadorProprietario)
+                    {
+                        return true;
+                    }
+                    const idChaveEstrangeira = (paiPropriedade as any)[propriedadeChaveEstrangeira.Nome];
                     return idChaveEstrangeira > 0;
                 }
             }
             return (valorPropriedade instanceof Entidade);
+        }
+
+        if (propriedade.IsIdentificadorProprietario)
+        {
+            return true;
         }
 
         if (u.ValidacaoUtil.IsDefinido(valorPropriedade))

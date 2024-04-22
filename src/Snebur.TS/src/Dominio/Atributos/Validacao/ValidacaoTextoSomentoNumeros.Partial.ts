@@ -20,6 +20,10 @@ namespace Snebur.Dominio.Atributos
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
+            if (this.IsAceitarPontosSinais)
+            {
+                return u.ValidacaoUtil.IsSomenteNumerosPontosSinais(valorPropriedade);
+            }
             return u.ValidacaoUtil.IsSomenteNumeros(valorPropriedade);
         }
         return true;
