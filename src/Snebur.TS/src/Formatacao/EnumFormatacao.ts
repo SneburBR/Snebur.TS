@@ -117,8 +117,12 @@
         Prazo = "prazo",
 
         DoisPontosFinal = "doispontosfinal",
-     
+
+        OcultarEmail = "ocultaremail",
+
+        Senha = "senha",
+
 
     }
-     
+
 }

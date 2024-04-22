@@ -261,6 +261,13 @@
 
                     return FormatacaoUtil.FormatarDoisPontosFinal(valor);
 
+                case EnumFormatacao.Senha:
+
+                    return FormatacaoUtil.FormatarSenha(valor);
+                case EnumFormatacao.OcultarEmail:
+
+                    return FormatacaoUtil.OcultarEmail(valor);
+
 
                 default:
 
@@ -968,7 +975,7 @@
             isFormatarParteInteira: boolean = false,
             casasDecimal: number = 2): string
         {
-            
+
             if (valor == null)
             {
                 valor = 0;
@@ -1405,7 +1412,7 @@
                 {
                     return texto;
                 }
-                
+
                 const linhas = TextoUtil.RetornarLinhas(texto);
                 if (isFormatarEspaco)
                 {
@@ -1524,9 +1531,18 @@
 
         public static OcultarEmail(email: string): string
         {
+            if (email == null)
+            {
+                return String.Empty;
+            }
             const partesEmail = email.Split("@");
             const primeiraParteEmail = partesEmail[0].substring(0, 2);
             return `${primeiraParteEmail}********@${partesEmail[1]}`;
+        }
+
+        public static FormatarSenha(senha: string): string
+        {
+            return senha?.replace(/./g, "*") ?? String.Empty;
         }
 
         //#endregion
