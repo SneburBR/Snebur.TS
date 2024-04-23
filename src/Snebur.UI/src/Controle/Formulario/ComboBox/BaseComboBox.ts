@@ -159,7 +159,7 @@
 
             if (!(this.BlocoTemplatePadrao instanceof BlocoTemplate))
             {
-                throw new Error(`O bloco item template do ${this.___NomeConstrutor} não está definido em  ${this.ControleApresentacao.___NomeConstrutor}`);
+                throw new Erro(`O bloco item template do ${this.___NomeConstrutor} não está definido em  ${this.ControleApresentacao.___NomeConstrutor}`);
             }
 
             this._itemTemplateSelecionado = this.RetornarItemTemplateSelecionado();
@@ -215,7 +215,16 @@
                 }
                 this.BlocosTemplate.Add(blocoTemplate.Chave, blocoTemplate);
             }
-        }
+
+            if (this.BlocosTemplate.Count === 0)
+            {
+                const elemento = document.createElement("sn-bloco-template");
+                elemento.innerHTML = "BLOCO TEMPLATE NÂO DEFINIDIO";
+                this.ElementoApresentacao.appendChild(elemento);
+                const blocoTemplate = new BlocoTemplate(this, elemento);
+                this.BlocosTemplate.Add(BlocoTemplate.CHAVE_PADRAO, blocoTemplate);
+            }
+       }
 
         private RetornarBlocoTemplate(itemTemplate: ItemTemplate | BlocoTemplate): BlocoTemplate
         {
