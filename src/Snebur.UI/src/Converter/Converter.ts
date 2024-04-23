@@ -198,18 +198,47 @@
             return EnumVisibilidade.Visivel;
         }
 
-        public static StringVaziaOuNullParaVisibilidade(valor: any): EnumVisibilidade
+        public static IsNullOrWhiteSpace(valor: any): EnumVisibilidade
         {
-            if (!u.ValidacaoUtil.IsStringVaziaOuNull(valor))
+            if (String.IsNullOrWhiteSpace(valor))
             {
                 return EnumVisibilidade.Oculto;
             }
+
             if (Converter.IsVisibidade(valor))
             {
                 return valor;
             }
             return EnumVisibilidade.Visivel;
         }
+
+        public static IsNotNullOrWhiteSpace(valor: any): EnumVisibilidade
+        {
+            if (typeof valor === "string" &&
+                !String.IsNullOrWhiteSpace(valor))
+            {
+                return EnumVisibilidade.Visivel;
+            }
+
+            if (Converter.IsVisibidade(valor))
+            {
+                return valor;
+            }
+            return EnumVisibilidade.Oculto;
+        }
+
+        //public static StringVaziaOuNullParaVisibilidade(valor: any): EnumVisibilidade
+        //{
+        //    if (!u.ValidacaoUtil.IsStringVaziaOuNull(valor))
+        //    {
+        //        return EnumVisibilidade.Oculto;
+        //    }
+        //    if (Converter.IsVisibidade(valor))
+        //    {
+        //        return valor;
+        //    }
+        //    return EnumVisibilidade.Visivel;
+        //}
 
         public static ExisteItensParaVisibilidade(lista: Array<any> | any): EnumVisibilidade
         {
@@ -275,7 +304,7 @@
                 //    case EnumVisibilidade.Visivel:
                 //    case EnumVisibilidade.Invisivel:
                 //    case EnumVisibilidade.Oculto:
-        
+
                 //        return true;
                 //}
             }
