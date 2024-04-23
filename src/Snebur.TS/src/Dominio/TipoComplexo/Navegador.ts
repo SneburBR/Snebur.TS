@@ -80,10 +80,19 @@
                 this.NavegadorEnum === d.EnumNavegador.Opera;
         }
 
+        public get Descricao(): string
+        {
+            if (String.IsNullOrWhiteSpace(this.Codenome))
+            {
+                return this.Nome + " " + this.Versao;
+            }
+            return this.Nome + " (" + this.Codenome + ") " + this.Versao;
+        }
+
         //#endregion
 
         //#region Construtor
-         
+
         public constructor(navegadorEnum?: d.EnumNavegador, nome?: string, codeNome?: string, versao?: string)
         {
             super();

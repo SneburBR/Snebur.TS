@@ -67,6 +67,16 @@
             return ConverterUtil.ParaInteiro(this._versao);
 
         }
+
+        public get Descricao(): string
+        {
+            if (String.IsNullOrWhiteSpace(this.Codenome))
+            {
+                return this.Nome + " " + this.Versao;
+            }
+            return this.Nome + " (" + this.Codenome + ") " + this.VersaoPrincipal;
+        }
+
         //#endregion
 
         //#region Construtor
