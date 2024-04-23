@@ -17,9 +17,15 @@
 
         public set Id(value: number)
         {
-            if (this._id > 0 && this._id !== value)
+           
+            if (this._id > 0 && this._id !== value )
             {
-                throw new ErroOperacaoInvalida("Não possível sobreescrever um id ja existente");
+                throw new ErroOperacaoInvalida("Não possível sobreescrever um id já existente");
+            }
+
+            if (this.IsNotificacaoAlteracaoPropriedadeAtiva && value > 0)
+            {
+                throw new ErroOperacaoInvalida("Não possível inserir um id em uma entidade");
             }
 
             const isNotificarEntidadeSalva = (this._id === 0 && value > 0);
@@ -102,7 +108,7 @@
                 }
                 else
                 {
-                    const isValidar = propriedadeTipoComplexo.Atributos.OfType<at.IgnorarValidacaoTipoComplexo>(at.IgnorarValidacaoTipoComplexo).Count === 0;
+                    const isValidar = propriedadeTipoComplexo.Atributos.OfType(at.IgnorarValidacaoTipoComplexo).Count === 0;
                     if (isValidar)
                     {
                         throw new Erro(`A propriedade ${propriedadeTipoComplexo.Nome} do tipo complexo ${propriedadeTipoComplexo.Tipo.Nome} não foi definido no seu contrato do campo privado. Atualize a extensão no lado servidor`);
@@ -340,6 +346,11 @@
                             const isValido = await atributo.IsValidoAsync(this, propriedade, valorPropriedade);
                             if (!isValido)
                             {
+                                if ($Configuracao.IsDebug)
+                                {
+                                    console.warn(`Falha na validação da propriedade ${propriedade.Nome} da entidade ${this.GetType().Nome}. Atributo: ${atributo?.GetType().Nome}`);
+                                    await atributo.IsValidoAsync(this, propriedade, valorPropriedade);
+                                }
                                 return false;
                             }
                         }
@@ -361,7 +372,6 @@
             }
             return true;
         }
-
     }
 
     export declare type FuncaoClonarPropriedade = (propriedade: r.Propriedade, valorPropriedade: Entidade) => any | undefined;
