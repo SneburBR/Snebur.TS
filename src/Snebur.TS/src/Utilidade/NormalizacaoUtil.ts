@@ -198,11 +198,33 @@
                 return valor.Replace(",", ".");
             }
             return valor;
+        }
 
+        public static NormalizarVisibilidade(visibibilidade: UI.EnumVisibilidade | boolean | number)
+        {
+            if (typeof visibibilidade === "number")
+            {
+                if (EnumUtil.IsDefindo(UI.EnumVisibilidade, visibibilidade))
+                {
+                    return visibibilidade;
+                }
+                if (visibibilidade === 1)
+                {
+                    return UI.EnumVisibilidade.Visivel;
+                }
+                if (visibibilidade === 0 || visibibilidade === -1)
+                {
+                    return UI.EnumVisibilidade.Oculto;
+                }
+            }
 
-
-
-
+            if (typeof visibibilidade === "boolean")
+            {
+                return visibibilidade
+                    ? UI.EnumVisibilidade.Visivel
+                    : UI.EnumVisibilidade.Oculto;
+            }
+            return visibibilidade;
         }
 
     }
