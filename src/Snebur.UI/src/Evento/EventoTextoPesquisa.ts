@@ -2,9 +2,9 @@
 {
     export class EventoTextoPesquisa extends EventoControleHandler
     {
-        private static readonly INTERVALO = 1000;
-        private TempoEsperar: TimeSpan;
-        private TempoUltimaPesquisa: TimeSpan;
+        private static readonly INTERVALO = 750;
+        //private TempoEsperar: TimeSpan;
+        //private TempoUltimaPesquisa: TimeSpan;
         private ValorUltimaPesquisa: string;
         private ElementoInput: HTMLInputElement;
 
@@ -13,7 +13,7 @@
         {
             super(controlePai, elemento, AtributosHtml.TextoPesquisa, "keydown");
 
-            this.TempoUltimaPesquisa = new Date().TimeOfDay;
+            /*this.TempoUltimaPesquisa = new Date().TimeOfDay;*/
             this.ElementoInput = this.RetornarElementoInput();
         }
 
@@ -38,7 +38,7 @@
 
         protected override ManipuladorkEventListenerDom(e: KeyboardEvent): void
         {
-            this.TempoUltimaPesquisa = new Date().TimeOfDay;
+            /*this.TempoUltimaPesquisa = new Date().TimeOfDay;*/
             this.ExecutarDepois.Executar(e);
         }
 

@@ -2,9 +2,10 @@
 {
     export abstract class BaseDominio extends Snebur.ObjetoControladorPropriedade /*implements IIdentificadorUnico, IIdentificadorReferencia*/
     {
-        //#region Propriedades 
+        //#region Propriedades
 
-        private __InicializarPropriedades?: Partial<this>
+        //@internal
+        protected __InicializarPropriedades?: Partial<this>
 
         //#endregion
 
@@ -43,41 +44,45 @@
                 this.DesativarObservadorPropriedadeAlterada();
             }
 
-            //object assign pode sobre escrever os métodos e outras propriedades protegidas
-            const fonte = init as any;
-            for (const nomePropriedade in fonte)
+            try
             {
-                if (!nomePropriedade.StartsWith("_") &&
-                    !___PropriedadesMetodosProtegidosEntidades[nomePropriedade])
+                //object assign pode sobre escrever os métodos e outras propriedades protegidas
+                const fonte = init as any;
+                for (const nomePropriedade in fonte)
                 {
-                    const valorPropriedade = fonte[nomePropriedade];
-                    if (valorPropriedade !== undefined &&
-                        (this as any)[nomePropriedade] !== valorPropriedade)
+                    if (!nomePropriedade.StartsWith("_") &&
+                        !___PropriedadesMetodosProtegidosEntidades[nomePropriedade])
                     {
-                        try
+                        const valorPropriedade = fonte[nomePropriedade];
+                        if (valorPropriedade !== undefined &&
+                            (this as any)[nomePropriedade] !== valorPropriedade)
                         {
-                            (this as any)[nomePropriedade] = valorPropriedade;
+                            try
+                            {
+                                (this as any)[nomePropriedade] = valorPropriedade;
+                            }
+                            catch (erro)
+                            {
+                                console.error(`Erro ao inicializar a propriedade ${nomePropriedade} do objeto ${this.___NomeConstrutor}`);
+                            }
                         }
-                        catch(erro)
+                    }
+                    else
+                    {
+                        if ($Configuracao.IsDebug)
                         {
-                            console.error(`Erro ao inicializar a propriedade ${nomePropriedade} do objeto ${this.___NomeConstrutor}`);
+                            throw new Erro(`A Propriedade '${nomePropriedade}' não pode ser inicializada no construtor do objeto ${this.___NomeConstrutor}, Ela pode ser Protegida Ex. Id ou tipo privado Iniciando _ ex. _descricao `);
                         }
                     }
                 }
-                else
+            }
+            finally
+            {
+                if (isDesativarObservadorPropriedades)
                 {
-                    if ($Configuracao.IsDebug)
-                    {
-                        throw new Erro(`A Propriedade '${nomePropriedade}' não pode ser inicializada no construtor do objeto ${this.___NomeConstrutor}, Ela pode ser Protegida Ex. Id ou ou tipo privado Iniciando _ ex. _descricao `);
-                    }
+                    this.AtivarObservadorPropriedadeAlterada();
                 }
             }
-
-            if (isDesativarObservadorPropriedades)
-            {
-                this.AtivarObservadorPropriedadeAlterada();
-            }
-
         }
 
         //#region IBaseDominioReferencia 

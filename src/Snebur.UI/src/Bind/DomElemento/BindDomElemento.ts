@@ -27,7 +27,7 @@
             this.AdicionarHandlerEventoDom();
         }
 
-        protected ValorPropriedadeAlterado(antigoValor: any, novoValor: any): void
+        protected override ValorPropriedadeAlterado(antigoValor: any, novoValor: any): void
         {
             this.AtribuirValorDom(novoValor);
 

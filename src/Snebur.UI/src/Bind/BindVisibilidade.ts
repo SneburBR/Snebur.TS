@@ -12,6 +12,8 @@
 
         public ValorPropriedadeAlterado(antigoValor: EnumVisibilidade, novoValor: EnumVisibilidade): void
         {
+            novoValor = NormalizacaoUtil.NormalizarVisibilidade(novoValor);
+
             if (typeof novoValor === "boolean" || u.EnumUtil.IsDefindo(EnumVisibilidade, novoValor))
             {
                 if (this.ComponenteApresentacao instanceof ComponenteApresentacao)

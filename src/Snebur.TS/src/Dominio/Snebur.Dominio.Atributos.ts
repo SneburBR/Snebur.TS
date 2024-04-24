@@ -1695,6 +1695,18 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
+        private _isAceitarPontosSinais : boolean = false;
+    
+        public get IsAceitarPontosSinais(): boolean 
+        {
+            return this._isAceitarPontosSinais;
+        }
+
+        public set IsAceitarPontosSinais(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsAceitarPontosSinais", this._isAceitarPontosSinais, this._isAceitarPontosSinais = value);
+        }
+    
         public static MensagemValidacao : string = "A campo {0} é invalido (somente números)."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
@@ -1702,10 +1714,11 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor(inicializador?: Partial<ValidacaoTextoSomentoNumerosAttribute>) 
+        public constructor( isAceitarPontosSinais? : boolean ) 
         {
-            super(inicializador);
+            super();
             this.Inicializar();
+            this._isAceitarPontosSinais = isAceitarPontosSinais;
         }
         //#endregion
     }

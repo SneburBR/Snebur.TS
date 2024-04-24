@@ -130,7 +130,7 @@ sn-caixa-texto {
                     }
 
                     &::placeholder {
-                        color: transparent!important;
+                        color: transparent !important;
                         font-size: $tamanho-fonte-padrao;
                         font-weight: 400;
                         color: #505050;
@@ -285,6 +285,14 @@ sn-caixa-texto {
                 /*background-color: var(--cor-principal);*/
                 width: 100%;
                 left: 0;
+            }
+        }
+
+        &.sn-possui-conteudo {
+            .rotulo-caixa-texto {
+                top: $distancia-rotulo-flutuante;
+                color: $cor-rotulo-valido;
+                font-size: $tamanho-fonte-rotulo-flutuante;
             }
         }
     }

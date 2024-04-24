@@ -743,7 +743,7 @@
                 console.error(mensagem);
                 if ($Configuracao.IsDebug)
                 {
-                    throw mensagem;
+                    DebugUtil.ThrowAndContinue(mensagem);
                 }
                 return null;
             }

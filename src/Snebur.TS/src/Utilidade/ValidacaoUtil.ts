@@ -34,18 +34,7 @@
         {
             return typeof obj === "string";
         }
-
-        public static IsStringNaoVazia(obj: any): obj is string
-        {
-            return typeof obj === "string" &&
-                !this.IsStringVaziaOuNull(obj);
-        }
-
-        public static IsStringVaziaOuNull(obj: string): boolean
-        {
-            return (!(String.IsNullOrWhiteSpace(obj)));
-        }
-
+         
         public static IsFunction(obj: any): obj is Function
         {
             return typeof obj === "function";

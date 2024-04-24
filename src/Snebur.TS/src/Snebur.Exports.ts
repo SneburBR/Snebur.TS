@@ -1,26 +1,26 @@
-﻿
+﻿declare const $0: any;
+declare const $1: any;
+declare const $2: any;
+declare const $3: any;
+declare const $4: any;
+declare const $5: any;
+declare const $6: any;
+declare const $7: any;
+declare const $8: any;
+declare const $9: any;
+declare const $10: any;
 
 namespace Snebur
 {
     export declare const $Aplicacao: Snebur.Aplicacao.BaseAplicacao;
     /*eslint-disable*/
     export let VersaoScript: string;
-    
+
     export let $Configuracao: Snebur.Aplicacao.ConfiguracaoAplicacao;
 
     //export let $Global: Window;
 
-    //export declare const $0: any;
-    //export declare const $1: any;
-    //export declare const $2: any;
-    //export declare const $3: any;
-    //export declare const $4: any;
-    //export declare const $5: any;
-    //export declare const $6: any;
-    //export declare const $7: any;
-    //export declare const $8: any;
-    //export declare const $9: any;
-    //export declare const $10: any;
+
     //importados no arquivo Reflexao.ts
     //export import r = Snebur.Reflexao;
     //export import u = Snebur.Utilidade;
@@ -87,7 +87,7 @@ namespace Snebur
     export import CaminhoUtil = Snebur.Utilidade.CaminhoUtil;
     export import AjaxUtil = Snebur.Utilidade.AjaxUtil;
     export import MimeTypeUtil = Snebur.Utilidade.MimeTypeUtil;
-     
+
     //enumeradores
     export import EnumFormatoImagem = Snebur.Dominio.EnumFormatoImagem;
     export import EnumTamanhoImagem = Snebur.Dominio.EnumTamanhoImagem;
@@ -99,14 +99,14 @@ namespace Snebur
     export import EnumSentidoOrdenacao = Snebur.Dominio.EnumSentidoOrdenacao;
     export import EnumAparencia = Snebur.UI.EnumAparencia;
     export import EnumNavegador = Snebur.Dominio.EnumNavegador;
-     
+
     export import EnumFormatacao = Snebur.UI.EnumFormatacao;
     export import EnumStatusArquivo = Snebur.Dominio.EnumStatusArquivo;
     export import EnumMimeType = Snebur.Dominio.EnumMimeType;
     export import EnumMimetypeString = Snebur.Utilidade.EnumMimetypeString;
 
-    export  import EnumUF = Snebur.Dne.EnumUF;
-    export  import EnumUFSigla = Snebur.Dne.EnumUFSigla;
+    export import EnumUF = Snebur.Dne.EnumUF;
+    export import EnumUFSigla = Snebur.Dne.EnumUFSigla;
 
     //acesso a dados
     export import IConsultaEntidade = Snebur.AcessoDados.IConsultaEntidade;
@@ -127,7 +127,7 @@ namespace Snebur
     export import IPosicao = Snebur.Dominio.IPosicao;
     export import IArea = Snebur.Dominio.IArea;
     export import IRegiao = Snebur.Dominio.IRegiao;
-     
+
     (function ()
     {
         /* eslint-disable*/

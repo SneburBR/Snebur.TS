@@ -12,15 +12,28 @@
         public constructor(inicializador?: Partial<BaseViewModel>) 
         {
             super(inicializador);
+            this.Inicializar();
             setTimeout(this.__InicializarInternoAsync__.bind(this), 0);
         }
 
-        private async __InicializarInternoAsync__()
+        protected override Inicializar(isDepensar?: boolean): void
         {
-            this.Inicializar();
+            if (this.__InicializarPropriedades !== undefined)
+            {
+                this.__MapearPropriedades(this.__InicializarPropriedades, true);
+                if (!isDepensar)
+                {
+                    delete this.__InicializarPropriedades;
+                }
+            }
+        }
+
+        protected async __InicializarInternoAsync__()
+        {
+            this.Inicializar(false);
             this.__PropriedadesAlteradas.Clear();
         }
-         
+
         public override Dispose(): void
         {
             super.Dispose();
