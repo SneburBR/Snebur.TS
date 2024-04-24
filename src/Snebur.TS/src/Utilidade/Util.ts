@@ -33,14 +33,20 @@
             {
                 return true;
             }
+
             if (valor1 instanceof d.Entidade && valor2 instanceof d.Entidade)
             {
                 return valor1.__IdentificadorEntidade === valor2.__IdentificadorEntidade;
             }
-
-            if (valor1 && typeof (valor1 as IEquals).Equals === "function")
+            
+            if (valor1 != null && typeof (valor1 as IEquals).Equals === "function")
             {
                 return valor1.Equals(valor2);
+            }
+
+            if (valor2 != null && typeof (valor2 as IEquals).Equals === "function")
+            {
+                return valor2.Equals(valor1);
             }
             return false;
         }
@@ -145,7 +151,7 @@
 
         public static IgualSensivelPercentual(valor1: number, valor2: number, sensibilidadePercentual: number = 0): boolean
         {
-            if (sensibilidadePercentual === 0 || sensibilidadePercentual== null)
+            if (sensibilidadePercentual === 0 || sensibilidadePercentual == null)
             {
                 return valor1 === valor2;
             }
@@ -157,7 +163,7 @@
 
             sensibilidadePercentual /= 100;
 
-            const minimo = valor2 - (valor2 *  sensibilidadePercentual);
+            const minimo = valor2 - (valor2 * sensibilidadePercentual);
             const maximo = valor2 + (valor2 * sensibilidadePercentual);
             return valor1 >= minimo && valor1 <= maximo;
         }
@@ -250,13 +256,24 @@
 
         public static StringIgual(str1: string, str2: string, comparacao: EnumStringComparacao)
         {
+            if (comparacao === EnumStringComparacao.Absoluta)
+            {
+                return str1 === str2;
+            }
+
             if (str1 == null && str2 == null)
             {
                 return true;
             }
-            if (str1 == null || str2 == null)
+
+            if (str1 == null)
             {
-                return false;
+                return str2.toString().trim() === "";
+            }
+
+            if (str2 == null)
+            {
+                return str1.toString().trim() === "";
             }
 
             switch (comparacao)

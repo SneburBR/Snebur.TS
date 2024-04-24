@@ -100,7 +100,7 @@ namespace Snebur
 
     Object.defineProperty(String.prototype, "Equals", {
 
-        value: function (obj: string, comparacao?: Snebur.EnumStringComparacao | boolean)
+        value: function (this: string, obj: string, comparacao?: Snebur.EnumStringComparacao | boolean)
         {
             if (typeof comparacao === "number")
             {
@@ -115,9 +115,14 @@ namespace Snebur
             {
                 return (this.toLowerCase().trim() === obj.toLowerCase().trim());
             }
+
+            if (obj === null)
+            {
+                return this?.trim().length === 0;
+            }
             return this.toString() === obj;
-            
-            
+
+
         },
         writable: false,
         configurable: false,
@@ -138,7 +143,7 @@ namespace Snebur
 
     });
 
-    String.prototype.Split = function (divisor): Array<string>
+    String.prototype.Split = function (divisor, isRemoveEmptyString?: boolean): Array<string>
     {
         if (!(this.trim().length > 0))
         {
@@ -147,6 +152,10 @@ namespace Snebur
         else
         {
             const partes = (this as string).split(divisor);
+            if (isRemoveEmptyString)
+            {
+                return partes.map(x => x.trim()).filter(x => x.length > 0);
+            }
             return partes.map(x => x.trim());
         }
     };
@@ -189,6 +198,6 @@ namespace Snebur
     {
         return this.slice(0, startIndex) + this.slice(startIndex + count);
     };
- 
-  
+
+
 }

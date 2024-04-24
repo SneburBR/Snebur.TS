@@ -43,6 +43,7 @@ namespace Snebur.Nativo
         Any(funcaoAny: (value: string) => boolean): boolean;
 
         Split(divisor: string): Array<string>;
+        Split(divisor: string, isRemoveEmptyString:boolean): Array<string>;
 
         ToNumber(removerPixelsOrRem?: boolean): number;
 
@@ -95,6 +96,7 @@ namespace Snebur
         IgnorarCasoAcentos,
         IgnorarCasoTrim,
         IgnorarAcentosTrim,
-        IgnorarCasoAcentosTrim
+        IgnorarCasoAcentosTrim,
+        Absoluta,
     }
 }
