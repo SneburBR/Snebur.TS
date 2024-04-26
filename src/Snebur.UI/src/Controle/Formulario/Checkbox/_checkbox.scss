@@ -16,6 +16,11 @@ sn-checkbox,
         font-size: 1rem;
     }
 
+    label{
+        display:block;
+        width:100%;
+    }
+
     display: inline-flex;
     position: relative;
     -ms-user-select: none;
