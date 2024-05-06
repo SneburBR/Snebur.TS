@@ -12,9 +12,8 @@
         public static readonly FORMATACAO_CPF: string = "###.###.###-##";
         public static readonly FORMATACAO_CEP: string = "##.###-###";
         public static readonly FORMATACAO_CNPJ: string = "##.###.###/####-##";
-
+         
         // #region Formatar
-
         public static Formatar(valor: any, formatacao: EnumFormatacao | string, isCompletar: boolean = false, isNaoFormatarValorVazio: boolean = false): string
         {
             if (isNaoFormatarValorVazio &&
@@ -83,6 +82,10 @@
 
                     return FormatacaoUtil.FormatarDecimal(valor, false, false, 3);
 
+                case EnumFormatacao.MelhorDecimal:
+
+                    return FormatacaoUtil.FormatarMelhorDecimal(valor);
+
                 case EnumFormatacao.Telefone:
 
                     return FormatacaoUtil.FormatarTelefone(valor);
@@ -121,6 +124,10 @@
                 case EnumFormatacao.DataSemanticaHora:
 
                     return FormatacaoUtil.FormatarDataSemanticaHora(valor);
+
+                case EnumFormatacao.Titulo:
+
+                    return FormatacaoUtil.FormatarTitulo(valor);
 
                 case EnumFormatacao.Tempo:
 
@@ -995,7 +1002,7 @@
 
             if (!isFormatarParteInteira)
             {
-                const resultado = valor.toFixed(casasDecimal);
+                const resultado = valor.FormatarDecimal(casasDecimal);
                 if (isUsarPonto)
                 {
                     return resultado;
@@ -1139,11 +1146,11 @@
             return numeroString;
         }
 
-        public static FormatarMoeda(valor: number, isSinal?: boolean, isNaoFormatarValorNullo: boolean = false): string
+        public static FormatarMoeda(valor: number | string, isSinal?: boolean, isNaoFormatarValorNulloOrStringVazia: boolean = true): string
         {
-            if (valor == null)
+            if (valor == null || (typeof valor === "string" && String.IsNullOrWhiteSpace(valor)))
             {
-                if (isNaoFormatarValorNullo)
+                if (isNaoFormatarValorNulloOrStringVazia)
                 {
                     return String.Empty;
                 }
@@ -1152,7 +1159,7 @@
 
             if (typeof valor === "string")
             {
-                valor = parseFloat(valor);
+                valor = ConverterUtil.ParaNumero(valor);
             }
 
             if (!ValidacaoUtil.IsNumber(valor))
@@ -1175,7 +1182,7 @@
 
         public static FormatarMoedaIgnorarSemValor(valor: any): string
         {
-            if (!String.IsNullOrWhiteSpace(valor?.toString()) &&
+            if (!String.IsNullOrWhiteSpace(valor) &&
                 parseFloat(valor) !== 0)
             {
                 return FormatacaoUtil.FormatarMoeda(valor);
@@ -1545,6 +1552,56 @@
             return senha?.replace(/./g, "*") ?? String.Empty;
         }
 
+        public static FormatarMelhorDecimal(
+            valor: string | number,
+            minimo: number = Number.MIN_SAFE_INTEGER,
+            maximo: number = Number.MAX_SAFE_INTEGER,
+            passo: number = 0.01,
+            casasDigitos: number = 2,
+            isFormatarInteiro: boolean = false): string
+        {
+            if (String.IsNullOrWhiteSpace(valor))
+            {
+                return "";
+            }
+
+            const valorTipado = NormalizacaoUtil.NormalizarPasso(
+                NormalizacaoUtil.NormalizarIntervalo(
+                    ConverterUtil.ParaNumero(valor), minimo, maximo), passo);
+
+            if (!isFormatarInteiro && valorTipado % 1 === 0)
+            {
+                return valorTipado.toString();
+            }
+
+            if (casasDigitos > 1 && FormatacaoUtil.IsDecimalUmDigito(valorTipado))
+            {
+                return valorTipado.FormatarDecimal(1);
+            }
+            return valorTipado.FormatarDecimal(casasDigitos);
+        }
+
+        public static IsDecimalUmDigito(valor: number): boolean
+        {
+            //verifica de numero digitar da casa decimal é igual 1
+            const partes = valor.toString().split(".");
+            if (partes.length === 2)
+            {
+                const decimalParte = partes[1];
+                if (decimalParte.length === 1 ||
+                    decimalParte[1] === "0")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static FormatarTitulo(titulo: string): string
+        {
+            return TextoUtil.FormatarTitulio(titulo);
+        }
+          
         //#endregion
 
         public static FormatarDoisPontosFinal(value: string): string

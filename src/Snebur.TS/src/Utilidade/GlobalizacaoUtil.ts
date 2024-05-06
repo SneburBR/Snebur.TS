@@ -6,7 +6,7 @@
         {
             if ($Configuracao.IsGlobalizar)
             {
-                throw new ErroNaoImplementado(this);
+                throw new ErroNaoImplementado();
             }
             return String.Format(mensagemPadrao, ...argumentosFormatar);
         }
@@ -19,7 +19,7 @@
             }
             if ($Configuracao.IsGlobalizar)
             {
-                throw new ErroNaoImplementado(this);
+                throw new ErroNaoImplementado();
             }
 
             const atributoRotulo = propriedade.Atributos.OfType<d.Atributos.RotuloAttribute>(d.Atributos.RotuloAttribute).SingleOrDefault();
@@ -37,7 +37,7 @@
         {
             if ($Configuracao.IsGlobalizar)
             {
-                throw new ErroNaoImplementado(this);
+                throw new ErroNaoImplementado();
             }
             const atributoRotulo = tipo.Atributos.OfType<d.Atributos.RotuloAttribute>(d.Atributos.RotuloAttribute).SingleOrDefault();
             if (atributoRotulo != null)
@@ -60,7 +60,7 @@
         {
             if ($Configuracao.IsGlobalizar)
             {
-                throw new ErroNaoImplementado(this);
+                throw new ErroNaoImplementado();
             }
             const mensagem = atributo.constructor[identificador];
             return String.Format(mensagem, ...argumentosFormatar);

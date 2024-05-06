@@ -508,6 +508,28 @@
             }
             return retorno.ToString();
         }
+
+        public static FormatarTitulio(titulo: string): string
+        {
+            if (String.IsNullOrWhiteSpace(titulo))
+            {
+                return "";
+            }
+            const partes = titulo.Split(" ", true);
+            const sb = new StringBuilder();
+            for (const parte of partes)
+            {
+                if (parte in TextoUtilConstantes.PALAVRAS_NAO_CAPITALIZAR)
+                {
+                    sb.Append(parte);
+                }
+                else
+                {
+                    sb.Append(TextoUtil.FormatarPrimeiraLetraMaiuscula(parte));
+                }
+            }
+            return sb.ToString(" ");
+        }
     }
 
     class TextoUtilConstantes
@@ -523,6 +545,38 @@
         private static readonly PONTOS_SINAIS_SIMBOLOS = ",.;:?!|+-_.,@~^`´&$#*/\\§%|(){}[]<>";
         private static readonly ACENTOS: string = "ÀÁÂÃÈÉÊÌÍÎÒÓÔÕÚÛÜÇÑàáâãäèéêëìíîòóôõùúûüçñ´~^¨`";
         private static readonly ACENTOS_MAPEADOS: string = "AAAAEEEIIIOOOOUUUCNaaaaaeeeeiiioooouuuucn     ";
+
+        public static readonly PALAVRAS_NAO_CAPITALIZAR  = {
+            de: true,
+            da: true,
+            do: true,
+            dos: true,
+            das: true,
+            e: true,
+            ou: true,
+            a: true,
+            o: true,
+            as: true,
+            os: true,
+            com: true,
+            sem: true,
+            //por: true,
+            //para: true,
+            em: true,
+            no: true,
+            na: true,
+            nos: true,
+            nas: true,
+            pelo: true,
+            pela: true,
+            pelos: true,
+            um: true,
+            uma: true,
+            uns: true,
+            umas: true,
+            se: true,
+        };
+
 
         private static _caracteresEspacoEmBranco: string = null;
         private static _caracteresPadrao: string = null;

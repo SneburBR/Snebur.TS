@@ -30,6 +30,8 @@
 
         Decimal3 = "decimal3",
 
+        MelhorDecimal = "melhordecimal",
+
         Data = "data",
 
         Hora = "hora",
@@ -51,6 +53,8 @@
         Trim = "trim",
 
         TamanhoArquivo = "tamanhoarquivo",
+
+        Titulo = "titulo",
 
         Porcentagem = "porcentagem",
 
