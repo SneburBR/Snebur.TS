@@ -9,6 +9,7 @@
         private IsDecimal: boolean;
         private IsDecimal1: boolean;
         private IsInteiro: boolean;
+        private IsFormatarInteiro: boolean;
         public Passo: number;
         private Minimo: number;
         private Maximo: number;
@@ -22,6 +23,7 @@
             const passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, BindNumero.PASSO_PADRAO);
             const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, BindNumero.MINIMO_PADRAO);
             const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, BindNumero.MAXIMO_PADRAO);
+            this.IsFormatarInteiro = this.RetornarValorAtributoBoolean(AtributosHtml.IsFormatarInteiro, false);
 
             this.AtualizarValores(passo, minimo, maximo);
         }
@@ -44,22 +46,43 @@
             super.DataSource_Alterado(provedor, e);
         }
 
-        protected override RetornarValorConvertidoParaDom(valorPropriedade: any): string
+        protected override RetornarValorPropriedade(): any
         {
+            const valorPropriedade = super.RetornarValorPropriedade();
             if (valorPropriedade == null &&
-                this.PropriedadeLigacao instanceof r.Propriedade &&
-                this.PropriedadeLigacao.AceitaNulo)
+                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.AceitaNulo))
             {
                 return null;
             }
-            const valorTipado = ConverterUtil.ParaNumero(valorPropriedade);
-            let valor = this.RetornarValorInterno(valorTipado);
-            valor = NormalizacaoUtil.NormalizarIntervalo(valor, this.Minimo, this.Maximo);
-            return valor.toFixed(this.CasasDigitos);
+
+            const valor = NormalizacaoUtil.NormalizarIntervalo(ConverterUtil.ParaNumero(valorPropriedade), this.Minimo, this.Maximo);
+            return NormalizacaoUtil.NormalizarPasso(valor, this.Passo);
         }
+
+        protected override RetornarValorConvertidoParaDom(valorPropriedade: any): string
+        {
+            if (String.IsNullOrWhiteSpace(valorPropriedade))
+            {
+                return null;
+            }
+
+            return FormatacaoUtil.FormatarMelhorDecimal(valorPropriedade,
+                this.Minimo,
+                this.Maximo,
+                this.Passo,
+                this.CasasDigitos,
+                this.IsFormatarInteiro );
+
+        }
+
 
         public override RetornarValorConvertidoParaPropriedade(valorDom: string): number
         {
+            if (String.IsNullOrWhiteSpace(valorDom) ||
+                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.AceitaNulo))
+            {
+                return null;
+            }
             const valorTipado = ConverterUtil.ParaNumero(valorDom);
             const retorno = this.RetornarValorInterno(valorTipado);
             return NormalizacaoUtil.NormalizarIntervalo(retorno, this.Minimo, this.Maximo);

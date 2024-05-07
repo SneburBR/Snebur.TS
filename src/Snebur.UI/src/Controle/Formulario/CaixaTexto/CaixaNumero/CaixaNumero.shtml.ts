@@ -2,22 +2,36 @@
 {
     export class CaixaNumero extends BaseCaixaTexto<number>
     {
-        public Minimo: number
+        private _casasDecimal: number;
+        public Minimo: number;
         public Maximo: number;
         public Passo: number;
+        public IsFormatarInteiro: boolean;
 
-        public override  get Valor(): number
+        public override get Valor(): number
         {
-            return u.ConverterUtil.ParaNumero(this.ElementoInput.value);
+            return this.NormalizarValor(this.ElementoInput.value);
         }
-
         public override set Valor(value: number)
         {
-            if (this.Valor !== value)
+            const valorDom = this.FormatarValorParaDom(value);
+            if (this.Valor !== value ||
+                //eslint-disable-next-line eqeqeq
+                this.ElementoInput.value != valorDom)
             {
-                this.ElementoInput.value = u.ConverterUtil.ParaNumero(value) as any;
+                this.ElementoInput.value = valorDom;
                 this.ElementoInput.dispatchEvent(new Event("change"));
             }
+        }
+
+        public get CasasDecimal(): number
+        {
+            if (this._casasDecimal == null)
+            {
+                const passoString = this.Passo.toString();
+                this._casasDecimal = passoString.Contains(".") ? passoString.split(".").Last().length : 0;
+            }
+            return this._casasDecimal;
         }
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
@@ -25,24 +39,26 @@
             super(controlePai, elemento);
             this.EventoPropriedadeAlterada.AddHandler(this.Propriedade_Alterada, this);
 
+            this.DeclararPropriedade(x => x.Passo, Number, this.Passo_Alterado);
             this.DeclararPropriedade(x => x.Minimo, Number, this.Minimo_Alterado);
             this.DeclararPropriedade(x => x.Maximo, Number, this.Maximo_Alterado);
-            this.DeclararPropriedade(x => x.Passo, Number, this.Passo_Alterado);
         }
 
-        protected override  Inicializar()
+        protected override Inicializar()
         {
             super.Inicializar();
+            this.AdicionarEventoDom(EnumEventoDom.KeyPress, this.ElementoInput_KeyPress, this.ElementoInput);
+            this.AdicionarEventoDom(EnumEventoDom.Blur, this.ElementoInput_Blur.bind(this), this.ElementoInput);
         }
 
         protected override DepoisInicializarComponentesApresentacao(): void
         {
             super.DepoisInicializarComponentesApresentacao();
 
+            this.Passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, BindNumero.PASSO_PADRAO));
             this.Minimo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Minimo, BindNumero.MINIMO_PADRAO));
             this.Maximo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Maximo, BindNumero.MAXIMO_PADRAO));
-            this.Passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, BindNumero.PASSO_PADRAO));
-
+            this.IsFormatarInteiro = this.RetornarValorAtributoBoolean(AtributosHtml.IsFormatarInteiro, false);
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindNumero, this.CaminhoBind);
         }
 
@@ -54,7 +70,6 @@
                 this.Passo = passo;
                 this.Minimo = minimo;
                 this.Maximo = maximo;
-
                 const bindNumero = this.Binds.OfType(BindNumero).Where(x => x.Elemento === this.ElementoInput).SingleOrDefault();
                 if (bindNumero instanceof BindNumero)
                 {
@@ -78,7 +93,10 @@
 
             return [passo, minimo, maximo];
         }
-        private RetornarPasso(atributoInteiro: at.BaseAtributoDominio, atributoMoeda: at.BaseAtributoDominio): number
+
+        private RetornarPasso(
+            atributoInteiro: at.BaseAtributoDominio,
+            atributoMoeda: at.BaseAtributoDominio): number
         {
             if (this.Passo > 0)
             {
@@ -90,6 +108,7 @@
             {
                 return passo;
             }
+
             const tipo = this.Propriedade.Tipo;
             if (atributoInteiro instanceof at.ValidacaoInteiroAttribute || (
                 tipo instanceof r.TipoPrimario &&
@@ -97,6 +116,7 @@
             {
                 return 1;
             }
+
             if (atributoMoeda instanceof at.ValidacaoMoedaAttribute ||
                 tipo instanceof r.TipoPrimario && tipo.TipoPrimarioEnum === r.EnumTipoPrimario.Decimal)
             {
@@ -169,6 +189,7 @@
         private Passo_Alterado(e: PropriedadeAlteradaEventArgs)
         {
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Step, this.Passo);
+            this._casasDecimal = null;
         }
 
         private AtualizarValoresElementoInput(): void
@@ -180,7 +201,65 @@
             this.ElementoInput.min = this.Minimo?.toString();
             this.ElementoInput.max = this.Maximo?.toString();
             this.ElementoInput.step = this.Passo?.toString();
+        }
 
+        private ElementoInput_KeyPress(e: KeyboardEvent): void
+        {
+            const validCharacters = "0123456789,.-";
+            const key = e.key;
+            if (!validCharacters.includes(key))
+            {
+                e.preventDefault();
+                return;
+            }
+
+            if (this.ElementoInput.value.includes(",") || this.ElementoInput.value.includes("."))
+            {
+                if (key === "." || key === ",")
+                {
+                    e.preventDefault();
+                    return;
+                }
+
+                const numerosCasasDecimaisValue = this.ElementoInput.value.split(/\.|,/).Last()?.length;
+                if (numerosCasasDecimaisValue >= this.CasasDecimal)
+                {
+                    const isSelection = this.ElementoInput.selectionStart !== this.ElementoInput.selectionEnd;
+                    if (!isSelection)
+                    {
+                        e.preventDefault();
+                    }
+                    return;
+                }
+            }
+        }
+
+        private FormatarValorParaDom(value: number | string): string
+        {
+            return FormatacaoUtil.FormatarMelhorDecimal(value,
+                this.Minimo,
+                this.Maximo,
+                this.Passo,
+                this.CasasDecimal,
+                this.IsFormatarInteiro);
+        }
+
+        private NormalizarValor(value: number | string): number
+        {
+            if (value == null || String.IsNullOrWhiteSpace(value))
+            {
+                return null;
+            }
+            return NormalizacaoUtil.NormalizarPasso(
+                NormalizacaoUtil.NormalizarIntervalo(ConverterUtil.ParaNumero(value), this.Minimo, this.Maximo),
+                this.Passo);
+        }
+
+        protected override ElementoInput_Blur(e: FocusEvent) 
+        {
+            super.ElementoInput_Blur(e);
+            // eslint-disable-next-line no-self-assign
+            this.Valor = this.Valor;
         }
     }
 }
