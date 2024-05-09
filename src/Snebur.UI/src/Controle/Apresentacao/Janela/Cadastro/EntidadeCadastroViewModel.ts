@@ -5,14 +5,19 @@
         public Titulo: string
         public SubTitulo: string
 
+        public readonly EventoTituloAlterado = new Evento(this);
+
+        public get Id(): number
+        {
+            return this.Entidade.Id;
+        }
         public constructor(entidade: TEntidade, titulo: string = null, subTitulo: string = null)
         {
             super();
 
             this.Entidade = entidade;
-
-            this.DeclararPropriedade(x => x.Titulo, String);
-            this.DeclararPropriedade(x => x.SubTitulo, String);
+            this.DeclararPropriedade(x => x.Titulo, String, this.Titulo_Alterado);
+            this.DeclararPropriedade(x => x.SubTitulo, String, this.Titulo_Alterado);
 
             this.Titulo = titulo;
             this.SubTitulo = subTitulo;
@@ -31,7 +36,12 @@
         private RetornarTitulo(): string
         {
             const tipoEntidade = this.Entidade.GetType();
-            return u.GlobalizacaoUil.RetornarRotuloTipo(tipoEntidade as r.TipoEntidade);
+            return `Cadastro ${ u.GlobalizacaoUil.RetornarRotuloTipo(tipoEntidade as r.TipoEntidade)}`;
+        }
+
+        private Titulo_Alterado()
+        {
+            this.EventoTituloAlterado.Notificar(this, EventArgs.Empty);
         }
     }
 }

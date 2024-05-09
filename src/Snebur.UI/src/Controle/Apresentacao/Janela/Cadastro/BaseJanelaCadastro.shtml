@@ -10,16 +10,16 @@
 
 <body>
     <ap-painel-vertical ap-margem="16px">
-        <ap-cabecalho ap-altura="30px">
-            <ap-painel 
+        <ap-cabecalho ap-altura="30px" sn-visibilidade="{{IsMostrarCabecalho}},Origem=this">
+            <ap-painel
                 ap-tipo-painel="PilhaHorizontal">
-                
+
                 <ap-bloco>
                     <ap-texto
                         sn-nome="TextoTitulo"
-                        sn-item-elemento="Titulo"
-                        sn-bind="{{Titulo}}"
-                        ap-tipografia="Titulo">
+                        sn-bind="{{Titulo}}, Origem=this"
+                        ap-tipografia="Titulo"
+                        sn-formatar="Titulo">
                         Titulo
                     </ap-texto>
                 </ap-bloco>
@@ -35,58 +35,80 @@
             </ap-texto>
         </ap-linha>
         <ap-linha>
-            <ap-bloco 
-                sn-nome="BlocoFormulario" 
-                ap-margem="0px 0px 0px 0px" 
+            <ap-bloco
+                sn-nome="BlocoFormulario"
+                ap-margem="0px 0px 0px 0px"
                 ap-altura="100%">
                 [[CONTEUDO_FORMULARIO]]
             </ap-bloco>
         </ap-linha>
         <ap-rodape ap-altura="65px">
-            <ap-bloco 
-                ap-margem="0px 16px 0px 0px" 
+            <ap-bloco
+                ap-margem="0px 16px 0px 0px"
                 sn-nome="BlocoBotoes">
 
-                <ap-bloco 
+                <ap-bloco
                     ap-largura="50px"
-                    ap-margem="24px 0px 0px 0px" 
-                    ap-alinhamento-horizontal="EsquerdaAbsoluto" 
+                    ap-margem="24px 0px 0px 0px"
+                    ap-alinhamento-horizontal="EsquerdaAbsoluto"
                     sn-visibilidade="{{IsMostrarInfo}}, Origem=this">
 
                     <sn-botao
                         sn-tipo-botao="Icone"
                         ap-icone="Info"
-                        ap-icone-categoria="Outlined" 
-                        sn-click="BtnInfoInterno_Click" >
+                        ap-icone-categoria="Outlined"
+                        sn-click="BtnInfoInterno_Click">
                     </sn-botao>
 
                 </ap-bloco>
 
                 <ap-painel
-                    ap-tipo-painel="PilhaHorizontal" 
+                    ap-tipo-painel="PilhaHorizontal"
                     ap-alinhamento-horizontal="Centro">
 
 
-                    <ap-bloco>
+                    <ap-bloco ap-margem="0px 0px 8px 0px"
+                        sn-visibilidade="{{IsMostrarBotaoCancelar}}, Origem=this">
                         <sn-botao
                             ap-largura="140px"
                             sn-nome="BtnCancelarInterno"
                             ap-cor-texto="Cinza"
                             sn-tipo-botao="FlatBox"
                             sn-click="BtnCancelarInterno_Click"
-                            sn-visibilidade="{{IsMostrarBotaoCancelar}}, Origem=this"
-                            sn-rotulo="{{RotuloBotaoCancelar}}, Origem=this" >
-
+                            sn-rotulo="{{RotuloBotaoCancelar}}, Origem=this">
                         </sn-botao>
                     </ap-bloco>
-                    <ap-bloco ap-margem="16px 0px 0px 0px">
+                    <ap-bloco ap-margem="8px 0px"
+                        sn-visibilidade="{{IsMostrarBotaoVoltar}}, Origem=this">
+                        <sn-botao
+                            ap-largura="140px"
+                            sn-nome="BtnVoltarInterno"
+                            ap-cor-fundo="SistemaPrincipal"
+                            ap-cor-texto="Branca"
+                            sn-click="BtnVoltarInterno_Click"
+                            sn-rotulo="{{RotuloBotaoVoltar}}, Origem=this">
+                        </sn-botao>
+                    </ap-bloco>
+                    <ap-bloco ap-margem="8px 0px"
+                        sn-visibilidade="{{IsMostrarBotaoContinuar}}, Origem=this">
+                        <sn-botao
+                            ap-largura="140px"
+                            sn-nome="BtnContinuarInterno"
+                            ap-cor-fundo="SistemaPrincipal"
+                            ap-cor-texto="Branca"
+                            sn-click="BtnContinuarInterno_Click"
+                            sn-rotulo="{{RotuloBotaoContinuar}}, Origem=this">
+                        </sn-botao>
+                    </ap-bloco>
+                    <ap-bloco
+                        ap-margem="8px 0px 0px 0px"
+                        sn-visibilidade="{{IsMostrarBotaoSalvar}}, Origem=this">
                         <sn-botao
                             ap-largura="140px"
                             sn-nome="BtnSalvarInterno"
                             ap-cor-fundo="SistemaPrincipal"
                             ap-cor-texto="Branca"
-                             sn-visibilidade="{{IsMostrarBotaoSalvar}}, Origem=this"
-                             sn-rotulo="{{RotuloBotaoSalvar}}, Origem=this"
+                            sn-rotulo="{{RotuloBotaoSalvar}}, Origem=this"
                             sn-click="BtnSalvarInterno_Click">
                             SALVAR</sn-botao>
                     </ap-bloco>

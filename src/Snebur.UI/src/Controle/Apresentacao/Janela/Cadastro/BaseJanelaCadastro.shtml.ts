@@ -3,12 +3,16 @@
     export abstract class BaseJanelaCadastro<TEntidade extends IEntidade = Entidade> extends Janela   
     {
         private _isNovaEntidade: boolean = false;
+        private readonly __novaEntidade: TEntidade;
+        private readonly __editarEntidade: TEntidade;
+
+        public IsMostrarCabecalho: boolean = true;
         public IsMostrarBotaoCancelar: boolean = true;
         public IsMostrarBotaoSalvar: boolean = true;
+        public IsMostrarBotaoVoltar: boolean = false;
+        public IsMostrarBotaoContinuar: boolean = false;
 
-        private __SalvarDocument_KeyDown: EventListener;
 
-        public readonly NovaEntidade: TEntidade;
         public readonly TipoEntidade: r.TipoEntidade;
         public readonly IDEntidade: number;
 
@@ -18,8 +22,11 @@
         public TituloInfo: string;
         public Info: string
         public IsMostrarInfo: boolean = false;
+
         public RotuloBotaoCancelar: string = "CANCELAR";
         public RotuloBotaoSalvar: string = "SALVAR";
+        public RotuloBotaoVoltar: string = "VOLTAR";
+        public RotuloBotaoContinuar: string = "CONTINUAR";
 
         protected AtivarEnterSalvar: boolean;
 
@@ -30,7 +37,9 @@
 
         public get Entidade(): TEntidade
         {
-            return this.ViewModel?.Entidade;
+            return this.ViewModel?.Entidade ??
+                this.__novaEntidade ??
+                this.__editarEntidade;
         }
 
         public get IsExisteAlteracao(): boolean
@@ -51,7 +60,7 @@
         public constructor(controlePai: BaseControle, entidadeOuTipoConstrutor: TEntidade | r.BaseTipo | d.EntidadeConstrutor<TEntidade>) 
         {
             super(controlePai);
-             
+
             this.CssClasseControle = "sn-base-janela-cadastro";
             this._dataSource = null;
 
@@ -59,9 +68,12 @@
             this.DeclararPropriedade(x => x.RotuloBotaoCancelar, String);
             this.DeclararPropriedade(x => x.IsMostrarBotaoCancelar, Boolean);
             this.DeclararPropriedade(x => x.IsMostrarBotaoSalvar, Boolean);
+            this.DeclararPropriedade(x => x.IsMostrarBotaoVoltar, Boolean);
+            this.DeclararPropriedade(x => x.IsMostrarBotaoContinuar, Boolean);
+            this.DeclararPropriedade(x => x.IsMostrarCabecalho, Boolean);
 
-            this.DeclararPropriedade(x => x.Titulo, String, this.Titulo_Alterado);
-            this.DeclararPropriedade(x => x.SubTitulo, String, this.SubTitulo_Alterado);
+            this.DeclararPropriedade(x => x.Titulo, String);
+            this.DeclararPropriedade(x => x.SubTitulo, String);
             this.DeclararPropriedade(x => x.TituloInfo, String);
             this.DeclararPropriedade(x => x.Info, String);
             this.DeclararPropriedade(x => x.IsMostrarInfo, Boolean);
@@ -75,7 +87,11 @@
                 if (this.IDEntidade === 0)
                 {
                     this._isNovaEntidade = true;
-                    this.NovaEntidade = entidadeOuTipoConstrutor as TEntidade;
+                    this.__novaEntidade = entidadeOuTipoConstrutor as TEntidade;
+                }
+                else
+                {
+                    this.__editarEntidade = entidadeOuTipoConstrutor as TEntidade;
                 }
             }
             else if (entidadeOuTipoConstrutor instanceof r.TipoEntidade)
@@ -97,11 +113,11 @@
             }
             this.Contexto = $Aplicacao.RetornarContextoDados(this.TipoEntidade);
             this.EventoCarregado.AddHandler(this.BaseJanelaCadastro_Carregada, this);
-            this.__SalvarDocument_KeyDown = this.SalvarDocument_KeyDown.bind(this);
 
             this.AtivarEnterSalvar = true;
             this.Estilo = EnumEstiloJanela.JanelaCadastro;
         }
+
         //#region Inicializar
 
         protected override Inicializar(): void
@@ -135,24 +151,10 @@
 
             this.IsMostrarInfo = !String.IsNullOrWhiteSpace(this.Info);
 
-            this.AdicionarEventosDom();
+            /*this.AdicionarEventosDom();*/
+            this.AdicionarEventoDomGlobal(EnumEventoDom.KeyDown, this.SalvarDocument_KeyDown);
         }
 
-        private Titulo_Alterado(e: PropriedadeAlteradaEventArgs)
-        {
-            if (this.ViewModel instanceof EntidadeCadastroViewModel)
-            {
-                this.ViewModel.Titulo = this.Titulo;
-            }
-        }
-
-        private SubTitulo_Alterado(e: PropriedadeAlteradaEventArgs)
-        {
-            if (this.ViewModel instanceof EntidadeCadastroViewModel)
-            {
-                this.ViewModel.SubTitulo = this.SubTitulo;
-            }
-        }
 
         protected override HtmlCarregado(): void
         {
@@ -195,6 +197,8 @@
         {
             const entidade = await this.RetornarEntidadeAsync();
             const viewModel = this.RetornarViewModel(entidade);
+            this.AtualizarTitulos(viewModel);
+            viewModel.EventoTituloAlterado.AddHandler(this.AtualizarTitulos, this);
             await viewModel.InicializarViewModelAsync();
             this.DataSource = viewModel;
         }
@@ -220,9 +224,9 @@
 
         protected RetornarNovaEntidade(): TEntidade
         {
-            if (this.NovaEntidade instanceof d.Entidade)
+            if (this.__novaEntidade instanceof d.Entidade)
             {
-                return this.NovaEntidade;
+                return this.__novaEntidade;
             }
             return new (this.TipoEntidade.Construtor as any) as TEntidade;
         }
@@ -231,9 +235,37 @@
         {
             return String.Empty;
         }
+
+        private AtualizarTitulos(viewModel: EntidadeCadastroViewModel<TEntidade> = this.ViewModel)
+        {
+            if (viewModel != null)
+            {
+                const titulo = viewModel.Titulo;
+                const subTitulo = viewModel.SubTitulo;
+
+                if (!String.IsNullOrWhiteSpace(titulo) &&
+                    this.Titulo !== titulo)
+                {
+                    this.Titulo = titulo;
+                }
+
+                if (!String.IsNullOrWhiteSpace(subTitulo) &&
+                    this.SubTitulo !== subTitulo)
+                {
+                    this.SubTitulo = subTitulo;
+                }
+            }
+        }
+
+
         //#endregion
 
         //#region Botoes
+
+        protected BtnInfoInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        {
+            this.MostrarInfoAsync();
+        }
 
         protected BtnCancelarInterno_Click(botao: Botao, e: UIEventArgs): void
         {
@@ -242,12 +274,17 @@
 
         protected BtnSalvarInterno_Click(botao: Botao, e: UIEventArgs): void
         {
-            this.ValidarFomularioESalvarAsync();
+            this.SalvarAsync();
         }
 
-        protected BtnInfoInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        public BtnVoltarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
         {
-            this.MostrarInfoAsync();
+            this.VoltarAsync();
+        }
+
+        public BtnContinuarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        {
+            this.ContinuarAsync();
         }
 
         protected async MostrarInfoAsync(): Promise<void>
@@ -256,19 +293,29 @@
             await janelaInfo.MostrarAsync();
         }
 
+        protected async VoltarAsync(): Promise<void>
+        {
+            throw new Erro("Este método deve ser sobrescrito");
+        }
+
+        protected async ContinuarAsync(): Promise<void>
+        {
+            throw new Erro("Este método deve ser sobrescrito");
+        }
+
         //#endregion
 
         //#region Enter teclado
 
-        protected AdicionarEventosDom(): void
-        {
-            document.addEventListener("keyup", this.__SalvarDocument_KeyDown);
-        }
+        //protected AdicionarEventosDom(): void
+        //{
+        //    document.addEventListener("keyup", this.__SalvarDocument_KeyDown);
+        //}
 
-        protected RemoverEventosDom(): void
-        {
-            document.removeEventListener("keyup", this.__SalvarDocument_KeyDown);
-        }
+        //protected RemoverEventosDom(): void
+        //{
+        //    document.removeEventListener("keyup", this.__SalvarDocument_KeyDown);
+        //}
 
         private SalvarDocument_KeyDown(e: KeyboardEvent): void
         {
@@ -279,7 +326,7 @@
                     this.OcuparElemento();
                     //o bind são atualizando quando os controles perdem o focus
                     window.focus();
-                    window.setTimeout(this.ValidarFomularioESalvarAsync.bind(this, false));
+                    window.setTimeout(this.SalvarAsync.bind(this, false));
                 }
             }
         }
@@ -287,14 +334,7 @@
 
         //#region Salvar
 
-        protected async ValidarFomularioESalvarAsync(isFechar:boolean= true)
-        {
-            const isValido = await this.ValidarFormularioAsync();
-            if (isValido)
-            {
-                this.SalvarAsync(isFechar);
-            }
-        }
+
 
         protected override async IsPodeFecharJanelaAsync(resultado: ResultadoFecharJanelaArgs): Promise<[boolean, ResultadoFecharJanelaArgs]>
         {
@@ -317,12 +357,12 @@
 
                     switch (resultadoMensagem.OpcaoSelecionada)
                     {
-                        case EnumResultadoOpcaoMensagem.Sim:
+                        case EnumResultadoOpcaoMensagem.Sim: {
 
                             resultado.IsSucesso = true;
-                            this.ValidarFomularioESalvarAsync();
-                            return [false, resultado];
-
+                            const isSucesso = await this.SalvarAsync();
+                            return [isSucesso, resultado];
+                        }
                         case EnumResultadoOpcaoMensagem.Nao:
 
                             return [true, resultado];
@@ -341,16 +381,21 @@
 
         protected async SalvarAsync(isFechar: boolean = true): Promise<boolean>
         {
+            const isValido = await this.ValidarFormularioAsync();
+            if (!isValido)
+            {
+                return false;
+            }
             return this.SalvarInternoAsync(isFechar);
         }
 
-        private async SalvarInternoAsync(isFechar: boolean = true): Promise<boolean>
+        protected async SalvarInternoAsync(isFechar: boolean = true): Promise<boolean>
         {
             const resultado = await this.OcuparAsync(async () =>
             {
                 return await this.RetornarResultadoSalvarAsync();
             });
-             
+
             if (isFechar && resultado.IsSucesso)
             {
                 this.FecharAsync(true);
@@ -442,7 +487,7 @@
 
         public override Dispose(): void
         {
-            this.RemoverEventosDom();
+            /*this.RemoverEventosDom();*/
             super.Dispose();
         }
         //#endregion
@@ -456,17 +501,19 @@
     //#endregion
 
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
-	{
-		readonly TextoTitulo: ui.Texto;
-		readonly BlocoFormulario: ui.Bloco;
-		readonly BlocoBotoes: ui.Bloco;
-		readonly BtnCancelarInterno: ui.Botao;
-		readonly BtnSalvarInterno: ui.Botao;
-	}
+    export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
+    {
+        readonly TextoTitulo: ui.Texto;
+        readonly BlocoFormulario: ui.Bloco;
+        readonly BlocoBotoes: ui.Bloco;
+        readonly BtnCancelarInterno: ui.Botao;
+        readonly BtnVoltarInterno: ui.Botao;
+        readonly BtnContinuarInterno: ui.Botao;
+        readonly BtnSalvarInterno: ui.Botao;
+    }
 
-	//#endregion
+    //#endregion
 
 }
