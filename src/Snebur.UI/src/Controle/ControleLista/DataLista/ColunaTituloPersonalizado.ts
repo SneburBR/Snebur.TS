@@ -10,7 +10,7 @@
 //        {
 //            super(controlePai, idElemento, templateCouna);
 
-//            throw new ErroNaoImplementado(this);
+//            throw new ErroNaoImplementado();
 
 //            /*this.TemplateTiluloColuna = templateTituloColuna;*/
             

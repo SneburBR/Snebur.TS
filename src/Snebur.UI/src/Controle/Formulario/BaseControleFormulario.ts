@@ -476,11 +476,13 @@
                             {
                                 if (this.PaiPropriedade instanceof ObjetoControladorPropriedade)
                                 {
+                                    const rotulo = this.IsRotuloVazio ? null : this.Rotulo;
+
                                     this.UltimaMensagemValidacao = validacao.RetornarMensagemValidacao(
                                         this.PaiPropriedade,
                                         this.Propriedade,
                                         valorPropriedade,
-                                        this.Rotulo);
+                                        rotulo);
 
                                     this.MostrarMensagemValidacao(isForcar);
                                     if (validacao.IsAlerta === true)

@@ -14,6 +14,10 @@ namespace Snebur
         enumerable: false
     });
 
+    Number.prototype.FormatarDecimal = function (this: number, casas: number = 2): string
+    {
+        return this.toLocaleString($Configuracao.CulturaPadrao ?? "pt-BR", { minimumFractionDigits: casas, maximumFractionDigits: casas });
+    };
 
     Number.prototype.replace = function (this: number, searchValue: any, replaceValue: any)
     {

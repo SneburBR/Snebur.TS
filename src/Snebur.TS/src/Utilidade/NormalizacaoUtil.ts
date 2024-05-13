@@ -122,10 +122,9 @@
         {
             if ((valor % passo) !== 0)
             {
-
                 if (ValidacaoUtil.IsDecimal(passo))
                 {
-                    return this.NormalizarPassoDecimal(valor, passo, opcoes);
+                    return NormalizacaoUtil.NormalizarPassoDecimal(valor, passo, opcoes);
                 }
 
                 switch (opcoes)
@@ -143,19 +142,23 @@
             return valor;
         }
 
-        private static NormalizarPassoDecimal(valor: number, passo: number, opcoes: EnumOpcoesNormalizarPasso = EnumOpcoesNormalizarPasso.Media): number
+        private static NormalizarPassoDecimal(
+            valor: number,
+            passo: number,
+            opcoes: EnumOpcoesNormalizarPasso = EnumOpcoesNormalizarPasso.Media): number
         {
-            throw new Erro(" Testar normalizar decimal");
+            const casasDecimais = passo.toString().split(".")[1].length;
+            const factor = Math.pow(10, casasDecimais);
+            if (opcoes === EnumOpcoesNormalizarPasso.Media)
+            {
+                return Math.round(valor * factor) / factor;
+            }
 
-            //let digitos = passo.toString().Contains(".") ? passo.toString().split(".").Last().length : 0;
-            //let multiplicador = 1;
-            //if (passo < 1)
-            //{
-            //    multiplicador = digitos * 10;
-            //}
-
-            //let resultado = (Math.round((valor * multiplicador) / (valor * multiplicador)) * valor).toFixed(digitos);
-            //return parseFloat(resultado);
+            if (opcoes === EnumOpcoesNormalizarPasso.ParaCima)
+            {
+                return Math.ceil(valor * factor) / factor;
+            }  
+            return Math.floor(valor * factor) / factor;
         }
 
         public static NormalizarRotacaoImagem(rotacao: EnumRotacaoImagem): EnumRotacaoImagem

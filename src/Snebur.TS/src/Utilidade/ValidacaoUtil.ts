@@ -2,6 +2,7 @@
 {
     export class ValidacaoUtil
     {
+        
         public static IsImageData(argumento: ImageData | Partial<ImageData>): argumento is ImageData
         {
             if (argumento instanceof ImageData)
@@ -34,7 +35,7 @@
         {
             return typeof obj === "string";
         }
-         
+
         public static IsFunction(obj: any): obj is Function
         {
             return typeof obj === "function";
@@ -202,7 +203,7 @@
                 return ValidacaoUtil.IsNumber(obj, true);
             }
             return obj instanceof TimeSpan || typeof obj === "number";
-            //throw new ErroNaoImplementado(this);
+            //throw new ErroNaoImplementado();
         }
 
         public static IsGuid(valor: any): boolean
@@ -1228,5 +1229,5 @@
         }
     }
 
-  
+
 }

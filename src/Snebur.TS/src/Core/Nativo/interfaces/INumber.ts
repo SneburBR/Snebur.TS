@@ -67,7 +67,7 @@ namespace Snebur.Nativo
 
         Formatar(formado: EnumFormatacao): string;
         ToString(formacao: EnumFormatacao): string;
-
+        FormatarDecimal(caseDecimais: number): string;
     }
 
 

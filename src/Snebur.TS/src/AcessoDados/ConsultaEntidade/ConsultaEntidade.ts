@@ -280,7 +280,7 @@
 
         public MinAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number | Date): Promise<number | Date>
         {
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
             //return new Promise<number | Date>(resolver =>
             //{
             //    this.MinAsync(expressaoPropriedade, function (resultado: number)
@@ -292,7 +292,7 @@
 
         public MaxAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number | Date): Promise<number | Date>
         {
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
             //return new Promise<number | Date>(resolver =>
             //{
             //    this.MaxAsync(expressaoPropriedade, function (resultado: number)
@@ -304,7 +304,7 @@
 
         public AverageAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number): Promise<number>
         {
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
             //return new Promise<number | Date>(resolver =>
             //{
             //    this.AverageAsync(expressaoPropriedade, function (resultado: number)
@@ -316,7 +316,7 @@
 
         public SumAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number): Promise<number>
         {
-            //throw new ErroNaoImplementado(this);
+            //throw new ErroNaoImplementado();
             return new Promise<number>(resolver =>
             {
                 this.__SumInternoAsync(expressaoPropriedade, function (resultado: number)
@@ -369,12 +369,12 @@
             this.EstruturaConsulta.TipoEntidadeAssemblyQualifiedName = tipoEspecializacao.AssemblyQualifiedName;
 
             return (this as any) as ConsultaEntidade<TEspecializacao>;
-            //throw new ErroNaoImplementado(this);
+            //throw new ErroNaoImplementado();
         }
 
         //public OfType<TFiltro extends TEntidade>(tipo: r.TipoBaseEntidade): ConsultaEntidade<TFiltro>
         //{
-        //    throw new ErroNaoImplementado(this);
+        //    throw new ErroNaoImplementado();
         //}
 
         //#endregion
@@ -474,7 +474,7 @@
         {
             /*const caminhoRelacao = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoCaminhoColecao);*/
             /*let consultaAcessoDados = this.RetornarEstruturaConsultaRelacaoColecao(caminhoRelacao);*/
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
         }
 
         public OrderByColecao<TRelacao extends d.Entidade>(expressaoCaminhoColecao: (value: TEntidade, index: number, array: Array<TEntidade>) => ListaEntidades<TRelacao>, expressaoPropriedade: (value: TRelacao, index: number, array: Array<TRelacao>) => string | number | Date): ConsultaEntidade<TEntidade>

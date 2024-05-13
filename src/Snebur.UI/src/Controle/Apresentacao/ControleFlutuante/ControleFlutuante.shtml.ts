@@ -522,7 +522,7 @@
 
                 case EnumDestinoControleFlutuante.Automatico:
 
-                    throw new ErroNaoImplementado(this);
+                    throw new ErroNaoImplementado();
 
                 case EnumDestinoControleFlutuante.Centro:
                 case EnumDestinoControleFlutuante.InferiorCentro:
@@ -578,7 +578,7 @@
 
                 default:
 
-                    throw new ErroNaoImplementado(this);
+                    throw new ErroNaoImplementado();
             }
         }
 

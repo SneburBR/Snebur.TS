@@ -5,7 +5,7 @@
         private _isManterCache: boolean;
         protected _isPropagarBindDataSource: boolean = true;
         private _resolverNavegacaoAsync: { Resolver: (value: ResolverNavegacaoAsync<Pagina> | PromiseLike<ResolverNavegacaoAsync<Pagina>>) => void, Pagina: Pagina; };
-        private _paginaAtual: Pagina;
+        private _paginaAtual: Pagina = null;
         protected _parametros: DicionarioSimples<any>;
          
         public abstract readonly IdentificadorNavegador: string;
@@ -32,23 +32,24 @@
         {
             return this._paginaAtual;
         }
-         
-        public readonly PaginasEmCache = new List<Pagina>();
-        public readonly EventoAntesNavegar = new Evento<AntesNavegarEventArgs>(this);
-        public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
-        public readonly EventoNavaPagina = new Evento<NovaPaginaEventArgs>(this);
 
         public override get ControleApresentacao(): ControleApresentacao
         {
             return this.ControlePai.RetornarControlePai(ControleApresentacao);
         }
 
+        public readonly PaginasEmCache = new List<Pagina>();
+        public readonly EventoAntesNavegar = new Evento<AntesNavegarEventArgs>(this);
+        public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
+        public readonly EventoNavaPagina = new Evento<NovaPaginaEventArgs>(this);
+         
         public abstract readonly CaminhoRota: string;
         public abstract readonly IsHistoricoAtivo: boolean;
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement) 
         {
             super(controlePai, elemento);
+            controlePai.EventoCarregado.AddHandler(this.ControlePai_Carregado, this);
         }
 
         protected override Inicializar(): void
@@ -68,6 +69,11 @@
             }
 
             this.NavegarPaginaInicialAsync();
+        }
+
+        private ControlePai_Carregado()
+        {
+            this.NotificarEventoPaginaAlterada();
         }
 
         protected async NavegarPaginaInicialAsync(): Promise<void>
@@ -671,7 +677,10 @@
 
         public NotificarEventoPaginaAlterada(): void
         {
+            if (this.PaginaAtual != null)
+            {
             this.EventoPaginaAlterada?.Notificar(this, new PaginaAlteradaEventArgs(this.PaginaAtual, this._parametros));
+            }
             if ($Configuracao.IsDebug)
             {
                 const nomePaginaAtual = this.PaginaAtual?.___NomeConstrutor;
@@ -720,6 +729,11 @@
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
             {
                 $Aplicacao.DocumentoPrincipal.RemoverNavegador(this);
+            }
+
+            if (this.ControlePai?.IsControleInicializado)
+            {
+                this.ControlePai.EventoCarregado.RemoveHandler(this.ControlePai_Carregado, this);
             }
             //this.RemoverEventosDomHistorico();
             super.Dispose();

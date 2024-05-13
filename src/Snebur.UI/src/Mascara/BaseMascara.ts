@@ -1,6 +1,5 @@
 ﻿namespace Snebur.UI
 {
-
     export abstract class BaseMascara extends BaseUIElemento
     {
         protected _formataMascara: string;

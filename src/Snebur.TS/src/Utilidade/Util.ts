@@ -34,6 +34,11 @@
                 return true;
             }
 
+            if (valor1 == null && valor2 == null)
+            {
+                return true;
+            }
+
             if (valor1 instanceof d.Entidade && valor2 instanceof d.Entidade)
             {
                 return valor1.__IdentificadorEntidade === valor2.__IdentificadorEntidade;

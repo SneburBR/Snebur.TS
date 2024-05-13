@@ -80,6 +80,9 @@
     <TypeScriptCompile Include="src\Core\Bibliotecas\ExitResult.ts" />
     <TypeScriptCompile Include="src\Core\Bibliotecas\Magick.dom.d.ts" />
     <TypeScriptCompile Include="src\Core\Erro\ErroArgumentoNulo.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\ICancelavelAsync.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\LinkedList.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\Queue.ts" />
     <TypeScriptCompile Include="src\Core\Nativo\String.Polyfill.ts" />
     <TypeScriptCompile Include="src\Dne\DneUtil.ts" />
     <TypeScriptCompile Include="src\Dne\EnumUFSigla.ts" />
@@ -99,6 +102,8 @@
     <TypeScriptCompile Include="src\Utilidade\ListaObservacaoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
     <TypeScriptCompile Include="src\Dominio\IRetornarEntidade.ts" />
+    <TypeScriptCompile Include="src\Utilidade\InterfaceUtil.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IInicializacaoAsync.ts" />
     <Content Include="src\Worker\worker.txt" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\BaseConsultaEntidade.ts" />
     <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\ConsultaEntidade.ts" />
@@ -123,6 +128,9 @@
     <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
     <Content Include="lib\Magick\magick.debug\magick-debug.zip" />
     <Content Include="lib\Magick\magick\magick.zip" />
+    <Content Include="Monikers.imagemanifest">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
     <TypeScriptCompile Include="src\Comum\LazyValue.ts" />
     <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />
@@ -619,6 +627,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="src\Core\Gerenciadores\GerenciadorFilaInicializacaoAsync.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

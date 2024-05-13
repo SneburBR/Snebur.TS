@@ -1205,9 +1205,13 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedadeDataPublicacao", this._nomePropriedadeDataPublicacao, this._nomePropriedadeDataPublicacao = value);
         }
     
-        public static MensagemValidacao : string = "A data '{0}' de ser inferior a data de publicação."; 
+        public static MensagemValidacao : string = "A '{0}' deve ser superior a data de publicação."; 
+    
+        public static MensagemValidacaoComposta : string = "A '{0}' deve ser superior à '{1}'."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_COMPOSTA : string = "MensagemValidacaoComposta"; 
         //#endregion
     
         //#region Construtor
@@ -1242,7 +1246,7 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        public static MensagemValidacao : string = "A data {0} não pode ser no passado."; 
+        public static MensagemValidacao : string = "A '{0}' não pode ser anterior à data de hoje."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
         //#endregion

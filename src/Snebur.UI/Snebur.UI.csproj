@@ -544,6 +544,7 @@
     <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaMoeda\CaixaMoeda.shtml.ts">
       <DependentUpon>CaixaMoeda.shtml</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\BaseCaixaNumero.ts" />
     <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\CaixaNumero.shtml.ts">
       <DependentUpon>CaixaNumero.shtml</DependentUpon>
     </TypeScriptCompile>

@@ -70,9 +70,9 @@ namespace Snebur.Nativo
 
         Format(...argumentos: Array<string | number>): string;
 
-        IsNullOrWhiteSpace(texto: string): boolean;
+        IsNullOrWhiteSpace(texto: string |number): boolean;
 
-        IsNullOrEmpty(texto: string): boolean;
+        IsNullOrEmpty(texto: string | number): boolean;
 
         IsCharWhiteSpace(char: string): boolean;
 

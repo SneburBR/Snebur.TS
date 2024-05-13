@@ -10,7 +10,6 @@
         public Passo: number;
         public PassoLargo: number;
        
-
         public override get Valor(): number
         {
             return parseFloat(this.ElementoInput.value).ToDecimal();
@@ -222,10 +221,11 @@
                     return "sn-rotulo-esquerda";
 
                 case null:
+
                     return String.Empty;
 
                 default:
-                    throw new ErroNaoImplementado(this);
+                    throw new ErroNaoImplementado();
             }
         }
 

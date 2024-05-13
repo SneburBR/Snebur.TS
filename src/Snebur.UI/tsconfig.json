@@ -305,6 +305,7 @@
     "src/Controle/Formulario/CaixaTexto/CaixaData/CaixaData.shtml.ts",
     "src/Controle/Formulario/CaixaTexto/CaixaHora/CaixaHora.shtml.ts",
     "src/Controle/Formulario/CaixaTexto/CaixaMoeda/CaixaMoeda.shtml.ts",
+    "src/Controle/Formulario/CaixaTexto/CaixaNumero/BaseCaixaNumero.ts",
     "src/Controle/Formulario/CaixaTexto/CaixaNumero/CaixaNumero.shtml.ts",
     "src/Controle/Formulario/CaixaTexto/CaixaQuantidade/CaixaQuantidade.shtml.ts",
     "src/Controle/Formulario/CaixaTexto/CaixaSenha/CaixaSenha.shtml.ts",

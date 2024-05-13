@@ -31,7 +31,7 @@ namespace Snebur
     /*eslint-enable*/
 
 
-    String.IsNullOrEmpty = function (texto: string): boolean
+    String.IsNullOrEmpty = function (texto: string | number): boolean
     {
         if (typeof texto === "string")
         {
@@ -40,7 +40,7 @@ namespace Snebur
         return texto == null;
     };
 
-    String.IsNullOrWhiteSpace = function (texto: string): boolean  
+    String.IsNullOrWhiteSpace = function (texto: string | number): boolean  
     {
         if (typeof texto === "string")
         {

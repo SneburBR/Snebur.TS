@@ -7,17 +7,17 @@
 
     > conteudo-apresentacao[class*='ap-tipografia--'] {
         font-weight: $peso !important;
+    }
 
-        input {
-            font-weight: $peso !important;
-        }
+    input {
+        font-weight: $peso !important;
     }
 }
 
 .ap-peso-fonte--super-leve {
     @include PesoFonte($font-super-leve);
 
-    &.ap-peso-fonte--super-leve [class*='ap-tipografia--'] {
+    &.ap-peso-fonte--super-leve[class*='ap-tipografia--'] {
         @include PesoFonte($font-super-leve);
     }
 }

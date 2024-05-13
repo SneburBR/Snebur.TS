@@ -47,7 +47,7 @@
 
         private RemoverParentesString(expressaoTexto: string): string
         {
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
         }
     }
 }

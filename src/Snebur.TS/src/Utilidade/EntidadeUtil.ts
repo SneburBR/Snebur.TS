@@ -17,7 +17,7 @@
             return false;
         }
 
-        public static RetornarDescricaoEntidade(entidade: d.Entidade): string
+        public static RetornarDescricaoEntidade(entidade: IEntidade): string
         {
             const tipoEntidade = entidade.GetType() as r.TipoEntidade;
             const propriedadeDescricao = tipoEntidade.RetornarPropriedadeDescricao(true);

@@ -9,11 +9,12 @@
 
         public static MensagemExcluirEntidadeAsync(
             controlePai: BaseControle,
-            entidade: d.Entidade,
+            entidade: IEntidade,
             mensagem: string = null): Promise<ResultadoJanelaMensagemArgs>
         {
             const rotuloEntidade = u.GlobalizacaoUil.RetornarRotuloTipo(entidade.GetType() as r.TipoBaseDominio);
             const descricao = u.EntidadeUtil.RetornarDescricaoEntidade(entidade);
+
             if (String.IsNullOrWhiteSpace(mensagem))
             {
                 mensagem = `Tem certeza de que deseja excluir ${rotuloEntidade.toLowerCase()}:<br />

@@ -12,7 +12,6 @@
 
         public readonly Nome: string;
         private readonly Seguimentos: string[];
-
         public readonly NamespacesFilho = new DicionarioSimples<NamespaceFilho>();
 
         public get Instancia(): any

@@ -7,7 +7,6 @@
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
             super(controlePai, elemento);
-            this.Elemento.style.cursor
         }
 
         protected override Inicializar()

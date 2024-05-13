@@ -22,14 +22,19 @@
             return typeof (obj as IOrdenacao).Ordenacao === "function";
         }
 
-        public static IsInicializavel(obj: any): obj is IInicializavelAsync
+        public static IsInicializavel(obj: any): obj is IInicializacaoAsync
         {
-            return typeof (obj as IInicializavelAsync).InicializarAsync === "function";
+            return typeof (obj as IInicializacaoAsync).InicializarAsync === "function";
         }
 
         public static IsCancelavelAsync(obj: any): obj is ICancelavelAsync
         {
             return typeof (obj as ICancelavelAsync).CancelarAsync === "function";
+        }
+
+        public static IsIEntidade(obj: any): obj is IEntidade
+        {
+            return typeof obj.Id === "number";
         }
     }
 }

@@ -93,7 +93,7 @@
             {
                 return null;
             }
-            throw new ErroNaoImplementado(this);
+            throw new ErroNaoImplementado();
         }
 
         public static RetornarValorNuloPadraoTipoPrimario(tipoPrimarioEnum: r.EnumTipoPrimario): any
@@ -186,17 +186,28 @@
                 valor = parseFloat(valor);
             }
 
+            if (typeof valor === "number")
+            {
+                if (isNaN(valor))
+                {
+                    return 0;
+                }
+                return valor;
+            }
+
             if (typeof valor === "boolean")
             {
                 return valor ? 1 : 0;
             }
 
+            
             let resultado: number;
             if (inteiro)
             {
                 resultado = parseInt(this.ParaString(valor));
 
-            } else
+            }
+            else
             {
                 resultado = parseFloat(this.ParaString(valor));
             }
@@ -693,22 +704,47 @@
 
         private static NormalizarPontosVirgula(valor: string): string
         {
-            const posicaoPonto = valor.lastIndexOf(".");
-            const posicaoVirguala = valor.lastIndexOf(",");
-            const posicaoPontoOuVirgula = Math.max(posicaoPonto, posicaoVirguala);
-            if (posicaoPontoOuVirgula > 0)
+            const cleanValue = valor.replace(/[^0-9.,-]/g, "");
+            if (String.IsNullOrWhiteSpace(cleanValue))
             {
-                const isNegativo = (valor.trim().charAt(0) === "-");
-                const resultado = TextoUtil.RetornarSomenteNumeros(valor.substring(0, posicaoPontoOuVirgula)) + "." +
-                    TextoUtil.RetornarSomenteNumeros(valor.substring(posicaoPontoOuVirgula));
-                if (isNegativo)
-                {
-                    return "-" + resultado;
-                }
-                return resultado;
-
+                return "0";
             }
-            return valor;
+            // Verificar se o valor tem vírgula e ponto
+            const hasComma = cleanValue.includes(",");
+            const hasDot = cleanValue.includes(".");
+
+            if (hasComma && hasDot)
+            {
+                // Caso tenha ambos vírgula e ponto, inferir o formato
+                const lastCommaPosition = cleanValue.lastIndexOf(",");
+                const lastDotPosition = cleanValue.lastIndexOf(".");
+
+                if (lastCommaPosition > lastDotPosition)
+                {
+                    // Formato brasileiro (1.350,20)
+                    return cleanValue.replace(/\./g, "").replace(",", ".");
+                }  
+                    // Formato americano (1,350.20)
+                return cleanValue.replace(/,/g, "");
+                 
+            }
+            else if (hasComma)
+            {
+                // Formato brasileiro ou similar (1.350,20 ou 1350,20)
+                return cleanValue.replace(/\./g, "").replace(",", ".");
+            }
+            else if (hasDot)
+            {
+                // Formato americano ou similar (1,350.20 ou 1350.20)
+                return cleanValue.replace(/,/g, "");
+            }
+            else
+            {
+                // Apenas números
+                return cleanValue;
+            }
+             
+            //return valor;
         }
 
         //#region Converter cores

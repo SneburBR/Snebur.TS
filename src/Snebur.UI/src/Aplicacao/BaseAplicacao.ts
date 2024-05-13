@@ -542,6 +542,14 @@
             this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
         }
 
+        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>): Promise<T>
+        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueio: (value: TThis) => boolean): Promise<T>
+        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, identificadorBloqueio: string): Promise<T>
+        public async OcuparAsync<T, TThis extends this = this>(funcAsync: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean)): Promise<T>
+        {
+            return this.DocumentoPrincipal?.OcuparAsync(funcAsync, expressaoFlagBloqueioOuIdentificador as any);
+        }
+
         public override TituloOcupado(titulo: string): void
         {
             return this.DocumentoPrincipal?.TituloOcupado(titulo);
