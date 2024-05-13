@@ -293,9 +293,9 @@
                                 return;
                             }
 
-                            if (String.IsNullOrEmpty(novoValorDom))
+                            if (novoValorDom == null)
                             {
-                                novoValorDom = "0";
+                                novoValorDom = "";
                             }
                             if ((elemento as HTMLInputElement).value !== novoValorDom)
                             {

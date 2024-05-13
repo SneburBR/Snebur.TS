@@ -86,7 +86,8 @@
 
             if (this.ControlePai instanceof CaixaQuantidade  )
             {
-                return this.ControlePai.NormalizarValor(valorPropriedade).toString();
+                throw new ErroOperacaoInvalida(`O bind da CaixaQuantidade deve ser BindNumero`);
+                /*return this.ControlePai.NormalizarValor(valorPropriedade).toString();*/
             }
 
             return super.RetornarValorConvertidoParaDom(valorPropriedade);
