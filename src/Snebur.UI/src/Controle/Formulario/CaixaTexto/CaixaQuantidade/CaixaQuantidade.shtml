@@ -17,9 +17,11 @@
             >
             <!--<ap-texto sn-bind="{{Quantidade}}, Origem=this"></ap-texto>-->
          
-            <input class="input-texto"
+            <input 
+                class="input-texto"
                 sn-item-elemento="ControleInput"
-                value="0" type="text" 
+                value="0"
+                type="text" 
                 inputmode="numeric"
                 required step="1" />
 

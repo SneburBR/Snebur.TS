@@ -15,14 +15,24 @@
         private Maximo: number;
         private CasasDigitos: number;
 
+        public get PassoPadrao(): number
+        {
+            if(this.ControlePai instanceof CaixaQuantidade)
+            {
+                return (this.ControlePai as CaixaQuantidade).RetornarPasso();
+            }
+            return BindNumero.PASSO_PADRAO;
+        }
+
         public constructor(controlePai: BaseControle, elemento: HTMLElement, valorAtributo: string)
         {
             super(controlePai, elemento, AtributosHtml.BindNumero, valorAtributo);
             //this.AdicionarHandlerOnBlur();
 
-            const passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo, BindNumero.PASSO_PADRAO);
+            const passo = this.RetornarValorAtributoNumber(AtributosHtml.Passo,this.PassoPadrao);
             const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, BindNumero.MINIMO_PADRAO);
             const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, BindNumero.MAXIMO_PADRAO);
+
             this.IsFormatarInteiro = this.RetornarValorAtributoBoolean(AtributosHtml.IsFormatarInteiro, false);
 
             this.AtualizarValores(passo, minimo, maximo);
@@ -66,23 +76,23 @@
                 return null;
             }
 
-            return FormatacaoUtil.FormatarMelhorDecimal(valorPropriedade,
+            return FormatacaoUtil.FormatarMelhorDecimal(
+                valorPropriedade,
                 this.Minimo,
                 this.Maximo,
                 this.Passo,
                 this.CasasDigitos,
                 this.IsFormatarInteiro );
-
         }
-
 
         public override RetornarValorConvertidoParaPropriedade(valorDom: string): number
         {
-            if (String.IsNullOrWhiteSpace(valorDom) ||
+            if (String.IsNullOrWhiteSpace(valorDom) &&
                 (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.AceitaNulo))
             {
                 return null;
             }
+
             const valorTipado = ConverterUtil.ParaNumero(valorDom);
             const retorno = this.RetornarValorInterno(valorTipado);
             return NormalizacaoUtil.NormalizarIntervalo(retorno, this.Minimo, this.Maximo);
