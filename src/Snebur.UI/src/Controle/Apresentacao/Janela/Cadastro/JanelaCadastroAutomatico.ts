@@ -189,7 +189,7 @@
             }
             if (relacao instanceof at.RelacaoUmUmAttribute)
             {
-                throw new ErroNaoImplementado(this);
+                throw new ErroNaoImplementado();
             }
             throw new ErroNaoSuportado("A relação não é suportada", this);
         }

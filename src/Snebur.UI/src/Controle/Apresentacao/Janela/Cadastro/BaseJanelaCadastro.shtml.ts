@@ -317,7 +317,7 @@
         //    document.removeEventListener("keyup", this.__SalvarDocument_KeyDown);
         //}
 
-        private SalvarDocument_KeyDown(e: KeyboardEvent): void
+        protected SalvarDocument_KeyDown(e: KeyboardEvent): void
         {
             if (this.AtivarEnterSalvar && KeyCodeUtil.IsKeyCodeEnter(e.keyCode) && !this.IsExisteJanelaAberta)
             {
