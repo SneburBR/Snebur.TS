@@ -17,6 +17,16 @@
                 if (caminho.StartsWith(BaseBind.THIS))
                 {
                     const metodo = controlePai.RetornarMetodo(caminho);
+                    if (metodo == null)
+                    {
+                        throw new Erro(`Não foi possível retornar pagina inicial do navegador, o método ${caminho} não foi encontrado em ${controlePai.ControleApresentacao.___NomeConstrutor}`);
+                    }
+
+                    if (typeof metodo !== "function")
+                    {
+                        throw new Erro(`Não foi possível retornar pagina inicial do navegador, o método ${caminho} não é uma função em ${controlePai.ControleApresentacao.___NomeConstrutor}`);
+                    }
+
                     const construtorOuNome = metodo();
 
                     switch (typeof construtorOuNome)
@@ -39,7 +49,6 @@
             const construtor = ControleUtil.RetornarConstrutorControle(controlePai, construtorOuNome, true) as IPaginaConstrutor;
             if (construtor == null)
             {
-
                 if (construtorOuNome !== caminho)
                 {
                     caminho += ` result ${construtorOuNome}`;
