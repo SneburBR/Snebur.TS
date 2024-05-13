@@ -71,7 +71,7 @@
         {
             return (keycode > 47 && keycode < 58) || // numeros key
                 (keycode > 95 && keycode < 112) ||  // numero - teclado direita
-                (keycode > 185 && keycode < 193) || // ;=,-./` seperados das mascaras
+                (keycode > 185 && keycode <= 194) || // ;=,-./` seperados das mascaras
                 (keycode > 218 && keycode < 223) ||
                 keycode === 32 || keycode === 13;   // [\] () '
 
