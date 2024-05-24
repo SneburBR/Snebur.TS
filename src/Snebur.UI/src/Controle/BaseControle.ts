@@ -382,7 +382,7 @@
             //pode ser sobre escrito
         }
 
-          //@internal
+        //@internal
         protected AtualizarControlesFilho(atualizarDicionarioElementosSnebur: boolean = true): void
         {
             if (atualizarDicionarioElementosSnebur)
@@ -684,9 +684,12 @@
             const elemento = this.Elemento;
             if (elemento instanceof HTMLElement)
             {
-                ElementoUtil.DesabilitarElemento(elemento, false);
+                if (!this.IsDesabilitado)
+                {
+                    ElementoUtil.DesabilitarElemento(elemento, false);
+                    this.OcuparElementosFilho();
+                }
             }
-            this.OcuparElementosFilho();
         }
 
         protected OcuparElementosFilho(): void

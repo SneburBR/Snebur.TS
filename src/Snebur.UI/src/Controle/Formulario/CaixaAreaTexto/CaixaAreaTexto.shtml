@@ -1,7 +1,7 @@
 ﻿<ap-painel-vertical sn-nome="PainelPrincipal" ap-tipo-painel="PilhaVertical" ap-largura="100%">
     <ap-linha ap-altura="20px" sn-nome="ElementoLocalRotuloFlutuante">
     </ap-linha>
-    <ap-linha sn-item-elemento="Caixa">
+    <ap-linha sn-item-elemento="Caixa" class="caixa-texto">
         <textarea class="input-texto"
             sn-item-elemento="ControleInput"
             rows="1"></textarea>

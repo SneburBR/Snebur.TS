@@ -21,5 +21,14 @@
             }
             return unidadeComprimento.ValorFormatado;
         }
+
+        protected override AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, unidadeComprimento: UnidadeComprimento): void
+        {
+            super.AtualizarApresentacao(componenteApresentacao, unidadeComprimento);
+            if (!unidadeComprimento.IsVazio)
+            {
+                componenteApresentacao.Elemento.classList.add("sn-ui-altura");
+            }
+        }
     }
 }

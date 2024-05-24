@@ -2,26 +2,30 @@
 {
 	export class Base36Util
     {
-        public static IsBase36(valor: string, isPermitirEspaco:boolean, isIgnorarCase:boolean): boolean
+        public static IsBase36(valor: string, isPermitirEspaco: boolean, isIgnorarCase: boolean, caracteresExtra:string): boolean
         {
             if (String.IsNullOrWhiteSpace(valor))
             {
                 return false;
             }
+
             if (isIgnorarCase)
             {
                 valor = valor.toUpperCase();
             }
 
-            if (isPermitirEspaco)
+            if (caracteresExtra == null)
             {
-                //[A-Z0-9 ]+$
-                const padrao = /^[A-Z0-9 ]+$/;  
-                return padrao.test(valor);
+                caracteresExtra = "";
             }
 
-            //[A-Z0-9]+$
-            const padrao = /^[A-Z0-9]+$/;
+            if (isPermitirEspaco)
+            {
+                caracteresExtra = `${caracteresExtra} `;
+            }
+
+            const regex = `^[0-9A-Z${caracteresExtra}]+$`;
+            const padrao = new RegExp(regex);
             return padrao.test(valor);
         }
 

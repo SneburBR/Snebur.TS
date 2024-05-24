@@ -955,6 +955,61 @@ namespace Snebur.Dominio.Atributos
         }
         //#endregion
     }
+    export class ValidacaoBase36Attribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Propriedades
+    
+        private _isPermitirEspaco : boolean = false;
+        private _isIgnorarCase : boolean = false;
+        private _caracteresExtra : string = null;
+    
+        public get IsPermitirEspaco(): boolean 
+        {
+            return this._isPermitirEspaco;
+        }
+
+        public set IsPermitirEspaco(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsPermitirEspaco", this._isPermitirEspaco, this._isPermitirEspaco = value);
+        }
+    
+        public get IsIgnorarCase(): boolean 
+        {
+            return this._isIgnorarCase;
+        }
+
+        public set IsIgnorarCase(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsIgnorarCase", this._isIgnorarCase, this._isIgnorarCase = value);
+        }
+    
+        public get CaracteresExtra(): string 
+        {
+            return this._caracteresExtra;
+        }
+
+        public set CaracteresExtra(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("CaracteresExtra", this._caracteresExtra, this._caracteresExtra = value);
+        }
+    
+        public static MensagemValidacao : string = "O campo {0} deve conter apenas letras de A a Z e números de 0 a 9."; 
+    
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+        //#endregion
+    
+        //#region Construtor
+    
+        public constructor( isPermitirEspaco : boolean ,  isIgnorarCase : boolean ,  caracteresExtra : string ) 
+        {
+            super();
+            this.Inicializar();
+            this._isPermitirEspaco = isPermitirEspaco;
+            this._isIgnorarCase = isIgnorarCase;
+            this._caracteresExtra = caracteresExtra;
+        }
+        //#endregion
+    }
     export class ValidacaoCepAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades

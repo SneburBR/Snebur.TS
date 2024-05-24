@@ -48,6 +48,10 @@
 
         DataSemantica = "datasemantica",
 
+        Dias = "dias",
+
+        DiasUteis = "diasuteis",
+
         SimNao = "simnao",
 
         Trim = "trim",

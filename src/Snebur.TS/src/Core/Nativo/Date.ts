@@ -77,6 +77,33 @@
         enumerable: true,
     });
 
+    Object.defineProperty(Date.prototype, "DayOfYear", {
+
+        get: function ()
+        {
+            return u.DataHoraUtil.RetornarDiaAno(this);
+        },
+        enumerable: true,
+    });
+
+    Object.defineProperty(Date.prototype, "TotalMinutesOfDay", {
+
+        get: function (this: Date)
+        {
+            return this.getHours() * 60 + this.getMinutes();
+        },
+        enumerable: true,
+    });
+
+    Object.defineProperty(Date.prototype, "TotalMinutesOfYear", {
+
+        get: function (this: Date)
+        {
+            return this.DayOfYear * 24 * 60 + (this.getHours() * 60) + this.getMinutes();
+        },
+        enumerable: true,
+    });
+     
     Object.defineProperty(Date.prototype, "TimeOfDay", {
 
         get: function ()
@@ -255,7 +282,7 @@
             opcoesData = u.OpcoesCompararData.Data,
             ocoesHora = u.OpcoesCompararHora.Ignorar): boolean
         {
-            
+
             if (outraData instanceof Date)
             {
                 return DataHoraUtil.SaoIgual(this,

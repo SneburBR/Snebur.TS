@@ -86,6 +86,7 @@
     <TypeScriptCompile Include="src\Core\Nativo\String.Polyfill.ts" />
     <TypeScriptCompile Include="src\Dne\DneUtil.ts" />
     <TypeScriptCompile Include="src\Dne\EnumUFSigla.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoBase36.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoGuid.Partial.ts" />
     <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoMdr5.Partial.ts" />
     <TypeScriptCompile Include="src\Imagem\Canvas\AbrirArquivoLocalCanvas.ts" />
@@ -98,6 +99,7 @@
     <TypeScriptCompile Include="src\Imagem\ImagemLocalUtil.ts" />
     <TypeScriptCompile Include="src\Imagem\Magick\MagickProcessador.ts" />
     <TypeScriptCompile Include="src\Imagem\Magick\MagickUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\Base36Util.ts" />
     <TypeScriptCompile Include="src\Utilidade\HashCodeUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ListaObservacaoUtil.ts" />
     <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />

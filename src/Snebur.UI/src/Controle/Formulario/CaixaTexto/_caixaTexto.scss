@@ -168,7 +168,7 @@ sn-caixa-texto {
 
             .linha-horizontal-externa {
                 position: relative;
-                height: retornar-em(2.4px);
+                height: 2px;
                 width: 100%;
                 pointer-events: none;
                 display: block;
@@ -177,7 +177,7 @@ sn-caixa-texto {
 
             .linha-horizontal {
                 position: relative;
-                height: retornar-em(2px);
+                height: 2px;
                 width: 0%;
                 left: 50%;
                 pointer-events: none;

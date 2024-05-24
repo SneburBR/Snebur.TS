@@ -197,7 +197,7 @@ sn-botao {
 
             @include botao-circulo($largura-icone-grande);
             /* ap-icone {
-                top: retornar-rem(2px);
+                top: 2px;
                 left: retornar-rem(0px);
             }*/
         }
@@ -245,8 +245,8 @@ sn-botao {
             @include botao-circulo($largura-icone-pequeno);
 
             ap-icone {
-                top: retornar-rem(4px);
-                left: retornar-rem(4px)
+                top:   4px;
+                left: 4px
             }
         }
 
@@ -265,8 +265,8 @@ sn-botao {
             @include botao-circulo($largura-icone-medio);
 
             ap-icone {
-                top: retornar-rem(4px);
-                left: retornar-rem(4px)
+                top: 4px;
+                left: 4p
             }
         }
 
@@ -275,8 +275,8 @@ sn-botao {
             @include botao-circulo($largura-icone-grande);
 
             ap-icone {
-                top: retornar-rem(2px);
-                left: retornar-rem(0px);
+                top: 2px;
+                left: 0px;
             }
         }
 
@@ -355,7 +355,6 @@ sn-botao {
         padding: 0;
 
         > conteudo-apresentacao {
-
             background-color: transparent !important;
 
             &:hover {
@@ -467,8 +466,18 @@ sn-botao {
 
             > conteudo-apresentacao {
                 rotulo-botao {
-                    line-height: retornar-rem(24px);
+                    line-height: 1.5rem;
                 }
+            }
+        }
+    }
+
+    &.sn-ui-altura,
+    &[class*='ap-tipografia--'] {
+
+        > conteudo-apresentacao {
+            rotulo-botao {
+                line-height: 1 !important;
             }
         }
     }

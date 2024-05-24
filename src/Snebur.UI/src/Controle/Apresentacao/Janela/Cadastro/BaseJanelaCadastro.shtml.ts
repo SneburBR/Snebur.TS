@@ -11,6 +11,7 @@
         public IsMostrarBotaoSalvar: boolean = true;
         public IsMostrarBotaoVoltar: boolean = false;
         public IsMostrarBotaoContinuar: boolean = false;
+        public IsMostraarOpcaoSalvarAoSair: boolean = true;
 
 
         public readonly TipoEntidade: r.TipoEntidade;
@@ -272,19 +273,55 @@
             this.FecharAsync(false);
         }
 
-        protected BtnSalvarInterno_Click(botao: Botao, e: UIEventArgs): void
+        protected async BtnSalvarInterno_Click(botao: Botao, e: UIEventArgs)
         {
-            this.SalvarAsync();
+            try
+            {
+                this.OcuparElemento();
+                await this.SalvarAsync();
+            }
+            catch (erro)
+            {
+                console.error(erro);
+            }
+            finally
+            {
+                this.DesocuparElemento();
+            }
         }
 
-        public BtnVoltarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        public async BtnVoltarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
         {
-            this.VoltarAsync();
+            try
+            {
+                this.OcuparElemento();
+                await this.VoltarAsync();
+            }
+            catch(erro)
+            {
+                console.error(erro);
+            }
+            finally
+            {
+                this.DesocuparElemento();
+            }
         }
 
-        public BtnContinuarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
+        public async BtnContinuarInterno_Click(botao: ui.Botao, e: ui.UIEventArgs)
         {
-            this.ContinuarAsync();
+            try
+            {
+                this.OcuparElemento();
+                await this.ContinuarAsync();
+            }
+            catch (erro)
+            {
+                console.error(erro);
+            }
+            finally
+            {
+                this.DesocuparElemento();
+            }
         }
 
         protected async MostrarInfoAsync(): Promise<void>
@@ -347,23 +384,45 @@
 
                 if (this.IsExisteAlteracao)
                 {
-                    const mensagem = "Deseja salvar as alterações antes de sair?";
+                    if (this.IsMostraarOpcaoSalvarAoSair)
+                    {
+                        const resultadoMensagem = await MensagemUtil.MostrarMensagemPersonalizadaAsync(this,
+                            "Existem alterações não salvas",
+                            "Deseja salvar as alterações antes de sair?",
+                            EnumResultadoOpcaoMensagem.Cancelar,
+                            EnumResultadoOpcaoMensagem.Nao,
+                            [EnumResultadoOpcaoMensagem.Sim, "Sim, salvar"]);
+
+                        switch (resultadoMensagem.OpcaoSelecionada)
+                        {
+                            case EnumResultadoOpcaoMensagem.Sim: {
+
+                                resultado.IsSucesso = true;
+                                const isSucesso = await this.SalvarAsync();
+                                return [isSucesso, resultado];
+                            }
+                            case EnumResultadoOpcaoMensagem.Nao:
+
+                                return [true, resultado];
+
+                            case EnumResultadoOpcaoMensagem.Cancelar:
+
+                                return [false, null];
+                            default:
+
+                                throw new Erro("Opção não suportada");
+                        }
+                    }
+
                     const resultadoMensagem = await MensagemUtil.MostrarMensagemPersonalizadaAsync(this,
                         "Existem alterações não salvas",
-                        mensagem,
+                        "Você realmente deseja sair sem salvar?",
                         EnumResultadoOpcaoMensagem.Cancelar,
-                        EnumResultadoOpcaoMensagem.Nao,
-                        [EnumResultadoOpcaoMensagem.Sim, "Sim, salvar"]);
+                        [EnumResultadoOpcaoMensagem.Sim, "Sim, sair mesmo assim"]);
 
                     switch (resultadoMensagem.OpcaoSelecionada)
                     {
-                        case EnumResultadoOpcaoMensagem.Sim: {
-
-                            resultado.IsSucesso = true;
-                            const isSucesso = await this.SalvarAsync();
-                            return [isSucesso, resultado];
-                        }
-                        case EnumResultadoOpcaoMensagem.Nao:
+                        case EnumResultadoOpcaoMensagem.Sim:
 
                             return [true, resultado];
 
@@ -374,6 +433,7 @@
 
                             throw new Erro("Opção não suportada");
                     }
+                    
                 }
             }
             return [true, resultado];

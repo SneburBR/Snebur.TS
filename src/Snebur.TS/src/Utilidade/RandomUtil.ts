@@ -21,5 +21,20 @@
             }
             return Math.floor(Math.random() * (1 + maximo - minimo)) + minimo;
         }
+
+        public static GerarString36(tamanho: number): string
+        {
+            return RandomUtil.GerarString(tamanho, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+        }
+
+        public static GerarString(tamanho: number, caracteres: string): string
+        {
+            let resultado = "";
+            for (let i = 0; i < tamanho; i++)
+            {
+                resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            return resultado;
+        }
     }
 }

@@ -127,6 +127,7 @@
       <DependentUpon>CaixaAreaTextoSugestao.shtml</DependentUpon>
     </Content>
     <Content Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml" />
+    <None Include="src\Controle\Formulario\CaixaAreaTexto\_caixaAreaTexto.mixins.scss" />
     <Content Include="src\Controle\Formulario\CaixaAtivacao\CaixaAtivacao.shtml" />
     <Content Include="src\Controle\Formulario\CaixaSlider\CaixaSlider.shtml" />
     <Content Include="src\Controle\Formulario\CaixaTexto\CaixaCartaoCredito\CaixaCartaoCredito.shtml" />
@@ -821,9 +822,6 @@
     <Content Include="src\Controle\Formulario\_baseControleFormulario.variaveis.scss">
       <DependentUpon>_baseControleFormulario.scss</DependentUpon>
     </Content>
-    <Content Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml.scss">
-      <DependentUpon>CaixaAreaTexto.shtml</DependentUpon>
-    </Content>
     <Content Include="src\Controle\Formulario\CaixaAtivacao\caixaativacao.shtml.scss">
       <DependentUpon>CaixaAtivacao.shtml</DependentUpon>
     </Content>
@@ -900,6 +898,10 @@
     <Content Include="src\Componentes\Propriedades\Icone\_icone-categoria.scss" />
     <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\_falha-conexao.scss" />
     <Content Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaInfo.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTexto\_caixaAreaTexto.Delineada.scss" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml.scss">
+      <DependentUpon>CaixaAreaTexto.shtml</DependentUpon>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

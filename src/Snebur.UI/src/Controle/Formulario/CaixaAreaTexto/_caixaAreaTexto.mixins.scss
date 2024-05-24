@@ -1,0 +1,79 @@
+﻿@import "../../../../scss/_cores.variaveis.scss";
+
+@mixin CaixaAreaTexoCor($cor) {
+
+    sn-caixa-area-texto {
+
+        &.ap-caixa--padrao {
+            .caixa-texto {
+                &:not(.sn-desabilitado) {
+                    input {
+                        &:focus + .rotulo-caixa-texto {
+                            color: $cor !important;
+                        }
+
+                        &:focus + .rotulo-caixa-texto + .linha-horizontal-externa {
+                            .linha-horizontal {
+                                background-color: $cor !important;
+                                width: 100%;
+                                left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.sn-is-focus {
+                .linha-horizontal {
+                    background-color: $cor !important;
+                    width: 100%;
+                    left: 0;
+                }
+            }
+        }
+
+        &.ap-caixa--delineada {
+            &:not(.sn-desabilitado) {
+                &:not(.sn-is-valicacao--falha) {
+                    input {
+                        &:focus + .rotulo-caixa-texto {
+                            color: $cor !important;
+                        }
+                    }
+                }
+            }
+
+            &.sn-is-focus {
+                &:not(.sn-is-valicacao--falha) {
+                    .caixa-texto {
+                        border: 1px solid $cor;
+
+                        .rotulo-caixa-texto {
+                            color: $cor !important;
+                        }
+                    }
+                }
+            }
+             
+            &.sn-is-focus {
+                .caixa-texto {
+                    &::before {
+                        border: 2px solid $cor;
+                    }
+                }
+            }
+
+            &.sn-is-valicacao--falha {
+                .caixa-texto {
+                    &::before {
+                        border: 2px solid $cor-falha dashed;
+                    }
+
+                    .rotulo-caixa-texto {
+                        color: $cor-falha !important;
+                    }
+                }
+            }
+        }
+    }
+}

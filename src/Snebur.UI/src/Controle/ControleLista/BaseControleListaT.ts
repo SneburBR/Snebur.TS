@@ -592,6 +592,11 @@
             }
 
         }
+
+        public override Desabilitar(): void
+        {
+            super.Desabilitar();
+        }
         //#endregion
 
         //#region Métodos abstratos

@@ -4,9 +4,16 @@
 .sn-janela-mensagem {
     > conteudo-apresentacao {
 
-        @include responsivo(tablet, desktop) {
+        @include responsivo(notebook, desktop) {
             min-width: retornar-rem(300px);
-            max-width: 80%;
+            max-width: 800px !important;
+            max-height: 90%;
+        }
+
+
+        @include responsivo(tablet) {
+            min-width: retornar-rem(300px);
+            max-width: 80% !important;
             max-height: 90%;
         }
 

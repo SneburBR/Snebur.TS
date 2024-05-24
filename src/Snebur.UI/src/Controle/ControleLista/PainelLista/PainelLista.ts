@@ -402,8 +402,7 @@
             }
             return ScrollUtil.RetornarElementoScrollVerticalPai(this.ElementoApresentacao, true);
         }
-
-
+         
         private RetornarOrientacaoScroll(): EnumOrientacao
         {
             switch (this.TipoPainel)
@@ -456,7 +455,19 @@
             }
         }
          
+        public override Desabilitar(): void
+        {
+            super.Desabilitar();
+        }
 
+        //public override Habilitar(): void
+        //{
+
+        //}
+        //public override Ocupar()
+        //{
+        //    super.OcuparElemento();
+        //}
     }
 
     interface OptionsScrollPainelLista

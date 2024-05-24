@@ -1,8 +1,9 @@
-﻿@import "../../../../scss/_cores.variaveis.scss";
-@import "../../../../scss/mixins.scss";
-@import "../../../../scss/_tipografias.variaveis.scss";
-@import "../_baseControleFormulario.scss";
+﻿@import "../../../../scss/mixins.scss";
+@import "../baseControleFormulario";
+@import "../../../../scss/variaveis.scss";
 
+
+$distancia-rotulo: 1.4rem;
 
 $altura-controle: auto;
 $altura-controle-celular: auto;
@@ -14,16 +15,7 @@ $altura-sem-rotulo: 1.85em;
 $cor-fundo-somente-leitura: #f6f6f6;
 $cor-fonte-somente-leitura: #aaa;
 
-.sn-caixa-texto,
-sn-caixa-senha-simples,
-sn-caixa-senha,
-sn-caixa-numero,
-sn-caixa-moeda,
-sn-caixa-hora,
-sn-caixa-cartao-credito,
-sn-caixa-texto,
-sn-caixa-data,
-sn-caixa-quantidade {
+sn-caixa-area-texto {
 
     &.ap-caixa--delineada {
         display: inline-flex;
@@ -64,6 +56,7 @@ sn-caixa-quantidade {
 
 
         .caixa-texto {
+          
             padding-left: retornar-em(8px);
             padding-right: retornar-em(8px);
             padding-top: retornar-em(8px);
@@ -77,6 +70,7 @@ sn-caixa-quantidade {
             overflow: visible;
             background-color: white;
             cursor: text;
+            background: transparent !important;
 
             &::before {
                 content: "";
@@ -95,6 +89,7 @@ sn-caixa-quantidade {
             input-espelho,
             textarea,
             input {
+                resize: none;
                 border-radius: 0;
                 outline: none;
                 -webkit-appearance: none;
@@ -103,7 +98,26 @@ sn-caixa-quantidade {
                 border: none;
                 background-color: transparent;
                 font-family: $fonte-padrao;
+                height: 100%;
                 /*padding: retornar-em(8px) retornar-em(4px);*/
+
+                &::-webkit-scrollbar {
+                    width: 0.5rem;
+
+                    @include Responsivo(celular, tablet) {
+                        width: 1px;
+                    }
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #888;
+                }
+
+                padding-right: 0.5rem;
             }
 
             textarea[disabled],
@@ -159,7 +173,7 @@ sn-caixa-quantidade {
                     position: absolute;
                     pointer-events: none;
                     left: 0;
-                    top: 2px;
+                    top:  2px;
                     bottom: 0.4em;
                     right: 0;
                     z-index: -1;
@@ -306,4 +320,4 @@ sn-caixa-quantidade {
     }
 }
 
-@include CaixaTexoCor($cor-principal);
+@include CaixaAreaTexoCor($cor-principal);

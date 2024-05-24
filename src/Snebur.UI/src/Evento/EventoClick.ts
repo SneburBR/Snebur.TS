@@ -55,6 +55,7 @@
                     LogUtil.Erro(erro);
                     throw erro;
                 }
+                
             }
         }
 

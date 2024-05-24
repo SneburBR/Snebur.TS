@@ -20,7 +20,10 @@ namespace Snebur.Dominio.Atributos
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
-            return u.Base36Util.IsBase36(valorPropriedade, this.IsPermitirEspaco, this.IsIgnorarCase);
+            return u.Base36Util.IsBase36(valorPropriedade, 
+                this.IsPermitirEspaco,
+                this.IsIgnorarCase,
+                this.CaracteresExtra);
         }
         return true;
     };

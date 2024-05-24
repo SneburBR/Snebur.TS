@@ -33,11 +33,21 @@ namespace Snebur.Nativo
 
         readonly Utc: Date;
 
+        
+
         //Ticks: number;
 
         //TimeOfDay: Snebur.Core.TimeSpan;
 
         readonly DayOfWeek: d.EnumDiaSemana;
+
+        readonly DayOfYear: number;
+
+        readonly TotalMinutesOfDay: number;
+
+        readonly TotalMinutesOfYear: number;
+
+
 
         //DayOfYear: number;
         Add(timespan: TimeSpan): Date;

@@ -80,7 +80,7 @@ sn-combobox-nn {
                 border-right: 0.3em solid transparent;
                 border-top: 0.3em solid black;
                 top: retornar-em(10px);
-                right: retornar-em(2px);
+                right: 2px;
                 position: absolute !important;
             }
         }
@@ -119,13 +119,13 @@ sn-combobox-nn {
 
         .linha-horizontal-externa {
             position: absolute;
-            height: retornar-em(2.4px);
+            height:  2px;
             background-color: $cor-linha-horizontal;
             width: 100%;
 
             .linha-horizontal {
                 position: absolute;
-                height: retornar-em(2px);
+                height: 2px;
                 width: 0%;
                 pointer-events: none;
                 display: block;

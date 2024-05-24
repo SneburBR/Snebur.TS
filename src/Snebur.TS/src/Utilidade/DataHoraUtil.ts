@@ -355,6 +355,11 @@ namespace Snebur.Utilidade
         {
             return data1 < data2 ? data1 : data2;
         }
+
+        public static RetornarDiaAno(data: Date): number
+        {
+            return Math.floor((data.getTime() - new Date(data.getFullYear(), 0, 0).getTime()) / 86400000);
+        }
     }
 
 

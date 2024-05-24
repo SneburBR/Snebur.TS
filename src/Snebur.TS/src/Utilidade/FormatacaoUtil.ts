@@ -125,6 +125,13 @@
 
                     return FormatacaoUtil.FormatarDataSemanticaHora(valor);
 
+                case EnumFormatacao.Dias:
+
+                    return FormatacaoUtil.FormatarDias(valor);
+                case EnumFormatacao.DiasUteis:
+
+                    return FormatacaoUtil.FormatarDiasUteis(valor);
+
                 case EnumFormatacao.Titulo:
 
                     return FormatacaoUtil.FormatarTitulo(valor);
@@ -836,6 +843,16 @@
 
             }
             return String.Empty;
+        }
+
+        public static FormatarDias(totalDias: number): string
+        {
+            return totalDias === 1 ? "1 dia" : `${totalDias} dias`;
+        }
+
+        public static FormatarDiasUteis(totalDias: number): string
+        {
+            return totalDias === 1 ? "1 dia útil" : `${totalDias} dias úteis`;
         }
 
         public static FormatarMes(mes: d.EnumMes, isAbreviado: boolean = false): string

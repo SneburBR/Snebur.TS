@@ -15,56 +15,57 @@
     {
         const rotuloPropriedade = rotuloControle?.toLowerCase() ?? u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
         const opcao = this.OpcoesComparacaoAuxiliar;
-        if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma && paiPropriedade!= null)
+        if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma && paiPropriedade != null)
         {
-            const propriedadeAuxiliar = paiPropriedade.GetType()?.RetornarPropriedade(this.NomePropridadeAuxiliar);
-            const valorPropriedadeAuxiliza = this.RetornarValorPropriedadeAuxiliar(paiPropriedade);
-            const rotuloPropriedadeAuxiliar = propriedadeAuxiliar == null
-                ? this.NomePropridadeAuxiliar.toLowerCase()
-                : u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedadeAuxiliar).toLowerCase();
-
-            switch (opcao)
+            if (!this.IsValidoSeAuxiliarInvalido &&
+                !this.IsAuxiliarValido(paiPropriedade, valorPropriedade))
             {
-                case EnumOpcoesComparacaoAuxiliar.Igual:
+                const propriedadeAuxiliar = paiPropriedade.GetType()?.RetornarPropriedade(this.NomePropridadeAuxiliar);
+                const valorPropriedadeAuxiliza = this.RetornarValorPropriedadeAuxiliar(paiPropriedade);
+                const rotuloPropriedadeAuxiliar = propriedadeAuxiliar == null
+                    ? this.NomePropridadeAuxiliar.toLowerCase()
+                    : u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedadeAuxiliar).toLowerCase();
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                switch (opcao)
+                {
+                    case EnumOpcoesComparacaoAuxiliar.Igual:
 
-                case EnumOpcoesComparacaoAuxiliar.Diferente:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser diferente de ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                    case EnumOpcoesComparacaoAuxiliar.Diferente:
 
-                case EnumOpcoesComparacaoAuxiliar.Maior:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser diferente de ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser maior que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                    case EnumOpcoesComparacaoAuxiliar.Maior:
 
-                case EnumOpcoesComparacaoAuxiliar.MaiorIgual:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser maior que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser maior ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                    case EnumOpcoesComparacaoAuxiliar.MaiorIgual:
 
-                case EnumOpcoesComparacaoAuxiliar.Menor:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser maior ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser menor que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                    case EnumOpcoesComparacaoAuxiliar.Menor:
 
-                case EnumOpcoesComparacaoAuxiliar.MenorIgual:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser menor que ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    return `O valor da propriedade ${rotuloPropriedade} deve ser menor ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
+                    case EnumOpcoesComparacaoAuxiliar.MenorIgual:
 
-                case EnumOpcoesComparacaoAuxiliar.True:
+                        return `O valor da propriedade ${rotuloPropriedade} deve ser menor ou igual a ${rotuloPropriedadeAuxiliar}: ${valorPropriedadeAuxiliza}.`;
 
-                    if (!this.IsValidoSeAuxiliarInvalido)
-                    {
+                    case EnumOpcoesComparacaoAuxiliar.True:
+
+
                         return `O valor da propriedade ${rotuloPropriedadeAuxiliar} deve ser verdadeiro.`;
-                    }
-                    break;
 
-                case EnumOpcoesComparacaoAuxiliar.False:
 
-                    if (!this.IsValidoSeAuxiliarInvalido)
-                    {
+                    case EnumOpcoesComparacaoAuxiliar.False:
+
+
                         return `O valor da propriedade ${rotuloPropriedadeAuxiliar} deve ser falso.`;
-                    }
-                    break;
+
+                }
             }
+
         }
 
         const mensagemValidacao = u.GlobalizacaoUil.RetornarMensagemValidacao(this, ValidacaoRequeridoAttribute.IDENTIFICADOR_MENSAGEM_VALIDACAO, rotuloPropriedade.toLowerCase());
@@ -109,7 +110,7 @@
                 const tipoPrimario = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
                 return ValidacaoUtil.IsTipoPrimarioDefinido(valorPropriedade, tipoPrimario, true);
             }
-             
+
             if (propriedade.Tipo instanceof r.TipoEnum)
             {
                 if (u.ValidacaoUtil.IsNumber(valorPropriedade))
@@ -126,14 +127,14 @@
 
             if (propriedade.Tipo instanceof r.BaseTipoLista)
             {
-                return Array.isArray(valorPropriedade) && valorPropriedade.length > 0 ;
+                return Array.isArray(valorPropriedade) && valorPropriedade.length > 0;
             }
         }
 
         return false;
     };
 
-    ValidacaoRequeridoAttribute.prototype.IsAuxiliarValido = function (paiPropriedade: any, valorPropriedade: any): boolean
+    ValidacaoRequeridoAttribute.prototype.IsAuxiliarValido = function (paiPropriedade: any, valorPropriedade2: any): boolean
     {
         const opcao = this.OpcoesComparacaoAuxiliar;
         if (opcao == null ||
@@ -155,6 +156,8 @@
         }
 
         const valorPropriedadeAuxiliar = paiPropriedade[this.NomePropridadeAuxiliar];
+        const valorPropriedadeComparar = this.ValorComparar ?? valorPropriedade2;
+
         switch (opcao)
         {
             case EnumOpcoesComparacaoAuxiliar.True:
@@ -167,27 +170,27 @@
 
             case EnumOpcoesComparacaoAuxiliar.Igual:
 
-                return Util.IsIgual(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsIgual(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             case EnumOpcoesComparacaoAuxiliar.Diferente:
 
-                return Util.IsDiferente(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsDiferente(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             case EnumOpcoesComparacaoAuxiliar.Maior:
 
-                return Util.IsMaior(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsMaior(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             case EnumOpcoesComparacaoAuxiliar.MaiorIgual:
 
-                return Util.IsMaiorOuIgual(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsMaiorOuIgual(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             case EnumOpcoesComparacaoAuxiliar.Menor:
 
-                return Util.IsMenor(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsMenor(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             case EnumOpcoesComparacaoAuxiliar.MenorIgual:
 
-                return Util.IsMenorOuIgual(valorPropriedade, valorPropriedadeAuxiliar);
+                return Util.IsMenorOuIgual(valorPropriedadeComparar, valorPropriedadeAuxiliar);
 
             default:
                 console.error(`A opção ${opcao} não é suportada.`);

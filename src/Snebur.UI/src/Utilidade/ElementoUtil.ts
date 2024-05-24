@@ -357,10 +357,11 @@
             };
             /*new d.Dimensao(largura, altura);*/
         }
-         
+
+        //#region Habilidar Desabilidar
+
         public static DesabilitarElemento(elemento: HTMLElement, isRecursivo: boolean): void
         {
-          
             if (elemento instanceof HTMLInputElement)
             {
                 elemento.disabled = true;
@@ -399,6 +400,7 @@
             {
                 elemento.style.pointerEvents = "";
             }
+            
 
             const len = elemento.childNodes.length;
             for (let i = 0; i < len; i++)
@@ -413,6 +415,33 @@
                 }
             }
         }
+
+
+        //#endregion
+
+        //#region Somente leitura
+
+        public static DesabilitarSomenteLeitura(elemento: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): any
+        {
+            elemento.disabled = false;
+            (elemento as HTMLInputElement).readOnly = false;
+
+            if (elemento instanceof HTMLInputElement &&
+                elemento.disabled)
+            {
+                return;
+            }
+            elemento.style.pointerEvents = "";
+        }
+
+        public static HabilitarSomenteLeitura(elemento: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): any
+        {
+            elemento.disabled = true;
+            (elemento as HTMLInputElement).readOnly = true;
+            elemento.style.pointerEvents = "none";
+        }
+
+        //#endregion
  
         public static IsImagmeCarregada(refElemento: HTMLElement | string): boolean
         {
@@ -496,23 +525,7 @@
             }
         }
 
-        //#region Somente leitura
-
-        public static DesabilitarSomenteLeitura(elemento: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): any
-        {
-            elemento.disabled = false;
-            (elemento as HTMLInputElement).readOnly = false;
-            elemento.style.pointerEvents = "";
-        }
-
-        public static HabilitarSomenteLeitura(elemento: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement): any
-        {
-            elemento.disabled = true;
-            (elemento as HTMLInputElement).readOnly = true;
-            elemento.style.pointerEvents = "none";
-        }
-
-        //#endregion
+       
 
         public static CriarElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
         {

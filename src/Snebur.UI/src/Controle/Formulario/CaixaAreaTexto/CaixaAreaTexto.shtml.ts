@@ -32,6 +32,9 @@
             super.DepoisInicializarComponentesApresentacao();
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindTexto, this.CaminhoBind);
             this.EventoCarregado.AddHandler(this.CaixaAreaTexto_Carregando, this);
+
+            this._marcaDagua = this.RetornarValorAtributo(AtributosHtml.MarcaDagua, String.Empty);
+            this.AtualizarMarcaDagua();
         }
 
         protected override Inicializar()
