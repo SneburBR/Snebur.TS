@@ -20,7 +20,7 @@
 
     ValidacaoUnicoCompostaAttribute.prototype.IsValidoAsync =
         async function IsValidoAsync(this: ValidacaoUnicoCompostaAttribute,
-            paiPropriedade2: Snebur.Dominio.BaseDominio,
+            paiPropriedade: Snebur.Dominio.BaseDominio,
             propriedade: Snebur.Reflexao.Propriedade,
             valorPropriedade: any): Promise<boolean> 
         {
@@ -30,8 +30,14 @@
                 console.error(`A propriedade ${propriedade.Nome} não está configurada na validação único composta, ${nomesPropriedadeString}`);
             }
 
-            const entidade = this.RetornarEntidade(paiPropriedade2);
+            const entidade = this.RetornarEntidade(paiPropriedade);
             if (entidade == null)
+            {
+                return true;
+            }
+
+            if (valorPropriedade == null &&
+                propriedade.AceitaNulo)
             {
                 return true;
             }
