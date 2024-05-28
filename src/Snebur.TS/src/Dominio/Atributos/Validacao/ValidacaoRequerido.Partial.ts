@@ -17,7 +17,7 @@
         const opcao = this.OpcoesComparacaoAuxiliar;
         if (opcao != null && opcao !== EnumOpcoesComparacaoAuxiliar.Nenhuma && paiPropriedade != null)
         {
-            if (!this.IsValidoSeAuxiliarInvalido &&
+            if (!this.IsIgnorarValidacaoSeAuxiliarInvalido &&
                 !this.IsAuxiliarValido(paiPropriedade, valorPropriedade))
             {
                 const propriedadeAuxiliar = paiPropriedade.GetType()?.RetornarPropriedade(this.NomePropridadeAuxiliar);
@@ -76,7 +76,7 @@
     {
         if (!this.IsAuxiliarValido(paiPropriedade, valorPropriedade))
         {
-            return this.IsValidoSeAuxiliarInvalido;
+            return this.IsIgnorarValidacaoSeAuxiliarInvalido;
         }
 
 

@@ -360,7 +360,9 @@
 
         protected NormalizarValorPropriedade(valor: any): any
         {
-            if ((valor === null || valor === undefined) && u.ValidacaoUtil.IsDefinido(this.ValorPadrao))
+            
+            if (!ValidacaoUtil.IsDefinido(valor, true) &&
+                u.ValidacaoUtil.IsDefinido(this.ValorPadrao, true))
             {
                 valor = this.ValorPadrao;
             }

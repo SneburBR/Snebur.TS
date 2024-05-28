@@ -22,13 +22,15 @@
         public static IsDefinido(obj: any, isValidarStringVazia: boolean): boolean;
         public static IsDefinido(obj: any, isValidarStringVazia = false): boolean
         {
-            const isDefinido = obj !== null && obj !== undefined;
-            if (isDefinido && isValidarStringVazia && typeof obj === "string")
+            if (obj != null)
             {
-                return !String.IsNullOrWhiteSpace(obj);
+                if (isValidarStringVazia && typeof obj === "string")
+                {
+                    return !String.IsNullOrWhiteSpace(obj);
+                }
+                return true;
             }
-            return isDefinido;
-            //return ((obj != null) && (!(typeof obj == "undefined")));
+            return false;
         }
 
         public static IsString(obj: any): obj is string

@@ -120,11 +120,22 @@
             }
         }
 
-        public async RetornarMensagemValidacoesPendenteAsync(): Promise<List<string>>
+        public async RetornarMensagemValidacoesPendenteAsync(): Promise<string>
+        {
+            const mensagens = await this.RetornarMensagensValidacoesPendentesInternoAsync(true);
+            return mensagens.FirstOrDefault();
+        }
+
+        public RetornarTodasMensagemValidacoesPendentesAsync(): Promise<List<string>>
+        {
+            return this.RetornarMensagensValidacoesPendentesInternoAsync(false);
+        }
+
+        private async RetornarMensagensValidacoesPendentesInternoAsync(isPararPrimeiraMensagem: boolean): Promise<List<string>>
         {
             const retorno = new List<string>();
             const propriedades = this.GetType().TodasPropriedades.Valores;
-          
+
             for (const propriedade of propriedades)
             {
                 const atributos = propriedade.Atributos;
@@ -141,7 +152,11 @@
                             {
                                 const mensagem = atributo.RetornarMensagemValidacao(this, propriedade, valorPropriedade);
                                 retorno.Add(mensagem);
-                                break;
+
+                                if (isPararPrimeiraMensagem)
+                                {
+                                    return retorno;
+                                }
                             }
                         }
                     }
@@ -158,7 +173,11 @@
                         {
                             const mensagem = validacao.RetornarMensagemValidacao(this, propriedade, valorPropriedade);
                             retorno.Add(mensagem);
-                            break;
+
+                            if (isPararPrimeiraMensagem)
+                            {
+                                return retorno;
+                            }
                         }
                     }
                 }
@@ -292,9 +311,9 @@
             return "_" + TextoUtil.FormatarPrimeiraLetraMinuscula(nomePropriedade);
         }
 
-        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>( expressaoPropriedade: (value: TThis) => TPropriedade[keyof TPropriedade], construtorEnum: TPropriedade): void
-        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>( expressaoPropriedade: (value: TThis) => TPropriedade, construtor: IConstrutor<TPropriedade>): void
-        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade, construtor: Function):void
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade[keyof TPropriedade], construtorEnum: TPropriedade): void
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade, construtor: IConstrutor<TPropriedade>): void
+        public DeclararPropriedadeSomenteLeitura<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade, construtor: Function): void
         {
             const nomePropriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
             if (!this.__propriedadesSomenteLeituras__.ContainsKey(nomePropriedade))
@@ -327,25 +346,7 @@
 
         //utilizado para debugar
 
-        public async RetornarTodasMensagemValidacoesPendentesAsync(): Promise<List<string>>
-        {
-            const mensagens = new List<string>();
-            for (const propriedadeValidacao of this.PropriedadesValidacoes.Valores)
-            {
-                const valorPropriedade = (this as any)[propriedadeValidacao.NomePropriedade];
-                const propriedade = propriedadeValidacao.Propriedade;
-                for (const validacao of propriedadeValidacao.Validacoes)
-                {
-                    const isValido = await validacao.IsValidoAsync(this, propriedade, valorPropriedade);
-                    if (!isValido)
-                    {
-                        const mensagem = validacao.RetornarMensagemValidacao(this, propriedade, valorPropriedade);
-                        mensagens.Add(mensagem);
-                    }
-                }
-            }
-            return mensagens;
-        }
+
 
         //#endregion
 
@@ -353,7 +354,7 @@
 
         public NotificarPropriedadesSomenteLeituraAlteradas()
         {
-            for(const propriedade of this.__PropriedadesSomenteLeituras.Valores)
+            for (const propriedade of this.__PropriedadesSomenteLeituras.Valores)
             {
                 this.NotificarPropriedadeAlteraSimples(propriedade.Nome);
             }

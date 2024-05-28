@@ -1940,7 +1940,7 @@ namespace Snebur.Dominio.Atributos
     
         private _opcoesComparacaoAuxiliar : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null = null;
         private _nomePropridadeAuxiliar : string = null;
-        private _isValidoSeAuxiliarInvalido : boolean = false;
+        private _isIgnorarValidacaoSeAuxiliarInvalido : boolean = false;
         private _valorComparar : any = null;
     
         public get OpcoesComparacaoAuxiliar(): Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null 
@@ -1963,14 +1963,14 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropridadeAuxiliar", this._nomePropridadeAuxiliar, this._nomePropridadeAuxiliar = value);
         }
     
-        public get IsValidoSeAuxiliarInvalido(): boolean 
+        public get IsIgnorarValidacaoSeAuxiliarInvalido(): boolean 
         {
-            return this._isValidoSeAuxiliarInvalido;
+            return this._isIgnorarValidacaoSeAuxiliarInvalido;
         }
 
-        public set IsValidoSeAuxiliarInvalido(value: boolean) 
+        public set IsIgnorarValidacaoSeAuxiliarInvalido(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("IsValidoSeAuxiliarInvalido", this._isValidoSeAuxiliarInvalido, this._isValidoSeAuxiliarInvalido = value);
+            this.NotificarValorPropriedadeAlterada("IsIgnorarValidacaoSeAuxiliarInvalido", this._isIgnorarValidacaoSeAuxiliarInvalido, this._isIgnorarValidacaoSeAuxiliarInvalido = value);
         }
     
         public get ValorComparar(): any 
@@ -1990,12 +1990,12 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isValidoSeAuxiliarInvalido? : boolean ,  valorComparar? : any ) 
+        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isIgnorarValidacaoSeAuxiliarInvalido? : boolean ,  valorComparar? : any ) 
         {
             super();
             this._opcoesComparacaoAuxiliar = opcoesComparacaoAuxiliar;
             this._nomePropridadeAuxiliar = nomePropridadeAuxiliar;
-            this._isValidoSeAuxiliarInvalido = isValidoSeAuxiliarInvalido;
+            this._isIgnorarValidacaoSeAuxiliarInvalido = isIgnorarValidacaoSeAuxiliarInvalido;
             this._valorComparar = valorComparar;
         }
         //#endregion
