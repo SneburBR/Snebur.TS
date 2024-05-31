@@ -1,0 +1,25 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "ES2015",
+    "lib": [
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "ES2015",
+      "ES2015.Promise"
+    ],
+    "outFile": "../../workers/Snebur.ConverterHeicParaJpeg.js"
+  },
+  "files": [
+    "Snebur.ConverterHeicParaJpeg.ts",
+    "gifshot.d.ts",
+    "libheif.d.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/IMensagemConverterHeicParaJpeg.ts",
+    "../Bibliotecas.d/Nativo.d.ts",
+    "../Bibliotecas.d/jpeg.js.d.ts"
+  ]
+ 
+}

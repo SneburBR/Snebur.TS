@@ -1,0 +1,20 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "outFile": "../../workers/Snebur.Cpu.js",
+    "lib": [
+      "ES2015",
+      "ES2015.Promise",
+      "WebWorker"
+    ]
+  },
+  "files": [
+    "../Bibliotecas.d/Nativo.d.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/IResultadoProcessador.ts",
+    "Snebur.Cpu.ts"
+  ]
+
+}

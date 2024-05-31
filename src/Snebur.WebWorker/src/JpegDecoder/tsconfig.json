@@ -1,0 +1,22 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "outFile": "../../workers/Snebur.JpegDecoder.js",
+    "target": "ES2015",
+    "lib": [
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "ES2015",
+      "ES2015.Promise"
+    ]
+  },
+  "files": [
+    "../Bibliotecas.d/Nativo.d.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/IMensageJpegDecoder.ts",
+    "Snebur.JpegDecoder.ts"
+  ]
+
+}

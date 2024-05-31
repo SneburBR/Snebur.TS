@@ -1,0 +1,29 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outFile": "../../../../../../Zyoncore/Sigi.Online/src/Zyoncore.Sigi.Online/build/MagickWorker.js",
+    "target": "ES2015",
+    "lib": [
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "ES2015",
+      "ES2015.Promise"
+    ]
+  },
+
+  "files": [
+    "../../../Snebur.TS/src/Worker/Dominio/Magick.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/IImagem.ts",
+    "../../../Snebur.TS/src/Core/Bibliotecas/Magickd.ts",
+    "../../../Snebur.TS/src/Imagem/Magick/MagickUtil.ts",
+    "../../../Snebur.TS/src/Imagem/Magick/MagickProcessador.ts",
+    "Init.ts",
+    "MagickWorker.ts"
+  ]
+ 
+}

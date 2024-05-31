@@ -1,0 +1,24 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "outFile": "../../workers/Snebur.InformacaoImagem.js",
+    "target": "ES2015",
+    "lib": [
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "ES2015",
+      "ES2015.Promise"
+    ]
+  },
+  "files": [
+    "Snebur.InformacaoImagem.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/IInformacaoImagem.ts",
+    "../Bibliotecas.d/imagem-size.d.ts",
+    "../Bibliotecas.d/buffer.d.ts",
+    "../Bibliotecas.d/Nativo.d.ts"
+  ]
+
+}

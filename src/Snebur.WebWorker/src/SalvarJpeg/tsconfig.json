@@ -1,0 +1,22 @@
+﻿{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "outFile": "../../workers/Snebur.SalvarJpeg.js",
+    "target": "ES2020",
+    "lib": [
+      "WebWorker",
+      "WebWorker.ImportScripts",
+      "ES2020",
+      "ES2020.Promise"
+    ]
+  },
+  "files": [
+    "Snebur.SalvarJpeg.ts",
+    "../../../Snebur.TS/src/Worker/Dominio/ISalvarJpegMensagem.ts",
+    "../Bibliotecas.d/Nativo.d.ts",
+    "../Bibliotecas.d/jpeg.js.d.ts"
+  ]
+}
