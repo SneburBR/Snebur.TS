@@ -4,12 +4,14 @@
     {
         public abstract readonly PASSAO_PADRAO: number;
 
+        private _passo: number = undefined;
         private _casasDecimal: number;
+        
         //public Minimo: number;
         //public Maximo: number;
         //public Passo: number;
         public IsFormatarInteiro: boolean;
-
+        
         public override get Valor(): number
         {
             return this.NormalizarValor(this.ElementoInput.value);
@@ -24,6 +26,15 @@
                 this.ElementoInput.value = valorDom;
                 this.ElementoInput.dispatchEvent(new Event("change"));
             }
+        }
+
+        public get Passo(): number
+        {
+            return this.RetornarPasso();
+        }
+        public set Passo(value: number)
+        {
+            this._passo = value;
         }
 
         public get CasasDecimal(): number
@@ -144,6 +155,11 @@
 
         public RetornarPasso(): number
         {
+            if (this._passo >= 0)
+            {
+                return this._passo;
+            }
+
             const tipo = this.Propriedade?.Tipo;
             if (this._atributoValidacaoInteiro instanceof at.ValidacaoInteiroAttribute || (
                 tipo instanceof r.TipoPrimario &&

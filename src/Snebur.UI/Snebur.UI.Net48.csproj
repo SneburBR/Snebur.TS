@@ -1,0 +1,1025 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{8B4E0CAD-D44B-4B31-A629-8D48D7F9860E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>4.4</TypeScriptToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+    <TypeScriptBuildMode>true</TypeScriptBuildMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cache.manifest" />
+    <Content Include="scss\Snebur.UI.scss" />
+    <Content Include="scss\variaveis.scss" />
+    <Content Include="scss\_funcoes.mixins.scss" />
+    <Content Include="scss\Cores\--cor-principal.scss" />
+    <Content Include="scss\Cores\--cores-base.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-amarelo-mostarda-escuro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-amarelo-mostarda.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-amarelo.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-azul-claro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-azul.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-ciano.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-cinza-azulado.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-cinza.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-indigo-claro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-indigo-escuro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-indigo.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-laranja-escuro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-laranja.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-marrom.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-rosa.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-roxo-claro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-roxo-escuro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-roxo.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-turquesa-claro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-turquesa.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-verde-claro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-verde-lima.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-verde.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-vermelha-clara.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-vermelha-escuro.scss" />
+    <Content Include="scss\Cores\Combinacoes\--cor-vermelha.scss" />
+    <Content Include="scss\_cores.mixins.scss" />
+    <Content Include="scss\_imagem.scss" />
+    <Content Include="scss\Cores\Combinacoes\DuasCores\--cor-rosa-azul.scss" />
+    <None Include="packages.config" />
+    <Content Include="scss\_filtros.scss" />
+    <None Include="scss\_loader.scss" />
+    <Content Include="scss\_responsividade.scss" />
+    <None Include="scss\_scroll.scss" />
+    <Content Include="scss\_temp.scss" />
+    <Content Include="favicon.ico" />
+    <Content Include="resources\Fontes\Material\Icones\material-icons.css" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.svg" />
+    <Content Include="resources\Images\72 colors_2.png" />
+    <Content Include="resources\Images\erro.png" />
+    <Content Include="resources\Images\carregando.gif" />
+    <Content Include="compilerconfig.json" />
+    <Content Include="Index.html" />
+    <Content Include="resources\Images\favicon.ico" />
+    <Content Include="resources\Images\fundo-transparencia.png" />
+    <Content Include="resources\Images\paleta.png" />
+    <Content Include="resources\Images\erro.gif" />
+    <Content Include="src\Componentes\Sobre.txt" />
+    <Content Include="src\Controle\Apresentacao\ControleFlutuante\ControleFlutuante.shtml" />
+    <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\BarraEnvioArquivo\barraenvioarquivos.shtml" />
+    <Content Include="src\Controle\Apresentacao\Janela\Cadastro\BaseJanelaCadastro.shtml" />
+    <Content Include="src\Controle\Apresentacao\Janela\Cadastro\TemplateJanelaCadastro.shtml" />
+    <Content Include="src\Controle\Apresentacao\Janela\Janela.shtml" />
+    <Content Include="src\Controle\Apresentacao\Janela\Mensagem\JanelaMensagem.shtml" />
+    <Content Include="src\Controle\Apresentacao\Janela\Ocupado\JanelaOcupado.shtml" />
+    <Content Include="src\Controle\Apresentacao\Pagina\ListaEntidades\exemplo\demo.html" />
+    <Content Include="src\Controle\Comuns\BotaoIconeDescricao\BotaoIconeDescricao.shtml" />
+    <Content Include="src\Controle\Comuns\BotaoLogico\exemplo\exempo.html" />
+    <Content Include="src\Controle\Comuns\BotaoMenu\exemplo\demo.html" />
+    <Content Include="src\Controle\Comuns\CaixaPesquisa\CaixaPesquisa.shtml" />
+    <Content Include="src\Controle\Comuns\CaixaPrazoTempo\CaixaPrazoTempo.shtml" />
+    <Content Include="src\Controle\Comuns\CaixaSelecaoCor\CaixaSelecaoCor.shtml" />
+    <Content Include="src\Controle\Comuns\CaixaSelecaoCor\ControleFlutuanteCores.shtml" />
+    <Content Include="src\Controle\Comuns\ControleImagem\BaseControleImagem.shtml" />
+    <Content Include="src\Controle\Comuns\ControleImagem\ControleImagem.shtml" />
+    <Content Include="src\Controle\Comuns\ControleImagem\ControleImagens.shtml" />
+    <Content Include="src\Controle\Comuns\Expandir\expandir.html" />
+    <Content Include="src\Controle\Comuns\Expandir\ExpandirTitulo.shtml" />
+    <Content Include="src\Controle\Comuns\Menu\BaseMenu.shtml" />
+    <Content Include="src\Controle\Comuns\Menu\Menu.shtml" />
+    <Content Include="src\Controle\Comuns\Menu\MenuItem.shtml" />
+    <Content Include="src\Controle\Comuns\Menu\MenuSanfona.shtml" />
+    <Content Include="src\Controle\Comuns\PainelAbas\PainelAbasHorizontal.shtml" />
+    <Content Include="src\Controle\Comuns\ProgressoCirculo\ProgressoCirculo.shtml" />
+    <Content Include="src\Controle\Comuns\Progresso\Progresso.shtml" />
+    <Content Include="src\Controle\ControleLista\ControleListaOrdenacao\ItemControleOrdenacao.shtml" />
+    <Content Include="src\Controle\ControleLista\ControleLista\_exemplo\ControleLista-exemplo.html" />
+    <Content Include="src\Controle\ControleLista\DataLista\exemplo\DataLista-exemplo.html" />
+    <Content Include="src\Controle\ControleLista\DataLista\exemplo\Ideias.txt" />
+    <Content Include="src\Controle\ControleLista\Paginacao\ControlePaginacao.shtml" />
+    <Content Include="src\Controle\ControleLista\ProximaPagina\ControleProximaPagina.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaListaSugestao.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaListaSugestao.shtml.scss">
+      <DependentUpon>CaixaAreaListaSugestao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaTextoSugestao.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaTextoSugestao.shtml.scss">
+      <DependentUpon>CaixaAreaTextoSugestao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml" />
+    <None Include="src\Controle\Formulario\CaixaAreaTexto\_caixaAreaTexto.mixins.scss" />
+    <Content Include="src\Controle\Formulario\CaixaAtivacao\CaixaAtivacao.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaSlider\CaixaSlider.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaCartaoCredito\CaixaCartaoCredito.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaCalendario\CaixaCalendario.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaData.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaHora\CaixaHora.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaMoeda\CaixaMoeda.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\CaixaNumero.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaSenha\CaixaSenha.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaQuantidade\CaixaQuantidade.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaSenhaAmostra\CaixaSenhaSimples.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaSenha\CaixaSenha.shtml.scss">
+      <DependentUpon>CaixaSenha.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaListaSugestao.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaListaSugestao.shtml.scss">
+      <DependentUpon>CaixaListaSugestao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaTextoSugestao.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaTextoSugestao.shtml.scss">
+      <DependentUpon>CaixaTextoSugestao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaTexto\CaixaTexto.shtml" />
+    <Content Include="src\Controle\Formulario\Checkbox\Checkbox.shtml" />
+    <Content Include="src\Controle\Formulario\ComboBoxEnum\ComboBoxEnum.shtml" />
+    <Content Include="src\Controle\Formulario\ComboboxNn\ComboBoxNn.shtml" />
+    <Content Include="src\Controle\Formulario\ComboboxNn\ItensSelecionado\ComboBoxNnItensSelecionado.shtml" />
+    <Content Include="src\Controle\Formulario\ComboBox\CaixaSelecao\CaixaSelecao.shtml" />
+    <Content Include="src\Controle\Formulario\ComboBox\ComboBox.shtml" />
+    <Content Include="src\Controle\Formulario\ComboBox\ItemSelecionado\ComboBoxItemSelecionado.shtml" />
+    <Content Include="src\Controle\Formulario\ComboBox\_exemplo\Combobox-exemplo.html" />
+    <Content Include="src\Controle\Formulario\ComboBox\_exemplo\demo.css" />
+    <Content Include="src\Controle\Formulario\ComboBox\_exemplo\demo.html" />
+    <Content Include="src\Controle\Formulario\ComboBox\_exemplo\demo.mdl.html" />
+    <Content Include="src\Controle\Formulario\ComboBox\_exemplo\mdl exemplo.txt" />
+    <Content Include="src\Controle\Formulario\Radio\Radio.shtml" />
+    <Content Include="src\ServicoImagem\JanelaAbrirImagem.shtml" />
+    <Content Include="scss\_IE.mixins.scss" />
+    <TypeScriptCompile Include="src\Aplicacao.Config.ts" />
+    <TypeScriptCompile Include="src\Aplicacao.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\EnumModeloLayout.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\HtmlReferencia.ts" />
+    <TypeScriptCompile Include="src\Atributo\AtributoHtml.ts" />
+    <TypeScriptCompile Include="src\Atributo\AtributosHtml.Statica.ts" />
+    <TypeScriptCompile Include="src\BaseUIElemento.ts" />
+    <TypeScriptCompile Include="src\Bind\AtributoHtmlBindConstrutor.ts" />
+    <TypeScriptCompile Include="src\Bind\AtributoHtmlBindPropriedadeComum.ts" />
+    <TypeScriptCompile Include="src\Bind\BaseBind.ts" />
+    <TypeScriptCompile Include="src\Bind\BindImagem.ts" />
+    <TypeScriptCompile Include="src\Bind\BindOpcoesUtil.ts" />
+    <TypeScriptCompile Include="src\Bind\BindUtil.ts" />
+    <TypeScriptCompile Include="src\Bind\BindVisibilidade.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindControle.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindControleFormulario.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindDataContext.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindGrupoLogico.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindImagens.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindItensSelecionado.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindLista.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindLogico.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindProgresso.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindPropriedade.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindPropriedadeComum.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindSugestoes.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindRotulo.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindSelecaoCor.ts" />
+    <TypeScriptCompile Include="src\Bind\Controle\BindSelecionadoAlternancia.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindClass.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindCssClasse.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindData.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindDomElemento.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindEnum.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindEstilo.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindHora.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindNumero.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindSenha.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindTexto.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\BindUrlImagem.ts" />
+    <TypeScriptCompile Include="src\Bind\DomElemento\EnumOpcaoBindCssClasse.ts" />
+    <TypeScriptCompile Include="src\Bind\IBindConstrutor.ts" />
+    <TypeScriptCompile Include="src\Bind\IBindPropriedadeComumConstrutor.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BaseBindCor.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindCor.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindCorBorda.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindCorFundo.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindCorIcone.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindCorTexto.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindFiltroImagem.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindIcone.ts" />
+    <TypeScriptCompile Include="src\Bind\Simples\BindPreenchimentoImage.ts" />
+    <TypeScriptCompile Include="src\Componentes\ApresentacaoComponente.ts" />
+    <TypeScriptCompile Include="src\Componentes\ComponenteApresentacao.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Componentes\ComponenteApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\ComponenteApresentacaoConteudo.ts" />
+    <TypeScriptCompile Include="src\Componentes\ComponenteApresentacaoRotulo.ts" />
+    <TypeScriptCompile Include="src\Componentes\Comum\Icone\Icone.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Comum\Icone\Icone.ts" />
+    <TypeScriptCompile Include="src\Componentes\EstilosItens.ts" />
+    <TypeScriptCompile Include="src\Componentes\IComponenteApresentacaoConstrutor.ts" />
+    <TypeScriptCompile Include="src\Componentes\IComponenteApresentacaoIcone.ts" />
+    <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeApresentacao.Mapeamentos.ts" />
+    <TypeScriptCompile Include="src\Componentes\Mapeamento\MapeamentoPropriedadeUtil.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\BasePainel.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\BasePainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Bloco\Bloco.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Bloco\BlocoAnimado.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Bloco\PropriedadeLarguraBloco.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelHorizontal\BaseColuna.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelHorizontal\ColunaPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelHorizontal\DireitaPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelHorizontal\EsquerdaPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelHorizontal\PainelHorizontal.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelVertical\BaseLinha.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelVertical\CabecalhoPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelVertical\LinhaPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelVertical\PainelVertical.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\PainelVertical\RodapePainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Painel\Painel.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Painel\Painel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Painel\PropriedadeLacuna.ts" />
+    <TypeScriptCompile Include="src\Componentes\Paineis\Painel\PropriedadeTipoPainel.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Alinhamento\PropriedadeAlinhamento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Alinhamento\PropriedadeAlinhamentoHorizontal.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Alinhamento\PropriedadeAlinhamentoVertical.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\BarraRolagem\PropriedadeBarraRolagem.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\BarraRolagem\PropriedadeBarraRolagemHorizontal.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\BarraRolagem\PropriedadeBarraRolagemVertical.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Borda\PropriedadeBorda.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Borda\PropriedadeCorBorda.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Borda\PropriedadeCorBordaTonalidade.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\BasePropriedadeComprimento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeAltura.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeAlturaLinha.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeAlturaMaxima.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeAlturaMinima.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeLargura.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeLarguraMaxima.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\PropriedadeLarguraMinima.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Comprimento\UnidadeComprimentoUtil.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Controle\PropriedadeRotuloApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\BasePropriedadeCor.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorFundo.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorFundoTonalidade.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorTexto.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Cores\PropriedadeCorTextoTonalidade.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\ElementoIconeUtil.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeIconeCategoria.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeIcone.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Icone\PropriedadeTamanhoIcone.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\IPropriedadeApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Margem\BasePropriedadeMargem.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Margem\MargemUnidadeComprimento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Margem\PropriedadeMargem.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Margem\PropriedadeMargemInterna.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\NomesAtributoApresentacaoResponsivo.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\PropriedadeApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\PropriedadeApresentacaoAlteradaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\PropriedadeEnumCssClasse.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Tipografia\PropriedadeFonte.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Tipografia\PropriedadePeso.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Tipografia\PropriedadeQuebrar.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Tipografia\PropriedadeTipografia.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\UnidadeComprimento.ts" />
+    <TypeScriptCompile Include="src\Componentes\Propriedades\Visibilidade\PropriedadeVisibilidade.ts" />
+    <TypeScriptCompile Include="src\Componentes\Registrar\ComponentesApresentacao.Registrar.ts" />
+    <TypeScriptCompile Include="src\Componentes\Registrar\RegistroComponenteApresentacao.ts" />
+    <TypeScriptCompile Include="src\Componentes\Texto\AlinhamentoTexto\PropriedadeAlinhamentoTexto.ts" />
+    <TypeScriptCompile Include="src\Componentes\Texto\Paragrafo.ts" />
+    <TypeScriptCompile Include="src\Componentes\Texto\Texto.ts" />
+    <TypeScriptCompile Include="src\Comum\EnumSentido.ts" />
+    <TypeScriptCompile Include="src\Comum\MostrarOcultarElementoDepois.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\BaseControleApresentacaoFormulario.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\ControleApresentacao.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\ControleFlutuante\ControleFlutuante.shtml.ts">
+      <DependentUpon>ControleFlutuante.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\ControleFlutuante\EnumDestinoControleFlutuante.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\ControleFlutuante\FechouControleFlutanteEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\ControleFlutuante\MostrouControleFlutanteEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\BarraEnvioArquivo\BarraEnvioArquivos.shtml.ts">
+      <DependentUpon>barraenvioarquivos.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\BarraEnvioArquivo\BarraEnvioArquivosViewModel.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\DocumentoPrincipal.shtml.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\IDocumentoPrincipalConstrutor.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\ArrastarJanela.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Autenticacao\IJanelaAutenticacaoConstrutor.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Autenticacao\JanelaAutenticacao.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\BaseJanelaCadastro.shtml.ts">
+      <DependentUpon>BaseJanelaCadastro.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\EntidadeCadastroViewModel.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\IJanelaCadastroConstrutor.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaCadastroAutomatico.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaInfo.shtml.ts">
+      <DependentUpon>JanelaInfo.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\EnumEstiloJanela.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Janela.shtml.ts">
+      <DependentUpon>Janela.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\BotaoMensagemViewModel.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\EnumBotoesJanelaMensagem.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\EnumResultadoJanelaMensagem.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\JanelaMensagem.shtml.ts">
+      <DependentUpon>JanelaMensagem.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\JanelaMensagemVM.ts">
+      <DependentUpon>JanelaMensagem.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Mensagem\ResultadoJanelaMensagemArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\MovimentarJanela.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Ocupado\JanelaOcupado.shtml.ts">
+      <DependentUpon>JanelaOcupado.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\Ocupado\JanelaOcupadoVIewModel.ts">
+      <DependentUpon>JanelaOcupado.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Janela\ResultadoFecharJanelaArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\ConstantesNavegador.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\EnumDirecaoNavegador.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\Rota\GerenciadorRotas.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\Navegador.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\BaseNavegador.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\Navegador.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\NavegadorPrincipal.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\PaginaAlteradaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\PropriedadeTipoAnimacao.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\Rota\Rota.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Navegador\Rota\RotaUtil.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Pagina\IPaginaConstrutor.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\Pagina\Pagina.ts" />
+    <TypeScriptCompile Include="src\Controle\BaseControle.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\AjudaLegenda\AjudaLegenda.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoIconeDescricao\BotaoIconeDescricao.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoIconeDescricao\BotaoIconeDescricao.shtml.ts">
+      <DependentUpon>BotaoIconeDescricao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoLogico\BotaoLogico.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoLogico\IValorLogico.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoMenu\BotaoMenu.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\BotaoMenu\BotaoMenuItem.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Botao\Botao.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Botao\Botao.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Botao\PropriedadeTipoBotao.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\CaixaPesquisa\CaixaPesquisa.shtml.ts">
+      <DependentUpon>CaixaPesquisa.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\CaixaPrazoTempo\CaixaPrazoTempo.shtml.ts">
+      <DependentUpon>CaixaPrazoTempo.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\CaixaSelecaoCor\CaixaSelecaoCor.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\CaixaSelecaoCor\CaixaSelecaoCor.shtml.ts">
+      <DependentUpon>CaixaSelecaoCor.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\CaixaSelecaoCor\ControleFlutuanteCores.shtml.ts">
+      <DependentUpon>ControleFlutuanteCores.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Codigo\ExibirCodigo.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\ComboBoxSimples\ComboBoxSimples.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\ControleImagem\BaseControleImagem.shtml.ts">
+      <DependentUpon>BaseControleImagem.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\ControleImagem\ControleImagem.shtml.ts">
+      <DependentUpon>ControleImagem.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\ControleImagem\ControleImagens.shtml.ts">
+      <DependentUpon>ControleImagens.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\CssClasses.Constantes.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Expandir\Expandir.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Expandir\ExpandirConteudo.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Expandir\ExpandirTitulo.shtml.ts">
+      <DependentUpon>ExpandirTitulo.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Menu\BaseMenu.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Menu\BaseMenu.shtml.ts">
+      <DependentUpon>BaseMenu.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Menu\Menu.shtml.ts">
+      <DependentUpon>Menu.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Menu\MenuItem.shtml.ts">
+      <DependentUpon>MenuItem.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Menu\MenuSanfona.shtml.ts">
+      <DependentUpon>MenuSanfona.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\Aba.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\Aba.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\PainelAbas.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\PainelAbasHorizontal.shtml.ts">
+      <DependentUpon>PainelAbasHorizontal.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\PainelAbas\PropriedadeTipoPainelAba.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\ProgressoCirculo\ProgressoCirculo.shtml.ts">
+      <DependentUpon>ProgressoCirculo.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Comuns\Progresso\IProgresso.ts" />
+    <TypeScriptCompile Include="src\Controle\Comuns\Progresso\Progresso.shtml.ts">
+      <DependentUpon>Progresso.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\ControleLista\BaseControleLista.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\BaseControleListaT.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Cabecalho.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\ControleListaOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\EnumDestinoItemControle.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\ItemControleMovendoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\ItemControleOrdenacao.shtml.ts">
+      <DependentUpon>ItemControleOrdenacao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\ItemControleOrdenacaoAlteradoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleListaOrdenacao\ItensColecaoOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleLista\ControleLista.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleLista\ItemControle.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleLista\ItemSeparador.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleLista\ItensColecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ControleLista\SeparadorTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataListaOrdenacao\DataListaOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataListaOrdenacao\LinhaOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataListaOrdenacao\LinhasColecaoOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Celula.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaExibirDetalhes.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaPersonalizada.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaTexto.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\CelulaVazia.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Coluna.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Coluna.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunasColecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunaTexto.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ColunaTituloPersonalizado.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\ConteudoLinhaDetalhes.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\DataLista.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\EnumOrdenacaoColuna.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\Linha.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhaDetalhes.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhaDetalhesExpandidaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\LinhasColecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\OrdenacaoColunaAlteradaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColuna.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaExibirDetalhes.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaPersonalizada.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunasColecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaTexto.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateColunaVazia.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateLinhaDetalhes.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\DataLista\TemplateTiluloColuna.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Paginacao\BaseControlePaginacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Paginacao\ControlePaginacao.shtml.ts">
+      <DependentUpon>ControlePaginacao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\BlocoOrdenandoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacaoAnimado.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\ItemBlocoOrdenacaoEstatico.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\PainelListaOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacaoAnimado.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoBlocoOrdenacaoEstatico.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaOrdenacao\RegiaoItemBlocoOrdenacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\BlocoTemplateSelecionado.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\ItemBlocoSelecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelListaSelecao\PainelListaSelecao.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\BaseBlocoTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\BlocoTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\BlocoTemplateSeparador.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\ItemBloco.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\ItemBlocoSeparador.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\PainelLista.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\PainelLista\PainelLista.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\ProximaPagina\ControleProximaPagina.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Rodape.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleRotulo.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleRotulo.ts" />
+    <TypeScriptCompile Include="src\Controle\ControleUsuario.ts" />
+    <TypeScriptCompile Include="src\Controle\ElementoControle\ElementoControle.Registrar.ts" />
+    <TypeScriptCompile Include="src\Controle\ElementoControle\ElementoControle.ts" />
+    <TypeScriptCompile Include="src\Controle\ElementoControle\RegistroElementoControle.ts" />
+    <TypeScriptCompile Include="src\Controle\EnumEventoDom.ts" />
+    <TypeScriptCompile Include="src\Controle\EnumOpcaoOcupar.ts" />
+    <TypeScriptCompile Include="src\Controle\EventoDom.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\BaseControleFormulario.Mapeamento.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\BaseControleFormulario.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaListaSugestao.shtml.ts">
+      <DependentUpon>CaixaAreaListaSugestao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaAreaTextoSugestao\CaixaAreaTextoSugestao.shtml.ts">
+      <DependentUpon>CaixaAreaTextoSugestao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml.ts">
+      <DependentUpon>CaixaAreaTexto.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaAtivacao\CaixaAtivacao.shtml.ts">
+      <DependentUpon>CaixaAtivacao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaSlider\CaixaSlider.shtml.ts">
+      <DependentUpon>CaixaSlider.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\BaseCaixaTexto.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaCartaoCredito\CaixaCartaoCredito.shtml.ts">
+      <DependentUpon>CaixaCartaoCredito.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaCalendario\CaixaCalendario.shtml.ts">
+      <DependentUpon>CaixaCalendario.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaData.shtml.ts">
+      <DependentUpon>CaixaData.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaHora\CaixaHora.shtml.ts">
+      <DependentUpon>CaixaHora.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaMoeda\CaixaMoeda.shtml.ts">
+      <DependentUpon>CaixaMoeda.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\BaseCaixaNumero.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\CaixaNumero.shtml.ts">
+      <DependentUpon>CaixaNumero.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaQuantidade\CaixaQuantidade.shtml.ts">
+      <DependentUpon>CaixaQuantidade.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaSenhaAmostra\CaixaSenhaSimples.shtml.ts">
+      <DependentUpon>CaixaSenhaSimples.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaSenha\CaixaSenha.shtml.ts">
+      <DependentUpon>CaixaSenha.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaListaSugestao.shtml.ts">
+      <DependentUpon>CaixaListaSugestao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaTextoSugestao\CaixaTextoSugestao.shtml.ts">
+      <DependentUpon>CaixaTextoSugestao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\CaixaTexto\CaixaTexto\CaixaTexto.shtml.ts">
+      <DependentUpon>CaixaTexto.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\Checkbox\Checkbox.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboBoxEnum\ComboBoxEnum.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboboxNn\ComboBoxNn.shtml.ts">
+      <DependentUpon>ComboBoxNn.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboboxNn\ItensSelecionado\ComboBoxNnItensSelecionado.shtml.ts">
+      <DependentUpon>ComboBoxNnItensSelecionado.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboBox\BaseComboBox.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboBox\CaixaSelecao\CaixaSelecao.shtml.ts">
+      <DependentUpon>CaixaSelecao.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboBox\ComboBox.shtml.ts">
+      <DependentUpon>ComboBox.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\ComboBox\ItemSelecionado\ComboBoxItemSelecionado.shtml.ts">
+      <DependentUpon>ComboBoxItemSelecionado.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\PropriedadeCaixa.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\Radio\Radio.shtml.ts">
+      <DependentUpon>Radio.shtml</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\Controle\Formulario\ValidoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Formulario\ValorAlteradoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IComponenteApresentacao.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleConstrutor.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleEventoValorAlterado.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleItensSelecionado.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleLista.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleRutulo.ts" />
+    <TypeScriptCompile Include="src\Controle\Interfaces\IControleSelecionado.ts" />
+    <TypeScriptCompile Include="src\Controle\MovimentarControle.ts" />
+    <TypeScriptCompile Include="src\Controle\Template\BaseItemTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\Template\BaseTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\Template\ItemTemplate.ts" />
+    <TypeScriptCompile Include="src\Controle\Template\ItemTemplateSelecionado.ts" />
+    <TypeScriptCompile Include="src\Controle\Validacao\ValidarControlesFormulario.ts" />
+    <TypeScriptCompile Include="src\Converter\Converter.ts" />
+    <TypeScriptCompile Include="src\Estilo\Estilo.ts" />
+    <TypeScriptCompile Include="src\Evento\Args\SelecionarArquivosEventoArgs.ts" />
+    <TypeScriptCompile Include="src\Evento\Args\TextoPesquisaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Evento\Args\UIEventArgs.ts" />
+    <TypeScriptCompile Include="src\Evento\Args\UIEventoHandler.ts" />
+    <TypeScriptCompile Include="src\Evento\Args\UIValorAlteradoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoArrastarArquivos.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoClick.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoClickAsync.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoConteudoExpandido.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoControleHandler.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoEnter.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoItemSelecionadoAlterado.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoLinhaDetalhesExpandida.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoNavegar.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoSelecionarArquivos.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoTextoPesquisa.ts" />
+    <TypeScriptCompile Include="src\Evento\BaseEventoValorAlterado.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoValorAlterado.ts" />
+    <TypeScriptCompile Include="src\Evento\EventoValorModificando.ts" />
+    <TypeScriptCompile Include="src\Evento\IUIEventoConstrutor.ts" />
+    <TypeScriptCompile Include="src\Evento\OrdenacaoColunaAlterada.ts" />
+    <TypeScriptCompile Include="src\Evento\UIEvento.ts" />
+    <TypeScriptCompile Include="src\Hisorico\ConstantesHistoricoNavegador.ts" />
+    <TypeScriptCompile Include="src\Hisorico\HistoricoNavegadorUtil.ts" />
+    <TypeScriptCompile Include="src\Html.Referencias.ts" />
+    <TypeScriptCompile Include="src\Mascara\BaseMascara.ts" />
+    <TypeScriptCompile Include="src\Mascara\Bkp\MascaraCpfCnpj.Bkp.ts" />
+    <TypeScriptCompile Include="src\Mascara\Bkp\MascaraHora.Bkp.ts" />
+    <TypeScriptCompile Include="src\Mascara\Bkp\MascaraTelefone.Bkp.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraCartaoCredito.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraCpfCnpj.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraFormatacao.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraHora.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraDecimal.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraMoeda.ts" />
+    <TypeScriptCompile Include="src\Mascara\MascaraTelefone.ts" />
+    <TypeScriptCompile Include="src\Nativo\Document.ts" />
+    <TypeScriptCompile Include="src\Nativo\Event.ts" />
+    <TypeScriptCompile Include="src\Nativo\HTMLElement.ts" />
+    <TypeScriptCompile Include="src\Nativo\IEvent.ts" />
+    <TypeScriptCompile Include="src\Nativo\IHTMLElement.ts" />
+    <TypeScriptCompile Include="src\Nativo\Object.ts" />
+    <TypeScriptCompile Include="src\Nativo\StopPropagationEventArgs.ts" />
+    <TypeScriptCompile Include="src\Nativo\WebLock.ts" />
+    <TypeScriptCompile Include="src\Nativo\Window.ts" />
+    <TypeScriptCompile Include="src\Reflexao.ts" />
+    <TypeScriptCompile Include="src\Reflexao\BaseTipoUI.ts" />
+    <TypeScriptCompile Include="src\Reflexao\TipoBaseViewModel.ts" />
+    <TypeScriptCompile Include="src\Reflexao\TipoUI.ts" />
+    <TypeScriptCompile Include="src\Reflexao\TipoUIHtml.ts" />
+    <TypeScriptCompile Include="src\Rolagem\EnumDirecaoRolagem.ts" />
+    <TypeScriptCompile Include="src\Rolagem\Rolagem.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\DialagoAbrirArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\EnumTipoArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\GerenciadorAbrirImagemLocal.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\JanelaAbrirImagem.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\JanelaAbrirImagemViewModel.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\ResultadoDialagoAbrirArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\ResultadoJanelaAbrirImagem.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\ServicoImagemUtil.ts" />
+    <TypeScriptCompile Include="src\ServicoImagem\TarefaAbrirImagemLocal.ts" />
+    <TypeScriptCompile Include="src\Snebur.UI.Inicio.ts" />
+    <TypeScriptCompile Include="src\Snebur.UI.Referencias.ts" />
+    <TypeScriptCompile Include="src\Snebur.UI.Exports.ts" />
+    <TypeScriptCompile Include="src\UIElementoGenerico.ts" />
+    <TypeScriptCompile Include="src\Utilidade\BindControleUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ComponenteApresentacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ConsoleUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ControleUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CorUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DebugUIInfo.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EfeitoImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ElementoAreaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ElementoAtributoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ElementoControleUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ElementoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EntrarUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EstiloUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FiltroImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\HtmlReferenciaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\IconeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ImagemLocalUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\JanelaMensagemUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\KeyCodeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\MascaraUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\MaterialDesignerUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\NavegadorUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\PaginaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CanvasUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\RotacionarImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ScrollUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\SelecionarArquivosUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\TelaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\TipografiaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\UIEventoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\UnidadeUtil.ts" />
+    <TypeScriptCompile Include="src\Virtualizacao\GerenciadorVirtualizacao.ts" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons.woff2" />
+    <Content Include="scss\_transformacoes.scss" />
+    <Content Include="tsconfig.json" />
+    <Content Include="resources\fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="resources\fonts\MaterialIcons-Regular.woff2" />
+    <Content Include="resources\fonts\MaterialIcons.woff2" />
+    <Content Include="src\Componentes\Comum\Icone\_icone.scss" />
+    <Content Include="src\Componentes\Paineis\_basePainel.scss" />
+    <Content Include="src\Componentes\Paineis\Bloco\_bloco.scss" />
+    <Content Include="src\Componentes\Paineis\Bloco\_blocoAnimado.scss" />
+    <Content Include="src\Componentes\Paineis\Painel\_painel.flex.scss" />
+    <Content Include="src\Componentes\Paineis\Painel\_painel.scss" />
+    <Content Include="src\Componentes\Paineis\PainelHorizontal\_painelHorizontal.scss" />
+    <Content Include="src\Componentes\Paineis\PainelVertical\_painelVertical.scss" />
+    <Content Include="src\Componentes\Propriedades\Alinhamento\_alinhamento.absoluto.scss" />
+    <Content Include="src\Componentes\Propriedades\Alinhamento\_alinhamento.scss" />
+    <Content Include="src\Componentes\Propriedades\BarraRolagem\_barraRolagem.mixins.scss" />
+    <Content Include="src\Componentes\Propriedades\BarraRolagem\_barraRolagem.scss" />
+    <Content Include="src\Componentes\Propriedades\Tipografia\_fonte.scss" />
+    <Content Include="src\Componentes\Propriedades\Tipografia\_peso.scss" />
+    <Content Include="src\Componentes\Propriedades\Tipografia\_quebrar.scss" />
+    <Content Include="src\Componentes\Propriedades\Tipografia\_tipografia.scss" />
+    <Content Include="src\Componentes\Propriedades\Visibilidade\_visibilidade.scss" />
+    <Content Include="src\Componentes\Texto\_texto.scss" />
+    <Content Include="src\Componentes\Texto\AlinhamentoTexto\_alinhamento.scss" />
+    <Content Include="src\Componentes\_componenteApresentacaoConteudo.scss" />
+    <Content Include="src\Controle\_controleUsuario.scss" />
+    <Content Include="src\Controle\Apresentacao\ControleFlutuante\_controleFlutuante.scss" />
+    <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\BarraEnvioArquivo\barraenvioarquivos.shtml.scss">
+      <DependentUpon>barraenvioarquivos.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\documentoprincipal.shtml.scss">
+      <DependentUpon>DocumentoPrincipal.shtml.ts</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Apresentacao\Janela\Autenticacao\_janelaAutenticacao.scss" />
+    <Content Include="src\Controle\Apresentacao\Janela\Cadastro\basejanelacadastro.shtml.scss">
+      <DependentUpon>BaseJanelaCadastro.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Apresentacao\Janela\Mensagem\JanelaMensagem.shtml.scss">
+      <DependentUpon>JanelaMensagem.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Apresentacao\Janela\Ocupado\janelaocupado.shtml.scss">
+      <DependentUpon>JanelaOcupado.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Apresentacao\Janela\_janela.scss" />
+    <Content Include="src\Controle\Apresentacao\Navegador\_navegador.scss" />
+    <Content Include="src\Controle\Apresentacao\Pagina\ListaEntidades\_paginaListaEntidades.scss" />
+    <Content Include="src\Controle\Apresentacao\Pagina\_pagina.scss" />
+    <Content Include="src\Controle\BaseControle.ts.scss">
+      <DependentUpon>BaseControle.ts</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\AjudaLegenda\AjudaLegenda.ts.scss">
+      <DependentUpon>AjudaLegenda.ts</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Botao\_botao.mixins.scss" />
+    <Content Include="src\Controle\Comuns\Botao\_botao.scss" />
+    <Content Include="src\Controle\Comuns\Botao\_botao.tab.scss" />
+    <Content Include="src\Controle\Comuns\BotaoIconeDescricao\_botaoIconeDescricao.scss" />
+    <Content Include="src\Controle\Comuns\BotaoLogico\_botaoLogico.scss" />
+    <Content Include="src\Controle\Comuns\BotaoMenu\_botaoMenu.scss">
+      <DependentUpon>BotaoMenu.ts</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\CaixaPesquisa\_caixaPesquisa.scss">
+      <DependentUpon>CaixaPesquisa.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\CaixaPrazoTempo\_caixaPrazoTempo.scss" />
+    <Content Include="src\Controle\Comuns\CaixaSelecaoCor\CaixaSelecaoCor.shtml.scss">
+      <DependentUpon>CaixaSelecaoCor.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\CaixaSelecaoCor\ControleFlutuanteCores.shtml.scss">
+      <DependentUpon>ControleFlutuanteCores.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Codigo\_codigo.scss" />
+    <Content Include="src\Controle\Comuns\ComboBoxSimples\_comboBoxSimples.scss" />
+    <Content Include="src\Controle\Comuns\ControleImagem\BaseControleImagem.shtml.scss">
+      <DependentUpon>BaseControleImagem.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\ControleImagem\ControleImagem.shtml.scss">
+      <DependentUpon>ControleImagem.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\ControleImagem\ControleImagens.shtml.scss">
+      <DependentUpon>ControleImagens.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Expandir\_expandir.scss" />
+    <Content Include="src\Controle\Comuns\Menu\BaseMenu.shtml.scss">
+      <DependentUpon>BaseMenu.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Menu\Menu.shtml.scss">
+      <DependentUpon>Menu.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Menu\MenuItem.shtml.scss">
+      <DependentUpon>MenuItem.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Menu\MenuSanfona.shtml.scss">
+      <DependentUpon>MenuSanfona.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\PainelAbas\_painelAbas.mixins.scss" />
+    <Content Include="src\Controle\Comuns\PainelAbas\_painelAbas.scss" />
+    <Content Include="src\Controle\Comuns\ProgressoCirculo\_progressoCirculo.scss" />
+    <Content Include="src\Controle\Comuns\ProgressoCirculo\ProgressoCirculo.shtml.scss">
+      <DependentUpon>ProgressoCirculo.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Comuns\Progresso\_progresso.scss" />
+    <Content Include="src\Controle\ControleLista\ControleListaOrdenacao\ItemControleOrdenacao.shtml.scss">
+      <DependentUpon>ItemControleOrdenacao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\ControleLista\ControleLista\_controleLista.scss" />
+    <Content Include="src\Controle\ControleLista\DataLista\_dataLista.scss" />
+    <Content Include="src\Controle\ControleLista\DataListaOrdenacao\_dataListaOrdenacao.scss" />
+    <Content Include="src\Controle\ControleLista\Paginacao\controlepaginacao.shtml.scss">
+      <DependentUpon>ControlePaginacao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\ControleLista\PainelListaOrdenacao\_painelListaOrdenacao.scss" />
+    <Content Include="src\Controle\ControleLista\PainelListaSelecao\_painelLista.scss" />
+    <Content Include="src\Controle\ControleLista\ProximaPagina\_controleProximaPagina.scss" />
+    <Content Include="src\Controle\Formulario\_baseControleFormulario.scss" />
+    <Content Include="src\Controle\Formulario\_baseControleFormulario.variaveis.scss">
+      <DependentUpon>_baseControleFormulario.scss</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaAtivacao\caixaativacao.shtml.scss">
+      <DependentUpon>CaixaAtivacao.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaSlider\CaixaSlider.shtml.scss">
+      <DependentUpon>CaixaSlider.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\_caixaTexto.Delineada.scss" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\_caixaTexto.mixins.scss" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\_caixaTexto.scss" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaCartaoCredito\CaixaCartaoCredito.shtml.scss">
+      <DependentUpon>CaixaCartaoCredito.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaCalendario\CaixaCalendario.shtml.scss">
+      <DependentUpon>CaixaCalendario.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaData\CaixaData.shtml.scss">
+      <DependentUpon>CaixaData.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaHora\CaixaHora.shtml.scss">
+      <DependentUpon>CaixaHora.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaMoeda\_caixaMoeda.scss" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaNumero\_caixaNumero.scss" />
+    <Content Include="src\Controle\Formulario\CaixaTexto\CaixaQuantidade\_caixaQuantidade.scss" />
+    <Content Include="src\Controle\Formulario\Checkbox\_checkbox.scss" />
+    <Content Include="src\Controle\Formulario\ComboBox\_combobox.mixins.scss" />
+    <Content Include="src\Controle\Formulario\ComboBox\_combobox.scss" />
+    <Content Include="src\Controle\Formulario\ComboboxNn\_comboBoxNn.scss" />
+    <Content Include="src\Controle\Formulario\ComboboxNn\ItensSelecionado\_comboBoxNnItensSelecionado.scss" />
+    <Content Include="src\Controle\Formulario\ComboBox\CaixaSelecao\_caixaSelecao.scss" />
+    <Content Include="src\Controle\Formulario\ComboBox\ItemSelecionado\_comboBoxItemSelecionado.scss" />
+    <Content Include="src\Controle\Formulario\Radio\_radio.mixins.scss" />
+    <Content Include="src\Controle\Formulario\Radio\radio.shtml.scss">
+      <DependentUpon>Radio.shtml</DependentUpon>
+    </Content>
+    <Content Include="src\ServicoImagem\JanelaAbrirImagem.shtml.scss" />
+    <Content Include="src\Utilidade\_console.scss" />
+    <Content Include="src\Utilidade\_filtro.scss" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scss\_simples.mixins.scss" />
+    <Content Include="resources\Fontes\Material\Icones\codepoints" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.eot" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.ijmap" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.ttf" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.woff" />
+    <Content Include="resources\Fontes\Material\Icones\MaterialIcons-Regular.woff2" />
+    <Content Include="resources\Fontes\Material\Icones\README.md" />
+    <Content Include="scss\mixins.scss" />
+    <Content Include="scss\_resetar.tudo.scss" />
+    <Content Include="scss\_visibilidade.scss" />
+    <Content Include="scss\_bordas.mixins.scss" />
+    <Content Include="scss\_bordas.scss" />
+    <Content Include="scss\_bordas.variaveis.scss" />
+    <Content Include="scss\_cores.scss" />
+    <Content Include="scss\_cores.variaveis.scss" />
+    <Content Include="scss\_funcoes.scss" />
+    <Content Include="scss\_grades.scss" />
+    <Content Include="scss\_linhas.mixins.scss" />
+    <Content Include="scss\_linhas.scss" />
+    <Content Include="scss\_linhas.variaveis.scss" />
+    <Content Include="scss\_margens.scss" />
+    <Content Include="scss\_margens.variaveis.scss" />
+    <Content Include="scss\_nativo.resetar.scss" />
+    <Content Include="scss\_telas.mixins.scss" />
+    <Content Include="scss\_telas.variaveis.scss" />
+    <Content Include="scss\_tipografias.scss" />
+    <Content Include="scss\_tipografias.variaveis.scss" />
+    <Content Include="scss\_simples.scss" />
+    <Content Include="src\Controle\Formulario\ComboBox\_combobox.Delineada.scss" />
+    <Content Include="src\Componentes\Propriedades\Icone\_icone-categoria.scss" />
+    <Content Include="src\Controle\Apresentacao\DocumentoPrincipal\_falha-conexao.scss" />
+    <Content Include="src\Controle\Apresentacao\Janela\Cadastro\JanelaInfo.shtml" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTexto\_caixaAreaTexto.Delineada.scss" />
+    <Content Include="src\Controle\Formulario\CaixaAreaTexto\CaixaAreaTexto.shtml.scss">
+      <DependentUpon>CaixaAreaTexto.shtml</DependentUpon>
+    </Content>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="resources\Fontes\Material\Texto\" />
+    <Folder Include="scss\Compilacoes\" />
+    <Folder Include="src\Componentes\Paineis\Horizontal\" />
+    <Folder Include="src\Componentes\Paineis\Painel\Lista\" />
+    <Folder Include="src\Componentes\Paineis\Vertical\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="src\Controle\ControleLista\Fila.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\DocumentoPrincipal\GerenciadorFalhaConexao.ts" />
+    <TypeScriptCompile Include="src\Controle\Apresentacao\MenuContexto\BaseMenuContexto.ts" />
+    <TypeScriptCompile Include="src\Controle\LazyControle.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Snebur.UI</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Snebur.UI</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug Ap'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'AdminConta'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Ap + Compartilhado'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Sites'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Apresentacao + UI'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Apresentacao'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Compartilhado'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53425</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://ui-localhost.sigi.com.br</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets')" />
+</Project>

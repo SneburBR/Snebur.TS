@@ -467,7 +467,7 @@
         {
             if ($Configuracao.IsDebug)
             {
-                const mensagensValidacao = await this.ViewModel.Entidade.RetornarMensagemValidacoesPendenteAsync();
+                const mensagensValidacao = await this.ViewModel.Entidade.RetornarTodasMensagemValidacoesPendentesAsync();
                 if (mensagensValidacao.Count > 0)
                 {
                     const mensagem = String.Join("<br>", mensagensValidacao);

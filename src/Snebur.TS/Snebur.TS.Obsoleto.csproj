@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{5B453607-77A9-45DE-92D6-E97372FA3FFC}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <OutputPath>bin</OutputPath>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>4.5</TypeScriptToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\JSZipAsync\jszip.debug.js" />
+    <Content Include="lib\JSZipAsync\jszip.js" />
+    <Content Include="lib\JSZipAsync\jszip.min.js" />
+    <Content Include="lib\Magick\debug\magick.js" />
+    <Content Include="lib\Magick\debug\magick-base64.js" />
+    <Content Include="lib\Magick\magick.debug\ImportMagick.js" />
+    <Content Include="lib\Magick\magick.debug\magick-base64.js" />
+    <Content Include="lib\Magick\magick.debug\magick.js" />
+    <Content Include="lib\Magick\magick.js" />
+    <Content Include="lib\Magick\magick\ImportMagick.js" />
+    <Content Include="lib\Magick\magick\magick.js" />
+    <Content Include="recursos\imagens\erro.png" />
+    <Content Include="lib\Base64binary\base64-binary.js" />
+    <Content Include="lib\Buffer\buffers.js" />
+    <Content Include="lib\Chart\chart.min.js" />
+    <Content Include="lib\Checksum\Checksum.js" />
+    <Content Include="lib\Checksum\crc32.js" />
+    <Content Include="lib\CardType\cardtype.js" />
+    <Content Include="lib\CryptoJS\CryptoJS.js" />
+    <Content Include="lib\Exifr\full.legacy.umd.js" />
+    <Content Include="lib\Exifr\full.umd.js" />
+    <Content Include="lib\Exifr\lite.umd.js" />
+    <Content Include="lib\Faker\faker.js" />
+    <Content Include="lib\FileSaver\FileSaver.js" />
+    <Content Include="lib\JSZip\3.0 - async promise\jszip.js" />
+    <Content Include="lib\JSZip\3.0 - async promise\jszip.min.js" />
+    <Content Include="lib\JSZip\jszip.js" />
+    <Content Include="lib\JSZip\jszip.min.js" />
+    <Content Include="lib\JSZip\Senha.txt" />
+    <Content Include="lib\Md5\md5.js" />
+    <Content Include="lib\Md5\Md5__temp.js" />
+    <Content Include="lib\Pica\pica.js" />
+    <Content Include="lib\Pica\pica.min.js" />
+    <Content Include="lib\Promise\promise.js" />
+    <Content Include="lib\Promise\promise.min.js" />
+    <Content Include="lib\Typescript\Await.js" />
+    <Content Include="lib\UAParser\Teste.html" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\dist\ua-parser.min.js" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\dist\ua-parser.pack.js" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\package.js" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\src\ua-parser.js" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\test.js" />
+    <Content Include="lib\UAParser\ua-parser.min.js" />
+    <Content Include="lib\ZCryptoJS\ZCryptoJS.js" />
+    <Content Include="src\Core\Bibliotecas\info.txt" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Buffer.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\ExifReader.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\ExitResult.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Magick.dom.d.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroArgumentoNulo.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\ICancelavelAsync.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\LinkedList.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\Queue.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\String.Polyfill.ts" />
+    <TypeScriptCompile Include="src\Dne\DneUtil.ts" />
+    <TypeScriptCompile Include="src\Dne\EnumUFSigla.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoBase36.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoGuid.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoMdr5.Partial.ts" />
+    <TypeScriptCompile Include="src\Imagem\Canvas\AbrirArquivoLocalCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\FormatoImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImageDataUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\AbrirArquivoLocalMagick.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\AbrirImagemImpressaoMagick.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\AbrirImagemLocalMagick.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\BaseAbrirImagemLocalMagick.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemLocalUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\MagickProcessador.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\MagickUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\Base36Util.ts" />
+    <TypeScriptCompile Include="src\Utilidade\HashCodeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ListaObservacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ScriptUtil.ts" />
+    <TypeScriptCompile Include="src\Dominio\IRetornarEntidade.ts" />
+    <TypeScriptCompile Include="src\Utilidade\InterfaceUtil.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IInicializacaoAsync.ts" />
+    <Content Include="src\Worker\worker.txt" />
+    <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\BaseConsultaEntidade.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\ConsultaEntidade.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\ConsultaEntidade\IConsultaEntidade.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Contexto\AjudanteNormalizarEntidadesSalvas.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Contexto\BaseContextoDados.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Contexto\ConstrutorConsultaEntidade.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Dominio\Snebur.AcessoDados.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Dominio\Snebur.AcessoDados.Dominio.Enums.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Dominio\Snebur.AcessoDados.Dominio.Interfaces.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Dominio\Snebur.AcessoDados.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Partial\EnumTamanhoImagem.Partial.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Partial\EstruturaConsulta.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\ServicoDados\IServicoDadosAsync.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\ServicoDados\ServicoDadosCliente.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\ServicoRegrasNegocio\ServicoRegrasNegocioCliente.ts" />
+    <TypeScriptCompile Include="src\AcessoDados\Utilidade\ConsultaUtil.ts" />
+    <TypeScriptCompile Include="src\Aplicacao.Config.ts" />
+    <TypeScriptCompile Include="src\Aplicacao.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\BaseAplicacao.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\CacheSessaoUsuario.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\ConfiguracaoAplicacao.ts" />
+    <Content Include="lib\Magick\magick.debug\magick-debug.zip" />
+    <Content Include="lib\Magick\magick\magick.zip" />
+    <None Include="src\Comunicacao\BaseComunicacaoCliente.ts.Bkp" />
+    <TypeScriptCompile Include="src\Comum\LazyValue.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseRequisicao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequiscao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\GerenciadorRequisicaoUtil.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\Requisicao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Utilidade\NormalizarResultadoChamada.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Async.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Magickd.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IClone.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Array.Busca.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIP.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRota.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTextoSomentoNumeros.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoUrl.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\AjudanteClonarEntidade.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\RedeSociais.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Namespace\GerenciadorNamespace.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Namespace\BaseNamespace.ts" />
+    <TypeScriptCompile Include="src\Aplicacao\UsuarioConectadoAlteradoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Arquivo\SnBlob.ts" />
+    <TypeScriptCompile Include="src\BaseServico.ts" />
+    <TypeScriptCompile Include="src\Comum\Cores.ts" />
+    <TypeScriptCompile Include="src\Comum\EnumMimeTypes.ts" />
+    <TypeScriptCompile Include="src\Comum\ExecutarDepois.ts" />
+    <TypeScriptCompile Include="src\Comum\FuncAction.Referencias.ts" />
+    <TypeScriptCompile Include="src\Comum\ProgressoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Comum\TimeoutManager.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\BaseComunicacaoCliente.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\ChamadaServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\ChamadaServicoAsync.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Dominio\ResultadoChamadaErro.Partial.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Constantes.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Interfaces.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Dominio\Snebur.Comunicacao.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Erro\ErroComunicacao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\IBaseServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\BaseJsonSerializacao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\Erro\ErroSerializacao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\IBaseDominioReferencia.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\JsonDeserializar.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\JsonSerializar.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\NormalizarDeserializacao.Novo.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\NormalizarDeserializacao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\PrepararSerializacao.Novo.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\PrepararSerializacao.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Serializacao\Referencia.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\ServicoArquivo\IServicoLogServicoArquivo.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\ServicoArquivo\ServicoLogServicoArquivo.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Usuario\BaseServicoUsuarioCliente.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Usuario\IServicoUsuario.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Utilidade\AjaxUtil.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Requisicao\BaseChamadaServico.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Utilidade\JsonUtil.ts" />
+    <TypeScriptCompile Include="src\Comunicacao\Utilidade\PacoteUtil.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Base64Binary.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Cardcardd.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\cryptojsd.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\exifrd.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\Faker.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\FileSaver.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\JSZip.Sync.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\md5.d.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\picad.ts" />
+    <TypeScriptCompile Include="src\Core\Bibliotecas\ua-parser-js.d.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\Erro.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroConverter.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroGlobal.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroNaoDefinido.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroNaoImplementado.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroNaoSuportado.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroOperacaoInvalida.ts" />
+    <TypeScriptCompile Include="src\Core\Erro\ErroTimeout.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\ConsoleEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\EventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\Evento.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\EventoT.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\IResultadoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\ManipualadorEvento.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\ResultadoAsyncEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\ResultadoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Evento\ResultadoEventArgsT.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\Dicionario.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\DicionarioEntidade.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\DicionarioTipado.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\Guid.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\IEqualityComparer.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\InserirItemEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\ISize.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\ItemEventArgs.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\ParChaveValor.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\Size.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\StringBuilder.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\StringReader.ts" />
+    <TypeScriptCompile Include="src\Core\Extensao\TimeSpan.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\Construtor.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\ICaminhoTipo.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IDisposable.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IEquals.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IIdentificadorReferencia.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IIdentificadorUnico.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\INavegadorExpressao.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\IParse.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\ISistemaOperacionalExpressao.ts" />
+    <TypeScriptCompile Include="src\Core\Interfaces\ITipo.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\EnumTipoLista.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\HashSet.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ILista.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\IListaEntidades.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\List.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ListaEntidades.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ListaEntidadesIndexada.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ListaObservacao.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ListaObservacaoIndexada.ts" />
+    <TypeScriptCompile Include="src\Core\Lista\ListaUtil.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Array.Crud.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Array.ITipo.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Array.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Boolean.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\BooleanConstructor.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Console.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Date.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\DateConstructor.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Error.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\File.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Funcoes.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Global.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\HTMLCanvasElement.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IArray.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IBoolean.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IDate.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IHTMLCanvasElement.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\INumber.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IObject.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\interfaces\IString.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Lib.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Number.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\NumberConstructor.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\Object.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\ObjectConstructor.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\String.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\StringConstructor.ts" />
+    <TypeScriptCompile Include="src\Core\Nativo\__ZObject.ts" />
+    <TypeScriptCompile Include="src\Decoracao\Rotulo.Decoracao.ts" />
+    <TypeScriptCompile Include="src\Depuracao\Dominio\Snebur.Depuracao.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\Depuracao\Dominio\Snebur.Depuracao.Dominio.Enums.ts" />
+    <TypeScriptCompile Include="src\Depuracao\Dominio\Snebur.Depuracao.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\Depuracao\MensagemEventArgs.ts" />
+    <TypeScriptCompile Include="src\Depuracao\ServicoDepuracao.ts" />
+    <TypeScriptCompile Include="src\Depuracao\Stopwatch.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\BaseAtributoDominio.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\BaseAtributoValidacaoAsync.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\ValidacaoCredencial.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\ValidacaoIdenticadorUsuario.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\ValidacaoUnico.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\ValidacaoUnicoComposta.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAsync\ValidacaoUnicoInstancia.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\ValidacaoAwait\BaseAtributoValidacaoAwait.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\BaseAtributoValidacao.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoCep.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoCnpj.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoComparacao.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoConfirmacaoSenha.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoCpf.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoCpfOuCnpj.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoData.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoDataExpiracao.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoDataNascimento.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoDataPublicacao.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoDominio.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoDominioDNS.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoEmail.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoEmailOuTelefone.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoExpressaoRegular.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoFlagsEnumRequerido.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIndentificador.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoInteiro.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoIntervalo.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoLongo.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoMoeda.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoNomeCompleto.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoPrimeiroNome.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoPalavraTamanho.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRequerido.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoRequeridoDebug.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoSenha.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoSubDominio.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTelefone.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoTextoTamanho.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoUF.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\Atributos\Validacao\ValidacaoVersao.Partial.ts" />
+    <TypeScriptCompile Include="src\Dominio\BaseDominio.ts" />
+    <TypeScriptCompile Include="src\Dominio\BaseDominioConstrutor.ts" />
+    <TypeScriptCompile Include="src\Dominio\BaseDominioReferencia.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\ContextoClonarProriedade.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\Entidade.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\EntidadeConstrutor.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\EnumOpcaoClonarEntidade.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\IEntidade.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\IEntidadeClonada.ts" />
+    <TypeScriptCompile Include="src\Dominio\Entidade\IOrdenacao.ts" />
+    <TypeScriptCompile Include="src\Dominio\Interface\IRotulo.ts" />
+    <TypeScriptCompile Include="src\Dominio\Interface\Media\IArquivo.ts" />
+    <TypeScriptCompile Include="src\Dominio\Interface\Media\IImagem.ts" />
+    <TypeScriptCompile Include="src\Dominio\Interface\TipoComplexo\IDimensao.ts" />
+    <TypeScriptCompile Include="src\Dominio\Partial\ICredencial.ts" />
+    <TypeScriptCompile Include="src\Dominio\PropriedadeAlterada\EventoPropriedadeAlterada.ts" />
+    <TypeScriptCompile Include="src\Dominio\PropriedadeAlterada\PropriedadeAlterada.ts" />
+    <TypeScriptCompile Include="src\Dominio\PropriedadeAlterada\PropriedadeAlteradaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Atributos.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Constantes.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Enums.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Interfaces.ts" />
+    <TypeScriptCompile Include="src\Dominio\Snebur.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\BaseTipoComplexo.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Cor.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\FiltroImagem.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Lista\BaseListaTipoComplexo.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Lista\ListaDouble.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Lista\ListaInt32.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Lista\ListaString.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Localizacao.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Area.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\BaseMedidaTipoComplexo.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Borda.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Dimensao.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Margem.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Posicao.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Medida\Regiao.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Navegador.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\PrazoTempo.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\Retangulo.ts" />
+    <TypeScriptCompile Include="src\Dominio\TipoComplexo\SistemaOperacional.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\BaseListaObservacaoViewModel.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\BaseStatusViewModel.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\BaseViewModel.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\EntidadeViewModel.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\PropriedadeValidacoes.ts" />
+    <TypeScriptCompile Include="src\Dominio\ViewModel\ViewModelGenerico.ts" />
+    <TypeScriptCompile Include="src\Expressao\BaseExpressao.ts" />
+    <TypeScriptCompile Include="src\Expressao\EnumOperadorGrupo.ts" />
+    <TypeScriptCompile Include="src\Expressao\EnumOperadorMetodo.ts" />
+    <TypeScriptCompile Include="src\Expressao\EnumOperadorPropriedade.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoGropoNao.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoGrupo.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoGrupoE.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoGrupoOu.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoPropriedade.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoPropriedadeComparar.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoPropriedadeLogico.ts" />
+    <TypeScriptCompile Include="src\Expressao\ExpressaoPropriedadeMetodo.ts" />
+    <TypeScriptCompile Include="src\Expressao\Utilidade\OperadorUtil.ts" />
+    <TypeScriptCompile Include="src\Formatacao\EnumFormatacao.ts" />
+    <TypeScriptCompile Include="src\Globalizacao\Dominio\Snebur.Globalizacao.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\Globalizacao\Dominio\Snebur.Globalizacao.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\Globalizacao\Globalizacao.ts" />
+    <TypeScriptCompile Include="src\Imagem\Canvas\AbrirImagemImpressaoCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\Canvas\AbrirImagemLocalCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\Canvas\BaseAbrirImagemLocalCanvas.ts" />
+    <TypeScriptCompile Include="src\Imagem\DimensaoUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\EnumOpcaoAbrirImagemLocal.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\FiltroConhecido.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\FiltrosImagem.Statica.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\SobrePosicao.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\SobrePosicaoGradiente.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\SobrePosicaoGradienteLinear.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\SobrePosicaoGradienteRadial.ts" />
+    <TypeScriptCompile Include="src\Imagem\Filtro\SobrePosicaoSolida.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemBase64.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemLocalCarregada.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemPartial.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemServidorCarregada.ts" />
+    <TypeScriptCompile Include="src\Imagem\ImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\InformacaoImagem.ts" />
+    <TypeScriptCompile Include="src\Imagem\RedimensionamentoImagem.ts" />
+    <TypeScriptCompile Include="src\Imagem\RotacaoImagemUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\ServicoArquivoUtil.ts" />
+    <TypeScriptCompile Include="src\Medida\BaseMedida.ts" />
+    <TypeScriptCompile Include="src\Medida\DimensaoMedida.ts" />
+    <TypeScriptCompile Include="src\Medida\MargemMedida.ts" />
+    <TypeScriptCompile Include="src\Medida\Medida.ts" />
+    <TypeScriptCompile Include="src\Objeto.ts" />
+    <TypeScriptCompile Include="src\ObjetoControladorPropriedade.ts" />
+    <TypeScriptCompile Include="src\Reflexao.ts" />
+    <TypeScriptCompile Include="src\Reflexao\EnumTipoPrimario.ts" />
+    <TypeScriptCompile Include="src\Reflexao\EnumTipoReflexao.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Namespace\NamespaceFilho.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Namespace\NamespaceRaiz.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Namespace\ReflexaoNamespaceUtil.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Propriedade.ts" />
+    <TypeScriptCompile Include="src\Reflexao\PropriedadeRelacao.ts" />
+    <TypeScriptCompile Include="src\Reflexao\ReflexaoConstrutor.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Relacao\Relacao.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\BaseTipo.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\BaseTipoLista.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoBaseDominio.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoBaseViewModel.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoComplexo.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoDesconhecido.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoDicionario.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoDicionarioVazio.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoEntidade.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoEnum.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoHashSet.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoListaBaseDominio.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoListaEntidade.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoListaEnum.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoListaTipoPrimario.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoListaVazia.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoNulo.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoPrimario.ts" />
+    <TypeScriptCompile Include="src\Reflexao\Tipo\TipoSistema.ts" />
+    <TypeScriptCompile Include="src\Seguranca\Credencial.Partial.ts" />
+    <TypeScriptCompile Include="src\Seguranca\CredencialAnonimo.ts" />
+    <TypeScriptCompile Include="src\Seguranca\ParaPilha.ts" />
+    <TypeScriptCompile Include="src\Seguranca\ProtegerChamada.Partial.ts" />
+    <TypeScriptCompile Include="src\Seguranca\Token.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\BaseTarefaEnviarArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\CalcularChecksum.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Dominio\Snebur.ServicoArquivo.Dominio.Classes.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Dominio\Snebur.ServicoArquivo.Dominio.Constantes.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Dominio\Snebur.ServicoArquivo.Dominio.Enums.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Dominio\Snebur.ServicoArquivo.Dominio.Reflexao.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\EnumResultadoEnvioPacote.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\EnviarPacote.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Erro\ErroCalcularChecksum.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Erro\ErroEnviarPacote.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Erro\ErroLerArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\GerenciadorEnvioArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\ArquivoLocalUtil.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\EnumEstadoOrigemLocal.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\ImagemCarregadaEventArgs.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\OrigemArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\OrigemArquivoLocal.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\OrigemImagem.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\OrigemArquivo\OrigemImagemLocal.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\ProgressoGerenciadorEnvioArquivoEventArgs.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\Seguranca\CredencialServicoArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\ServicoArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\TarefaEnviarArquivo.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\TarefaEnviarImagem.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\TarefaEnviarImagemApresentacao.ts" />
+    <TypeScriptCompile Include="src\ServicoArquivo\TarefaEnviarImagemImpressao.ts" />
+    <TypeScriptCompile Include="src\Snebur.Inicio.ts" />
+    <TypeScriptCompile Include="src\Snebur.Referencias.ts" />
+    <TypeScriptCompile Include="src\Snebur.Exports.ts" />
+    <TypeScriptCompile Include="src\Terefa\BaseTarefa.ViewModel.ts" />
+    <TypeScriptCompile Include="src\Terefa\EnumEstadoTarefa.ts" />
+    <TypeScriptCompile Include="src\Terefa\EnumPreferenciaOrdemFila.ts" />
+    <TypeScriptCompile Include="src\Terefa\ErroTarefas.ts" />
+    <TypeScriptCompile Include="src\Terefa\ErroTimeout.ts" />
+    <TypeScriptCompile Include="src\Terefa\EstadoTarefaAlteradoEventArgs.ts" />
+    <TypeScriptCompile Include="src\Terefa\GerenciadorTarefa.ts" />
+    <TypeScriptCompile Include="src\Terefa\ProgressoGerenciadorTarefaEventArgs.ts" />
+    <TypeScriptCompile Include="src\Terefa\ResultadoFinalizarTarefa.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ArquivoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\AutoMapear.ts" />
+    <TypeScriptCompile Include="src\Utilidade\BaralhoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\Base64Util.ts" />
+    <TypeScriptCompile Include="src\Utilidade\BuscaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ByteUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CaminhoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CartaoCreditoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CharUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ChecksumUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CodigoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ConverterUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CookieUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\CriptografiaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DataFeriadoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DataHoraUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DebugUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DescontoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\DesenvovedorUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EmailUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EnderecoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EntidadeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EnumByteFormato.ts" />
+    <TypeScriptCompile Include="src\Utilidade\EnumUtils.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ErroUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\ExifUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ExpressaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FormatacaoNomeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FormatacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FormatarByteUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FormDataUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\FuncaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\GlobalizacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\GuidUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\HtmlUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\InternetUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\JurosUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\LocalStorageUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\LogUtil.ts" />
+    <TypeScriptCompile Include="src\Imagem\Magick\MagickInitUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\Md5Util.ts" />
+    <TypeScriptCompile Include="src\Utilidade\MedidaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\MimeTypeUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\NamespaceUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\NormalizacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ProcessadorUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\RandomUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ReflexaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\SenhaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\SessaoUsuarioUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\SistemaUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\TelefoneUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\TextoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ThreadUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\TokenCancelamento.ts" />
+    <TypeScriptCompile Include="src\Utilidade\UrlUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\Util.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ValidacaoUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\ZipUtil.ts" />
+    <TypeScriptCompile Include="src\Utilidade\SnRandom.ts" />
+    <TypeScriptCompile Include="src\Validacao\BaseValidacao.ts" />
+    <TypeScriptCompile Include="src\Validacao\BaseValidacaoPersonalizada.ts" />
+    <TypeScriptCompile Include="src\Validacao\Interface\EnumTipoValidacao.ts" />
+    <TypeScriptCompile Include="src\Validacao\Interface\IBaseValidacao.ts" />
+    <TypeScriptCompile Include="src\Validacao\Interface\IValidacao.ts" />
+    <TypeScriptCompile Include="src\Validacao\Interface\IValidacaoAsync.ts" />
+    <TypeScriptCompile Include="src\Validacao\Snebur.Validacao.Exports.ts" />
+    <TypeScriptCompile Include="src\Validacao\ValidacaoAsync.ts" />
+    <TypeScriptCompile Include="src\Validacao\ValidacaoDiferente.ts" />
+    <TypeScriptCompile Include="src\Validacao\ValidacaoNormal.ts" />
+    <TypeScriptCompile Include="src\Validacao\ValidacaoPersonalizacao.ts" />
+    <TypeScriptCompile Include="src\Validacao\ValidacaoPersonalizacaoAsync.ts" />
+    <TypeScriptCompile Include="src\Worker\Checksum.ts" />
+    <TypeScriptCompile Include="src\Worker\ConverterHeicParaJpeg.ts" />
+    <TypeScriptCompile Include="src\Worker\Cpu.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IImagem.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IInformacaoImagem.Partial.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IInformacaoImagem.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IMensageJpegDecoder.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IMensagemConverterHeicParaJpeg.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\Magick.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\IResultadoProcessador.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\ISalvarJpegMensagem.ts" />
+    <TypeScriptCompile Include="src\Worker\Dominio\ISalvarPnegMensagem.ts" />
+    <TypeScriptCompile Include="src\Worker\EnumResultadoSalvarImagem.ts" />
+    <TypeScriptCompile Include="src\Worker\ErroWorker.ts" />
+    <TypeScriptCompile Include="src\Worker\InformacaoImagemWorker.ts" />
+    <TypeScriptCompile Include="src\Worker\JpegDecoder.ts" />
+    <TypeScriptCompile Include="src\Worker\Magick\GerenciadorMagickWorker.ts" />
+    <None Include="src\Worker\Magick\MagickCliente.bkp.2" />
+    <TypeScriptCompile Include="src\Worker\Magick\MagickCliente.ts" />
+    <None Include="src\Worker\Magick\MagickCliente.ts.bkp" />
+    <TypeScriptCompile Include="src\Worker\SalvarImagem.ts" />
+    <TypeScriptCompile Include="src\Worker\SalvarJpeg.ts" />
+    <TypeScriptCompile Include="src\Worker\SalvarPneg.ts" />
+    <TypeScriptCompile Include="src\Worker\UrlWorkerUtil.ts" />
+    <TypeScriptCompile Include="src\Worker\WorkerCliente.ts" />
+    <TypeScriptCompile Include="src\Worker\WorkerClienteInterno.ts" />
+    <None Include="packages.config" />
+    <Content Include="tsconfig.json" />
+    <Content Include="src\Core\Bibliotecas\JQuery.d.ts._" />
+    <Content Include="src\Core\Bibliotecas\JSZip.d.ts.bkp" />
+    <Content Include="src\Core\Evento\Evento.ts.bkp" />
+    <Content Include="src\Core\Extensao\Dicionario.Simples.ts.bkp" />
+    <TypeScriptCompile Include="src\Html.Referencias.ts" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="lib\JSZip\Codigo\jszip-master.zip" />
+    <Content Include="lib\UAParser\ua-parser-js-master.zip" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\.gitignore" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\.travis.yml" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\bower.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\component.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\package.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\readme.md" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\browser&amp;mediaplayer-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\browser-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\cpu-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\device-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\engine-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\test\os-test.json" />
+    <Content Include="lib\UAParser\ua-parser-js-master\ua-parser-js-master\ua-parser-js.jquery.json" />
+    <Content Include="vs-depuracao-porta.info" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="build\" />
+    <Folder Include="lib\JSZip\Codigo\jszip-Atingo-Sincrono\" />
+    <Folder Include="src\Core\Funcoes\" />
+    <Folder Include="test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="src\Core\Gerenciadores\GerenciadorFilaInicializacaoAsync.ts" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Snebur</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>Snebur.TS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug Ap'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'AdminConta'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Ap + Compartilhado'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Sites'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Apresentacao + UI'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Apresentacao'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Compartilhado'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <UserProperties tsconfig_1json__JsonSchema="https://json.schemastore.org/tsdrc.json" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\..\packages\Microsoft.TypeScript.MSBuild.4.9.5\build\Microsoft.TypeScript.MSBuild.targets')" />
+</Project>
