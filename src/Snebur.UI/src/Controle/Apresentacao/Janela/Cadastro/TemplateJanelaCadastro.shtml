@@ -4,7 +4,7 @@
     <title></title>
 	<meta charset="utf-8" />
     <link href="http://Snebur.local/Snebur.UI/Estilos/Bibliotecas/mdl/css/material.blue-cyan.min.css" rel="stylesheet" />
-    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+    <link href="../../../../../wwwroot/build/Snebur.UI.css" rel="stylesheet" />
 </head>
 <body>
     

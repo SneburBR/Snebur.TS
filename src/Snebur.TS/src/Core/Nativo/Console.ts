@@ -34,7 +34,7 @@ namespace Snebur
             tipo: EnumTipoLog,
             base: (...data: any[]) => void, ...data: any[])
         {
-            if (  isDebug )
+            if (isDebug)
             {
                 if (Snebur.$Configuracao != null &&
                     Snebur.$Configuracao.IsDebugOuTeste !== true)
@@ -43,26 +43,30 @@ namespace Snebur
                 }
             }
 
+
+
             if (tipo === EnumTipoLog.Erro || (Snebur.$Configuracao == null || Snebur.$Configuracao.IsDebug || Snebur.$Configuracao.IsTeste))
             {
+
                 let mensagemOriginal = data[0] as string;
-                if (data.length > 2)
+                if (Array.isArray(data) && data.length > 1)
                 {
                     mensagemOriginal = String.Join("", data);
                 }
 
+                if (data?.length > 1 || typeof data[0] === "object")
+                {
+                    base.apply(this, data);
+                    return;
+                }
+
+
                 const hora = FormatacaoUtil?.FormatarHora(new Date(), false, true) ?? "";
                 const mensagem = `${hora}: ${mensagemOriginal}`;
+                base.bind(this)(mensagem);
 
-                if (data?.length > 1)
-                {
-                    base.bind(this)(mensagem, data[1]);
-                }
-                else  
-                {
-                    base.bind(this)(mensagem);
-                }
-
+             
+                 
                 if ($Configuracao != null && $Configuracao.IsDebug &&
                     tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
                 {
@@ -71,21 +75,21 @@ namespace Snebur
                     clearTimeout(__identificadorTimeoutAlertaErro);
                     __identificadorTimeoutAlertaErro = setTimeout(() => __contadorAlertasErro = 0, 5 * 1000);
 
+                    if (console.EventoLog != null)
+                    {
+                        const args = new ConsoleLogArgs(tipo, mensagem);
+                        typeof console.EventoLog.Notificar(console, args);
+                    }
+
                     if (__contadorAlertasErro > 100)
                     {
                         const mensagem = String.Join("\r\n", data);
                         alert(mensagem);
                     }
                 }
-
-                if (console.EventoLog != null)
-                {
-                    const args = new ConsoleLogArgs(tipo, mensagem);
-                    typeof console.EventoLog.Notificar(console, args);
-                }
             }
         };
-         
+
         console.baseLog = console.log;
         console.baseInfo = console.info;
         console.baseError = console.error;

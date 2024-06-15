@@ -6,7 +6,8 @@
         private MenuItemSelecionado: MenuItem = null;
         private readonly MenusItemPesquisaViewModel = new List<MenuItemPesquisaViewModel>();
 
-        public constructor(controlePai: Snebur.UI.BaseControle, elemento: HTMLElement) 
+        public constructor(controlePai: Snebur.UI.BaseControle,
+                           elemento: HTMLElement) 
         {
             super(controlePai, elemento);
             this.CssClasseControle = "sn-menu";

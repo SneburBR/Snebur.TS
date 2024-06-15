@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "dependentFileProviders": {
+    "add": {
+      "addedExtension": {},
+      "pathSegment": {
+        "add": {
+          ".shtml": [
+            ".shml.scss",
+            ".shml.ts"
+          ]
+        }
+      }
+    }
+  }
+
+
+}

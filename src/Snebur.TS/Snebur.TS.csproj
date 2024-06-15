@@ -7,44 +7,29 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
+  
+	<ItemGroup>
+	  <None Remove="web.config.temp" />
+	</ItemGroup>
+
+ 
 
 	<ItemGroup>
-		<TypeScriptCompile Include="src\**\*.ts" />
+	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Remove="lib\**" />
-		<Content Remove="lib\**" />
-		<EmbeddedResource Remove="lib\**" />
-		<None Remove="lib\**" />
-		<TypeScriptCompile Remove="lib\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Program.cs" Link="Program.cs" />
+	  <Content Include="web.config.temp" />
 	</ItemGroup>
 	
  	<ItemGroup>
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5">
-			
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-
-
-	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<TypeScriptTarget>ES2020</TypeScriptTarget>
-	</PropertyGroup>
-
-	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<TypeScriptTarget>ES2015</TypeScriptTarget>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-		<TypeScriptOutFile />
-		<TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-	</PropertyGroup>
+	
+  
  
 
 </Project>

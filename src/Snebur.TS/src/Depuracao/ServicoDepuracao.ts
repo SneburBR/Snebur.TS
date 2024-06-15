@@ -39,13 +39,33 @@
             super();
             window.addEventListener("hashchange", this.Window_HashChange.bind(this));
 
-            this.PortaAtual = this.RetornarPorta();
+
             this.EventoPing.AddHandler(this.ServicoDepuracao_Ping, this);
         }
 
-        public Inicializar(): void
+        public async InicializarAsync()
         {
+            this.PortaAtual = await this.RetornarPortaAsync();
             this.Conectar();
+        }
+
+        private async RetornarPortaAsync(): Promise<number>
+        {
+            const url = "/vs-porta-depuracao";
+
+            return new Promise((resolve, reject) =>
+            {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", url, true);
+                xhr.onreadystatechange = function ()
+                {
+                    if (xhr.readyState === 4 && xhr.status === 200)
+                    {
+                        resolve(ConverterUtil.ParaNumero(xhr.responseText));
+                    }
+                };
+                xhr.send();
+            });
         }
 
         private Conectar(): void
@@ -78,7 +98,7 @@
                 this.IsConectadoInterno = true;
                 this.Ping();
             }
-            catch(ex)
+            catch (ex)
             {
                 console.error(ex);
             }
@@ -90,7 +110,7 @@
             {
                 this.ReceberMensagem(e.data);
             }
-            catch(ex)
+            catch (ex)
             {
                 LogUtil.Erro(ex);
             }
@@ -244,6 +264,7 @@
             //{
             //    return ConverterUtil.ParaNumero(parametrosHash.Item(this.PARAMETRO_VS_PORTA_DEPURACAO));
             //}
+
 
             const parametrosUrl = u.UrlUtil.RetornarParametroQuerysUrl();
             if (parametrosUrl.ContainsKey(this.PARAMETRO_VS_PORTA_DEPURACAO))

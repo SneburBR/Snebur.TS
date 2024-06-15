@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta charset="utf-8" />
-    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+    <link href="../../../../../wwwroot/build/Snebur.UI.css" rel="stylesheet" />
 </head>
 <body ap-largura="600px"
     

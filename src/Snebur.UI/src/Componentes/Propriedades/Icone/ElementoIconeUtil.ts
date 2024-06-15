@@ -30,7 +30,7 @@
             if (elementoIcone.nextElementSibling != null)
             {
                 console.error(`Mais de um elemento Ícone foi encontrado em ${componenteApresentacao?.ControleApresentacao?.___NomeConstrutor}
-                                  OuterHTML: ${componenteApresentacao?.Elemento?.outerHTML.substring(0, 255)}`);
+                               OuterHTML: ${componenteApresentacao?.Elemento?.outerHTML.substring(0, 255)}`);
             }
 
             const elementoIconeFilho = elementoIcone.querySelector(PropriedadeIcone.TAG_COMPONENTE_ICONE) as HTMLElement;
@@ -39,10 +39,6 @@
                 return elementoIcone;
             }
             return ElementoIconeUtil.RetornarElementoIcone(elementoIcone as HTMLElement, componenteApresentacao);
-
-
         }
-
-
     }
 }

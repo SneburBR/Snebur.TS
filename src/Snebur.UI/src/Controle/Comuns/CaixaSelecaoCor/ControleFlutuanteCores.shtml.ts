@@ -3,6 +3,7 @@ namespace Snebur.UI
 {
     export class ControleFlutuanteCores extends Snebur.UI.ControleFlutuante implements IControleEventoValorAlterado<d.Cor>
     {
+        private static _tamanhoItemCor: string;
         private static readonly CSS_CLASS_SELECIONADO = "sn-is-cor-selecionada";
         private static readonly CSS_CLASS_PALETA_CORES = "sn-paleta-cores";
         private static readonly CHAVE_LOCAL_STORAGE_HISTORICO: string = "fotoalbum_historico_paleta";
@@ -10,8 +11,15 @@ namespace Snebur.UI
         private _corSelecionada: d.Cor = Cores.Transparente;
         private _elementoDestinoHistoricoPersonalizado: HTMLElement;
 
-        public static readonly TAMANHO_ITEM_COR: string = (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer) ? "32px" : "2rem";
-
+        public static get TAMANHO_ITEM_COR(): string
+        {
+            if (ControleFlutuanteCores._tamanhoItemCor == null)
+            {
+                ControleFlutuanteCores._tamanhoItemCor = (u.SistemaUtil.NavegadorEnum === d.EnumNavegador.InternetExplorer) ? "32px" : "2rem";
+            }
+            return ControleFlutuanteCores._tamanhoItemCor;
+        }
+         
         private IsSugestaoCorHabilitado: boolean;
 
         public override get AlturaInicial(): number

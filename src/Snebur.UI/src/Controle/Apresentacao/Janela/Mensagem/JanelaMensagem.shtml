@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <link href="../../Css/Snebur.FotoAlbum.Apresentacao.Teste.css" rel="stylesheet" />
     <link href="../../Css/Snebur.FotoAlbum.Apresentacao.Usuario.css" rel="stylesheet" />
-    <link href="../../../../../build/Snebur.UI.css" rel="stylesheet" />
+    <link href="../../../../../wwwroot/build/Snebur.UI.css" rel="stylesheet" />
 </head>
 
 <body class="sn-janela-mensagem"

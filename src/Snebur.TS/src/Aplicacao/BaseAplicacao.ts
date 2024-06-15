@@ -232,7 +232,7 @@
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
             {
                 this._servicoDepuracao = new Snebur.Depuracao.ServicoDepuracao();
-                this._servicoDepuracao.Inicializar();
+                await this._servicoDepuracao.InicializarAsync();
             }
 
             if (!ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
@@ -240,9 +240,6 @@
                 console.warn("A URL dos serviço workers não foi definida");
             }
             console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
-
-            //this.InicializarBlobChecksumWorkerAsync();
-
         }
 
         private InicializarConfiguracoes()

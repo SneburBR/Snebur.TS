@@ -6,9 +6,8 @@
         //http://www.useragentstring.com/pages/useragentstring.php
         //https://github.com/faisalman/ua-parser-js/blob/master/src/ua-parser.js
 
-        private static Parser: UAParser = new UAParser();
-        private static Resultado = SistemaUtil.Parser.getResult();
-
+        private static _parser: UAParser;
+        private static _resultado: IUAParser.IResult;
         private static _navegador: d.Navegador;
         private static _resolucao: d.Dimensao;
         private static _plataforma: d.EnumPlataforma;
@@ -22,7 +21,31 @@
         //{
         //    return CookieUtil.IsCookieAtivo;
         //}
-         
+
+        private static get Parser(): UAParser
+        {
+            if (SistemaUtil._parser == null)
+            {
+                if (typeof UAParser === "undefined")
+                {
+                    console.error("UAParser não definido, verifique se o arquivo ua-parser.js foi carregado");
+                    return null;
+                }
+                SistemaUtil._parser = new UAParser();
+            }
+            return SistemaUtil._parser;
+        }
+
+        private static get Resultado()
+        {
+            if (SistemaUtil._resultado == null)
+            {
+                SistemaUtil._resultado = SistemaUtil.Parser?.getResult();
+            }
+            return SistemaUtil._resultado;
+
+        }
+
         public static get Resolucao(): d.Dimensao
         {
             if (!(SistemaUtil._resolucao instanceof d.Dimensao))

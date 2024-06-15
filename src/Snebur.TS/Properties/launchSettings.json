@@ -3,10 +3,11 @@
     "Snebur.TS": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:50942;http://localhost:50943"
+      "applicationUrl": "http://localhost:50142"
     }
   }
 }

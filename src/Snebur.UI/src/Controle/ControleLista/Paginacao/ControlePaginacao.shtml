@@ -6,7 +6,7 @@
 
     <link href="http://localhost/Snebur.UI/Estilos/Bibliotecas/mdl/css/material.blue_grey-red.min.css" rel="stylesheet" />
 
-    <link href="../../../../build/Snebur.UI.css" rel="stylesheet" />
+    <link href="../../../../wwwroot/build/Snebur.UI.css" rel="stylesheet" />
 </head>
 
 

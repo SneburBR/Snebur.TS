@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "build/Snebur.UI.css",
+    "outputFile": "wwwroot/build/Snebur.UI.css",
     "inputFile": "scss/Snebur.UI.scss",
     "minify": {
       "enabled": true

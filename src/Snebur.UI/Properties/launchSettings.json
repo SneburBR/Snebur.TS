@@ -1,4 +1,16 @@
 {
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:62635",
+      "sslPort": 44300
+    },
+    "iis": {
+      "applicationUrl": "https://ui-localhost.sigi.com.br/",
+      "sslPort": 443
+    }
+  },
   "profiles": {
     "Snebur.UI": {
       "commandName": "Project",
@@ -7,6 +19,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:62635;http://localhost:62636"
+    },
+    "IIS": {
+      "commandName": "IIS",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://ui-localhost.sigi.com.br/"
     }
   }
 }
