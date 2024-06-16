@@ -19,6 +19,7 @@
         private _httpStatus: number = -1;
         private _isDispensado: boolean = false;
         private _idTimeout: number;
+        private _idInterval: number;
         private _stopwatch: Stopwatch;
         private _isTimeouotAtigindo: boolean = false;
 
@@ -53,6 +54,7 @@
             this.XmlHttp.onloadend = this.XmlHttp_LoadEnd.bind(this);
             this.XmlHttp.onprogress = this.XmlHttp_Progress.bind(this);
             this.XmlHttp.responseType = "arraybuffer";
+            this.XmlHttp.timeout = this.Timeout;
 
             /*PacoteUtil.CompactarPacote(conteudo);*/
             //this.Xmlhttp.setRequestHeader("Usuario", u.Base64Util.Encode(this.Credencial.Usuario));
@@ -63,6 +65,12 @@
         {
             this._stopwatch = Stopwatch.StartNew();
             this._idTimeout = window.setTimeout(this.ChamadaServico_Timeout, timeout);
+
+            if ($Configuracao.IsDebug)
+            {
+                this._idInterval = window.setTimeout(this.ChamadaServico_Interval, 1000);
+            }
+
 
             return new Promise(resolver =>
             {
@@ -173,6 +181,8 @@
             }
 
             window.clearTimeout(this._idTimeout);
+            window.clearTimeout(this._idTimeout);
+
             this._httpStatus = this.XmlHttp.status;
 
             if (u.ValidacaoUtil.IsDefinido(this.Resolver))
@@ -195,6 +205,14 @@
             this.FinalizarChamarAsync(new ResultadoChamadaErroCliente(this.Requisicao));
         }
 
+        private ChamadaServico_Interval()
+        {
+            const mensagem = `A requisição '${this.Requisicao.UrlCompleta}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
+            const logHandler = (this._stopwatch.TotalSeconds > 5)
+                ? console.error : console.warn;
+            logHandler(mensagem);
+        }
+
         private async XmlHttp_ReadyStateChange(event: ProgressEvent)
         {
             if (this.XmlHttp.readyState === 4)
@@ -209,12 +227,8 @@
                     }
                     default: {
 
-
-                        const mensagem = `Erro ReadyState servidor, URL: ${this.Url}, Código ${this.XmlHttp.status}`;
-                        if ($Configuracao.IsDebug)
-                        {
-                            LogUtil.Erro(mensagem);
-                        }
+                        const mensagem = `Erro ReadyState servidor, URL: ${this.Requisicao.UrlCompleta}, Código ${this.XmlHttp.status}`;
+                        console.error(mensagem);
 
                         const erro = new ErroComunicacao(mensagem, this.Url, this.XmlHttp.status, this);
                         this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
@@ -231,12 +245,9 @@
                 console.warn("XmlHttp_Error: A chamada de requisição já foi dispensada");
                 return;
             }
-            const mensagem = "Erro serviço OnError  " + this.Url;
-            if ($Configuracao.IsDebug)
-            {
-                LogUtil.Erro(mensagem);
-            }
-
+            const mensagem = `Erro serviço OnError  ${this.Requisicao.UrlCompleta}`;
+            console.error(mensagem);
+            
             const erro = new ErroComunicacao(mensagem, this.Url, this.HttpStatus, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }
@@ -318,6 +329,8 @@
                 super.Dispose();
 
                 this.Resolver = null;
+
+                window.clearInterval(this._idInterval);
 
                 this.XmlHttp_ReadyStateChange = null;
                 this.Xmlhttp_Load = null;

@@ -7,15 +7,11 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
-
-	<!--<ItemGroup>
-		<TypeScriptCompile Include="src\**\*.ts" />
-	</ItemGroup>-->
-
+  
 	<ItemGroup>
 	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>
-  
+ 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5">
 
@@ -24,43 +20,7 @@
 		</PackageReference>
 	</ItemGroup>
   
-	<ItemGroup>
-	  <None Include="wwwroot\build\Snebur.d.ts.map" />
-	  <None Include="wwwroot\build\Snebur.dicionario.js" />
-	  <None Include="wwwroot\build\Snebur.js" />
-	  <None Include="wwwroot\build\Snebur.js.map" />
-	  <None Include="wwwroot\build\Snebur.original.js" />
-	  <None Include="wwwroot\build\Snebur.UI.css" />
-	  <None Include="wwwroot\build\Snebur.UI.d.ts.map" />
-	  <None Include="wwwroot\build\Snebur.UI.dicionario.js" />
-	  <None Include="wwwroot\build\Snebur.UI.js" />
-	  <None Include="wwwroot\build\Snebur.UI.js.map" />
-	  <None Include="wwwroot\build\Snebur.UI.min.css" />
-	  <None Include="wwwroot\build\Snebur.UI.original.js" />
-	  <None Include="wwwroot\resources\Fontes\Material\Icones\codepoints" />
-	  <None Include="wwwroot\resources\Fontes\Material\Icones\MaterialIcons-Regular.eot" />
-	  <None Include="wwwroot\resources\Fontes\Material\Icones\MaterialIcons-Regular.ijmap" />
-	  <None Include="wwwroot\resources\Fontes\Material\Icones\MaterialIcons-Regular.ttf" />
-	  <None Include="wwwroot\resources\Fontes\Material\Icones\README.md" />
-	  <None Include="wwwroot\resources\fonts\MaterialIcons-Regular.ttf" />
-	  <None Include="wwwroot\resources\Images\favicon.ico" />
-	</ItemGroup>
-
-
-	<!--
-	<PropertyGroup Label="Configuration" 
-				   Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<TypeScriptTarget>ES2020</TypeScriptTarget>
-	</PropertyGroup>
-
-	<PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<TypeScriptTarget>ES2015</TypeScriptTarget>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-		<TypeScriptOutFile />
-		<TypeScriptRemoveComments>false</TypeScriptRemoveComments>
-	</PropertyGroup>-->
+ 
 
 
 </Project>

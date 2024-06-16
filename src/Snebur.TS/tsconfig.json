@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../Snebur.UI/wwwroot/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -538,7 +538,7 @@
   "exclude": [
     "node_modules",
     "wwwroot",
-    "build"
+    "wwwroot/build"
   ],
   "PrioridadeProjeto": 0,
   "UrlDesenvolvimento": "",

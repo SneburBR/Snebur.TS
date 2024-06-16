@@ -3,7 +3,7 @@
     export class CartaoCreditoUtil
     {
         private static readonly CabalBins = ["6035", "6042", "6043", "6044"];
-        private static readonly BASE_URL_BANDEIRA = "/Recursos/Imagens/pagamentos/";
+        private static readonly BASE_URL_BANDEIRA = "/resources/Imagens/pagamentos/";
 
         private static get Outro()
         {

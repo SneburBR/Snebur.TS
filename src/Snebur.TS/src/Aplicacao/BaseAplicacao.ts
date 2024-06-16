@@ -170,17 +170,18 @@
         public constructor()
         {
             super();
-            this.DefinirVersaoDebug();
+            
 
             if (BaseAplicacao.__instancia != null)
             {
                 throw new Erro("Já existe uma aplicação snebur instanciada");
-            }
+            } 
             BaseAplicacao.__instancia = this;
         }
 
         public async Inicializar() 
         {
+            this.DefinirVersaoDebug();
             this.InicializarConfiguracoes();
 
             r.GerenciadorNamespace.Inicializar();
@@ -375,6 +376,12 @@
 
         private DefinirVersaoDebug()
         {
+            if (typeof $Configuracao === "undefined")
+            {
+                throw new Error("O objeto configuração $Configuracao não foi definido");
+                /*this.InicializarConfiguracaoPadrao();*/
+            }
+
             if ($Configuracao.IsDebug && !$Configuracao.Versao.Contains("debug"))
             {
                 const agora = new Date();
@@ -441,6 +448,22 @@
         {
             const documentoPrincipal = (window.top !== window.self) ? window.parent.document : window.document;
             documentoPrincipal.location.reload();
+        }
+
+        private InicializarConfiguracaoPadrao()
+        {
+            Snebur.$Configuracao = {
+                CulturaPadrao: "pt-BR",
+                IdiomaPadrao: "pt-BR",
+                FormatoData: EnumFormatoData.DMY,
+                IdentificadorAplicacao: "Snebur.Aplicacao.Teste",
+                IsDebug: true,
+                NamespaceAplicacao: "Snebur.Aplicacao.Teste",
+                NamespacesDependecia: ["Snebur", "Snebur.UI"],
+                NamespacesEntidade: ["Snebur.Aplicacao.Teste.Entidades"],
+                TipoData: EnumTipoData.Local,
+                Versao: "1.0.0",
+            }
         }
         //#endregion
 

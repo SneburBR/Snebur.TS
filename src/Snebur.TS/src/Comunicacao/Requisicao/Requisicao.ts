@@ -17,10 +17,15 @@
             return this.URLServico;
         }
 
+        public get UrlCompleta(): string
+        {
+            return UrlUtil.Combinar(this.UrlRequisicao ,this.NomeManipualdor, this.NomeMetodo,`\{${BaseRequisicao.Contador}\}`);
+        }
+
         public constructor(
             private readonly BaseServico: BaseComunicacaoCliente,
-            private readonly NomeManipualdor: string,
-            private readonly NomeMetodo: string,
+            public readonly NomeManipualdor: string,
+            public readonly NomeMetodo: string,
             private readonly Credencial: s.Credencial,
             private readonly Pacote: Uint8Array)
         {
@@ -60,7 +65,7 @@
                 this.NotificarErroRequisicao(
                     chamadaServico,
                     resultadoChamada);
-                     
+
                 return await this.TentarNovamenteAsync(resultadoChamada);
             }
             return resultadoChamada;
@@ -163,7 +168,7 @@
             await u.ThreadUtil.EsperarAsync(esperarProximaTentativa);
             return await this.ExecutarInternoAsync();
         }
-         
+
         //#region Normalizar resultado
 
         private RetornarValorResultado(resultadoChamada: ResultadoChamada): any
@@ -228,7 +233,7 @@
 
         public override toString(): string
         {
-            return ` ${this.NomeManipualdor} ${this.NomeMetodo} ( ${BaseRequisicao.Contador})`;
+            return this.UrlCompleta;
         }
     }
 }

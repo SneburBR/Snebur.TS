@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "wwwroot/build/Snebur.UI.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,7 @@
     "declarationMap": true
   },
   "files": [
-    "wwwroot/build/Snebur.d.ts",
+    "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
@@ -475,7 +475,7 @@
   "exclude": [
     "node_modules",
     "wwwroot",
-    "build"
+    "wwwroot/build"
   ],
   "PrioridadeProjeto": 1,
   "UrlDesenvolvimento": "https://ui-localhost.sigi.com.br",

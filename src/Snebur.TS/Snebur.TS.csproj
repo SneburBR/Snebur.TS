@@ -7,20 +7,12 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
-  
-	<ItemGroup>
-	  <None Remove="web.config.temp" />
-	</ItemGroup>
-
  
 
 	<ItemGroup>
 	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="web.config.temp" />
-	</ItemGroup>
+ 
 	
  	<ItemGroup>
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5">
@@ -28,10 +20,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-	
-  
- 
-
+	 
 </Project>
 
 
