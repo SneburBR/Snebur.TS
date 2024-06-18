@@ -12,8 +12,7 @@
         public IsMostrarBotaoVoltar: boolean = false;
         public IsMostrarBotaoContinuar: boolean = false;
         public IsMostraarOpcaoSalvarAoSair: boolean = true;
-
-
+        
         public readonly TipoEntidade: r.TipoEntidade;
         public readonly IDEntidade: number;
 
@@ -237,7 +236,7 @@
             return String.Empty;
         }
 
-        private AtualizarTitulos(viewModel: EntidadeCadastroViewModel<TEntidade> = this.ViewModel)
+        protected AtualizarTitulos(viewModel: EntidadeCadastroViewModel<TEntidade> = this.ViewModel)
         {
             if (viewModel != null)
             {

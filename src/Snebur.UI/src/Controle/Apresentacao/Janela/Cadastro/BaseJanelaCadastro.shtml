@@ -27,7 +27,7 @@
 
         </ap-cabecalho>
         <ap-linha
-            ap-altura="16px">
+            ap-altura="19px">
             <ap-texto
                 ap-cor-texto="Cinza"
                 ap-tipografia="Corpo"

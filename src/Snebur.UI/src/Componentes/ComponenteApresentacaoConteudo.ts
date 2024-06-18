@@ -126,7 +126,7 @@
 
             if (this.ElementoLegenda instanceof HTMLElement)
             {
-                this.ElementoLegenda.innerHTML = legenda;
+                this.ElementoLegenda.innerHTML = FormatacaoUtil.QuebrarLinhasHtml(legenda);
             }
 
             /*this.RemoverLegenda();*/
@@ -171,7 +171,7 @@
                 elementoDestino.appendChild(elementoLegenda);
                 this.ElementoLegenda = elementoLegenda;
             }
-            this.ElementoLegenda.innerHTML = this.Legenda;
+            this.ElementoLegenda.innerHTML = FormatacaoUtil.QuebrarLinhasHtml(this.Legenda);
         }
 
 
