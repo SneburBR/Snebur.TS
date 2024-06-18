@@ -8,8 +8,7 @@ interface ArrayConstructor
 {
     isArrayBase(arg: any): arg is any[];
 }
-
-
+ 
 namespace Snebur.Nativo
 {
     export interface IArray<T> extends ITipo<Snebur.Reflexao.BaseTipoLista>
@@ -89,6 +88,7 @@ namespace Snebur.Nativo
 
         All(expressao: (value: T) => any): boolean;
 
+        Any(): boolean;
         Any(expressao: (value: T) => any): boolean;
 
         readonly Count: number;
@@ -169,6 +169,7 @@ namespace Snebur.Nativo
         ToList(): List<T>;
         ToList<U>(): List<U>;
         ToList<U>(nova: boolean): List<U>;
+        ToSet(): Set<T>;
 
         ToListaObservacao(): ListaObservacao<T>;
 

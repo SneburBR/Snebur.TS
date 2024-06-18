@@ -86,6 +86,11 @@ namespace Snebur
         }
     }
 
+    Array.prototype.ToSet = function (this: Array<any>)
+    {
+        return new Set(this);
+    }
+
     Array.prototype.ToTupleItemIndex = function (this: Array<any>,)
     {
         let retorno = new Array<[any, number]>();
@@ -508,21 +513,20 @@ namespace Snebur
         return true;
     });
 
-    Array.prototype.Any = function (this: Array<any>, funcaoAny)
+    Array.prototype.Any = function (this: Array<any>, funcaoAny?: (value: any) => any)
     {
         if (u.ValidacaoUtil.IsFunction(funcaoAny))
         {
-            let len = this.length;
-            for (let i = 0; i < len; i++)
+            for (const item of this)
             {
-                let item = this[i];
                 if (funcaoAny(item))
                 {
                     return true;
                 }
             }
+            return false;
         }
-        return false;
+        return this.length > 0;
     };
 
     //Array.prototype.Count = function ()

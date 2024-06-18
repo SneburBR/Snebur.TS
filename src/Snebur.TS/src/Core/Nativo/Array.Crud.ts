@@ -83,7 +83,7 @@
     {
         if (isAdd)
         {
-           return this.Add(item);
+            return this.Add(item);
         }
         return -1;
     });
@@ -252,10 +252,10 @@
         }
     });
 
-    Array.prototype.AddRange = (function (valores)
+    Array.prototype.AddRange = (function (this: Array<any>, itens: any[])
     {
         /*eslint-disable*/
-        if (valores == this)
+        if (itens == this)
         {
             return;
         }
@@ -265,30 +265,25 @@
             ListaObservacao.ListaNovaAlterada(this, true);
         }
 
-        if (valores && valores.length)
+        if (Array.isArray(itens) && itens.length > 0)
         {
-            let len = valores.length;
-            if (len > 0)
+            for (const item of itens)
             {
-                for (let i = 0; i < len; i++)
-                {
-                    let valor = valores[i];
-                    this.Add(valor);
-                }
+                this.Add(item);
             }
         }
     });
 
-    Array.prototype.AddRangeNew = (function (this: Array<any>, valores)
+    Array.prototype.AddRangeNew = (function (this: Array<any>, itens: Array<any>)
     {
         /*eslint-disable*/
-        if (valores == this)
+        if (itens == this)
         {
             return;
         }
 
         this.Clear();
-        this.AddRange(valores);
+        this.AddRange(itens);
     });
 
     Array.prototype.AddRangeAsync = (async function (this: Array<any>, items: any[]): Promise<void>
@@ -412,4 +407,7 @@
                 throw new Erro("A lista não é suportada");
         }
     });
+   
+
+   
 }
