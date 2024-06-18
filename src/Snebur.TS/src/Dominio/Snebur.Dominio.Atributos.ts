@@ -1301,7 +1301,7 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        public static MensagemValidacao : string = "A '{0}' não pode ser anterior à data de hoje."; 
+        public static MensagemValidacao : string = "A '{0}' deve ser superior ou igual à data de hoje."; 
     
         public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
         //#endregion

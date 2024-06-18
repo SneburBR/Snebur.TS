@@ -233,6 +233,11 @@
 
         public static RetornarLinhas(texto: string): List<string>
         {
+            if (String.IsNullOrWhiteSpace( texto ))
+            {
+                return [];
+            }
+
             return texto.split(/\r\n|\r|\n/);
         }
 
@@ -529,6 +534,15 @@
                 }
             }
             return sb.ToString(" ");
+        }
+
+        public static RetornarUltimosCaracteres(texto: string, quantidade: number): string
+        {
+            if (String.IsNullOrWhiteSpace(texto))
+            {
+                return "";
+            }
+            return texto.substring(Math.max( texto.length - quantidade, 0));
         }
     }
 

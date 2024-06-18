@@ -3,13 +3,29 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<Nullable>enable</Nullable>
-		<ImplicitUsings>disable</ImplicitUsings>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Content Remove="Properties\launchSettings.bkp.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <_WebToolingArtifacts Remove="Properties\launchSettings.bkp.json" />
+	</ItemGroup>
   
 	<ItemGroup>
 	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <None Include="Properties\launchSettings.bkp.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+	  </None>
 	</ItemGroup>
  
 	<ItemGroup>

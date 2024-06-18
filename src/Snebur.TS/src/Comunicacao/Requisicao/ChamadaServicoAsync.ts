@@ -22,6 +22,7 @@
         private _idInterval: number;
         private _stopwatch: Stopwatch;
         private _isTimeouotAtigindo: boolean = false;
+        private _isIntervalAtingido: boolean = false;
 
         /*private readonly Pacote: Uint8Array;*/
         private Resolver: (resultadoChamada: ResultadoChamada) => void;
@@ -64,14 +65,13 @@
         public ChamarAsync(pacote: Uint8Array, timeout: number): Promise<ResultadoChamada>
         {
             this._stopwatch = Stopwatch.StartNew();
-            this._idTimeout = window.setTimeout(this.ChamadaServico_Timeout, timeout);
+            this._idTimeout = window.setTimeout(this.ChamadaServico_Timeout.bind(this), timeout);
 
             if ($Configuracao.IsDebug)
             {
-                this._idInterval = window.setTimeout(this.ChamadaServico_Interval, 1000);
+                this._idInterval = window.setInterval(this.ChamadaServico_Interval.bind(this), 2000);
             }
-
-
+             
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
@@ -157,9 +157,17 @@
 
         private FinalizarChamarAsync(resultadoChamada: ResultadoChamada)
         {
+            window.clearTimeout(this._idTimeout);
+            window.clearInterval(this._idInterval);
+
             if (this._isDispensado)
             {
                 return;
+            }
+
+            if ($Configuracao.IsDebug && this._isIntervalAtingido)
+            {
+                console.warn(` A requisicão ${this.Requisicao.UrlCompleta} concluida em ${this._stopwatch.TotalSeconds}s`);
             }
 
             if (this._isTimeouotAtigindo)
@@ -174,14 +182,13 @@
                 if (!(resultadoChamada instanceof ResultadoChamadaTimeoutCliente))
                 {
                     const mensagem = `O chamada retornou o resultado ${resultadoChamada.GetType().Nome} em ${this._stopwatch.TotalSeconds}s.
-                                      Porém depois que timeout foi atingido para requisição ${this.Requisicao.toString()}`;
+                                      Depois que timeout foi atingido para requisição ${this.Requisicao.toString()}`;
 
                     DebugUtil.ThrowAndContinue(mensagem);
                 }
             }
 
-            window.clearTimeout(this._idTimeout);
-            window.clearTimeout(this._idTimeout);
+         
 
             this._httpStatus = this.XmlHttp.status;
 
@@ -210,6 +217,8 @@
             const mensagem = `A requisição '${this.Requisicao.UrlCompleta}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
             const logHandler = (this._stopwatch.TotalSeconds > 5)
                 ? console.error : console.warn;
+
+            this._isIntervalAtingido = true;
             logHandler(mensagem);
         }
 
@@ -319,7 +328,7 @@
             {
                 return 5 * 60 * 1000;
             }
-            return 30 * 1000;
+            return 60 * 1000;
         }
 
         public override Dispose()

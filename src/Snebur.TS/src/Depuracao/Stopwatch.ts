@@ -35,6 +35,11 @@
             return (this.ElapsedMilliseconds / 1000);
         }
 
+        public get TotalMinutes(): number
+        {
+            return (this.ElapsedMilliseconds / 1000 / 60);
+        }
+
         public constructor()
         {
 
