@@ -136,6 +136,15 @@
         enumerable: true,
     });
 
+    Object.defineProperty(Date.prototype, "DataZeroHoraUTC", {
+
+        get: function (this: Date)
+        {
+            return new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate(), 0, 0, 0, 0));
+        },
+        enumerable: true,
+    });
+
     Object.defineProperty(Date.prototype, "GetHashCode", {
 
         value: function (this: Date)

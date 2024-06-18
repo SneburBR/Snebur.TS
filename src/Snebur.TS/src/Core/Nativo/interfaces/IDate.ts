@@ -31,6 +31,8 @@ namespace Snebur.Nativo
 
         readonly DataZeroHora: Date;
 
+        readonly DataZeroHoraUTC: Date;
+
         readonly Utc: Date;
 
         
