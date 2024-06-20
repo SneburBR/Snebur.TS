@@ -5,7 +5,7 @@
         private static readonly REG_DATA_JSON_MS = /\/Date\(-*[0-9]+\)\//
         /*/^\/Date\([-|0-9][0-9]+\)\/$/;*/
 
-        public static Para(valor: any, tipo: r.BaseTipo, ignorarErro?: boolean, isNullable?:boolean): any
+        public static Para(valor: any, tipo: r.BaseTipo, ignorarErro?: boolean, isNullable?: boolean): any
         {
             if (tipo instanceof r.TipoPrimario)
             {
@@ -200,7 +200,7 @@
                 return valor ? 1 : 0;
             }
 
-            
+
             let resultado: number;
             if (inteiro)
             {
@@ -335,13 +335,14 @@
         }
 
         public static ParaDataHora(valor: any): Date;
-        public static ParaDataHora(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean, isNullable?:boolean): Date;
+        public static ParaDataHora(valor: any, tipoData: EnumTipoData, isIgnorarErro?: boolean, isNullable?: boolean): Date;
         public static ParaDataHora(valor: any, tipoData: EnumTipoData = $Configuracao.TipoData, isIgnorarErro: boolean = false, isNullable: boolean = true): Date | null
         {
             if (valor == null)
             {
                 return isNullable ? null : new Date();
             }
+
             if (!u.ValidacaoUtil.IsDefinido(valor))
             {
                 return null;
@@ -391,14 +392,32 @@
                     }
                 }
 
-                if (!u.ValidacaoUtil.IsDateString(valor))
+
+                let melhorFormatoData = $Configuracao.FormatoData;
+
+                if (!u.ValidacaoUtil.IsDateString(valor, melhorFormatoData))
                 {
-                    if (isIgnorarErro)
+                    const descricaoFormato = EnumFormatoData[$Configuracao.FormatoData];
+                    console.error(`Não foi possível converter a data string ${valor} para o objeto Date ${descricaoFormato}`);
+
+                    const formatoAlternativo = $Configuracao.FormatoData == EnumFormatoData.DMY
+                        ? EnumFormatoData.MDY
+                        : EnumFormatoData.DMY;
+                        
+                    console.warn(`Tentando converter para o formato ${EnumFormatoData[formatoAlternativo]}`)
+
+                    if (!u.ValidacaoUtil.IsDateString(valor, formatoAlternativo))
                     {
-                        return isNullable ? null : new Date();
+                        if (isIgnorarErro)
+                        {
+                            return isNullable ? null : new Date();
+                        }
+                        throw new Erro(`Não foi possível converter a data string ${valor} para o objeto Date`);
                     }
-                    throw new Erro(`Não foi possível converter a data string ${valor} para o objeto Date`);
-                }
+
+                    melhorFormatoData = formatoAlternativo;
+                 }
+
 
                 dataString = DataHoraUtil.NormalizarDataHoraString(dataString);
                 const partes = dataString.split(" ").Where(x => !String.IsNullOrWhiteSpace(x)).ToList();
@@ -406,9 +425,9 @@
 
                 let parteData = partes.Where(x => x.Contains("/") || x.Contains("-")).FirstOrDefault();
 
-                const [ano, mes, dia] = DataHoraUtil.ExtrairDataString(parteData, false);
-
-                if (String.IsNullOrWhiteSpace(parteData) && String.IsNullOrWhiteSpace(parteHora))
+                const [ano, mes, dia] = DataHoraUtil.ExtrairDataString(parteData, false, melhorFormatoData);
+                if (String.IsNullOrWhiteSpace(parteData) &&
+                    String.IsNullOrWhiteSpace(parteHora))
                 {
                     parteData = dataString;
                 }
@@ -723,10 +742,10 @@
                 {
                     // Formato brasileiro (1.350,20)
                     return cleanValue.replace(/\./g, "").replace(",", ".");
-                }  
-                    // Formato americano (1,350.20)
+                }
+                // Formato americano (1,350.20)
                 return cleanValue.replace(/,/g, "");
-                 
+
             }
             else if (hasComma)
             {
@@ -743,7 +762,7 @@
                 // Apenas números
                 return cleanValue;
             }
-             
+
             //return valor;
         }
 

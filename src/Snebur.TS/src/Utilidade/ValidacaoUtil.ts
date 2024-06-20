@@ -175,7 +175,7 @@
             return false;
         }
 
-        public static IsDateString(obj: string): boolean
+        public static IsDateString(obj: string, formatoData: EnumFormatoData = $Configuracao.FormatoData): boolean
         {
             if (typeof obj === "string")
             {
@@ -184,7 +184,7 @@
                 const parteData = partes.Where(x => x.Contains("/")).FirstOrDefault();
                 if (parteData !== null)
                 {
-                    const [ano, mes, dia] = DataHoraUtil.ExtrairDataString(parteData, true);
+                    const [ano, mes, dia] = DataHoraUtil.ExtrairDataString(parteData, true, formatoData);
                     if (ano > 0 && mes > 0 && dia)
                     {
                         const isDiaValido = (dia <= 31 && dia <= 31);

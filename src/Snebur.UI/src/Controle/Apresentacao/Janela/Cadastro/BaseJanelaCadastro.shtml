@@ -110,7 +110,7 @@
                             ap-cor-texto="Branca"
                             sn-rotulo="{{RotuloBotaoSalvar}}, Origem=this"
                             sn-click="BtnSalvarInterno_Click">
-                            SALVAR</sn-botao>
+                            Salvar</sn-botao>
                     </ap-bloco>
 
 

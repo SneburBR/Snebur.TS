@@ -291,5 +291,13 @@
                 `Não foi possível deletar esse item.
                 Tente novamente mais tarde ou entre em contato com o suporte.`);
         }
+
+        public static async NotificarMensagensValidacaoAsync(mensagens: string[]): Promise<void>
+        {
+            const mensagensValidacao = mensagens.join("\n");
+            await ui.MensagemUtil.MostrarMensagemErroAsync(
+                $Aplicacao.DocumentoPrincipal,
+                mensagensValidacao);
+        }
     }
 }

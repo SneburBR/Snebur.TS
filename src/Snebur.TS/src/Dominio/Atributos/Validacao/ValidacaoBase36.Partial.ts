@@ -16,11 +16,15 @@ namespace Snebur.Dominio.Atributos
         return mensagemValidacao;
     };
 
-    ValidacaoBase36Attribute.prototype.IsValido = function (paiPropriedade: Snebur.Dominio.BaseDominio, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): boolean
+    ValidacaoBase36Attribute.prototype.IsValido = function (
+        paiPropriedade: Snebur.Dominio.BaseDominio,
+        propriedade: Snebur.Reflexao.Propriedade,
+        valorPropriedade: any): boolean
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
-            return u.Base36Util.IsBase36(valorPropriedade, 
+            return u.Base36Util.IsBase36(
+                valorPropriedade, 
                 this.IsPermitirEspaco,
                 this.IsIgnorarCase,
                 this.CaracteresExtra);

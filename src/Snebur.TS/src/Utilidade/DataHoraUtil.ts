@@ -225,7 +225,7 @@ namespace Snebur.Utilidade
                 Replace("T", " ");
         }
 
-        public static ExtrairDataString(dataString: string, isIgnorarErro: boolean): [ano: number, mes: number, dia: number]
+        public static ExtrairDataString(dataString: string, isIgnorarErro: boolean, formatoData: EnumFormatoData =$Configuracao.FormatoData): [ano: number, mes: number, dia: number]
         {
             const partes = dataString.split("/");
             const [parte1, parte2, parte3] = [ConverterUtil.ParaInteiro(partes[0], true),
@@ -244,7 +244,7 @@ namespace Snebur.Utilidade
                     return [parte1, parte2, parte3];
                 }
 
-                switch ($Configuracao.FormatoData)
+                switch (formatoData)
                 {
                     case EnumFormatoData.DMY:
 

@@ -378,9 +378,9 @@
             this.__Obetos[chave] = item;
         }
 
-        public TryItem(chave: TChave): TItem
-        public TryItem(chave: TChave, valorPadrao: TItem): TItem
-        public TryItem(chave: TChave, valorPadrao: TItem = null): TItem
+        public TryItem(chave: TChave): TItem | null
+        public TryItem(chave: TChave, valorPadrao: TItem): TItem | null
+        public TryItem(chave: TChave, valorPadrao: TItem = null): TItem | null
         {
             let item = this.__Obetos[chave];
             if (u.ValidacaoUtil.IsDefinido(item))

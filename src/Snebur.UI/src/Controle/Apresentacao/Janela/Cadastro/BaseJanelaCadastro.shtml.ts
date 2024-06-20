@@ -6,16 +6,16 @@
         private readonly __novaEntidade: TEntidade;
         private readonly __editarEntidade: TEntidade;
 
+        public readonly TipoEntidade: r.TipoEntidade;
+        public readonly IDEntidade: number;
+
         public IsMostrarCabecalho: boolean = true;
         public IsMostrarBotaoCancelar: boolean = true;
         public IsMostrarBotaoSalvar: boolean = true;
         public IsMostrarBotaoVoltar: boolean = false;
         public IsMostrarBotaoContinuar: boolean = false;
         public IsMostraarOpcaoSalvarAoSair: boolean = true;
-        
-        public readonly TipoEntidade: r.TipoEntidade;
-        public readonly IDEntidade: number;
-
+         
         public Contexto: a.BaseContextoDados;
         public Titulo: string;
         public SubTitulo: string;
@@ -23,10 +23,10 @@
         public Info: string
         public IsMostrarInfo: boolean = false;
 
-        public RotuloBotaoCancelar: string = "CANCELAR";
-        public RotuloBotaoSalvar: string = "SALVAR";
-        public RotuloBotaoVoltar: string = "VOLTAR";
-        public RotuloBotaoContinuar: string = "CONTINUAR";
+        public RotuloBotaoCancelar: string = "Cancelar";
+        public RotuloBotaoSalvar: string = "Salvar";
+        public RotuloBotaoVoltar: string = "Voltar";
+        public RotuloBotaoContinuar: string = "Continuar";
 
         protected AtivarEnterSalvar: boolean;
 
@@ -560,19 +560,19 @@
     //#endregion
 
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
-    {
-        readonly TextoTitulo: ui.Texto;
-        readonly BlocoFormulario: ui.Bloco;
-        readonly BlocoBotoes: ui.Bloco;
-        readonly BtnCancelarInterno: ui.Botao;
-        readonly BtnVoltarInterno: ui.Botao;
-        readonly BtnContinuarInterno: ui.Botao;
-        readonly BtnSalvarInterno: ui.Botao;
-    }
+	export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
+	{
+		readonly TextoTitulo: ui.Texto;
+		readonly BlocoFormulario: ui.Bloco;
+		readonly BlocoBotoes: ui.Bloco;
+		readonly BtnCancelarInterno: ui.Botao;
+		readonly BtnVoltarInterno: ui.Botao;
+		readonly BtnContinuarInterno: ui.Botao;
+		readonly BtnSalvarInterno: ui.Botao;
+	}
 
-    //#endregion
+	//#endregion
 
 }
