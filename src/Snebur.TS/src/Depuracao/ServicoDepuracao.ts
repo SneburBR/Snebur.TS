@@ -45,8 +45,8 @@
 
         public async InicializarAsync()
         {
-            this.PortaAtual = await this.RetornarPortaAsync();
-            this.Conectar();
+            
+            await this.ConectarAsync();
         }
 
         private async RetornarPortaAsync(): Promise<number>
@@ -68,8 +68,9 @@
             });
         }
 
-        private Conectar(): void
+        private async ConectarAsync()
         {
+            this.PortaAtual = await this.RetornarPortaAsync();
             if (this.PortaAtual > 0)
             {
                 this.DesconectarSessaoAtual();
@@ -77,8 +78,8 @@
                 this.UrlDepuracao = this.RetornarUrlServico();
 
                 this.Log(`Iniciando serviço depuração web socket. '${this.UrlDepuracao}'`);
-                this.ServicoWebScoket = new WebSocket(this.UrlDepuracao);
 
+                this.ServicoWebScoket = new WebSocket(this.UrlDepuracao);
                 this.ServicoWebScoket.addEventListener("open", this.ServicoWebScoket_Open.bind(this));
                 this.ServicoWebScoket.addEventListener("message", this.ServicoWebScoket_Message.bind(this));
                 this.ServicoWebScoket.addEventListener("close", this.ServicoWebScoket_Close.bind(this));
@@ -147,7 +148,7 @@
         private TentarNovaConexao(): void
         {
             this.DesconectarSessaoAtual();
-            this.IdentificadorTentarNovaConexao = window.setTimeout(this.Conectar.bind(this), this.TEMPO_NOVA_CONEXAO);
+            this.IdentificadorTentarNovaConexao = window.setTimeout(this.ConectarAsync.bind(this), this.TEMPO_NOVA_CONEXAO);
         }
 
         public EnviarMensagem(mensagem: Mensagem): void
@@ -253,7 +254,7 @@
             if (this.PortaAtual !== porta)
             {
                 this.PortaAtual = porta;
-                this.Conectar();
+                this.ConectarAsync();
             }
         }
 
