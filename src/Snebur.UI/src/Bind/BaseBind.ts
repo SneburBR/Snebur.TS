@@ -144,7 +144,11 @@
 
         private AtribuirValorPropriedadeOrigem()
         {
-            const valorPropriedade = u.ReflexaoUtil.RetornarValorPropriedade(this.Origem, this.CaminhoPropriedadeLigacao, true);
+            const valorPropriedade = u.ReflexaoUtil.RetornarValorPropriedade(
+                this.Origem,
+                this.CaminhoPropriedadeLigacao,
+                true);
+
             if (valorPropriedade === undefined)
             {
                 const nomeConstrutor = this.Origem instanceof Snebur.Objeto ? this.Origem.___NomeConstrutor : " origem desconhecida";
