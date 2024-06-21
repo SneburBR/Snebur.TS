@@ -32,7 +32,10 @@ namespace Snebur
                 try
                 {
                     await itemAtual.InicializarAsync();
-                    this.EventoItemInicializado.Notificar(itemAtual, new ItemEventArgs(itemAtual));
+                    if (this.ItemAtual == itemAtual)
+                    {
+                        this.EventoItemInicializado.Notificar(itemAtual, new ItemEventArgs(itemAtual));
+                    }
                 }
                 finally
                 {
@@ -42,9 +45,14 @@ namespace Snebur
             await this.ExecutarAsync();
         }
 
-        public Limpar(): void
+        public Cancelar(): void
         {
             this.Fila.Clear();
+            if (typeof this.ItemAtual?.Cancelar == "function")
+            {
+                this.ItemAtual.Cancelar();
+            }
+            this.ItemAtual = null;;
         }
     }
 }

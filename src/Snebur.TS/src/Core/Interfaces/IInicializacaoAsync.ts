@@ -4,6 +4,7 @@
     {
         readonly IsInicializado: boolean;
         InicializarAsync(): Promise<void>;
+        Cancelar?(): void;
     }
  
 }
