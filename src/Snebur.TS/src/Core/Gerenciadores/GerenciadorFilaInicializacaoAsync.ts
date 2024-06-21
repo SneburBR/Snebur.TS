@@ -6,6 +6,8 @@ namespace Snebur
         private readonly Fila = new Queue<IInicializacaoAsync>();
         private ItemAtual: IInicializacaoAsync | null = null;
 
+        public readonly EventoItemInicializado = new Evento<ItemEventArgs<IInicializacaoAsync>>(this);
+
         public Adicionar(item: IInicializacaoAsync): void
         {
             this.Fila.Enqueue(item);
@@ -23,12 +25,14 @@ namespace Snebur
                 return;
             }
 
-            this.ItemAtual = this.Fila.Dequeue();
-            if (this.ItemAtual != null)
+            const itemAtual = this.Fila.Dequeue();
+            if (itemAtual != null)
             {
+                this.ItemAtual = itemAtual;
                 try
                 {
-                    await this.ItemAtual.InicializarAsync();
+                    await itemAtual.InicializarAsync();
+                    this.EventoItemInicializado.Notificar(itemAtual, new ItemEventArgs(itemAtual));
                 }
                 finally
                 {

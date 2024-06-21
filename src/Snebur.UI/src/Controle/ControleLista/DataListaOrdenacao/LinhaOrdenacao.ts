@@ -42,10 +42,16 @@
 
         private PageXInicial: number;
         private PageYInicial: number;
+
         private Elemento_MouseDown(e: MouseEvent)
         {
-            this.Mover = true;
+            if (!this.DataListaOrdenacao.IsAtivarOrdenacao)
+            {
+                this.Mover = false;
+                return;
+            }
 
+            this.Mover = true;
             this.PageXInicial = e.pageX;
             this.PageYInicial = e.pageY;
             EstiloUtil.DefinirCursorGlogal("grab");

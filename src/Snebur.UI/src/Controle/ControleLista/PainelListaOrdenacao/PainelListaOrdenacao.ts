@@ -10,7 +10,7 @@
         private _isAnimarOrdenacao: boolean = true;
         private _isAtivarOdernacao: boolean = true;
         private _isCloneGlobal: boolean = true;
-     
+        private _funcaoIsAtivarOdernacao: () => boolean;
 
         public get Passo(): number
         {
@@ -43,7 +43,7 @@
 
         public get IsAtivarOrdenacao(): boolean
         {
-            return this._isAtivarOdernacao;
+            return this.RetornarIsAtivarOrdenacao();
         }
         public set IsAtivarOrdenacao(value: boolean)
         {
@@ -68,14 +68,29 @@
             this._isAnimarOrdenacao = this.RetornarValorAtributoBoolean(AtributosHtml.IsAnimarOrdenacao, true);
             this._isCloneGlobal = this.RetornarValorAtributoBoolean(AtributosHtml.IsCloneGlobal, true);
             this._sentidoOrdenacao = this.RetornarValorAtributoEnum(d.EnumSentidoOrdenacao, AtributosHtml.SentidoOrdenacao, d.EnumSentidoOrdenacao.Crescente);
-            this._isAtivarOdernacao =  this.RetornarValorAtributoBoolean(AtributosHtml.IsAtivarOrdenacao, true);
 
+            this.ConfiguracaoIsAtivarOrdenacao();
             this.MetodoSalvarEntidadesOrdenada = this.RetornarMetodoSalvarEntidadesOrdenada();
-             
 
             if (this.BlocoTemplateSeparador != null)
             {
                 throw new Erro(`O painel lista ordenação não suportada bloco template separador em ${this.ControleApresentacao.___NomeConstrutor} `);
+            }
+        }
+
+        private ConfiguracaoIsAtivarOrdenacao()
+        {
+            const valorFuncaoIsAtivarOdernacao = this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao, null, false);
+            if (valorFuncaoIsAtivarOdernacao != null)
+            {
+                if (ValidacaoUtil.IsBoolean(valorFuncaoIsAtivarOdernacao, true))
+                {
+                    this._isAtivarOdernacao = Boolean(valorFuncaoIsAtivarOdernacao);
+                }
+                else if (!String.IsNullOrWhiteSpace(valorFuncaoIsAtivarOdernacao))
+                {
+                    this._funcaoIsAtivarOdernacao = this.RetornarMetodo(valorFuncaoIsAtivarOdernacao, false) as () => boolean;
+                }
             }
         }
 
@@ -126,12 +141,21 @@
 
         }
 
+        private RetornarIsAtivarOrdenacao(): boolean
+        {
+            if (this._funcaoIsAtivarOdernacao instanceof Function)
+            {
+                return this._funcaoIsAtivarOdernacao.call(this);
+            }
+            return this._isAtivarOdernacao;
+        }
+
         //#endregion
 
         //#region Auto scroll
 
 
-        
+
 
         //#endregion
     }

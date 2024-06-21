@@ -154,7 +154,8 @@
 
         private ElementoAlvo_MouseDown(e: MouseEvent)
         {
-            if (!e.IsBotaoEsquerdo || !this.PainelLista.IsAtivarOrdenacao)
+            if (!e.IsBotaoEsquerdo ||
+                !this.PainelLista.IsAtivarOrdenacao)
             {
                 return;
             }

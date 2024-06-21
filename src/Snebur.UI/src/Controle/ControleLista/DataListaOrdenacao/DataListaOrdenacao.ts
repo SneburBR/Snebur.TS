@@ -2,9 +2,21 @@
 {
     export class DataListaOrdenacao<TItem extends d.IOrdenacaoEntidade = any> extends DataLista<TItem>
     {
+        private _isAtivarOdernacao: boolean = true;
+        private _funcaoIsAtivarOdernacao: () => boolean;
+
         public IsSensibilidadeVertical: boolean = true;
         public CaminhoEntidadeOrdenacao: string;
         private ElementoRodaPeInterno: HTMLElement;
+
+        public get IsAtivarOrdenacao(): boolean
+        {
+            return this.RetornarIsAtivarOrdenacao();
+        }
+        public set IsAtivarOrdenacao(value: boolean)
+        {
+            this._isAtivarOdernacao = value;
+        }
 
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
         {
@@ -16,8 +28,9 @@
             super.Inicializar();
             this.CaminhoEntidadeOrdenacao = this.RetornarValorAtributo(AtributosHtml.EntidadeOrdenacao, null);
             this.CriarElementoRodape();
+            this.ConfiguracaoIsAtivarOrdenacao();
         }
-
+        
         protected override RetornarLinhasColecao(id: string): LinhasColecao<TItem>
         {
             return new LinhasColecaoOrdenacao<TItem>(this,
@@ -57,5 +70,34 @@
                 this.ElementoRodaPeInterno.Visibilidade = statusLista === EnumStatusControleLista.ListaCarregada;
             }
         }
+
+        //#region Ordenacao
+
+        private ConfiguracaoIsAtivarOrdenacao()
+        {
+            const valorFuncaoIsAtivarOdernacao = this.RetornarValorAtributo(AtributosHtml.IsAtivarOrdenacao, null, false);
+            if (valorFuncaoIsAtivarOdernacao != null)
+            {
+                if (ValidacaoUtil.IsBoolean(valorFuncaoIsAtivarOdernacao, true))
+                {
+                    this._isAtivarOdernacao = Boolean(valorFuncaoIsAtivarOdernacao);
+                }
+                else if (!String.IsNullOrWhiteSpace(valorFuncaoIsAtivarOdernacao))
+                {
+                    this._funcaoIsAtivarOdernacao = this.RetornarMetodo(valorFuncaoIsAtivarOdernacao, false) as () => boolean;
+                }
+            }
+        }
+
+        private RetornarIsAtivarOrdenacao(): boolean
+        {
+            if (this._funcaoIsAtivarOdernacao instanceof Function)
+            {
+                return this._funcaoIsAtivarOdernacao.call(this);
+            }
+            return this._isAtivarOdernacao;
+        }
+
+        //#endregion
     }
 }
