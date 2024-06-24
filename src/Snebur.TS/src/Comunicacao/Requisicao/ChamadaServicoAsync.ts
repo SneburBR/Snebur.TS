@@ -224,7 +224,7 @@
 
         private async XmlHttp_ReadyStateChange(event: ProgressEvent)
         {
-            if (this.XmlHttp.readyState === 4)
+            if (this.XmlHttp?.readyState === 4)
             {
                 switch (this.XmlHttp.status)
                 {
