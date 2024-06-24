@@ -167,7 +167,7 @@
 
             if ($Configuracao.IsDebug && this._isIntervalAtingido)
             {
-                console.warn(` A requisicão ${this.Requisicao.UrlCompleta} concluida em ${this._stopwatch.TotalSeconds}s`);
+                console.warn(` A requisição ${this.Requisicao.UrlCompleta} concluída em ${this._stopwatch.TotalSeconds}s`);
             }
 
             if (this._isTimeouotAtigindo)
@@ -187,9 +187,7 @@
                     DebugUtil.ThrowAndContinue(mensagem);
                 }
             }
-
-         
-
+             
             this._httpStatus = this.XmlHttp.status;
 
             if (u.ValidacaoUtil.IsDefinido(this.Resolver))
