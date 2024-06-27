@@ -81,6 +81,7 @@
             return false;
         }
 
+
         //Inicializar construtor Partial3
 
         private readonly __InicializarConstrutor?: Function;
@@ -248,6 +249,18 @@
                 return isAtivo && !(this as any as IDeletado).IsDeletado;
             }
             return isAtivo;
+        }
+
+        public RetornarDescricaoComDeletado(descricaoOuNome: string)
+        {
+            if ((this as any as IDeletado).IsDeletado)
+            {
+                if (!descricaoOuNome?.Contains("deletado", true))
+                {
+                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (DELETADO) </span>`
+                }
+            }
+            return descricaoOuNome;
         }
 
         //#region Clonar
