@@ -155,8 +155,12 @@
                 const propriedades = JsonUtil.RetornarPropriedadesSerializavel(tipo, false);
                 for (const proprieade of propriedades)
                 {
-                    const item = proprieade.RetornarValor(objeto);
+                    if (proprieade.IsTipoPrimario)
+                    {
+                        continue;
+                    }
 
+                    const item = proprieade.RetornarValor(objeto);
                     if (this.IsBaseDominio(item))
                     {
                         this.AdicioanrReferenciaPropriedade(item as any, objeto, proprieade);
