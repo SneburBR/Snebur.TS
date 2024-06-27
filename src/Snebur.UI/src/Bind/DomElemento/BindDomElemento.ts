@@ -143,16 +143,16 @@
 
         private IsCapturaEventoInput(): boolean
         {
-            if (this.ControlePai instanceof CaixaMoeda)
+            if (this.ControlePai instanceof CaixaMoeda ||
+                this.ControlePai instanceof BaseCaixaNumero)
             {
                 return false;
             }
-
+             
             if (this instanceof BindTexto)
             {
                 return this.Elemento.getAttribute("sn-mascara") !== "Moeda";
             }
-
             return true;
         }
 
