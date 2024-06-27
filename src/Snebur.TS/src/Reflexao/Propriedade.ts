@@ -21,6 +21,10 @@
             return (this.Tipo instanceof r.TipoPrimario) &&
                 this.Tipo.TipoPrimarioEnum === EnumTipoPrimario.String;
         }
+        public get IsTipoPrimario(): boolean
+        {
+            return (this.Tipo instanceof r.TipoPrimario);
+        }
          
         public get IsSomenteLeitura(): boolean
         {
