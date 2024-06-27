@@ -19,7 +19,7 @@
 
         public get UrlCompleta(): string
         {
-            return UrlUtil.Combinar(this.UrlRequisicao ,this.NomeManipualdor, this.NomeMetodo,`\{${BaseRequisicao.Contador}\}`);
+            return UrlUtil.Combinar(this.UrlRequisicao, this.NomeManipualdor, this.NomeMetodo, `\{${BaseRequisicao.Contador}\}`);
         }
 
         public constructor(
@@ -109,10 +109,11 @@
             const isErroInternoServidor = resultadoChamada instanceof ResultadoChamadaErroInternoServidor || resultadoChamada.StatusCode === 500;
 
             const sb = new StringBuilder();
-            sb.AppendLine(`Erro interno no servidor (Status) ${chamarServico.HttpStatus}, tratamento do erro não implementado`);
+            sb.AppendLine(`Falha na requisição interno no servidor (Status) ${chamarServico.HttpStatus}`);
             sb.AppendLine("URL: " + this.URLServico);
             sb.AppendLine("Serviço: " + this.NomeManipualdor);
             sb.AppendLine("Operação: " + this.NomeMetodo);
+            sb.AppendLine("Tentativa: " + this.Tentativa + 1);
             sb.AppendLine();
 
             const linhas = TextoUtil.RetornarLinhas(resultadoChamada.MensagemErro);
