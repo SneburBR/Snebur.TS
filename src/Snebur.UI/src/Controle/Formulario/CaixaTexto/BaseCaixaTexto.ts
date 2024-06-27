@@ -83,8 +83,10 @@
             this.AdicionarEventoDom(EnumEventoDom.KeyUp, this.BaseCaixaTextoElementoInputInterno_KeyPress.bind(this), this.ElementoInput, this, true);
             //this.AdicionarEventoDom(EnumEventoDom.MouseDown, this.ElementoInputIntero_MouseDown.bind(this), this.ElementoInput, this, true);
 
-
-            this.AdicionarEventoDom(EnumEventoDom.Input, this.BaseCaixaTextoElementoInputInterno_Input.bind(this), this.ElementoInput, this, true);
+            if (!(this instanceof BaseCaixaNumero))
+            {
+                this.AdicionarEventoDom(EnumEventoDom.Input, this.BaseCaixaTextoElementoInputInterno_Input.bind(this), this.ElementoInput, this, true);
+            }
             //this.AdicionarEventoDom(EnumEventoDom.KeyUp, this.ElementoInputIntero_KeyPress.bind(this), this.ElementoInput, this, true);
             this.AdicionarEventoPropriedadeApresentacaoAlterada(AtributosHtml.CorTextoApresentacao, this.CorTextoApresentacao_PropriedadeApresentacaoAlterada);
 
