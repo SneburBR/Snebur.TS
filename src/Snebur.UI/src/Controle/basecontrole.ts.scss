@@ -1,6 +1,14 @@
 ﻿@import "../../scss/variaveis.scss";
 @import "../../scss/mixins.scss";
 
+@mixin mixing-cor-texto($cor) {
+    color: $cor !important;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.5);
+    /*-webkit-text-stroke-color: $cor;
+    -webkit-text-stroke-width: 1px;*/
+}
+
 sn-legenda,
 .sn-legenda {
     position: absolute;
@@ -17,4 +25,26 @@ sn-legenda,
     top: 50%;
     max-width: 60%;
     white-space: normal;
+
+    .sn-cor-texto--falha {
+        @include mixing-cor-texto($cor-falha);
+    }
+
+    .sn-cor-texto--sucesso {
+
+        @include mixing-cor-texto($cor-sucesso);
+    }
+
+    .sn-cor-texto--alerta {
+        @include mixing-cor-texto($cor-alerta);
+    }
+
+    .sn-cor-texto--informacao,
+    .sn-cor-texto--info {
+        @include mixing-cor-texto($cor-informacao);
+    }
+
+    .sn-cor-texto--editar {
+        @include mixing-cor-texto($cor-editar);
+    }
 }
