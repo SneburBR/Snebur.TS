@@ -155,6 +155,12 @@
 
         public RetornarPasso(): number
         {
+            const passoLargo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.PassoLargo, 0));
+            if (passoLargo > 0)
+            {
+                return passoLargo;
+            }
+
             if (this._passo >= 0)
             {
                 return this._passo;
@@ -172,13 +178,7 @@
             {
                 return 0.01;
             }
-
-            const passo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.Passo, 0));
-            if (passo > 0)
-            {
-                return passo;
-            }
-
+            
             if (tipo instanceof r.TipoPrimario && tipo.TipoPrimarioEnum === r.EnumTipoPrimario.Decimal)
             {
                 return 0.01;
@@ -203,11 +203,7 @@
             {
                 return minimo;
             }
-
-            //if (typeof this.Minimo === "number")
-            //{
-            //    return this.Minimo;
-            //}
+             
             return BindNumero.MINIMO_PADRAO;
         }
 
