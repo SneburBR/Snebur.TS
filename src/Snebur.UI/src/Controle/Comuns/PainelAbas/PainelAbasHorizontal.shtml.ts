@@ -151,7 +151,8 @@ namespace Snebur.UI
             if (pagina instanceof Pagina)
             {
                 const abaNavegada = this.RetornarAba(pagina);
-                if (abaNavegada instanceof Aba && this.AbaAtual !== abaNavegada)
+                if (abaNavegada instanceof Aba &&
+                    this.AbaAtual !== abaNavegada)
                 {
                     this._abaAtual = abaNavegada;
                     this.SelecionarAbaAtual();
@@ -159,6 +160,7 @@ namespace Snebur.UI
             }
             this.EventoPaginaAlterada.Notificar(provedor, e);
         }
+
         private RetornarAba(pagina: Pagina): Aba
         {
             let chave = this.RetornarChavePagina(pagina, true);
@@ -168,10 +170,10 @@ namespace Snebur.UI
             }
             if (!this.DicionarioAbas.ContainsKey(chave))
             {
-                throw new Erro(`Não foi encontrado a Pagina com a chave ${chave} em ${this.ControleApresentacao.___NomeConstrutor}`);
+                console.warn(`Não foi encontrado a Pagina com a chave ${chave} em ${this.ControleApresentacao.___NomeConstrutor}`);
+                return null;
             }
             return this.DicionarioAbas.Item(chave);
-
         }
 
         private RetornarAbaInicial(): Aba
