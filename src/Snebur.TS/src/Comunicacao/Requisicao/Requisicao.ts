@@ -83,11 +83,11 @@
             if ($Configuracao.IsTeste &&
                 $Configuracao.IsAlterarUrlDebug)
             {
-                return this.Tentativa > 10;
+                return this.Tentativa > 5;
             }
 
             return $Configuracao.IsDebug &&
-                $Configuracao.IsAlterarUrlDebug &&
+                Snebur.$Configuracao.IsAlterarUrlDebug &&
                 this.URLServico !== this.BaseServico.UrlServicoDebug &&
                 !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug);
         }
