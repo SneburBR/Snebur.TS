@@ -242,6 +242,10 @@
         }
 
         public static CountCharOcorrences(text: string, char: string): number
+        {
+            return TextoUtil.RetornarOcorrenciasParteTexto(text, char);
+        }
+
         public static RetornarOcorrenciasParteTexto(texto: string, letra: string): number
         {
             let cont = 0;
@@ -438,6 +442,11 @@
 
         public static RetornarPartesPequisa(pesquisa: string): List<string>
         {
+            if (String.IsNullOrWhiteSpace(pesquisa))
+            {
+                return [];
+            }
+
             return pesquisa.split(",").
                 SelectMany(x => x.split(" ")).
                 Select(x => u.TextoUtil.FormatarPequisa(x)).
