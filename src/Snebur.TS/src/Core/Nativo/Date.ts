@@ -68,6 +68,15 @@
         enumerable: true,
     });
 
+    Object.defineProperty(Date.prototype, "YearShort", {
+
+        get: function ()
+        {
+            return parseInt(this.getFullYear().toString().substring(2, 4));
+        },
+        enumerable: true,
+    });
+
     Object.defineProperty(Date.prototype, "DayOfWeek", {
 
         get: function ()

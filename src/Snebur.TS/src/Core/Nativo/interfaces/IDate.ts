@@ -28,15 +28,15 @@ namespace Snebur.Nativo
         readonly Month: d.EnumMes;
 
         readonly Year: number;
+        
+        readonly YearShort: number;
 
         readonly DataZeroHora: Date;
 
         readonly DataZeroHoraUTC: Date;
 
         readonly Utc: Date;
-
-        
-
+         
         //Ticks: number;
 
         //TimeOfDay: Snebur.Core.TimeSpan;
