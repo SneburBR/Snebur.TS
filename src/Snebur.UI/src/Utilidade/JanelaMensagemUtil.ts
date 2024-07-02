@@ -295,7 +295,7 @@
         public static async NotificarMensagensValidacaoAsync(mensagens: string[]): Promise<void>
         {
             const mensagensValidacao = mensagens.join("\n");
-            await ui.MensagemUtil.MostrarMensagemErroAsync(
+            ui.MensagemUtil.MostrarMensagemErroAsync(
                 $Aplicacao.DocumentoPrincipal,
                 mensagensValidacao);
         }
