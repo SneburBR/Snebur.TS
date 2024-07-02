@@ -4,9 +4,16 @@
     {
         public abstract readonly PASSAO_PADRAO: number;
 
-        private _passo: number = undefined;
         private _casasDecimal: number;
-        
+
+        private _atributoValidacaoInteiro: at.ValidacaoInteiroAttribute = null;
+        private _atributoValidacaoMoeda: at.ValidacaoMoedaAttribute = null;
+        private _atributoValidacaoIntervalo: at.ValidacaoIntervaloAttribute = null;
+
+        private _maximoManual: number = null;
+        private _minimoManual: number = null;
+        private _passoManual: number = undefined;
+         
         //public Minimo: number;
         //public Maximo: number;
         //public Passo: number;
@@ -28,13 +35,34 @@
             }
         }
 
+        public get Maximo(): number
+        {
+            return this.RetornarMaximo();
+        }
+        public set Maximo(value: number)
+        {
+            this._maximoManual = value;
+            this.AtualizarAtributosValidacoes();
+        }
+
+        public get Minimo(): number
+        {
+            return this.RetornarMinimo();
+        }
+        public set Minimo(value: number)
+        {
+            this._minimoManual = value;
+            this.AtualizarAtributosValidacoes();
+        }
+
         public get Passo(): number
         {
             return this.RetornarPasso();
         }
         public set Passo(value: number)
         {
-            this._passo = value;
+            this._passoManual = value;
+            this.AtualizarAtributosValidacoes();
         }
 
         public get CasasDecimal(): number
@@ -61,7 +89,7 @@
         {
             super.Inicializar();
             this.AdicionarEventoDom(EnumEventoDom.KeyPress, this.ElementoInput_KeyPress, this.ElementoInput);
-            this.AtualizarValidacoesElementoInput();
+            this.AtualizarAtributosValidacoes();
         }
 
         protected override DepoisInicializarComponentesApresentacao(): void
@@ -92,7 +120,7 @@
             {
                 bindNumero.AtualizarValores(passo, minimo, maximo);
             }
-            this.AtualizarValidacoesElementoInput();
+            this.AtualizarAtributosValidacoes();
 
         }
 
@@ -123,29 +151,9 @@
                 this.IsFormatarInteiro);
         }
 
-        //private Minimo_Alterado(e: PropriedadeAlteradaEventArgs)
-        //{
-
-        //    ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Min, this.Minimo);
-        //}
-
-        //private Maximo_Alterado(e: PropriedadeAlteradaEventArgs)
-        //{
-        //    ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Max, this.Maximo);
-        //}
-
-        //private Passo_Alterado(e: PropriedadeAlteradaEventArgs)
-        //{
-        //    ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Step, this.Passo);
-        //    this._casasDecimal = null;
-        //}
-
-        private _atributoValidacaoInteiro: at.ValidacaoInteiroAttribute = null;
-        private _atributoValidacaoMoeda: at.ValidacaoMoedaAttribute = null;
-        private _atributoValidacaoIntervalo: at.ValidacaoIntervaloAttribute = null;
+      
         private RetornarValores(): [number, number, number]
         {
-
             const passo = this.RetornarPasso();
             const minimo = this.RetornarMinimo();
             const maximo = this.RetornarMaximo();
@@ -153,19 +161,23 @@
             return [passo, minimo, maximo];
         }
 
-        public RetornarPasso(): number
+        protected RetornarPassoLargo(): number
         {
             const passoLargo = u.ConverterUtil.ParaNumero(this.RetornarValorAtributo(AtributosHtml.PassoLargo, 0));
             if (passoLargo > 0)
             {
                 return passoLargo;
             }
+            return this.RetornarPasso();
+        }
 
-            if (this._passo >= 0)
+        public RetornarPasso(): number
+        {
+            if (this._passoManual >= 0)
             {
-                return this._passo;
+                return this._passoManual;
             }
-
+             
             const tipo = this.Propriedade?.Tipo;
             if (this._atributoValidacaoInteiro instanceof at.ValidacaoInteiroAttribute || (
                 tipo instanceof r.TipoPrimario &&
@@ -188,6 +200,17 @@
 
         protected RetornarMinimo(): any
         {
+            if (this._minimoManual > 0)
+            {
+                return this._minimoManual;
+            }
+
+            const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, null);
+            if (minimo !== null)
+            {
+                return minimo;
+            }
+
             if (this._atributoValidacaoIntervalo instanceof at.ValidacaoIntervaloAttribute)
             {
                 return this._atributoValidacaoIntervalo.Minimo;
@@ -197,18 +220,23 @@
             {
                 return this._atributoValidacaoMoeda.ValorMinimo;
             }
-
-            const minimo = this.RetornarValorAtributoNumber(AtributosHtml.Minimo, null);
-            if (minimo !== null)
-            {
-                return minimo;
-            }
              
             return BindNumero.MINIMO_PADRAO;
         }
 
         protected RetornarMaximo(): any
         {
+            if (this._maximoManual > 0)
+            {
+                return this._maximoManual;
+            }
+
+            const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, null);
+            if (maximo !== null)
+            {
+                return maximo;
+            }
+
             if (this._atributoValidacaoIntervalo instanceof at.ValidacaoIntervaloAttribute)
             {
                 return this._atributoValidacaoIntervalo.Maximo;
@@ -218,16 +246,10 @@
             {
                 return this._atributoValidacaoMoeda.ValorMaximo;
             }
-
-            const maximo = this.RetornarValorAtributoNumber(AtributosHtml.Maximo, null);
-            if (maximo !== null)
-            {
-                return maximo;
-            }
             return BindNumero.MAXIMO_PADRAO;
         }
 
-        private AtualizarValidacoesElementoInput(): void
+        private AtualizarAtributosValidacoes(): void
         {
             const [passo, minimo, maximo] = this.RetornarValores();
 
@@ -278,7 +300,5 @@
             // eslint-disable-next-line no-self-assign
             this.Valor = this.Valor;
         }
-
-
     }
 }

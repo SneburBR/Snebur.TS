@@ -11,7 +11,7 @@
 
         public BtnMenos_Click(provedor: ui.Botao, e: ui.UIEventArgs): void
         {
-            const passaLargo = this.RetornarPasso();
+            const passaLargo = this.RetornarPassoLargo();
             let valor = this.Valor;
             valor -= passaLargo;
             valor = Math.round(valor / passaLargo) * passaLargo;
@@ -28,7 +28,7 @@
 
         public BtnMais_Click(provedor: ui.Botao, e: ui.UIEventArgs): void
         {
-            const passaLargo = this.RetornarPasso();
+            const passaLargo = this.RetornarPassoLargo();
             let valor = this.Valor;
             valor += passaLargo;
             valor = Math.round(valor / passaLargo) * passaLargo;
