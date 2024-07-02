@@ -1,20 +1,31 @@
 ﻿namespace Snebur
 {
-    Set.prototype.AddRangeNew = (function (this: Set<any>, itens: any[])
+    Object.defineProperty(Set.prototype, "Count", {
+        get: function (this: Set<any>)
+        {
+            return this.size;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    
+    Set.prototype.AddRangeNew = (function (this: Set<any>, itens: any[] | Set<any>)
     {
         /*eslint-disable*/
         this.Clear();
-        this.AddRange(itens);
+        this.AddRange(itens as any);
     });
 
-    Set.prototype.AddRange = (function (this: Set<any>, itens: any[])
+    Set.prototype.AddRange = (function (this: Set<any>, itens: any[] | Set<any>)
     {
-        if (Array.isArray(itens) && itens.length > 0)
+        if (itens == null)
         {
-            for (const item of itens)
-            {
-                this.add(item);
-            }
+            return;
+        }
+
+        for (const item of itens)
+        {
+            this.add(item);
         }
     });
 
