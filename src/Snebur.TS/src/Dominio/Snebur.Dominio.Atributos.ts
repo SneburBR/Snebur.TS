@@ -215,6 +215,7 @@ namespace Snebur.Dominio.Atributos
         //#region Propriedades
     
         private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
+        private _formatacaoPersonalizada : string = null;
         private _formatacao : string = null;
         private _tipoPropriedadeRelacao : r.BaseTipo | string = null;
         private _caminhoTipoPropriedadeRelacao : string = null;
@@ -228,6 +229,16 @@ namespace Snebur.Dominio.Atributos
         public set Opcoes(value: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
             this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
+        }
+    
+        public get FormatacaoPersonalizada(): string 
+        {
+            return this._formatacaoPersonalizada;
+        }
+
+        public set FormatacaoPersonalizada(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("FormatacaoPersonalizada", this._formatacaoPersonalizada, this._formatacaoPersonalizada = value);
         }
     
         public get Formatacao(): string 

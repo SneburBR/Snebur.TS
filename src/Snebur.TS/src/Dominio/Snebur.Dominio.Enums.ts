@@ -1245,6 +1245,7 @@ namespace Snebur.Servicos
         AcessoArquivoSuspeito = 25,
         ArquivoVersaoPublicacaoNaoEncontrado = 26,
         ServicoNaoEncontrado = 27,
+        TentativaExecutarSql = 28,
     }
     (EnumTipoLogSeguranca as any).Rotulos = {};
     (EnumTipoLogSeguranca as any).Rotulos["TokenExpirado"] = "Token expirado";
@@ -1274,6 +1275,7 @@ namespace Snebur.Servicos
     (EnumTipoLogSeguranca as any).Rotulos["AcessoArquivoSuspeito"] = "AcessoArquivoSuspeito";
     (EnumTipoLogSeguranca as any).Rotulos["ArquivoVersaoPublicacaoNaoEncontrado"] = "ArquivoVersaoPublicacaoNaoEncontrado";
     (EnumTipoLogSeguranca as any).Rotulos["ServicoNaoEncontrado"] = "ServicoNaoEncontrado";
+    (EnumTipoLogSeguranca as any).Rotulos["TentativaExecutarSql"] = "Tentativa de executar sql";
 
 }
 namespace Snebur.UI
