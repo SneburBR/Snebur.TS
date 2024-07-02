@@ -263,16 +263,15 @@
             return valorAtributo;
         }
 
-        public static LimparElementosFilho(refElemento: HTMLElement| string): void
+        public static LimparElementosFilho(refElemento: HTMLElement | string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
-            while (elemento.firstChild != null)
+            if (elemento != null)
             {
-                elemento.removeChild(elemento.lastChild);
+                elemento.innerHTML = "";
             }
-            //delete (elemento as any);
         }
-         
+
         public static AtualizarValorInput(refElemento: HTMLElement | string, valor: string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
@@ -280,14 +279,14 @@
             //delete (elemento as any);
         }
 
- 
+
         public static InputSomenteLeitura(refElemento: HTMLElement | string, ativar: boolean = true): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
             elemento.readOnly = ativar;
             //delete (elemento as any);
         }
- 
+
         public static FocarElemento(refElemento: HTMLElement | string): void
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento) as HTMLInputElement;
@@ -310,7 +309,7 @@
             }
             const rect = elemento.getBoundingClientRect();
             return (rect.width > 0 && rect.height > 0);
-             
+
 
         }
 
@@ -366,7 +365,12 @@
             {
                 elemento.disabled = true;
             }
+
             elemento.style.pointerEvents = "none";
+            elemento.style.cursor = "wait";
+
+            elemento.style.setProperty("cursor", "wait", "important");
+            elemento.style.setProperty("pointer-events", "none", "important");
 
             if (isRecursivo)
             {
@@ -383,24 +387,16 @@
                     }
                 }
             }
-
         }
 
         public static HabilitarElemento(elemento: HTMLElement): void
         {
-            if (elemento instanceof HTMLInputElement)
+            if (elemento instanceof HTMLInputElement && !elemento.readOnly)
             {
-                if (!elemento.readOnly)
-                {
-                    elemento.disabled = false;
-                    elemento.style.pointerEvents = "";
-                }
+                elemento.disabled = false;
             }
-            else
-            {
-                elemento.style.pointerEvents = "";
-            }
-            
+            elemento.style.pointerEvents = "";
+            elemento.style.cursor = "";
 
             const len = elemento.childNodes.length;
             for (let i = 0; i < len; i++)
@@ -442,7 +438,7 @@
         }
 
         //#endregion
- 
+
         public static IsImagmeCarregada(refElemento: HTMLElement | string): boolean
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento, true);
@@ -525,7 +521,7 @@
             }
         }
 
-       
+
 
         public static CriarElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
         {
