@@ -7,7 +7,7 @@
         private static readonly INTERVALO_ENTRE_ROLAGENS: number = 20;
         private static readonly TEMPO_PADRAO: number = 200;
         public readonly ElementoScroll: HTMLElement;
-        private TokenCancelamento: TokenCancelamento;
+        private TokenCancelamento: CancelationToken;
 
         //#endregion
 
@@ -99,8 +99,8 @@
             posicaoFinal: number,
             duracaoEmMilisegundos: number): Promise<void>
         {
-            this.TokenCancelamento?.Cancelar();
-            this.TokenCancelamento = new TokenCancelamento();
+            this.TokenCancelamento?.Cancel();
+            this.TokenCancelamento = new CancelationToken();
 
             return this.IniciarInternoAsync(this.TokenCancelamento,
                 direcao,
@@ -111,7 +111,7 @@
         }
 
         private async IniciarInternoAsync(
-            tokenCancelamento: TokenCancelamento,
+            tokenCancelamento: CancelationToken,
             direcao: EnumDirecaoRolagem,
             posicaoInicial: number,
             posicaoFinal: number,
@@ -139,7 +139,7 @@
                 if (posicaoFinal !== novaPosicao)
                 {
                     await ThreadUtil.EsperarAsync(20);
-                    if (tokenCancelamento.IsCancelado)
+                    if (tokenCancelamento.IsCanceled)
                     {
                         return;
                     }
@@ -261,7 +261,7 @@
 
         public Dispose(): void
         {
-            this.TokenCancelamento?.Cancelar();
+            this.TokenCancelamento?.Cancel();
         }
     }
 }

@@ -42,6 +42,8 @@
         "no-dupe-keys": "error", // ts(1117)
         "no-func-assign": "off", // ts(2539)
         "no-import-assign": "error", // ts(2539) & ts(2540)
+        "no-multiple-empty-lines": "warn",
+        "no-multi-spaces": "warn",
         "no-new-symbol": "off", // ts(2588)
         "no-obj-calls": "error", // ts(2349)
         "no-redeclare": "off", // ts(2451)
