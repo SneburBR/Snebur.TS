@@ -286,7 +286,7 @@
         this.AddRange(itens);
     });
 
-    Array.prototype.AddRangeAsync = (async function (this: Array<any>, items: any[]): Promise<void>
+    Array.prototype.AddRangeAsync = (async function (this: Array<any>, items: any[], cancellationToken?: CancelationToken): Promise<void>
     {
         /*eslint-disable*/
         if (items == this)
@@ -303,13 +303,18 @@
         {
             for (const item of items)
             {
+                if (cancellationToken?.IsCanceled)
+                {
+                    return;
+                }
+
                 this.Add(item);
                 await u.ThreadUtil.QuebrarAsync();
             }
         }
     });
 
-    Array.prototype.AddRangeNewAsync = (async function (this: Array<any>, items: any[])
+    Array.prototype.AddRangeNewAsync = (async function (this: Array<any>, items: any[], cancellationToken?: CancelationToken)
     {
         /*eslint-disable*/
         if (items == this)
@@ -317,7 +322,7 @@
             return;
         }
         this.Clear();
-        await this.AddRangeAsync(items);
+        await this.AddRangeAsync(items, cancellationToken);
     });
 
     (Array.prototype as any).Item = (function (chave: string | number)

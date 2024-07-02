@@ -8,12 +8,15 @@ interface ArrayConstructor
 {
     isArrayBase(arg: any): arg is any[];
 }
- 
+
 namespace Snebur.Nativo
 {
     export interface IArray<T> extends ITipo<Snebur.Reflexao.BaseTipoLista>
     {
         readonly length: number;
+        readonly Count: number;
+        readonly TipoLista: EnumTipoLista;
+        readonly IsListaNova: boolean;
 
         /*item(index: number): T | null;*/
 
@@ -91,8 +94,6 @@ namespace Snebur.Nativo
         Any(): boolean;
         Any(expressao: (value: T) => any): boolean;
 
-        readonly Count: number;
-
         First(): T;
 
         First(funcaoFiltrar: (value: T) => boolean): T;
@@ -126,6 +127,7 @@ namespace Snebur.Nativo
 
         AddRange(itens: Array<T>): void;
         AddRangeAsync(items: Array<T>): Promise<void>;
+        AddRangeAsync(items: Array<T>, cancellationToken: CancelationToken): Promise<void>;
 
         /**
          * Limpar antes de adiciona os itens
@@ -185,12 +187,6 @@ namespace Snebur.Nativo
         ToObject(isValueAsKey: true): { [x: string]: undefined };
         ToObject(isValueAsKey: false): { [x: number]: T };
         ToObject(): { [x: number]: T };
-
-        readonly TipoLista: EnumTipoLista;
-
-        readonly IsListaNova: boolean;
-
-
 
         Except(lista: Array<T>): Array<T>;
 
