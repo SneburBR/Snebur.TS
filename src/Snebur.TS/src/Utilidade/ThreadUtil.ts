@@ -48,7 +48,7 @@
 
         public static QuebrarAsync(): Promise<void> 
         {
-            return this.EsperarAsync(0);
+            return this.EsperarAsync(1);
         }
 
 
