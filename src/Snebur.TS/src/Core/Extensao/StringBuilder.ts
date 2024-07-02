@@ -13,11 +13,11 @@
         {
             if (isQuebrarLinha)
             {
-                texto =  texto + "\r\n";
+                texto = texto + "\r\n";
             }
             this.Partes.Add(texto);
         }
-         
+
         //public AppendFormat(texto: string, ...args: string[]): void
         //{
         //    this.Partes.Add(String.Format(texto, ...args));
@@ -25,7 +25,7 @@
 
         public AppendLine(texto?: string)
         {
-            this.Partes.Add(`${texto}\r\n`);
+            this.Partes.Add(`${texto ?? ""}\r\n`);
         }
 
         //public AppendLineFormat(texto: string, ...args: string[])
