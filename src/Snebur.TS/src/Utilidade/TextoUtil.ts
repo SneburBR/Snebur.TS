@@ -241,6 +241,7 @@
             return texto.split(/\r\n|\r|\n/);
         }
 
+        public static CountCharOcorrences(text: string, char: string): number
         public static RetornarOcorrenciasParteTexto(texto: string, letra: string): number
         {
             let cont = 0;
