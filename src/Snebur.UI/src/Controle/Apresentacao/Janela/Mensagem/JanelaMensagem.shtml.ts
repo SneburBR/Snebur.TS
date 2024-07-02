@@ -267,9 +267,15 @@
 
         public static async AguardarFecharMensagemAsync():Promise<void>
         {
+            const tempo = Stopwatch.StartNew();
             while (this._janelaAtual != null && this._janelaAtual.IsAberta)
             {
                 await ThreadUtil.EsperarAsync(150);
+
+                if (tempo.TotalSeconds > 30)
+                {
+                    return;
+                }
             }
         }
         //#endregion
