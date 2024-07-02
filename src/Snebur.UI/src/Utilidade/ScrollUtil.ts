@@ -13,12 +13,12 @@
             return false;
         }
 
-        public static IsExisteScrollVertical(elemento: HTMLElement): boolean
+        public static IsExisteScrollVertical(scrollElement: HTMLElement): boolean
         {
-            const overflowY = window.getComputedStyle(elemento).overflowY;
+            const overflowY = window.getComputedStyle(scrollElement).overflowY;
             if (overflowY === "scroll" || overflowY === "auto" || overflowY === "overlay")
             {
-                return elemento.scrollHeight > elemento.clientHeight;
+                return (scrollElement.scrollTop + scrollElement.clientHeight) >= (scrollElement.scrollHeight - 50)
             }
             return false;
         }

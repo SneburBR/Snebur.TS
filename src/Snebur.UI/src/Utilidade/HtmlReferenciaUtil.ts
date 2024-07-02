@@ -154,7 +154,7 @@
 
         private static RetornarCorpoHtml(html: string, url: string): string
         {
-            const quantidadesBody = TextoUtil.RetornarOcorrenciasParteTexto(html, "<body>");
+            const quantidadesBody = TextoUtil.CountCharOcorrences(html, "<body>");
             if (quantidadesBody > 1)
             {
                 throw new Erro("Existe mais de um elemento corpo '<body>' no html \n" + url);
