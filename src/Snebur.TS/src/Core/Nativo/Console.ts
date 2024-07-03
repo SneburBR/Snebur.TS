@@ -64,8 +64,6 @@ namespace Snebur
                 const hora = FormatacaoUtil?.FormatarHora(new Date(), false, true) ?? "";
                 const mensagem = `${hora}: ${mensagemOriginal}`;
                 base.bind(this)(mensagem);
-
-             
                  
                 if ($Configuracao != null && $Configuracao.IsDebug &&
                     tipo === EnumTipoLog.Erro && !$Configuracao.IsNaoAlertarErro)
@@ -80,11 +78,13 @@ namespace Snebur
                         const args = new ConsoleLogArgs(tipo, mensagem);
                         typeof console.EventoLog.Notificar(console, args);
                     }
-
-                    if (__contadorAlertasErro > 100)
+                    else
                     {
-                        const mensagem = String.Join("\r\n", data);
-                        alert(mensagem);
+                        if (__contadorAlertasErro > 100)
+                        {
+                            const mensagem = String.Join("\r\n", data);
+                            alert(mensagem);
+                        }
                     }
                 }
             }

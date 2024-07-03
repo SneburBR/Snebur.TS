@@ -169,15 +169,13 @@ namespace Snebur.UI
                 ui.EstiloUtil.RemoverCssClasse(elemento, "sn-item-sugestao-selecionado");
             }
         }
-
-       
-
+        
         private RetornarDescricao(item: any): any
         {
             const descricao = this.CaixaAreaTextoSugestao.RetornarDescricaoSugestaoFormatada(item);
             if (!String.IsNullOrEmpty(this.CaixaAreaTextoSugestao.UltimaPesquisa))
             {
-                return u.HtmlUtil.NegritarConteudo(descricao, this.CaixaAreaTextoSugestao.UltimaPesquisa);
+                return u.HtmlUtil.BoldContent(descricao, this.CaixaAreaTextoSugestao.UltimaPesquisa);
             }
             return descricao;
         }

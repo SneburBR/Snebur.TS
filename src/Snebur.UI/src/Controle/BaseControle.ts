@@ -86,7 +86,7 @@
         }
 
         public readonly EventoCarregado = new Evento(this);
-        public readonly EventoAntesDescarregar = new Evento(this);
+        public readonly BeforeUnloadEvent = new Evento<BeforeUnloadEventArgs>(this);
         public readonly EventoControleDispensado = new Evento(this);
 
         protected get CssClasseControle(): string
@@ -878,7 +878,7 @@
                 this.__isControleCarregado = false;
                 //this.RemoverLegenda();
                 //window.clearTimeout(this.__IdentificadorTimeoutJanelaOcupado);
-                this.EventoAntesDescarregar?.Notificar(this, EventArgs.Empty);
+                this.BeforeUnloadEvent?.Notificar(this, new BeforeUnloadEventArgs());
                 this.DispensarDicionariosElementos();
                 this.DispensarBinds();
                 this.DispensarUIEventos();
@@ -944,7 +944,7 @@
 
                 //this.RemoverLegenda();
                 //window.clearTimeout(this.__IdentificadorTimeoutJanelaOcupado);
-                this.EventoAntesDescarregar.Notificar(this, EventArgs.Empty);
+
                 this.DispensarDicionariosElementos();
                 this.DispensarBinds();
                 this.DispensarUIEventos();
@@ -1011,4 +1011,21 @@
 
     }
 
+    export class BeforeUnloadEventArgs extends EventArgs
+    {
+        public HandledAsync: () => Promise<void>;
+
+        public get IsHandled(): boolean
+        {
+            return this.HandledAsync != null;
+        }
+
+        public constructor()
+        {
+            super();
+        }
+
+
+
+    }
 }

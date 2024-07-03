@@ -7,11 +7,11 @@
         private _resolverNavegacaoAsync: { Resolver: (value: ResolverNavegacaoAsync<Pagina> | PromiseLike<ResolverNavegacaoAsync<Pagina>>) => void, Pagina: Pagina; };
         private _paginaAtual: Pagina = null;
         protected _parametros: DicionarioSimples<any>;
-         
+
         public abstract readonly IdentificadorNavegador: string;
         private readonly HistoricoLocal = new List<{ Pagina: Pagina | typeof Pagina, Parametros: DicionarioSimples<any> }>();
         public readonly TipoAnimacao: EnumTipoAnimacao;
-         
+
         public get IsPropagarBindDataSource(): boolean
         {
             return this._isPropagarBindDataSource;
@@ -26,6 +26,11 @@
         {
             return this._isManterCache ??
                 this.TipoAnimacao === EnumTipoAnimacao.Deslizante;
+        }
+        /**@internal*/
+        public set IsManterCache(value: boolean)
+        {
+            this._isManterCache = value;
         }
 
         public get PaginaAtual(): Pagina
@@ -42,7 +47,7 @@
         public readonly EventoAntesNavegar = new Evento<AntesNavegarEventArgs>(this);
         public readonly EventoPaginaAlterada = new Evento<PaginaAlteradaEventArgs>(this);
         public readonly EventoNavaPagina = new Evento<NovaPaginaEventArgs>(this);
-         
+
         public abstract readonly CaminhoRota: string;
         public abstract readonly IsHistoricoAtivo: boolean;
 
@@ -119,7 +124,7 @@
             switch (this.TipoAnimacao)
             {
                 case EnumTipoAnimacao.Nenhuma:
-                    this.NavegarInterno(refPagina, expresoesParametrosOuChave, valor);
+                    this.NavegarInternoAsync(refPagina, expresoesParametrosOuChave, valor);
                     break;
                 case EnumTipoAnimacao.Deslizante:
                     this.NavegarAnimadoAsync(refPagina, EnumSentidoAnimacao.Avancar, expresoesParametrosOuChave, valor);
@@ -154,7 +159,7 @@
 
                 if (this.TipoAnimacao === EnumTipoAnimacao.Nenhuma)
                 {
-                    this.NavegarInterno(refPagina,
+                    this.NavegarInternoAsync(refPagina,
                         expressoesParametrosOuChave, valor,
                         false, false);
                 }
@@ -194,7 +199,7 @@
             isSalvarHistoricoVoltar: boolean = true, isSalvarHistoricoRota: boolean = true): Promise<void>
         {
 
-            const parametros = this.RetornarParametros(expressaoParametrosOuChave, valor);
+            const parametros = this.RetornarParametrosPagina(expressaoParametrosOuChave, valor);
             const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
             if (argsAntesNavegar.IsCancelarNavegacao)
             {
@@ -217,7 +222,7 @@
 
             if (paginaAtual instanceof Pagina)
             {
-                this.OcultarPagina(paginaAtual);
+                await this.UnloadPageAsync(paginaAtual);
 
                 if (isSalvarHistoricoVoltar)
                 {
@@ -295,19 +300,20 @@
                 elementoPaginaAntiga.style.left = posicaoXDestinoPaginaAntiga;
             }
             elementoNovaPagina.style.left = "0";
+
             await ThreadUtil.EsperarAsync(250);
-            this.OcultarPagina(paginaAntiga);
+            await this.UnloadPageAsync(paginaAntiga);
         }
 
         //#endregion 
 
-        private NavegarInterno(refPagina: IPaginaConstrutor | Pagina | typeof Pagina,
+        private async NavegarInternoAsync(refPagina: IPaginaConstrutor | Pagina | typeof Pagina,
             expressoesParametrosOuChave: Function | DicionarioSimples | string | List<ITupleParametroPagina> | Partial<Pagina>,
             valor: any,
             isSalvarHistoricoVoltar: boolean = true,
-            isSalvarHistoricoNavegador: boolean = true): void
+            isSalvarHistoricoNavegador: boolean = true) 
         {
-            const parametros = this.RetornarParametros(expressoesParametrosOuChave, valor);
+            const parametros = this.RetornarParametrosPagina(expressoesParametrosOuChave, valor);
             const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
             if (argsAntesNavegar.IsCancelarNavegacao)
             {
@@ -325,7 +331,7 @@
             const paginaAtual = this.PaginaAtual;
             if (paginaAtual instanceof Pagina)
             {
-                this.OcultarPagina(paginaAtual);
+                await this.UnloadPageAsync(paginaAtual);
 
                 if (isSalvarHistoricoVoltar)
                 {
@@ -358,11 +364,11 @@
 
         //#region Voltar
 
-        public Voltar(isSucesso: boolean = false): void
+        public async VoltarAsync(isSucesso: boolean = false) 
         {
             if (this._resolverNavegacaoAsync != null)
             {
-                this.VoltarNavegacaoAsync(isSucesso);
+                await this.VoltarNavegacaoAsync(isSucesso);
                 return;
             }
 
@@ -382,11 +388,11 @@
             {
                 case EnumTipoAnimacao.Nenhuma:
 
-                    this.NavegarInterno(paginaPagametros.Pagina, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
+                    await this.NavegarInternoAsync(paginaPagametros.Pagina, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
                     break;
                 case EnumTipoAnimacao.Deslizante:
 
-                    this.NavegarAnimadoInternoAsync(paginaPagametros.Pagina, EnumSentidoAnimacao.Voltar, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
+                    await this.NavegarAnimadoInternoAsync(paginaPagametros.Pagina, EnumSentidoAnimacao.Voltar, paginaPagametros.Parametros, null, false, this.IsHistoricoAtivo);
                     break;
                 default:
                     throw new Erro("tipo de animação não suportada");
@@ -401,12 +407,10 @@
             this._resolverNavegacaoAsync = null;
             delete this._resolverNavegacaoAsync;
 
-            this.OcultarPagina(paginaAtual);
-
             switch (this.TipoAnimacao)
             {
                 case EnumTipoAnimacao.Nenhuma:
-                    this.NavegarInterno(pagina, pagina.__Parametros, null, false, false);
+                    await this.NavegarInternoAsync(pagina, pagina.__Parametros, null, false, false);
                     break;
                 case EnumTipoAnimacao.Deslizante:
                     await this.NavegarAnimadoInternoAsync(pagina, EnumSentidoAnimacao.Voltar, pagina.__Parametros, null, false, false);
@@ -510,19 +514,27 @@
             }
         }
 
-        private OcultarPagina(pagina: Pagina): void
+        protected async UnloadPageAsync(page: Pagina): Promise<void>
         {
-            if (this.IsControleInicializado)
+            if (this.IsControleInicializado && !page.IsDispensado)
             {
-                if (!this.IsManterCache && this._resolverNavegacaoAsync == null)
+
+                const event = new BeforeUnloadEventArgs();
+                page.BeforeUnloadEvent.Notificar(page, event);
+                if (event.IsHandled)
                 {
-                    this.ControlesFilho.Remove(pagina);
-                    pagina.Dispose();
+                    await event.HandledAsync();
+                }
+
+                if (!this.IsManterCache &&
+                    this._resolverNavegacaoAsync == null)
+                {
+                    this.ControlesFilho.Remove(page);
+                    page.Dispose();
                 }
                 else
                 {
-                    pagina.EventoAntesDescarregar.Notificar(pagina, EventArgs.Empty);
-                    pagina.OcultarElemento();
+                    page.OcultarElemento();
                 }
             }
         }
@@ -578,7 +590,7 @@
             return new DicionarioSimples<string>();
         }
 
-        private RetornarParametros(expressoesParametrosOuChave: Function | DicionarioSimples | string | List<ITupleParametroPagina> | Partial<Pagina>, valor: any): DicionarioSimples<any>
+        private RetornarParametrosPagina(expressoesParametrosOuChave: Function | DicionarioSimples | string | List<ITupleParametroPagina> | Partial<Pagina>, valor: any): DicionarioSimples<any>
         {
             if (expressoesParametrosOuChave != null)
             {
@@ -679,7 +691,7 @@
         {
             if (this.PaginaAtual != null)
             {
-            this.EventoPaginaAlterada?.Notificar(this, new PaginaAlteradaEventArgs(this.PaginaAtual, this._parametros));
+                this.EventoPaginaAlterada?.Notificar(this, new PaginaAlteradaEventArgs(this.PaginaAtual, this._parametros));
             }
             if ($Configuracao.IsDebug)
             {

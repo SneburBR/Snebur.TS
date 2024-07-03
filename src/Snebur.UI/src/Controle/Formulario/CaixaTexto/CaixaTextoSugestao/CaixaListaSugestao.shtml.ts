@@ -142,7 +142,7 @@ namespace Snebur.UI
             const descricao = this.CaixaTextoSugestao.RetornarDescricaoSugestao(obj);
             if (!String.IsNullOrEmpty(this.CaixaTextoSugestao.UltimaPesquisa))
             {
-                return u.HtmlUtil.NegritarConteudo(descricao, this.CaixaTextoSugestao.UltimaPesquisa);
+                return u.HtmlUtil.BoldContent(descricao, this.CaixaTextoSugestao.UltimaPesquisa);
             }
             return descricao;
         }

@@ -424,6 +424,33 @@
             return htmlInterno;
         }
 
+
+        protected RetornarParametros(): DicionarioSimples<any>
+        {
+            const valorAtributoParametros = this.RetornarValorAtributo(AtributosHtml.Parametros, null, true);
+            if (!String.IsNullOrWhiteSpace(valorAtributoParametros))
+            {
+                return PaginaUtil.RetornarParametros(valorAtributoParametros, this.ControlePai);
+            }
+
+            if (this.ControleApresentacao instanceof PainelAbasHorizontal)
+            {
+                return this.RetornarParametrosControlePaginaPai();
+            }
+            return new DicionarioSimples<string>();
+        }
+
+
+        private RetornarParametrosControlePaginaPai(): DicionarioSimples<string>
+        {
+            const paginaPai = this.RetornarControlePai(Pagina);
+            if (paginaPai instanceof Pagina && paginaPai.__Parametros instanceof DicionarioSimples)
+            {
+                return paginaPai.__Parametros;
+            }
+            return new DicionarioSimples<string>();
+        }
+
         //#endregion
 
         //#region Métodos protegidos, overrides permitido

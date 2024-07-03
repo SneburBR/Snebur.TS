@@ -222,10 +222,21 @@
             return false;
         }
 
-        public IsMesmoContrustor(construtor: typeof Pagina | IPaginaConstrutor<Pagina>,
+        public IsMesmoContrustor(
+            construtor: typeof Pagina | IPaginaConstrutor<Pagina>,
             expressoesParametrosOuChave: string | Function | DicionarioSimples<any, string> | List<ITupleParametroPagina<any, any>> | Partial<Pagina>): boolean
         {
-            return this.constructor === construtor;
+
+            if (this.constructor === construtor)
+            {
+                if (expressoesParametrosOuChave instanceof DicionarioSimples &&
+                    this._parametros != null)
+                {
+                    return expressoesParametrosOuChave.Equals(this._parametros);
+                }
+                return true;
+            }
+            return false;
         }
 
         protected RetornarRota(): BaseRota

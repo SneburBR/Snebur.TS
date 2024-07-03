@@ -490,7 +490,7 @@
                                       ${String.Join("<br />", resultadoSalvar.ErrosValidacao.Select(x => x.Mensagem))}`;
 
                     alert(mensagem);
-                    /*throw new Erro(mensagem);*/
+                    throw new Erro(mensagem);
                 }
 
                 const tituloErro = "OPS!";
