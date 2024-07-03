@@ -11,6 +11,11 @@
             return this._isCanceled;
         }
 
+        public get IsPedding()
+        {
+            return !this._isComplete && !this._isCanceled;
+        }
+
         public get IsCompleted()
         {
             return this._isComplete || this._isCanceled;
@@ -23,10 +28,10 @@
 
         public async WaitForCompletionAsync(timeout: number = 0): Promise<void>
         {
-            while(!this._isComplete && !this._isCanceled)
+            while(this.IsPedding)
             {
                 await ThreadUtil.EsperarAsync(100);
-            };
+            }
         }
 
         public Cancel()
