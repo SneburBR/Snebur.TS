@@ -25,7 +25,8 @@
         </ap-cabecalho>
         <ap-linha ap-barra-rolagem-vertical="Automatica">
 
-            <sn-navegador sn-nome="Navegador" 
+            <sn-navegador 
+                sn-nome="Navegador" 
                 sn-item-elemento="Navegador"
                 sn-bind-data-source="{{.}}" 
                 sn-is-propagar-bind-data-source="true" >

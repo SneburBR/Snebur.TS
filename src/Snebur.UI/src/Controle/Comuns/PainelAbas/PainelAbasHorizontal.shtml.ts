@@ -13,6 +13,7 @@ namespace Snebur.UI
 
         private IsAbasCheia: boolean;
         private IsCarregarAbaInicial: boolean;
+        private IsManterCache: boolean;
 
         public TipoPainelAba: EnumTipoPainelAba;
 
@@ -70,10 +71,13 @@ namespace Snebur.UI
 
             this.Navegador.EventoAntesNavegar.AddHandler(this.Navegador_AntesNavegar, this);
             this.Navegador.EventoPaginaAlterada.AddHandler(this.Navegador_PaginaAterada, this);
+            
 
             this.Abas.AddRangeNew(this.ControlesFilho.OfType<Aba>(Aba).Where(x => x.ConstrutorPagina != null).ToList());
             this.IsAbasCheia = this.RetornarValorAtributoBoolean(AtributosHtml.IsAbasCheia, false);
             this.IsCarregarAbaInicial = this.RetornarValorAtributoBoolean(AtributosHtml.IsCarregarAbaInicial, true);
+            this.IsManterCache = this.RetornarValorAtributoBoolean(AtributosHtml.IsManterCache, true);
+            this.Navegador.IsManterCache = this.IsManterCache;
             this._funcaoIsPodeNavegar = this.RetornarFuncaoIsPodeNavegar();
 
             for (const aba of this.Abas)
@@ -87,6 +91,7 @@ namespace Snebur.UI
             }
             this.AtualizarTipoPainelAbas();
         }
+
         private RetornarFuncaoIsPodeNavegar(): (construtorPagina: IPaginaConstrutor, parametros: DicionarioSimples<string, string>) => boolean
         {
             const nomeFuncao = this.RetornarValorAtributo(AtributosHtml.IsFuncaoPodeNavegarAba, null);
@@ -104,7 +109,10 @@ namespace Snebur.UI
 
         private AtualizarTipoPainelAbas()
         {
-            const tipoPainel = this.IsAbasCheia ? EnumTipoPainel.PilhaHorizontalCheia : EnumTipoPainel.PilhaHorizontal;
+            const tipoPainel = this.IsAbasCheia
+                ? EnumTipoPainel.PilhaHorizontalCheia
+                : EnumTipoPainel.PilhaHorizontal;
+
             this.PainelAbasInterno.TipoPainel = tipoPainel;
         }
 
@@ -137,10 +145,17 @@ namespace Snebur.UI
         {
             if (this.TipoPainelAba === ui.EnumTipoPainelAba.MaterialDesign && e.ProximaPagina instanceof Function)
             {
-                const abaDestino = this.Abas.Where(x => x.ConstrutorPagina === e.ProximaPagina).SingleOrDefault();
-                if (abaDestino instanceof Aba)
+                const abasFiltradas = this.Abas.Where(x => x.Filter(e.ProximaPagina, e.Parametros));
+                if (abasFiltradas.Count > 1)
                 {
-                    this.PosicionarMarcador(abaDestino);
+                    const mensagem = ` Existe mais de um aba para pagina ${e.ProximaPagina.constructor.name} com os parametros ${e.Parametros}
+                                       Não sendo possível marcar a aba atual`;
+                    console.error(mensagem);
+                }
+                else if (abasFiltradas.Count === 1)
+                {
+                    const abaAtual = abasFiltradas.First();
+                    this.PosicionarMarcador(abaAtual);
                 }
             }
         }

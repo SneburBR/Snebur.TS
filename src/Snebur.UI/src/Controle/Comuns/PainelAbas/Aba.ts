@@ -2,13 +2,14 @@
 {
     export class Aba extends ControleRotulo
     {
-
+        private _parametros: DicionarioSimples<any, string>;
         private static readonly TipograficaPadrao = EnumUtil.RetornarDescricao(EnumTipografia, EnumTipografia.SubTitulo2);
         private static readonly CSS_CLASSE_SELECIONADA = "sn-is-aba-selecionada";
 
         public static readonly TAG_ABA: string = "sn-aba";
 
         public ConstrutorPagina: IPaginaConstrutor;
+       
         /* public Rotulo: string;*/
 
         public override get Rotulo(): string
@@ -60,6 +61,16 @@
         public override Inicializar(): void
         {
             super.Inicializar();
+            this._parametros = this.RetornarParametros();
+        }
+
+       public Filter(construtorPagina: Pagina | IPaginaConstrutor<Pagina> | typeof Pagina, parametros: DicionarioSimples<any, string>): boolean
+       {
+           if (this.ConstrutorPagina === construtorPagina)
+           {
+               return Util.IsIgual(this._parametros, parametros);
+           }
+           return false;
         }
 
         protected RetornarElementoRotulo(): HTMLElement
