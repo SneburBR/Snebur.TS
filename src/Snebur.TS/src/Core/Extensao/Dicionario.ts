@@ -25,29 +25,39 @@
 
     export class DicionarioSimples<TItem = any, TChave extends string | number = string> extends BaseDicionario<TChave, TItem>
     {
+        private _chaves: TChave[];
+        private _valores: TItem[];
 
         private __Obetos: any;
-        private _length: number
+        private __length: number
 
         public get Length(): number
         {
-            return this._length;
+            return this.__length;
+        }
+        private set Length(value: number)
+        {
+            this.__length = value;
+            this._chaves = null;
+            this._valores = null;
         }
 
         public get Chaves(): Array<TChave>
         {
-            return Object.keysBase(this.__Obetos).ToList<TChave>();
+            if (this._chaves == null)
+            {
+                this._chaves = Object.keysBase(this.__Obetos).ToList<TChave>();
+            }
+            return this._chaves;
         }
 
         public get Valores(): Array<TItem>
         {
-            const valores = new Array<TItem>();
-            for (const chave of this.Chaves)
+            if (this._valores == null)
             {
-                const item = this.__Obetos[chave];
-                valores.Add(item);
+                this._valores = this.ToArray();
             }
-            return valores;
+            return this._valores;
         }
 
         public get ParesChaveValor(): List<ParChaveValorTipada<TChave, TItem>>
@@ -59,7 +69,6 @@
                 const item = this.__Obetos[chave];
                 retorno.Add(new ParChaveValorTipada(chave, item));
             }
-
             return retorno;
         }
 
@@ -70,7 +79,7 @@
         public constructor(obj: any = null)
         {
             super();
-            this._length = 0;
+            this.Length = 0;
             this.__Obetos = {};
 
             if (obj != null)
@@ -94,7 +103,7 @@
                 throw new Erro(`A chave '${chave}' já existe no dicionario`, this);
             }
             this.__Obetos[chave] = item;
-            this._length += 1;
+            this.Length += 1;
             this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, item, EnumAcaoItemAlterado.Adicionado));
         }
 
@@ -104,7 +113,7 @@
             if (item !== undefined)
             {
                 delete this.__Obetos[chave];
-                this._length -= 1;
+                this.Length -= 1;
 
                 this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, item, EnumAcaoItemAlterado.Removido));
                 return true;
@@ -120,7 +129,7 @@
                 console.warn(`A chave '${chave}' não foi encontrada  no dicionário`, this);
                 return false;
             }
-            this._length -= 1;
+            this.Length -= 1;
             delete this.__Obetos[chave];
             this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, item, EnumAcaoItemAlterado.Removido));
             return true;
@@ -142,34 +151,35 @@
                     this.EventoItemAlterado.Notificar(this, new ItemDicionarioAlteradoEventArgs(chave, this.__Obetos[chave], EnumAcaoItemAlterado.Adicionado));
                     delete this.__Obetos[chave];
                 }
+                /*eslint-enable*/
             }
             this.__Obetos = {};
-            this._length = 0;
-        };
+            this.Length = 0;
+        }
 
         public Primeiro(): TItem
         {
-            let primeiraChave = this.Chaves[0];
+            const primeiraChave = this.Chaves[0];
             if (primeiraChave == null)
             {
                 throw new Erro("O dicionario está vazio", this);
             }
-            return this.Item(primeiraChave)
+            return this.Item(primeiraChave);
         }
 
         public Ultimo(): TItem
         {
-            let ultimaChave = this.Chaves[this.Count - 1];
+            const ultimaChave = this.Chaves[this.Count - 1];
             if (ultimaChave == null)
             {
                 throw new Erro("O dicionario está vazio", this);
             }
-            return this.Item(ultimaChave)
+            return this.Item(ultimaChave);
         }
 
         public Pegar(chave: TChave): TItem
         {
-            let item = this.Item(chave);
+            const item = this.Item(chave);
             this.Remover(chave);
             return item;
         }
@@ -178,8 +188,8 @@
         {
             if (this.Count > 0)
             {
-                let primeiraChave = Object.keys(this.__Obetos)[0] as TChave;
-                let primeiroItem = this.Item(primeiraChave);
+                const primeiraChave = Object.keys(this.__Obetos)[0] as TChave;
+                const primeiroItem = this.Item(primeiraChave);
                 this.Remover(primeiraChave);
                 return primeiroItem;
             }
@@ -188,12 +198,12 @@
 
         public PegarMeio(): TItem
         {
-            let total = this.Count;
+            const total = this.Count;
             if (total > 0)
             {
-                let posicao = Math.floor(total / 2);
-                let chave = Object.keys(this.__Obetos)[posicao] as TChave;
-                let itemMeio = this.Item(chave);
+                const posicao = Math.floor(total / 2);
+                const chave = Object.keys(this.__Obetos)[posicao] as TChave;
+                const itemMeio = this.Item(chave);
                 this.Remover(chave);
                 return itemMeio;
             }
@@ -202,11 +212,11 @@
 
         public PegarUltimo(): TItem
         {
-            let total = this.Count;
+            const total = this.Count;
             if (total > 0)
             {
-                let ultimaChave = Object.keys(this.__Obetos)[total - 1] as TChave;
-                let ultimoItem = this.Item(ultimaChave);
+                const ultimaChave = Object.keys(this.__Obetos)[total - 1] as TChave;
+                const ultimoItem = this.Item(ultimaChave);
                 this.Remover(ultimaChave);
                 return ultimoItem;
             }
@@ -216,12 +226,12 @@
 
         public PegarAleatorio(): TItem
         {
-            let total = this.Count;
+            const total = this.Count;
             if (total > 0)
             {
-                let posicao = Math.floor(u.RandomUtil.RetornarRandom(total - 1));
-                let chave = Object.keys(this.__Obetos)[posicao] as TChave;
-                let itemAleatorio = this.Item(chave);
+                const posicao = Math.floor(u.RandomUtil.RetornarRandom(total - 1));
+                const chave = Object.keys(this.__Obetos)[posicao] as TChave;
+                const itemAleatorio = this.Item(chave);
                 this.Remover(chave);
                 return itemAleatorio;
             }
@@ -260,11 +270,11 @@
 
             if (dicionarioOuArrayParChaveValor instanceof DicionarioSimples)
             {
-                for (let chave of dicionarioOuArrayParChaveValor.Chaves)
+                for (const chave of dicionarioOuArrayParChaveValor.Chaves)
                 {
                     if (!this.ContainsKey(chave))
                     {
-                        let valor = dicionarioOuArrayParChaveValor.Item(chave);
+                        const valor = dicionarioOuArrayParChaveValor.Item(chave);
                         this.Add(chave, valor);
                     }
                 }
@@ -294,9 +304,9 @@
 
             if (dicionarioOuArrayParChaveValor instanceof DicionarioSimples)
             {
-                for (let chave of dicionarioOuArrayParChaveValor.Chaves)
+                for (const chave of dicionarioOuArrayParChaveValor.Chaves)
                 {
-                    let valor = dicionarioOuArrayParChaveValor.Item(chave);
+                    const valor = dicionarioOuArrayParChaveValor.Item(chave);
                     this.AddOrUpdate(chave, valor);
                 }
             }
@@ -329,15 +339,14 @@
 
         public get Count(): number
         {
-            this._length = this.Chaves.length;
-            return this._length;
+            return this.Length;
         }
 
         public Item(chave: TChave): TItem
         public Item<TTipoItem extends TItem>(chave: TChave, construtor: IConstrutor<TTipoItem>): TTipoItem
         public Item(chave: TChave, construtor?: Function): TItem
         {
-            let item = this.__Obetos[chave];
+            const item = this.__Obetos[chave];
             if (item === undefined)
             {
                 throw new Erro("Chave não foi encontrada " + chave, this);
@@ -349,8 +358,8 @@
                     return item as TItem;
                 }
 
-                let nomeTipoItem = u.ReflexaoUtil.RetornarNomeTipo(item);
-                let nomeTipoConstrutor = u.ReflexaoUtil.RetornarNomeTipo(construtor);
+                const nomeTipoItem = u.ReflexaoUtil.RetornarNomeTipo(item);
+                const nomeTipoConstrutor = u.ReflexaoUtil.RetornarNomeTipo(construtor);
 
                 throw new Erro(`O item '${nomeTipoItem}' não é do tipo '${nomeTipoConstrutor}'`);
             }
@@ -382,7 +391,7 @@
         public TryItem(chave: TChave, valorPadrao: TItem): TItem | null
         public TryItem(chave: TChave, valorPadrao: TItem = null): TItem | null
         {
-            let item = this.__Obetos[chave];
+            const item = this.__Obetos[chave];
             if (u.ValidacaoUtil.IsDefinido(item))
             {
                 return item;
@@ -440,27 +449,25 @@
 
         public ToArray(): Array<TItem>
         {
-            let array = new Array<TItem>();
-            let chaves = this.Chaves;
-            let len = chaves.length;
-            for (let i = 0; i < len; i++)
+            const array = new Array<TItem>();
+            const chaves = this.Chaves;
+            for (let i = 0; i < chaves.length; i++)
             {
-                let chave = chaves[i];
-                array.Add(this.Item(chave));
+                const chave = chaves[i];
+                array.push(this.Item(chave));
             }
             return array;
         }
 
         public ToArrayChaveValor(): Array<ParChaveValorSimples<TItem>>
         {
-            let lista = new Array<ParChaveValorSimples<TItem>>();
-            let chaves = this.Chaves;
-            let len = chaves.length;
+            const lista = new Array<ParChaveValorSimples<TItem>>();
+            const chaves = this.Chaves;
 
-            for (let i = 0; i < len; i++)
+            for (let i = 0; i < chaves.length; i++)
             {
-                let chave = chaves[i];
-                let valor = this.__Obetos[chave] as TItem;
+                const chave = chaves[i];
+                const valor = this.__Obetos[chave] as TItem;
                 lista.Add(new ParChaveValorSimples(chave.toString(), valor));
             }
             return lista;
@@ -468,12 +475,12 @@
 
         public ToListaObservacao(): ListaObservacao<TItem>
         {
-            let lista = new ListaObservacao<TItem>();
-            let chaves = this.Chaves;
-            let len = chaves.length;
+            const lista = new ListaObservacao<TItem>();
+            const chaves = this.Chaves;
+            const len = chaves.length;
             for (let i = 0; i < len; i++)
             {
-                let chave = chaves[i];
+                const chave = chaves[i];
                 lista.Add(this.Item(chave));
             }
             return lista;
@@ -487,7 +494,7 @@
                 return $Reflexao.TipoDicionarioVazio;
             } else
             {
-                let primeiro = this.Primeiro();
+                const primeiro = this.Primeiro();
                 return new r.TipoDicionario(primeiro.GetType());
             }
         }
@@ -496,6 +503,7 @@
         {
             return this.__RetornarTipo();
         }
+
         //#endregion
 
         public override Clone(isClonarItens: boolean = false): DicionarioSimples<TItem, TChave>
@@ -518,7 +526,31 @@
                     return (item as IClone).Clone();
                 }
             }
-            return item
+            return item;
+        }
+
+        public override Equals(obj: any): boolean
+        {
+            if (obj instanceof DicionarioSimples)
+            {
+                if (obj === this)
+                {
+                    return true;
+                }
+
+                const thisChaves = this.Chaves;
+                const thisValores = this.Valores;
+
+                const objChaves = obj.Chaves;
+                const objValores = obj.Valores;
+
+                return objChaves.length === thisChaves.length
+                    && objValores.length === thisValores.length
+                    && objChaves.every((chave, index) => chave === thisChaves[index])
+                    && objValores.every((valor, index) => Util.IsIgual(valor, thisValores[index]));
+
+            }
+            return false;
         }
     }
 
