@@ -2,89 +2,103 @@
 {
     export class HtmlUtil
     {
-        private static readonly ESPACO = "&nbsp;";
-        private static readonly STRONG = "&#$%";
-        private static readonly FECHAR_STRONG = "!%$#&";
-        private static readonly CARACTER_PROTEGITO = ["!", "&", "#", "$", "%"]
+        private static readonly SPACE = "&nbsp;";
+        private static readonly OPEN_CLOSE = "&#$%";
+        private static readonly CLOSE_TEMP = "!%$#&";
+        private static readonly PROTECTED_CHARS = ["!", "&", "#", "$", "%"]
 
-        public static NegritarConteudo(conteudo: string, conteudoNegritar: string): string
+        public static BoldContent(content: string, contentToBold: string): string
         {
-            const partes = conteudoNegritar.split(" ");
-            let resultado = conteudo;
-            for (const parte of partes)
-            {
-                if (!String.IsNullOrWhiteSpace(parte) && HtmlUtil.IsPodeNegritar(parte))
-                {
-                    resultado = HtmlUtil.NegritarConteudoInterno(resultado, parte);
-                }
-            }
-            resultado = resultado.ReplaceAll(HtmlUtil.FECHAR_STRONG, "</STRONG>").
-                ReplaceAll(HtmlUtil.STRONG, "<STRONG>");
-
-            resultado = resultado.ReplaceAll(" ", HtmlUtil.ESPACO);
-
-            return resultado;
-
+            const partes = contentToBold.split(" ");
+            return HtmlUtil.BoldParts(content, partes);
         }
 
-        private static IsPodeNegritar(parte: string)
+        public static BoldParts(content: string, partsToBold: string[]): string
         {
-            const strObj = Object(parte);
-            for (const c in strObj)
-            {
-                if (c.length === 1)
-                {
-                    if (HtmlUtil.CARACTER_PROTEGITO.Contains(c))
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
+            return HtmlUtil.FormatParts(content, partsToBold, "<STRONG>", "</STRONG>");
         }
 
-        private static NegritarConteudoInterno(texto: string, conteudo: string): string
+        public static RedContent(content: string, contentToRed: string): string
         {
+            return HtmlUtil.ColorContent(content, contentToRed, "red");
+        }
 
-            let restanteOriginal = texto;
+        public static RedParts(content: string, partesToColor: string[]): string
+        {
+            return HtmlUtil.ColorParts(content, partesToColor, "red");
+        }
 
-            const pesquisa = TextoUtil.RemoverAcentos(conteudo.toLowerCase());
-            let restantePesquisa = TextoUtil.RemoverAcentos(texto.toLowerCase());
+        public static ColorContent(content: string, contentToColor: string, color: string): string
+        {
+            const partes = contentToColor.split(" ");
+            return HtmlUtil.ColorParts(content, partes, color);
+        }
 
-            if (restanteOriginal.length !== restantePesquisa.length)
+        public static ColorParts(content: string, partsToColor: string[], color: string): string
+        {
+            return HtmlUtil.FormatParts(content, partsToColor, `<span style="color:${color}">`, "</span>");
+        }
+
+        public static FormatParts(content: string, partsToFormat: string[], openTag: string, closeTag: string): string
+        {
+            let result = content;
+            for (const part of partsToFormat)
+            {
+                if (!String.IsNullOrWhiteSpace(part) && HtmlUtil.CanFormat(part))
+                {
+                    result = HtmlUtil.InternalFormatContent(result, part);
+                }
+            }
+
+            return result
+                .ReplaceAll(" ", HtmlUtil.SPACE)
+                .ReplaceAll(HtmlUtil.CLOSE_TEMP, closeTag)
+                .ReplaceAll(HtmlUtil.OPEN_CLOSE, openTag);
+        }
+
+        private static CanFormat(part: string)
+        {
+            return !HtmlUtil.PROTECTED_CHARS.some(x => part.includes(x));
+        }
+
+        private static InternalFormatContent(content: string, part: string): string
+        {
+            let originalRemaining = content;
+
+            const search = TextoUtil.RemoverAcentos(part.toLowerCase());
+            let remainingSearch = TextoUtil.RemoverAcentos(content.toLowerCase());
+            let searchPosition = remainingSearch.indexOf(search);
+
+            if (originalRemaining.length !== remainingSearch.length)
             {
                 throw new ErroOperacaoInvalida("o Método remover acentos está mexendo no numero de caracteres");
             }
 
             const sb = new StringBuilder();
-            let posicaoPesquisa = restantePesquisa.indexOf(pesquisa);
-
-            while (posicaoPesquisa >= 0)
+            while (searchPosition >= 0)
             {
-                const inicio = restanteOriginal.substring(0, posicaoPesquisa);
+                const start = originalRemaining.substring(0, searchPosition);
 
-                restantePesquisa = restantePesquisa.substring(posicaoPesquisa);
-                restanteOriginal = restanteOriginal.substring(posicaoPesquisa);
+                remainingSearch = remainingSearch.substring(searchPosition);
+                originalRemaining = originalRemaining.substring(searchPosition);
 
-                const conteudoPesquisa = restanteOriginal.substring(0, pesquisa.length);
+                const conteudoPesquisa = originalRemaining.substring(0, search.length);
 
-                sb.Append(inicio);
-                sb.Append(HtmlUtil.STRONG);
+                sb.Append(start);
+                sb.Append(HtmlUtil.OPEN_CLOSE);
                 sb.Append(conteudoPesquisa);
-                sb.Append(HtmlUtil.FECHAR_STRONG);
+                sb.Append(HtmlUtil.CLOSE_TEMP);
 
-                restantePesquisa = restantePesquisa.substring(conteudoPesquisa.length);
-                restanteOriginal = restanteOriginal.substring(conteudoPesquisa.length);
+                remainingSearch = remainingSearch.substring(conteudoPesquisa.length);
+                originalRemaining = originalRemaining.substring(conteudoPesquisa.length);
 
-                posicaoPesquisa = restantePesquisa.indexOf(pesquisa);
+                searchPosition = remainingSearch.indexOf(search);
             }
-            sb.Append(restanteOriginal);
-
+            sb.Append(originalRemaining);
             return sb.ToString();
-
-
         }
     }
+
     export class HtmlEncodeUtil
     {
         private static _instancia: HtmlEncode;
@@ -219,4 +233,3 @@
 
     }
 }
- 
