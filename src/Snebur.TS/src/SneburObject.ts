@@ -1,21 +1,21 @@
 ﻿
 namespace Snebur
 {
-    export class Objeto implements Object, IEquals 
+    export class SneburObject implements Object, IEquals 
     {
         static ___ContadorHashCode: number = 1;
 
         //suportado  2015 or >
         //readonly #camposPrivado = {} as ObjetoCamposPrivados;
-        private readonly __camposPrivados = {} as ObjetoCamposPrivados;
-        private __tipo__: r.BaseTipo;
+        private readonly __privateFields = {} as PrivateFieldsObject;
+        private __type__: r.BaseTipo;
 
         /**
          * Propriedades de uso para nome do classe do em mensagem de erro, futuramente poderá ter uma referencia mais completo para o mesmo
          */
         public get ___NomeConstrutor(): string
         {
-            return   this.constructor.name;
+            return this.constructor.name;
         }
 
         public get __CaminhoTipo(): string
@@ -25,7 +25,7 @@ namespace Snebur
 
         public constructor()
         {
-            this.__camposPrivados.__hashCode = Objeto.RetornarNovoHashCode();
+            this.__privateFields.__hashCode = SneburObject.RetornarNovoHashCode();
         }
 
         public toString(args?: string): string
@@ -35,68 +35,69 @@ namespace Snebur
 
         public GetType(): r.BaseTipo
         {
-            if (this.__tipo__ == null || $Reflexao.IsBaseTipoGenerico(this.__tipo__.CaminhoTipo))
+            if (this.__type__ == null || $Reflexao.IsBaseTipoGenerico(this.__type__.CaminhoTipo))
             {
-                this.__tipo__ = this.__RetornarTipo();
+                this.__type__ = this.__RetornarTipo();
             }
-            return this.__tipo__;
+            return this.__type__;
         }
 
         public GetHashCode(): number
         {
-            return this.__camposPrivados.__hashCode;
+            return this.__privateFields.__hashCode;
         }
 
-        public DispensarObjeto<TThis extends this>(expressaoObjeto: (value: TThis) => HTMLElement | Objeto | Array<any>): void
+        public DisposeObject<TThis extends this>(expressaoObjeto: (value: TThis) => HTMLElement | SneburObject | Array<any>): void
         {
-            const nomePropriedade = ExpressaoUtil.RetornarCaminhoPropriedade(expressaoObjeto);
-            const valorObjeto = (this as any)[nomePropriedade];
-            if (u.ValidacaoUtil.IsDefinido(valorObjeto))
+            const propertyName = ExpressaoUtil.RetornarCaminhoPropriedade(expressaoObjeto);
+            const propertyValue = (this as any)[propertyName];
+
+            if (u.ValidacaoUtil.IsDefinido(propertyValue))
             {
-                const objetoIDisposable = valorObjeto as IDisposable;
-                if (typeof objetoIDisposable.Dispose === "function")
+                const disposableObject = propertyValue as IDisposable;
+                if (typeof disposableObject.Dispose === "function")
                 {
-                    objetoIDisposable.Dispose();
+                    disposableObject.Dispose();
                 }
 
-                if (objetoIDisposable instanceof HTMLElement)
+                if (disposableObject instanceof HTMLElement)
                 {
-                    objetoIDisposable.remove();
+                    disposableObject.remove();
                 }
 
-                if (Array.isArray(objetoIDisposable))
+                if (Array.isArray(disposableObject))
                 {
-                    objetoIDisposable.Clear();
+                    disposableObject.Clear();
                 }
-                (this as any)[nomePropriedade] = undefined;
-                delete (this as any)[nomePropriedade];
+                (this as any)[propertyName] = undefined;
+                delete (this as any)[propertyName];
             }
         }
-        
+
 
         //#region Timeouts 
-         
+
         protected SetTimeout(acao: Function, timeout: number = 0): number
         {
-            if (!this.__camposPrivados.__IdentificadoresTimeout)
+            if (!this.__privateFields.__timeoutIdentifiers)
             {
-                this.__camposPrivados.__IdentificadoresTimeout = new List<number>();
+                this.__privateFields.__timeoutIdentifiers = new List<number>();
             }
 
             const identificador = window.setTimeout(acao.bind(this), timeout);
-            this.__camposPrivados.__IdentificadoresTimeout.Add(identificador);
+            this.__privateFields.__timeoutIdentifiers.Add(identificador);
             return identificador;
         }
 
         protected SetInterval(acao: Function, timeout: number = 0): number
         {
-            if (!this.__camposPrivados.__IdentificadoresInterval)
+            if (!this.__privateFields.__intervalIdentifiers)
             {
-                this.__camposPrivados.__IdentificadoresInterval = new List<number>();
+                this.__privateFields.__intervalIdentifiers = new List<number>();
             }
 
             const identificador = window.setInterval(acao.bind(this), timeout);
-            this.__camposPrivados.__IdentificadoresInterval.Add(identificador);
+            this.__privateFields.__intervalIdentifiers.Add(identificador);
             return identificador;
         }
 
@@ -127,12 +128,12 @@ namespace Snebur
 
         public ToString(formatacao?: string): string
         {
-            const texto = this.toString();
+            const text = this.toString();
             if (!String.IsNullOrEmpty(formatacao))
             {
-                return u.FormatacaoUtil.Formatar(texto, formatacao);
+                return u.FormatacaoUtil.Formatar(text, formatacao);
             }
-            return texto;
+            return text;
         }
 
         public Equals(obj: object): boolean
@@ -145,39 +146,39 @@ namespace Snebur
 
         public Dispose(): void
         {
-            if (this.__camposPrivados.__IdentificadoresTimeout instanceof Array)
+            if (this.__privateFields.__timeoutIdentifiers instanceof Array)
             {
-                for (const identificadorTimeout of this.__camposPrivados.__IdentificadoresTimeout)
+                for (const identificadorTimeout of this.__privateFields.__timeoutIdentifiers)
                 {
                     window.clearTimeout(identificadorTimeout);
                 }
-                this.__camposPrivados.__IdentificadoresTimeout.Clear();
+                this.__privateFields.__timeoutIdentifiers.Clear();
             }
 
-            if (this.__camposPrivados.__IdentificadoresInterval instanceof Array)
+            if (this.__privateFields.__intervalIdentifiers instanceof Array)
             {
-                for (const identificadorInterval of this.__camposPrivados.__IdentificadoresInterval)
+                for (const identificadorInterval of this.__privateFields.__intervalIdentifiers)
                 {
                     window.clearTimeout(identificadorInterval);
                 }
-                this.__camposPrivados.__IdentificadoresInterval.Clear();
+                this.__privateFields.__intervalIdentifiers.Clear();
             }
 
-            this.__camposPrivados.__IdentificadoresTimeout = undefined;
-            this.__camposPrivados.__IdentificadoresTimeout = undefined;
+            this.__privateFields.__timeoutIdentifiers = undefined;
+            this.__privateFields.__timeoutIdentifiers = undefined;
         }
 
         public static RetornarNovoHashCode(): number
         {
-            Objeto.___ContadorHashCode += 1;
-            return Objeto.___ContadorHashCode;
+            SneburObject.___ContadorHashCode += 1;
+            return SneburObject.___ContadorHashCode;
         }
     }
 
-    interface ObjetoCamposPrivados
+    interface PrivateFieldsObject 
     {
         __hashCode: number
-        __IdentificadoresTimeout: List<number>;
-        __IdentificadoresInterval: List<number>;
+        __timeoutIdentifiers: List<number>;
+        __intervalIdentifiers: List<number>;
     }
 }
