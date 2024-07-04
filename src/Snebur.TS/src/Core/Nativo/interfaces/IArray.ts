@@ -52,13 +52,13 @@ namespace Snebur.Nativo
         //GroupBy<TChave>(expressaoChave: (value: T) => TChave): Array<GrupoChaveValores<TChave, T>>;
 
         //Select<U>(funcaoMapear: (value: T) => U): U[];
-        GroupBy<TChave extends Objeto>(expressaoChave: (value: T) => TChave): Array<Snebur.GrupoChaveValores<TChave, T>>;
+        GroupBy<TChave extends SneburObject>(expressaoChave: (value: T) => TChave): Array<Snebur.GrupoChaveValores<TChave, T>>;
         GroupBy<TChave extends number | string | boolean>(expressaoChave: (value: T) => TChave): Array<Snebur.GrupoChaveValores<TChave, T>>;
         //GroupBy<TChave extends number | string | Objeto>(expressaoChave: Function): Array<Snebur.GrupoChaveValores<TChave, T>>;
 
         //DicionarioGroupBy<TChave extends number | string>(expressaoChave: (value: T) => TChave): Snebur.DicionarioSimples<Array<T>>;
 
-        DicionarioGroupBy<TChave extends number | string | Objeto>(expressaoChave: (value: T) => TChave): Snebur.DicionarioTipado<any, Array<T>>;
+        DicionarioGroupBy<TChave extends number | string | SneburObject>(expressaoChave: (value: T) => TChave): Snebur.DicionarioTipado<any, Array<T>>;
 
         OrderBy(expressao: (value: T) => string | number | Date): T[];
 

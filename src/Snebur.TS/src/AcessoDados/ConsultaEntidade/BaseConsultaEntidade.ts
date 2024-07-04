@@ -1,6 +1,6 @@
 ﻿namespace Snebur.AcessoDados
 {
-    export abstract class BaseConsultaEntidade extends Snebur.Objeto
+    export abstract class BaseConsultaEntidade extends Snebur.SneburObject
     {
         protected _tipoEntidadeConsulta: r.TipoEntidade;
         public readonly ContextoDados: BaseContextoDados;

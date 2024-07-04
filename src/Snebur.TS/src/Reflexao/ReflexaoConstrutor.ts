@@ -67,7 +67,7 @@
             if (caminhoTipo === "Snebur.Objeto")
             {
                 const construtor = this.NormalizarConstrutor(construtorOuObjeto);
-                return construtor !== Snebur.Objeto;
+                return construtor !== Snebur.SneburObject;
             }
 
             if (this.IsBaseTipoGenerico(caminhoTipo))
@@ -104,7 +104,7 @@
 
         private NormalizarConstrutor(construtorOuObjeto: any): Function
         {
-            if (construtorOuObjeto instanceof Snebur.Objeto)
+            if (construtorOuObjeto instanceof Snebur.SneburObject)
             {
                 return construtorOuObjeto.constructor;
             }

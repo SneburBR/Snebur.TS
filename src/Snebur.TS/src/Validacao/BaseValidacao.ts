@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export abstract class BaseValidacao extends Snebur.Objeto implements IBaseValidacao
+    export abstract class BaseValidacao extends Snebur.SneburObject implements IBaseValidacao
     {
         public readonly IsForcando: boolean = false;
 

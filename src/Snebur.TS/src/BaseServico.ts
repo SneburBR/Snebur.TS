@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export abstract class BaseServico extends Snebur.Objeto
+    export abstract class BaseServico extends Snebur.SneburObject
     {
         public abstract readonly URLServico: string;
 

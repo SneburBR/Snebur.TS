@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export class SnBlob extends Snebur.Objeto
+    export class SnBlob extends Snebur.SneburObject
     {
         private _nomeArquivo: string;
         private _informacaoImagem: IInformacaoImagem;

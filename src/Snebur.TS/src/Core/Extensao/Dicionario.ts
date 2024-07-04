@@ -12,7 +12,7 @@
         {
             if (!this.__hashCode)
             {
-                this.__hashCode = Objeto.RetornarNovoHashCode();
+                this.__hashCode = SneburObject.RetornarNovoHashCode();
             }
             return this.__hashCode;
         }
@@ -21,7 +21,7 @@
         public abstract Clone(isClonarItens: boolean): BaseDicionario<TItem, TChave>;
     }
 
-    export type TipoItemLista = string | number | Date | object | Snebur.Objeto | d.IEntidade | { [key: string]: any };
+    export type TipoItemLista = string | number | Date | object | Snebur.SneburObject | d.IEntidade | { [key: string]: any };
 
     export class DicionarioSimples<TItem = any, TChave extends string | number = string> extends BaseDicionario<TChave, TItem>
     {

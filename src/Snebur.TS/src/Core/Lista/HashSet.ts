@@ -110,7 +110,7 @@
         {
             if (!this.__hashCode)
             {
-                this.__hashCode = Objeto.RetornarNovoHashCode();
+                this.__hashCode = SneburObject.RetornarNovoHashCode();
             }
             return this.__hashCode;
         }

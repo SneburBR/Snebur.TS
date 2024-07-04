@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export class PropriedadeValidacoes extends Snebur.Objeto
+    export class PropriedadeValidacoes extends Snebur.SneburObject
     {
 
         public readonly NomePropriedade: string;

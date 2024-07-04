@@ -2,7 +2,7 @@
 {
     export declare type TipoFuncaoRetornarMensagemValidacao = (paiPropriedade: any, propriedade: r.Propriedade, valorPropriedade: any) => string;
 
-    export abstract class BaseValidacaoPersonalizada extends Snebur.Objeto implements IBaseValidacao
+    export abstract class BaseValidacaoPersonalizada extends Snebur.SneburObject implements IBaseValidacao
     {
         public readonly abstract TipoValidacao: EnumTipoValidacao;
         public readonly FuncaoRetornarMensagemValidacao: TipoFuncaoRetornarMensagemValidacao;

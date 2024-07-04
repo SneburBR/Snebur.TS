@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    export abstract class ObjetoControladorPropriedade extends Snebur.Objeto implements IDisposable
+    export abstract class ObjetoControladorPropriedade extends Snebur.SneburObject implements IDisposable
     {
         private static readonly __NOME_PROPRIEDADE_EVENTO_CONTROLE_DISPENSADO = "EventoControleDispensado";
 

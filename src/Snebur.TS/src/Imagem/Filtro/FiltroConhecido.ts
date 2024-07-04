@@ -1,7 +1,7 @@
 ﻿
 namespace Snebur.Imagens
 {
-    export class EfeitoImagem extends Snebur.Objeto
+    export class EfeitoImagem extends Snebur.SneburObject
     {
         public readonly EfeitoImagemEnum: d.EnumEfeitoImagem;
         public readonly Filtro: d.FiltroImagem;

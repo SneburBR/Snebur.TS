@@ -1,13 +1,13 @@
 ﻿/*eslint-disable*/
 namespace Snebur
 {
-    export interface IGrupoChaveValores<TChave extends Objeto | string | number | boolean, TItem>
+    export interface IGrupoChaveValores<TChave extends SneburObject | string | number | boolean, TItem>
     {
         Chave: TChave;
         Itens: Array<TItem>;
     }
 
-    export class GrupoChaveValores<TChave extends Objeto | string | number | boolean, TItem> implements IGrupoChaveValores<TChave, TItem>
+    export class GrupoChaveValores<TChave extends SneburObject | string | number | boolean, TItem> implements IGrupoChaveValores<TChave, TItem>
     {
         private _chave: TChave;
         private _itens: Array<TItem>
@@ -27,7 +27,7 @@ namespace Snebur
         {
             if (!this.__hashCode)
             {
-                this.__hashCode = Objeto.RetornarNovoHashCode();
+                this.__hashCode = SneburObject.RetornarNovoHashCode();
             }
             return this.__hashCode;
         }

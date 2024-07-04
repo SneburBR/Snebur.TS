@@ -1,7 +1,7 @@
 ﻿namespace Snebur.Comunicacao
 {
 
-    export abstract class BaseChamadaServico extends Snebur.Objeto implements IDisposable
+    export abstract class BaseChamadaServico extends Snebur.SneburObject implements IDisposable
     {
         protected Tk: string;
 

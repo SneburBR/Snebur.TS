@@ -426,7 +426,7 @@
             return $Reflexao.TipoListaItemDesconhecido;
         }
 
-        public static RetornarNomeTipo(obj: Function | Objeto | string | any, isIgnorarErro: boolean = true): string
+        public static RetornarNomeTipo(obj: Function | SneburObject | string | any, isIgnorarErro: boolean = true): string
         {
             if (obj === undefined)
             {
