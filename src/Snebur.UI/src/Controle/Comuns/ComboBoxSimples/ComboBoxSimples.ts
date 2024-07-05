@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class ComboBoxSimples<T extends string | number | Objeto = Objeto> extends Snebur.UI.BaseControle implements IControleLista, IControleEventoValorAlterado<T>
+    export class ComboBoxSimples<T extends string | number | SneburObject = SneburObject> extends Snebur.UI.BaseControle implements IControleLista, IControleEventoValorAlterado<T>
     {
         private _lista: ListaObservacao<T> = null;
         private ValorAtributoExibicao: string;

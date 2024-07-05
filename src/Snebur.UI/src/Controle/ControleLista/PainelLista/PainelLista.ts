@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class PainelLista<TItem extends TipoItemLista = Snebur.Objeto, TItemBloco extends ItemBloco = ItemBloco> extends BaseControleLista<TItem>
+    export class PainelLista<TItem extends TipoItemLista = Snebur.SneburObject, TItemBloco extends ItemBloco = ItemBloco> extends BaseControleLista<TItem>
     {
         private _isMarcarItem: boolean = null;
         private _blocoCabecalho: BlocoCabecalho;

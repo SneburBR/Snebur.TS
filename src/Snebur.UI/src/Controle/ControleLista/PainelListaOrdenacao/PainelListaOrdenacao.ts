@@ -1,7 +1,7 @@
 ﻿namespace Snebur.UI
 {
     //é preciso deixar a mesma linha para extensão pode organizar os arquivos na sequencia das heranças
-    export class PainelListaOrdenacao<TItem extends TipoItemLista = Snebur.Objeto> extends PainelLista<TItem, ItemBlocoOrdenacao>
+    export class PainelListaOrdenacao<TItem extends TipoItemLista = Snebur.SneburObject> extends PainelLista<TItem, ItemBlocoOrdenacao>
     {
         public static readonly PASSO_PADRAO: number = 1;
 

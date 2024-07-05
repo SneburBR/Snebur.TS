@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class ItemBlocoSelecao<IItem extends TipoItemLista = Snebur.Objeto> extends ItemBloco 
+    export class ItemBlocoSelecao<IItem extends TipoItemLista = Snebur.SneburObject> extends ItemBloco 
     {
         public readonly TemplateSelecionado: BlocoTemplateSelecionado;
         private _isSelecionado: boolean = false;

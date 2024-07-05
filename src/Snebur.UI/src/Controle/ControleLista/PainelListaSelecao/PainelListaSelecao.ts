@@ -1,6 +1,6 @@
 ﻿namespace Snebur.UI
 {
-    export class PainelListaSelecao<TItem extends TipoItemLista = Snebur.Objeto> extends PainelLista<TItem, ItemBlocoSelecao> implements IControleItensSelecionado
+    export class PainelListaSelecao<TItem extends TipoItemLista = Snebur.SneburObject> extends PainelLista<TItem, ItemBlocoSelecao> implements IControleItensSelecionado
     {
         public readonly BlocosTemplateSelecionado = new DicionarioSimples<BlocoTemplateSelecionado>();
         public BlocoTemplateSelecionadoPadrao: BlocoTemplateSelecionado;

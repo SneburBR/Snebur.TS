@@ -1,7 +1,7 @@
 ﻿namespace Snebur.UI
 {
 
-    export abstract class PropriedadeApresentacao<TValor> extends Snebur.Objeto implements IPropriedadeApresentacao<TValor>
+    export abstract class PropriedadeApresentacao<TValor> extends Snebur.SneburObject implements IPropriedadeApresentacao<TValor>
     {
         public static readonly VAZIO = "Vazio";
 

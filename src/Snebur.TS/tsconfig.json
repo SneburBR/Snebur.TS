@@ -147,7 +147,7 @@
     "src/Utilidade/CancelationToken.ts",
     "src/Utilidade/SnRandom.ts",
     "src/Utilidade/TelefoneUtil.ts",
-    "src/Objeto.ts",
+    "src/SneburObject.ts",
     "src/Validacao/BaseValidacao.ts",
     "src/Validacao/BaseValidacaoPersonalizada.ts",
     "src/Validacao/ValidacaoAsync.ts",

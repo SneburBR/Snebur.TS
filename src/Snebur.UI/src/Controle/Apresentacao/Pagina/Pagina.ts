@@ -83,12 +83,12 @@
             return "sn-pagina";
         }
 
-        protected RetornarValorParametro<T extends Snebur.Objeto>(chave: string, construtor: IConstrutor<T>): T;
+        protected RetornarValorParametro<T extends Snebur.SneburObject>(chave: string, construtor: IConstrutor<T>): T;
         protected RetornarValorParametro(chave: string, construtor: IConstrutor<Number>): number;
         protected RetornarValorParametro(chave: string, construtor: IConstrutor<String>): string;
         protected RetornarValorParametro(chave: string, construtor: IConstrutor<Boolean>): boolean;
         protected RetornarValorParametro(chave: string, construtor: IConstrutor<Date>): Date;
-        protected RetornarValorParametro<T extends Snebur.Objeto>(chave: string, construtor: IConstrutor<T>, ignorarErro: boolean): T;
+        protected RetornarValorParametro<T extends Snebur.SneburObject>(chave: string, construtor: IConstrutor<T>, ignorarErro: boolean): T;
         protected RetornarValorParametro(chave: string, construtor: Function, ignorarErro: boolean): any;
         protected RetornarValorParametro<T>(chave: string, construtor: IConstrutor<T> | Function, ignorarErro: boolean = false): T | any
         {

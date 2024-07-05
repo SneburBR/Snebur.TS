@@ -151,7 +151,7 @@
 
             if (valorPropriedade === undefined)
             {
-                const nomeConstrutor = this.Origem instanceof Snebur.Objeto ? this.Origem.___NomeConstrutor : " origem desconhecida";
+                const nomeConstrutor = this.Origem instanceof Snebur.SneburObject ? this.Origem.___NomeConstrutor : " origem desconhecida";
                 const mensagemErro = `A propriedade '${this.CaminhoPropriedadeLigacao}' não foi encontrada na Origem '${nomeConstrutor}' \n configura a origem do controle apresentação do bind`;
                 console.error(mensagemErro);
                 /*valorPropriedade = null;*/

@@ -5,8 +5,6 @@ namespace Snebur
     {
         static ___ContadorHashCode: number = 1;
 
-        //suportado  2015 or >
-        //readonly #camposPrivado = {} as ObjetoCamposPrivados;
         private readonly __privateFields = {} as PrivateFieldsObject;
         private __type__: r.BaseTipo;
 
