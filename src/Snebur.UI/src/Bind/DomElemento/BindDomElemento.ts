@@ -38,9 +38,7 @@
         }
 
         //#region Handler Evento Dom
-
         
-
         protected ElementoInput_ValorDomAlteradoInput(e: UIEvent): void
         {
             this._isInputEvent = true;
@@ -70,12 +68,15 @@
                 {
                     this.__ultimoValorDom = valorDom;
                     this.SetTimeout(this.LimparUltimoValorDom, 1000);
-                    if (this.PaiPropriedadeLigacao != null &&
-                        this.PropriedadeLigacao != null)
+                    
+                    if (this.PaiPropriedadeLigacao == null ||
+                        String.IsNullOrWhiteSpace(this.NomePropriedadeLigacao))
                     {
-                        const valorPropriedade = this.RetornarValorConvertidoParaPropriedade(valorDom);
-                        this.AlterarValorPropriedade(valorPropriedade);
+                        console.error(`O bind ${this.___NomeConstrutor} não possui propriedade de ligação ou objeto  pai (dataSource ou Origem) não forem definido`, this);
+                        return;
                     }
+                    const valorPropriedade = this.RetornarValorConvertidoParaPropriedade(valorDom);
+                    this.AlterarValorPropriedade(valorPropriedade);
                 }
             }
         }
@@ -88,7 +89,7 @@
         protected ElementoInput_KeyDown(e: KeyboardEvent): void
         {
             this._isInputEvent = false;
-            if (KeyCodeUtil.IsKeyCodeEnter(e.keyCode))
+            if (KeyCodeUtil.IsKeyCodeEnter(e.keyCode) || e.key === "Enter")  
             {
                 if (this.Elemento instanceof HTMLTextAreaElement)
                 {
@@ -148,7 +149,7 @@
             {
                 return false;
             }
-             
+
             if (this instanceof BindTexto)
             {
                 return this.Elemento.getAttribute("sn-mascara") !== "Moeda";
