@@ -41,6 +41,11 @@
 
         public static FormatParts(content: string, partsToFormat: string[], openTag: string, closeTag: string): string
         {
+            if (String.IsNullOrWhiteSpace(content))
+            {
+                return String.Empty;
+            }
+
             let result = content;
             for (const part of partsToFormat)
             {
