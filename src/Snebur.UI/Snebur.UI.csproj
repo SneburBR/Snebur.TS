@@ -11,7 +11,6 @@
 	<ItemGroup>
 	  <Content Remove="Properties\launchSettings.bkp.json" />
 	</ItemGroup>
-
 	<ItemGroup>
 	  <_WebToolingArtifacts Remove="Properties\launchSettings.bkp.json" />
 	</ItemGroup>
@@ -30,15 +29,10 @@
  
 	<ItemGroup>
 		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5">
-
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
-  
- 
-
-
 </Project>
 
 

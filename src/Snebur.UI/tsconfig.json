@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.UI.js",
+    "outFile": "build\\Snebur.UI.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -28,7 +28,6 @@
     "declarationMap": true
   },
   "files": [
-    "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.d.ts",
     "src/Snebur.UI.Inicio.ts",
     "src/Nativo/Document.ts",
     "src/Nativo/Event.ts",
@@ -369,6 +368,7 @@
     "src/Utilidade/ComponenteApresentacaoUtil.ts",
     "src/Utilidade/ControleUtil.ts",
     "src/Utilidade/CorUtil.ts",
+    "src/Utilidade/CssClassUtil.ts",
     "src/Utilidade/DebugUIInfo.ts",
     "src/Utilidade/ElementoAreaUtil.ts",
     "src/Utilidade/ElementoAtributoUtil.ts",

@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.FotoAlbum.Apresentacao.AdministracaoConta/wwwroot/build/Snebur.js",
+    "outFile": "build\\Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
