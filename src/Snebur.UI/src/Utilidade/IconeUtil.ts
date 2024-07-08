@@ -26,9 +26,9 @@
             }
 
             const descricao = EnumUtil.RetornarDescricao(EnumIcone, icone);
-            return u.CodigoUtil.FormatarVariavel(descricao,
-                u.EnumFormatacaoVariavelCodigo.PascalCase,
-                u.EnumFormatacaoVariavelCodigo.SnakeCase);
+            return u.CodigoUtil.Formatar(descricao,
+                u.EnumFormatacaoCodigo.PascalCase,
+                u.EnumFormatacaoCodigo.SnakeCase);
         }
     }
 }
