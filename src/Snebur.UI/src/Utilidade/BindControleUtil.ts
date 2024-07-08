@@ -45,7 +45,7 @@
 
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.FiltroImagem, BindFiltroImagem));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.PreenchimentoImagem, BindPreenchimentoImage));
-                  
+
                 //bind propriedade comum
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.Desabilitar, BindPropriedadeComum, x => x.IsDesabilitado));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.Legenda, BindPropriedadeComum, x => x.Legenda));
@@ -58,9 +58,6 @@
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.LarguraApresentacao, BindPropriedadeComum, x => x.LarguraApresentacao));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum(AtributosHtml.AlturaApresentacao, BindPropriedadeComum, x => x.AlturaApresentacao));
 
-                
-
-
                 //painel
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IPainel>(AtributosHtml.TipoPainel, BindPropriedadeComum, x => x.TipoPainel));
 
@@ -71,7 +68,7 @@
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IControleRotulo>(AtributosHtml.Rotulo, BindPropriedadeComum, x => x.Rotulo));
 
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<Painel>(AtributosHtml.TipoPainel, BindPropriedadeComum, x => x.TipoPainel));
-                 
+
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindPropriedadeComum<IControleSelecionado>(AtributosHtml.Selecionado, BindPropriedadeComum, x => x.IsSelecionado));
 
             }
@@ -109,9 +106,20 @@
                                     {
                                         construtor = BindControleUtil.RetornarConstrutorBindRecomendado(controlePai, elemento);
                                     }
-                                    const novoBind = new construtor(controlePai, elemento, valorAtributo);
-                                    novoBind.DataSource = controlePai.DataSource;
-                                    binds.Add(novoBind);
+                                    if (construtor != null) 
+                                    {
+                                        const novoBind = new construtor(controlePai, elemento, valorAtributo);
+                                        if (novoBind instanceof BaseBind)
+                                        {
+                                            novoBind.DataSource = controlePai.DataSource;
+                                            binds.Add(novoBind);
+                                        }
+                                        else
+                                        {
+                                            const nomeTipoObjeto = (novoBind as any).constructor?.name ?? (novoBind as any).toString();
+                                            throw new Erro(`Objeto não ${nomeTipoObjeto} é do tipo BaseBind`);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -120,8 +128,7 @@
             }
             return binds;
         }
-
-
+        
         private static RetornarConstrutorBindRecomendado(controlePai: BaseControle, elemento: Element): IBindConstrutor
         {
             const controleFilho = controlePai.ControlesFilho.Where(x => x.IDElemento === elemento.id).SingleOrDefault();
@@ -224,8 +231,12 @@
                     return (BindUrlImagem);
 
                 default:
-
-                    throw new Erro("Elemento ou controle não é suportado pelo sn-bind", this);
+                    {
+                        const errorMessage = `Elemento ou controle não é suportado pelo sn-bind: ${elemento.tagName}`;
+                        console.error(errorMessage, elemento);
+                        DebugUtil.ThrowAndContinue(errorMessage);
+                        return null;
+                    }
             }
         }
     }
