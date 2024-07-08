@@ -32,7 +32,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, visiblidade: EnumVisibilidade): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeVisibilidade.PREFIXO_VISIBILIDADE);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeVisibilidade.PREFIXO_VISIBILIDADE);
 
             if (visiblidade !== EnumVisibilidade.Visivel)
             {

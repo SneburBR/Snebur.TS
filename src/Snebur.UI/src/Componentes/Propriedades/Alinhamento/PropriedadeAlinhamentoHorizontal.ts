@@ -36,7 +36,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, alinhamento: EnumAlinhamentoHorizontal): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoHorizontal.PREFIXO_CLASSE_CSS_ALINHAMENTO_HORIZONTAL);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoHorizontal.PREFIXO_CLASSE_CSS_ALINHAMENTO_HORIZONTAL);
 
             if (alinhamento !== EnumAlinhamentoHorizontal.Esquerda)
             {

@@ -32,7 +32,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, tipoPainelAba: EnumTipoPainelAba): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeTipoPainelAba.PREFIXO);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeTipoPainelAba.PREFIXO);
             const cssClasse = this.RetornarCssTipoCaixa(tipoPainelAba);
             elemento.classList.add(cssClasse);
         }

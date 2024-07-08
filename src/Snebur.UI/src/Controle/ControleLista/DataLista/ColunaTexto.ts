@@ -69,7 +69,7 @@
         private AtualizarEstiloOrdenacao(): void
         {
             const cssClass = this.RetornarCssClasseOrdencao(this.SentidoOrdenacao);
-            EstiloUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, cssClass);
+            CssClassUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, cssClass);
         }
 
         private RetornarCssClasseOrdencao(ordenacao: EnumSentidoOrdenacaoColuna): string

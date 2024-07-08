@@ -162,7 +162,7 @@
                     ElementoUtil.ScrollTo(itemBloco.Elemento);
                 }
 
-                EstiloUtil.AtualizarCssClass(itemBloco.Elemento,
+                CssClassUtil.AtualizarCssClass(itemBloco.Elemento,
                     "sn-item-selecionado",
                     isSelecionado);
 

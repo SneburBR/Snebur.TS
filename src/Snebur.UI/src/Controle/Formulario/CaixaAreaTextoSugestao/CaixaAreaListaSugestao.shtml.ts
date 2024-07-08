@@ -157,7 +157,7 @@ namespace Snebur.UI
             const elemento = this.ItemBlocoAtual?.Elemento;
             if (elemento != null)
             {
-                ui.EstiloUtil.AdicionarCssClasse(elemento, "sn-item-sugestao-selecionado");
+                ui.CssClassUtil.AdicionarCssClasse(elemento, "sn-item-sugestao-selecionado");
             }
         }
 
@@ -166,7 +166,7 @@ namespace Snebur.UI
             const elemento = this.ItemBlocoAtual?.Elemento;
             if (elemento != null)
             {
-                ui.EstiloUtil.RemoverCssClasse(elemento, "sn-item-sugestao-selecionado");
+                ui.CssClassUtil.RemoverCssClasse(elemento, "sn-item-sugestao-selecionado");
             }
         }
         

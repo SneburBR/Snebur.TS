@@ -332,7 +332,7 @@ namespace Snebur.UI
             if (!this.CaixaAreaListaSugestao.IsAberto)
             {
                 this.CaixaAreaListaSugestao.LimparSelecao();
-                EstiloUtil.AdicionarCssClasse(this.Elemento, CaixaAreaTextoSugestao.CSS_ABERTO);
+                CssClassUtil.AdicionarCssClasse(this.Elemento, CaixaAreaTextoSugestao.CSS_ABERTO);
                 this.CaixaAreaListaSugestao.Mostrar();
             }
             this.CaixaAreaListaSugestao.Completar();
@@ -347,7 +347,7 @@ namespace Snebur.UI
 
         private ControleSugestoes_Fechou()
         {
-            EstiloUtil.RemoverClssClasseComecaCom(this.Elemento, CaixaAreaTextoSugestao.CSS_ABERTO);
+            CssClassUtil.RemoverClssClasseComecaCom(this.Elemento, CaixaAreaTextoSugestao.CSS_ABERTO);
         }
 
         //#region Espelho

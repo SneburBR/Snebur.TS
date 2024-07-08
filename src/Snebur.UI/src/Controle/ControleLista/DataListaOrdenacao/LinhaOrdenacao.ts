@@ -127,7 +127,7 @@
                 this.DiferencaX = e.pageX - posicoes.left;
                 this.DiferencaY = e.pageY - posicoes.top;
                 this.ElementoClone = document.createElement("div");
-                EstiloUtil.AdicionarCssClasse(this.ElementoClone, "sn-documento-principal");
+                CssClassUtil.AdicionarCssClasse(this.ElementoClone, "sn-documento-principal");
 
                 this.ElementoClone.style.position = "absolute";
                 this.ElementoClone.style.width = posicoes.width.ToPixels();
@@ -151,7 +151,7 @@
                 }
 
                 const elementoTable = document.createElement("table");
-                EstiloUtil.AdicionarCssClasse(elementoTable, "sn-destino-data-lista");
+                CssClassUtil.AdicionarCssClasse(elementoTable, "sn-destino-data-lista");
 
                 elementoTable.style.width = "100%";
                 elementoTable.innerHTML = elemento.outerHTML;

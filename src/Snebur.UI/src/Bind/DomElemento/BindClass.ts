@@ -28,7 +28,7 @@
             if (this.CssClass != null)
             {
                 const isAdicionar = typeof novoValor === "boolean" && novoValor === true;
-                EstiloUtil.AtualizarCssClass(this.Elemento, this.CssClass, isAdicionar);
+                CssClassUtil.AtualizarCssClass(this.Elemento, this.CssClass, isAdicionar);
             }
         }
     }

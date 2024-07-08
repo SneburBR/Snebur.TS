@@ -72,11 +72,11 @@
         {
             if (isChecked)
             {
-                EstiloUtil.AdicionarCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
+                CssClassUtil.AdicionarCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
             }
             else
             {
-                EstiloUtil.RemoverCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
+                CssClassUtil.RemoverCssClasse(this.Elemento, Checkbox.CSS_IS_SELECIONADO);
             }
         }
         public override Habilitar(): void

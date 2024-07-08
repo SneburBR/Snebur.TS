@@ -63,77 +63,7 @@
 
         //private static string ClassesCssReversadasMaterialDesinger 
 
-        public static AdicionarCssClasse(refEelemento: HTMLElement | string, classes: string): void
-        {
-            if (!String.IsNullOrWhiteSpace(classes))
-            {
-                const elemento = ElementoUtil.RetornarElemento(refEelemento);
-                const partes = classes.split(" ");
-                const len = partes.length;
-
-                for (let i = 0; i < len; i++)
-                {
-                    const classe = partes[i];
-                    if (!String.IsNullOrWhiteSpace(classe))
-                    {
-                        const posicaoPrefixo = classe.indexOf("--");
-                        if (posicaoPrefixo > 0)
-                        {
-                            const prefixo = classe.substr(0, posicaoPrefixo + 2);
-                            EstiloUtil.RemoverClssClassePrefixo(elemento, prefixo);
-                        }
-
-                        if (!elemento.classList.contains(classe))
-                        {
-                            elemento.classList.add(classe);
-                        }
-                    }
-                }
-            }
-        }
-
-        public static RemoverCssClasse(refEelemento: HTMLElement | string, classes: string): void
-        {
-            const elemento = ElementoUtil.RetornarElemento(refEelemento, true);
-            if (elemento instanceof HTMLElement)
-            {
-                const partes = classes.split(" ");
-                const len = partes.length;
-                for (let i = 0; i < len; i++)
-                {
-                    const classe = partes[i];
-                    while (elemento.classList.contains(classe))
-                    {
-                        elemento.classList.remove(classe);
-                    }
-                }
-            }
-        }
-
-        /**
-         * Atualizar classes no elemento
-         * @param elemento elemento de destino
-         * @param classes classes para adicionar ou remover, separado por espaços
-         * @param isAdicionar true para adicionar false para remover a classe
-         * @param isIgnorarErro Opcional ignora erro, caso o elemento não exista, padrão false
-         */
-        public static AtualizarCssClass(refEelemento: HTMLElement | string, classes: string, isAdicionar: boolean)
-        {
-            if (classes == null)
-            {
-                throw new Erro("O argumento  'classes' não foi definido");
-            }
-
-            if (isAdicionar)
-            {
-                EstiloUtil.AdicionarCssClasse(refEelemento, classes);
-            }
-            else
-            {
-                EstiloUtil.RemoverCssClasse(refEelemento, classes);
-            }
-
-        }
+       
 
         public static AtualizarEstilo(elemento: HTMLElement | Element, estilo: Estilo): void
         public static AtualizarEstilo(idElemento: string, estilo: Estilo): void
@@ -167,7 +97,7 @@
             //delete (elemento as any);
         }
 
-        public static AtualizarCssTexto(elemento: HTMLElement, cssTexto: string): void
+        public static AtualizarCssTexto(elemento: HTMLElement,cssTexto: string): void
         public static AtualizarCssTexto(idElemento: string, cssTexto: string): void
         public static AtualizarCssTexto(refEelemento: any, cssTexto: string): void
         {
@@ -360,47 +290,7 @@
         {
             ElementoUtil.MostrarElemento(refEelemento);
         }
-
-        public static RemoverClssClassePrefixo(elemento: HTMLElement, prefixo: string): any
-        {
-            this.RemoverClssClasseComecaCom(elemento, prefixo);
-        }
-
-        public static RemoverClssClasseComecaCom(elemento: HTMLElement, prefixo: string): any
-        {
-            const classesCor = u.Util.CopiarArray<string>(elemento.classList).Where(x => x.StartsWith(prefixo)).ToList();
-            for (const classe of classesCor)
-            {
-                elemento.classList.remove(classe);
-            }
-        }
-
-        private static ValidarCssClasse(classe: string): void
-        {
-            const prefixo = classe.split("-")[0];
-            if (!EstiloUtil.PrefixosSuportados.Contains(prefixo))
-            {
-                throw new Erro(`O prefixo da classe ${classe} não é suportado`);
-            }
-        }
-
-        private static _prefixosSuportados: HashSet<string> = null;
-        private static get PrefixosSuportados(): HashSet<string>
-        {
-            if (EstiloUtil._prefixosSuportados == null)
-            {
-                EstiloUtil._prefixosSuportados = new HashSet<string>();
-                EstiloUtil._prefixosSuportados.Add("zs");
-                EstiloUtil._prefixosSuportados.Add("local");
-                if ($Configuracao.PrefixosCssClasse?.Count > 0)
-                {
-                    EstiloUtil._prefixosSuportados.AddRange($Configuracao.PrefixosCssClasse);
-                }
-
-            }
-            return EstiloUtil._prefixosSuportados;
-        }
-
+          
         public static ResetarZIndex(valor: number)
         {
             this._zIndexFlutenteContador = valor;
@@ -631,7 +521,7 @@
             if (index > 0)
             {
                 const prefixo = cssClasse.substring(0, index + 2);
-                EstiloUtil.RemoverClssClassePrefixo(elemento, prefixo);
+                CssClassUtil.RemoverClssClassePrefixo(elemento, prefixo);
             }
             else
             {

@@ -38,7 +38,7 @@
             super.HtmlCarregado();
 
             //this.IDElementoInput = this.RetornarIDElementoItemElemento("ControleInput");
-            //EstiloUtil.AdicionarCssClasse(this.IDElemento, "sn-pesquisa");
+            //CssClassUtil.AdicionarCssClasse(this.IDElemento, "sn-pesquisa");
         }
 
         private AdicionarEventosDom(): void
@@ -58,7 +58,7 @@
 
         private ElementoInput_Focus(): void
         {
-            //EstiloUtil.AdicionarCssClasse(this.IDElementoInput, "is-focused");
+            //CssClassUtil.AdicionarCssClasse(this.IDElementoInput, "is-focused");
         }
 
         private ElementoInput_Blur(): void

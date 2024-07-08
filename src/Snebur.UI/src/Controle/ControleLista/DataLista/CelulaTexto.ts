@@ -20,7 +20,7 @@
         protected override RetornarHtmlInterno(): string
         {
             const span = document.createElement("span");
-            EstiloUtil.AdicionarCssClasse(span, this.Template.CssClasse);
+            CssClassUtil.AdicionarCssClasse(span, this.Template.CssClasse);
             EstiloUtil.AtualizarCssTexto(span, this.Template.CssTexto);
 
             if (u.ValidacaoUtil.IsBind(this.TemplateColunaTexto.CaminhoBind))

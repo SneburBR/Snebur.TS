@@ -34,7 +34,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, alinhamento: EnumAlinhamentoTexto): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoTexto.PREFIXO_CLASSE_CSS_ALINHAMENTO_TEXTO);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoTexto.PREFIXO_CLASSE_CSS_ALINHAMENTO_TEXTO);
 
             if (alinhamento !== EnumAlinhamentoTexto.Esquerda)
             {

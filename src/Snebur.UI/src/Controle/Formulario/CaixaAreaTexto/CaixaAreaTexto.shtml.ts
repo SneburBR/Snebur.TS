@@ -106,8 +106,8 @@
             if (EnumUtil.IsDefindo(EnumCor, e.Valor))
             {
                 const classeCor = CorUtil.RetornarClasseCssCorTexto(e.Valor);
-                EstiloUtil.RemoverClssClassePrefixo(this.ElementoInput, EnumPrefixoCor.CorTexto);
-                EstiloUtil.AdicionarCssClasse(EnumPrefixoCor.CorTexto, classeCor);
+                CssClassUtil.RemoverClssClassePrefixo(this.ElementoInput, EnumPrefixoCor.CorTexto);
+                CssClassUtil.AdicionarCssClasse(EnumPrefixoCor.CorTexto, classeCor);
             }
         }
 

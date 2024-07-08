@@ -264,7 +264,7 @@
             const elementoIcone = this.ElementoIcone;
             if (elementoIcone instanceof HTMLElement)
             {
-                EstiloUtil.RemoverClssClassePrefixo(elementoIcone, EnumPrefixoCor.CorTexto);
+                CssClassUtil.RemoverClssClassePrefixo(elementoIcone, EnumPrefixoCor.CorTexto);
                 elementoIcone.style.color = String.Empty;
 
                 if (u.EnumUtil.IsDefindo(EnumCor, this.CorIcone as EnumCor))

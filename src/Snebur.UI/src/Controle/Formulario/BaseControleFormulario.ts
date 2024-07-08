@@ -774,7 +774,7 @@
             super.OcuparElemento();
             this.OcultarMensagemValidacao();
 
-            EstiloUtil.AdicionarCssClasse(this.ElementoInput, ConstantesCssClasses.CSS_CLASSE_OCUPAR_INPUT);
+            CssClassUtil.AdicionarCssClasse(this.ElementoInput, ConstantesCssClasses.CSS_CLASSE_OCUPAR_INPUT);
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Disabled, AtributosHtml.Disabled.Nome);
         }
 
@@ -784,7 +784,7 @@
             {
                 super.DesocuparElemento();
 
-                EstiloUtil.RemoverCssClasse(this.ElementoInput, ConstantesCssClasses.CSS_CLASSE_OCUPAR_INPUT);
+                CssClassUtil.RemoverCssClasse(this.ElementoInput, ConstantesCssClasses.CSS_CLASSE_OCUPAR_INPUT);
                 ElementoUtil.RemoverAtributo(this.ElementoInput, AtributosHtml.Disabled);
             }
         }
@@ -1008,7 +1008,7 @@
             {
                 const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
 
-                EstiloUtil.AtualizarCssClass(this.Elemento,
+                CssClassUtil.AtualizarCssClass(this.Elemento,
                     ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
                     isPropriedadeAlterada);
             }

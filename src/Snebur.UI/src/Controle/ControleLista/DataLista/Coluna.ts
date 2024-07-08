@@ -80,7 +80,7 @@
 
             if (this.Propriedade instanceof r.Propriedade)
             {
-                EstiloUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, this.RetornarCssClasse());
+                CssClassUtil.AdicionarCssClasse(this.IDElementoDivOrdenacao, this.RetornarCssClasse());
             }
         }
 

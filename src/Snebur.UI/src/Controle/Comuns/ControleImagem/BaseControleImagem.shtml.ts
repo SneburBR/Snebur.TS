@@ -129,8 +129,8 @@
 
         private AtualizarCssClassOrientacaoRecipienteImagem(): void
         {
-            EstiloUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_ORIENTACAO_IMAGEM);
-            EstiloUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_RECIPIENTE_IMAGEM);
+            CssClassUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_ORIENTACAO_IMAGEM);
+            CssClassUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_RECIPIENTE_IMAGEM);
 
 
             if (this.PreenchimentoImagem === d.EnumPreenchimentoImagem.UniformeFora)
@@ -138,7 +138,7 @@
                 const sufixoRecipiente = this.RetornarCssSufixoClasseAjustaRecipienteImagem();
                 if (!String.IsNullOrEmpty(sufixoRecipiente))
                 {
-                    EstiloUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_ORIENTACAO_IMAGEM);
+                    CssClassUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_ORIENTACAO_IMAGEM);
                     const cssClasseRecipiente = BaseControleImagem.PREFIXO_CSS_RECIPIENTE_IMAGEM + sufixoRecipiente;
                     this.ElementoImagem.classList.add(cssClasseRecipiente);
                     return;
@@ -157,7 +157,7 @@
 
         private AtualizarPreenchimentoImagem(): void
         {
-            EstiloUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_PREENCHIMENTO_IMAGEM);
+            CssClassUtil.RemoverClssClassePrefixo(this.ElementoImagem, BaseControleImagem.PREFIXO_CSS_PREENCHIMENTO_IMAGEM);
             const sufixo = this.RetornarCssSufixoClassePreenchimento();
             if (!String.IsNullOrEmpty(sufixo))
             {

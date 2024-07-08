@@ -188,8 +188,8 @@
 
                 default:
 
-                    EstiloUtil.AdicionarCssClasse(this.ElementoConteudoInterno, EnumCssTipoBarraAcao.Normal);
-                    EstiloUtil.AdicionarCssClasse(this.ElementoBarraAcao, this.EstiloBarraAcao);
+                    CssClassUtil.AdicionarCssClasse(this.ElementoConteudoInterno, EnumCssTipoBarraAcao.Normal);
+                    CssClassUtil.AdicionarCssClasse(this.ElementoBarraAcao, this.EstiloBarraAcao);
 
                     this.ElementoBarraAcao.style.zIndex = (ConverterUtil.ParaNumero(this.Elemento.style.zIndex) + 1).ToString();
                     break;

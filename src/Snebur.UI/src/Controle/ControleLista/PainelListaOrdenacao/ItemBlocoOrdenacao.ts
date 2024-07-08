@@ -114,7 +114,7 @@
                         this.AdicionarEventoDom(EnumEventoDom.TouchStart, this.ElementoAlvo_TouchStart, elementoAlvo, this);
                     }
                 }
-                EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-alvo-global-desativado");
+                CssClassUtil.AdicionarCssClasse(this.Elemento, "sn-alvo-global-desativado");
             }
             //else
             //{

@@ -37,7 +37,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, alinhamento: EnumAlinhamentoVertical): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoVertical.PREFIXO_CLASSE_CSS_ALINHAMENTO_VERTICAL);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeAlinhamentoVertical.PREFIXO_CLASSE_CSS_ALINHAMENTO_VERTICAL);
 
             if (alinhamento !== EnumAlinhamentoVertical.Superior)
             {

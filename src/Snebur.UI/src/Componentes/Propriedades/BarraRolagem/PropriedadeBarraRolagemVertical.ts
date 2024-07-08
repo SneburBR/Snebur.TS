@@ -34,7 +34,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, alinhamento: EnumBarraRolagem): void
         {
             const elemento = componenteApresentacao.ElementoApresentacao;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeBarraRolagemVertical.PREFIXO_CLASSE_CSS_BARRA_ROLAGEM_VERTICAL);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeBarraRolagemVertical.PREFIXO_CLASSE_CSS_BARRA_ROLAGEM_VERTICAL);
 
             if (alinhamento !== EnumBarraRolagem.NaoDefino)
             {

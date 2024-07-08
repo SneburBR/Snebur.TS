@@ -41,7 +41,7 @@
             const prefixo = this.RetornarPrefixoRemover(novoValor);
             if (prefixo != null)
             {
-                EstiloUtil.RemoverClssClasseComecaCom(elemento, prefixo);
+                CssClassUtil.RemoverClssClasseComecaCom(elemento, prefixo);
             }
 
             switch (this.OpcaoBindCssClasse)
@@ -51,7 +51,7 @@
 
                     if (!String.IsNullOrWhiteSpace(novoValor))
                     {
-                        EstiloUtil.AdicionarCssClasse(elemento, novoValor);
+                        CssClassUtil.AdicionarCssClasse(elemento, novoValor);
 /*                        elemento.classList.add(novoValor);*/
                     }
                     break;

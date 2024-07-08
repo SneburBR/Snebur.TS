@@ -22,7 +22,7 @@ namespace Snebur.UI
         public override  HtmlCarregado(): void
         {
             super.HtmlCarregado();
-            EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-botao-menu-item");
+            CssClassUtil.AdicionarCssClasse(this.Elemento, "sn-botao-menu-item");
         }
 
         private Elemento_Click(e: MouseEvent)

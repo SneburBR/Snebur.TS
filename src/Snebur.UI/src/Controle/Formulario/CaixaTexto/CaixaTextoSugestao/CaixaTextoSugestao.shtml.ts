@@ -231,7 +231,7 @@ namespace Snebur.UI
             if (!this.CaixaListaSugestao.IsAberto)
             {
                 this.CaixaListaSugestao.LimparSelecao();
-                EstiloUtil.AdicionarCssClasse(this.Elemento, CaixaTextoSugestao.CSS_ABERTO);
+                CssClassUtil.AdicionarCssClasse(this.Elemento, CaixaTextoSugestao.CSS_ABERTO);
                 this.CaixaListaSugestao.Mostrar();
             }
         }
@@ -244,7 +244,7 @@ namespace Snebur.UI
 
         private ControleSugestoes_Fechou()
         {
-            EstiloUtil.RemoverClssClasseComecaCom(this.Elemento, CaixaTextoSugestao.CSS_ABERTO);
+            CssClassUtil.RemoverClssClasseComecaCom(this.Elemento, CaixaTextoSugestao.CSS_ABERTO);
         }
 
         protected override IsDesativarAutoCompletar(elemento: HTMLElement): boolean

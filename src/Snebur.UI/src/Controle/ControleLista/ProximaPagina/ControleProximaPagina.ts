@@ -19,7 +19,7 @@
         public override HtmlCarregado(): void
         {
             super.HtmlCarregado();
-            EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-proxima-pagina");
+            CssClassUtil.AdicionarCssClasse(this.Elemento, "sn-proxima-pagina");
             ElementoUtil.OcultarElemento(this.Elemento);
         }
 

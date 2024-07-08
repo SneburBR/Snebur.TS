@@ -48,7 +48,7 @@
         {
             return this.ItemSelecionado;
         }
-        public override  set Valor(value: TItem)
+        public override set Valor(value: TItem)
         {
             this.ItemSelecionado = value;
         }
@@ -73,13 +73,13 @@
             this.EventoValorAlterado.AddHandler(this.ItemSelecionado_ValorAlterado, this);
         }
 
-        protected override  HtmlCarregado(): void
+        protected override HtmlCarregado(): void
         {
             super.HtmlCarregado();
             this._idElementoSeta = this.RetornarIDElementoItemElemento("BlocoSeta");
         }
 
-        protected override  Inicializar(): void
+        protected override Inicializar(): void
         {
             super.Inicializar();
 
@@ -164,7 +164,7 @@
             this.CaixaSelecao.Fechar();
         }
 
-        public override  ValorPropriedadeAlterado(paiPropriedade: d.BaseDominio, nomePropriedade: string, proprieade: r.Propriedade, valorPropriedade: any)
+        public override ValorPropriedadeAlterado(paiPropriedade: d.BaseDominio, nomePropriedade: string, proprieade: r.Propriedade, valorPropriedade: any)
         {
             if (this.IsControleInicializado && !this.IsDispensado)
             {
@@ -181,9 +181,7 @@
         {
             this.AtualizarRotulo(false);
         }
-
         
-
         //#region Elementos dom eventos
 
         private ElementoCaixa_MouseDown(e: MouseEvent): void
@@ -296,7 +294,7 @@
             super.Desabilitar();
         }
 
-        public override  Habilitar(): void
+        public override Habilitar(): void
         {
             super.Habilitar();
         }
@@ -426,7 +424,7 @@
             if (elementoSelecioando != null)
             {
                 const isPropriedadeAlterada = this.PaiPropriedade?.__PropriedadesAlteradas?.ContainsKey(this.NomePropriedade) ?? false;
-                EstiloUtil.AtualizarCssClass(elementoSelecioando,
+                CssClassUtil.AtualizarCssClass(elementoSelecioando,
                     ConstantesCssClasses.CSS_CLASSE_PROPRIEDADE_ALTERADA,
                     isPropriedadeAlterada);
             }
@@ -434,15 +432,13 @@
 
         //#region IDisposable 
 
-        public override  Dispose(): void
+        public override Dispose(): void
         {
             super.Dispose();
         }
         //#endregion
     }
-
-
-
+     
     //#region Elementos da apresentação - código gerado automaticamente #
 
     export interface ComboBox<TItem = any>

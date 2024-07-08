@@ -55,7 +55,7 @@
         public override HtmlCarregado(): void
         {
             super.HtmlCarregado();
-            EstiloUtil.AdicionarCssClasse(this.Elemento, "sn-botao-menu");
+            CssClassUtil.AdicionarCssClasse(this.Elemento, "sn-botao-menu");
             this.DestinoControleFlutuante = this.RetornarDestinoControleFlutuante();
         }
 

@@ -43,7 +43,7 @@
         private CriarElementoRodape(): void
         {
             const elementoRodapeInterno = document.createElement("div");
-            EstiloUtil.AdicionarCssClasse(elementoRodapeInterno, "sn-data-lista-ordenacao-rodape");
+            CssClassUtil.AdicionarCssClasse(elementoRodapeInterno, "sn-data-lista-ordenacao-rodape");
 
             const elementoSpan = document.createElement("span");
             ElementoUtil.AtualizarInnerHtml(elementoSpan, "* Arraste para ordenar os itens.");

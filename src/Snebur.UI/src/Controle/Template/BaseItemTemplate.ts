@@ -60,7 +60,7 @@
             const template: BaseTemplate = this.Template;
             if (!String.IsNullOrWhiteSpace(template.CssClasse))
             {
-                EstiloUtil.AdicionarCssClasse(this.Elemento, template.CssClasse);
+                CssClassUtil.AdicionarCssClasse(this.Elemento, template.CssClasse);
             }
 
             EstiloUtil.AtualizarCssTexto(this.Elemento, template.CssTexto);

@@ -210,7 +210,7 @@
         private AtualizarPosicaoRotulo(): void
         {
             const classeRotulo = this.RetornarCssClassePosicaoRotulo();
-            EstiloUtil.AdicionarCssClasse(this.Elemento, classeRotulo);
+            CssClassUtil.AdicionarCssClasse(this.Elemento, classeRotulo);
         }
 
         private RetornarCssClassePosicaoRotulo(): string

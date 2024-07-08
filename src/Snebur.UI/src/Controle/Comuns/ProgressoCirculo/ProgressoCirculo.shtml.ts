@@ -51,7 +51,7 @@ namespace Snebur.UI
                 this.ElementoProgressoCirculo.classList.remove(ProgressoCirculo.NOME_CLASSE_CSS_PROGRESSO_METADE);
             }
 
-            ui.EstiloUtil.RemoverClssClasseComecaCom(this.ElementoProgressoCirculo, ProgressoCirculo.PREFIXO_CSS_PROGRESSO);
+            ui.CssClassUtil.RemoverClssClasseComecaCom(this.ElementoProgressoCirculo, ProgressoCirculo.PREFIXO_CSS_PROGRESSO);
             const classeProgresso = ProgressoCirculo.PREFIXO_CSS_PROGRESSO + this.Progresso.toFixed(0);
             this.ElementoProgressoCirculo.classList.add(classeProgresso);
         }

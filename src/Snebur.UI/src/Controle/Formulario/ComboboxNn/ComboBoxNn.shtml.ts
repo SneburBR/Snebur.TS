@@ -168,7 +168,7 @@
 
             //if (this.ItensSelecionado.Count > 0)
             //{
-            //    EstiloUtil.AdicionarCssClasse(this.IDElementoCaixa, "is-dirty", true);
+            //    CssClassUtil.AdicionarCssClasse(this.IDElementoCaixa, "is-dirty", true);
             //    ElementoUtil.AtualizarValorInput(this.IDElementoInput, String.Empty);
             //    this.UltimaPesquisa = String.Empty;
             //    this.ControleItensSelecionado.MostrarElemento();

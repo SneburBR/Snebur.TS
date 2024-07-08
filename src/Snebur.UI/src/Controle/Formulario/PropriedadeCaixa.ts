@@ -32,7 +32,7 @@
         protected AtualizarApresentacao(componenteApresentacao: ComponenteApresentacao, tipoCaixa: EnumTipoCaixa): void
         {
             const elemento = componenteApresentacao.Elemento;
-            EstiloUtil.RemoverClssClasseComecaCom(elemento, PropriedadeCaixa.PREFIXO);
+            CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeCaixa.PREFIXO);
 
             //if (tipoCaixa != EnumTipoCaixa.Padrao)
             //{

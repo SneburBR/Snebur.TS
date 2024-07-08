@@ -207,7 +207,7 @@
             {
                 for (const cssClasse of this.__classesCssControle.ToList())
                 {
-                    EstiloUtil.AdicionarCssClasse(this.Elemento, cssClasse);
+                    CssClassUtil.AdicionarCssClasse(this.Elemento, cssClasse);
                 }
             }
         }
@@ -680,7 +680,7 @@
 
         protected OcuparElemento(): void
         {
-            //EstiloUtil.AdicionarCssClasse(this.Elemento, BaseControle.CssClasseOcupado, true);
+            //CssClassUtil.AdicionarCssClasse(this.Elemento, BaseControle.CssClasseOcupado, true);
             const elemento = this.Elemento;
             if (elemento instanceof HTMLElement)
             {

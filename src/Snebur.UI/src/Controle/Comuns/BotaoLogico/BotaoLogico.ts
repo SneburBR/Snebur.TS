@@ -173,14 +173,14 @@
 
         private AtualizarEstiloVerdadeiro(): void
         {
-            EstiloUtil.RemoverCssClasse(this.Elemento, this.CssClasseFalso);
-            EstiloUtil.AdicionarCssClasse(this.Elemento, this.CssClasseVerdadeiro);
+            CssClassUtil.RemoverCssClasse(this.Elemento, this.CssClasseFalso);
+            CssClassUtil.AdicionarCssClasse(this.Elemento, this.CssClasseVerdadeiro);
         }
 
         private AtualizarEstiloFalso(): void
         {
-            EstiloUtil.RemoverCssClasse(this.Elemento, this.CssClasseVerdadeiro);
-            EstiloUtil.AdicionarCssClasse(this.Elemento, this.CssClasseFalso);
+            CssClassUtil.RemoverCssClasse(this.Elemento, this.CssClasseVerdadeiro);
+            CssClassUtil.AdicionarCssClasse(this.Elemento, this.CssClasseFalso);
         }
 
         private NotificarValorLogicoAlterado(): void

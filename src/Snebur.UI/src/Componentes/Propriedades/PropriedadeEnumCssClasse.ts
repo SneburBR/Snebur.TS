@@ -40,7 +40,7 @@
             const elemento = this.RetornarElementoRecipienteCssClass(componenteApresentacao);
             if (elemento != null)
             {
-                EstiloUtil.RemoverClssClasseComecaCom(elemento, this.PREFIXO_CSS_CLASSE);
+                CssClassUtil.RemoverClssClasseComecaCom(elemento, this.PREFIXO_CSS_CLASSE);
 
                 if (valorEnum !== BaseEnumApresentacao.Vazio &&
                     (this.IsAdicionarClassCssPadrao || (valorEnum !== this.ValorPadraoVazio )))
