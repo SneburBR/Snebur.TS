@@ -5,6 +5,10 @@
         private static _isInicializado = false;
         private static readonly _todosNamespace = new List<BaseNamespace>();
 
+        private static readonly DicionarioTodosNamespace = new DicionarioSimples<BaseNamespace>();
+        private static readonly NamespaceRaiz = new DicionarioSimples<NamespaceRaiz>();
+        private static readonly AtalhosNamespace = new DicionarioSimples<BaseNamespace>();
+
         private static readonly NamespaceFramework = ["Snebur",
             "Snebur.Dominio",
             "Snebur.UI",
@@ -21,11 +25,7 @@
             ["i", "Snebur.Imagens"],
             ["at", "Snebur.Dominio.Atributos"],
         ];
-
-        private static readonly DicionarioTodosNamespace = new DicionarioSimples<BaseNamespace>();
-        private static readonly NamespaceRaiz = new DicionarioSimples<NamespaceRaiz>();
-        private static readonly AtalhosNamespace = new DicionarioSimples<BaseNamespace>();
-
+         
         public static get TodosNamespace(): List<BaseNamespace>
         {
             return GerenciadorNamespace._todosNamespace;
