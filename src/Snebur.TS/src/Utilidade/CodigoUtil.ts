@@ -2,10 +2,10 @@
 {
     export class CodigoUtil
     {
-        public static FormatarVariavel(
+        public static Formatar(
             nome: string,
-            formatacaoOrigem: EnumFormatacaoVariavelCodigo,
-            formatacaoDestino: EnumFormatacaoVariavelCodigo): string
+            formatacaoOrigem: EnumFormatacaoCodigo,
+            formatacaoDestino: EnumFormatacaoCodigo): string
         {
             if ($Configuracao.IsDebug || $Configuracao.IsTeste)
             {
@@ -18,24 +18,24 @@
             const partes = CodigoUtil.RetornarPartes(nome.trim(), formatacaoOrigem);
             switch (formatacaoDestino)
             {
-                case EnumFormatacaoVariavelCodigo.CamelCase:
+                case EnumFormatacaoCodigo.CamelCase:
 
                     return FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(
                         String.Join("", partes.Select(x => FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(x)))                    );
 
-                case EnumFormatacaoVariavelCodigo.PascalCase:
+                case EnumFormatacaoCodigo.PascalCase:
 
                     return String.Join("", partes.Select(x => FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(x)));
 
-                case EnumFormatacaoVariavelCodigo.SnakeCase:
+                case EnumFormatacaoCodigo.SnakeCase:
 
                     return String.Join("_", partes.Select(x => x.toLowerCase()));
 
-                case EnumFormatacaoVariavelCodigo.UpperCase:
+                case EnumFormatacaoCodigo.UpperCase:
 
                     return String.Join("_", partes.Select(x => x.toUpperCase()));
 
-                case EnumFormatacaoVariavelCodigo.HtmlCss:
+                case EnumFormatacaoCodigo.KebabCase:
 
                     return String.Join("-", partes.Select(x => x.toLowerCase()));
                 default:
@@ -44,21 +44,21 @@
             }
             
         }
-        private static RetornarPartes(nome: string, formatacao: EnumFormatacaoVariavelCodigo): string[]
+        private static RetornarPartes(nome: string, formatacao: EnumFormatacaoCodigo): string[]
         {
             switch (formatacao)
             {
-                case EnumFormatacaoVariavelCodigo.CamelCase:
-                case EnumFormatacaoVariavelCodigo.PascalCase:
+                case EnumFormatacaoCodigo.CamelCase:
+                case EnumFormatacaoCodigo.PascalCase:
 
                     return nome.split(/(?=[A-Z0-9])/);
 
-                case EnumFormatacaoVariavelCodigo.SnakeCase:
-                case EnumFormatacaoVariavelCodigo.UpperCase:
+                case EnumFormatacaoCodigo.SnakeCase:
+                case EnumFormatacaoCodigo.UpperCase:
 
                     return nome.split("_");
 
-                case EnumFormatacaoVariavelCodigo.HtmlCss:
+                case EnumFormatacaoCodigo.KebabCase:
 
                     return nome.split("-");
 
@@ -69,12 +69,12 @@
         }
     }
 
-    export enum EnumFormatacaoVariavelCodigo
+    export enum EnumFormatacaoCodigo
     {
         PascalCase,
         CamelCase,
         SnakeCase,
         UpperCase,
-        HtmlCss,
+        KebabCase
     }
 }
