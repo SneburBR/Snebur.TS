@@ -328,6 +328,7 @@
 
         //#region SessaoUsuario
 
+        /**@internal */
         public async InicializarSessaoUsuarioAsync(): Promise<void>
         {
             const credencialUsuario = this.CredencialUsuario;
@@ -463,7 +464,7 @@
                 NamespacesEntidade: ["Snebur.Aplicacao.Teste.Entidades"],
                 TipoData: EnumTipoData.Local,
                 Versao: "1.0.0",
-            }
+            };
         }
         //#endregion
 
