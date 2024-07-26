@@ -485,7 +485,7 @@
             {
                 if ($Configuracao.IsDebug)
                 {
-                    const mensagem = `Serviços dados: ${this.Contexto.URLServico} <br />
+                    const mensagem = `Serviços dados: ${this.Contexto.UrlServico} <br />
                                       ${resultadoSalvar.MensagemErro} <br />
                                       ${String.Join("<br />", resultadoSalvar.ErrosValidacao.Select(x => x.Mensagem))}`;
 

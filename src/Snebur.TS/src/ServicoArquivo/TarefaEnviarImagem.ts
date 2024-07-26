@@ -58,7 +58,7 @@
         protected override RetornarUrlEnviarArquivo(): string
         {
             const servicoArquivo = $Aplicacao.RetornarServicoArquivo((this.EntidadeArquivo as any).GetType());
-            return u.UrlUtil.Combinar(servicoArquivo.URLServico, ConstantesServicoImagem.NOME_ARQUIVO_ENVIAR_IMAGEM);
+            return u.UrlUtil.Combinar(servicoArquivo.UrlServico, ConstantesServicoImagem.NOME_ARQUIVO_ENVIAR_IMAGEM);
         }
         //#endregion
 

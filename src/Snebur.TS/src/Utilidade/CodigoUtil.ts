@@ -14,14 +14,14 @@
                     throw new Erro("A nome da variável não pode conter espaços");
                 }
             }
-            
+
             const partes = CodigoUtil.RetornarPartes(nome.trim(), formatacaoOrigem);
             switch (formatacaoDestino)
             {
                 case EnumFormatacaoCodigo.CamelCase:
 
                     return FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(
-                        String.Join("", partes.Select(x => FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(x)))                    );
+                        String.Join("", partes.Select(x => FormatacaoUtil.FormatarPrimeiraLetraMaiuscula(x))));
 
                 case EnumFormatacaoCodigo.PascalCase:
 
@@ -42,8 +42,9 @@
 
                     throw new Erro("Formatação não suportada");
             }
-            
+
         }
+
         private static RetornarPartes(nome: string, formatacao: EnumFormatacaoCodigo): string[]
         {
             switch (formatacao)
@@ -68,13 +69,5 @@
             }
         }
     }
-
-    export enum EnumFormatacaoCodigo
-    {
-        PascalCase,
-        CamelCase,
-        SnakeCase,
-        UpperCase,
-        KebabCase
-    }
+ 
 }

@@ -226,7 +226,9 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_Cabecalho = new Snebur.Reflexao.Propriedade("Cabecalho", __$tipoBaseDominioSnebur_Comunicacao_Cabecalho, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, true);
 	
-	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessaoUsuario = new Snebur.Reflexao.Propriedade("InformacaoSessaoUsuario", __$tipoBaseDominioSnebur_Dominio_InformacaoSessaoUsuario, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, true);
+	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessao = new Snebur.Reflexao.Propriedade("InformacaoSessao", __$tipoBaseDominioSnebur_Dominio_InformacaoSessao, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, true);
+	
+	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_IdentificadorSessaoUsuario = new Snebur.Reflexao.Propriedade("IdentificadorSessaoUsuario", __$tipoTipoPrimario_Guid, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, false);
 	
 	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_Operacao = new Snebur.Reflexao.Propriedade("Operacao", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, true);
 	
@@ -237,7 +239,8 @@ namespace Snebur.Reflexao
 	export const __$propriedade_Snebur_Comunicacao_ContratoChamada_Parametros = new Snebur.Reflexao.Propriedade("Parametros", __$tipoListaBaseDominio_Snebur_Comunicacao_ParametroChamada, __$tipoBaseDominioSnebur_Comunicacao_ContratoChamada, true);
 	
 	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_Cabecalho);
-	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessaoUsuario);
+	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessao);
+	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_IdentificadorSessaoUsuario);
 	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_Operacao);
 	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_DataHora);
 	__$tipoBaseDominioSnebur_Comunicacao_ContratoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ContratoChamada_Async);

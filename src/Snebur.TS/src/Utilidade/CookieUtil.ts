@@ -62,7 +62,10 @@
             return (!String.IsNullOrWhiteSpace(valor));
         }
 
-        public static SalvarCookie(chave: string, valor: string, isManter: boolean, storage: Storage = null)
+        public static SalvarCookie(chave: string,
+            valor: string,
+            isManter: boolean,
+            storage: Storage = CookieUtil.StorageAtual)
         {
             const conteudo = CookieUtil.RetornarConteudoCookie(chave, valor, isManter);
             if (storage == null)

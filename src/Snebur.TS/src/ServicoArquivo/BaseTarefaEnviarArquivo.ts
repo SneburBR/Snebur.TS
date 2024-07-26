@@ -113,7 +113,7 @@
         protected TotalPartes: number;
         protected TotalBytesEnviado: number;
 
-        protected URLEnviarArquivo: string;
+        protected UrlEnviarArquivo: string;
         protected IntervaloProximaTentiva: TimeSpan;
 
         protected readonly Gerenciador: GerenciadorEnvioArquivo;
@@ -128,7 +128,7 @@
             //this.Arquivo = origemArquivo.Arquivo;
             this.EntidadeArquivo = entidadeArquivo;
             this.EventoStatusAlterado.AddHandler(this.Tarefa_StatusAlterado, this);
-            this.URLEnviarArquivo = this.RetornarUrlEnviarArquivo();
+            this.UrlEnviarArquivo = this.RetornarUrlEnviarArquivo();
 
             this.NomeArquivo = entidadeArquivo.NomeArquivo;
             this.TotalBytesLocal = entidadeArquivo.TotalBytesLocal;
@@ -251,7 +251,7 @@
             const pacote = this.Buffer.slice(inicio, fim);
             const checksumPacote = u.ChecksumUtil.RetornarChecksum(pacote);
             const parametros = this.RetornarParametros(checksumPacote);
-            const url = u.UrlUtil.RetornarURL(this.URLEnviarArquivo, [new ParChaveValorSimples("State", u.RandomUtil.RetornarRandom().toString())]);
+            const url = u.UrlUtil.RetornarURL(this.UrlEnviarArquivo, [new ParChaveValorSimples("State", u.RandomUtil.RetornarRandom().toString())]);
             const enviador = new EnviarPacote(url, pacote, parametros);
             this.IsEnviandoPacote = true;
             const resultado = await enviador.EnviarAsync();
@@ -332,7 +332,7 @@
         protected RetornarUrlEnviarArquivo(): string
         {
             const servicoArquivo = $Aplicacao.RetornarServicoArquivo((this.EntidadeArquivo as any).GetType());
-            return u.UrlUtil.Combinar(servicoArquivo.URLServico, ConstantesServicoArquivo.NOME_ARQUIVO_ENVIAR_ARQUIVO);
+            return u.UrlUtil.Combinar(servicoArquivo.UrlServico, ConstantesServicoArquivo.NOME_ARQUIVO_ENVIAR_ARQUIVO);
         }
 
         protected RetornarParametros(checksumPacote: string): Array<ParChaveValorSimples<string>>

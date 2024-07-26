@@ -133,8 +133,6 @@
             this.IncrementarProcessoCarregandoAplicacao();
         }
 
-
-
         private AdicionarClassBody()
         {
             const navegador = SistemaUtil.Navegador;

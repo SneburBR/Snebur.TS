@@ -7,8 +7,7 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 	</PropertyGroup>
- 
-
+  
 	<ItemGroup>
 	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>

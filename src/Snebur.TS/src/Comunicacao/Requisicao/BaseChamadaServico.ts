@@ -59,7 +59,7 @@
 
             xmlHttp.setRequestHeader(ParametrosComunicacao.MANIPULADOR, nomeManipulador);
             xmlHttp.setRequestHeader(ParametrosComunicacao.TOKEN, encodeURIComponent(token));
-            xmlHttp.setRequestHeader(ParametrosComunicacao.NOME_APLICACAO_WEB, $Configuracao.IdentificadorAplicacao);
+            xmlHttp.setRequestHeader(ParametrosComunicacao.IDENTIFICADOR_APLICACAO, $Configuracao.IdentificadorAplicacao);
 
             if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
             {

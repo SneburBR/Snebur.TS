@@ -16,7 +16,7 @@
         {
             const tipoArquivo = arquivo.GetType() as r.TipoEntidade;
             const servicoArquivo = $Aplicacao.RetornarServicoArquivo(tipoArquivo);
-            const urlBaixarBaixar = u.UrlUtil.Combinar(servicoArquivo.URLServico, nomeManipulador);
+            const urlBaixarBaixar = u.UrlUtil.Combinar(servicoArquivo.UrlServico, nomeManipulador);
             const parametros = new Array<ParChaveValorSimples<string>>();
             const nomeTipoArquivo = tipoArquivo.Nome;
             parametros.Add(new ParChaveValorSimples(sa.ConstantesServicoArquivo.ID_ARQUIVO, arquivo.Id.toString()));

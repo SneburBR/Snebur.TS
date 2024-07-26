@@ -697,31 +697,6 @@ namespace Snebur.Dominio
         }
         //#endregion
     }
-    export class InformacaoSessaoUsuario extends Snebur.Dominio.InformacaoSessao implements Snebur.Dominio.IIdentificadorSessaoUsuario 
-    {
-        //#region Propriedades
-    
-        private _identificadorSessaoUsuario : string = "00000000-0000-0000-0000-000000000000";
-    
-        public get IdentificadorSessaoUsuario(): string 
-        {
-            return this._identificadorSessaoUsuario;
-        }
-
-        public set IdentificadorSessaoUsuario(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IdentificadorSessaoUsuario", this._identificadorSessaoUsuario, this._identificadorSessaoUsuario = value);
-        }
-        //#endregion
-    
-        //#region Construtor
-    
-        public constructor() 
-        {
-            super();
-        }
-        //#endregion
-    }
 }
 namespace Snebur.Seguranca
 {

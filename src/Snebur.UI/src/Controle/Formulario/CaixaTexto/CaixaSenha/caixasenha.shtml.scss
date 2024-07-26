@@ -30,4 +30,15 @@ sn-caixa-senha {
         font: large Verdana, sans-serif !important;
         letter-spacing: 0.1em !important;
     }
+
+
+    &.ap-caixa--delineada {
+        .visiblidade-olho {
+             padding-right:0.5rem;
+            ap-icone {
+                height: 100%;
+                align-items:center;
+            }
+        }
+    }
 }

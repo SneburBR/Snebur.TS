@@ -3,7 +3,7 @@ namespace Snebur.ServicoArquivo
 {
     export class ServicoArquivo extends Snebur.BaseServico
     {
-        public override URLServico: string;
+        public override UrlServico: string;
         public readonly Namespace: string;
 
         public constructor(tipo: r.TipoEntidade, urlServico: string)
@@ -12,7 +12,7 @@ namespace Snebur.ServicoArquivo
         {
             super();
 
-            this.URLServico = urlServico;
+            this.UrlServico = urlServico;
             this.Namespace = u.NamespaceUtil.RetornarNamespace(parametro);
             $Aplicacao.AdicionarServicoArquivo(this.Namespace, urlServico);
         }

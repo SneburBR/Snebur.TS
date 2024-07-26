@@ -2,13 +2,13 @@
 {
     export abstract class BaseServico extends Snebur.SneburObject
     {
-        public abstract readonly URLServico: string;
+        public abstract readonly UrlServico: string;
 
         public constructor()
         {
             super();
             //this.Identificador = identificador;
-            /*this.URLServico = urlServico;*/
+            /*this.UrlServico = urlServico;*/
         }
     }
 }

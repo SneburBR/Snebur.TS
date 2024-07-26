@@ -6569,6 +6569,21 @@ namespace Snebur.Utilidade
     (EnumTipoCaminho as any).Rotulos["CaminhoWeb"] = "CaminhoWeb";
     (EnumTipoCaminho as any).Rotulos["CaminhoWindows"] = "CaminhoWindows";
 
+    export enum EnumFormatacaoCodigo
+    {
+        PascalCase = 0,
+        CamelCase = 1,
+        SnakeCase = 2,
+        UpperCase = 3,
+        KebabCase = 4,
+    }
+    (EnumFormatacaoCodigo as any).Rotulos = {};
+    (EnumFormatacaoCodigo as any).Rotulos["PascalCase"] = "PascalCase";
+    (EnumFormatacaoCodigo as any).Rotulos["CamelCase"] = "CamelCase";
+    (EnumFormatacaoCodigo as any).Rotulos["SnakeCase"] = "SnakeCase";
+    (EnumFormatacaoCodigo as any).Rotulos["UpperCase"] = "UpperCase";
+    (EnumFormatacaoCodigo as any).Rotulos["KebabCase"] = "KebabCase";
+
     export enum OpcoesCompararData
     {
         Data = 1,

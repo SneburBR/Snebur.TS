@@ -34,6 +34,11 @@
             {
                 throw new ErroOperacaoInvalida(`A expressão propriedade é invalida : ${expressaoTexto}. A expressão não pode conter espaços`, this);
             }
+
+            if (expressaoInterna === prefixo.substring(0, prefixo.length - 1))
+            {
+                return ".";
+            }
             if (!expressaoInterna.StartsWith(prefixo))
             {
                 throw new ErroOperacaoInvalida(`A expressão '${expressaoTexto}' da propriedade é invalida, ela precisa começar com prefixo '${prefixo}'. `, this);

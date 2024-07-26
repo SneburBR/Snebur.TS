@@ -170,7 +170,7 @@
         public static RetornarUrlImagemServidor(imagem: d.IImagem, tamanhoImagem: d.EnumTamanhoImagem): string
         {
             const servicoArquivo = $Aplicacao.RetornarServicoArquivo((imagem as any).GetType());
-            const urlVisualizar = UrlUtil.Combinar(servicoArquivo.URLServico, sa.ConstantesServicoImagem.NOME_ARQUIVO_VIZUALIZAR_IMAGEM);
+            const urlVisualizar = UrlUtil.Combinar(servicoArquivo.UrlServico, sa.ConstantesServicoImagem.NOME_ARQUIVO_VIZUALIZAR_IMAGEM);
             const parametros = new Array<ParChaveValorSimples<string>>();
             const nomeTipoImagem = imagem.GetType().Nome;
             parametros.Add(new ParChaveValorSimples(sa.ConstantesServicoImagem.ID_IMAGEM, imagem.Id.toString()));

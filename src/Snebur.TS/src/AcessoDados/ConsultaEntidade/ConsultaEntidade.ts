@@ -7,7 +7,7 @@
         {
             super(contextoDados, tipoEntidadeConsulta);
         }
-        
+
         public get IsIncluirDeletados(): boolean
         {
             return this.EstruturaConsulta.IsIncluirDeletados;
@@ -413,12 +413,18 @@
         {
             const caminhoRelacao = this.RetornarCaminhoPropriedade(expressaoRelacao);
             const caminhoPropriedade = this.RetornarCaminhoPropriedade(expressaoPropriedade);
-            const propriedadesRelacao = u.ReflexaoUtil.RetornarPropriedadesCaminho(this.TipoEntidadeConsulta, caminhoRelacao, false, true);
-
             const tipoRelacao = construtorTipoRelacao.GetType();
+            const propriedades = new List<r.Propriedade>();
+
+            if (caminhoRelacao !== ".")
+            {
+                const propriedadesRelacao = u.ReflexaoUtil.RetornarPropriedadesCaminho(this.TipoEntidadeConsulta, caminhoRelacao, false, true);
+                propriedades.AddRange(propriedadesRelacao);
+            }
+
             const propriedadesTipada = u.ReflexaoUtil.RetornarPropriedadesCaminho(tipoRelacao, caminhoPropriedade, false, true);
-            const propriedades = propriedadesRelacao.ToList(true);
             propriedades.AddRange(propriedadesTipada);
+
             this.AbrirRelacaoPropriedades(this.EstruturaConsulta, propriedades, false);
             return this;
         }
@@ -431,7 +437,7 @@
             return this;
         }
 
-       public AbrirRelacaoOuColecao(expressaoPropriedade: (value: TEntidade, index: number, array: TEntidade[]) => d.Entidade | d.Entidade[]): ConsultaEntidade<TEntidade>
+        public AbrirRelacaoOuColecao(expressaoPropriedade: (value: TEntidade, index: number, array: TEntidade[]) => d.Entidade | d.Entidade[]): ConsultaEntidade<TEntidade>
         {
             const caminhoPropriedade = u.ExpressaoUtil.RetornarCaminhoPropriedade(expressaoPropriedade);
             const propriedades = u.ReflexaoUtil.RetornarPropriedadesCaminho(this.TipoEntidadeConsulta, caminhoPropriedade, false, true);
@@ -537,7 +543,7 @@
             }.bind(this, callback));
         }
 
-        private async __RetornarValorFuncaoInternoAsync(tipoFuncaoEnum: EnumTipoFuncao, expressao: Function, callback: CallbackResultado<number | Date | boolean  | null>   )
+        private async __RetornarValorFuncaoInternoAsync(tipoFuncaoEnum: EnumTipoFuncao, expressao: Function, callback: CallbackResultado<number | Date | boolean | null>)
         {
             const consultaValorScalar = this.RetornarEstruturaConsultaValorScalar(tipoFuncaoEnum, expressao);
             const resultado = await this.ContextoDados.RetornarValorScalarAsync(consultaValorScalar);
@@ -658,7 +664,7 @@
                         relacaoAbertaListaEntidade.EstruturaConsulta.NomeTipoEntidade = tipoPropridadeItemBaseEntidade.Nome;
                         relacaoAbertaListaEntidade.EstruturaConsulta.TipoEntidadeAssemblyQualifiedName = tipoPropridadeItemBaseEntidade.AssemblyQualifiedName;
                         relacaoAbertaListaEntidade.EstruturaConsulta.TipoEntidadeConsulta = tipoPropridadeItemBaseEntidade;
-                        relacaoAbertaListaEntidade.EstruturaConsulta.IsIncluirDeletados =this.EstruturaConsulta.IsIncluirDeletados;
+                        relacaoAbertaListaEntidade.EstruturaConsulta.IsIncluirDeletados = this.EstruturaConsulta.IsIncluirDeletados;
                         relacaoAbertaListaEntidade.EstruturaConsulta.IsIncluirInativos = this.EstruturaConsulta.IsIncluirInativos;
 
                         estruturaConsulta.ColecoesAberta.Add(caminhoPropriedadeParcial, relacaoAbertaListaEntidade);

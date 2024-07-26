@@ -12,7 +12,7 @@
         protected IsNormalizarParametros: boolean = true;
         protected IsNaoClonarEntidades: boolean = false;
 
-        public override get URLServico(): string
+        public override get UrlServico(): string
         {
             return this._urlServico;
         }
@@ -22,13 +22,13 @@
             return this.RetornarCredencialServico();
         }
 
-        public get Timeout():number
+        public get Timeout(): number
         {
             return this._timeoutRequisicao;
         }
 
         private readonly Gerenciador: GerenciadorRequiscao
-        
+
         protected readonly OpcoesClonarEntidades: EnumOpcaoClonarEntidade =
             EnumOpcaoClonarEntidade.ChavesEstrangeira |
             EnumOpcaoClonarEntidade.PropriedadesAlteradas |
@@ -58,8 +58,8 @@
         }
 
         private async TentarChamarServicoInternoAsync(nomeMetodo: string, argumentos: IArguments)
-        { 
-             await this.ChamarServicoInternoAsync(
+        {
+            await this.ChamarServicoInternoAsync(
                 nomeMetodo,
                 argumentos);
         }
@@ -131,14 +131,14 @@
 
 
         //// #region Resultado da chamada
-         
+
         protected ChamarServico<T>(
             nomeMetodo: string,
-            argumentos: IArguments):T
+            argumentos: IArguments): T
         {
             throw new Erro("Chamadas síncronas estão obsoletas");
         }
-         
+
         // #endregion
 
         // #region  Retornar parâmetros da chamada
@@ -147,10 +147,11 @@
         {
             const contratoChamada = new Snebur.Comunicacao.ContratoChamada();
             contratoChamada.Cabecalho = this.RetornarCabecalho();
-            contratoChamada.InformacaoSessaoUsuario = $Aplicacao.InformacaoSessaoUsuario;
+            contratoChamada.InformacaoSessao = $Aplicacao.InformacaoSessao;
             contratoChamada.Operacao = nomeOperacao.Replace("Async", "");
             contratoChamada.DataHora = new Date().Utc;
             contratoChamada.Async = async;
+            contratoChamada.IdentificadorSessaoUsuario = $Aplicacao.IdentificadorSessaoUsuario;
 
             for (let i = 0; i < parametros.length; i++)
             {

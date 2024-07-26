@@ -30,7 +30,7 @@
             return this.IsConectadoInterno;
         }
 
-        public override get URLServico(): string
+        public override get UrlServico(): string
         {
             return $Configuracao.UrlServicoDepuracao;
         }
@@ -292,12 +292,12 @@
             let nomeUsuario = $Aplicacao.Usuario ? $Aplicacao.Usuario.Nome : "anonimo";
             nomeUsuario = TextoUtil.RetornarSomentesLetrasNumeros(nomeUsuario);
             const identificador = `${u.SistemaUtil.Navegador.Nome}_${nomeUsuario}_${u.RandomUtil.RetornarRandom(0, 100)}`;
-            if ($Configuracao.IsDepuracaoUtilizarHostLocal || this.URLServico === undefined)
+            if ($Configuracao.IsDepuracaoUtilizarHostLocal || this.UrlServico === undefined)
             {
                 const host = document.location.hostname;
                 return `ws://${host}:${this.PortaAtual}/${identificador}`;
             }
-            return String.Format(this.URLServico, this.PortaAtual, identificador);
+            return String.Format(this.UrlServico, this.PortaAtual, identificador);
         }
         //#endregion
 

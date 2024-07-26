@@ -91,7 +91,8 @@ namespace Snebur.Comunicacao
         //#region Propriedades
     
         private _cabecalho : Snebur.Comunicacao.Cabecalho = null;
-        private _informacaoSessaoUsuario : Snebur.Dominio.InformacaoSessaoUsuario = null;
+        private _informacaoSessao : Snebur.Dominio.InformacaoSessao = null;
+        private _identificadorSessaoUsuario : string = "00000000-0000-0000-0000-000000000000";
         private _operacao : string = null;
         private _dataHora : Date =  new Date();
         private _async : boolean = false;
@@ -107,14 +108,24 @@ namespace Snebur.Comunicacao
             this.NotificarValorPropriedadeAlterada("Cabecalho", this._cabecalho, this._cabecalho = value);
         }
     
-        public get InformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessaoUsuario 
+        public get InformacaoSessao(): Snebur.Dominio.InformacaoSessao 
         {
-            return this._informacaoSessaoUsuario;
+            return this._informacaoSessao;
         }
 
-        public set InformacaoSessaoUsuario(value: Snebur.Dominio.InformacaoSessaoUsuario) 
+        public set InformacaoSessao(value: Snebur.Dominio.InformacaoSessao) 
         {
-            this.NotificarValorPropriedadeAlterada("InformacaoSessaoUsuario", this._informacaoSessaoUsuario, this._informacaoSessaoUsuario = value);
+            this.NotificarValorPropriedadeAlterada("InformacaoSessao", this._informacaoSessao, this._informacaoSessao = value);
+        }
+    
+        public get IdentificadorSessaoUsuario(): string 
+        {
+            return this._identificadorSessaoUsuario;
+        }
+
+        public set IdentificadorSessaoUsuario(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("IdentificadorSessaoUsuario", this._identificadorSessaoUsuario, this._identificadorSessaoUsuario = value);
         }
     
         public get Operacao(): string 

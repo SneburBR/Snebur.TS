@@ -4,7 +4,7 @@
     {
         private static MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR: number = 10;
         private static readonly TEMPO_ESPERAR_FALHA = 2;
-        private URLServico: string
+        private UrlServico: string
         private Tentativa: number = 0;
 
         private get Gerencaidor(): GerenciadorRequiscao
@@ -14,7 +14,7 @@
 
         public get UrlRequisicao(): string
         {
-            return this.URLServico;
+            return this.UrlServico;
         }
 
         public get UrlCompleta(): string
@@ -31,7 +31,7 @@
         {
             super();
 
-            this.URLServico = this.BaseServico.URLServico;
+            this.UrlServico = this.BaseServico.UrlServico;
         }
 
         public override async ExecutarAsync(): Promise<any>
@@ -50,7 +50,7 @@
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(
                 this,
-                this.URLServico,
+                this.UrlServico,
                 this.NomeManipualdor,
                 this.Credencial,
                 token);
@@ -88,16 +88,16 @@
 
             return $Configuracao.IsDebug &&
                 Snebur.$Configuracao.IsAlterarUrlDebug &&
-                this.URLServico !== this.BaseServico.UrlServicoDebug &&
+                this.UrlServico !== this.BaseServico.UrlServicoDebug &&
                 !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug);
         }
 
         public UsarUrlServicoDEBUG()
         {
-            if (this.URLServico !== this.BaseServico.UrlServicoDebug)
+            if (this.UrlServico !== this.BaseServico.UrlServicoDebug)
             {
                 this.BaseServico.UsarUrlServicoDEBUG();
-                this.URLServico = this.BaseServico.URLServico;
+                this.UrlServico = this.BaseServico.UrlServico;
             }
         }
 
@@ -110,7 +110,7 @@
 
             const sb = new StringBuilder();
             sb.AppendLine(`Falha na requisição interno no servidor (Status) ${chamarServico.HttpStatus}`);
-            sb.AppendLine("URL: " + this.URLServico);
+            sb.AppendLine("URL: " + this.UrlServico);
             sb.AppendLine("Serviço: " + this.NomeManipualdor);
             sb.AppendLine("Operação: " + this.NomeMetodo);
             sb.AppendLine("Tentativa: " + this.Tentativa + 1);
@@ -151,7 +151,7 @@
 
             const args = new FalhaConexaoEventArgs(
                 resultadoChamada,
-                this.URLServico,
+                this.UrlServico,
                 this.NomeManipualdor,
                 this.NomeMetodo,
                 this.Tentativa);

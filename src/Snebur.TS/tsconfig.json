@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.Sigi.Online/wwwroot/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.Sigi.WebAdmin/wwwroot/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -186,6 +186,7 @@
     "src/Comunicacao/Requisicao/ChamadaServicoAsync.ts",
     "src/Comunicacao/Requisicao/GerenciadorRequiscao.ts",
     "src/Comunicacao/Requisicao/Requisicao.ts",
+    "src/Comunicacao/Usuario/ServicoUsuarioLocal.ts",
     "src/Comunicacao/Utilidade/NormalizarResultadoChamada.ts",
     "src/Comunicacao/Utilidade/PacoteUtil.ts",
     "src/Core/Evento/ManipualadorEvento.ts",

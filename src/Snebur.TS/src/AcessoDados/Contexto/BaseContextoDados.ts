@@ -22,21 +22,21 @@
             return this._isSalvando;
         }
 
-        public override readonly URLServico: string;
-        public readonly URLServicoDebug: string;
+        public override readonly UrlServico: string;
+        public readonly UrlServicoDebug: string;
 
         public constructor(tipoEntidadeOuNamespace: r.TipoEntidade | string, urlServico: string, urlServicoDebug: string = null, nomeServicoDados: string = null)
         {
             super();
-            this.URLServico = urlServico;
-            this.URLServicoDebug = urlServicoDebug;
+            this.UrlServico = urlServico;
+            this.UrlServicoDebug = urlServicoDebug;
 
             if (!u.ValidacaoUtil.IsDefinido(tipoEntidadeOuNamespace))
             {
                 tipoEntidadeOuNamespace = this.RetornarNamespaceEntidades();
             }
             this.NamespaceEntidades = u.NamespaceUtil.RetornarNamespace(tipoEntidadeOuNamespace);
-            this.ServicoDados = new ServicoDadosCliente(urlServico, this.URLServicoDebug, this.CredencialServico, nomeServicoDados);
+            this.ServicoDados = new ServicoDadosCliente(urlServico, this.UrlServicoDebug, this.CredencialServico, nomeServicoDados);
 
             if ($Aplicacao.ContextosDados.ContainsKey(this.NamespaceEntidades))
             {

@@ -96,7 +96,7 @@
             return u.SessaoUsuarioUtil.RetornarCredencialUsuario();
         }
 
-        public get InformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessaoUsuario
+        public get InformacaoSessao(): Snebur.Dominio.InformacaoSessao
         {
             return u.SessaoUsuarioUtil.RetornarInformacaoSessaoUsuario();
         }
@@ -138,7 +138,7 @@
 
         public get IsManterSessaoUsuarioConectada(): boolean
         {
-            return false;
+            return true;
         }
 
         //public get IsNavegadorSuportarOrientacaoExif(): boolean
@@ -377,7 +377,7 @@
 
         private DefinirVersaoDebug()
         {
-            if (typeof $Configuracao === "undefined")
+            if (typeof Snebur.$Configuracao === "undefined")
             {
                 throw new Error("O objeto configuração $Configuracao não foi definido");
                 /*this.InicializarConfiguracaoPadrao();*/

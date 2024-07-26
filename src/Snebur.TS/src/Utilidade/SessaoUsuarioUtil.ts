@@ -2,34 +2,33 @@
 {
     export class SessaoUsuarioUtil
     {
-        public static readonly  CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
+        public static readonly CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
 
-        public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessaoUsuario
+        public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessao 
         {
-            const dados = SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
-            const informacao = new Snebur.Dominio.InformacaoSessaoUsuario();
-            informacao.IdentificadorAplicacao = $Configuracao.IdentificadorAplicacao;
-            informacao.VersaoAplicacao = $Configuracao.Versao;
-            informacao.Resolucao = u.SistemaUtil.Resolucao;
-            informacao.Plataforma = u.SistemaUtil.Plataforma;
-            informacao.TipoAplicacao = u.SistemaUtil.TipoAplicacao;
-            informacao.SistemaOperacional = u.SistemaUtil.SistemaOperacional;
-            informacao.Navegador = u.SistemaUtil.Navegador;
-            informacao.Idioma = u.SistemaUtil.Idioma;
-            informacao.Cultura = informacao.Idioma;
-
-            informacao.IdentificadorSessaoUsuario = dados.IdentificadorSessaoUsuario;
+            const informacao = new Snebur.Dominio.InformacaoSessao({
+                IdentificadorAplicacao: $Configuracao.IdentificadorAplicacao,
+                VersaoAplicacao: $Configuracao.Versao,
+                Resolucao: u.SistemaUtil.Resolucao,
+                Plataforma: u.SistemaUtil.Plataforma,
+                TipoAplicacao: u.SistemaUtil.TipoAplicacao,
+                SistemaOperacional: u.SistemaUtil.SistemaOperacional,
+                Navegador: u.SistemaUtil.Navegador,
+                Idioma: u.SistemaUtil.Idioma,
+            });
             return informacao;
         }
 
         public static RetornarCredencialUsuario(): Snebur.Seguranca.CredencialUsuario
         {
             const cache = SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
-            const credencial = new s.CredencialUsuario();
-            credencial.IdentificadorUsuario = cache.Credencial.IdentificadorUsuario;
-            credencial.Senha = cache.Credencial.Senha;
-            credencial.Nome = cache.Credencial.Nome;
-            credencial.IdentificadorAmigavel = cache.Credencial.IdentificadorAmigavel;
+            const credencial = new s.CredencialUsuario({
+                IdentificadorUsuario : cache.Credencial.IdentificadorUsuario,
+                Senha: cache.Credencial.Senha,
+                Nome: cache.Credencial.Nome,
+                IdentificadorAmigavel: cache.Credencial.IdentificadorAmigavel
+            });
+           
             return credencial;
         }
 
@@ -118,7 +117,7 @@
             }
         }
 
-        public static async SairAsync( )
+        public static async SairAsync()
         {
             return $Aplicacao.SairAsync();
         }

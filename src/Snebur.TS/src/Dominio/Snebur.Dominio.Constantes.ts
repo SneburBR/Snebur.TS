@@ -18,6 +18,7 @@ namespace Snebur
         public static readonly IDENTIFICADOR_USUARIO : string = "IdentificadorUsuario";
         public static readonly SENHA : string = "Senha";
         public static readonly IDENTIFICADOR_PROPRIETARIO : string = "IdentificadorProprietario";
+        public static readonly IDENTIFICADOR_APLICACAO : string = "IdentificadorAplicacao";
         public static readonly NOME_ASSEMBLY_APLICACAO : string = "NomeAssemblyAplicacao";
         public static readonly ORIGIN : string = "Origin";
         public static readonly TOKEN : string = "Token";

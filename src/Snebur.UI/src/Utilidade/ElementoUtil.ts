@@ -367,9 +367,9 @@
             }
 
             elemento.style.pointerEvents = "none";
-            elemento.style.cursor = "wait";
+            /*elemento.style.cursor = "wait";*/
+            /*elemento.style.setProperty("cursor", "wait", "important");*/
 
-            elemento.style.setProperty("cursor", "wait", "important");
             elemento.style.setProperty("pointer-events", "none", "important");
 
             if (isRecursivo)
@@ -396,7 +396,7 @@
                 elemento.disabled = false;
             }
             elemento.style.pointerEvents = "";
-            elemento.style.cursor = "";
+            /*elemento.style.cursor = "";*/
 
             const len = elemento.childNodes.length;
             for (let i = 0; i < len; i++)
