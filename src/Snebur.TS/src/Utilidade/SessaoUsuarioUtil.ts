@@ -109,7 +109,7 @@
             this.SalvarSessaoUsuario(
                 s.CredencialAnonimo.Anonimo,
                 GuidUtil.RetornarNovoGuid(),
-                $Aplicacao.IsManterSessaoUsuarioConectada);
+                true);
 
             if ($Aplicacao instanceof Snebur.Aplicacao.BaseAplicacao)
             {

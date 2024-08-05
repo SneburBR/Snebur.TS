@@ -8,16 +8,7 @@
 
         private static _idSessaoLocalStore: string = null;
         private static _chaveLocalStorage: string = null;
-         
-        private static get StorageAtual(): Storage
-        {
-            if ($Aplicacao?.IsManterSessaoUsuarioConectada)
-            {
-                return localStorage;    
-            }
-            return sessionStorage;
-        }
-
+          
         private static get IdSessaoLocalStorage()
         {
             return CookieUtil._idSessaoLocalStore;
@@ -32,9 +23,11 @@
             return CookieUtil._chaveLocalStorage;
         }
          
-        public static RetornarCookie(chave: string, storage: Storage = CookieUtil.StorageAtual) 
+        public static RetornarCookie(chave: string) 
         {
-            const cookie = CookieUtil.RetornarCookieInterno(chave, storage);
+            const cookie = CookieUtil.RetornarCookieInterno(chave, sessionStorage) ??
+                CookieUtil.RetornarCookieInterno(chave, localStorage);
+
             const pares = cookie.split(";");
             const len = pares.length;
             for (let i = 0; i < len; i++)
@@ -64,14 +57,13 @@
 
         public static SalvarCookie(chave: string,
             valor: string,
-            isManter: boolean,
-            storage: Storage = CookieUtil.StorageAtual)
+            isManter: boolean )
         {
+            CookieUtil.Remover(chave);
+
             const conteudo = CookieUtil.RetornarConteudoCookie(chave, valor, isManter);
-            if (storage == null)
-            {
-                storage = isManter ? localStorage : sessionStorage;  
-            }
+            const storage = isManter? localStorage : sessionStorage;
+            
             CookieUtil.SalvarCookieInternal(chave, conteudo, isManter, storage);
         }
          
@@ -130,7 +122,7 @@
                     console.error("Falha ao deserializar LocalStoreCookieItem");
                 }
             }
-            return String.Empty;
+            return null;
         }
 
         private static SalvarCookieInternal(

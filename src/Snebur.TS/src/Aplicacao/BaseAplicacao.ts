@@ -135,12 +135,7 @@
         {
             return this._isAplicacaoInicializada;
         }
-
-        public get IsManterSessaoUsuarioConectada(): boolean
-        {
-            return true;
-        }
-
+  
         //public get IsNavegadorSuportarOrientacaoExif(): boolean
         //{
         //    return this._isNavegadorSuportarOrientacaoExif;
