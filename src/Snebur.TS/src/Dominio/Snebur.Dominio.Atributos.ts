@@ -94,12 +94,28 @@ namespace Snebur.Dominio.Atributos
     }
     export class ChavePrimariaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
+        //#region Propriedades
+    
+        private _isIdentity : boolean = false;
+    
+        public get IsIdentity(): boolean 
+        {
+            return this._isIdentity;
+        }
+
+        public set IsIdentity(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsIdentity", this._isIdentity, this._isIdentity = value);
+        }
+        //#endregion
+    
         //#region Construtor
     
-        public constructor(inicializador?: Partial<ChavePrimariaAttribute>) 
+        public constructor( isIdentity : boolean ) 
         {
-            super(inicializador);
+            super();
             this.Inicializar();
+            this._isIdentity = isIdentity;
         }
         //#endregion
     }
@@ -885,16 +901,71 @@ namespace Snebur.Dominio.Atributos
     {
         //#region Propriedades
     
-        private _isAceitaNulo : boolean = false;
+        private _isPermitirDuplicarNulo : boolean = false;
+        private _isPermitirDuplicarZero : boolean = false;
+        private _tipoEntidade : r.BaseTipo | string = null;
+        private _nomePropriedadeFiltro : string = null;
+        private _valorPropriedadeFiltro : any = null;
+        private _operadorFiltro : Snebur.Dominio.Atributos.EnumOperadorComparacao = 0;
     
-        public get IsAceitaNulo(): boolean 
+        public get IsPermitirDuplicarNulo(): boolean 
         {
-            return this._isAceitaNulo;
+            return this._isPermitirDuplicarNulo;
         }
 
-        public set IsAceitaNulo(value: boolean) 
+        public set IsPermitirDuplicarNulo(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("IsAceitaNulo", this._isAceitaNulo, this._isAceitaNulo = value);
+            this.NotificarValorPropriedadeAlterada("IsPermitirDuplicarNulo", this._isPermitirDuplicarNulo, this._isPermitirDuplicarNulo = value);
+        }
+    
+        public get IsPermitirDuplicarZero(): boolean 
+        {
+            return this._isPermitirDuplicarZero;
+        }
+
+        public set IsPermitirDuplicarZero(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsPermitirDuplicarZero", this._isPermitirDuplicarZero, this._isPermitirDuplicarZero = value);
+        }
+    
+        public get TipoEntidade(): r.BaseTipo | string 
+        {
+            return this._tipoEntidade;
+        }
+
+        public set TipoEntidade(value: r.BaseTipo | string) 
+        {
+            this.NotificarValorPropriedadeAlterada("TipoEntidade", this._tipoEntidade, this._tipoEntidade = value);
+        }
+    
+        public get NomePropriedadeFiltro(): string 
+        {
+            return this._nomePropriedadeFiltro;
+        }
+
+        public set NomePropriedadeFiltro(value: string) 
+        {
+            this.NotificarValorPropriedadeAlterada("NomePropriedadeFiltro", this._nomePropriedadeFiltro, this._nomePropriedadeFiltro = value);
+        }
+    
+        public get ValorPropriedadeFiltro(): any 
+        {
+            return this._valorPropriedadeFiltro;
+        }
+
+        public set ValorPropriedadeFiltro(value: any) 
+        {
+            this.NotificarValorPropriedadeAlterada("ValorPropriedadeFiltro", this._valorPropriedadeFiltro, this._valorPropriedadeFiltro = value);
+        }
+    
+        public get OperadorFiltro(): Snebur.Dominio.Atributos.EnumOperadorComparacao 
+        {
+            return this._operadorFiltro;
+        }
+
+        public set OperadorFiltro(value: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
+        {
+            this.NotificarValorPropriedadeAlterada("OperadorFiltro", this._operadorFiltro, this._operadorFiltro = value);
         }
     
         public static MensagemValidacao : string = "O {0} '{1}' já existe."; 
@@ -904,11 +975,16 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor( isAceitaNulo : boolean ) 
+        public constructor( tipoEntidade : r.BaseTipo | string ,  isPermitirDuplicarNulo : boolean ,  isPermitirDuplicarZero : boolean ,  nomePropriedadeFiltro : string ,  valorPropriedadeFiltro : any ,  operadorFiltro : Snebur.Dominio.Atributos.EnumOperadorComparacao ) 
         {
             super();
             this.Inicializar();
-            this._isAceitaNulo = isAceitaNulo;
+            this._tipoEntidade = tipoEntidade;
+            this._isPermitirDuplicarNulo = isPermitirDuplicarNulo;
+            this._isPermitirDuplicarZero = isPermitirDuplicarZero;
+            this._nomePropriedadeFiltro = nomePropriedadeFiltro;
+            this._valorPropriedadeFiltro = valorPropriedadeFiltro;
+            this._operadorFiltro = operadorFiltro;
         }
         //#endregion
     }
@@ -917,7 +993,7 @@ namespace Snebur.Dominio.Atributos
         //#region Propriedades
     
         private _tipoEntidade : r.BaseTipo | string = null;
-        private _nomesPropriedadeOuFiltro : Array<string> =  new Array<string>();
+        private _expressoesPropriedadeFiltro : Array<string> =  new Array<string>();
         private _isCriarIndicesNomeBanco : boolean = false;
     
         public get TipoEntidade(): r.BaseTipo | string 
@@ -930,14 +1006,14 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("TipoEntidade", this._tipoEntidade, this._tipoEntidade = value);
         }
     
-        public get NomesPropriedadeOuFiltro(): Array<string> 
+        public get ExpressoesPropriedadeFiltro(): Array<string> 
         {
-            return this._nomesPropriedadeOuFiltro;
+            return this._expressoesPropriedadeFiltro;
         }
 
-        public set NomesPropriedadeOuFiltro(value: Array<string>) 
+        public set ExpressoesPropriedadeFiltro(value: Array<string>) 
         {
-            this.NotificarValorPropriedadeAlterada("NomesPropriedadeOuFiltro", this._nomesPropriedadeOuFiltro, this._nomesPropriedadeOuFiltro = value);
+            this.NotificarValorPropriedadeAlterada("ExpressoesPropriedadeFiltro", this._expressoesPropriedadeFiltro, this._expressoesPropriedadeFiltro = value);
         }
     
         public get IsCriarIndicesNomeBanco(): boolean 
@@ -957,12 +1033,12 @@ namespace Snebur.Dominio.Atributos
     
         //#region Construtor
     
-        public constructor( tipoEntidade : r.BaseTipo | string ,  nomesPropriedadeOuFiltro : Array<string> ) 
+        public constructor( tipoEntidade : r.BaseTipo | string ,  expressoesPropriedadeFiltro : Array<string> ) 
         {
             super();
             this.Inicializar();
             this._tipoEntidade = tipoEntidade;
-            this._nomesPropriedadeOuFiltro = nomesPropriedadeOuFiltro;
+            this._expressoesPropriedadeFiltro = expressoesPropriedadeFiltro;
         }
         //#endregion
     }

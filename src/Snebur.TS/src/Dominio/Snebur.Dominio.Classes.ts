@@ -473,6 +473,7 @@ namespace Snebur.Dominio
         private _email : string = null;
         private _telefone : string = null;
         private _senha : string = null;
+        private _isMaster : boolean = false;
     
         public get Nome(): string 
         {
@@ -512,6 +513,16 @@ namespace Snebur.Dominio
         public set Senha(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
+        }
+    
+        public get IsMaster(): boolean 
+        {
+            return this._isMaster;
+        }
+
+        public set IsMaster(value: boolean) 
+        {
+            this.NotificarValorPropriedadeAlterada("IsMaster", this._isMaster, this._isMaster = value);
         }
         //#endregion
     

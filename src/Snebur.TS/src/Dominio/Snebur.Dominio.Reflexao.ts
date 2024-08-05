@@ -820,7 +820,7 @@ namespace Snebur.Reflexao
 	//Atributos TiposComplexos
 	
 	//BaseEntidades
-	export const __$tipoBaseDominioSnebur_Dominio_Entidade = new Snebur.Reflexao.TipoEntidade(Snebur.Dominio.Entidade, "Entidade", "Snebur.Dominio","Snebur.Dominio.Entidade, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseDominio, true, false, false);
+	export const __$tipoBaseDominioSnebur_Dominio_Entidade = new Snebur.Reflexao.TipoEntidade(Snebur.Dominio.Entidade, "Entidade", "Snebur.Dominio","Snebur.Dominio.Entidade, Snebur",__$tipoBaseDominioSnebur_Dominio_BaseDominio, true, false, false,false);
 	
 	//ListaBaseDominio TipoEntidade
 	export const __$tipoListaBaseDominio_Snebur_Dominio_Entidade = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_Entidade", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.Entidade, Snebur]], mscorlib",__$tipoBaseDominioSnebur_Dominio_Entidade);
@@ -990,7 +990,7 @@ namespace Snebur.Reflexao
 	__$propriedade_Snebur_Dominio_Entidade___NomeTipoEntidade.Atributos.Add(new Snebur.Dominio.Atributos.OcultarColunaAttribute());
 	__$propriedade_Snebur_Dominio_Entidade___NomeTipoEntidade.Atributos.Add(new Snebur.Dominio.Atributos.SomenteLeituraAttribute());
 	
-	__$tipoBaseDominioSnebur_Dominio_Entidade.PropriedadeChavePrimaria = __$propriedade_Snebur_Dominio_Entidade_Id;
+	__$tipoBaseDominioSnebur_Dominio_Entidade.SetPropriedadeChavePrimaria(__$propriedade_Snebur_Dominio_Entidade_Id);
 	
 	__$tipoBaseDominioSnebur_Dominio_Entidade.Propriedades.Add(__$propriedade_Snebur_Dominio_Entidade_Id);
 	__$tipoBaseDominioSnebur_Dominio_Entidade.Propriedades.Add(__$propriedade_Snebur_Dominio_Entidade___NomeTipoEntidade);
@@ -1058,10 +1058,13 @@ namespace Snebur.Reflexao
 	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null,null,false,null));
 	__$propriedade_Snebur_Dominio_NovoUsuario_Senha.Atributos.Add(new Snebur.Dominio.Atributos.ValidacaoSenhaAttribute(4,36));
 	
+	export const __$propriedade_Snebur_Dominio_NovoUsuario_IsMaster = new Snebur.Reflexao.Propriedade("IsMaster", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_Dominio_NovoUsuario, false);
+	
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Nome);
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Email);
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Telefone);
 	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_Senha);
+	__$tipoBaseDominioSnebur_Dominio_NovoUsuario.Propriedades.Add(__$propriedade_Snebur_Dominio_NovoUsuario_IsMaster);
 	
 	export const __$propriedade_Snebur_Dominio_DadosIPInformacao_IP = new Snebur.Reflexao.Propriedade("IP", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Dominio_DadosIPInformacao, true);
 	

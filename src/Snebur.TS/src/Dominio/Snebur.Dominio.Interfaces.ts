@@ -86,6 +86,7 @@ namespace Snebur.Dominio
         Id : number;
         readonly __NomeTipoEntidade : string;
         readonly __IdentificadorEntidade : string;
+        readonly __IsNewEntity : boolean;
         readonly __PropriedadesAlteradas : DicionarioSimples<Snebur.Dominio.PropriedadeAlterada>;
         RetornarIdentificadorReferencia() : string;
     }

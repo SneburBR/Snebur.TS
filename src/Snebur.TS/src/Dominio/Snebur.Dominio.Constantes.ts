@@ -23,7 +23,6 @@ namespace Snebur
         public static readonly ORIGIN : string = "Origin";
         public static readonly TOKEN : string = "Token";
         public static readonly MANIPULADOR : string = "Manipulador";
-        public static readonly NOME_APLICACAO_WEB : string = "NomeArquivoWeb";
         public static readonly IDENTIFICADOR_SESSAO_USUARIO : string = "IdentificadorSessaoUsuario";
     }
 }
