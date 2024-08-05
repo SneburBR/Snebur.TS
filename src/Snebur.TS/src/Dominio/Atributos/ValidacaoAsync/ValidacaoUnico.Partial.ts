@@ -26,7 +26,12 @@
 
         const tipoEntidade = paiPropriedade.GetType() as r.TipoEntidade;
 
-        if (valorPropriedade === null && this.IsAceitaNulo)
+        if (valorPropriedade === null && this.IsPermitirDuplicarNulo)
+        {
+            return true;
+        }
+
+        if (valorPropriedade === 0 && this.IsPermitirDuplicarZero)
         {
             return true;
         }

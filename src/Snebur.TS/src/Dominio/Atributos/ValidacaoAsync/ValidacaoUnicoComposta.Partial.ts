@@ -24,9 +24,9 @@
             propriedade: Snebur.Reflexao.Propriedade,
             valorPropriedade: any): Promise<boolean> 
         {
-            if (!this.NomesPropriedadeOuFiltro.Contains(propriedade.Nome, new CompararPropriedade()))
+            if (!this.ExpressoesPropriedadeFiltro.Contains(propriedade.Nome, new CompararPropriedade()))
             {
-                const nomesPropriedadeString = String.Join(",  ", this.NomesPropriedadeOuFiltro);
+                const nomesPropriedadeString = String.Join(",  ", this.ExpressoesPropriedadeFiltro);
                 console.error(`A propriedade ${propriedade.Nome} não está configurada na validação único composta, ${nomesPropriedadeString}`);
             }
 
@@ -50,7 +50,7 @@
 
             consulta.FiltroGrupoE.Filtros.Add(a.ConsultaUtil.RetornarNovoFiltroPropriedade(tipoEntidade.PropriedadeChavePrimaria, a.EnumOperadorFiltro.Diferente, entidade.Id));
 
-            for (const nomePropriedade of this.NomesPropriedadeOuFiltro)
+            for (const nomePropriedade of this.ExpressoesPropriedadeFiltro)
             {
                 let propriedadeFiltro = tipoEntidade.RetornarPropriedade(nomePropriedade, false);
                 let valorPropriedadeFiltro: any;
