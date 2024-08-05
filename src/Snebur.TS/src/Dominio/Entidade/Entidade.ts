@@ -7,7 +7,11 @@
         //#region Propriedades
 
         private _id: number = 0;
+        private __isNewEntity__: boolean = true;
+        private __isIdentity__: boolean
 
+        public readonly __IsSomenteLeitura: boolean = false;
+        
         //private _entidadeCloneSomenteId: Entidade;
 
         public get Id(): number
@@ -17,10 +21,10 @@
 
         public set Id(value: number)
         {
-           
-            if (this._id > 0 && this._id !== value )
+
+            if (this._id > 0 && this._id !== value)
             {
-                throw new ErroOperacaoInvalida("Não possível sobreescrever um id já existente");
+                throw new ErroOperacaoInvalida("Não possível sobre escrever um id já existente");
             }
 
             if (this.IsNotificacaoAlteracaoPropriedadeAtiva && value > 0)
@@ -45,8 +49,11 @@
             return `${this.__NomeTipoEntidade}-(0)-${super.GetHashCode()}`;
         }
 
-        public readonly __IsSomenteLeitura: boolean = false;
-
+        public get __IsNewEntity(): boolean
+        {
+            return this.Id === 0 || (!this.__isIdentity__ && this.__isNewEntity__);
+        }
+         
         public override get __IsMontarValorAntigoInicial(): boolean
         {
             return true;
@@ -56,7 +63,7 @@
         {
             return this.GetType().Nome;
         }
-         
+
         public override get __IsExisteAlteracao(): boolean
         {
             if (this.Id === 0 || this.__PropriedadesAlteradas.Count > 0)
@@ -93,6 +100,7 @@
         public constructor(inicializador?: Partial<Entidade>)
         {
             super(inicializador);
+            this.__isIdentity__ = (this.GetType() as r.TipoEntidade).IsIdentity;
             //this.__NomeTipoEntidade = this.GetType().Nome;
         }
 
@@ -257,7 +265,7 @@
             {
                 if (!descricaoOuNome?.Contains("deletado", true))
                 {
-                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (DELETADO) </span>`
+                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (DELETADO) </span>`;
                 }
             }
             return descricaoOuNome;
@@ -379,7 +387,7 @@
                     const isValido = await validacao.IsValidoAsync(this, propriedade, valorPropriedade);
                     if (!isValido)
                     {
-                        return false; 
+                        return false;
                     }
                 }
             }
