@@ -8,22 +8,14 @@
         private _propriedadesChaveEstrangeiras: List<r.Propriedade> = null;
         private _rotulo: string = null;
 
-        public PropriedadeChavePrimaria: Propriedade;
-        public readonly IsImplementaIDeletado: boolean;
-        public readonly IsImplementaIAtivo: boolean;
+        private _isIdentity: boolean;
+        private _isImplementaIDeletado: boolean;
+        private _isImplementaIAtivo: boolean;
+        private _propriedadeChavePrimaria: r.Propriedade;
 
         public override get Construtor(): d.EntidadeConstrutor
         {
             return this._construtor as d.EntidadeConstrutor;
-        }
-
-        public get PropriedadesChaveEstrangeiras(): List<r.Propriedade>
-        {
-            if (!this._propriedadesChaveEstrangeiras)
-            {
-                this._propriedadesChaveEstrangeiras = this.RetornarPropriedadesChaveEstrangeiras();
-            }
-            return this._propriedadesChaveEstrangeiras;
         }
 
         public get Rotulo(): string
@@ -35,19 +27,50 @@
             return this._rotulo;
         }
 
+        public get IsIdentity(): boolean
+        {
+            return this._isIdentity;
+        }
+
+        public get IsImplementaIDeletado(): boolean
+        {
+            return this._isImplementaIDeletado;
+        }
+
+        public get IsImplementaIAtivo(): boolean
+        {
+            return this._isImplementaIAtivo;
+        }
+
+        public get PropriedadesChaveEstrangeiras(): List<r.Propriedade>
+        {
+            if (!this._propriedadesChaveEstrangeiras)
+            {
+                this._propriedadesChaveEstrangeiras = this.RetornarPropriedadesChaveEstrangeiras();
+            }
+            return this._propriedadesChaveEstrangeiras;
+        }
+
+        public get PropriedadeChavePrimaria(): Propriedade
+        {
+            return this._propriedadeChavePrimaria;
+        }
+
         public constructor(construtor: Function, nome: string,
             _namespace: string,
             assemblyQualifiedName: string,
             tipoBase: BaseTipo,
-            abstrato: boolean,
+            isAbstrato: boolean,
             isImplementaIDeletado: boolean,
-            isImplementaIAtivo: boolean)
+            isImplementaIAtivo: boolean,
+            isIdentity: boolean)
         {
-            super(construtor, nome, _namespace, assemblyQualifiedName, tipoBase, abstrato);
+            super(construtor, nome, _namespace, assemblyQualifiedName, tipoBase, isAbstrato);
             this.TipoReflexao = EnumTipoReflexao.TipoBaseEntidade;
 
-            this.IsImplementaIDeletado = isImplementaIDeletado;
-            this.IsImplementaIAtivo = isImplementaIAtivo;
+            this._isImplementaIDeletado = isImplementaIDeletado;
+            this._isImplementaIAtivo = isImplementaIAtivo;
+            this._isIdentity = isIdentity;
         }
 
         public RetornarPropriedadeDescricao(): r.Propriedade
@@ -101,7 +124,6 @@
         public RetornarPropriedadesExibicao(): Array<r.Propriedade>
         {
             const propriedades = new Array<r.Propriedade>();
-
             const todasPropriedades = this.RetornarPropriedades(false, true);
             const nomesPropriedadeChaveEstrangeira = new Array<string>();
             let len = todasPropriedades.length;
@@ -168,6 +190,17 @@
             return propriedadesPesquisa;
         }
 
+        public SetPropriedadeChavePrimaria(propriedade: r.Propriedade): void
+        {
+            if (this._propriedadeChavePrimaria != null)
+            {
+                throw new ErroOperacaoInvalida("A propriedade chave primária já foi definida", this);
+            }
+
+            propriedade.Atributos.Add(new Snebur.Dominio.Atributos.ChavePrimariaAttribute(this.IsIdentity));
+            this._propriedadeChavePrimaria = propriedade;
+        }
+
         private IgnorarPropriedade(propriedade: r.Propriedade)
         {
             if (propriedade.Atributos.Count > 0)
@@ -177,11 +210,13 @@
                 {
                     return true;
                 }
+
                 const atributoChavePrimaria = propriedade.Atributos.OfType(d.Atributos.ChavePrimariaAttribute).SingleOrDefault();
                 if (atributoChavePrimaria != null)
                 {
                     return true;
                 }
+
                 const atributoSomenteLeitura = propriedade.Atributos.OfType(at.SomenteLeituraAttribute).SingleOrDefault();
                 if (atributoSomenteLeitura != null)
                 {
@@ -214,6 +249,11 @@
                 return atributoRotulo.Rotulo;
             }
             return this.Nome;
+        }
+
+        private RetornarIsEntity(): boolean
+        {
+            throw new Error("Method not implemented.");
         }
     }
 }
