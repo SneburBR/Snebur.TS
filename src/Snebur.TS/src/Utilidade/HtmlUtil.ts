@@ -7,6 +7,34 @@
         private static readonly CLOSE_TEMP = "!%$#&";
         private static readonly PROTECTED_CHARS = ["!", "&", "#", "$", "%"]
 
+        public static Bold(content: string): string
+        {
+            return HtmlUtil.Format(content, "<STRONG>", "</STRONG>");
+        }
+
+        public static Red(content: string): string
+        {
+            return HtmlUtil.Color(content, "red");
+        }
+
+        public static Color(content: string, color: string): string
+        {
+            return HtmlUtil.Format(content, `<span style="color:${color}">`, "</span>");
+        }
+
+        public static Format(content: string, openTag: string, closeTag: string): string
+        {
+            if (String.IsNullOrWhiteSpace(content))
+            {
+                return String.Empty;
+            }
+
+            return content
+                .ReplaceAll(" ", HtmlUtil.SPACE)
+                .ReplaceAll(HtmlUtil.CLOSE_TEMP, closeTag)
+                .ReplaceAll(HtmlUtil.OPEN_CLOSE, openTag);
+        }
+
         public static BoldContent(content: string, contentToBold: string): string
         {
             const partes = contentToBold.split(" ");
