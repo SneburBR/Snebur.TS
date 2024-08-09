@@ -96,7 +96,11 @@
         {
             const todasPropriedade = this.RetornarPropriedades(false);
 
-            const propriedadeDescricao = todasPropriedade.FirstOrDefault(x => TipoEntidade.NomesPropriedadeDescricao.Contains(x.Nome));
+            const propriedadeDescricao = todasPropriedade
+                .Where(x => TipoEntidade.NomesPropriedadeDescricao.Contains(x.Nome))
+                .OrderBy(x => x.Nome)
+                .FirstOrDefault();
+
             if (propriedadeDescricao != null)
             {
                 return propriedadeDescricao;
