@@ -124,6 +124,7 @@ namespace Snebur.Nativo
 
         Add(item: T): number;
         AddIsTrue(item: T, isAdd: boolean): number;
+        AddIsNotNull(item: T): number;
 
         AddRange(itens: Array<T>): void;
         AddRangeAsync(items: Array<T>): Promise<void>;

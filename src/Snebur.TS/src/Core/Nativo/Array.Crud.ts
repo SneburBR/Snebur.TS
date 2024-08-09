@@ -88,6 +88,15 @@
         return -1;
     });
 
+    Array.prototype.AddIsNotNull = (function (item: any): number
+    {
+        if (item != null)
+        {
+            return this.Add(item);
+        }
+        return -1;
+    });
+
     Array.prototype.Add = (function (item)
     {
         let lista = this as Array<any>;
@@ -412,7 +421,7 @@
                 throw new Erro("A lista não é suportada");
         }
     });
-   
 
-   
+
+
 }
