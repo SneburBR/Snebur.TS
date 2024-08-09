@@ -153,5 +153,10 @@
                 imagem.DimensaoImagemMiniatura instanceof d.Dimensao &&
                 typeof imagem.TotalBytesMiniatura === "number";
         }
+
+        public static IsImplementaIDeletado(entidade: IEntidade): entidade is IDeletado
+        {
+            return (entidade?.GetType() as r.TipoEntidade).IsImplementaIDeletado;
+        }
     }
 }
