@@ -117,9 +117,6 @@ namespace Snebur.UI
         }
 
         public ElementosImagemCorSugestao = new Array<HTMLImageElement>();
-
-        public constructor(controlePai: Snebur.UI.BaseControle, elemento: HTMLElement);
-        public constructor(controlePai: Snebur.UI.BaseControle, idElemento: string);
         public constructor(controlePai: Snebur.UI.BaseControle, refElemento: any)
         {
             super(controlePai, refElemento);

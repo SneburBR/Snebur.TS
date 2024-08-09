@@ -103,10 +103,7 @@
         {
             return this.RetornarValorAtributoEnum(EnumTamanhoIcone, AtributosHtml.TamanhoIcone, EnumTamanhoIcone.Padrao);
         }
-
-        public constructor(controlePai: Snebur.UI.BaseControle, elemento: HTMLElement);
-        public constructor(controlePai: Snebur.UI.BaseControle, idElemento: string);
-        public constructor(controlePai: Snebur.UI.BaseControle, refElemento: any) 
+        public constructor(controlePai: Snebur.UI.BaseControle, refElemento: HTMLElement | string) 
         {
             super(controlePai, refElemento);
 

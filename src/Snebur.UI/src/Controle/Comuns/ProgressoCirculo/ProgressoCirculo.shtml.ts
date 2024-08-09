@@ -19,11 +19,8 @@ namespace Snebur.UI
             this.NotificarPropriedadeAlterada(x => x.Progresso, this._progresso, this._progresso = value);
             this.AtualizarProgressoInterno();
         }
-
-
-        public constructor(controlePai: Snebur.UI.BaseControle, elemento: HTMLElement);
-        public constructor(controlePai: Snebur.UI.BaseControle, idElemento: string);
-        public constructor(controlePai: Snebur.UI.BaseControle, refElemento: any) 
+        
+        public constructor(controlePai: Snebur.UI.BaseControle, refElemento: HTMLElement | string) 
         {
             super(controlePai, refElemento);
             this.EventoCarregado.AddHandler(this.Controle_Carregado, this);

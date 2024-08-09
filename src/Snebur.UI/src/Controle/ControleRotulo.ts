@@ -36,10 +36,10 @@
             {
                 this.ElementoRotulo.innerHTML = value ;
             }
-            this._rotulo = value  ;
+            this._rotulo = value;
         }
          
-        public constructor(controlePai: BaseControle, elemento: HTMLElement)
+        public constructor(controlePai: BaseControle, elemento: HTMLElement | string)
         {
             super(controlePai, elemento);
             this.ControlePai.EventoDataSourceAlterado?.AddHandler(this.ControlePai_DataSourceAlterado, this);
