@@ -57,6 +57,7 @@ namespace Snebur.Dominio
     export interface IAlteracaoPropriedadeGenerica extends Snebur.Dominio.IAtividadeUsuario,Snebur.Dominio.IEntidade 
     {
         IdEntidade : number;
+        IdNamespace : number;
         NomeTipoEntidade : string;
         NomePropriedade : string;
         TipoPrimario? : Snebur.Reflexao.EnumTipoPrimario | null;
