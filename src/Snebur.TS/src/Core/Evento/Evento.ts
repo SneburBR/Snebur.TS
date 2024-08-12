@@ -78,7 +78,7 @@
             return false;
         }
 
-        public NotificarAsync(provedor: any, eventArgs: TEventArgs): void
+        public async NotificarAsync(provedor: any, eventArgs: TEventArgs): Promise<void>
         {
             if (!this.IsDispensado && this._isAtivado)
             {
@@ -88,13 +88,15 @@
                     let manipulador = manipuladorEvento.Manipulador;
                     if (manipuladorEvento.ObjetoBind != null)
                     {
-                        manipulador = manipulador.bind(manipuladorEvento.ObjetoBind, provedor, eventArgs);
+                        manipulador = manipulador.bind(manipuladorEvento.ObjetoBind);
                     }
                     else
                     {
                         throw new Erro("Para notificar assim, de ser passado parâmetro objeto bind no método manipulador AddHandler");
                     }
-                    setTimeout(manipulador, 0);
+                    await ThreadUtil.QuebrarAsync();
+                    await manipulador.call(null, provedor, eventArgs);
+                    await ThreadUtil.QuebrarAsync();
                 }
             }
         }
