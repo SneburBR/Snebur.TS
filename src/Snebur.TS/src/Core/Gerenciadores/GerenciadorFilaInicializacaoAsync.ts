@@ -32,7 +32,7 @@ namespace Snebur
                 try
                 {
                     await itemAtual.InicializarAsync();
-                    if (this.ItemAtual == itemAtual)
+                    if (this.ItemAtual === itemAtual)
                     {
                         this.EventoItemInicializado.Notificar(itemAtual, new ItemEventArgs(itemAtual));
                     }
@@ -52,7 +52,7 @@ namespace Snebur
             {
                 this.ItemAtual.Cancelar();
             }
-            this.ItemAtual = null;;
+            this.ItemAtual = null;
         }
     }
 }
