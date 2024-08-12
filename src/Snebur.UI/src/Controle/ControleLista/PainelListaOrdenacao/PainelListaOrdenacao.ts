@@ -135,6 +135,11 @@
         {
             if (!String.IsNullOrWhiteSpace(this.CaminhoEntidadeOrdenacao))
             {
+                if (this.CaminhoEntidadeOrdenacao.StartsWith("this."))
+                {
+                    const metodo = this.RetornarMetodo(this.CaminhoEntidadeOrdenacao.substring(5), false);
+                    return metodo.call(this, item) as d.IOrdenacao;
+                }
                 return u.ReflexaoUtil.RetornarValorPropriedade(item, this.CaminhoEntidadeOrdenacao);
             }
             return item as d.IOrdenacao;
