@@ -70,14 +70,14 @@
             {
                 return "";
             }
-            
+
             console.error(`Não foi possível encontrar o descrição  de '${valor}'  no enum  ${u.ReflexaoUtil.RetornarNomeTipo(construtorEnum)}`);
             return valor?.toString() ?? "";
         }
 
-        public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum], isIgnorarErro?:boolean): string
+        public static RetornarRotulo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum], isIgnorarErro?: boolean): string
         public static RetornarRotulo(construtorEnum: any, valor: number, isIgnorarErro?: boolean): string
-        public static RetornarRotulo(construtorEnum: any, valor: number, isIgnorarErro:boolean = false): string
+        public static RetornarRotulo(construtorEnum: any, valor: number, isIgnorarErro: boolean = false): string
         {
             //pegar o valor do atributo description na globalização
             if (construtorEnum == null)
@@ -127,7 +127,7 @@
                 return null;
             }
 
-            throw new Erro(`Não foi possível encontrar o valor '${valor}'  no enum  ${ u.ReflexaoUtil.RetornarNomeTipo( construtorEnum)}`);
+            throw new Erro(`Não foi possível encontrar o valor '${valor}'  no enum  ${u.ReflexaoUtil.RetornarNomeTipo(construtorEnum)}`);
         }
 
         private static RetornarValorInterno(construtorEnum: any, descricao: string | number, isIngorarErro: boolean): any
@@ -196,7 +196,6 @@
         {
             const flags = new Array<TEnum[keyof TEnum]>();
             const valores = EnumUtil.RetornarValoresEnum(construtorEnum);
-
             for (const valor of valores)
             {
                 const valorNumber: number = valor as any;
@@ -215,28 +214,41 @@
         public static IsDefindo<TEnum>(construtorEnum: TEnum, valor: number): boolean
         public static IsDefindo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum]): valor is TEnum[keyof TEnum]
         public static IsDefindo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum] | string | number): valor is TEnum[keyof TEnum]
-        public static IsDefindo<TEnum extends object>(construtorEnum: TEnum, chave: string | number | any): chave is TEnum[keyof TEnum]
+        public static IsDefindo<TEnum extends object>(construtorEnum: TEnum, chaveOrValor: string | number | any): chaveOrValor is TEnum[keyof TEnum]
         {
-            if (typeof chave === "number" || typeof chave === "string")
+            if (typeof chaveOrValor === "number" || typeof chaveOrValor === "string")
             {
-                const valor = (construtorEnum as any)[chave];
+                const valor = (construtorEnum as any)[chaveOrValor];
                 if (valor === undefined)
                 {
-                    const isString = typeof chave === "string";
+                    const isString = typeof chaveOrValor === "string";
                     const chaves = Object.keys(construtorEnum);
                     for (const itemChave of chaves)
                     {
                         const itemValor = (construtorEnum as any)[itemChave];
-                        if (itemValor === chave)
+                        if (itemValor === chaveOrValor)
                         {
                             return true;
                         }
+
                         if (isString && typeof itemValor === "string" &&
-                            itemValor.toLowerCase() === (chave as string).toLowerCase())
+                            itemValor.toLowerCase() === (chaveOrValor as string).toLowerCase())
                         {
                             return true;
                         }
                     }
+                }
+
+                if (typeof chaveOrValor === "number" &&
+                    typeof valor === "string")
+                {
+                    return (construtorEnum as any)[valor] === chaveOrValor;
+                }
+
+                if (typeof chaveOrValor === "string" &&
+                    typeof valor === "number")
+                {
+                    return (construtorEnum as any)[valor] === chaveOrValor;
                 }
                 return u.ValidacaoUtil.IsDefinido(valor);
             }
