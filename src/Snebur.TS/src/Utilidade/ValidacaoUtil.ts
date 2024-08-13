@@ -958,14 +958,14 @@
             return false;
         }
 
-        public static IsFlagsEnumDefinida<TEnum>(construtorEnum: TEnum, soma: number): boolean
+        public static IsFlagsEnumDefinida<TEnum>(construtorEnum: TEnum, valor: number): boolean
         {
-            let flags = EnumUtil.RetornarFlags(construtorEnum, soma);
+            let flags = EnumUtil.RetornarFlags(construtorEnum, valor);
             if (flags.Count > 0)
             {
-                return flags.Sum() === soma;
+                return flags.Sum() === valor;
             }
-            return false;
+            return EnumUtil.IsDefindo(construtorEnum, valor);
         }
 
         public static IsValorConstrutorValor(valor: any, construtor: Function): boolean
