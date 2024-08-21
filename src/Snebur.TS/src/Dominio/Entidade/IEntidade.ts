@@ -1,6 +1,5 @@
 ﻿namespace Snebur.Dominio
 {
-
     export interface IEntidade extends Snebur.ObjetoControladorPropriedade
     {
         CloneSomenteId(): d.Entidade;

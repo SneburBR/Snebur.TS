@@ -22,7 +22,7 @@
             }
         }
 
-        protected  override NormalizarValorPropriedade(valor: any): any
+        protected override NormalizarValorPropriedade(valor: any): any
         {
             return valor;
         }
