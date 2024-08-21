@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.Sigi.WebAdmin/wwwroot/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.Sigi.Online/wwwroot/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -140,6 +140,7 @@
     "src/Dominio/PropriedadeAlterada/EventoPropriedadeAlterada.ts",
     "src/Dominio/PropriedadeAlterada/PropriedadeAlteradaEventArgs.ts",
     "src/Imagem/ImageDataUtil.ts",
+    "src/Imagem/ItemImagemEventArgs.ts",
     "src/Imagem/ServicoArquivoUtil.ts",
     "src/Medida/DimensaoMedida.ts",
     "src/Medida/MargemMedida.ts",
@@ -394,6 +395,7 @@
     "src/Core/Lista/ILista.ts",
     "src/Core/Lista/IListaEntidades.ts",
     "src/Dominio/Entidade/EntidadeConstrutor.ts",
+    "src/Dominio/Entidade/IConstrutorImagem.ts",
     "src/Dominio/Entidade/IEntidade.ts",
     "src/Dominio/Entidade/IEntidadeClonada.ts",
     "src/Dominio/Entidade/IOrdenacao.ts",
