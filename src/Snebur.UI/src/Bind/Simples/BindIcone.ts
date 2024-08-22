@@ -13,7 +13,7 @@
         public ValorPropriedadeAlterado(antigoValor: EnumIcone | number, novoValor: EnumIcone | number): void
         {
             const icone = this.RetornarIconeInterno(novoValor);
-            const elementoApresentacao = this.Controle.ElementoApresentacao ?? this.Elemento;
+            const elementoApresentacao = this.Controle?.ElementoApresentacao ?? this.Elemento;
             const destino = ElementoIconeUtil.RetornarElementoIcone(elementoApresentacao, this.Controle);
             destino.innerHTML = icone;
         }
@@ -25,7 +25,7 @@
                 return IconeUtil.RetornarIconeDomMaterial(novoValor);
             }
             // eslint-disable-next-line eqeqeq
-            if (novoValor != null && (novoValor as any)  != "")
+            if (novoValor != null && (novoValor as any) != "")
             {
                 throw new Error(`O valor ${novoValor} não é um ícone válido.`);
             }
