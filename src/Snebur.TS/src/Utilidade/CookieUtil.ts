@@ -28,21 +28,24 @@
             const cookie = CookieUtil.RetornarCookieInterno(chave, sessionStorage) ??
                 CookieUtil.RetornarCookieInterno(chave, localStorage);
 
-            const pares = cookie.split(";");
-            const len = pares.length;
-            for (let i = 0; i < len; i++)
+            if (cookie != null)
             {
-                const par = pares[i].trim();
-                const partes = par.split("=");
-                const chaveCookie = partes[0];
-                const valorBase64 = partes[1];
-
-                if (chaveCookie === chave)
+                const pares = cookie.split(";");
+                const len = pares.length;
+                for (let i = 0; i < len; i++)
                 {
-                    const valorCriptografado = Base64Util.Decode(valorBase64, true);
-                    if (!String.IsNullOrWhiteSpace(valorCriptografado))
+                    const par = pares[i].trim();
+                    const partes = par.split("=");
+                    const chaveCookie = partes[0];
+                    const valorBase64 = partes[1];
+
+                    if (chaveCookie === chave)
                     {
-                        return CriptografiaUtil.Descriptografar(chave, valorCriptografado);
+                        const valorCriptografado = Base64Util.Decode(valorBase64, true);
+                        if (!String.IsNullOrWhiteSpace(valorCriptografado))
+                        {
+                            return CriptografiaUtil.Descriptografar(chave, valorCriptografado);
+                        }
                     }
                 }
             }
