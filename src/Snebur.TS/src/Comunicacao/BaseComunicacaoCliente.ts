@@ -96,8 +96,7 @@
                 credencial,
                 pacote);
 
-            const resultado = await this.Gerenciador.ExecutarAsync(requisicao);
-
+            let resultado = await this.Gerenciador.ExecutarAsync(requisicao);
             if (resultado instanceof ResultadoSessaoUsuarioInvalida)
             {
                 if ($Configuracao.IsDebugOuTeste)
@@ -107,11 +106,17 @@
                 u.SessaoUsuarioUtil.SairAsync();
                 return;
             }
+            resultado = this.NormalizarResultado(resultado);
 
             if (u.ValidacaoUtil.IsFunction(callback))
             {
                 callback(resultado);
             }
+            return resultado;
+        }
+
+        protected NormalizarResultado(resultado: any): any
+        {
             return resultado;
         }
 
