@@ -21,7 +21,7 @@
             if (this.__InicializarPropriedades !== undefined)
             {
                 this.__MapearPropriedades(this.__InicializarPropriedades, true);
-                if (!isDepensar)
+                if (isDispensar)
                 {
                     delete this.__InicializarPropriedades;
                 }
