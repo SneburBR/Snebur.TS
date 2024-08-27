@@ -19,7 +19,9 @@
 
         public get UrlCompleta(): string
         {
-            return UrlUtil.Combinar(this.UrlRequisicao, this.NomeManipualdor, this.NomeMetodo, `\{${BaseRequisicao.Contador}\}`);
+            return UrlUtil.Combinar(this.UrlRequisicao,
+                this.NomeManipualdor,
+                this.NomeMetodo, `\\${BaseRequisicao.Contador}\\`);
         }
 
         public constructor(

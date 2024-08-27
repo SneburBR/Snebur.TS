@@ -12,7 +12,7 @@
             return Snebur.Comunicacao.GerenciadorRequiscao.Instancia.IsExisteRequisicoesAtivas;
         }
 
-        public static get TotalRequisicoesFila():number
+        public static get TotalRequisicoesFila(): number
         {
             return Snebur.Comunicacao.GerenciadorRequiscao.Instancia.TotalRequisicoesFila;
         }
@@ -27,7 +27,7 @@
             return GerenciadorRequisicaoUtil.Instancia.ExecutarAsync(requisicao);
         }
 
-        public static SetIsExiteFalhaRequisicao(isFalha:boolean  ): void
+        public static SetIsExiteFalhaRequisicao(isFalha: boolean): void
         {
             GerenciadorRequisicaoUtil.Instancia.SetIsExiteFalhaRequisicao(isFalha);
         }
@@ -37,6 +37,16 @@
             return GerenciadorRequisicaoUtil.Instancia.AguardarFilaRequisicoesAsync(progressHandler);
         }
 
-        
+        public static PararAsync(): Promise<void>
+        {
+            return GerenciadorRequisicaoUtil.Instancia.PararAsync();
+        }
+
+        public static async ContinuarAsync(): Promise<void>
+        {
+            return GerenciadorRequisicaoUtil.Instancia.ContinuarAsync();
+        }
+
+
     }
 }

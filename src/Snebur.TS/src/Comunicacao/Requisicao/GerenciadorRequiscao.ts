@@ -5,7 +5,9 @@
         private _isExisteFalhaRequisicao = false;
 
         private readonly Fila = new List<RequisicaoResolver>();
-        private _requisicaoAtual: RequisicaoResolver
+        private _requisicaoAtual: RequisicaoResolver;
+        private _isParado: boolean = false;
+
         private readonly CallbackIncrementarTotalFinal = new List<Function>();
 
         public get IsExisteFalhaRequisicao(): boolean
@@ -21,6 +23,11 @@
         public get TotalRequisicoesFila(): number
         {
             return this.Fila.length + (this._requisicaoAtual != null ? 1 : 0);
+        }
+
+        public get RequisicaoAtual(): RequisicaoResolver
+        {
+            return this._requisicaoAtual;
         }
 
         public ExecutarAsync(requisicao: BaseRequisicao): Promise<any>
@@ -79,9 +86,26 @@
             this.CallbackIncrementarTotalFinal.Remove(incrementarTotalFinal);
         }
 
+        public async ContinuarAsync()
+        {
+            this._isParado = false;
+            this.ExecutarProximaRequisicaoAsync();
+        }
+
+        public async PararAsync()
+        {
+            this._isParado = true;
+        }
+
         private async ExecutarProximaRequisicaoAsync()
         {
-            if (this._requisicaoAtual == null && this.Fila.Count > 0)
+            if (this._isParado)
+            {
+                return;
+            }
+
+            if (this._requisicaoAtual == null &&
+                this.Fila.Count > 0)
             {
                 this._requisicaoAtual = this.Fila.PegarPrimeiro();
                 const requisicao = this._requisicaoAtual.Requisicao;
@@ -101,7 +125,7 @@
 
         public SetIsExiteFalhaRequisicao(isFalha: boolean)
         {
-            this._isExisteFalhaRequisicao = isFalha;    
+            this._isExisteFalhaRequisicao = isFalha;
         }
 
         //public NotificarFalhaRequisicao()
