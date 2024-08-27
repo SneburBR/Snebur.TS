@@ -16,7 +16,7 @@
             setTimeout(this.__InicializarInternoAsync__.bind(this), 0);
         }
 
-        protected override Inicializar(isDepensar?: boolean): void
+        protected override Inicializar(isDispensar?: boolean): void
         {
             if (this.__InicializarPropriedades !== undefined)
             {
