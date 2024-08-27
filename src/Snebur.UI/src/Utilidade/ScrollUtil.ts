@@ -1,14 +1,12 @@
 ﻿namespace Snebur.UI
 {
-      //#region Scroll
-
     export class ScrollUtil
     {
-        public static IsScrollVerticalNoFim(elemento: HTMLElement): boolean
+        public static IsScrollVerticalNoFim(elemento: HTMLElement, tolerancia: number = 10): boolean
         {
             if (ScrollUtil.IsExisteScrollVertical(elemento))
             {
-                return elemento.offsetHeight + elemento.scrollTop >= elemento.scrollHeight;
+                return (elemento.offsetHeight + elemento.scrollTop) >= (elemento.scrollHeight - tolerancia);
             }
             return false;
         }
@@ -16,9 +14,11 @@
         public static IsExisteScrollVertical(scrollElement: HTMLElement): boolean
         {
             const overflowY = window.getComputedStyle(scrollElement).overflowY;
-            if (overflowY === "scroll" || overflowY === "auto" || overflowY === "overlay")
+            if (overflowY === "scroll" ||
+                overflowY === "auto" ||
+                overflowY === "overlay")
             {
-                return (scrollElement.scrollTop + scrollElement.clientHeight) >= (scrollElement.scrollHeight - 50)
+                return scrollElement.scrollHeight > scrollElement.clientHeight;
             }
             return false;
         }
@@ -26,7 +26,6 @@
         public static RetornarElementosScrollVerticalPai(elemento: HTMLElement): HTMLElement[]
         {
             const elementosScroll = new List<HTMLElement>();
-
             let elementoAtual = elemento;
             /*eslint-disable*/
             while (true)
@@ -82,7 +81,7 @@
             {
                 if (isIgnorarErro)
                 {
-                    return null;    
+                    return null;
                 }
                 throw new Erro("O elemento scroll pai não foi encontrado");
             }
@@ -103,8 +102,6 @@
             });
         }
     }
-
-    
-
-        //#endregion
+     
+    //#endregion
 }
