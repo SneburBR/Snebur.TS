@@ -224,6 +224,7 @@
 
             //this._diferencaDataHoraUtcServidor = await this.RetornarDataHoraUtcServidor();
             await this.InicializarSessaoUsuarioAsync();
+            await this.DepoisInicializarSessaoUsuarioAsync();
 
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
             {
@@ -236,6 +237,13 @@
                 console.warn("A URL dos serviço workers não foi definida");
             }
             console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
+        }
+
+
+        /* virtual */
+        protected async DepoisInicializarSessaoUsuarioAsync(): Promise<void>
+        {
+            //esse método pode ser sobrescrito
         }
 
         private InicializarConfiguracoes()
