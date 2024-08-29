@@ -2,7 +2,6 @@
 {
     export class AjaxUtil
     {
-
         public static RetornarTextoSync(url: string): string
         public static RetornarTextoSync(url: string, isRetornarErro: true): string | Error
         public static RetornarTextoSync(url: string, isRetornarErro: false): string
@@ -29,208 +28,44 @@
             }
         }
 
-        private static __RetornarConteudoBlobInternoAsync(url: string, type: EnumMimetypeString = EnumMimetypeString.Bin, callback: CallbackResultado<string | Blob | Erro>): void
-        {
-            const xmlHttp = new XMLHttpRequest();
-
-            xmlHttp.open("GET", url, true);
-            xmlHttp.setRequestHeader("Content-type", EnumMimetypeString.Bin);
-            xmlHttp.responseType = "blob";
-
-            xmlHttp.onreadystatechange = function ()
-            {
-                if (xmlHttp.readyState === 4)
-                {
-                    if (xmlHttp.status !== 200)
-                    {
-                        /*const resposta: any = xmlHttp.response || xmlHttp.responseText;*/
-                        callback(new Erro(`Falha download ${url}`));
-                        return;
-                    }
-
-                    if (xmlHttp.response instanceof Blob)
-                    {
-                        callback(xmlHttp.response);
-                        return;
-                    }
-                    if (xmlHttp.response instanceof ArrayBuffer)
-                    {
-                        const blob = new Blob([xmlHttp.response], { type: type });
-                        callback(blob);
-                        return;
-                    }
-                    if (xmlHttp.response instanceof Uint8Array)
-                    {
-                        const blob = new Blob([xmlHttp.response.buffer], { type: type });
-                        callback(blob);
-                        return;
-                    }
-
-                    if (typeof xmlHttp.response === "string")
-                    {
-                        const blob = new Blob([xmlHttp.response], { type: "text/plain" });
-                        callback(blob);
-                        return;
-                    }
-                    if (typeof xmlHttp.responseText === "string")
-                    {
-                        const blob = new Blob([xmlHttp.responseText], { type: "text/plain" });
-                        callback(blob);
-                        return;
-                    }
-
-                    const resultado = xmlHttp.response ?? xmlHttp.responseText;
-                    if (resultado == null)
-                    {
-                        callback(null);
-                        return;
-                    }
-
-                    const blob = new Blob([resultado], { type: "text/plain" });
-                    callback(blob);
-
-                }
-            };
-            xmlHttp.send(null);
-        }
-
-        public static RetornarConteudoTextoAsync(url: string,
+        public static async RetornarConteudoTextoAsync(url: string,
             formData: FormData | ArrayBuffer = null,
-            cabecalhos: DicionarioSimples<string | number> = null, ignorarErro?: boolean): Promise<string | Erro>
-        {
-            return new Promise<string | Erro>(resolver =>
-            {
-                this.__RetornarConteudoTextoInternoAsync(url, formData, cabecalhos, (resultado: string | Erro) =>
-                {
-                    if (resultado instanceof Error)
-                    {
-                        if (!ignorarErro)
-                        {
-                            throw resultado;
-                        }
-                        /*resultado = String.Empty;*/
-                    }
-                    resolver(resultado);
-                });
-            });
-        }
-
-        private static __RetornarConteudoTextoInternoAsync(url: string,
-            formData: FormData | ArrayBuffer,
-            cabecalhos: DicionarioSimples<string | number>,
-            callback: CallbackResultado<string | Erro>): void
-        {
-            const metodo = formData != null ? u.EnumHttpMethod.POST : u.EnumHttpMethod.GET;
-            const xmlHttp = new XMLHttpRequest();
-            xmlHttp.open(metodo, url, true);
-            xmlHttp.setRequestHeader("Content-type", "text/json");
-
-            if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
-            {
-                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
-            }
-
-            if (cabecalhos instanceof DicionarioSimples)
-            {
-                for (const cabecalho of cabecalhos.ParesChaveValor)
-                {
-                    xmlHttp.setRequestHeader(cabecalho.Chave, cabecalho.Valor.toString());
-                }
-            }
-
-            xmlHttp.onreadystatechange = function ()
-            {
-                if (xmlHttp.readyState === 4)
-                {
-                    if (xmlHttp.status === 200)
-                    {
-                        callback(xmlHttp.responseText);
-                    }
-                    else
-                    {
-                        const mensagem = `url : ${url},  status: ${xmlHttp.status.toString()}`;
-                        callback(new Erro(mensagem, this));
-                    }
-                }
-            };
-            xmlHttp.send(formData);
-        }
-
-        private static __RetornarConteudoBytesInternoAsync(
-            metodo: EnumHttpMethod,
-            url: string,
-            token: string,
-            timeout: number,
             cabecalhos: DicionarioSimples<string | number> = null,
-            callbackProgresso: CallbackResultado<ProgressoEventArgs>,
-            callback: CallbackResultado<ArrayBuffer | Error>): void
+            ignorarErro: boolean = false,
+            isNaoAdicionarContextTypeJson: boolean = false): Promise<string | Erro>
         {
-            const xmlHttp = new XMLHttpRequest();
+            const body = formData instanceof FormData || formData instanceof ArrayBuffer ? formData : undefined;
 
-            xmlHttp.open(metodo, url, true);
+            cabecalhos ??= new DicionarioSimples<string | number>();
 
-
-            if (!String.IsNullOrEmpty(token))
+            if (!isNaoAdicionarContextTypeJson)
             {
-                xmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
-                xmlHttp.setRequestHeader(c.ParametrosComunicacao.IDENTIFICADOR_APLICACAO, $Configuracao.IdentificadorAplicacao);
+                cabecalhos.TryAdd("content-type", "application/json");
             }
 
-            if (cabecalhos?.Count > 0)
+            const headers = this.RetornarHeaders(cabecalhos);
+            const metodo = formData != null ? "POST" : "GET";
+            try
             {
-                for (const parChaveValor of cabecalhos.ParesChaveValor)
-                {
-                    xmlHttp.setRequestHeader(parChaveValor.Chave, parChaveValor.Valor?.toString() ?? String.Empty);
-                }
-            }
-
-            xmlHttp.timeout = timeout;
-            xmlHttp.setRequestHeader("Content-type", "arraybuffer");
-            xmlHttp.responseType = "arraybuffer";
-
-            if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
-            {
-                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
-            }
-
-            if (u.ValidacaoUtil.IsFunction(callbackProgresso))
-            {
-                xmlHttp.addEventListener("progress", function (eventoProgresso)
-                {
-                    const progresso = (eventoProgresso.loaded / eventoProgresso.total) * 100;
-                    const argsProgresso = new ProgressoEventArgs(progresso);
-                    callbackProgresso(argsProgresso);
+                const response = await fetch(url, {
+                    method: metodo,
+                    headers: headers,
+                    body: body,
                 });
-            }
-            xmlHttp.ontimeout = function ()
-            {
-                console.error(`Timeout na requisição ${url}`);
-                callback(null);
-            };
-            xmlHttp.onreadystatechange = function ()
-            {
-                if (xmlHttp.readyState === 4)
+
+                if (response.ok)
                 {
-                    if (xmlHttp.status === 200)
-                    {
-                        if (xmlHttp.response instanceof ArrayBuffer)
-                        {
-                            callback(xmlHttp.response);
-                        }
-                        else
-                        {
-                            const mensagem = `URL : ${url},  o tipo não é suportado : ${typeof xmlHttp.response}`;
-                            callback(new Erro(mensagem, this));
-                        }
-                    }
-                    else
-                    {
-                        const mensagem = `URL : ${url},  status: ${xmlHttp.status.toString()}`;
-                        callback(new Erro(mensagem, this));
-                    }
+                    return await response.text();
                 }
-            };
-            xmlHttp.send(null);
+                else
+                {
+                    throw new Erro(`URL : ${url}, status: ${response.status} - ${response.statusText}`);
+                }
+            }
+            catch (error)
+            {
+                throw new Erro(`URL : ${url}, Falha de conexão ${error}`);
+            }
         }
 
         public static RetornarBufferArrayAsync(
@@ -241,58 +76,145 @@
             cabecalhos: DicionarioSimples<string | number> = null,
             callbackProgresso: CallbackResultado<ProgressoEventArgs> = null): Promise<ArrayBuffer>
         {
-            return new Promise<ArrayBuffer>((resolver, reject) =>
+            // eslint-disable-next-line no-async-promise-executor
+            return new Promise<ArrayBuffer>(async (resolve, reject) =>
             {
-                this.__RetornarConteudoBytesInternoAsync(metodo, url, token, timeout, cabecalhos, callbackProgresso,
-                    (resultado) =>
-                    {
-                        if (resultado instanceof Error)
-                        {
-                            reject(resultado);
-                            return;
-                        }
-                        resolver(resultado);
-                    });
-            });
-        }
-
-        public static RetornarConteudoBlobAsync(url: string, mimeType?: EnumMimetypeString): Promise<Blob | string | Error>
-        {
-            return new Promise<Blob | string | Error>((resolver, reject) =>
-            {
-                this.__RetornarConteudoBlobInternoAsync(url, mimeType, function (resultado)
+                let idTimeout: number = null;
+                if (timeout > 0)
                 {
-                    if (resultado instanceof Error)
+                    idTimeout = setTimeout(() =>
                     {
-                        resolver(resultado);
-                        return;
+                        reject(new Erro(`Timeout na requisição ${url}`));
+                    }, timeout);
+                }
+
+                cabecalhos ??= new DicionarioSimples<string | number>();
+                cabecalhos.TryAdd("content-type", "application/octet-stream");
+
+                const headers = this.RetornarHeaders(cabecalhos, token);
+                try
+                {
+                    const response = await fetch(url, {
+                        method: metodo,
+                        headers: headers,
+                    });
+
+                    if (callbackProgresso != null)
+                    {
+                        const totalDownloadBytes = parseInt(response.headers.get("content-length"));
+                        if (totalDownloadBytes > 0)
+                        {
+                            try
+                            {
+                                const chunks = new Array<Uint8Array>();
+                                let bytesDownloaded = 0;
+                                const reader = response.body.getReader();
+
+                                // eslint-disable-next-line no-constant-condition
+                                while (true)
+                                {
+                                    clearTimeout(idTimeout);
+                                    idTimeout = setTimeout(() =>
+                                    {
+                                        reject(new Erro(`Timeout na requisição ${url}`));
+                                    }, timeout);
+
+                                    const { value, done } = await reader.read();
+                                    if (done)
+                                    {
+                                        break;
+                                    }
+                                    chunks.push(value);
+                                    bytesDownloaded += value.length;
+                                    const progresso = bytesDownloaded / totalDownloadBytes;
+                                    callbackProgresso(new ProgressoEventArgs(progresso, `${progresso.toFixed(2)}%`, bytesDownloaded, totalDownloadBytes));
+                                }
+
+                                clearTimeout(idTimeout);
+
+                                const chunksAll = new Uint8Array(bytesDownloaded);
+                                let position = 0;
+                                for (const chunk of chunks)
+                                {
+                                    chunksAll.set(chunk, position);
+                                    position += chunk.length;
+                                }
+                                resolve(chunksAll.buffer);
+                                return;
+                            }
+                            catch (error)
+                            {
+                                console.error(`Erro ao processar o download do arquivo com processo ${url} - ${error}`);
+                            }
+
+                        }
                     }
-                    resolver(resultado);
-                });
+
+                    if (response.ok)
+                    {
+                        const arrayBuffer = await response.arrayBuffer();
+                        resolve(arrayBuffer);
+                    }
+                    else
+                    {
+                        reject(new Erro(`URL : ${url}, status: ${response.status} - ${response.statusText}`));
+                    }
+                }
+                catch (error)
+                {
+                    clearTimeout(idTimeout);
+                    reject(new Erro(`URL : ${url}, Falha de conexão ${error}`));
+                }
             });
         }
 
-
-        public static RetornarDescricaoCodigoErro(codigo: number): string
+        public static async RetornarConteudoBlobAsync(
+            url: string,
+            mimeType?: EnumMimetypeString,
+            token: string = null,
+            timeout: number = 0,
+            cabecalhos: DicionarioSimples<string | number> = null): Promise<Blob | string | Error> 
         {
-            switch (codigo)
+
+            const bufferArray = await AjaxUtil.RetornarBufferArrayAsync(
+                EnumHttpMethod.GET,
+                url,
+                token,
+                timeout,
+                cabecalhos);
+
+            if (bufferArray instanceof Error)
             {
-                case 404: {
-                    return "Pagina não encontrada";
-                }
-                case 403: {
-                    return "Permissão negada";
-                }
-                case 500: {
-                    return "Erro interno no servido";
-                }
-                case 0: {
-                    return "Retorna de internet, falha de conexão, verificar firewall";
-                }
-                default: {
-                    return "Erro desconhecido código " + codigo;
+                return bufferArray;
+            }
+
+            if (bufferArray instanceof ArrayBuffer)
+            {
+                const type = mimeType ?? "application/octet-stream";
+                return new Blob([bufferArray], { type: type });
+            }
+
+            return new Erro(`Não foi possível retornar o conteúdo do blob da URL ${url}`);
+        }
+
+        private static RetornarHeaders(
+            cabecalhos: DicionarioSimples<string | number, string>, token: string = null): Headers
+        {
+            if (!String.IsNullOrEmpty(token))
+            {
+                cabecalhos.TryAdd(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
+                cabecalhos.TryAdd(c.ParametrosComunicacao.IDENTIFICADOR_APLICACAO, $Configuracao.IdentificadorAplicacao);
+            }
+
+            const header = new Headers();
+            for (const item of cabecalhos.ParesChaveValor)
+            {
+                if (item.Valor != null)
+                {
+                    header.append(item.Chave, item.Valor.toString());
                 }
             }
+            return header;
         }
 
         public static async SalvarArquivoAsync(
@@ -321,6 +243,28 @@
             const blob = new Blob([byfferImagemGabaritoEstrutura], { type: enumMimeType });
             Salvar.SalvarComo(blob, nomeArquivo);
         }
+
+        //public static RetornarDescricaoCodigoErro(codigo: number): string
+        //{
+        //    switch (codigo)
+        //    {
+        //        case 404: {
+        //            return "Pagina não encontrada";
+        //        }
+        //        case 403: {
+        //            return "Permissão negada";
+        //        }
+        //        case 500: {
+        //            return "Erro interno no servido";
+        //        }
+        //        case 0: {
+        //            return "Retorna de internet, falha de conexão, verificar firewall";
+        //        }
+        //        default: {
+        //            return "Erro desconhecido código " + codigo;
+        //        }
+        //    }
+        //}
     }
 
     export enum EnumHttpMethod
