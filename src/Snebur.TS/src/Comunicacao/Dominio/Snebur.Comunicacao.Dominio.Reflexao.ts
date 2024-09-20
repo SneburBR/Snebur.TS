@@ -269,9 +269,12 @@ namespace Snebur.Reflexao
 	
 	export const __$propriedade_Snebur_Comunicacao_ResultadoChamada_Operacao = new Snebur.Reflexao.Propriedade("Operacao", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, true);
 	
+	export const __$propriedade_Snebur_Comunicacao_ResultadoChamada_ExtraOpcional = new Snebur.Reflexao.Propriedade("ExtraOpcional", __$tipoBaseDominioSnebur_Dominio_BaseDominio, __$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada, true);
+	
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_NomeServico);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_DataHora);
 	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_Operacao);
+	__$tipoBaseDominioSnebur_Comunicacao_ResultadoChamada.Propriedades.Add(__$propriedade_Snebur_Comunicacao_ResultadoChamada_ExtraOpcional);
 	
 	export const __$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem = new Snebur.Reflexao.Propriedade("UrlVisualizarImagem", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_Comunicacao_ConfiguracaoServicoImagem, true);
 	__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.Atributos.Add(new Snebur.Dominio.Atributos.RotuloAttribute("Url visualiuzar imagem","Url visualiuzar imagem"));

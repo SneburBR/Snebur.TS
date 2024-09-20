@@ -30,7 +30,7 @@
             return this._requisicaoAtual;
         }
 
-        public ExecutarAsync(requisicao: BaseRequisicao): Promise<any>
+        public ExecutarAsync(requisicao: BaseRequisicao): Promise<ResultadoChamada>
         {
             return new Promise(resolver =>
             {
@@ -117,7 +117,7 @@
             }
         }
 
-        private async ResolverAsync(resolver: (resultado: any) => void, resultado: any)
+        private async ResolverAsync(resolver: (resultado: any) => void, resultado: ResultadoChamada)
         {
             await ThreadUtil.QuebrarAsync();
             resolver(resultado);
@@ -177,7 +177,7 @@
     interface RequisicaoResolver
     {
         readonly Requisicao: BaseRequisicao;
-        readonly Resolver: (resultado: any) => void;
+        readonly Resolver: (resultado: ResultadoChamada) => void;
     }
 
 }

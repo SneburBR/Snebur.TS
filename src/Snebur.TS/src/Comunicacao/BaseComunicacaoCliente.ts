@@ -96,7 +96,10 @@
                 credencial,
                 pacote);
 
-            let resultado = await this.Gerenciador.ExecutarAsync(requisicao);
+            const resultadoChamada = await this.Gerenciador.ExecutarAsync(requisicao);
+            this.NormalizarResultadoChamada(resultadoChamada);
+
+            let resultado = this.RetornarValorResultado(resultadoChamada);
             if (resultado instanceof ResultadoSessaoUsuarioInvalida)
             {
                 if ($Configuracao.IsDebugOuTeste)
@@ -113,6 +116,69 @@
                 callback(resultado);
             }
             return resultado;
+        }
+
+        private RetornarValorResultado(resultadoChamada: ResultadoChamada): any
+        {
+            if (resultadoChamada instanceof ResultadoChamadaVazio)
+            {
+                return null;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaTipoPrimario)
+            {
+                const resultadoChamadaTipoPrimario: ResultadoChamadaTipoPrimario = resultadoChamada;
+                return u.ConverterUtil.ParaTipoPrimario(resultadoChamadaTipoPrimario.Valor, resultadoChamadaTipoPrimario.TipoPrimarioEnum);
+            }
+
+            if (resultadoChamada instanceof ResultadoChamadaBaseDominio)
+            {
+                const resultadoChamadaBaseDominio: ResultadoChamadaBaseDominio = resultadoChamada;
+                return resultadoChamadaBaseDominio.BaseDominio;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaLista)
+            {
+                return this.RetornarValorResultadoChamadaLista(resultadoChamada);
+            }
+
+            if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
+            {
+                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                {
+                    alert("Reiniciando sessão do usuário -- sessão usuário invalida");
+                }
+                u.SessaoUsuarioUtil.SairAsync();
+                return;
+            }
+            throw new ErroNaoSuportado("Resultado chamada não suportado", this);
+        }
+
+        private RetornarValorResultadoChamadaLista(resultadoChamada: ResultadoChamadaLista): any
+        {
+            if (resultadoChamada instanceof ResultadoChamadaListaTipoPrimario)
+            {
+                //var resultadoChamdaListaTipoPrimario: ResultadoChamadaListaTipoPrimario = resultadoChamada;
+                const lista = new Array<any>();
+                const valores = resultadoChamada.Valores;
+                const len = valores.length;
+
+                for (let i = 0; i < len; i++)
+                {
+                    const valor = valores[i];
+                    const valorTipado = u.ConverterUtil.ParaTipoPrimario(valor, resultadoChamada.TipoPrimarioEnum);
+                    lista.Add(valorTipado);
+                }
+                return lista;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaListaBaseDominio)
+            {
+                return resultadoChamada.BasesDominio;
+            }
+            throw new ErroNaoSuportado("Resultado chamada lista não suportado", this);
+        }
+
+        protected NormalizarResultadoChamada(resultadoChamada: ResultadoChamada): ResultadoChamada
+        {
+            return resultadoChamada;
         }
 
         protected NormalizarResultado(resultado: any): any

@@ -348,7 +348,7 @@ namespace Snebur.Dominio
         X : number;
         Y : number;
     }
-    export interface IPrecoTempo
+    export interface IPrazoTempo
     {
         Prazo : number;
         TipoPrazo : Snebur.Dominio.EnumTipoPrazo;
