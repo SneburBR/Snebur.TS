@@ -1,6 +1,6 @@
 ﻿{
   "compilerOptions": {
-    "outFile": "../../../../Zyoncore/FotoAlbum/src/Zyoncore.Sigi.Online/wwwroot/build/Snebur.js",
+    "outFile": "../../../../Zyoncore/Sigi/src/Zyoncore.Sigi.Online/wwwroot/build/Snebur.js",
     "allowJs": false,
     "noImplicitAny": true,
     "noEmitOnError": true,
@@ -281,6 +281,7 @@
     "src/Terefa/ErroTimeout.ts",
     "src/Terefa/ProgressoGerenciadorTarefaEventArgs.ts",
     "src/ServicoArquivo/ProgressoGerenciadorEnvioArquivoEventArgs.ts",
+    "src/Comunicacao/Utilidade/AjaxUtil.HttpRequest.ts",
     "src/Comunicacao/Utilidade/AjaxUtil.ts",
     "src/Comunicacao/Utilidade/JsonUtil.ts",
     "src/Core/Lista/ListaUtil.ts",
