@@ -135,7 +135,7 @@
         {
             return this._isAplicacaoInicializada;
         }
-  
+
         //public get IsNavegadorSuportarOrientacaoExif(): boolean
         //{
         //    return this._isNavegadorSuportarOrientacaoExif;
@@ -165,12 +165,12 @@
         public constructor()
         {
             super();
-            
+
 
             if (BaseAplicacao.__instancia != null)
             {
                 throw new Erro("Já existe uma aplicação snebur instanciada");
-            } 
+            }
             BaseAplicacao.__instancia = this;
         }
 
@@ -224,6 +224,7 @@
 
             //this._diferencaDataHoraUtcServidor = await this.RetornarDataHoraUtcServidor();
             await this.InicializarSessaoUsuarioAsync();
+            await this.DepoisInicializarSessaoUsuarioAsync();
 
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
             {
@@ -344,6 +345,11 @@
                 u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
                 await this.InicializarSessaoUsuarioAsync();
             }
+        }
+
+        protected async DepoisInicializarSessaoUsuarioAsync(): Promise<void>
+        {
+            return;
         }
 
         //#endregion
