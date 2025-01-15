@@ -36,7 +36,7 @@
             this.UrlServico = this.BaseServico.UrlServico;
         }
 
-        public override async ExecutarAsync(): Promise<any>
+        public override async ExecutarAsync(): Promise<ResultadoChamada>
         {
             const resultado = await this.ExecutarInternoAsync();
             if (this.Gerencaidor.IsExisteFalhaRequisicao)
@@ -44,10 +44,10 @@
                 this.Gerencaidor.SetIsExiteFalhaRequisicao(false);
                 $Aplicacao.EventoConexaoRestabelecida.Notificar(this, EventArgs.Empty);
             }
-            return this.RetornarValorResultado(resultado);
+            return resultado;
         }
 
-        private async ExecutarInternoAsync(): Promise<any>
+        private async ExecutarInternoAsync(): Promise<ResultadoChamada>
         {
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(
@@ -174,63 +174,9 @@
 
         //#region Normalizar resultado
 
-        private RetornarValorResultado(resultadoChamada: ResultadoChamada): any
-        {
-            if (resultadoChamada instanceof ResultadoChamadaVazio)
-            {
-                return null;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaTipoPrimario)
-            {
-                const resultadoChamadaTipoPrimario: ResultadoChamadaTipoPrimario = resultadoChamada;
-                return u.ConverterUtil.ParaTipoPrimario(resultadoChamadaTipoPrimario.Valor, resultadoChamadaTipoPrimario.TipoPrimarioEnum);
-            }
+        
 
-            if (resultadoChamada instanceof ResultadoChamadaBaseDominio)
-            {
-                const resultadoChamadaBaseDominio: ResultadoChamadaBaseDominio = resultadoChamada;
-                return resultadoChamadaBaseDominio.BaseDominio;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaLista)
-            {
-                return this.RetornarValorResultadoChamadaLista(resultadoChamada);
-            }
-
-            if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
-            {
-                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
-                {
-                    alert("Reiniciando sessão do usuário -- sessão usuário invalida");
-                }
-                u.SessaoUsuarioUtil.SairAsync();
-                return;
-            }
-            throw new ErroNaoSuportado("Resultado chamada não suportado", this);
-        }
-
-        private RetornarValorResultadoChamadaLista(resultadoChamada: ResultadoChamadaLista): any
-        {
-            if (resultadoChamada instanceof ResultadoChamadaListaTipoPrimario)
-            {
-                //var resultadoChamdaListaTipoPrimario: ResultadoChamadaListaTipoPrimario = resultadoChamada;
-                const lista = new Array<any>();
-                const valores = resultadoChamada.Valores;
-                const len = valores.length;
-
-                for (let i = 0; i < len; i++)
-                {
-                    const valor = valores[i];
-                    const valorTipado = u.ConverterUtil.ParaTipoPrimario(valor, resultadoChamada.TipoPrimarioEnum);
-                    lista.Add(valorTipado);
-                }
-                return lista;
-            }
-            if (resultadoChamada instanceof ResultadoChamadaListaBaseDominio)
-            {
-                return resultadoChamada.BasesDominio;
-            }
-            throw new ErroNaoSuportado("Resultado chamada lista não suportado", this);
-        }
+       
 
         //#endregion
 

@@ -30,7 +30,7 @@
             return this._requisicaoAtual;
         }
 
-        public ExecutarAsync(requisicao: BaseRequisicao): Promise<any>
+        public ExecutarAsync(requisicao: BaseRequisicao): Promise<ResultadoChamada>
         {
             return new Promise(resolver =>
             {
@@ -177,7 +177,7 @@
     interface RequisicaoResolver
     {
         readonly Requisicao: BaseRequisicao;
-        readonly Resolver: (resultado: any) => void;
+        readonly Resolver: (resultado: ResultadoChamada) => void;
     }
 
 }

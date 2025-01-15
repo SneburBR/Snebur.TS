@@ -22,7 +22,7 @@
             return GerenciadorRequisicaoUtil.Instancia.IsExisteFalhaRequisicao;
         }
 
-        public static ExecutarAsync(requisicao: c.Requisicao): Promise<any>
+        public static ExecutarAsync(requisicao: c.Requisicao): Promise<c.ResultadoChamada>
         {
             return GerenciadorRequisicaoUtil.Instancia.ExecutarAsync(requisicao);
         }

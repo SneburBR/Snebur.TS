@@ -66,7 +66,7 @@
 
         protected async ChamarServicoInternoAsync(
             nomeMetodo: string,
-            argumentos: IArguments): Promise<any>
+            argumentos: IArguments): Promise<ResultadoChamada>
         {
             const metodo: Function = (this as any)[nomeMetodo] as Function;
             const callback: Function = argumentos[(argumentos.length - 1)];
@@ -96,27 +96,24 @@
                 credencial,
                 pacote);
 
-            let resultado = await this.Gerenciador.ExecutarAsync(requisicao);
-            if (resultado instanceof ResultadoSessaoUsuarioInvalida)
+            let resultadoChamada = await this.Gerenciador.ExecutarAsync(requisicao);
+             if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
             {
                 if ($Configuracao.IsDebugOuTeste)
                 {
                     alert("Sessão invalida");
                 }
                 u.SessaoUsuarioUtil.SairAsync();
-                return;
+                return null;
             }
-            resultado = this.NormalizarResultado(resultado);
 
+            resultadoChamada = this.NormalizarResultadoChamada(resultadoChamada);
+
+            const resultado = this.RetornarValorResultado(resultadoChamada);
             if (u.ValidacaoUtil.IsFunction(callback))
             {
                 callback(resultado);
             }
-            return resultado;
-        }
-
-        protected NormalizarResultado(resultado: any): any
-        {
             return resultado;
         }
 
@@ -133,18 +130,7 @@
         }
 
         //#endregion
-
-
-        //// #region Resultado da chamada
-
-        protected ChamarServico<T>(
-            nomeMetodo: string,
-            argumentos: IArguments): T
-        {
-            throw new Erro("Chamadas síncronas estão obsoletas");
-        }
-
-        // #endregion
+         
 
         // #region  Retornar parâmetros da chamada
 
@@ -288,6 +274,15 @@
             return parametroChamada;
         }
 
+        private RetornarCabecalho(): Cabecalho
+        {
+            const cabecalho = new Cabecalho();
+            cabecalho.CredencialUsuario = $Aplicacao.CredencialUsuario;
+            cabecalho.CredencialServico = this.RetornarCredencialServico();
+            return cabecalho;
+        }
+
+
         // #endregion
 
         //#region Parâmetros da operação
@@ -369,17 +364,82 @@
 
         //#endregion
 
-        //#region Cabeçalho
+      
 
-        private RetornarCabecalho(): Cabecalho
+        //#region Resultado
+
+        protected NormalizarResultadoChamada(resultado: ResultadoChamada): ResultadoChamada
         {
-            const cabecalho = new Cabecalho();
-            cabecalho.CredencialUsuario = $Aplicacao.CredencialUsuario;
-            cabecalho.CredencialServico = this.RetornarCredencialServico();
-            return cabecalho;
+            return resultado
+        }
+
+        protected NormalizarResultado(resultado: any): any
+        {
+            return resultado
+        }
+
+        private RetornarValorResultado(resultadoChamada: ResultadoChamada): any
+        {
+            if (resultadoChamada instanceof ResultadoChamadaVazio)
+            {
+                return null;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaTipoPrimario)
+            {
+                const resultadoChamadaTipoPrimario: ResultadoChamadaTipoPrimario = resultadoChamada;
+                return u.ConverterUtil.ParaTipoPrimario(resultadoChamadaTipoPrimario.Valor, resultadoChamadaTipoPrimario.TipoPrimarioEnum);
+            }
+
+            if (resultadoChamada instanceof ResultadoChamadaBaseDominio)
+            {
+                const resultadoChamadaBaseDominio: ResultadoChamadaBaseDominio = resultadoChamada;
+                return resultadoChamadaBaseDominio.BaseDominio;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaLista)
+            {
+                return this.RetornarValorResultadoChamadaLista(resultadoChamada);
+            }
+
+            if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
+            {
+                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                {
+                    alert("Reiniciando sessão do usuário -- sessão usuário invalida");
+                }
+                u.SessaoUsuarioUtil.SairAsync();
+                return;
+            }
+            throw new ErroNaoSuportado("Resultado chamada não suportado", this);
+        }
+
+        private RetornarValorResultadoChamadaLista(resultadoChamada: ResultadoChamadaLista): any
+        {
+            if (resultadoChamada instanceof ResultadoChamadaListaTipoPrimario)
+            {
+                //var resultadoChamdaListaTipoPrimario: ResultadoChamadaListaTipoPrimario = resultadoChamada;
+                const lista = new Array<any>();
+                const valores = resultadoChamada.Valores;
+                const len = valores.length;
+
+                for (let i = 0; i < len; i++)
+                {
+                    const valor = valores[i];
+                    const valorTipado = u.ConverterUtil.ParaTipoPrimario(valor, resultadoChamada.TipoPrimarioEnum);
+                    lista.Add(valorTipado);
+                }
+                return lista;
+            }
+            if (resultadoChamada instanceof ResultadoChamadaListaBaseDominio)
+            {
+                return resultadoChamada.BasesDominio;
+            }
+            throw new ErroNaoSuportado("Resultado chamada lista não suportado", this);
         }
 
         //#endregion
+
+
+
 
         /*eslint-disable*/
 
