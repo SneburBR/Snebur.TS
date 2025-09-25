@@ -237,7 +237,7 @@ namespace Snebur.UI
         {
             if (this.IsMostrarContadorCaracteres)
             {
-                this.ContadorCaracteres = this.MaxLength - this.Valor?.length ?? 0;
+                this.ContadorCaracteres = this.MaxLength - (this.Valor?.length ?? 0);
             }
         }
 

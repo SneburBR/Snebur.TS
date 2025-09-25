@@ -16,7 +16,7 @@
             this._marcaDagua = value;
             this.AtualizarMarcaDagua();
         }
-         
+
         private ContadorCaracteresObservacao: number = Number.Int16MaxValue;
         private IsMostrarContadorCaracteres: boolean = false;
 
@@ -130,7 +130,7 @@
 
         private ElementoInput_Input(e: KeyboardEvent)
         {
-            this.ContadorCaracteresObservacao = this.MaxLength - this.Valor?.length ?? 0;
+            this.ContadorCaracteresObservacao = this.MaxLength - (this.Valor?.length ?? 0);
         }
 
         public override AtualizarCssClassePossuiConteudo(): void

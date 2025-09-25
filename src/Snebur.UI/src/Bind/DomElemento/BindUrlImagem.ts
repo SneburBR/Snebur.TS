@@ -19,9 +19,13 @@
 
         private ElementoImagem_Error(): void
         {
-            if (this.ElementoImageem != null && ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem))
+            const elementoImagem = this.ElementoImageem;
+            if (elementoImagem != null &&
+                ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem) &&
+                elementoImagem.src !== Snebur.$Configuracao.UrlImagemSemImagem)
             {
-                this.ElementoImageem.src = Snebur.$Configuracao.UrlImagemSemImagem;
+                elementoImagem.dataset["urlErro"] = elementoImagem.src
+                elementoImagem.src = Snebur.$Configuracao.UrlImagemSemImagem;
             }
         }
 

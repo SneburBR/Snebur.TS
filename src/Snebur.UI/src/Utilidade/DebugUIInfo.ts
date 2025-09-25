@@ -31,7 +31,7 @@
                 sb.AppendLine("Sigi info debug: " + FormatacaoUtil.FormatarDataHora(new Date()));
                 if (aplicacao.Usuario != null)
                 {
-                    sb.AppendLine("Usuário: " + aplicacao.CredencialUsuario.IdentificadorAmigavel ?? aplicacao.CredencialUsuario.IdentificadorUsuario);
+                    sb.AppendLine("Usuário: " + (aplicacao.CredencialUsuario.IdentificadorAmigavel ?? aplicacao.CredencialUsuario.IdentificadorUsuario));
                     sb.AppendLine("Versão: " + $Configuracao.Versao);
                 }
                 const documentoPrincipal = aplicacao.DocumentoPrincipal;

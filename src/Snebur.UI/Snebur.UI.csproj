@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -9,26 +9,26 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="Properties\launchSettings.bkp.json" />
+		<Content Remove="Properties\launchSettings.bkp.json" />
 	</ItemGroup>
 	<ItemGroup>
-	  <_WebToolingArtifacts Remove="Properties\launchSettings.bkp.json" />
+		<_WebToolingArtifacts Remove="Properties\launchSettings.bkp.json" />
 	</ItemGroup>
-  
+
 	<ItemGroup>
-	  <Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
+		<Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>
-  
+
 	<ItemGroup>
-	  <None Include="Properties\launchSettings.bkp.json">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-	    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
-	  </None>
+		<None Include="Properties\launchSettings.bkp.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</None>
 	</ItemGroup>
- 
+
 	<ItemGroup>
-		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.9.5">
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
