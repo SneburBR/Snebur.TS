@@ -211,12 +211,12 @@
                 base64 = base64.substring(inicio + 1);
             }
 
-            const bytes = u.Base64Util.Base64ParaBytes(base64);
+            const bytes: Uint8Array = u.Base64Util.Base64ParaBytes(base64);
             if (!String.IsNullOrWhiteSpace(mimeType))
             {
-                return new Blob([bytes], { type: mimeType });
+                return new Blob([bytes.arrayBuffer], { type: mimeType });
             }
-            return new Blob([bytes]);
+            return new Blob([bytes.arrayBuffer]);
         }
 
         public static RetornarNomeOuTipoArquivo(arquivo: Blob | SnBlob): string
@@ -246,6 +246,11 @@
 
         public static SalvarArquivo(conteudo: string | Uint8Array | ArrayBuffer, nomeArquivo: string, mimeType: string = "text/plain")
         {
+            if (conteudo instanceof Uint8Array)
+            {
+                conteudo = conteudo.arrayBuffer;
+            }
+
             const blob = new Blob([conteudo], { type: mimeType });
             Salvar.SalvarComo(blob, nomeArquivo);
         }

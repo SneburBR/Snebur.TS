@@ -41,10 +41,11 @@
             requisicao: Requisicao,
             url: string,
             nomeManipuador: string,
+            nomeMetodo: string,
             credencial: Snebur.Seguranca.CredencialServico,
             token: string)
         {
-            super(requisicao, url, nomeManipuador, credencial, true, token);
+            super(requisicao, url, nomeManipuador, nomeMetodo, credencial, true, token);
 
             this.XmlHttp.onreadystatechange = this.XmlHttp_ReadyStateChange.bind(this);
             this.XmlHttp.onload = this.Xmlhttp_Load.bind(this);
@@ -71,14 +72,14 @@
             {
                 this._idInterval = window.setInterval(this.ChamadaServico_Interval.bind(this), 2000);
             }
-             
+
             return new Promise(resolver =>
             {
                 this.Resolver = resolver;
 
                 if ($Configuracao.IsDebug)
                 {
-                    this.XmlHttp.send(pacote);
+                    this.XmlHttp.send(pacote.arrayBuffer);
                     return;
                 }
 
@@ -187,7 +188,7 @@
                     DebugUtil.ThrowAndContinue(mensagem);
                 }
             }
-             
+
             this._httpStatus = this.XmlHttp.status;
 
             if (u.ValidacaoUtil.IsDefinido(this.Resolver))
@@ -254,7 +255,7 @@
             }
             const mensagem = `Erro serviço OnError  ${this.Requisicao.UrlCompleta}`;
             console.error(mensagem);
-            
+
             const erro = new ErroComunicacao(mensagem, this.Url, this.HttpStatus, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
         }

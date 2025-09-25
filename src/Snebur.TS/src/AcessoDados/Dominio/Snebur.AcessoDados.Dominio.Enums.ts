@@ -8,6 +8,7 @@ namespace Snebur.AcessoDados
 {
     export enum EnumTipoFuncao
     {
+        Nenhuma = 0,
         Consulta = 1,
         Contar = 2,
         Somar = 3,

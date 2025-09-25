@@ -9,7 +9,10 @@
 
     ValidacaoUnicoAttribute.prototype.RetornarMensagemValidacao = function (paiPropriedade: any, propriedade: Snebur.Reflexao.Propriedade, valorPropriedade: any): string
     {
-        const rotuloPropriedade = u.GlobalizacaoUil.RetornarRotuloPropriedade(propriedade).toLowerCase();
+        const rotuloPropriedade = u.GlobalizacaoUil
+            .RetornarRotuloPropriedade(propriedade)
+            .toLowerCase();
+
         return u.GlobalizacaoUil.RetornarMensagemValidacao(this,
             ValidacaoUnicoAttribute.IDENTIFICADOR_MENSAGEM_VALIDACAO,
             rotuloPropriedade,
@@ -49,8 +52,8 @@
         consulta.FiltroGrupoE.Filtros.Add(a.ConsultaUtil.RetornarNovoFiltroPropriedade(propriedade, a.EnumOperadorFiltro.Igual, valorPropriedade));
 
         const resultado = await contexto.RetornarResultadoConsultaAsync(consulta);
-        const existe = resultado.Entidades.Count > 0;
-        return !existe;
+        const isExiste = resultado.Entidades.Count > 0;
+        return !isExiste;
     };
 
    

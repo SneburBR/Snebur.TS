@@ -296,7 +296,6 @@
             const nomesParametros = funcaoString.slice(funcaoString.indexOf("(") + 1, funcaoString.indexOf(")")).match(this.ARGUMENT_NAMES);
             if (nomesParametros === null && isAsync)
             {
-                /*throw new Erro("Não foi passado parâmetro no método do serviço,  O parâmetro callback é requerido ", this);*/
                 return [];
             }
             return nomesParametros;

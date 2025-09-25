@@ -85,7 +85,7 @@
 
         public static Base64ParaArrayBuffer(base64string: string): ArrayBuffer
         {
-            return Base64Util.Base64ParaBytes(base64string).buffer;
+            return Base64Util.Base64ParaBytes(base64string).arrayBuffer;
         }
 
         public static Base64ParaBytes(base64string: string): Uint8Array

@@ -8,6 +8,7 @@ namespace Snebur.ServicoArquivo
 {
     export enum EnumTipoErroServicoArquivo
     {
+        NaoDefinido = 0,
         ChecksumArquivoDiferente = 1,
         ChecksumPacoteDiferente = 2,
         TotalBytesDiferente = 3,

@@ -15,6 +15,7 @@
             protected readonly Requisicao: Requisicao,
             url: string,
             nomeManipulador: string,
+            nomeMetodo :string,
             credencial: Snebur.Seguranca.CredencialServico,
             isAsync: boolean,
             token: string)
@@ -26,16 +27,14 @@
                 throw new ErroNaoDefinido("A URL não foi definida", this);
             }
 
-            //if (!u.ValidacaoUtil.IsDefinido(conteudo))
-            //{
-            //    throw new ErroNaoDefinido("A conteúdo não foi definido", this);
-            //}
             if (!u.ValidacaoUtil.IsDefinido(credencial))
             {
                 throw new ErroNaoDefinido("A credencial não foi definida", this);
             }
 
-            const urlRequisicao = this.RetornarUrlRequisicao(url, token);
+            const urlRequisicao = this.RetornarUrlRequisicao(url,
+                nomeManipulador,
+                nomeMetodo);
 
             this.Url = urlRequisicao;
             this.Credencial = credencial;
@@ -63,7 +62,12 @@
 
             if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao?.FuncaoNormalizarRequisicao(u.EnumHttpMethod.POST, this.Url, xmlHttp);
+              
+                $Aplicacao?.FuncaoNormalizarRequisicao(
+                    this.Requisicao.BaseServico,
+                    u.EnumHttpMethod.POST,
+                    this.Url,
+                    xmlHttp);
 
             }
             return xmlHttp;
@@ -118,13 +122,13 @@
             return resultadoErro;
         }
 
-        private RetornarUrlRequisicao(url: string, token: string): string
+        private RetornarUrlRequisicao(url: string, servico: string, operacao:string): string
         {
-            const nomeArquivo = u.Md5Util.RetornarHash(token);
-            let urlRequisicao = u.UrlUtil.Combinar(url, nomeArquivo);
-            urlRequisicao = u.UrlUtil.RetornarURL(urlRequisicao, [new ParChaveValorSimples<string>("State", u.RandomUtil.RetornarRandom().toString())]);
-
-            return urlRequisicao;
+            /*const nomeArquivo = u.Md5Util.RetornarHash(token);*/
+            //urlRequisicao = u.UrlUtil.RetornarURL(urlRequisicao, [new ParChaveValorSimples<string>("State", u.RandomUtil.RetornarRandom().toString())]);
+            //return urlRequisicao;
+            operacao = operacao.Replace("Async", String.Empty);
+            return u.UrlUtil.Combinar(url, u.CodigoUtil.PascalToKebabCase(servico), u.CodigoUtil.PascalToKebabCase(operacao));
         }
 
         public override Dispose()

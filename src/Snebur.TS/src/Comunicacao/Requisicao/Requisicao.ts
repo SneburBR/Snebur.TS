@@ -25,7 +25,7 @@
         }
 
         public constructor(
-            private readonly BaseServico: BaseComunicacaoCliente,
+            public readonly BaseServico: BaseComunicacaoCliente,
             public readonly NomeManipualdor: string,
             public readonly NomeMetodo: string,
             private readonly Credencial: s.Credencial,
@@ -54,6 +54,7 @@
                 this,
                 this.UrlServico,
                 this.NomeManipualdor,
+                this.NomeMetodo,
                 this.Credencial,
                 token);
 

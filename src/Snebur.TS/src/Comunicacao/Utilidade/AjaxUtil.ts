@@ -61,7 +61,7 @@
                     }
                     if (xmlHttp.response instanceof Uint8Array)
                     {
-                        const blob = new Blob([xmlHttp.response.buffer], { type: type });
+                        const blob = new Blob([xmlHttp.response.arrayBuffer], { type: type });
                         callback(blob);
                         return;
                     }
@@ -127,7 +127,7 @@
 
             if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
+                $Aplicacao.FuncaoNormalizarRequisicao(null, metodo, url, xmlHttp);
             }
 
             if (cabecalhos instanceof DicionarioSimples)
@@ -190,7 +190,7 @@
 
             if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao.FuncaoNormalizarRequisicao(metodo, url, xmlHttp);
+                $Aplicacao.FuncaoNormalizarRequisicao(null, metodo, url, xmlHttp);
             }
 
             if (u.ValidacaoUtil.IsFunction(callbackProgresso))

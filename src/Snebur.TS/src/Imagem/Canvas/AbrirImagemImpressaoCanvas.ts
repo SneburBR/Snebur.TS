@@ -2,7 +2,7 @@
 {
     export class AbrirImagemImpressaoCanvas extends BaseAbrirImagemLocalCanvas
     {
-        protected override readonly   QualidadePica: number  = 3;
+        protected override readonly QualidadePica: number = 3;
         private static readonly TIMEOUT = 90 * 1000;
         private IdTimeout: number;
         private readonly DimensaoImpressao: d.Dimensao;
@@ -54,19 +54,19 @@
             return dimensao;
         }
 
-        private RetornarArrayButter(bytes: Uint8Array | ArrayBuffer | null): ArrayBuffer | null
-        {
-            if (bytes instanceof Uint8Array)
-            {
-                return bytes.buffer;
-            }
+        //private RetornarArrayButter(bytes: Uint8Array | ArrayBuffer | null): ArrayBuffer | null
+        //{
+        //    if (bytes instanceof Uint8Array)
+        //    {
+        //        return bytes.buffer;
+        //    }
 
-            if (bytes instanceof ArrayBuffer)
-            {
-                return bytes;
-            }
-            return null;
-        }
+        //    if (bytes instanceof ArrayBuffer)
+        //    {
+        //        return bytes;
+        //    }
+        //    return null;
+        //}
 
         public override Dispose(): void
         {

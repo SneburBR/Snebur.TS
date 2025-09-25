@@ -21,6 +21,7 @@ namespace Snebur
 
     export enum EnumNivelErro
     {
+        NaoDefinido = 0,
         Baixo = 1,
         Normal = 2,
         Alerta = 3,
@@ -37,6 +38,7 @@ namespace Snebur.AcessoDados
 {
     export enum EnumOperadorFiltro
     {
+        Nenhum = 0,
         Igual = 1,
         IgualAbsoluto = 2,
         Diferente = 3,
@@ -65,6 +67,7 @@ namespace Snebur.AcessoDados.Seguranca
 {
     export enum EnumPermissao
     {
+        Nenhuma = 0,
         Autorizado = 1,
         AvalistaRequerido = 2,
         Negado = -99,
@@ -79,6 +82,7 @@ namespace Snebur.Arquivo
 {
     export enum EnumTipoArquivo
     {
+        NaoDefinido = 0,
         Jpg = 1,
         Bmp = 2,
         Psd = 4,
@@ -118,6 +122,7 @@ namespace Snebur.Arquivo
 
     export enum EnumTipoXFG
     {
+        NaoDefinido = 0,
         Jpg = 1,
         Bmp = 2,
         XXX = 3,
@@ -132,6 +137,7 @@ namespace Snebur.Comparer
 {
     export enum EnumCompararPropriedade
     {
+        NaoDefinido = 0,
         Igual = 1,
         NomePropriedade = 2,
         TipoPropriedade = 4,
@@ -146,6 +152,7 @@ namespace Snebur.Dne
 {
     export enum EnumUF
     {
+        NaoDefinido = 0,
         Acre = 1,
         Alagoas = 2,
         Amapa = 3,
@@ -259,6 +266,7 @@ namespace Snebur.Dominio
 
     export enum EnumTipoDesbloqueio
     {
+        NaoDefinido = 0,
         Tudo = 1,
         UmPorVez = 2,
     }
@@ -268,6 +276,7 @@ namespace Snebur.Dominio
 
     export enum EnumSentidoOrdenacao
     {
+        NaoDefinido = 0,
         Crescente = 1,
         Decrescente = 2,
     }
@@ -277,6 +286,7 @@ namespace Snebur.Dominio
 
     export enum EnumOrientacao
     {
+        NaoDefinido = 0,
         Quadrado = 2,
         Horizontal = 4,
         Vertical = 8,
@@ -301,6 +311,7 @@ namespace Snebur.Dominio
 
     export enum EnumResultadoAutenticacao
     {
+        Nenhum = 0,
         Sucesso = 1,
         UsuarioNaoExiste = 2,
         SenhaInvalida = 3,
@@ -316,6 +327,7 @@ namespace Snebur.Dominio
 
     export enum EnumResultadoValidacaoCredencial
     {
+        NaoDefinido = 0,
         Sucesso = 1,
         UsuarioNaoExiste = 2,
         SenhaIncorreta = 3,
@@ -365,6 +377,7 @@ namespace Snebur.Dominio
 
     export enum EnumStatusUsuario
     {
+        NaoDefinido = 0,
         Novo = 1,
         Ativo = 3,
         Inativo = 4,
@@ -378,6 +391,7 @@ namespace Snebur.Dominio
 
     export enum EnumStatusArquivo
     {
+        NaoDefinido = 0,
         Novo = 1,
         Enviando = 2,
         EnvioConcluido = 3,
@@ -395,6 +409,7 @@ namespace Snebur.Dominio
 
     export enum EnumAparenciaFonte
     {
+        NaoDefinido = 0,
         Normal = 1,
         Italico = 2,
     }
@@ -404,6 +419,7 @@ namespace Snebur.Dominio
 
     export enum EnumEspessuraFonte
     {
+        NaoDefinido = 0,
         Fina = 100,
         ExtraLeve = 200,
         Leve = 300,
@@ -427,6 +443,7 @@ namespace Snebur.Dominio
 
     export enum EnumFormatoArquivoFonte
     {
+        NaoDefinido = 0,
         Ttf = 1,
         Woff = 2,
         Woff2 = 3,
@@ -625,6 +642,7 @@ namespace Snebur.Dominio
 
     export enum EnumNavegador
     {
+        NaoDefinido = 0,
         InternetExplorer = 1,
         Chrome = 2,
         Safari = 3,
@@ -648,6 +666,7 @@ namespace Snebur.Dominio
 
     export enum EnumPlataforma
     {
+        Nenhum = 0,
         PC = 1,
         Celular = 2,
         Tablet = 3,
@@ -661,6 +680,7 @@ namespace Snebur.Dominio
 
     export enum EnumSistemaOperacional
     {
+        Nenhum = 0,
         Windows = 1,
         MacOS_X = 2,
         WindowsPhone = 3,
@@ -680,6 +700,7 @@ namespace Snebur.Dominio
 
     export enum EnumStatusSessaoUsuario
     {
+        Nenhum = 0,
         Nova = 100,
         Ativo = 200,
         Inativo = 300,
@@ -707,6 +728,7 @@ namespace Snebur.Dominio
 
     export enum EnumTipoAplicacao
     {
+        Nenhum = 0,
         Typescript = 1,
         Web_AspNet = 2,
         DotNet_WebService = 3,
@@ -1059,6 +1081,7 @@ namespace Snebur.Dominio.Atributos
 
     export enum EnumTipoExclusaoRelacao
     {
+        Nenhum = 0,
         NaoDeletar = 1,
         Cascata = 2,
         Zerar = 3,
@@ -1070,6 +1093,7 @@ namespace Snebur.Dominio.Atributos
 
     export enum EnumOperadorComparacao
     {
+        Nenhum = 0,
         Igual = 1,
         Diferente = 2,
         MaiorQue = 3,
@@ -6586,6 +6610,7 @@ namespace Snebur.Utilidade
 
     export enum OpcoesCompararData
     {
+        NaoDefinido = 0,
         Data = 1,
         Dia = 2,
         DiaMes = 3,
@@ -6601,6 +6626,7 @@ namespace Snebur.Utilidade
 
     export enum OpcoesCompararHora
     {
+        NaoDefinido = 0,
         Padrao = 1,
         HoraDoDia = 2,
         HoraMinuto = 3,
@@ -6618,6 +6644,7 @@ namespace Snebur.Utilidade
 
     export enum QueryType
     {
+        NaoDefinido = 0,
         A = 1,
         MX = 15,
         NS = 2,
@@ -6643,6 +6670,7 @@ namespace Snebur.Utilidade
 
     export enum EnumFiltroPropriedadeCampo
     {
+        NaoDefinido = 0,
         Todas = 1,
         IgnorarTipoBase = 2,
         IgnorarChavePrimaria = 4,
@@ -6658,6 +6686,7 @@ namespace Snebur.Utilidade
 
     export enum EnumStatusDiretorio
     {
+        NaoDefinido = 0,
         TudoCerto = 1,
         DiretorioNaoExiste = 2,
         SemPermissaoGravacao = 3,
@@ -6671,6 +6700,7 @@ namespace Snebur.Utilidade
 
     export enum EnumDivisorDecimal
     {
+        NaoDefinido = 0,
         CulturaAtual = 0,
         Ponto = 1,
         Virgula = 2,
@@ -6682,6 +6712,7 @@ namespace Snebur.Utilidade
 
     export enum EnumFormatacaoBytes
     {
+        NaoDefinido = 0,
         Bytes = 1,
         Kilobytes = 2,
         Megabytes = 3,
@@ -6697,6 +6728,7 @@ namespace Snebur.Utilidade
 
     export enum EnumTipoSerializacao
     {
+        NaoDefinido = 0,
         Javascript = 1,
         DotNet = 2,
     }

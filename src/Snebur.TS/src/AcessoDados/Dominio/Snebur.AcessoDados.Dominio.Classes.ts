@@ -9,11 +9,11 @@ namespace Snebur.AcessoDados
     export abstract class BaseAcessoDados extends Snebur.Dominio.BaseDominio
     {
         //#region Propriedades
-    
-        private _mensagemErro : string = null;
-        private _falhaAutenticacao : boolean = false;
-        private _comandos : Array<string> =  new Array<string>();
-    
+
+        private _mensagemErro: string = null;
+        private _falhaAutenticacao: boolean = false;
+        private _comandos: Array<string> = new Array<string>();
+
         public get MensagemErro(): string 
         {
             return this._mensagemErro;
@@ -23,7 +23,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
-    
+
         public get FalhaAutenticacao(): boolean 
         {
             return this._falhaAutenticacao;
@@ -33,7 +33,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("FalhaAutenticacao", this._falhaAutenticacao, this._falhaAutenticacao = value);
         }
-    
+
         public get Comandos(): Array<string> 
         {
             return this._comandos;
@@ -44,9 +44,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Comandos", this._comandos, this._comandos = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseAcessoDados>) 
         {
             super(inicializador);
@@ -56,10 +56,10 @@ namespace Snebur.AcessoDados
     export class ConsultaFiltroColecao extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _relacao : string = null;
-        private _estruturaConsulta : Snebur.AcessoDados.EstruturaConsulta = null;
-    
+
+        private _relacao: string = null;
+        private _estruturaConsulta: Snebur.AcessoDados.EstruturaConsulta = null;
+
         public get Relacao(): string 
         {
             return this._relacao;
@@ -69,7 +69,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Relacao", this._relacao, this._relacao = value);
         }
-    
+
         public get EstruturaConsulta(): Snebur.AcessoDados.EstruturaConsulta 
         {
             return this._estruturaConsulta;
@@ -80,9 +80,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("EstruturaConsulta", this._estruturaConsulta, this._estruturaConsulta = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ConsultaFiltroColecao>) 
         {
             super(inicializador);
@@ -93,26 +93,26 @@ namespace Snebur.AcessoDados
     export class EstruturaConsulta extends Snebur.AcessoDados.BaseAcessoDados implements Snebur.AcessoDados.Seguranca.IEstruturaConsultaSeguranca 
     {
         //#region Propriedades
-    
-        private _nomeTipoEntidade : string = null;
-        private _tipoEntidadeAssemblyQualifiedName : string = null;
-        private _isIncluirDeletados : boolean = false;
-        private _isIncluirInativos : boolean = false;
-        private _isDesativarOrdenacao : boolean = false;
-        private _take : number = 0;
-        private _skip : number = 0;
-        private _paginaAtual : number = 0;
-        private _caminhoPropriedadeFuncao : string = null;
-        private _tipoFuncaoEnum : Snebur.AcessoDados.EnumTipoFuncao = 0;
-        private _filtroGrupoE : Snebur.AcessoDados.FiltroGrupoE =  new Snebur.AcessoDados.FiltroGrupoE();
-        private _filtroGrupoOU : Snebur.AcessoDados.FiltroGrupoOU =  new Snebur.AcessoDados.FiltroGrupoOU();
-        private _ordenacoes : DicionarioSimples<Snebur.AcessoDados.Ordenacao> =  new DicionarioSimples<Snebur.AcessoDados.Ordenacao>();
-        private _relacoesAbertaFiltro : DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> =  new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
-        private _relacoesAberta : DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> =  new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
-        private _colecoesAberta : DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao> =  new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao>();
-        private _propriedadesAbertas : Array<string> =  new Array<string>();
-        private _contarRegistros : boolean = false;
-    
+
+        private _nomeTipoEntidade: string = null;
+        private _tipoEntidadeAssemblyQualifiedName: string = null;
+        private _isIncluirDeletados: boolean = false;
+        private _isIncluirInativos: boolean = false;
+        private _isDesativarOrdenacao: boolean = false;
+        private _take: number = 0;
+        private _skip: number = 0;
+        private _paginaAtual: number = 0;
+        private _caminhoPropriedadeFuncao: string = null;
+        private _tipoFuncaoEnum: Snebur.AcessoDados.EnumTipoFuncao = Snebur.AcessoDados.EnumTipoFuncao.Nenhuma;
+        private _filtroGrupoE: Snebur.AcessoDados.FiltroGrupoE = new Snebur.AcessoDados.FiltroGrupoE();
+        private _filtroGrupoOU: Snebur.AcessoDados.FiltroGrupoOU = new Snebur.AcessoDados.FiltroGrupoOU();
+        private _ordenacoes: DicionarioSimples<Snebur.AcessoDados.Ordenacao> = new DicionarioSimples<Snebur.AcessoDados.Ordenacao>();
+        private _relacoesAbertaFiltro: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
+        private _relacoesAberta: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
+        private _colecoesAberta: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao>();
+        private _propriedadesAbertas: Array<string> = new Array<string>();
+        private _contarRegistros: boolean = false;
+
         public get NomeTipoEntidade(): string 
         {
             return this._nomeTipoEntidade;
@@ -122,7 +122,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
         }
-    
+
         public get TipoEntidadeAssemblyQualifiedName(): string 
         {
             return this._tipoEntidadeAssemblyQualifiedName;
@@ -132,7 +132,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("TipoEntidadeAssemblyQualifiedName", this._tipoEntidadeAssemblyQualifiedName, this._tipoEntidadeAssemblyQualifiedName = value);
         }
-    
+
         public get IsIncluirDeletados(): boolean 
         {
             return this._isIncluirDeletados;
@@ -142,7 +142,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("IsIncluirDeletados", this._isIncluirDeletados, this._isIncluirDeletados = value);
         }
-    
+
         public get IsIncluirInativos(): boolean 
         {
             return this._isIncluirInativos;
@@ -152,7 +152,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("IsIncluirInativos", this._isIncluirInativos, this._isIncluirInativos = value);
         }
-    
+
         public get IsDesativarOrdenacao(): boolean 
         {
             return this._isDesativarOrdenacao;
@@ -162,7 +162,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("IsDesativarOrdenacao", this._isDesativarOrdenacao, this._isDesativarOrdenacao = value);
         }
-    
+
         public get Take(): number 
         {
             return this._take;
@@ -172,7 +172,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Take", this._take, this._take = value);
         }
-    
+
         public get Skip(): number 
         {
             return this._skip;
@@ -182,7 +182,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Skip", this._skip, this._skip = value);
         }
-    
+
         public get PaginaAtual(): number 
         {
             return this._paginaAtual;
@@ -192,7 +192,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("PaginaAtual", this._paginaAtual, this._paginaAtual = value);
         }
-    
+
         public get CaminhoPropriedadeFuncao(): string 
         {
             return this._caminhoPropriedadeFuncao;
@@ -202,7 +202,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoPropriedadeFuncao", this._caminhoPropriedadeFuncao, this._caminhoPropriedadeFuncao = value);
         }
-    
+
         public get TipoFuncaoEnum(): Snebur.AcessoDados.EnumTipoFuncao 
         {
             return this._tipoFuncaoEnum;
@@ -212,7 +212,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("TipoFuncaoEnum", this._tipoFuncaoEnum, this._tipoFuncaoEnum = value);
         }
-    
+
         public get FiltroGrupoE(): Snebur.AcessoDados.FiltroGrupoE 
         {
             return this._filtroGrupoE;
@@ -222,7 +222,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("FiltroGrupoE", this._filtroGrupoE, this._filtroGrupoE = value);
         }
-    
+
         public get FiltroGrupoOU(): Snebur.AcessoDados.FiltroGrupoOU 
         {
             return this._filtroGrupoOU;
@@ -232,7 +232,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("FiltroGrupoOU", this._filtroGrupoOU, this._filtroGrupoOU = value);
         }
-    
+
         public get Ordenacoes(): DicionarioSimples<Snebur.AcessoDados.Ordenacao> 
         {
             return this._ordenacoes;
@@ -242,7 +242,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Ordenacoes", this._ordenacoes, this._ordenacoes = value);
         }
-    
+
         public get RelacoesAbertaFiltro(): DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> 
         {
             return this._relacoesAbertaFiltro;
@@ -252,7 +252,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("RelacoesAbertaFiltro", this._relacoesAbertaFiltro, this._relacoesAbertaFiltro = value);
         }
-    
+
         public get RelacoesAberta(): DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> 
         {
             return this._relacoesAberta;
@@ -262,7 +262,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("RelacoesAberta", this._relacoesAberta, this._relacoesAberta = value);
         }
-    
+
         public get ColecoesAberta(): DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao> 
         {
             return this._colecoesAberta;
@@ -272,7 +272,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("ColecoesAberta", this._colecoesAberta, this._colecoesAberta = value);
         }
-    
+
         public get PropriedadesAbertas(): Array<string> 
         {
             return this._propriedadesAbertas;
@@ -282,7 +282,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("PropriedadesAbertas", this._propriedadesAbertas, this._propriedadesAbertas = value);
         }
-    
+
         public get ContarRegistros(): boolean 
         {
             return this._contarRegistros;
@@ -293,9 +293,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("ContarRegistros", this._contarRegistros, this._contarRegistros = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<EstruturaConsulta>) 
         {
             super(inicializador);
@@ -306,7 +306,7 @@ namespace Snebur.AcessoDados
     export abstract class BaseFiltro extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseFiltro>) 
         {
             super(inicializador);
@@ -316,10 +316,10 @@ namespace Snebur.AcessoDados
     export class Ordenacao extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _caminhoPropriedade : string = null;
-        private _sentidoOrdenacaoEnum : Snebur.Dominio.EnumSentidoOrdenacao = 0;
-    
+
+        private _caminhoPropriedade: string = null;
+        private _sentidoOrdenacaoEnum: Snebur.Dominio.EnumSentidoOrdenacao = Snebur.Dominio.EnumSentidoOrdenacao.Crescente;
+
         public get CaminhoPropriedade(): string 
         {
             return this._caminhoPropriedade;
@@ -329,7 +329,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoPropriedade", this._caminhoPropriedade, this._caminhoPropriedade = value);
         }
-    
+
         public get SentidoOrdenacaoEnum(): Snebur.Dominio.EnumSentidoOrdenacao 
         {
             return this._sentidoOrdenacaoEnum;
@@ -340,9 +340,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("SentidoOrdenacaoEnum", this._sentidoOrdenacaoEnum, this._sentidoOrdenacaoEnum = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<Ordenacao>) 
         {
             super(inicializador);
@@ -353,14 +353,14 @@ namespace Snebur.AcessoDados
     export abstract class BaseRelacaoAberta extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _caminhoPropriedade : string = null;
-        private _nomeTipoEntidade : string = null;
-        private _nomeTipoDeclarado : string = null;
-        private _tipoEntidadeAssemblyQualifiedName : string = null;
-        private _tipoDeclaradoAssemblyQualifiedName : string = null;
-        private _propriedadesAbertas : HashSet<string> =  new HashSet<string>();
-    
+
+        private _caminhoPropriedade: string = null;
+        private _nomeTipoEntidade: string = null;
+        private _nomeTipoDeclarado: string = null;
+        private _tipoEntidadeAssemblyQualifiedName: string = null;
+        private _tipoDeclaradoAssemblyQualifiedName: string = null;
+        private _propriedadesAbertas: HashSet<string> = new HashSet<string>();
+
         public get CaminhoPropriedade(): string 
         {
             return this._caminhoPropriedade;
@@ -370,7 +370,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoPropriedade", this._caminhoPropriedade, this._caminhoPropriedade = value);
         }
-    
+
         public get NomeTipoEntidade(): string 
         {
             return this._nomeTipoEntidade;
@@ -380,7 +380,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
         }
-    
+
         public get NomeTipoDeclarado(): string 
         {
             return this._nomeTipoDeclarado;
@@ -390,7 +390,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("NomeTipoDeclarado", this._nomeTipoDeclarado, this._nomeTipoDeclarado = value);
         }
-    
+
         public get TipoEntidadeAssemblyQualifiedName(): string 
         {
             return this._tipoEntidadeAssemblyQualifiedName;
@@ -400,7 +400,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("TipoEntidadeAssemblyQualifiedName", this._tipoEntidadeAssemblyQualifiedName, this._tipoEntidadeAssemblyQualifiedName = value);
         }
-    
+
         public get TipoDeclaradoAssemblyQualifiedName(): string 
         {
             return this._tipoDeclaradoAssemblyQualifiedName;
@@ -410,7 +410,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("TipoDeclaradoAssemblyQualifiedName", this._tipoDeclaradoAssemblyQualifiedName, this._tipoDeclaradoAssemblyQualifiedName = value);
         }
-    
+
         public get PropriedadesAbertas(): HashSet<string> 
         {
             return this._propriedadesAbertas;
@@ -421,9 +421,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("PropriedadesAbertas", this._propriedadesAbertas, this._propriedadesAbertas = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseRelacaoAberta>) 
         {
             super(inicializador);
@@ -433,10 +433,10 @@ namespace Snebur.AcessoDados
     export abstract class Resultado extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _isSucesso : boolean = false;
-        private _permissao : Snebur.AcessoDados.Seguranca.EnumPermissao = 0;
-    
+
+        private _isSucesso: boolean = false;
+        private _permissao: Snebur.AcessoDados.Seguranca.EnumPermissao = Snebur.AcessoDados.Seguranca.EnumPermissao.Nenhuma;
+
         public get IsSucesso(): boolean 
         {
             return this._isSucesso;
@@ -446,7 +446,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
-    
+
         public get Permissao(): Snebur.AcessoDados.Seguranca.EnumPermissao 
         {
             return this._permissao;
@@ -457,9 +457,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Permissao", this._permissao, this._permissao = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<Resultado>) 
         {
             super(inicializador);
@@ -469,12 +469,12 @@ namespace Snebur.AcessoDados
     export class EntidadeSalva extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _id : number = 0;
-        private _identificadorUnicoEntidade : string = "00000000-0000-0000-0000-000000000000";
-        private _caminhoTipoEntidadeSalva : string = null;
-        private _propriedadesComputada : Array<Snebur.AcessoDados.PropriedadeComputada> =  new Array<Snebur.AcessoDados.PropriedadeComputada>();
-    
+
+        private _id: number = 0;
+        private _identificadorUnicoEntidade: string = "00000000-0000-0000-0000-000000000000";
+        private _caminhoTipoEntidadeSalva: string = null;
+        private _propriedadesComputada: Array<Snebur.AcessoDados.PropriedadeComputada> = new Array<Snebur.AcessoDados.PropriedadeComputada>();
+
         public get Id(): number 
         {
             return this._id;
@@ -484,7 +484,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Id", this._id, this._id = value);
         }
-    
+
         public get IdentificadorUnicoEntidade(): string 
         {
             return this._identificadorUnicoEntidade;
@@ -494,7 +494,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("IdentificadorUnicoEntidade", this._identificadorUnicoEntidade, this._identificadorUnicoEntidade = value);
         }
-    
+
         public get CaminhoTipoEntidadeSalva(): string 
         {
             return this._caminhoTipoEntidadeSalva;
@@ -504,7 +504,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoTipoEntidadeSalva", this._caminhoTipoEntidadeSalva, this._caminhoTipoEntidadeSalva = value);
         }
-    
+
         public get PropriedadesComputada(): Array<Snebur.AcessoDados.PropriedadeComputada> 
         {
             return this._propriedadesComputada;
@@ -515,9 +515,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("PropriedadesComputada", this._propriedadesComputada, this._propriedadesComputada = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<EntidadeSalva>) 
         {
             super(inicializador);
@@ -528,10 +528,10 @@ namespace Snebur.AcessoDados
     export class PropriedadeComputada extends Snebur.AcessoDados.BaseAcessoDados
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-        private _valor : any = null;
-    
+
+        private _nomePropriedade: string = null;
+        private _valor: any = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -541,7 +541,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
-    
+
         public get Valor(): any 
         {
             return this._valor;
@@ -552,9 +552,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<PropriedadeComputada>) 
         {
             super(inicializador);
@@ -565,9 +565,9 @@ namespace Snebur.AcessoDados
     export abstract class BaseFiltroGrupo extends Snebur.AcessoDados.BaseFiltro
     {
         //#region Propriedades
-    
-        private _filtros : Array<Snebur.AcessoDados.BaseFiltro> =  new Array<Snebur.AcessoDados.BaseFiltro>();
-    
+
+        private _filtros: Array<Snebur.AcessoDados.BaseFiltro> = new Array<Snebur.AcessoDados.BaseFiltro>();
+
         public get Filtros(): Array<Snebur.AcessoDados.BaseFiltro> 
         {
             return this._filtros;
@@ -578,9 +578,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Filtros", this._filtros, this._filtros = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseFiltroGrupo>) 
         {
             super(inicializador);
@@ -590,9 +590,9 @@ namespace Snebur.AcessoDados
     export class FiltroIds extends Snebur.AcessoDados.BaseFiltro
     {
         //#region Propriedades
-    
-        private _ids : Array<number> =  new Array<number>();
-    
+
+        private _ids: Array<number> = new Array<number>();
+
         public get Ids(): Array<number> 
         {
             return this._ids;
@@ -603,10 +603,10 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Ids", this._ids, this._ids = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( ids : Array<number> ) 
+
+        public constructor(ids: Array<number>) 
         {
             super();
             this.Inicializar();
@@ -617,12 +617,12 @@ namespace Snebur.AcessoDados
     export class FiltroPropriedade extends Snebur.AcessoDados.BaseFiltro
     {
         //#region Propriedades
-    
-        private _caminhoPropriedade : string = null;
-        private _tipoPrimarioEnum : Snebur.Reflexao.EnumTipoPrimario = 0;
-        private _operador : Snebur.AcessoDados.EnumOperadorFiltro = 0;
-        private _valor : any = null;
-    
+
+        private _caminhoPropriedade: string = null;
+        private _tipoPrimarioEnum: Snebur.Reflexao.EnumTipoPrimario = 0;
+        private _operador: Snebur.AcessoDados.EnumOperadorFiltro = Snebur.AcessoDados.EnumOperadorFiltro.Nenhum;
+        private _valor: any = null;
+
         public get CaminhoPropriedade(): string 
         {
             return this._caminhoPropriedade;
@@ -632,7 +632,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoPropriedade", this._caminhoPropriedade, this._caminhoPropriedade = value);
         }
-    
+
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario 
         {
             return this._tipoPrimarioEnum;
@@ -642,7 +642,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("TipoPrimarioEnum", this._tipoPrimarioEnum, this._tipoPrimarioEnum = value);
         }
-    
+
         public get Operador(): Snebur.AcessoDados.EnumOperadorFiltro 
         {
             return this._operador;
@@ -652,7 +652,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Operador", this._operador, this._operador = value);
         }
-    
+
         public get Valor(): any 
         {
             return this._valor;
@@ -663,9 +663,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<FiltroPropriedade>) 
         {
             super(inicializador);
@@ -676,10 +676,10 @@ namespace Snebur.AcessoDados
     export class FiltroPropriedadeIn extends Snebur.AcessoDados.BaseFiltro
     {
         //#region Propriedades
-    
-        private _caminhoPropriedade : string = null;
-        private _lista : Array<string> =  new Array<string>();
-    
+
+        private _caminhoPropriedade: string = null;
+        private _lista: Array<string> = new Array<string>();
+
         public get CaminhoPropriedade(): string 
         {
             return this._caminhoPropriedade;
@@ -689,7 +689,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("CaminhoPropriedade", this._caminhoPropriedade, this._caminhoPropriedade = value);
         }
-    
+
         public get Lista(): Array<string> 
         {
             return this._lista;
@@ -700,10 +700,10 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("Lista", this._lista, this._lista = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( caminhoPropriedade : string ,  lista : Array<string> ) 
+
+        public constructor(caminhoPropriedade: string, lista: Array<string>) 
         {
             super();
             this.Inicializar();
@@ -715,7 +715,7 @@ namespace Snebur.AcessoDados
     export class FiltroGrupoE extends Snebur.AcessoDados.BaseFiltroGrupo
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<FiltroGrupoE>) 
         {
             super(inicializador);
@@ -726,7 +726,7 @@ namespace Snebur.AcessoDados
     export class FiltroGrupoNAO extends Snebur.AcessoDados.BaseFiltroGrupo
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<FiltroGrupoNAO>) 
         {
             super(inicializador);
@@ -737,7 +737,7 @@ namespace Snebur.AcessoDados
     export class FiltroGrupoOU extends Snebur.AcessoDados.BaseFiltroGrupo
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<FiltroGrupoOU>) 
         {
             super(inicializador);
@@ -748,9 +748,9 @@ namespace Snebur.AcessoDados
     export class RelacaoAbertaColecao extends Snebur.AcessoDados.BaseRelacaoAberta
     {
         //#region Propriedades
-    
-        private _estruturaConsulta : Snebur.AcessoDados.EstruturaConsulta = null;
-    
+
+        private _estruturaConsulta: Snebur.AcessoDados.EstruturaConsulta = null;
+
         public get EstruturaConsulta(): Snebur.AcessoDados.EstruturaConsulta 
         {
             return this._estruturaConsulta;
@@ -761,9 +761,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("EstruturaConsulta", this._estruturaConsulta, this._estruturaConsulta = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<RelacaoAbertaColecao>) 
         {
             super(inicializador);
@@ -774,7 +774,7 @@ namespace Snebur.AcessoDados
     export class RelacaoAbertaEntidade extends Snebur.AcessoDados.BaseRelacaoAberta
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<RelacaoAbertaEntidade>) 
         {
             super(inicializador);
@@ -785,10 +785,10 @@ namespace Snebur.AcessoDados
     export class ResultadoConsulta extends Snebur.AcessoDados.Resultado
     {
         //#region Propriedades
-    
-        private _entidades : ListaEntidades<Snebur.Dominio.IEntidade> =  new ListaEntidades<Snebur.Dominio.IEntidade>();
-        private _totalRegistros : number = 0;
-    
+
+        private _entidades: ListaEntidades<Snebur.Dominio.IEntidade> = new ListaEntidades<Snebur.Dominio.IEntidade>();
+        private _totalRegistros: number = 0;
+
         public get Entidades(): ListaEntidades<Snebur.Dominio.IEntidade> 
         {
             return this._entidades;
@@ -798,7 +798,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("Entidades", this._entidades, this._entidades = value);
         }
-    
+
         public get TotalRegistros(): number 
         {
             return this._totalRegistros;
@@ -809,9 +809,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("TotalRegistros", this._totalRegistros, this._totalRegistros = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ResultadoConsulta>) 
         {
             super(inicializador);
@@ -822,7 +822,7 @@ namespace Snebur.AcessoDados
     export class ResultadoDeletar extends Snebur.AcessoDados.Resultado
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ResultadoDeletar>) 
         {
             super(inicializador);
@@ -833,10 +833,10 @@ namespace Snebur.AcessoDados
     export class ResultadoSalvar extends Snebur.AcessoDados.Resultado
     {
         //#region Propriedades
-    
-        private _entidadesSalvas : Array<Snebur.AcessoDados.EntidadeSalva> =  new Array<Snebur.AcessoDados.EntidadeSalva>();
-        private _errosValidacao : Array<Snebur.Dominio.ErroValidacao> =  new Array<Snebur.Dominio.ErroValidacao>();
-    
+
+        private _entidadesSalvas: Array<Snebur.AcessoDados.EntidadeSalva> = new Array<Snebur.AcessoDados.EntidadeSalva>();
+        private _errosValidacao: Array<Snebur.Dominio.ErroValidacao> = new Array<Snebur.Dominio.ErroValidacao>();
+
         public get EntidadesSalvas(): Array<Snebur.AcessoDados.EntidadeSalva> 
         {
             return this._entidadesSalvas;
@@ -846,7 +846,7 @@ namespace Snebur.AcessoDados
         {
             this.NotificarValorPropriedadeAlterada("EntidadesSalvas", this._entidadesSalvas, this._entidadesSalvas = value);
         }
-    
+
         public get ErrosValidacao(): Array<Snebur.Dominio.ErroValidacao> 
         {
             return this._errosValidacao;
@@ -857,9 +857,9 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("ErrosValidacao", this._errosValidacao, this._errosValidacao = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ResultadoSalvar>) 
         {
             super(inicializador);

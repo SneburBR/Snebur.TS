@@ -112,7 +112,7 @@
         }
 
         public get FuncaoNormalizarRequisicao(): (
-            metodo: u.EnumHttpMethod, url: string, request: XMLHttpRequest) => void
+            servico: c.BaseComunicacaoCliente | null, metodo: u.EnumHttpMethod, url: string, request: XMLHttpRequest) => void
         {
             return undefined;
         }
@@ -169,7 +169,7 @@
 
             if (BaseAplicacao.__instancia != null)
             {
-                throw new Erro("Já existe uma aplicação snebur instanciada");
+                throw new Erro("Já existe uma aplicação Snebur instanciada");
             }
             BaseAplicacao.__instancia = this;
         }
@@ -223,13 +223,17 @@
             this._servicoRegrasNegocio = this.Servicos.OfType<Snebur.AcessoDados.ServicoRegrasNegocioCliente>(Snebur.AcessoDados.ServicoRegrasNegocioCliente).SingleOrDefault();
 
             //this._diferencaDataHoraUtcServidor = await this.RetornarDataHoraUtcServidor();
+
+            const stopwatch = Stopwatch.StartNew();
             await this.InicializarSessaoUsuarioAsync();
+            console.log(`Tempo de inicialização da sessão do usuário: ${stopwatch.ElapsedMilliseconds}ms`);
+
             await this.DepoisInicializarSessaoUsuarioAsync();
 
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
             {
                 this._servicoDepuracao = new Snebur.Depuracao.ServicoDepuracao();
-                await this._servicoDepuracao.InicializarAsync();
+                this._servicoDepuracao.InicializarAsync();
             }
 
             if (!ValidacaoUtil.IsUrlHttp($Configuracao.UrlServicosWorker))
@@ -243,7 +247,7 @@
         {
             if (Snebur.$Configuracao == null)
             {
-                throw new Error("O objeto configuração $Configuracao não foi definido");
+                throw new Error("O objeto configuração $Configuração não foi definido");
             }
 
             Object.defineProperty(Snebur.$Configuracao, "IsDebugOuTeste", {

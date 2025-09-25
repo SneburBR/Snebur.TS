@@ -56,7 +56,7 @@
             const inicio = urlIamgemBase64.indexOf("base64,") + "base64,".length;
             const base64 = urlIamgemBase64.substring(inicio);
             const bytes = u.Base64Util.Base64ParaBytes(base64);
-            const blob = new Blob([bytes], { type: tipo });
+            const blob = new Blob([bytes.arrayBuffer], { type: tipo });
             return window.URL.createObjectURL(blob);
         }
 

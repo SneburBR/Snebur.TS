@@ -30,7 +30,7 @@
                 bytesOrigem,
                 settings,
                 this.CarregarImagemInternoAsync.bind(this));
- 
+
             return imagensCarregada;
         }
         catch (erro)
@@ -124,7 +124,7 @@
                 await imageMagick.write(formatoDestino, (bytes) =>
                 {
                     /*const buffer = new Uint8Array(bytes).buffer;*/
-                    const blob = new Blob([bytes], { type: mimeType });
+                    const blob = new Blob([bytes.arrayBuffer], { type: mimeType });
 
                     imagensCarregada.push({
                         Arquivo: blob,
@@ -189,7 +189,7 @@
         altura: number,
         larguraRecipiente: number,
         alturaRecipente: number, isDecimal: boolean = true,
-        isAumentar: boolean =false): IDimensao
+        isAumentar: boolean = false): IDimensao
     {
         let novaLargura = 0;
         let novaAltura = 0;
@@ -237,7 +237,7 @@
 
         novaLargura = Math.max(novaLargura, 0);
         novaAltura = Math.max(novaAltura, 0);
-         
+
         return {
             Largura: novaLargura,
             Altura: novaAltura

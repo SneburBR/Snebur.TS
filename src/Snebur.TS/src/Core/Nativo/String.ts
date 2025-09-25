@@ -199,5 +199,12 @@ namespace Snebur
         return this.slice(0, startIndex) + this.slice(startIndex + count);
     };
 
-
+    String.prototype.substrCompat = function (this: string, from: number, length?: number): string
+    {
+        if (length == null)
+        {
+            return this.slice(from);
+        }
+        return this.slice(from, from + length);
+    }
 }

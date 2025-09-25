@@ -19,8 +19,8 @@
         {
             if (u.ValidacaoUtil.IsNumber(valorPropriedade, true))
             {
-
-                return (valorPropriedade >= this.Minimo && valorPropriedade <= this.Maximo);
+                const valorPropriedadeFloat = parseFloat(valorPropriedade);
+                return (valorPropriedadeFloat >= this.Minimo && valorPropriedadeFloat <= this.Maximo);
             }
             return false;
         }

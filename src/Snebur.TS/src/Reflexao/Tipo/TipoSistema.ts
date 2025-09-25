@@ -5,7 +5,7 @@
         public constructor(nome: string, _namespace: string, assemblyQualifiedName: string)
         {
             super(nome, _namespace, assemblyQualifiedName, null, false);
-            this.TipoReflexao = -1;
+            this.TipoReflexao = 0;
         }
     }
 }

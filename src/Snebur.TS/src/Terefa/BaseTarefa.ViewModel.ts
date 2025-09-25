@@ -43,7 +43,7 @@
         public get Timeout(): TimeSpan
         {
             return this._timeout;
-        } 
+        }
         public set Timeout(value: TimeSpan)
         {
             this._timeout = value;
@@ -87,11 +87,11 @@
         }
         //#region Métodos públicos 
 
-        public async IniciarAsync()
+        public IniciarAsync()
         {
             if (this.Status === EnumStatusTarefa.Pausada)
             {
-                return;
+                return Promise.resolve();
             }
 
             return new Promise(resolver =>

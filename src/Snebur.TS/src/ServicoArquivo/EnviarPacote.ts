@@ -65,7 +65,7 @@
 
             if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
             {
-                $Aplicacao?.FuncaoNormalizarRequisicao(u.EnumHttpMethod.POST, this.Url, this.XmlHttp);
+                $Aplicacao?.FuncaoNormalizarRequisicao(null, u.EnumHttpMethod.POST, this.Url, this.XmlHttp);
             }
             this.XmlHttp.send(new Uint8Array(this.Pacote));
             this.IdentificadorTimeoutEnviarPacote = setTimeout(this.EnviarPacote_Timeout.bind(this), EnviarPacote.TIMEOUT_ENVIAR_PACOTE);

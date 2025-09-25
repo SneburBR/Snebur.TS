@@ -267,6 +267,7 @@ namespace Snebur.Comunicacao
         private _nomeServico : string = null;
         private _dataHora : Date =  new Date();
         private _operacao : string = null;
+        private _extraOpcional : Snebur.Dominio.BaseDominio = null;
     
         public get NomeServico(): string 
         {
@@ -296,6 +297,16 @@ namespace Snebur.Comunicacao
         public set Operacao(value: string) 
         {
             this.NotificarValorPropriedadeAlterada("Operacao", this._operacao, this._operacao = value);
+        }
+    
+        public get ExtraOpcional(): Snebur.Dominio.BaseDominio 
+        {
+            return this._extraOpcional;
+        }
+
+        public set ExtraOpcional(value: Snebur.Dominio.BaseDominio) 
+        {
+            this.NotificarValorPropriedadeAlterada("ExtraOpcional", this._extraOpcional, this._extraOpcional = value);
         }
         //#endregion
     

@@ -106,6 +106,7 @@
 
         protected readonly AssemblyQualifiedName: string;
         protected readonly NomeTipoArquivo: string;
+        protected readonly UrlEnviarArquivo: string;
 
         protected Buffer: ArrayBuffer;
         //protected Bytes: Uint8Array;
@@ -113,7 +114,7 @@
         protected TotalPartes: number;
         protected TotalBytesEnviado: number;
 
-        protected UrlEnviarArquivo: string;
+        
         protected IntervaloProximaTentiva: TimeSpan;
 
         protected readonly Gerenciador: GerenciadorEnvioArquivo;

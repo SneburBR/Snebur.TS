@@ -43,7 +43,7 @@ namespace Snebur.Nativo
         Any(funcaoAny: (value: string) => boolean): boolean;
 
         Split(divisor: string): Array<string>;
-        Split(divisor: string, isRemoveEmptyString:boolean): Array<string>;
+        Split(divisor: string, isRemoveEmptyString: boolean): Array<string>;
 
         ToNumber(removerPixelsOrRem?: boolean): number;
 
@@ -62,6 +62,8 @@ namespace Snebur.Nativo
         padStart(length: number, fillStr?: string): string;
         padEnd(length: number, fillStr?: string): string;
 
+        substrCompat(start: number, length?: number): string;
+
     }
 
     export interface IStringConstructor extends ITipo<Snebur.Reflexao.TipoPrimario>, ICaminhoTipo, IParse<string>
@@ -70,7 +72,7 @@ namespace Snebur.Nativo
 
         Format(...argumentos: Array<string | number>): string;
 
-        IsNullOrWhiteSpace(texto: string |number): boolean;
+        IsNullOrWhiteSpace(texto: string | number): boolean;
 
         IsNullOrEmpty(texto: string | number): boolean;
 

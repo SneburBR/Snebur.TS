@@ -43,16 +43,14 @@
             this.EventoPing.AddHandler(this.ServicoDepuracao_Ping, this);
         }
 
-        public async InicializarAsync()
+        public InicializarAsync()
         {
-            
-            await this.ConectarAsync();
+            this.ConectarAsync();
         }
 
         private async RetornarPortaAsync(): Promise<number>
         {
             const url = "/vs-porta-depuracao";
-
             return new Promise((resolve, reject) =>
             {
                 const xhr = new XMLHttpRequest();

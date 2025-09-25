@@ -92,6 +92,7 @@
             {
                 const seguementos = caminho.split(".");
                 const raiz = seguementos.First();
+
                 if (!GerenciadorNamespace.NamespaceRaiz.ContainsKey(raiz))
                 {
                     GerenciadorNamespace.NamespaceRaiz.Add(raiz, new NamespaceRaiz(tipoNamespace, raiz));

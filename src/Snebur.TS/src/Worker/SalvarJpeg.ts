@@ -1,7 +1,7 @@
 ﻿namespace Snebur.WebWorker
 {
     export class SalvarJpeg extends WorkerCliente<ISalvarJpegMensagem, Uint8Array>
-    {   
+    {
         private static readonly UrlWorker: string = "/workers/Snebur.SalvarJpeg.js?=v7";
         private static readonly LIMITE_MINIMO: number = 1 * 1024;
 
@@ -75,12 +75,20 @@
 
                 case EnumResultadoSalvarImagem.Blob:
 
-                    return new Blob([resultado], { type: mimeTypeJpeg });
+                    if (resultado instanceof Blob)
+                    {
+                        return new Blob([resultado], { type: mimeTypeJpeg });
+                    }
+                    throw new Error(`O resultado não é um Blob, é um '${typeof resultado}'`);
 
                 case EnumResultadoSalvarImagem.UrlBlob:
                     {
-                        const blob = new Blob([resultado], { type: mimeTypeJpeg });
-                        return window.URL.createObjectURL(blob);
+                        if (typeof resultado === "string")
+                        {
+                            const blob = new Blob([resultado], { type: mimeTypeJpeg });
+                            return window.URL.createObjectURL(blob);
+                        }
+                        throw new Error(`O resultado não é uma string, é um '${typeof resultado}'`);
                     }
 
                 default:

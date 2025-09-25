@@ -70,7 +70,7 @@
             return this.ServicoDados.RetornarResultadoConsultaAsync(estruturaConsulta);
         }
 
-        public RetornarValorScalarAsync(estruturaConsulta: EstruturaConsulta): Promise<any> 
+        public RetornarValorScalarAsync(estruturaConsulta: EstruturaConsulta): Promise<any>
         {
             return this.ServicoDados.RetornarValorScalarAsync(estruturaConsulta);
         }
@@ -83,7 +83,7 @@
         public async SalvarAsync(entidades: ListaEntidades<d.Entidade>): Promise<ResultadoSalvar>
         public async SalvarAsync<TEntidade>(entidades: Array<TEntidade>): Promise<ResultadoSalvar>
         public async SalvarAsync<TEntidade extends d.Entidade>(entidades: ListaEntidades<TEntidade>): Promise<ResultadoSalvar>
-        public async SalvarAsync(parametro: any): Promise<ResultadoSalvar>
+        public async SalvarAsync(...args: any[]): Promise<ResultadoSalvar>
         {
             while (this._isSalvando)
             {
@@ -91,7 +91,7 @@
             }
 
             /*eslint-disable*/
-            const entidades = this.RetornarEntidades(arguments);
+            const entidades = this.RetornarEntidades(args);
             /*eslint-enable*/
 
             try
@@ -216,7 +216,7 @@
             return resultado;
         }
 
-        private RetornarErroSalvar(err: any, entidades: d.Entidade[]): ResultadoSalvar 
+        private RetornarErroSalvar(err: any, entidades: d.Entidade[]): ResultadoSalvar
         {
             const descricaoEntidades = String.Join(", ", entidades.Select(x => u.EntidadeUtil.RetornarDescricaoEntidade(x)));
             const mensagemErro = `Falha o salvar entidades ${descricaoEntidades}

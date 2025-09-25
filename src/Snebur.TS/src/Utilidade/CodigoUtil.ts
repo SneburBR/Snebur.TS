@@ -2,6 +2,9 @@
 {
     export class CodigoUtil
     {
+        private static lowerToUpperRegex = /([a-z])([A-Z])/g;
+        private static upperToUpperRegex = /([A-Z])([A-Z][a-z])/g;
+
         public static Formatar(
             nome: string,
             formatacaoOrigem: EnumFormatacaoCodigo,
@@ -68,6 +71,30 @@
                     throw new Erro("Formatação não suportada");
             }
         }
-    }
+
  
-}
+        public static PascalToSnakeCase(input: string): string
+        {
+            return this.PascalToLowerCase(input, '_');
+        }
+         
+        public static PascalToKebabCase(input: string): string
+        {
+            return this.PascalToLowerCase(input, '-');
+        }
+         
+        private static PascalToLowerCase(input: string, separator: string): string
+        {
+            if (!input)
+            {
+                return '';
+            }
+
+            let result = input;
+            result = result.replace(this.lowerToUpperRegex, `$1${separator}$2`);
+            // Adiciona separador entre letras maiúsculas consecutivas seguidas de minúsculas
+            result = result.replace(this.upperToUpperRegex, `$1${separator}$2`);
+            return result.toLowerCase();
+        }
+    }
+} 
