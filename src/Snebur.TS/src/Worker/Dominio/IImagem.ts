@@ -1,5 +1,6 @@
 ﻿enum EnumTamanhoImagem
 {
+    Undefined = -1,
     Miniatura = 2,
     Pequena = 4,
     Media = 8,
@@ -10,8 +11,8 @@
 
 interface IRecorte
 {
-	XScalar: number;
-	YScalar: number;
+    XScalar: number;
+    YScalar: number;
 }
 interface IDimensao
 {

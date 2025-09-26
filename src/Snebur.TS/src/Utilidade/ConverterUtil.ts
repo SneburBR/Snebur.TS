@@ -135,7 +135,9 @@
             }
         }
 
-        public static ParaString(valor: any, isNullable: boolean = false): string
+        public static ParaString(valor: any, isNullable?: false): string;
+        public static ParaString(valor: any, isNullable: boolean): string | null;
+        public static ParaString(valor: any, isNullable: boolean = false): string | null
         {
             if (valor == null)
             {
@@ -153,7 +155,9 @@
             return valor.toString();
         }
 
-        public static ParaNumero(valor: number | string | boolean, inteiro: boolean = false, isNullable: boolean = false): number
+        public static ParaNumero(valor: number | string | boolean, inteiro?: boolean, isNullable?: false): number
+        public static ParaNumero(valor: number | string | boolean, inteiro: boolean, isNullable: boolean): number | null
+        public static ParaNumero(valor: number | string | boolean, inteiro: boolean = false, isNullable: boolean = false): number | null
         {
             if (valor == null)
             {
@@ -232,6 +236,7 @@
             {
                 return isNullable ? null : 0;
             }
+
             if (typeof valor === "number" && !isNaN(valor)) 
             {
                 return Math.round(valor);
@@ -251,7 +256,9 @@
             return valor;
         }
 
-        public static ParaDouble(valor: any, isNullable: boolean = false): number
+        public static ParaDouble(valor: any, isNullable?: false): number
+        public static ParaDouble(valor: any, isNullable: boolean): number | null
+        public static ParaDouble(valor: any, isNullable: boolean = false): number | null
         {
             if (valor == null)
             {
@@ -260,7 +267,9 @@
             return ConverterUtil.ParaNumero(valor, false);
         }
 
-        public static ParaDecimal(valor: any, isNullable: boolean = false): number
+        public static ParaDecimal(valor: any, isNullable?: false): number
+        public static ParaDecimal(valor: any, isNullable: boolean): number | null
+        public static ParaDecimal(valor: any, isNullable: boolean = false): number | null
         {
             if (valor == null)
             {
@@ -270,7 +279,9 @@
             return Math.round(valorTipado * 100) / 100;
         }
 
-        public static ParaDecimal1(valor: any, isNullable: boolean = false): number
+        public static ParaDecimal1(valor: any, isNullable?: false): number
+        public static ParaDecimal1(valor: any, isNullable: boolean): number | null
+        public static ParaDecimal1(valor: any, isNullable: boolean = false): number | null
         {
             if (valor == null)
             {
@@ -280,7 +291,9 @@
             return Math.round(valorTipado * 10) / 10;
         }
 
-        public static ParaDecimal3(valor: any, isNullable: boolean = false): number
+        public static ParaDecimal3(valor: any, isNullable?: false): number
+        public static ParaDecimal3(valor: any, isNullable: boolean): number | null
+        public static ParaDecimal3(valor: any, isNullable: boolean = false): number | null    
         {
             if (valor == null)
             {
@@ -292,16 +305,20 @@
 
         /*private static readonly EXPRESSAO_FALSO = /^(?:f(?:alse)?|no?|0+)$/i;*/
 
-        public static ParaBoolean(valor: any, isNullable: boolean = false): boolean
+        public static ParaBoolean(valor: any, isNullable?: false): boolean
+        public static ParaBoolean(valor: any, isNullable: boolean): boolean | null
+        public static ParaBoolean(valor: any, isNullable: boolean = false): boolean | null
         {
             if (valor == null)
             {
                 return isNullable ? null : false;
             }
+
             if (typeof valor === "boolean")
             {
                 return valor;
             }
+
             if (typeof valor === "number")
             {
                 return valor > 0;
@@ -403,7 +420,7 @@
                     const formatoAlternativo = $Configuracao.FormatoData == EnumFormatoData.DMY
                         ? EnumFormatoData.MDY
                         : EnumFormatoData.DMY;
-                        
+
                     console.warn(`Tentando converter para o formato ${EnumFormatoData[formatoAlternativo]}`)
 
                     if (!u.ValidacaoUtil.IsDateString(valor, formatoAlternativo))
@@ -416,7 +433,7 @@
                     }
 
                     melhorFormatoData = formatoAlternativo;
-                 }
+                }
 
 
                 dataString = DataHoraUtil.NormalizarDataHoraString(dataString);

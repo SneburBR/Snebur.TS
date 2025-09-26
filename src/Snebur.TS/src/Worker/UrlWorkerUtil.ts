@@ -3,7 +3,7 @@
     export class UrlWorkerUtil
     {
         private static readonly UrlsBlobsWorksCache = new DicionarioSimples();
-        private static _versao: string = null;
+        private static _versao: string | null = null;
 
         private static get Versao(): string
         {
@@ -15,7 +15,7 @@
             return UrlWorkerUtil._versao;
         }
 
-        public static async RetornarUrlCompletaServicoWorker(urlWorker:string): Promise<string>
+        public static async RetornarUrlCompletaServicoWorker(urlWorker: string): Promise<string>
         {
             const urlRelativa = UrlUtil.CombinarQueryChaveValor(urlWorker, "v", UrlWorkerUtil.Versao);
             if (!ValidacaoUtil.IsUrlHttp(urlRelativa))
@@ -52,7 +52,12 @@
                 urlRelativa = $Aplicacao.FuncaoNormalizarUrlRelativaWebWorker(urlRelativa);
             }
             const urlCompleta = UrlUtil.Combinar($Configuracao.UrlServicosWorker, urlRelativa);
-            const conteudo = await u.AjaxUtil.RetornarConteudoTextoAsync(urlCompleta, null, null, true);
+            const conteudo = await u.AjaxUtil.RetornarConteudoTextoAsync(
+                urlCompleta,
+                null,
+                null,
+                true);
+
             if (conteudo instanceof Error)
             {
                 throw new Erro(`Não foi possível carregar o conteúdo do Worker: ${urlCompleta}`, conteudo);

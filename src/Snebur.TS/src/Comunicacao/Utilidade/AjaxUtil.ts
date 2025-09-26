@@ -29,7 +29,9 @@
             }
         }
 
-        private static __RetornarConteudoBlobInternoAsync(url: string, type: EnumMimetypeString = EnumMimetypeString.Bin, callback: CallbackResultado<string | Blob | Erro>): void
+        private static __RetornarConteudoBlobInternoAsync(url: string,
+            type: EnumMimetypeString = EnumMimetypeString.Bin,
+            callback: CallbackResultado<string | Blob | Erro>): void
         {
             const xmlHttp = new XMLHttpRequest();
 
@@ -72,6 +74,7 @@
                         callback(blob);
                         return;
                     }
+
                     if (typeof xmlHttp.responseText === "string")
                     {
                         const blob = new Blob([xmlHttp.responseText], { type: "text/plain" });
@@ -82,12 +85,12 @@
                     const resultado = xmlHttp.response ?? xmlHttp.responseText;
                     if (resultado == null)
                     {
-                        callback(null);
+                        callback(String.Empty);
                         return;
                     }
 
-                    const blob = new Blob([resultado], { type: "text/plain" });
-                    callback(blob);
+                    const error = new Erro(`O tipo não é suportado : ${typeof resultado}`);
+                    callback(error);
 
                 }
             };
@@ -95,8 +98,9 @@
         }
 
         public static RetornarConteudoTextoAsync(url: string,
-            formData: FormData | ArrayBuffer = null,
-            cabecalhos: DicionarioSimples<string | number> = null, ignorarErro?: boolean): Promise<string | Erro>
+            formData: FormData | ArrayBuffer | null = null,
+            cabecalhos: DicionarioSimples<string | number> | null = null,
+            ignorarErro?: boolean): Promise<string | Erro>
         {
             return new Promise<string | Erro>(resolver =>
             {
@@ -116,8 +120,8 @@
         }
 
         private static __RetornarConteudoTextoInternoAsync(url: string,
-            formData: FormData | ArrayBuffer,
-            cabecalhos: DicionarioSimples<string | number>,
+            formData: FormData | ArrayBuffer | null,
+            cabecalhos: DicionarioSimples<string | number> | null,
             callback: CallbackResultado<string | Erro>): void
         {
             const metodo = formData != null ? u.EnumHttpMethod.POST : u.EnumHttpMethod.GET;
@@ -159,10 +163,10 @@
         private static __RetornarConteudoBytesInternoAsync(
             metodo: EnumHttpMethod,
             url: string,
-            token: string,
+            token: string | null,
             timeout: number,
-            cabecalhos: DicionarioSimples<string | number> = null,
-            callbackProgresso: CallbackResultado<ProgressoEventArgs>,
+            cabecalhos: DicionarioSimples<string | number> | null = null,
+            callbackProgresso: CallbackResultado<ProgressoEventArgs> | null,
             callback: CallbackResultado<ArrayBuffer | Error>): void
         {
             const xmlHttp = new XMLHttpRequest();
@@ -176,7 +180,7 @@
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.IDENTIFICADOR_APLICACAO, $Configuracao.IdentificadorAplicacao);
             }
 
-            if (cabecalhos?.Count > 0)
+            if (cabecalhos && cabecalhos?.Count > 0)
             {
                 for (const parChaveValor of cabecalhos.ParesChaveValor)
                 {
@@ -204,8 +208,9 @@
             }
             xmlHttp.ontimeout = function ()
             {
+                const error = new Error(`Timeout na requisição ${url}`);
                 console.error(`Timeout na requisição ${url}`);
-                callback(null);
+                callback(error);
             };
             xmlHttp.onreadystatechange = function ()
             {
@@ -236,10 +241,10 @@
         public static RetornarBufferArrayAsync(
             metodo: EnumHttpMethod,
             url: string,
-            token: string = null,
+            token: string | null = null,
             timeout: number = 0,
-            cabecalhos: DicionarioSimples<string | number> = null,
-            callbackProgresso: CallbackResultado<ProgressoEventArgs> = null): Promise<ArrayBuffer>
+            cabecalhos: DicionarioSimples<string | number> | null = null,
+            callbackProgresso: CallbackResultado<ProgressoEventArgs> | null = null): Promise<ArrayBuffer>
         {
             return new Promise<ArrayBuffer>((resolver, reject) =>
             {

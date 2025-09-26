@@ -42,7 +42,7 @@
             if (argumento instanceof HTMLCanvasElement)
             {
                 const canvas = argumento as HTMLCanvasElement;
-                const contexto = canvas.getContext("2d");
+                const contexto = canvas.getContext2DRequired();
                 return contexto.getImageData(0, 0, canvas.width, canvas.height);
             }
             throw new ErroNaoSuportado("O argumento não é suportado");

@@ -2,9 +2,9 @@
 {
     export class LogUtil
     {
-        public static Erro(mensagem: string): void
-        public static Erro(erro: Error | ProgressEvent, mensagem?: string): void
-        public static Erro(args: Error | ProgressEvent | string, mesagemComplementar?: string): void
+        public static Erro(mensagem: unknown): void
+        public static Erro(erro: unknown | Error | ProgressEvent, mensagem?: string): void
+        public static Erro(args: unknown | Error | ProgressEvent | string, mesagemComplementar?: string): void
         {
             if (args instanceof Error)
             {
@@ -59,7 +59,7 @@
             // throw new Erro("Não implementado");
         }
 
-        private static RetornarMensagemErro(args: Error | ProgressEvent | string): string
+        private static RetornarMensagemErro(args: unknown | Error | ProgressEvent | string): string
         {
             if (args instanceof Error)
             {
