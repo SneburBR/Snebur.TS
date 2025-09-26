@@ -414,7 +414,7 @@
 
         public static LimparCanvas(canvas: HTMLCanvasElement)
         {
-            const contexto = canvas.getContext("2d");
+            const contexto = canvas.getContext2DRequired();
 
             contexto.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -458,7 +458,7 @@
             throw new Erro("MimeType não suportado" + mimeType)
         }
 
-        public static RetornarMimeTypeEnumFromString(mimeType: EnumMimeTypeImagemString, isIgnorarErro:boolean= false): EnumMimeType
+        public static RetornarMimeTypeEnumFromString(mimeType: EnumMimeTypeImagemString, isIgnorarErro: boolean = false): EnumMimeType
         {
             switch (mimeType)
             {

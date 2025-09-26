@@ -7,7 +7,7 @@
 
     }
 
-    public async ProcessarAsync(): Promise<IResultadoMagick>
+    public async ProcessarAsync(): Promise<IResultadoMagick | Error>
     {
         try
         {
@@ -35,7 +35,9 @@
         }
         catch (erro)
         {
-            return erro;
+            if (erro instanceof Error)
+                return erro
+            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`)
         }
     }
 
@@ -61,7 +63,7 @@
         });
     }
 
-    private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<IResultadoMagick>
+    private async CarregarImagemInternoAsync(imageMagick: MagickWasm.IMagickImage): Promise<IResultadoMagick | Error>
     {
         try
         {
@@ -147,7 +149,9 @@
         }
         catch (erro)
         {
-            return erro;
+            if (erro instanceof Error)
+                return erro
+            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`)
         }
         finally
         {

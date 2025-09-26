@@ -4,7 +4,7 @@
     {
         public static IsCanvasImagemBrancaOuPreta(canvas: HTMLCanvasElement): boolean
         {
-            const contexto = canvas.getContext("2d");
+            const contexto = canvas.getContext2DRequired();
             const imageData = contexto.getImageData(0, 0, canvas.width, canvas.height);
             return ImageDataUtil.IsImagemBrancaOuPreta(imageData);
         }

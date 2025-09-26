@@ -18,7 +18,12 @@
             const canvas = document.createElement("canvas");
             canvas.width = dimensao.Largura;
             canvas.height = dimensao.Altura;
-            const contexto = canvas.getContext("2d");
+
+            const contexto = canvas.getContext2DRequired();
+            if (contexto == null)
+            {
+                throw new Erro("Não foi possível obter o contexto 2D do canvas.");
+            }
             contexto.drawImage(imagem, 0, 0, dimensao.Largura, dimensao.Altura);
 
             const imageData = contexto.getImageData(0, 0, canvas.width, canvas.height);
@@ -46,7 +51,7 @@
             {
                 return await this.RetornarCanvasPicaAsync(imagem, dimensao);
             }
-            catch(erro)
+            catch (erro)
             {
                 console.error("Falha ao processar imagem com pica.");
                 console.error(erro);
@@ -60,13 +65,14 @@
             const canvasOrigem = document.createElement("canvas");
             canvasOrigem.width = dimensao.Largura * scalar;
             canvasOrigem.height = dimensao.Altura * scalar;
-            const contexto = canvasOrigem.getContext("2d");
+
+            const contexto = canvasOrigem.getContext2DRequired();
             contexto.drawImage(imagem, 0, 0, canvasOrigem.width, canvasOrigem.height);
-             
+
             const canvasDestino = document.createElement("canvas");
             canvasDestino.width = dimensao.Largura;
             canvasDestino.height = dimensao.Altura;
-             
+
             const opcoes: PicaJS.PicaOptions = {
                 concurrency: 1,
             };
@@ -99,7 +105,7 @@
             const canvas = document.createElement("canvas");
             canvas.width = dimensao.Largura;
             canvas.height = dimensao.Altura;
-            const contexto = canvas.getContext("2d");
+            const contexto = canvas.getContext2DRequired();
             contexto.drawImage(imagem, 0, 0, dimensao.Largura, dimensao.Altura);
             return canvas;
         }
@@ -107,7 +113,8 @@
         protected RetornarBlobAsync(
             canvas: HTMLCanvasElement,
             qualidade: number,
-            mimeType: u.EnumMimeTypeImagemString.Jpeg | u.EnumMimeTypeImagemString.Webp): Promise<Blob>
+            mimeType: u.EnumMimeTypeImagemString.Jpeg | u.EnumMimeTypeImagemString.Webp)
+            : Promise<Blob>
         {
             return canvas.ToBlobAsync(mimeType, qualidade);
         }
