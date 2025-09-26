@@ -153,12 +153,18 @@
 
         private __AnyInternoAsync(callback: CallbackResultado<boolean>): void
         {
-            this.__RetornarValorFuncaoInternoAsync(EnumTipoFuncao.Existe, null, callback);
+            this.__RetornarValorFuncaoInternoAsync(
+                EnumTipoFuncao.Existe,
+                null,
+                callback);
         }
 
         private __CountInternoAsync(callback: CallbackResultado<number>): void
         {
-            this.__RetornarValorFuncaoInternoAsync(EnumTipoFuncao.Contar, null, callback);
+            this.__RetornarValorFuncaoInternoAsync(
+                EnumTipoFuncao.Contar,
+                null,
+                callback);
         }
 
         private __MinInternoAsync(expressaoPropriedade: (value: TEntidade, index: number, array: Array<TEntidade>) => number | Date, callback: CallbackResultado<number> | CallbackResultado<Date>): void

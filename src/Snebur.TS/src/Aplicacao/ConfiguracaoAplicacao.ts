@@ -25,7 +25,7 @@
 
         IsAlterarUrlDebug?: boolean;
         UrlMagick?: string;
-        UrlServicosWorker?: string;
+        UrlServicosWorker: string;
         UrlServicoDepuracao?: string;
         UrlImagemCarregando?: string;
         UrlImagemPendente?: string;

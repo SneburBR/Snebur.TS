@@ -456,21 +456,22 @@
             documentoPrincipal.location.reload();
         }
 
-        private InicializarConfiguracaoPadrao()
-        {
-            Snebur.$Configuracao = {
-                CulturaPadrao: "pt-BR",
-                IdiomaPadrao: "pt-BR",
-                FormatoData: EnumFormatoData.DMY,
-                IdentificadorAplicacao: "Snebur.Aplicacao.Teste",
-                IsDebug: true,
-                NamespaceAplicacao: "Snebur.Aplicacao.Teste",
-                NamespacesDependecia: ["Snebur", "Snebur.UI"],
-                NamespacesEntidade: ["Snebur.Aplicacao.Teste.Entidades"],
-                TipoData: EnumTipoData.Local,
-                Versao: "1.0.0",
-            };
-        }
+        //private InicializarConfiguracaoPadrao()
+        //{
+        //    Snebur.$Configuracao = {
+        //        CulturaPadrao: "pt-BR",
+        //        IdiomaPadrao: "pt-BR",
+        //        FormatoData: EnumFormatoData.DMY,
+        //        IdentificadorAplicacao: "Snebur.Aplicacao.Teste",
+        //        IsDebug: true,
+        //        NamespaceAplicacao: "Snebur.Aplicacao.Teste",
+        //        NamespacesDependecia: ["Snebur", "Snebur.UI"],
+        //        NamespacesEntidade: ["Snebur.Aplicacao.Teste.Entidades"],
+        //        UrlServicosWorker = "",
+        //        TipoData: EnumTipoData.Local,
+        //        Versao: "1.0.0",
+        //    };
+        //}
         //#endregion
 
 
