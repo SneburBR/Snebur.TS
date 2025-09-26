@@ -380,6 +380,8 @@ Html.Referencias.ts
 [Hh]tml.[Rr]eferencias.ts
 vs-depuracao-porta.info
 
+.bkp/
+
 *.psd
 *.exe
 *.ai

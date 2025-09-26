@@ -6,6 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -27,7 +28,7 @@
 
 
 	<ItemGroup>
-	  <AdditionalFiles Remove="C:\Users\ruben\AppData\Roaming\SonarLint for Visual Studio\.global\csharp\SonarLint.xml" />
+		<AdditionalFiles Remove="C:\Users\ruben\AppData\Roaming\SonarLint for Visual Studio\.global\csharp\SonarLint.xml" />
 	</ItemGroup>
 
 </Project>
