@@ -4,7 +4,7 @@
     {
         //#region Propriedades
 
-        private _navegadorEnum: Snebur.Dominio.EnumNavegador = 0;
+        private _navegadorEnum: Snebur.Dominio.EnumNavegador = -1;
         private _nome: string = null;
         private _codenome: string = null;
         private _versao: string = null;

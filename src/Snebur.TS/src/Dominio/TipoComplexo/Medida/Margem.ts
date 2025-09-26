@@ -4,54 +4,58 @@
     {
         //#region Propriedades
 
-        private _esquerda: number = null;
-        private _superior: number = null;
-        private _direita: number = null;
-        private _inferior: number = null;
+        private _esquerda: number | null = null;
+        private _superior: number | null = null;
+        private _direita: number | null = null;
+        private _inferior: number | null = null;
 
-        public get Esquerda(): number 
+        public get Esquerda(): number | null
         {
             return this._esquerda;
         }
 
-        public set Esquerda(value: number)  
+        public set Esquerda(value: number | null)  
         {
-            this.NotificarPropriedadeAlterada("Esquerda", this._esquerda, this._esquerda = value.ToDecimal(3));
+            this.NotificarPropriedadeAlterada("Esquerda", this._esquerda, this._esquerda = (value?.ToDecimal(3) ?? null));
         }
 
-        public get Superior(): number 
+        public get Superior(): number | null
         {
             return this._superior;
         }
 
-        public set Superior(value: number)  
+        public set Superior(value: number | null)  
         {
-            this.NotificarPropriedadeAlterada("Superior", this._superior, this._superior = value.ToDecimal(3));
+            this.NotificarPropriedadeAlterada("Superior", this._superior, this._superior = (value?.ToDecimal(3) ?? null));
         }
 
-        public get Direita(): number 
+        public get Direita(): number | null
         {
             return this._direita;
         }
 
-        public set Direita(value: number)  
+        public set Direita(value: number | null)  
         {
-            this.NotificarPropriedadeAlterada("Direita", this._direita, this._direita = value.ToDecimal(3));
+            this.NotificarPropriedadeAlterada("Direita", this._direita, this._direita = (value?.ToDecimal(3) ?? null));
         }
 
-        public get Inferior(): number 
+        public get Inferior(): number | null
         {
             return this._inferior;
         }
 
-        public set Inferior(value: number)  
+        public set Inferior(value: number | null)  
         {
-            this.NotificarPropriedadeAlterada("Inferior", this._inferior, this._inferior = value.ToDecimal(3));
+            this.NotificarPropriedadeAlterada("Inferior", this._inferior, this._inferior = (value?.ToDecimal(3) ?? null));
         }
 
-        public get Media(): number
+        public get Media(): number | null
         {
-            return ((this.Superior + this.Inferior + this.Direita + this.Esquerda) / 4).ToDecimal(3);
+            if (this.IsDefined())
+            {
+                return ((this.Superior + this.Inferior + this.Direita + this.Esquerda) / 4).ToDecimal(3);
+            }
+            return null;
         }
 
         public get IsUniforme(): boolean
@@ -64,27 +68,39 @@
 
         public get IsNegativa(): boolean
         {
-            return this.Esquerda < 0 ||
-                this.Direita < 0 ||
-                this.Superior < 0 ||
-                this.Inferior < 0;
+            if (this.IsDefined())
+            {
+                return this.Esquerda < 0 &&
+                    this.Direita < 0 &&
+                    this.Superior < 0 &&
+                    this.Inferior < 0;
+            }
+            return false;
         }
 
-        public get Horizontal(): number
+        public get Horizontal(): number | null
         {
-            return Math.min(this.Esquerda, this.Direita);
+            if (this.IsDefined())
+            {
+                return Math.min(this.Esquerda, this.Direita);
+            }
+            return null;
         }
-        public set Horizontal(value: number)
+        public set Horizontal(value: number | null)
         {
             this.Esquerda = value;
             this.Direita = value;
         }
 
-        public get Vertical(): number
+        public get Vertical(): number | null
         {
-            return Math.min(this.Superior, this.Inferior);
+            if (this.IsDefined())
+            {
+                return Math.min(this.Superior, this.Inferior);
+            }
+            return null;
         }
-        public set Vertical(value: number)
+        public set Vertical(value: number | null)
         {
             this.Superior = value;
             this.Inferior = value;
@@ -97,14 +113,14 @@
         public constructor()
         public constructor(margem: number)
         public constructor(margem: IMargem)
-        public constructor(margemHorizontal: number, magemVertical: number)
-        public constructor(esquerda: number, superior: number, direita: number, inferior: number)
+        public constructor(margemHorizontal: number | null, magemVertical: number | null)
+        public constructor(esquerda: number | null, superior: number | null, direita: number | null, inferior: number | null)
         public constructor(...args: any[]) 
         {
             super();
 
             const [esquerda, superior, direita, inferior] = this.RetornarParametrosInicializacao(args);
-            this.Esquerda = u.ConverterUtil.ParaNumero(esquerda);
+            this.Esquerda = u.ConverterUtil.ParaNumero(esquerda, true);
             this.Superior = u.ConverterUtil.ParaNumero(superior);
             this.Direita = u.ConverterUtil.ParaNumero(direita);
             this.Inferior = u.ConverterUtil.ParaNumero(inferior);
@@ -127,22 +143,43 @@
 
         public Somar(margem: Margem): Margem
         {
-            if (margem == null) throw new ErroArgumentoNulo("margem");
+            if (this.IsDefined() && margem.IsDefined())
+            {
+                return new Margem(this.Esquerda + margem.Esquerda,
+                    this.Superior + margem.Superior,
+                    this.Direita + margem.Direita,
+                    this.Inferior + margem.Inferior);
+            }
 
-            return new Margem(this.Esquerda + margem.Esquerda,
-                this.Superior + margem.Superior,
-                this.Direita + margem.Direita,
-                this.Inferior + margem.Inferior);
+            if (margem.IsDefined())
+            {
+                return margem.Clone();
+            }
+
+            if (this.IsDefined())
+            {
+                return this.Clone();
+            }
+            throw new Erro("Não é possível somar margens indefinidas");
+
         }
 
-        public get MenorValor(): number
+        public get MenorValor(): number | null
         {
-            return Math.min(this.Esquerda, this.Superior, this.Direita, this.Inferior);
+            if (this.IsDefined())
+            {
+                return Math.min(this.Esquerda, this.Superior, this.Direita, this.Inferior);
+            }
+            return null;
         }
 
-        public get MaiorValor(): number
+        public get MaiorValor(): number | null
         {
-            return Math.max(this.Esquerda, this.Superior, this.Direita, this.Inferior);
+            if (this.IsDefined())
+            {
+                return Math.max(this.Esquerda, this.Superior, this.Direita, this.Inferior);
+            }
+            return null;
         }
 
         public get IsEmpty(): boolean
@@ -167,6 +204,10 @@
 
         public get IsExisteMargem(): boolean
         {
+            if (!this.IsDefined())
+            {
+                return false;
+            }
             return this.Esquerda >= 0 ||
                 this.Direita >= 0 ||
                 this.Superior >= 0 ||
@@ -185,6 +226,11 @@
 
         public ParaPixels(dpi: number): Margem
         {
+            if (!this.IsDefined())
+            {
+                throw new Erro("Não é possível converter uma margem indefinida para pixels");
+            }
+
             const esquerda = MedidaUtil.RetornarPixelsVisualizacao(this.Esquerda, dpi);
             const superior = MedidaUtil.RetornarPixelsVisualizacao(this.Superior, dpi);
             const direita = MedidaUtil.RetornarPixelsVisualizacao(this.Direita, dpi);
@@ -204,6 +250,17 @@
 
         public IsMaior(margem: IMargem): boolean
         {
+            if (margem == null)
+            {
+                throw new ErroArgumentoNulo("margem");
+            }
+
+            if (!this.IsDefined() || !MargemHelper.IsDefind(margem))
+            {
+                throw new Erro("Não é possível comparar margens indefinidas");
+            }
+
+
             return this.Superior > margem.Superior &&
                 this.Inferior > margem.Inferior &&
                 this.Esquerda > margem.Esquerda &&
@@ -212,14 +269,23 @@
 
         public IsMaiorOuIgual(margem: IMargem): boolean
         {
-            return this.Superior >= margem.Superior &&
-                this.Inferior >= margem.Inferior &&
-                this.Esquerda >= margem.Esquerda &&
-                this.Direita >= margem.Direita;
+            if (this.IsDefined() && MargemHelper.IsDefind(margem))
+            {
+                return this.Superior >= margem.Superior &&
+                    this.Inferior >= margem.Inferior &&
+                    this.Esquerda >= margem.Esquerda &&
+                    this.Direita >= margem.Direita;
+            }
+            return false;
         }
 
         public Diminuir(valor: number, isAceitarNegativo: boolean): Margem
         {
+            if (!this.IsDefined())
+            {
+                throw new Erro("Não é possível diminuir uma margem indefinida");
+            }
+
             const esquerda = this.Esquerda - valor;
             const superior = this.Superior - valor;
             const direita = this.Direita - valor;
@@ -242,6 +308,11 @@
         public Escalar(scalarX: number, scalarY: number): Margem
         public Escalar(scalarX: number, scalarY?: number): Margem
         {
+            if (!this.IsDefined())
+            {
+                throw new Erro("Não é possível escalar uma margem indefinida");
+            }
+
             scalarY = scalarY ?? scalarX;
             return new Margem({
                 Esquerda: this.Esquerda * scalarX,
@@ -253,15 +324,29 @@
 
         public IsAlbumMaior(value: number): boolean
         {
-            if (this.Esquerda > value) return true;
-            if (this.Superior > value) return true;
-            if (this.Direita > value) return true;
-            if (this.Inferior > value) return true;
+            if (!this.IsDefined())
+            {
+                throw new Erro("Não é possível comparar uma margem indefinida");
+            }
+
+            if (this.Esquerda > value)
+                return true;
+            if (this.Superior > value)
+                return true;
+            if (this.Direita > value)
+                return true;
+            if (this.Inferior > value)
+                return true;
             return false;
         }
 
-        public IsAlbumMaiorOuIgual(value: number): boolean
+        public IsAlgumMaiorOuIgual(value: number): boolean
         {
+            if (!this.IsDefined())
+            {
+                return false;
+            }
+
             if (this.Esquerda >= value) return true;
             if (this.Superior >= value) return true;
             if (this.Direita >= value) return true;
@@ -269,8 +354,13 @@
             return false;
         }
 
-        public IsAlbumMenor(value: number): boolean
+        public IsAlgumMenor(value: number): boolean
         {
+            if (!this.IsDefined())
+            {
+                return false;
+            }
+
             if (this.Esquerda < value) return true;
             if (this.Superior < value) return true;
             if (this.Direita < value) return true;
@@ -278,8 +368,13 @@
             return false;
         }
 
-        public IsAlbumMenorOuIgual(value: number): boolean
+        public IsAlgumMenorOuIgual(value: number): boolean
         {
+            if (!this.IsDefined())
+            {
+                return false;
+            }
+
             if (this.Esquerda <= value) return true;
             if (this.Superior <= value) return true;
             if (this.Direita <= value) return true;
@@ -289,6 +384,11 @@
 
         public NormalizarMaximo(value: number): Margem
         {
+            if (!this.IsDefined())
+            {
+                return new Margem()
+            }
+
             return new Margem({
                 Esquerda: Math.min(this.Esquerda, value),
                 Superior: Math.min(this.Superior, value),
@@ -299,6 +399,11 @@
 
         public NormalizarMinimo(value: number): Margem
         {
+            if (!this.IsDefined())
+            {
+                return new Margem()
+            }
+
             return new Margem({
                 Esquerda: Math.max(this.Esquerda, value),
                 Superior: Math.max(this.Superior, value),
@@ -309,7 +414,7 @@
 
         public override toString(): string
         {
-            return `${this.___NomeConstrutor}${this.Esquerda.toFixed(3)},${this.Superior.toFixed(3)},${this.Direita.toFixed(3)},${this.Inferior.toFixed(3)}`;
+            return `${this.___NomeConstrutor}${this.Esquerda?.toFixed(3)},${this.Superior?.toFixed(3)},${this.Direita?.toFixed(3)},${this.Inferior?.toFixed(3)}`;
         }
 
         private RetornarParametrosInicializacao(args: any[]): [number, number, number, number]
@@ -354,6 +459,40 @@
                     ConverterUtil.ParaNumero(args[3])];
             }
             throw new Erro("Argumentos de construção da margem inválidos");
+        }
+
+
+        public IsDefined(): this is this & DefinedMargem
+        {
+            return this._esquerda !== null &&
+                this._direita !== null &&
+                this._superior !== null &&
+                this._inferior !== null;
+        }
+    }
+
+    export interface DefinedMargem
+    {
+        readonly Esquerda: number;
+        readonly Superior: number;
+        readonly Direita: number;
+        readonly Inferior: number;
+        readonly Media: number;
+        readonly Horizontal: number;
+        readonly Vertical: number;
+        readonly MenorValor: number;
+        readonly MaiorValor: number;
+    }
+
+    export class MargemHelper
+    {
+        public static IsDefind(margem: IMargem): margem is IMargem & DefinedMargem
+        {
+            return margem != null &&
+                margem.Esquerda !== null &&
+                margem.Direita !== null &&
+                margem.Superior !== null &&
+                margem.Inferior !== null;
         }
     }
 }

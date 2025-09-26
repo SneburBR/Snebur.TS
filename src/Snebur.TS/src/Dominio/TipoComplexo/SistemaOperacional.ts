@@ -4,7 +4,7 @@
     {
         //#region Propriedades
 
-        private _sistemaOperacionalEnum: Snebur.Dominio.EnumSistemaOperacional = 0;
+        private _sistemaOperacionalEnum: Snebur.Dominio.EnumSistemaOperacional = -1;
         private _nome: string = null;
         private _codenome: string = null;
         private _versao: string = null;
