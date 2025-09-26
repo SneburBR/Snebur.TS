@@ -435,7 +435,7 @@ namespace Snebur.AcessoDados
         //#region Propriedades
 
         private _isSucesso: boolean = false;
-        private _permissao: Snebur.AcessoDados.Seguranca.EnumPermissao = Snebur.AcessoDados.Seguranca.EnumPermissao.Nenhuma;
+        private _permissao: Snebur.AcessoDados.Seguranca.EnumPermissao = -1;
 
         public get IsSucesso(): boolean 
         {
@@ -620,7 +620,7 @@ namespace Snebur.AcessoDados
 
         private _caminhoPropriedade: string = null;
         private _tipoPrimarioEnum: Snebur.Reflexao.EnumTipoPrimario = 0;
-        private _operador: Snebur.AcessoDados.EnumOperadorFiltro = Snebur.AcessoDados.EnumOperadorFiltro.Nenhum;
+        private _operador: Snebur.AcessoDados.EnumOperadorFiltro = -1;
         private _valor: any = null;
 
         public get CaminhoPropriedade(): string 

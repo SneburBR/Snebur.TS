@@ -9,7 +9,7 @@ namespace Snebur.Dominio.Atributos
     export abstract class BaseValidacaoEntidadeAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseValidacaoEntidadeAttribute>) 
         {
             super(inicializador);
@@ -19,10 +19,10 @@ namespace Snebur.Dominio.Atributos
     export class ChaveEstrangeiraExternaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IChaveEstrangeiraAttribute 
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-        private _name : string = null;
-    
+
+        private _nomePropriedade: string = null;
+        private _name: string = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -32,7 +32,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
-    
+
         public get Name(): string 
         {
             return this._name;
@@ -43,10 +43,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Name", this._name, this._name = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedade : string ) 
+
+        public constructor(nomePropriedade: string) 
         {
             super();
             this.Inicializar();
@@ -57,10 +57,10 @@ namespace Snebur.Dominio.Atributos
     export class ChaveEstrangeiraRelacaoUmUmAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IChaveEstrangeiraAttribute 
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-        private _name : string = null;
-    
+
+        private _nomePropriedade: string = null;
+        private _name: string = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -70,7 +70,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
-    
+
         public get Name(): string 
         {
             return this._name;
@@ -81,10 +81,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Name", this._name, this._name = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedade : string ) 
+
+        public constructor(nomePropriedade: string) 
         {
             super();
             this.Inicializar();
@@ -95,9 +95,9 @@ namespace Snebur.Dominio.Atributos
     export class ChavePrimariaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _isIdentity : boolean = false;
-    
+
+        private _isIdentity: boolean = false;
+
         public get IsIdentity(): boolean 
         {
             return this._isIdentity;
@@ -108,10 +108,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("IsIdentity", this._isIdentity, this._isIdentity = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( isIdentity : boolean ) 
+
+        public constructor(isIdentity: boolean) 
         {
             super();
             this.Inicializar();
@@ -122,7 +122,7 @@ namespace Snebur.Dominio.Atributos
     export class IgnorarValidacaoTipoComplexo extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<IgnorarValidacaoTipoComplexo>) 
         {
             super(inicializador);
@@ -133,15 +133,15 @@ namespace Snebur.Dominio.Atributos
     export class NotificarAlteracaoPropriedadeAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _tipoEntidadeAlteracaoPropriedade : r.BaseTipo | string = null;
-        private _nomePropriedadeAlterada : string = null;
-        private _nomePropriedadeRelacao : string = null;
-        private _propriedadeRelacao : r.Propriedade | string = null;
-        private _propriedadeValorAlterado : r.Propriedade | string = null;
-        private _propriedadeValorAntigo : r.Propriedade | string = null;
-        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
-    
+
+        private _tipoEntidadeAlteracaoPropriedade: r.BaseTipo | string = null;
+        private _nomePropriedadeAlterada: string = null;
+        private _nomePropriedadeRelacao: string = null;
+        private _propriedadeRelacao: r.Propriedade | string = null;
+        private _propriedadeValorAlterado: r.Propriedade | string = null;
+        private _propriedadeValorAntigo: r.Propriedade | string = null;
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
+
         public get TipoEntidadeAlteracaoPropriedade(): r.BaseTipo | string 
         {
             return this._tipoEntidadeAlteracaoPropriedade;
@@ -151,7 +151,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TipoEntidadeAlteracaoPropriedade", this._tipoEntidadeAlteracaoPropriedade, this._tipoEntidadeAlteracaoPropriedade = value);
         }
-    
+
         public get NomePropriedadeAlterada(): string 
         {
             return this._nomePropriedadeAlterada;
@@ -161,7 +161,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeAlterada", this._nomePropriedadeAlterada, this._nomePropriedadeAlterada = value);
         }
-    
+
         public get NomePropriedadeRelacao(): string 
         {
             return this._nomePropriedadeRelacao;
@@ -171,7 +171,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeRelacao", this._nomePropriedadeRelacao, this._nomePropriedadeRelacao = value);
         }
-    
+
         public get PropriedadeRelacao(): r.Propriedade | string 
         {
             return this._propriedadeRelacao;
@@ -181,7 +181,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("PropriedadeRelacao", this._propriedadeRelacao, this._propriedadeRelacao = value);
         }
-    
+
         public get PropriedadeValorAlterado(): r.Propriedade | string 
         {
             return this._propriedadeValorAlterado;
@@ -191,7 +191,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("PropriedadeValorAlterado", this._propriedadeValorAlterado, this._propriedadeValorAlterado = value);
         }
-    
+
         public get PropriedadeValorAntigo(): r.Propriedade | string 
         {
             return this._propriedadeValorAntigo;
@@ -201,7 +201,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("PropriedadeValorAntigo", this._propriedadeValorAntigo, this._propriedadeValorAntigo = value);
         }
-    
+
         public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
             return this._opcoes;
@@ -212,10 +212,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tipoEntidadeAlteracaoPropriedade : r.BaseTipo | string ,  nomePropriedadeRelacao : string ,  nomePropriedadeAlterada : string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
+
+        public constructor(tipoEntidadeAlteracaoPropriedade: r.BaseTipo | string, nomePropriedadeRelacao: string, nomePropriedadeAlterada: string, opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
             super();
             this.Inicializar();
@@ -229,14 +229,14 @@ namespace Snebur.Dominio.Atributos
     export class NotificarAlteracaoPropriedadeGenericaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
-        private _formatacaoPersonalizada : string = null;
-        private _formatacao : string = null;
-        private _tipoPropriedadeRelacao : r.BaseTipo | string = null;
-        private _caminhoTipoPropriedadeRelacao : string = null;
-        private _isEnum : boolean = false;
-    
+
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
+        private _formatacaoPersonalizada: string = null;
+        private _formatacao: string = null;
+        private _tipoPropriedadeRelacao: r.BaseTipo | string = null;
+        private _caminhoTipoPropriedadeRelacao: string = null;
+        private _isEnum: boolean = false;
+
         public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
             return this._opcoes;
@@ -246,7 +246,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
         }
-    
+
         public get FormatacaoPersonalizada(): string 
         {
             return this._formatacaoPersonalizada;
@@ -256,7 +256,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("FormatacaoPersonalizada", this._formatacaoPersonalizada, this._formatacaoPersonalizada = value);
         }
-    
+
         public get Formatacao(): string 
         {
             return this._formatacao;
@@ -266,7 +266,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Formatacao", this._formatacao, this._formatacao = value);
         }
-    
+
         public get TipoPropriedadeRelacao(): r.BaseTipo | string 
         {
             return this._tipoPropriedadeRelacao;
@@ -276,7 +276,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TipoPropriedadeRelacao", this._tipoPropriedadeRelacao, this._tipoPropriedadeRelacao = value);
         }
-    
+
         public get CaminhoTipoPropriedadeRelacao(): string 
         {
             return this._caminhoTipoPropriedadeRelacao;
@@ -286,7 +286,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("CaminhoTipoPropriedadeRelacao", this._caminhoTipoPropriedadeRelacao, this._caminhoTipoPropriedadeRelacao = value);
         }
-    
+
         public get IsEnum(): boolean 
         {
             return this._isEnum;
@@ -297,10 +297,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("IsEnum", this._isEnum, this._isEnum = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( formatacao : string ,  tipoPropriedadeRelacao : r.BaseTipo | string ,  caminhoTipoPropriedadeRelacao : string ,  opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade ) 
+
+        public constructor(formatacao: string, tipoPropriedadeRelacao: r.BaseTipo | string, caminhoTipoPropriedadeRelacao: string, opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
             super();
             this.Inicializar();
@@ -314,9 +314,9 @@ namespace Snebur.Dominio.Atributos
     export class NotificarTodasAlteracoesPropriedadeGenericaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _opcoes : Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
-    
+
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade = 0;
+
         public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade 
         {
             return this._opcoes;
@@ -327,9 +327,9 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Opcoes", this._opcoes, this._opcoes = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<NotificarTodasAlteracoesPropriedadeGenericaAttribute>) 
         {
             super(inicializador);
@@ -340,7 +340,7 @@ namespace Snebur.Dominio.Atributos
     export abstract class BasePropriedadeComputadaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BasePropriedadeComputadaAttribute>) 
         {
             super(inicializador);
@@ -350,7 +350,7 @@ namespace Snebur.Dominio.Atributos
     export class PropriedadeComputadaBancoAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<PropriedadeComputadaBancoAttribute>) 
         {
             super(inicializador);
@@ -361,7 +361,7 @@ namespace Snebur.Dominio.Atributos
     export class SomenteLeituraAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<SomenteLeituraAttribute>) 
         {
             super(inicializador);
@@ -372,9 +372,9 @@ namespace Snebur.Dominio.Atributos
     export class PropriedadeDescricaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-    
+
+        private _nomePropriedade: string = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -385,10 +385,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedade : string ) 
+
+        public constructor(nomePropriedade: string) 
         {
             super();
             this.Inicializar();
@@ -399,12 +399,12 @@ namespace Snebur.Dominio.Atributos
     export class PropriedadeIdentificadorProprietarioAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
         //#region Propriedades
-    
-        private _isTipoNullableRequerido : boolean = false;
-        private _isValorPadraoOnUpdate : boolean = false;
-        private _isPermitirValorGlboal : boolean = false;
-        private _valorGlobal : string = null;
-    
+
+        private _isTipoNullableRequerido: boolean = false;
+        private _isValorPadraoOnUpdate: boolean = false;
+        private _isPermitirValorGlboal: boolean = false;
+        private _valorGlobal: string = null;
+
         public get IsTipoNullableRequerido(): boolean 
         {
             return this._isTipoNullableRequerido;
@@ -414,7 +414,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
         }
-    
+
         public get IsValorPadraoOnUpdate(): boolean 
         {
             return this._isValorPadraoOnUpdate;
@@ -424,7 +424,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
         }
-    
+
         public get IsPermitirValorGlboal(): boolean 
         {
             return this._isPermitirValorGlboal;
@@ -434,7 +434,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsPermitirValorGlboal", this._isPermitirValorGlboal, this._isPermitirValorGlboal = value);
         }
-    
+
         public get ValorGlobal(): string 
         {
             return this._valorGlobal;
@@ -445,9 +445,9 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("ValorGlobal", this._valorGlobal, this._valorGlobal = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<PropriedadeIdentificadorProprietarioAttribute>) 
         {
             super(inicializador);
@@ -458,10 +458,10 @@ namespace Snebur.Dominio.Atributos
     export class RotuloAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _rotulo : string = null;
-        private _rotuloPlural : string = null;
-    
+
+        private _rotulo: string = null;
+        private _rotuloPlural: string = null;
+
         public get Rotulo(): string 
         {
             return this._rotulo;
@@ -471,7 +471,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Rotulo", this._rotulo, this._rotulo = value);
         }
-    
+
         public get RotuloPlural(): string 
         {
             return this._rotuloPlural;
@@ -482,10 +482,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("RotuloPlural", this._rotuloPlural, this._rotuloPlural = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( rotulo : string ,  rotuloPlural? : string ) 
+
+        public constructor(rotulo: string, rotuloPlural?: string) 
         {
             super();
             this.Inicializar();
@@ -497,7 +497,7 @@ namespace Snebur.Dominio.Atributos
     export class EnumTSString extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<EnumTSString>) 
         {
             super(inicializador);
@@ -508,9 +508,9 @@ namespace Snebur.Dominio.Atributos
     export class PropriedadeTSEspecializadaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-    
+
+        private _nomePropriedade: string = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -521,10 +521,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedade : string ) 
+
+        public constructor(nomePropriedade: string) 
         {
             super();
             this.Inicializar();
@@ -535,9 +535,9 @@ namespace Snebur.Dominio.Atributos
     export class ValorEnumStringAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Propriedades
-    
-        private _valor : string = null;
-    
+
+        private _valor: string = null;
+
         public get Valor(): string 
         {
             return this._valor;
@@ -548,10 +548,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( valor : string ) 
+
+        public constructor(valor: string) 
         {
             super();
             this.Inicializar();
@@ -562,7 +562,7 @@ namespace Snebur.Dominio.Atributos
     export class BaseRelacaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<BaseRelacaoAttribute>) 
         {
             super(inicializador);
@@ -573,12 +573,12 @@ namespace Snebur.Dominio.Atributos
     export class ValorPadraoDataHoraServidorAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
         //#region Propriedades
-    
-        private _isDataHoraUTC : boolean = false;
-        private _isAceitarAtualizacao : boolean = false;
-        private _isValorPadraoOnUpdate : boolean = false;
-        private _isTipoNullableRequerido : boolean = false;
-    
+
+        private _isDataHoraUTC: boolean = false;
+        private _isAceitarAtualizacao: boolean = false;
+        private _isValorPadraoOnUpdate: boolean = false;
+        private _isTipoNullableRequerido: boolean = false;
+
         public get IsDataHoraUTC(): boolean 
         {
             return this._isDataHoraUTC;
@@ -588,7 +588,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsDataHoraUTC", this._isDataHoraUTC, this._isDataHoraUTC = value);
         }
-    
+
         public get IsAceitarAtualizacao(): boolean 
         {
             return this._isAceitarAtualizacao;
@@ -598,7 +598,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsAceitarAtualizacao", this._isAceitarAtualizacao, this._isAceitarAtualizacao = value);
         }
-    
+
         public get IsValorPadraoOnUpdate(): boolean 
         {
             return this._isValorPadraoOnUpdate;
@@ -608,7 +608,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
         }
-    
+
         public get IsTipoNullableRequerido(): boolean 
         {
             return this._isTipoNullableRequerido;
@@ -619,9 +619,9 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor() 
         {
             super();
@@ -631,10 +631,10 @@ namespace Snebur.Dominio.Atributos
     export class ValorPadraoIPAttribute extends Snebur.Dominio.Atributos.SomenteLeituraAttribute implements Snebur.Dominio.Atributos.IBaseValorPadrao 
     {
         //#region Propriedades
-    
-        private _isValorPadraoOnUpdate : boolean = false;
-        private _isTipoNullableRequerido : boolean = false;
-    
+
+        private _isValorPadraoOnUpdate: boolean = false;
+        private _isTipoNullableRequerido: boolean = false;
+
         public get IsValorPadraoOnUpdate(): boolean 
         {
             return this._isValorPadraoOnUpdate;
@@ -644,7 +644,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsValorPadraoOnUpdate", this._isValorPadraoOnUpdate, this._isValorPadraoOnUpdate = value);
         }
-    
+
         public get IsTipoNullableRequerido(): boolean 
         {
             return this._isTipoNullableRequerido;
@@ -655,9 +655,9 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("IsTipoNullableRequerido", this._isTipoNullableRequerido, this._isTipoNullableRequerido = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor() 
         {
             super();
@@ -667,7 +667,7 @@ namespace Snebur.Dominio.Atributos
     export abstract class RelacaoChaveEstrangeiraAttribute extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
     {
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<RelacaoChaveEstrangeiraAttribute>) 
         {
             super(inicializador);
@@ -677,9 +677,9 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoFilhosAttribute extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
     {
         //#region Propriedades
-    
-        private _nomePropriedadeChaveEstrangeira : string = null;
-    
+
+        private _nomePropriedadeChaveEstrangeira: string = null;
+
         public get NomePropriedadeChaveEstrangeira(): string 
         {
             return this._nomePropriedadeChaveEstrangeira;
@@ -690,10 +690,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedadeChaveEstrangeira", this._nomePropriedadeChaveEstrangeira, this._nomePropriedadeChaveEstrangeira = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedadeChaveEstrangeira : string ) 
+
+        public constructor(nomePropriedadeChaveEstrangeira: string) 
         {
             super();
             this._nomePropriedadeChaveEstrangeira = nomePropriedadeChaveEstrangeira;
@@ -703,9 +703,9 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoNnAttribute extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
     {
         //#region Propriedades
-    
-        private _nomeTipoEntidadeRelacao : string = null;
-    
+
+        private _nomeTipoEntidadeRelacao: string = null;
+
         public get NomeTipoEntidadeRelacao(): string 
         {
             return this._nomeTipoEntidadeRelacao;
@@ -716,10 +716,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomeTipoEntidadeRelacao", this._nomeTipoEntidadeRelacao, this._nomeTipoEntidadeRelacao = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomeTipoEntidadeRelacao : string ) 
+
+        public constructor(nomeTipoEntidadeRelacao: string) 
         {
             super();
             this._nomeTipoEntidadeRelacao = nomeTipoEntidadeRelacao;
@@ -729,9 +729,9 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoUmUmReversaAttribute extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
     {
         //#region Propriedades
-    
-        private _nomePropriedadeChaveEstrangeiraReversa : string = null;
-    
+
+        private _nomePropriedadeChaveEstrangeiraReversa: string = null;
+
         public get NomePropriedadeChaveEstrangeiraReversa(): string 
         {
             return this._nomePropriedadeChaveEstrangeiraReversa;
@@ -742,10 +742,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedadeChaveEstrangeiraReversa", this._nomePropriedadeChaveEstrangeiraReversa, this._nomePropriedadeChaveEstrangeiraReversa = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedadeChaveEstrangeiraReversa : string ) 
+
+        public constructor(nomePropriedadeChaveEstrangeiraReversa: string) 
         {
             super();
             this._nomePropriedadeChaveEstrangeiraReversa = nomePropriedadeChaveEstrangeiraReversa;
@@ -755,10 +755,10 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoPaiAttribute extends Snebur.Dominio.Atributos.RelacaoChaveEstrangeiraAttribute implements Snebur.Dominio.Atributos.IIgnorarAlerta 
     {
         //#region Propriedades
-    
-        private _ignorarAlerta : boolean = false;
-        private _tipoExclusao : Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao = 0;
-    
+
+        private _ignorarAlerta: boolean = false;
+        private _tipoExclusao: Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao = -1;
+
         public get IgnorarAlerta(): boolean 
         {
             return this._ignorarAlerta;
@@ -768,7 +768,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IgnorarAlerta", this._ignorarAlerta, this._ignorarAlerta = value);
         }
-    
+
         public get TipoExclusao(): Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao 
         {
             return this._tipoExclusao;
@@ -779,10 +779,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("TipoExclusao", this._tipoExclusao, this._tipoExclusao = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tipoExclusao : Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao ) 
+
+        public constructor(tipoExclusao: Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao) 
         {
             super();
             this.Inicializar();
@@ -793,10 +793,10 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoUmUmAttribute extends Snebur.Dominio.Atributos.RelacaoChaveEstrangeiraAttribute implements Snebur.Dominio.Atributos.IIgnorarAlerta 
     {
         //#region Propriedades
-    
-        private _ignorarAlerta : boolean = false;
-        private _tipoExclusao : Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao = 0;
-    
+
+        private _ignorarAlerta: boolean = false;
+        private _tipoExclusao: Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao = -1;
+
         public get IgnorarAlerta(): boolean 
         {
             return this._ignorarAlerta;
@@ -806,7 +806,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IgnorarAlerta", this._ignorarAlerta, this._ignorarAlerta = value);
         }
-    
+
         public get TipoExclusao(): Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao 
         {
             return this._tipoExclusao;
@@ -817,9 +817,9 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("TipoExclusao", this._tipoExclusao, this._tipoExclusao = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<RelacaoUmUmAttribute>) 
         {
             super(inicializador);
@@ -830,9 +830,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoCredencialAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacaoAsync
     {
         //#region Propriedades
-    
-        private _nomePropriedadeIdentificador : string = null;
-    
+
+        private _nomePropriedadeIdentificador: string = null;
+
         public get NomePropriedadeIdentificador(): string 
         {
             return this._nomePropriedadeIdentificador;
@@ -842,19 +842,19 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeIdentificador", this._nomePropriedadeIdentificador, this._nomePropriedadeIdentificador = value);
         }
-    
-        public static MensagemValidacaoSenhaIncorreta : string = "Senha incorreta. "; 
-    
-        public static MensagemValidacaoUsuarioNaoExiste : string = "O {0} '{1}' não existe."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_SENHA_INCORRETA : string = "MensagemValidacaoSenhaIncorreta"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_USUARIO_NAO_EXISTE : string = "MensagemValidacaoUsuarioNaoExiste"; 
+
+        public static MensagemValidacaoSenhaIncorreta: string = "Senha incorreta. ";
+
+        public static MensagemValidacaoUsuarioNaoExiste: string = "O {0} '{1}' não existe.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_SENHA_INCORRETA: string = "MensagemValidacaoSenhaIncorreta";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_USUARIO_NAO_EXISTE: string = "MensagemValidacaoUsuarioNaoExiste";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedadeIdentificador : string ) 
+
+        public constructor(nomePropriedadeIdentificador: string) 
         {
             super();
             this.Inicializar();
@@ -865,9 +865,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoIdenticadorUsuarioAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacaoAsync
     {
         //#region Propriedades
-    
-        private _isNovoIdentificador : boolean = false;
-    
+
+        private _isNovoIdentificador: boolean = false;
+
         public get IsNovoIdentificador(): boolean 
         {
             return this._isNovoIdentificador;
@@ -877,19 +877,19 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsNovoIdentificador", this._isNovoIdentificador, this._isNovoIdentificador = value);
         }
-    
-        public static MensagemValidacaoIdentificador : string = "O {0} '{1}' não existe."; 
-    
-        public static MensagemValidacaoNovoIdentificador : string = "O {0} '{1}' já existe."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_IDENTIFICADOR : string = "MensagemValidacaoIdentificador"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NOVO_IDENTIFICADOR : string = "MensagemValidacaoNovoIdentificador"; 
+
+        public static MensagemValidacaoIdentificador: string = "O {0} '{1}' não existe.";
+
+        public static MensagemValidacaoNovoIdentificador: string = "O {0} '{1}' já existe.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_IDENTIFICADOR: string = "MensagemValidacaoIdentificador";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NOVO_IDENTIFICADOR: string = "MensagemValidacaoNovoIdentificador";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( isNovoIdentificador : boolean ) 
+
+        public constructor(isNovoIdentificador: boolean) 
         {
             super();
             this.Inicializar();
@@ -900,14 +900,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoUnicoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacaoAsync
     {
         //#region Propriedades
-    
-        private _isPermitirDuplicarNulo : boolean = false;
-        private _isPermitirDuplicarZero : boolean = false;
-        private _tipoEntidade : r.BaseTipo | string = null;
-        private _nomePropriedadeFiltro : string = null;
-        private _valorPropriedadeFiltro : any = null;
-        private _operadorFiltro : Snebur.Dominio.Atributos.EnumOperadorComparacao = 0;
-    
+
+        private _isPermitirDuplicarNulo: boolean = false;
+        private _isPermitirDuplicarZero: boolean = false;
+        private _tipoEntidade: r.BaseTipo | string = null;
+        private _nomePropriedadeFiltro: string = null;
+        private _valorPropriedadeFiltro: any = null;
+        private _operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao = -1;
+
         public get IsPermitirDuplicarNulo(): boolean 
         {
             return this._isPermitirDuplicarNulo;
@@ -917,7 +917,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsPermitirDuplicarNulo", this._isPermitirDuplicarNulo, this._isPermitirDuplicarNulo = value);
         }
-    
+
         public get IsPermitirDuplicarZero(): boolean 
         {
             return this._isPermitirDuplicarZero;
@@ -927,7 +927,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsPermitirDuplicarZero", this._isPermitirDuplicarZero, this._isPermitirDuplicarZero = value);
         }
-    
+
         public get TipoEntidade(): r.BaseTipo | string 
         {
             return this._tipoEntidade;
@@ -937,7 +937,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TipoEntidade", this._tipoEntidade, this._tipoEntidade = value);
         }
-    
+
         public get NomePropriedadeFiltro(): string 
         {
             return this._nomePropriedadeFiltro;
@@ -947,7 +947,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeFiltro", this._nomePropriedadeFiltro, this._nomePropriedadeFiltro = value);
         }
-    
+
         public get ValorPropriedadeFiltro(): any 
         {
             return this._valorPropriedadeFiltro;
@@ -957,7 +957,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ValorPropriedadeFiltro", this._valorPropriedadeFiltro, this._valorPropriedadeFiltro = value);
         }
-    
+
         public get OperadorFiltro(): Snebur.Dominio.Atributos.EnumOperadorComparacao 
         {
             return this._operadorFiltro;
@@ -967,15 +967,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("OperadorFiltro", this._operadorFiltro, this._operadorFiltro = value);
         }
-    
-        public static MensagemValidacao : string = "O {0} '{1}' já existe."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O {0} '{1}' já existe.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tipoEntidade : r.BaseTipo | string ,  isPermitirDuplicarNulo : boolean ,  isPermitirDuplicarZero : boolean ,  nomePropriedadeFiltro : string ,  valorPropriedadeFiltro : any ,  operadorFiltro : Snebur.Dominio.Atributos.EnumOperadorComparacao ) 
+
+        public constructor(tipoEntidade: r.BaseTipo | string, isPermitirDuplicarNulo: boolean, isPermitirDuplicarZero: boolean, nomePropriedadeFiltro: string, valorPropriedadeFiltro: any, operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
         {
             super();
             this.Inicializar();
@@ -991,11 +991,11 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoUnicoCompostaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacaoAsync
     {
         //#region Propriedades
-    
-        private _tipoEntidade : r.BaseTipo | string = null;
-        private _expressoesPropriedadeFiltro : Array<string> =  new Array<string>();
-        private _isCriarIndicesNomeBanco : boolean = false;
-    
+
+        private _tipoEntidade: r.BaseTipo | string = null;
+        private _expressoesPropriedadeFiltro: Array<string> = new Array<string>();
+        private _isCriarIndicesNomeBanco: boolean = false;
+
         public get TipoEntidade(): r.BaseTipo | string 
         {
             return this._tipoEntidade;
@@ -1005,7 +1005,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TipoEntidade", this._tipoEntidade, this._tipoEntidade = value);
         }
-    
+
         public get ExpressoesPropriedadeFiltro(): Array<string> 
         {
             return this._expressoesPropriedadeFiltro;
@@ -1015,7 +1015,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ExpressoesPropriedadeFiltro", this._expressoesPropriedadeFiltro, this._expressoesPropriedadeFiltro = value);
         }
-    
+
         public get IsCriarIndicesNomeBanco(): boolean 
         {
             return this._isCriarIndicesNomeBanco;
@@ -1025,15 +1025,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsCriarIndicesNomeBanco", this._isCriarIndicesNomeBanco, this._isCriarIndicesNomeBanco = value);
         }
-    
-        public static MensagemValidacao : string = "O {0} '{1}' já existe."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O {0} '{1}' já existe.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tipoEntidade : r.BaseTipo | string ,  expressoesPropriedadeFiltro : Array<string> ) 
+
+        public constructor(tipoEntidade: r.BaseTipo | string, expressoesPropriedadeFiltro: Array<string>) 
         {
             super();
             this.Inicializar();
@@ -1045,11 +1045,11 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoBase36Attribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _isPermitirEspaco : boolean = false;
-        private _isIgnorarCase : boolean = false;
-        private _caracteresExtra : string = null;
-    
+
+        private _isPermitirEspaco: boolean = false;
+        private _isIgnorarCase: boolean = false;
+        private _caracteresExtra: string = null;
+
         public get IsPermitirEspaco(): boolean 
         {
             return this._isPermitirEspaco;
@@ -1059,7 +1059,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsPermitirEspaco", this._isPermitirEspaco, this._isPermitirEspaco = value);
         }
-    
+
         public get IsIgnorarCase(): boolean 
         {
             return this._isIgnorarCase;
@@ -1069,7 +1069,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsIgnorarCase", this._isIgnorarCase, this._isIgnorarCase = value);
         }
-    
+
         public get CaracteresExtra(): string 
         {
             return this._caracteresExtra;
@@ -1079,15 +1079,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("CaracteresExtra", this._caracteresExtra, this._caracteresExtra = value);
         }
-    
-        public static MensagemValidacao : string = "O campo {0} deve conter apenas letras de A a Z e números de 0 a 9."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} deve conter apenas letras de A a Z e números de 0 a 9.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( isPermitirEspaco : boolean ,  isIgnorarCase : boolean ,  caracteresExtra : string ) 
+
+        public constructor(isPermitirEspaco: boolean, isIgnorarCase: boolean, caracteresExtra: string) 
         {
             super();
             this.Inicializar();
@@ -1100,14 +1100,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoCepAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoCepAttribute>) 
         {
             super(inicializador);
@@ -1118,14 +1118,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoCnpjAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoCnpjAttribute>) 
         {
             super(inicializador);
@@ -1136,10 +1136,10 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoComparacaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _valor : any = null;
-        private _operador : Snebur.Dominio.Atributos.EnumOperadorComparacao = 0;
-    
+
+        private _valor: any = null;
+        private _operador: Snebur.Dominio.Atributos.EnumOperadorComparacao = -1;
+
         public get Valor(): any 
         {
             return this._valor;
@@ -1149,7 +1149,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Valor", this._valor, this._valor = value);
         }
-    
+
         public get Operador(): Snebur.Dominio.Atributos.EnumOperadorComparacao 
         {
             return this._operador;
@@ -1159,15 +1159,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Operador", this._operador, this._operador = value);
         }
-    
-        public static MensagemValidacao : string = "O {0} deve ser {1} à '{2}' "; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O {0} deve ser {1} à '{2}' ";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( valor : any ,  operador : Snebur.Dominio.Atributos.EnumOperadorComparacao ) 
+
+        public constructor(valor: any, operador: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
         {
             super();
             this.Inicializar();
@@ -1179,9 +1179,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoConfirmacaoSenhaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _nomePropriedadeSenha : string = null;
-    
+
+        private _nomePropriedadeSenha: string = null;
+
         public get NomePropriedadeSenha(): string 
         {
             return this._nomePropriedadeSenha;
@@ -1191,15 +1191,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeSenha", this._nomePropriedadeSenha, this._nomePropriedadeSenha = value);
         }
-    
-        public static MensagemValidacao : string = "A {0} é invalida."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "A {0} é invalida.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedadeSenha : string ) 
+
+        public constructor(nomePropriedadeSenha: string) 
         {
             super();
             this.Inicializar();
@@ -1210,14 +1210,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoCpfAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoCpfAttribute>) 
         {
             super(inicializador);
@@ -1228,14 +1228,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoCpfOuCnpjAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoCpfOuCnpjAttribute>) 
         {
             super(inicializador);
@@ -1246,14 +1246,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDataAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _dataMaxima : Date = null;
-        private _dataMinima : Date = null;
-        private _tipoData : Snebur.Dominio.EnumTipoData = 0;
-        private _isPrimeiraHoraDoDia : boolean = false;
-        private _isUltimaHoraDoDia : boolean = false;
-        private _isHoraFimD : boolean = false;
-    
+
+        private _dataMaxima: Date = null;
+        private _dataMinima: Date = null;
+        private _tipoData: Snebur.Dominio.EnumTipoData = 0;
+        private _isPrimeiraHoraDoDia: boolean = false;
+        private _isUltimaHoraDoDia: boolean = false;
+        private _isHoraFimD: boolean = false;
+
         public get DataMaxima(): Date 
         {
             return this._dataMaxima;
@@ -1263,7 +1263,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("DataMaxima", this._dataMaxima, this._dataMaxima = value);
         }
-    
+
         public get DataMinima(): Date 
         {
             return this._dataMinima;
@@ -1273,7 +1273,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("DataMinima", this._dataMinima, this._dataMinima = value);
         }
-    
+
         public get TipoData(): Snebur.Dominio.EnumTipoData 
         {
             return this._tipoData;
@@ -1283,7 +1283,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TipoData", this._tipoData, this._tipoData = value);
         }
-    
+
         public get IsPrimeiraHoraDoDia(): boolean 
         {
             return this._isPrimeiraHoraDoDia;
@@ -1293,7 +1293,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsPrimeiraHoraDoDia", this._isPrimeiraHoraDoDia, this._isPrimeiraHoraDoDia = value);
         }
-    
+
         public get IsUltimaHoraDoDia(): boolean 
         {
             return this._isUltimaHoraDoDia;
@@ -1303,7 +1303,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsUltimaHoraDoDia", this._isUltimaHoraDoDia, this._isUltimaHoraDoDia = value);
         }
-    
+
         public get IsHoraFimD(): boolean 
         {
             return this._isHoraFimD;
@@ -1313,15 +1313,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsHoraFimD", this._isHoraFimD, this._isHoraFimD = value);
         }
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tipoData : Snebur.Dominio.EnumTipoData ,  dataMinima? : Date ,  dataMaxima? : Date ) 
+
+        public constructor(tipoData: Snebur.Dominio.EnumTipoData, dataMinima?: Date, dataMaxima?: Date) 
         {
             super();
             this.Inicializar();
@@ -1334,9 +1334,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDataExpiracaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _nomePropriedadeDataPublicacao : string = null;
-    
+
+        private _nomePropriedadeDataPublicacao: string = null;
+
         public get NomePropriedadeDataPublicacao(): string 
         {
             return this._nomePropriedadeDataPublicacao;
@@ -1346,19 +1346,19 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropriedadeDataPublicacao", this._nomePropriedadeDataPublicacao, this._nomePropriedadeDataPublicacao = value);
         }
-    
-        public static MensagemValidacao : string = "A '{0}' deve ser superior a data de publicação."; 
-    
-        public static MensagemValidacaoComposta : string = "A '{0}' deve ser superior à '{1}'."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_COMPOSTA : string = "MensagemValidacaoComposta"; 
+
+        public static MensagemValidacao: string = "A '{0}' deve ser superior a data de publicação.";
+
+        public static MensagemValidacaoComposta: string = "A '{0}' deve ser superior à '{1}'.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_COMPOSTA: string = "MensagemValidacaoComposta";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedadeDataPublicacao : string ) 
+
+        public constructor(nomePropriedadeDataPublicacao: string) 
         {
             super();
             this.Inicializar();
@@ -1369,14 +1369,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDataNascimentoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoDataNascimentoAttribute>) 
         {
             super(inicializador);
@@ -1387,14 +1387,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDataPublicacaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "A '{0}' deve ser superior ou igual à data de hoje."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "A '{0}' deve ser superior ou igual à data de hoje.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoDataPublicacaoAttribute>) 
         {
             super(inicializador);
@@ -1405,14 +1405,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDominioAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoDominioAttribute>) 
         {
             super(inicializador);
@@ -1423,14 +1423,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoEmailAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoEmailAttribute>) 
         {
             super(inicializador);
@@ -1441,14 +1441,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoEmailOuTelefoneAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoEmailOuTelefoneAttribute>) 
         {
             super(inicializador);
@@ -1459,14 +1459,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoGuidAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoGuidAttribute>) 
         {
             super(inicializador);
@@ -1477,14 +1477,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoIndentificador extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoIndentificador>) 
         {
             super(inicializador);
@@ -1495,14 +1495,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoInteiroAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoInteiroAttribute>) 
         {
             super(inicializador);
@@ -1513,14 +1513,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoIPAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O ip {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O ip {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoIPAttribute>) 
         {
             super(inicializador);
@@ -1531,14 +1531,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoLongoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoLongoAttribute>) 
         {
             super(inicializador);
@@ -1549,14 +1549,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoMdr5Attribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoMdr5Attribute>) 
         {
             super(inicializador);
@@ -1567,12 +1567,12 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoMoedaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _aceitarNegativo : boolean = false;
-        private _aceitarNulo : boolean = false;
-        private _valorMaximo : number = 0;
-        private _valorMinimo : number = 0;
-    
+
+        private _aceitarNegativo: boolean = false;
+        private _aceitarNulo: boolean = false;
+        private _valorMaximo: number = 0;
+        private _valorMinimo: number = 0;
+
         public get AceitarNegativo(): boolean 
         {
             return this._aceitarNegativo;
@@ -1582,7 +1582,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("AceitarNegativo", this._aceitarNegativo, this._aceitarNegativo = value);
         }
-    
+
         public get AceitarNulo(): boolean 
         {
             return this._aceitarNulo;
@@ -1592,7 +1592,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("AceitarNulo", this._aceitarNulo, this._aceitarNulo = value);
         }
-    
+
         public get ValorMaximo(): number 
         {
             return this._valorMaximo;
@@ -1602,7 +1602,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ValorMaximo", this._valorMaximo, this._valorMaximo = value);
         }
-    
+
         public get ValorMinimo(): number 
         {
             return this._valorMinimo;
@@ -1612,29 +1612,29 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ValorMinimo", this._valorMinimo, this._valorMinimo = value);
         }
-    
-        public static MensagemValidacaoPadrao : string = "O valor campo {0} é invalido."; 
-    
-        public static MensagemValidacaoNegativa : string = "O valor do campo {0} não pode ser negativo"; 
-    
-        public static MensagemValidacaoNaoNulo : string = "O  valor do campo {0} não pode ser zero"; 
-    
-        public static MensagemValidacaoValorMaximo : string = "O  valor do campo {0} não pode ser superior a {1}"; 
-    
-        public static MensagemValidacaoValorMinimo : string = "O  valor do campo {0} não pode ser inferior a {1}"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NEGATIVA : string = "MensagemValidacaoNegativa"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NAO_NULO : string = "MensagemValidacaoNaoNulo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_VALOR_MAXIMO : string = "MensagemValidacaoValorMaximo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_VALOR_MINIMO : string = "MensagemValidacaoValorMinimo"; 
+
+        public static MensagemValidacaoPadrao: string = "O valor campo {0} é invalido.";
+
+        public static MensagemValidacaoNegativa: string = "O valor do campo {0} não pode ser negativo";
+
+        public static MensagemValidacaoNaoNulo: string = "O  valor do campo {0} não pode ser zero";
+
+        public static MensagemValidacaoValorMaximo: string = "O  valor do campo {0} não pode ser superior a {1}";
+
+        public static MensagemValidacaoValorMinimo: string = "O  valor do campo {0} não pode ser inferior a {1}";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NEGATIVA: string = "MensagemValidacaoNegativa";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_NAO_NULO: string = "MensagemValidacaoNaoNulo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_VALOR_MAXIMO: string = "MensagemValidacaoValorMaximo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_VALOR_MINIMO: string = "MensagemValidacaoValorMinimo";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( aceitarNulo : boolean ,  aceitarNegativo : boolean ,  valorMinimo : number ,  valorMaximo : number ) 
+
+        public constructor(aceitarNulo: boolean, aceitarNegativo: boolean, valorMinimo: number, valorMaximo: number) 
         {
             super();
             this.Inicializar();
@@ -1648,14 +1648,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoNomeCompletoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "Informe seu nome completo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "Informe seu nome completo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoNomeCompletoAttribute>) 
         {
             super(inicializador);
@@ -1666,10 +1666,10 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoPalavraTamanhoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _tamanhoMinimo : number = 0;
-        private _tamanhoMaximo : number = 0;
-    
+
+        private _tamanhoMinimo: number = 0;
+        private _tamanhoMaximo: number = 0;
+
         public get TamanhoMinimo(): number 
         {
             return this._tamanhoMinimo;
@@ -1679,7 +1679,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMinimo", this._tamanhoMinimo, this._tamanhoMinimo = value);
         }
-    
+
         public get TamanhoMaximo(): number 
         {
             return this._tamanhoMaximo;
@@ -1689,23 +1689,23 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMaximo", this._tamanhoMaximo, this._tamanhoMaximo = value);
         }
-    
-        public static MensagemValidacaoMaximo : string = "A palavra '{0}' deve ter no máximo {1} caracteres."; 
-    
-        public static MensagemValidacaoMinimo : string = "A palavra '{0}' deve ter no mínimo {1} caracteres."; 
-    
-        public static MensagemValidacaoIntervalo : string = "O campo '{0}' deve ter entre {1} e {2} caracteres."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO : string = "MensagemValidacaoMaximo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO : string = "MensagemValidacaoMinimo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO : string = "MensagemValidacaoIntervalo"; 
+
+        public static MensagemValidacaoMaximo: string = "A palavra '{0}' deve ter no máximo {1} caracteres.";
+
+        public static MensagemValidacaoMinimo: string = "A palavra '{0}' deve ter no mínimo {1} caracteres.";
+
+        public static MensagemValidacaoIntervalo: string = "O campo '{0}' deve ter entre {1} e {2} caracteres.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO: string = "MensagemValidacaoMaximo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO: string = "MensagemValidacaoMinimo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO: string = "MensagemValidacaoIntervalo";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tamanhoMinimo : number ,  tamanhoMaximo : number ) 
+
+        public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
             this.Inicializar();
@@ -1717,14 +1717,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoPrimeiroNomeAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "Informe seu nome"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "Informe seu nome";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoPrimeiroNomeAttribute>) 
         {
             super(inicializador);
@@ -1735,14 +1735,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoRotaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "Rota invalida"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "Rota invalida";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoRotaAttribute>) 
         {
             super(inicializador);
@@ -1753,10 +1753,10 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoSenhaAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _tamanhoMinimo : number = 0;
-        private _tamanhoMaximo : number = 0;
-    
+
+        private _tamanhoMinimo: number = 0;
+        private _tamanhoMaximo: number = 0;
+
         public get TamanhoMinimo(): number 
         {
             return this._tamanhoMinimo;
@@ -1766,7 +1766,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMinimo", this._tamanhoMinimo, this._tamanhoMinimo = value);
         }
-    
+
         public get TamanhoMaximo(): number 
         {
             return this._tamanhoMaximo;
@@ -1776,23 +1776,23 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMaximo", this._tamanhoMaximo, this._tamanhoMaximo = value);
         }
-    
-        public static MensagemValidacaoMaximo : string = "O campo '{0}' deve ter no máximo {1} caracteres."; 
-    
-        public static MensagemValidacaoMinimo : string = "O campo '{0}' deve ter no mínimo {1} caracteres."; 
-    
-        public static MensagemValidacaoIntervalo : string = "O campo '{0}' deve ter entre {1} e {2} caracteres."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO : string = "MensagemValidacaoMaximo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO : string = "MensagemValidacaoMinimo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO : string = "MensagemValidacaoIntervalo"; 
+
+        public static MensagemValidacaoMaximo: string = "O campo '{0}' deve ter no máximo {1} caracteres.";
+
+        public static MensagemValidacaoMinimo: string = "O campo '{0}' deve ter no mínimo {1} caracteres.";
+
+        public static MensagemValidacaoIntervalo: string = "O campo '{0}' deve ter entre {1} e {2} caracteres.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO: string = "MensagemValidacaoMaximo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO: string = "MensagemValidacaoMinimo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO: string = "MensagemValidacaoIntervalo";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tamanhoMinimo : number ,  tamanhoMaximo : number ) 
+
+        public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
             this.Inicializar();
@@ -1804,14 +1804,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoSubDominio extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoSubDominio>) 
         {
             super(inicializador);
@@ -1822,14 +1822,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoTelefoneAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoTelefoneAttribute>) 
         {
             super(inicializador);
@@ -1840,9 +1840,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoTextoSomentoNumerosAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _isAceitarPontosSinais : boolean = false;
-    
+
+        private _isAceitarPontosSinais: boolean = false;
+
         public get IsAceitarPontosSinais(): boolean 
         {
             return this._isAceitarPontosSinais;
@@ -1852,15 +1852,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsAceitarPontosSinais", this._isAceitarPontosSinais, this._isAceitarPontosSinais = value);
         }
-    
-        public static MensagemValidacao : string = "A campo {0} é invalido (somente números)."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "A campo {0} é invalido (somente números).";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( isAceitarPontosSinais? : boolean ) 
+
+        public constructor(isAceitarPontosSinais?: boolean) 
         {
             super();
             this.Inicializar();
@@ -1871,14 +1871,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoUFAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoUFAttribute>) 
         {
             super(inicializador);
@@ -1889,14 +1889,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoUrlAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "A url {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "A url {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoUrlAttribute>) 
         {
             super(inicializador);
@@ -1907,14 +1907,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoVersaoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ValidacaoVersaoAttribute>) 
         {
             super(inicializador);
@@ -1925,7 +1925,7 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDominioDNSAttribute extends Snebur.Dominio.Atributos.ValidacaoDominioAttribute
     {
         //#region Construtor
-    
+
         public constructor() 
         {
             super();
@@ -1935,10 +1935,10 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoIntervaloAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _minimo : number = 0;
-        private _maximo : number = 0;
-    
+
+        private _minimo: number = 0;
+        private _maximo: number = 0;
+
         public get Minimo(): number 
         {
             return this._minimo;
@@ -1948,7 +1948,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Minimo", this._minimo, this._minimo = value);
         }
-    
+
         public get Maximo(): number 
         {
             return this._maximo;
@@ -1958,15 +1958,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("Maximo", this._maximo, this._maximo = value);
         }
-    
-        public static MensagemValidacao : string = "O campo {0} deve estar entre {1} e {2}."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} deve estar entre {1} e {2}.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( minimo : number ,  maximo : number ) 
+
+        public constructor(minimo: number, maximo: number) 
         {
             super();
             this._minimo = minimo;
@@ -1977,9 +1977,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoExpressaoRegularAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _expressaoRegular : string = null;
-    
+
+        private _expressaoRegular: string = null;
+
         public get ExpressaoRegular(): string 
         {
             return this._expressaoRegular;
@@ -1989,15 +1989,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ExpressaoRegular", this._expressaoRegular, this._expressaoRegular = value);
         }
-    
-        public static MensagemValidacao : string = "O campo {0} é invalido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} é invalido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( expressaoRegular : string ) 
+
+        public constructor(expressaoRegular: string) 
         {
             super();
             this._expressaoRegular = expressaoRegular;
@@ -2007,14 +2007,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoFlagsEnumRequeridoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} deve ser preenchido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} deve ser preenchido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor() 
         {
             super();
@@ -2024,12 +2024,12 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoRequeridoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _opcoesComparacaoAuxiliar : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null = null;
-        private _nomePropridadeAuxiliar : string = null;
-        private _isIgnorarValidacaoSeAuxiliarInvalido : boolean = false;
-        private _valorComparar : any = null;
-    
+
+        private _opcoesComparacaoAuxiliar: Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null = null;
+        private _nomePropridadeAuxiliar: string = null;
+        private _isIgnorarValidacaoSeAuxiliarInvalido: boolean = false;
+        private _valorComparar: any = null;
+
         public get OpcoesComparacaoAuxiliar(): Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar | null 
         {
             return this._opcoesComparacaoAuxiliar;
@@ -2039,7 +2039,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("OpcoesComparacaoAuxiliar", this._opcoesComparacaoAuxiliar, this._opcoesComparacaoAuxiliar = value);
         }
-    
+
         public get NomePropridadeAuxiliar(): string 
         {
             return this._nomePropridadeAuxiliar;
@@ -2049,7 +2049,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("NomePropridadeAuxiliar", this._nomePropridadeAuxiliar, this._nomePropridadeAuxiliar = value);
         }
-    
+
         public get IsIgnorarValidacaoSeAuxiliarInvalido(): boolean 
         {
             return this._isIgnorarValidacaoSeAuxiliarInvalido;
@@ -2059,7 +2059,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("IsIgnorarValidacaoSeAuxiliarInvalido", this._isIgnorarValidacaoSeAuxiliarInvalido, this._isIgnorarValidacaoSeAuxiliarInvalido = value);
         }
-    
+
         public get ValorComparar(): any 
         {
             return this._valorComparar;
@@ -2069,15 +2069,15 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("ValorComparar", this._valorComparar, this._valorComparar = value);
         }
-    
-        public static MensagemValidacao : string = "O campo {0} deve ser preenchido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} deve ser preenchido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( opcoesComparacaoAuxiliar? : Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar ,  nomePropridadeAuxiliar? : string ,  isIgnorarValidacaoSeAuxiliarInvalido? : boolean ,  valorComparar? : any ) 
+
+        public constructor(opcoesComparacaoAuxiliar?: Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar, nomePropridadeAuxiliar?: string, isIgnorarValidacaoSeAuxiliarInvalido?: boolean, valorComparar?: any) 
         {
             super();
             this._opcoesComparacaoAuxiliar = opcoesComparacaoAuxiliar;
@@ -2090,14 +2090,14 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoRequeridoDebugAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        public static MensagemValidacao : string = "O campo {0} deve ser preenchido."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO : string = "MensagemValidacao"; 
+
+        public static MensagemValidacao: string = "O campo {0} deve ser preenchido.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor() 
         {
             super();
@@ -2107,10 +2107,10 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoTextoTamanhoAttribute extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Propriedades
-    
-        private _tamanhoMinimo : number = 0;
-        private _tamanhoMaximo : number = 0;
-    
+
+        private _tamanhoMinimo: number = 0;
+        private _tamanhoMaximo: number = 0;
+
         public get TamanhoMinimo(): number 
         {
             return this._tamanhoMinimo;
@@ -2120,7 +2120,7 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMinimo", this._tamanhoMinimo, this._tamanhoMinimo = value);
         }
-    
+
         public get TamanhoMaximo(): number 
         {
             return this._tamanhoMaximo;
@@ -2130,23 +2130,23 @@ namespace Snebur.Dominio.Atributos
         {
             this.NotificarValorPropriedadeAlterada("TamanhoMaximo", this._tamanhoMaximo, this._tamanhoMaximo = value);
         }
-    
-        public static MensagemValidacaoMaximo : string = "O campo '{0}' deve ter no máximo {1} caracteres."; 
-    
-        public static MensagemValidacaoMinimo : string = "O campo '{0}' deve ter no mínimo {1} caracteres."; 
-    
-        public static MensagemValidacaoIntervalo : string = "O campo '{0}' deve ter entre {1} e {2} caracteres."; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO : string = "MensagemValidacaoMaximo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO : string = "MensagemValidacaoMinimo"; 
-    
-        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO : string = "MensagemValidacaoIntervalo"; 
+
+        public static MensagemValidacaoMaximo: string = "O campo '{0}' deve ter no máximo {1} caracteres.";
+
+        public static MensagemValidacaoMinimo: string = "O campo '{0}' deve ter no mínimo {1} caracteres.";
+
+        public static MensagemValidacaoIntervalo: string = "O campo '{0}' deve ter entre {1} e {2} caracteres.";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MAXIMO: string = "MensagemValidacaoMaximo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_MINIMO: string = "MensagemValidacaoMinimo";
+
+        public static IDENTIFICADOR_MENSAGEM_VALIDACAO_INTERVALO: string = "MensagemValidacaoIntervalo";
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( tamanhoMinimo : number ,  tamanhoMaximo : number ) 
+
+        public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
             this._tamanhoMinimo = tamanhoMinimo;
@@ -2157,9 +2157,9 @@ namespace Snebur.Dominio.Atributos
     export class ChaveEstrangeiraAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio implements Snebur.Dominio.Atributos.IChaveEstrangeiraAttribute 
     {
         //#region Propriedades
-    
-        private _nomePropriedade : string = null;
-    
+
+        private _nomePropriedade: string = null;
+
         public get NomePropriedade(): string 
         {
             return this._nomePropriedade;
@@ -2170,10 +2170,10 @@ namespace Snebur.Dominio.Atributos
             this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
-        public constructor( nomePropriedade : string ) 
+
+        public constructor(nomePropriedade: string) 
         {
             super();
             this._nomePropriedade = nomePropriedade;
@@ -2183,7 +2183,7 @@ namespace Snebur.Dominio.Atributos
     export class OcultarColunaAttribute extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Construtor
-    
+
         public constructor() 
         {
             super();

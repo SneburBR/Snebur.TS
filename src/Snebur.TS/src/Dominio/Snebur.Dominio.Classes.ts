@@ -117,7 +117,7 @@ namespace Snebur.Comunicacao
         //#region Propriedades
 
         private _isSucesso: boolean = false;
-        private _resultado: Snebur.Dominio.EnumResultadoAutenticacao = 0;
+        private _resultado: Snebur.Dominio.EnumResultadoAutenticacao = -1
         private _isAlterarSenhaProximoAcesso: boolean = false;
         private _tempoEsperar: number = 0;
 
@@ -326,8 +326,8 @@ namespace Snebur.Dominio
         private _identificadorAplicacao: string = null;
         private _cultura: string = null;
         private _idioma: string = null;
-        private _plataforma: Snebur.Dominio.EnumPlataforma = 0;
-        private _tipoAplicacao: Snebur.Dominio.EnumTipoAplicacao = 0;
+        private _plataforma: Snebur.Dominio.EnumPlataforma = -1;
+        private _tipoAplicacao: Snebur.Dominio.EnumTipoAplicacao = -1;
         private _resolucao: Snebur.Dominio.Dimensao = new Snebur.Dominio.Dimensao();
         private _userAgent: string = null;
         private _navegador: Snebur.Dominio.Navegador = new Snebur.Dominio.Navegador();
