@@ -569,7 +569,7 @@ namespace Snebur
         {
             return null;
         }
-        if (!u.ValidacaoUtil.IsDefinido(expressaoFiltro))
+        if (expressaoFiltro == null)
         {
             return this[0];
         }
@@ -613,7 +613,7 @@ namespace Snebur
             let mensagem = "A coleção não contem elementos" + mensagens?.call(null).Vazia;
             throw new Erro(mensagem, this);
         }
-         
+
         if (this.length > 1)
         {
             let mensagem = "A coleção contem mais de um elemento. " + mensagens?.call(null).MaisDeUm;
@@ -694,7 +694,8 @@ namespace Snebur
 
     Array.prototype.IndexOf = function (this: Array<any>, obj: any, comprador?: IEqualityComparer)
     {
-        let isComparar = comprador && typeof comprador.Equals === "function";
+        const isComparar = comprador != null && typeof comprador.Equals === "function";
+
         let isEquals = obj && typeof ((obj as IEquals).Equals) === "function";
         if (!isEquals && !isComparar)
         {

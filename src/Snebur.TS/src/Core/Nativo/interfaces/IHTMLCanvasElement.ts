@@ -12,6 +12,6 @@ namespace Snebur.Nativo
 
         //toBlob(callback: (blob: Blob) => void, formato: d.EnumFormatoImagem, qualidade: number): void;
         //toBlob(callback: (result: Blob | null) => void, type?: string, ...arguments: any[]): void;
-
+        getContext2DRequired(): CanvasRenderingContext2D;
     }
 }

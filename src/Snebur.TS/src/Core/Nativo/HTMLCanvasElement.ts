@@ -35,4 +35,14 @@ HTMLCanvasElement.prototype.ToBlobAsync = (function (this: HTMLCanvasElement, ti
             resolver(blob);
         }, tipo, qualidade);
     });
-}); 
+});
+
+HTMLCanvasElement.prototype.getContext2DRequired = function (this: HTMLCanvasElement)
+{
+    const contexto = this.getContext("2d");
+    if (contexto == null)
+    {
+        throw new Error("Não foi possível obter o contexto 2D do canvas.");
+    }
+    return contexto;
+}
