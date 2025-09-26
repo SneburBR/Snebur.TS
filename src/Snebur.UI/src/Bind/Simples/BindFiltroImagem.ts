@@ -24,7 +24,7 @@
         private RetornarFiltroImagem(novoValor: EnumEfeitoImagem | string): EnumEfeitoImagem
         {
             const valorString = novoValor.toString();
-            if (u.EnumUtil.IsDefindo(EnumEfeitoImagem, valorString) && novoValor !== EnumEfeitoImagem.Desconhecido)
+            if (u.EnumUtil.IsDefindo(EnumEfeitoImagem, valorString) && novoValor !== EnumEfeitoImagem.Undefined)
             {
                 return u.EnumUtil.RetornarValor(EnumEfeitoImagem, novoValor as string);
             }

@@ -9,12 +9,12 @@ namespace Snebur.ServicoArquivo
     export class ResultadoServicoArquivo extends Snebur.Dominio.BaseDominio
     {
         //#region Propriedades
-    
-        private _id : number = 0;
-        private _isSucesso : boolean = false;
-        private _mensagemErro : string = null;
-        private _tipoErroServicoArquivo : Snebur.ServicoArquivo.EnumTipoErroServicoArquivo = 0;
-    
+
+        private _id: number = 0;
+        private _isSucesso: boolean = false;
+        private _mensagemErro: string = null;
+        private _tipoErroServicoArquivo: Snebur.ServicoArquivo.EnumTipoErroServicoArquivo = -1;
+
         public get Id(): number 
         {
             return this._id;
@@ -24,7 +24,7 @@ namespace Snebur.ServicoArquivo
         {
             this.NotificarValorPropriedadeAlterada("Id", this._id, this._id = value);
         }
-    
+
         public get IsSucesso(): boolean 
         {
             return this._isSucesso;
@@ -34,7 +34,7 @@ namespace Snebur.ServicoArquivo
         {
             this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
-    
+
         public get MensagemErro(): string 
         {
             return this._mensagemErro;
@@ -44,7 +44,7 @@ namespace Snebur.ServicoArquivo
         {
             this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
-    
+
         public get TipoErroServicoArquivo(): Snebur.ServicoArquivo.EnumTipoErroServicoArquivo 
         {
             return this._tipoErroServicoArquivo;
@@ -55,9 +55,9 @@ namespace Snebur.ServicoArquivo
             this.NotificarValorPropriedadeAlterada("TipoErroServicoArquivo", this._tipoErroServicoArquivo, this._tipoErroServicoArquivo = value);
         }
         //#endregion
-    
+
         //#region Construtor
-    
+
         public constructor(inicializador?: Partial<ResultadoServicoArquivo>) 
         {
             super(inicializador);

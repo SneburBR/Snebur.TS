@@ -103,14 +103,14 @@ namespace Snebur.AcessoDados
         private _skip: number = 0;
         private _paginaAtual: number = 0;
         private _caminhoPropriedadeFuncao: string = null;
-        private _tipoFuncaoEnum: Snebur.AcessoDados.EnumTipoFuncao = Snebur.AcessoDados.EnumTipoFuncao.Nenhuma;
+        private _tipoFuncaoEnum: Snebur.AcessoDados.EnumTipoFuncao = -1;
         private _filtroGrupoE: Snebur.AcessoDados.FiltroGrupoE = new Snebur.AcessoDados.FiltroGrupoE();
         private _filtroGrupoOU: Snebur.AcessoDados.FiltroGrupoOU = new Snebur.AcessoDados.FiltroGrupoOU();
         private _ordenacoes: DicionarioSimples<Snebur.AcessoDados.Ordenacao> = new DicionarioSimples<Snebur.AcessoDados.Ordenacao>();
         private _relacoesAbertaFiltro: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
         private _relacoesAberta: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaEntidade>();
         private _colecoesAberta: DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao> = new DicionarioSimples<Snebur.AcessoDados.RelacaoAbertaColecao>();
-        private _propriedadesAbertas: Array<string> = new Array<string>();
+        private _propriedadesAbertas: Array<string> | null = new Array<string>();
         private _contarRegistros: boolean = false;
 
         public get NomeTipoEntidade(): string 
@@ -273,7 +273,7 @@ namespace Snebur.AcessoDados
             this.NotificarValorPropriedadeAlterada("ColecoesAberta", this._colecoesAberta, this._colecoesAberta = value);
         }
 
-        public get PropriedadesAbertas(): Array<string> 
+        public get PropriedadesAbertas(): Array<string> | null
         {
             return this._propriedadesAbertas;
         }

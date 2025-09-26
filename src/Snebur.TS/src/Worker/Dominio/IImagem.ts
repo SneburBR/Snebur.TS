@@ -7,6 +7,7 @@
     Grande = 16,
     Impressao = 32,
     Automatico = 999,
+    TEMP_Undefined = 0
 }
 
 interface IRecorte

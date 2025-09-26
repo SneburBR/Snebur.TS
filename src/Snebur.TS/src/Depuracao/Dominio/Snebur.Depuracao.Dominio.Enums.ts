@@ -1,29 +1,22 @@
 ﻿/*eslint-disable*/
-//@Namespace: Snebur.Depuracao
+//@Project: Snebur.Depuracao 
+//@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
-//@Globalizar: False
+//@Globalizar: False 
 //@Dominios dependentes: []
+//@Artifact: Enums
+//@DataHora: 2025-09-26 15:30:55
 
 namespace Snebur.Depuracao
 {
-    export enum EnumTipoMensagem
-    {
-        Ping = 1,
-        AtualizarEstiloCss = 2,
-        AtualizarControle = 3,
-    }
-    (EnumTipoMensagem as any).Rotulos = {};
-    (EnumTipoMensagem as any).Rotulos["Ping"] = "Ping";
-    (EnumTipoMensagem as any).Rotulos["AtualizarEstiloCss"] = "AtualizarEstiloCss";
-    (EnumTipoMensagem as any).Rotulos["AtualizarControle"] = "AtualizarControle";
-
     export enum EnumTipoLog
     {
+        Undefined = -1,
         Normal = 0,
         Alerta = 1,
         Erro = 2,
         Sucesso = 3,
-        Acao = 4,
+        Acao = 4
     }
     (EnumTipoLog as any).Rotulos = {};
     (EnumTipoLog as any).Rotulos["Normal"] = "Normal";
@@ -31,5 +24,16 @@ namespace Snebur.Depuracao
     (EnumTipoLog as any).Rotulos["Erro"] = "Erro";
     (EnumTipoLog as any).Rotulos["Sucesso"] = "Sucesso";
     (EnumTipoLog as any).Rotulos["Acao"] = "Acao";
-
+    export enum EnumTipoMensagem
+    {
+        Undefined = -1,
+        Ping = 1,
+        AtualizarEstiloCss = 2,
+        AtualizarControle = 3
+        , TEMP_Undefined = 0
+    }
+    (EnumTipoMensagem as any).Rotulos = {};
+    (EnumTipoMensagem as any).Rotulos["Ping"] = "Ping";
+    (EnumTipoMensagem as any).Rotulos["AtualizarEstiloCss"] = "AtualizarEstiloCss";
+    (EnumTipoMensagem as any).Rotulos["AtualizarControle"] = "AtualizarControle";
 }
