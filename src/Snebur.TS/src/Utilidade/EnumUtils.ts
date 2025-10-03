@@ -2,6 +2,8 @@
 {
     export class EnumUtil
     {
+        public static readonly UNDEFINED_VALUE = -1;
+
         public static RetornarValores<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
         {
             return EnumUtil.RetornarValoresEnum(construtorEnum);
@@ -10,7 +12,7 @@
         public static RetornarValoresEnum<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
         {
             const valores = Object.values(construtorEnum as any);
-            const valoresNumeros = valores.Where(x => typeof x === "number");
+            const valoresNumeros = valores.Where(x => typeof x === "number" && x !== EnumUtil.UNDEFINED_VALUE);
             if (valoresNumeros.Count > 0)
             {
                 return valoresNumeros;
@@ -216,41 +218,50 @@
         public static IsDefindo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum] | string | number): valor is TEnum[keyof TEnum]
         public static IsDefindo<TEnum extends object>(construtorEnum: TEnum, chaveOrValor: string | number | any): chaveOrValor is TEnum[keyof TEnum]
         {
-            if (typeof chaveOrValor === "number" || typeof chaveOrValor === "string")
-            {
-                const valor = (construtorEnum as any)[chaveOrValor];
-                if (valor === undefined)
-                {
-                    const isString = typeof chaveOrValor === "string";
-                    const chaves = Object.keys(construtorEnum);
-                    for (const itemChave of chaves)
-                    {
-                        const itemValor = (construtorEnum as any)[itemChave];
-                        if (itemValor === chaveOrValor)
-                        {
-                            return true;
-                        }
+            if (chaveOrValor == null)
+                return false;
 
-                        if (isString && typeof itemValor === "string" &&
-                            itemValor.toLowerCase() === (chaveOrValor as string).toLowerCase())
-                        {
-                            return true;
-                        }
+            if (chaveOrValor === EnumUtil.UNDEFINED_VALUE)
+                return false;
+
+
+            if (typeof chaveOrValor !== "number" && typeof chaveOrValor !== "string")
+            {
+                return false;
+            }
+
+            const valor = (construtorEnum as any)[chaveOrValor];
+            if (typeof valor === "string")
+            {
+                return (construtorEnum as any)[valor] === chaveOrValor;
+            }
+
+            if (typeof valor === "number")
+            {
+                if (valor === EnumUtil.UNDEFINED_VALUE)
+                    return false;
+
+                return (construtorEnum as any)[valor] === chaveOrValor;
+            }
+
+            if (valor === undefined)
+            {
+                const isString = typeof chaveOrValor === "string";
+                const chaves = Object.keys(construtorEnum);
+                for (const itemChave of chaves)
+                {
+                    const itemValor = (construtorEnum as any)[itemChave];
+                    if (itemValor === chaveOrValor)
+                    {
+                        return true;
+                    }
+
+                    if (isString && typeof itemValor === "string" &&
+                        itemValor.toLowerCase() === (chaveOrValor as string).toLowerCase())
+                    {
+                        return true;
                     }
                 }
-
-                if (typeof chaveOrValor === "number" &&
-                    typeof valor === "string")
-                {
-                    return (construtorEnum as any)[valor] === chaveOrValor;
-                }
-
-                if (typeof chaveOrValor === "string" &&
-                    typeof valor === "number")
-                {
-                    return (construtorEnum as any)[valor] === chaveOrValor;
-                }
-                return u.ValidacaoUtil.IsDefinido(valor);
             }
             return false;
         }

@@ -69,7 +69,7 @@
 
         //#region Partial
 
-        public static InicializarImagem(imagem: d.IImagem, arquivo: SnBlob, info: IInformacaoImagem): void
+        public static InicializarImagem(imagem: d.IImagem, arquivo: SnBlob, info: IInformacaoImagem | null): void
         {
             if (arquivo instanceof SnBlob)
             {

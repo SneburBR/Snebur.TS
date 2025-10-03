@@ -541,7 +541,7 @@
 
         private __RetornarResultacoConsultaEntiadesInternoAsync(callback: CallbackResultado<ListaEntidades<TEntidade>>): void
         {
-            this.__RetornarResultadoConsultaInternoAsync(function (callbackResposta: CallbackResultado<ListaEntidades<TEntidade>>, resultadoConsulta: ResultadoConsulta)
+            this.__RetornarResultadoConsultaInternoAsync(function (callbackResposta: CallbackResultado<List<TEntidade>>, resultadoConsulta: ResultadoConsulta)
             {
                 const entidades = resultadoConsulta.Entidades.Cast<TEntidade>();
                 //entidades.forEach(x=> x.__ControlePro)

@@ -135,7 +135,7 @@
             let dataDiaMes = dataInicio;
             for (let dia = 1; dia <= ultimoDiaMes; dia++)
             {
-                const feriado = feriados.Where(x => x.Data.Equals(dataDiaMes, u.OpcoesCompararData.Data, u.OpcoesCompararHora.Ignorar)).SingleOrDefault();
+                const feriado = feriados.Where(x => x.Data.Equals(dataDiaMes, u.EnumOpcoesCompararData.Data, u.OpcoesCompararHora.Ignorar)).SingleOrDefault();
                 diasMesViewModel.Add(new DiaMesViewModel(dataDiaMes, mesAtual, feriado));
                 dataDiaMes = dataDiaMes.AddDays(1);
             }

@@ -2,14 +2,15 @@
 {
     export enum EnumTipoPrimario
     {
-        Desconhecido = -1,
+        Undefined = -1,
+        Desconhecido = -100,
 
         void = 0,
 
         Boolean = 1,
 
         String = 2,
-        
+
         Integer = 3,
 
         Long = 4,
@@ -17,7 +18,7 @@
         Decimal = 5,
 
         Double = 6,
-        
+
         DateTime = 7,
 
         TimeSpan = 8,
@@ -29,7 +30,7 @@
         Object = 11,
 
         Single = 12,
-        
+
         Char = 13,
 
         Byte = 14

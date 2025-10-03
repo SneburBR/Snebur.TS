@@ -131,43 +131,43 @@ namespace Snebur.Utilidade
             }
         }
 
-        public static SaoIgual(dataHora1: Date, dataHora2: Date, opcoesData: OpcoesCompararData, opcoesHora: OpcoesCompararHora): boolean
+        public static SaoIgual(dataHora1: Date, dataHora2: Date, opcoesData: EnumOpcoesCompararData, opcoesHora: OpcoesCompararHora): boolean
         {
             let resultado = true;
 
             switch (opcoesData)
             {
-                case OpcoesCompararData.Data:
+                case EnumOpcoesCompararData.Data:
 
                     resultado = dataHora1.Year === dataHora2.Year &&
                         dataHora1.Month === dataHora2.Month &&
                         dataHora1.Day === dataHora2.Day;
                     break;
 
-                case OpcoesCompararData.Dia:
+                case EnumOpcoesCompararData.Dia:
 
                     resultado = dataHora1.Day === dataHora2.Day;
                     break;
 
-                case OpcoesCompararData.DiaMes:
+                case EnumOpcoesCompararData.DiaMes:
 
                     resultado = dataHora1.Day === dataHora2.Day &&
                         dataHora1.Month === dataHora2.Month;
                     break;
 
-                case OpcoesCompararData.MesAno:
+                case EnumOpcoesCompararData.MesAno:
 
                     resultado = dataHora1.Year === dataHora2.Year &&
                         dataHora1.Month === dataHora2.Month;
                     break;
-                case OpcoesCompararData.Ignorar:
+                case EnumOpcoesCompararData.Ignorar:
 
                     resultado = true;
                     break;
 
                 default:
 
-                    throw new ErroNaoSuportado(`Opções data não suportado ${EnumUtil.RetornarDescricao(OpcoesCompararData, opcoesData)} `);
+                    throw new ErroNaoSuportado(`Opções data não suportado ${EnumUtil.RetornarDescricao(EnumOpcoesCompararData, opcoesData)} `);
             }
             if (!resultado)
             {
@@ -225,7 +225,7 @@ namespace Snebur.Utilidade
                 Replace("T", " ");
         }
 
-        public static ExtrairDataString(dataString: string, isIgnorarErro: boolean, formatoData: EnumFormatoData =$Configuracao.FormatoData): [ano: number, mes: number, dia: number]
+        public static ExtrairDataString(dataString: string, isIgnorarErro: boolean, formatoData: EnumFormatoData = $Configuracao.FormatoData): [ano: number, mes: number, dia: number]
         {
             const partes = dataString.split("/");
             const [parte1, parte2, parte3] = [ConverterUtil.ParaInteiro(partes[0], true),

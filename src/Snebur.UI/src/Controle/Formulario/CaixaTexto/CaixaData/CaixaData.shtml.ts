@@ -24,7 +24,7 @@
 
         public override set Valor(value: Date)
         {
-            if (!this.Valor?.Equals(value, u.OpcoesCompararData.Data, u.OpcoesCompararHora.HoraMinutoSegundo))
+            if (!this.Valor?.Equals(value, u.EnumOpcoesCompararData.Data, u.OpcoesCompararHora.HoraMinutoSegundo))
             {
                 this.ElementoInput.value = FormatacaoUtil.FormatarData(value);
                 this.ElementoInput.dispatchEvent(new Event("change"));
@@ -54,7 +54,7 @@
 
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.BindData, this.CaminhoBind);
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Mascara, this.Mascara);
-           /* ElementoUtil.AdicionarAtributo(this.Elemento, AtributosHtml.Mascara, this.Mascara);*/
+            /* ElementoUtil.AdicionarAtributo(this.Elemento, AtributosHtml.Mascara, this.Mascara);*/
         }
 
         private AdicionarCaixaCalendario(): void
@@ -111,12 +111,12 @@
         //#endregion
     }
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface CaixaData
-	{
-	}
+    export interface CaixaData
+    {
+    }
 
-	//#endregion
+    //#endregion
 
 }

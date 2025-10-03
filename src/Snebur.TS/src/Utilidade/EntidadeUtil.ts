@@ -2,7 +2,7 @@
 {
     export class EntidadeUtil
     {
-        public static IsAlterouPropriedade(entidade: d.Entidade, nomePropriedade:string): boolean
+        public static IsAlterouPropriedade(entidade: d.Entidade, nomePropriedade: string): boolean
         {
             if (entidade.__PropriedadesAlteradas.ContainsKey(nomePropriedade))
             {
@@ -10,7 +10,7 @@
             }
 
             const propriedade = entidade.GetType().RetornarPropriedade(nomePropriedade);
-            if (propriedade?.Tipo.IsTipoCompleto )
+            if (propriedade?.Tipo.IsTipoCompleto)
             {
                 return propriedade.Tipo.Propriedades.Any(x => entidade.__PropriedadesAlteradas.ContainsKey(`${nomePropriedade}_${x.Nome}`));
             }
@@ -45,7 +45,7 @@
                 return atributoChaveEstrangeira;
             }
 
-            const atributoChaveEstrangeiraRelacaoUmUm = propriedade.Atributos.OfType(Snebur.Dominio.Atributos.ChaveEstrangeiraRelacaoUmUmAttribute).SingleOrDefault();
+            const atributoChaveEstrangeiraRelacaoUmUm = propriedade.Atributos.OfType(Snebur.Dominio.Atributos.ChaveEstrangeiraAttribute).SingleOrDefault();
             if (atributoChaveEstrangeiraRelacaoUmUm != null)
             {
                 return atributoChaveEstrangeiraRelacaoUmUm;

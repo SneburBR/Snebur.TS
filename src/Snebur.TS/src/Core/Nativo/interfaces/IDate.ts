@@ -28,7 +28,7 @@ namespace Snebur.Nativo
         readonly Month: d.EnumMes;
 
         readonly Year: number;
-        
+
         readonly YearShort: number;
 
         readonly DataZeroHora: Date;
@@ -36,7 +36,7 @@ namespace Snebur.Nativo
         readonly DataZeroHoraUTC: Date;
 
         readonly Utc: Date;
-         
+
         //Ticks: number;
 
         //TimeOfDay: Snebur.Core.TimeSpan;
@@ -69,7 +69,7 @@ namespace Snebur.Nativo
         AddYears(anos: number): Date;
 
         Equals(outraData: Date): boolean;
-        Equals(outraData: Date, opcoesData?: u.OpcoesCompararData, opcoesHora?: u.OpcoesCompararHora): boolean;
+        Equals(outraData: Date, opcoesData?: u.EnumOpcoesCompararData, opcoesHora?: u.OpcoesCompararHora): boolean;
 
         RetornarHashValidacaoUnico(): number;
 
@@ -78,7 +78,7 @@ namespace Snebur.Nativo
         readonly Ticks: number;
 
         Formatar(formado: EnumFormatacao): string;
-       
+
     }
 
     export interface IDateConstructor extends ITipo<Snebur.Reflexao.TipoPrimario>, IParse<Date>

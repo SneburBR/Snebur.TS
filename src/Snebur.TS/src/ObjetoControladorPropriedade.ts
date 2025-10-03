@@ -568,6 +568,23 @@
             (this as any)[nomeCampoPrivado] = novoValor;
         }
 
+        protected SetProperty(
+            propertyName: string,
+            currentValue: any,
+            newValue?: any,
+            entityPropertyName?: string | null,
+            complexTypePropertyName?: string | null): void
+        {
+            this.NotificarValorPropriedadeAlterada(propertyName,
+                currentValue,
+                newValue,
+                entityPropertyName,
+                complexTypePropertyName);
+        }
+
+
+
+
         public override Dispose(): void
         {
             super.Dispose();

@@ -24,7 +24,7 @@ namespace Snebur.Dominio.Atributos
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
             return u.Base36Util.IsBase36(
-                valorPropriedade, 
+                valorPropriedade,
                 this.IsPermitirEspaco,
                 this.IsIgnorarCase,
                 this.CaracteresExtra);

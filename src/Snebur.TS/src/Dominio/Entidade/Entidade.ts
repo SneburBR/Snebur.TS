@@ -11,7 +11,7 @@
         private __isIdentity__: boolean
 
         public readonly __IsSomenteLeitura: boolean = false;
-        
+
         //private _entidadeCloneSomenteId: Entidade;
 
         public get Id(): number
@@ -53,7 +53,7 @@
         {
             return this.Id === 0 || (!this.__isIdentity__ && this.__isNewEntity__);
         }
-         
+
         public override get __IsMontarValorAntigoInicial(): boolean
         {
             return true;
@@ -175,7 +175,17 @@
 
         }
 
-        protected NotificarValorPropriedadeAlteradaRelacao(nomePropriedade: string, antigoValor: any, novoValor: any): void
+        protected SetNavigationalProperty(
+            propertyName: string,
+            currentValue: IEntidade,
+            newValue: IEntidade): void
+        {
+            this.NotificarValorPropriedadeAlteradaRelacao(propertyName, currentValue, newValue);
+        }
+
+        protected NotificarValorPropriedadeAlteradaRelacao(
+            nomePropriedade: string,
+            antigoValor: any, novoValor: any): void
         {
             this.NotificarValorPropriedadeAlterada(nomePropriedade, antigoValor, novoValor);
 
@@ -204,6 +214,15 @@
                     }
                 }
             }
+        }
+
+        protected SetForeignKeyProperty(
+            propertyName: string,
+            navigationPropertyName: string,
+            currentValue: number,
+            newValue: number): void
+        {
+            this.NotificarValorPropriedadeAlteradaChaveEstrangeiraAlterada(propertyName, navigationPropertyName, currentValue, newValue);
         }
 
         protected NotificarValorPropriedadeAlteradaChaveEstrangeiraAlterada(
@@ -239,6 +258,16 @@
         }
 
         //os o id da chave primaria, e id das chave estrangeiras, e todoas as propriedades alteradas
+
+
+        protected GetForeignKeyProperty(
+            propertyName: string,
+            navigationPropertyName: string,
+            foreignKeyId: number): number
+        {
+            return this.RetornarValorChaveEstrangeira(propertyName, navigationPropertyName, foreignKeyId);
+        }
+
         protected RetornarValorChaveEstrangeira(nomePropriedade: string, nomePropriedadeRelacao: string, idChaveEstrangeira: number): number
         {
             const relacaoChaveEstrangeira = (this as any)[nomePropriedadeRelacao];
@@ -249,7 +278,12 @@
             return idChaveEstrangeira;
         }
 
-        public RetornarValorPropriedadeIsAtivo(isAtivo: boolean)
+        protected GetIsActivedProperty(isActived: boolean): boolean
+        {
+            return this.RetornarValorPropriedadeIsAtivo(isActived);
+        }
+
+        protected RetornarValorPropriedadeIsAtivo(isAtivo: boolean)
         {
             if (this.GetTypeTipado().IsImplementaIAtivo &&
                 this.GetTypeTipado().IsImplementaIDeletado)
@@ -257,6 +291,11 @@
                 return isAtivo && !(this as any as IDeletado).IsDeletado;
             }
             return isAtivo;
+        }
+
+        protected GetDisplayProperty(displayValue: string): string
+        {
+            return this.RetornarDescricaoComDeletado(displayValue);
         }
 
         public RetornarDescricaoComDeletado(descricaoOuNome: string)

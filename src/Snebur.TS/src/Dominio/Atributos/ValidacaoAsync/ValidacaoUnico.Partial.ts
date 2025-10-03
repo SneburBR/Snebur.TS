@@ -29,12 +29,12 @@
 
         const tipoEntidade = paiPropriedade.GetType() as r.TipoEntidade;
 
-        if (valorPropriedade === null && this.IsPermitirDuplicarNulo)
+        if (valorPropriedade === null && this.IsIgnorarNulo)
         {
             return true;
         }
 
-        if (valorPropriedade === 0 && this.IsPermitirDuplicarZero)
+        if (valorPropriedade === 0 && this.IsIgnorarZero)
         {
             return true;
         }
@@ -56,5 +56,5 @@
         return !isExiste;
     };
 
-   
+
 }

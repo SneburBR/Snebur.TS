@@ -112,7 +112,7 @@
         },
         enumerable: true,
     });
-     
+
     Object.defineProperty(Date.prototype, "TimeOfDay", {
 
         get: function ()
@@ -297,7 +297,7 @@
     Object.defineProperty(Date.prototype, "Equals", {
 
         value: function (this: Date, outraData: Date,
-            opcoesData = u.OpcoesCompararData.Data,
+            opcoesData = u.EnumOpcoesCompararData.Data,
             ocoesHora = u.OpcoesCompararHora.Ignorar): boolean
         {
 

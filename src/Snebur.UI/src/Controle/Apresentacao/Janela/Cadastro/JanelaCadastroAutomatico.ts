@@ -187,10 +187,10 @@
 
                 return sb.ToString();
             }
-            if (relacao instanceof at.RelacaoUmUmAttribute)
-            {
-                throw new ErroNaoImplementado();
-            }
+            //if (relacao instanceof at.RelacaoUmUmAttribute)
+            //{
+            //    throw new ErroNaoImplementado();
+            //}
             throw new ErroNaoSuportado("A relação não é suportada", this);
         }
 
