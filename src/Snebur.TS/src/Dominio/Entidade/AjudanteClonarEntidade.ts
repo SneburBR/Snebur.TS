@@ -21,7 +21,7 @@
 
             /*const descricaoEntidade = ` ${entidadeOrigem.__IdentificadorEntidade} ${u.EntidadeUtil.RetornarDescricaoEntidade(entidadeOrigem)}`;*/
             /*console.WarmDebug(` Iniciando clone  entidade: ${descricaoEntidade}   ( novo gerenciador_ `);*/
-             
+
 
             AjudanteClonarEntidade.Gerenciador = new GerenciadorCloneEntidade();
             const entidadeClonada = AjudanteClonarEntidade.Gerenciador.Clonar(entidadeOrigem, opcoes, funcaoClonarValorProprieadede);
@@ -33,7 +33,7 @@
             delete AjudanteClonarEntidade.Gerenciador;
             AjudanteClonarEntidade.__isClonando = false;
 
-            return entidadeClonada as any  as TEntidade;
+            return entidadeClonada as any as TEntidade;
         }
     }
 
@@ -44,7 +44,7 @@
         public readonly Stopwatch = Stopwatch.StartNew();
         private readonly Clonadores = new List<ClonadorEntidade>();
 
-        public Clonar (entidadeOrigem: d.Entidade,
+        public Clonar(entidadeOrigem: d.Entidade,
             opcoes: EnumOpcaoClonarEntidade = EnumOpcaoClonarEntidade.Tudo,
             funcaoClonarValorProprieadede?: FuncaoClonarPropriedade): IEntidadeClonada
         {
@@ -64,7 +64,7 @@
             clonador.Clonar();
             return clonador.EntidadeClonada;
         }
-         
+
         public Dispose(): void
         {
             for (const clonador of this.Clonadores)
@@ -116,7 +116,7 @@
 
             if (opcoes === EnumOpcaoClonarEntidade.Tudo)
             {
-                const propriedades = tipoEntidade.RetornarPropriedades(false);
+                const propriedades = tipoEntidade.RetornarPropriedades(false).ToList(true);
                 propriedades.Remove(tipoEntidade.PropriedadeChavePrimaria);
 
                 for (const propriedade of propriedades)

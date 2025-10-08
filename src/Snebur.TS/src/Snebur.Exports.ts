@@ -32,7 +32,7 @@ namespace Snebur
     export import d = Snebur.Dominio;
     export import s = Snebur.Seguranca;
     export import c = Snebur.Comunicacao;
-    export import g = Snebur.Globalizacao;
+    /*export import g = Snebur.Globalizacao;*/
     export import t = Snebur.Tarefa;
     export import sa = Snebur.ServicoArquivo;
 

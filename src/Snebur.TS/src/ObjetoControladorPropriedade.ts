@@ -258,8 +258,7 @@
                 const rotulo = typeof rotuloOuCallbackValorAlterado === "string" ? rotuloOuCallbackValorAlterado : null;
                 if (!String.IsNullOrWhiteSpace(rotulo))
                 {
-                    const atributoRotulo = new at.RotuloAttribute(rotulo);
-                    propriedade.Atributos.Add(atributoRotulo);
+                    propriedade.AdicionarAtributo(new at.RotuloAttribute(rotulo));
                 }
             }
         }

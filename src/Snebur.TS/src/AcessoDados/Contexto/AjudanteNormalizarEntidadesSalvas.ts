@@ -38,7 +38,7 @@
 
         private AtualizarEntidadeSalvada(
             dicionarEntidades: DicionarioSimples<EntidadeInfo>,
-            resultadoEntidadeSalvada: EntidadeSalva)
+            resultadoEntidadeSalvada: EntidadeSalvaInfo)
         {
             if (dicionarEntidades.ContainsKey(resultadoEntidadeSalvada.IdentificadorUnicoEntidade))
             {
@@ -64,9 +64,9 @@
                             const tipoPrimarioEnum = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
                             valorPropriedade = u.ConverterUtil.ConverterValorPrimario(valorPropriedade, tipoPrimarioEnum);
                         }
-                        
+
                         (entidade as any)[propriedadeComputada.NomePropriedade] = valorPropriedade;
-                        
+
                     }
                 }
                 entidade.AtivarObservadorPropriedadeAlterada();

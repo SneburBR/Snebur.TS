@@ -3,15 +3,15 @@ namespace Snebur.Utilidade
 {
     export class AutoMapearUtil
     {
-        public static readonly PropriedadesIgnorar = ["Id", "__CaminhoTipo", "__IdentificadorUnico", ]
+        public static readonly PropriedadesIgnorar = ["Id", "__CaminhoTipo", "__IdentificadorUnico",]
 
         public static Mapear(origem: d.BaseDominio, destino: d.BaseDominio): void
         {
             const proproiedadesIgnorar = d.Entidade.GetType().RetornarPropriedades();
             const tipoOrigem = origem.GetType() as r.TipoBaseDominio;
             const tipoDestino = destino.GetType() as r.TipoBaseDominio;
-            const todasPropriedadeOrigem = tipoOrigem.RetornarPropriedades(false);
-            const todasPropruiedadeDestino = tipoDestino.RetornarPropriedades(false);
+            const todasPropriedadeOrigem = tipoOrigem.RetornarPropriedades(false).ToList(true);
+            const todasPropruiedadeDestino = tipoDestino.RetornarPropriedades(false).ToList(true);
 
             for (const p of proproiedadesIgnorar)
             {
@@ -21,7 +21,10 @@ namespace Snebur.Utilidade
 
             for (const propriedadeDestino of todasPropruiedadeDestino)
             {
-                const propriedadeOrigem = todasPropriedadeOrigem.Where(x => x.Nome === propriedadeDestino.Nome).SingleOrDefault();
+                const propriedadeOrigem = todasPropriedadeOrigem
+                    .Where(x => x.Nome === propriedadeDestino.Nome)
+                    .FirstOrDefault();
+
                 if (propriedadeOrigem instanceof r.Propriedade)
                 {
                     let valorOrigem = u.ReflexaoUtil.RetornarValorPropriedade(origem, propriedadeOrigem);

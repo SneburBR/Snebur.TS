@@ -20,7 +20,7 @@
         private DataHoraFimInicializando: Date;
 
         //#region Propriedades
-        public readonly Globalizacao: g.Globalizacao;
+        /*public readonly Globalizacao: g.Globalizacao;*/
         public readonly ContextosDados = new DicionarioSimples<Snebur.AcessoDados.BaseContextoDados>();
         public readonly ServicosArquivo = new DicionarioSimples<Snebur.ServicoArquivo.ServicoArquivo>();
 

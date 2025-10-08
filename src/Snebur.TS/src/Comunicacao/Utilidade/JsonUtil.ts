@@ -44,7 +44,7 @@
             return ConverterUtil.ParaDataHora(JSON.parse(dataString));
         }
 
-        public static RetornarPropriedadesSerializavel(tipo: r.BaseTipo, arg1: boolean): r.Propriedade[]
+        public static RetornarPropriedadesSerializavel(tipo: r.BaseTipo, arg1: boolean): ReadonlyArray<r.Propriedade>
         {
             return tipo.RetornarPropriedades(false);
         }
