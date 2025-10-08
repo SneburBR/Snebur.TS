@@ -21,7 +21,7 @@
         private __FuncaoRetornarConsulta: FuncaoConsulta;
         private __FuncaoRetornarConsultaAsync: FuncaoConsultaAsync;
         private __FuncaoNormalizar: FuncaoConsultaAsync;
-         
+
         protected IsRotuloFlutuante: boolean;
 
         public get BlocoTemplatePadrao(): BlocoTemplate  
@@ -58,7 +58,7 @@
             return this.RetornarValorAtributoNumber(AtributosHtml.AlturaItem, BaseComboBox.ALTURA_ITEM_PADRAO);
         }
 
-       
+
 
         //#endregion
 
@@ -224,7 +224,7 @@
                 const blocoTemplate = new BlocoTemplate(this, elemento);
                 this.BlocosTemplate.Add(BlocoTemplate.CHAVE_PADRAO, blocoTemplate);
             }
-       }
+        }
 
         private RetornarBlocoTemplate(itemTemplate: ItemTemplate | BlocoTemplate): BlocoTemplate
         {
@@ -235,8 +235,6 @@
             const elementoClone = ElementoUtil.ClonarElemento(itemTemplate.Elemento);
             return new BlocoTemplate(this, elementoClone);
         }
-
-
 
         //#endregion
 
@@ -423,7 +421,7 @@
             super.OcultarElemento();
             this.CaixaSelecao?.Fechar(false);
         }
-         
+
         //#endregion
 
         //#region IDisposable

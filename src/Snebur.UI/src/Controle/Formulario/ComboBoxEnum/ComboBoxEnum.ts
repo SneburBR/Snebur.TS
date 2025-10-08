@@ -50,7 +50,7 @@
             this.ConstrutorEnum = u.ReflexaoUtil.RetornarConstrutorEnum(this.CaminhoTipoEnum);
 
             const elementoSpanItemSelecionado = this.RetornarItemElemento("SpanItemSelecionado", false, function () { return true; });
-            const elementoSpanItemTemplate = this.RetornarItemElemento("SpanItemTemplate", false, function () { return true;});
+            const elementoSpanItemTemplate = this.RetornarItemElemento("SpanItemTemplate", false, function () { return true; });
 
             ElementoUtil.AdicionarAtributo(elementoSpanItemSelecionado, AtributosHtml.Tipo, this.CaminhoTipoEnum);
             ElementoUtil.AdicionarAtributo(elementoSpanItemTemplate, AtributosHtml.Tipo, this.CaminhoTipoEnum);
@@ -85,7 +85,7 @@
             super.ValorPropriedadeAlterado(paiPropriedade, nomePropriedade, proprieade, valorPropriedade);
         }
 
-        private PreencherListaEnum(tipo: r.TipoEnum)
+        private PreencherListaEnum(tipo: r.BaseTipo)
         {
             if (!this.IsListaEnumPreenchida)
             {
@@ -99,7 +99,7 @@
             }
         }
 
-       // #region validacao
+        // #region validacao
 
         public override async ValidarAsync(isForcar: boolean = false): Promise<boolean>
         {
