@@ -4,7 +4,7 @@
     {
         //#region Construtor
 
-        private readonly PropriedadesMapeadas: List<r.Propriedade>;
+        private readonly PropriedadesMapeadas: ReadonlyArray<r.Propriedade>;
 
         public __IsIndependente = false;
         public __Entidade: d.Entidade = null;
@@ -17,7 +17,7 @@
             this.PropriedadesMapeadas = this.RetornarPropriedadesMapeadas();
         }
 
-        private RetornarPropriedadesMapeadas(): List<r.Propriedade>
+        private RetornarPropriedadesMapeadas(): ReadonlyArray<r.Propriedade>
         {
             if (this instanceof BaseListaTipoComplexo)
             {
