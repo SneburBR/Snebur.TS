@@ -2,6 +2,7 @@
 {
     export class Propriedade
     {
+        private readonly _atributos = new Array<at.BaseAtributoDominio>();
         private _isSomenteLeitura: boolean;
         private _isChaveEstrangeira: boolean;
         private _propriedadeRelacaoChaveEstrangeira: r.Propriedade;
@@ -14,7 +15,10 @@
 
         public TipoDeclarado: BaseTipo;
 
-        public readonly Atributos: Array<Snebur.Dominio.Atributos.BaseAtributoDominio>;
+        public get Atributos(): ReadonlyArray<at.BaseAtributoDominio>
+        {
+            return this._atributos;
+        }
 
         public get IsTipoString(): boolean
         {
@@ -25,7 +29,7 @@
         {
             return (this.Tipo instanceof r.TipoPrimario);
         }
-         
+
         public get IsSomenteLeitura(): boolean
         {
             if (typeof this._isSomenteLeitura === "undefined")
@@ -46,8 +50,6 @@
             this.Tipo = tipo;
             this.TipoDeclarado = tipoDeclarado;
             this.AceitaNulo = aceitaNulo;
-
-            this.Atributos = new Array<Snebur.Dominio.Atributos.BaseAtributoDominio>();
         }
 
         public RetornarValor(objeto: any)
@@ -61,6 +63,16 @@
         {
             //u.ReflexaoUtil.AtribuirValorPropriedade(objeto, this, novoValor);
             objeto[this.Nome] = novoValor;
+        }
+
+        public AdicionarAtributo(attributo: at.BaseAtributoDominio)
+        {
+            this._atributos.Add(attributo);
+        }
+
+        public AdicionarAtributos(attributos: at.BaseAtributoDominio[])
+        {
+            this._atributos.AddRange(attributos);
         }
 
         public toString(): string

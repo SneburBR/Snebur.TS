@@ -5,7 +5,7 @@
 
         public constructor()
         {
-            super(new TipoNulo());
+            super(new TipoNulo(), new TipoNulo());
             this.TipoReflexao = EnumTipoReflexao.Dicionario;
         }
 

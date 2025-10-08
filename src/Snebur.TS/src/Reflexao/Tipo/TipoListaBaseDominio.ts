@@ -2,7 +2,7 @@
 {
     export class TipoListaBaseDominio extends BaseTipoLista
     {
-        public TipoBaseDominio: TipoBaseDominio;
+        public readonly TipoBaseDominio: TipoBaseDominio;
 
         public constructor(nome: string, _namespace: string, assemblyQualifiedName: string, tipoBaseDominio: TipoBaseDominio)
         {
@@ -22,4 +22,5 @@
             return this.TipoBaseDominio;
         }
     }
+
 }

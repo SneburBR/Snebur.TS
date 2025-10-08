@@ -201,7 +201,7 @@
                 throw new ErroOperacaoInvalida("A propriedade chave primária já foi definida", this);
             }
 
-            propriedade.Atributos.Add(new Snebur.Dominio.Atributos.ChavePrimariaAttribute(this.IsIdentity));
+            propriedade.AdicionarAtributo(new Snebur.Dominio.Atributos.ChavePrimariaAttribute(this.IsIdentity));
             this._propriedadeChavePrimaria = propriedade;
         }
 

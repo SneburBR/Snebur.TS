@@ -5,7 +5,7 @@
         Undefined = -1,
         Desconhecido = -100,
 
-        void = 0,
+        Void = 0,
 
         Boolean = 1,
 

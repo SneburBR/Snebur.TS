@@ -36,7 +36,7 @@
 
         private RetornarTipoListaEntidades(): TipoListaBaseDominio
         {
-            return __$tipoListaBaseDominio_Snebur_Dominio_Entidade;
+            return __$tipoListaEntidade_Snebur_Dominio_Entidade;
         }
     }
 }

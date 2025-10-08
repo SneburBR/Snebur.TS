@@ -2,8 +2,12 @@
 {
     export abstract class BaseTipo implements ICaminhoTipo
     {
+        private readonly _properties = new List<Propriedade>();
+        private readonly _atributos = new List<Snebur.Dominio.Atributos.BaseAtributoDominio>();
+
         private __todasPropridades: DicionarioSimples<Propriedade> | undefined = undefined;
         private _tipoBase: BaseTipo;
+        private _tipoReflexao: EnumTipoReflexao = EnumTipoReflexao.Desconhecido;
 
         public readonly Nome: string;
 
@@ -11,9 +15,28 @@
 
         public readonly Abstrato: boolean;
 
-        public readonly Atributos = new List<Snebur.Dominio.Atributos.BaseAtributoDominio>();
+        public readonly AssemblyQualifiedName: string;
 
-        public readonly Propriedades = new List<Propriedade>();
+        public readonly CaminhoTipoBase: string;
+
+        public get Atributos(): ReadonlyArray<Snebur.Dominio.Atributos.BaseAtributoDominio>
+        {
+            return this._atributos;
+        }
+
+        public get Propriedades(): ReadonlyArray<Propriedade>
+        {
+            return this._properties;
+        }
+
+        public get TipoReflexao(): EnumTipoReflexao
+        {
+            return this._tipoReflexao;
+        }
+        protected set TipoReflexao(value: EnumTipoReflexao)
+        {
+            this._tipoReflexao = value;
+        }
 
         public get TodasPropriedades(): DicionarioSimples<Propriedade>
         {
@@ -23,10 +46,6 @@
             }
             return this.__todasPropridades;
         }
-
-        public readonly AssemblyQualifiedName: string;
-
-        public readonly CaminhoTipoBase: string;
 
         public get TipoBase(): BaseTipo
         {
@@ -49,8 +68,6 @@
             return this._tipoBase;
         }
 
-        public TipoReflexao: EnumTipoReflexao;
-
         public get __CaminhoTipo(): string
         {
             if (!String.IsNullOrWhiteSpace(this.Namespace))
@@ -70,7 +87,7 @@
 
         public get Construtor(): Function
         {
-            return r.ReflexaoNamespaceUtil.RetornarConstrutor(this.CaminhoTipo );
+            return r.ReflexaoNamespaceUtil.RetornarConstrutor(this.CaminhoTipo);
         }
 
         public get IsTipoPrimario(): boolean
@@ -114,15 +131,15 @@
 
         public AdicionarPropriedade(propriedade: Propriedade)
         {
-            this.Propriedades.Add(propriedade);
+            this._properties.Add(propriedade);
             this.__todasPropridades = undefined;
             delete this.__todasPropridades;
         }
 
-        public RetornarPropriedades(): Array<Propriedade>
-        public RetornarPropriedades(ignorarTipoBase: boolean): Array<Propriedade>
-        public RetornarPropriedades(ignorarTipoBase: boolean, ordenar: boolean): Array<Propriedade>
-        public RetornarPropriedades(ignorarTipoBase?: boolean, ordenar?: boolean): Array<Propriedade>
+        public RetornarPropriedades(): ReadonlyArray<Propriedade>
+        public RetornarPropriedades(ignorarTipoBase: boolean): ReadonlyArray<Propriedade>
+        public RetornarPropriedades(ignorarTipoBase: boolean, ordenar: boolean): ReadonlyArray<Propriedade>
+        public RetornarPropriedades(ignorarTipoBase?: boolean, ordenar?: boolean): ReadonlyArray<Propriedade>
         {
             ignorarTipoBase = u.ConverterUtil.ParaBoolean(ignorarTipoBase);
             ordenar = u.ConverterUtil.ParaBoolean(ordenar);
@@ -135,7 +152,7 @@
                 return this.TodasPropriedades.Valores;
             }
         }
- 
+
         public RetornarPropriedade<T>(expressaoPropriedade: (value: T) => any): Propriedade
         public RetornarPropriedade<T>(expressaoPropriedade: (value: T) => any, nullSeNaoExiste: boolean): Propriedade
         public RetornarPropriedade(nomePropriedade: string): Propriedade
@@ -180,7 +197,6 @@
             return this.IsSubTipo(tipo);
         }
 
-
         private RetornarTodasPropriedades(): DicionarioSimples<Propriedade>
         {
             let todasPropriedades = new DicionarioSimples<Propriedade>();
@@ -188,7 +204,7 @@
             let isOrdenar = true;
             while (u.ValidacaoUtil.IsDefinido(tipoBaseAtual))
             {
-                let propriedades = tipoBaseAtual.Propriedades;
+                let propriedades = tipoBaseAtual._properties;
                 if (isOrdenar)
                 {
                     propriedades = propriedades.ToList(true);
@@ -205,6 +221,11 @@
                 tipoBaseAtual = tipoBaseAtual.TipoBase;
             }
             return todasPropriedades;
+        }
+
+        public AdicionarAtributos(attributos: at.BaseAtributoDominio[])
+        {
+            this._atributos.AddRange(attributos);
         }
 
         public toString(): string

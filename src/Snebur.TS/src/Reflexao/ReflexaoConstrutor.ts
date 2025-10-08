@@ -31,9 +31,9 @@
         {
             if (!this._isInicializado)
             {
-                this.TipoListaVazia.Propriedades.Add(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
-                this.TipoListaItemDesconhecido.Propriedades.Add(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
-                this.TipoDicionarioVazio.Propriedades.Add(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
+                this.TipoListaVazia.AdicionarPropriedade(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
+                this.TipoListaItemDesconhecido.AdicionarPropriedade(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
+                this.TipoDicionarioVazio.AdicionarPropriedade(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
 
                 if ($Configuracao.IsDebug)
                 {

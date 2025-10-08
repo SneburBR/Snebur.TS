@@ -10,7 +10,9 @@ namespace Snebur.Reflexao
             return this._construtor;
         }
 
-        public constructor(construtor: Function, nome: string, _namespace: string, assemblyQualifiedName: string, tipoBase: BaseTipo, abstrato: boolean)
+        public constructor(construtor: Function, nome: string, _namespace: string, assemblyQualifiedName: string,
+            tipoBase: BaseTipo,
+            abstrato: boolean)
         {
             super(nome, _namespace, assemblyQualifiedName, tipoBase, abstrato);
 
@@ -29,7 +31,7 @@ namespace Snebur.Reflexao
 
         public constructor(construtor: Function, tipoBase: r.BaseTipo)
         {
-            super(construtor, construtor.name , null, null, tipoBase, false);
+            super(construtor, construtor.name, null, null, tipoBase, false);
             this.TipoReflexao = EnumTipoReflexao.Generico;
         }
     }
