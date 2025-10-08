@@ -52,24 +52,30 @@
 
         protected ChamarServicoAsync(
             nomeMetodo: string,
-            argumentos: IArguments): void
+            argumentos: any[],
+            resolver: (value: any) => void,
+            reject: (reason?: any) => void): void
         {
-            this.TentarChamarServicoInternoAsync(nomeMetodo, argumentos);
-        }
-
-        private async TentarChamarServicoInternoAsync(nomeMetodo: string, argumentos: IArguments)
-        {
-            await this.ChamarServicoInternoAsync(
-                nomeMetodo,
-                argumentos);
+            try
+            {
+                this.ChamarServicoInternoAsync(nomeMetodo, argumentos, resolver);
+            }
+            catch (erro)
+            {
+                console.error(
+                    `Erro ao chamar serviço ${this.___NomeConstrutor} ${nomeMetodo}\r\n
+                    Url: ${this.UrlServico} `, erro);
+                reject(erro);
+            }
         }
 
         protected async ChamarServicoInternoAsync(
             nomeMetodo: string,
-            argumentos: IArguments): Promise<ResultadoChamada>
+            argumentos: any[],
+            resolver: (value: any) => void): Promise<void>
         {
             const metodo: Function = (this as any)[nomeMetodo] as Function;
-            const callback: Function = argumentos[(argumentos.length - 1)];
+            /*const callback: Function = argumentos[(argumentos.length - 1)];*/
 
             if (!u.ValidacaoUtil.IsFunction(metodo) ||
                 String.IsNullOrWhiteSpace(nomeMetodo))
@@ -97,7 +103,7 @@
                 pacote);
 
             let resultadoChamada = await this.Gerenciador.ExecutarAsync(requisicao);
-             if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
+            if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
             {
                 if ($Configuracao.IsDebugOuTeste)
                 {
@@ -110,11 +116,8 @@
             resultadoChamada = this.NormalizarResultadoChamada(resultadoChamada);
 
             const resultado = this.RetornarValorResultado(resultadoChamada);
-            if (u.ValidacaoUtil.IsFunction(callback))
-            {
-                callback(resultado);
-            }
-            return resultado;
+            resolver(resultado);
+
         }
 
         public UsarUrlServicoDEBUG()
@@ -130,7 +133,7 @@
         }
 
         //#endregion
-         
+
 
         // #region  Retornar parâmetros da chamada
 
@@ -243,7 +246,6 @@
             const parametroChamada = new ParametroChamadaListaTipoPrimario();
             parametroChamada.Nome = parametro.Chave;
             parametroChamada.AssemblyQualifiedName = tipo.AssemblyQualifiedName;
-            parametroChamada.Lista = parametro.Valor as ListaObservacao<any>;
 
             if (tipo instanceof r.TipoListaTipoPrimario)
             {
@@ -261,7 +263,6 @@
             const parametroChamada = new ParametroChamadaListaEnum();
             parametroChamada.Nome = parametro.Chave;
             parametroChamada.AssemblyQualifiedName = tipo.AssemblyQualifiedName;
-            parametroChamada.Valores = parametro.Valor as ListaObservacao<number>;
             return parametroChamada;
         }
 
@@ -270,7 +271,6 @@
             const parametroChamada = new ParametroChamadaListaBaseDominio();
             parametroChamada.Nome = parametro.Chave;
             parametroChamada.AssemblyQualifiedName = tipo.TipoBaseDominio.AssemblyQualifiedName;
-            parametroChamada.BasesDominio = parametro.Valor as ListaObservacao<d.BaseDominio>;
             return parametroChamada;
         }
 
@@ -301,7 +301,7 @@
             return nomesParametros;
         }
 
-        protected RetornarParametros(nomeMetodo: string, metodo: Function, valoresParametro: IArguments, isAsync = true): Array<ParChaveValorSimples<any>>
+        protected RetornarParametros(nomeMetodo: string, metodo: Function, argumentos: any[], isAsync = true): Array<ParChaveValorSimples<any>>
         {
             const nomesParametros = this.RetornarNomeParametros(metodo, true);
             if (nomesParametros.Count > 0)
@@ -326,7 +326,7 @@
                 for (let i = 0; i < nomesParametros.length; i++)
                 {
                     const nomeParametro = nomesParametros[i];
-                    let valorParametro = valoresParametro[i];
+                    let valorParametro = argumentos[i];
                     valorParametro = this.NormalizarValorParametro(valorParametro);
                     parametros.Add(new ParChaveValorSimples<any>(nomeParametro, valorParametro));
                 }
@@ -363,18 +363,16 @@
 
         //#endregion
 
-      
-
         //#region Resultado
 
         protected NormalizarResultadoChamada(resultado: ResultadoChamada): ResultadoChamada
         {
-            return resultado
+            return resultado;
         }
 
         protected NormalizarResultado(resultado: any): any
         {
-            return resultado
+            return resultado;
         }
 
         private RetornarValorResultado(resultadoChamada: ResultadoChamada): any
@@ -437,14 +435,9 @@
 
         //#endregion
 
-
-
-
         /*eslint-disable*/
 
         //#region IBaseServico 
-
-
 
         //public RetornarDataHoraUTC(): Date
         //{
@@ -453,17 +446,14 @@
 
         public PingAsync(): Promise<boolean>
         {
-            return new Promise(resolver =>
+            return new Promise((resolver, reject) =>
             {
-                this.__PingInternoAsync(resolver);
+                return this.ChamarServicoAsync("PingAsync", [], resolver, reject);
             });
             /*this.ChamarServicoAsync("PingAsync", arguments);*/
         }
 
-        private __PingInternoAsync(callback: CallbackResultado<boolean>): void
-        {
-            this.ChamarServicoAsync("PingAsync", arguments);
-        }
+
         //public RetornarDataHoraUTCAsync(callback: CallbackResultado<Date>): void
         //{
         //    this.ChamarServicoAsync("RetornarDataHoraUTCAsync", arguments);
