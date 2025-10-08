@@ -3,11 +3,11 @@
     export class List<T> extends Array<T>
     {
         //private _tipoLista: EnumTipoLista;
-        
 
-        public constructor()
+
+        public constructor(...itens: T[])
         {
-            super();
+            super(...itens);
             (this as any)["_tipoLista"] = EnumTipoLista.List;
         }
     }

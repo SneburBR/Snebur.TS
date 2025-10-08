@@ -63,7 +63,7 @@
             this._length = 0;
             this.__Obetos = {};
             this.__ItensChaves = {};
-            this.PropriedadeChave = `__chave_${this.GetHashCode()}__`; 
+            this.PropriedadeChave = `__chave_${this.GetHashCode()}__`;
         }
 
         private RetornarChaveInterna(chave: TChave): string
@@ -375,7 +375,7 @@
         {
             return this.Existe(chave);
         }
-         
+
         public ToArray(): Array<TItem>
         {
             let array = new Array<TItem>();
@@ -426,8 +426,9 @@
                 return $Reflexao.TipoDicionarioVazio;
             } else
             {
-                let primeiro = this.Primeiro();
-                return new r.TipoDicionario(primeiro.GetType());
+                const firstKey = this.Chaves[0];
+                const firstValue = this.Valores[0];
+                return new r.TipoDicionario(firstKey.GetType(), firstValue.GetType());
             }
         }
 
@@ -449,6 +450,6 @@
     }
     DicionarioTipado.__CaminhoTipo = "TipoDicionario";
 
-    
+
 }
 

@@ -494,8 +494,9 @@
                 return $Reflexao.TipoDicionarioVazio;
             } else
             {
+                const keyType = Entidade.GetType();
                 const primeiro = this.Primeiro();
-                return new r.TipoDicionario(primeiro.GetType());
+                return new r.TipoDicionario(keyType, primeiro.GetType());
             }
         }
 

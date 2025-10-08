@@ -15,11 +15,11 @@
 
         public readonly EntidadesRemovida = new Array<Snebur.Dominio.Entidade>();
         public readonly EntidadesAdicionada = new Array<Snebur.Dominio.Entidade>();
-         
-        public constructor()
+
+        public constructor(...itens: TEntidade[])
         {
-            super();
-             this._tipoLista = EnumTipoLista.ListaEntidades;
+            super(...itens);
+            this._tipoLista = EnumTipoLista.ListaEntidades;
         }
 
         public static ExisteEntidade(lista: ListaObservacao<any>, entidade: d.Entidade, comparador?: Snebur.IEqualityComparer): boolean

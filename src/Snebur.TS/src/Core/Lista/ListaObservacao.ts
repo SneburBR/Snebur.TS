@@ -18,9 +18,9 @@
         public Tag: any;
         //public IsListaObservacao: boolean;
 
-        public constructor()
+        public constructor(...itens: T[])
         {
-            super();
+            super(...itens);
             /*this.EventoItemAlterado.AddHandler(this.This_ItemAlterado, this);*/
         }
 

@@ -3,6 +3,10 @@ interface Array<T> extends Snebur.Nativo.IArray<T>
 {
 
 }
+interface ReadonlyArray<T> extends Snebur.Nativo.IReadonlyArray<T>
+{
+
+}
 
 interface ArrayConstructor
 {
@@ -11,16 +15,14 @@ interface ArrayConstructor
 
 namespace Snebur.Nativo
 {
-    export interface IArray<T> extends ITipo<Snebur.Reflexao.BaseTipoLista>
+    export interface IReadonlyArray<T> extends ITipo<Snebur.Reflexao.BaseTipoLista>
     {
         readonly length: number;
         readonly Count: number;
+        [index: number]: T;
         readonly TipoLista: EnumTipoLista;
         readonly IsListaNova: boolean;
 
-        /*item(index: number): T | null;*/
-
-        [index: number]: T;
 
         indexOfBase(searchElement: T, fromIndex?: number): number;
 
@@ -34,14 +36,6 @@ namespace Snebur.Nativo
 
         Contains(valor: T, comparador?: IEqualityComparer<T>): boolean;
 
-        Clear(): void;
-        /**
-        * Definie o status para lista nova, IsListaNova = true,
-        * Somente para a ListaObservacao
-        * @param isDefinirListaNova
-        */
-        Clear(isDefinirListaNova: boolean): void;
-
         Select<U>(funcaoMapear: (value: T) => U): U[];
         Zip<U>(lista: Array<U>): Array<[T, U]>;
 
@@ -49,14 +43,8 @@ namespace Snebur.Nativo
 
         Where(funcaoFiltrar: (value: T) => boolean): T[];
 
-        //GroupBy<TChave>(expressaoChave: (value: T) => TChave): Array<GrupoChaveValores<TChave, T>>;
-
-        //Select<U>(funcaoMapear: (value: T) => U): U[];
         GroupBy<TChave extends SneburObject>(expressaoChave: (value: T) => TChave): Array<Snebur.GrupoChaveValores<TChave, T>>;
         GroupBy<TChave extends number | string | boolean>(expressaoChave: (value: T) => TChave): Array<Snebur.GrupoChaveValores<TChave, T>>;
-        //GroupBy<TChave extends number | string | Objeto>(expressaoChave: Function): Array<Snebur.GrupoChaveValores<TChave, T>>;
-
-        //DicionarioGroupBy<TChave extends number | string>(expressaoChave: (value: T) => TChave): Snebur.DicionarioSimples<Array<T>>;
 
         DicionarioGroupBy<TChave extends number | string | SneburObject>(expressaoChave: (value: T) => TChave): Snebur.DicionarioTipado<any, Array<T>>;
 
@@ -122,29 +110,6 @@ namespace Snebur.Nativo
 
         Distinct(): Array<T>;
 
-        Add(item: T): number;
-        AddIsTrue(item: T, isAdd: boolean): number;
-        AddIsNotNull(item: T): number;
-
-        AddRange(itens: Array<T>): void;
-        AddRangeAsync(items: Array<T>): Promise<void>;
-        AddRangeAsync(items: Array<T>, cancellationToken: CancelationToken): Promise<void>;
-
-        /**
-         * Limpar antes de adiciona os itens
-         * @param itens novos itens
-         */
-        AddRangeNew(itens: Array<T>): void;
-        AddRangeNewAsync(itens: Array<T>): Promise<void>;
-
-        Insert(posicao: number, item: T): number;
-
-        Remove(item: T): boolean;
-
-        RemoveRange(itens: Array<T>): void;
-
-        RemoveAt(index: number): boolean;
-
         /** Retorna o primeiro item e remover da lista */
         PegarPrimeiro(): T;
 
@@ -201,6 +166,37 @@ namespace Snebur.Nativo
         ForEach(callbackfn: (value: T, index: number, array: T[]) => void, thisArg?: any): void;
 
         GetHashCode(): number;
+    }
+    export interface IArray<T> extends IReadonlyArray<T>
+    {
+        Clear(): void;
+
+        /**
+        * Definie o status para lista nova, IsListaNova = true,
+        * Somente para a ListaObservacao
+        * @param isDefinirListaNova
+        */
+        Clear(isDefinirListaNova: boolean): void;
+
+        Add(item: T): number;
+        AddIsTrue(item: T, isAdd: boolean): number;
+        AddIsNotNull(item: T): number;
+
+        AddRange(itens: Array<T>): void;
+        AddRangeAsync(items: Array<T>): Promise<void>;
+        AddRangeAsync(items: Array<T>, cancellationToken: CancelationToken): Promise<void>;
+
+        /**
+         * Limpar antes de adiciona os itens
+         * @param itens novos itens
+         */
+        AddRangeNew(itens: Array<T>): void;
+        AddRangeNewAsync(itens: Array<T>): Promise<void>;
+
+        Insert(posicao: number, item: T): number;
+        Remove(item: T): boolean;
+        RemoveRange(itens: Array<T>): void;
+        RemoveAt(index: number): boolean;
     }
 }
 

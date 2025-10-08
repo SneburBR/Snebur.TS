@@ -22,7 +22,7 @@
         {
             return this.ItemOrDefault(id);
         }
- 
+
         public static FindByIdIndexado(lista: ListaEntidadesIndexada<d.IEntidade>, id: number): d.IEntidade
         {
             return lista.FindByIdInterno(id);

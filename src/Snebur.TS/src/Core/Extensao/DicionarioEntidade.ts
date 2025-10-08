@@ -39,7 +39,7 @@
 
         public get Entidades(): TChaveEntidade[]
         {
-          return  this.DicionarioHashCodeEntidade.ParesChaveValor.Select(x => x.Valor);
+            return this.DicionarioHashCodeEntidade.ParesChaveValor.Select(x => x.Valor);
         }
 
         public constructor()
@@ -219,7 +219,7 @@
             else
             {
                 const primeiro = this.First();
-                return new r.TipoDicionario(primeiro.GetType());
+                return new r.TipoDicionario(Entidade.GetType(), primeiro.GetType());
             }
         }
 
