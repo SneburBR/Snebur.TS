@@ -1,11 +1,11 @@
 ﻿/*eslint-disable*/
+//@Artifact: Interfaces
 //@Project: Snebur.AcessoDados 
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@Artifact: Interfaces
-//@DataHora: 2025-09-26 18:25:02
+//@DataHora: 2025-10-06 17:01:39
 
 namespace Snebur.AcessoDados
 {
@@ -21,7 +21,7 @@ namespace Snebur.AcessoDados
 }
 namespace Snebur.AcessoDados.Seguranca
 {
-    export interface IEstruturaConsultaSeguranca 
+    export interface IEstruturaConsultaSeguranca
     {
         readonly PropriedadesAbertas: Array<string> | null;
     }

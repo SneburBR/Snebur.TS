@@ -1,11 +1,11 @@
 ﻿/*eslint-disable*/
+//@Artifact: Interfaces
 //@Project: Snebur.Comunicacao 
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@Artifact: Interfaces
-//@DataHora: 2025-09-26 18:28:22
+//@DataHora: 2025-10-06 17:02:05
 
 namespace Snebur.AcessoDados
 {

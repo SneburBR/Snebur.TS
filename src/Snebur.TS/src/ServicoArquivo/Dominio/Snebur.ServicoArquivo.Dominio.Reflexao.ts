@@ -1,80 +1,51 @@
-﻿/*eslint-disable*/
-//@Namespace: Snebur.ServicoArquivo
+﻿// Auto-generated file. Reflexao - Snebur.ServicoArquivo. Do not modify directly. 
+//@Project: Snebur.ServicoArquivo
+//@DataHora: 2025-10-08 11:20:02
+//@Artifact: Reflexao
+//@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
-//@Globalizar: False
+//@Globalizar: False 
 //@Dominios dependentes: []
+/*eslint-disable*/
+// Ignore Spelling: *
+
 namespace Snebur.Reflexao
 {
-	//Enum
-	export const __$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo = new Snebur.Reflexao.TipoEnum("EnumTipoErroServicoArquivo", "Snebur.ServicoArquivo", "Snebur.ServicoArquivo.EnumTipoErroServicoArquivo, Snebur.ServicoArquivo");
-	
-	//Lista Enum
-	export const __$tipoListaEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo = new Snebur.Reflexao.TipoListaEnum("ListaTipoEnum_Snebur.ServicoArquivo.EnumTipoErroServicoArquivo", "Snebur.ServicoArquivo", "Snebur.ServicoArquivo.EnumTipoErroServicoArquivo, Snebur.ServicoArquivo", __$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
-	
-	//Adicionar Enum
-	$Reflexao.Tipos.Adicionar("Snebur.ServicoArquivo.EnumTipoErroServicoArquivo",__$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
-	
-	$Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo",__$tipoListaEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
-	
-	//Associar caminhos Emil
-	Snebur.ServicoArquivo.EnumTipoErroServicoArquivo.__CaminhoTipo = "Snebur.ServicoArquivo.EnumTipoErroServicoArquivo";
-	
-	//BaseDominio
-	export const __$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo = new Snebur.Reflexao.TipoBaseDominio(Snebur.ServicoArquivo.ResultadoServicoArquivo, "ResultadoServicoArquivo", "Snebur.ServicoArquivo","Snebur.ServicoArquivo.ResultadoServicoArquivo, Snebur.ServicoArquivo",__$tipoBaseDominioSnebur_Dominio_BaseDominio, false);
-	
-	//ListaBaseDominio
-	export const __$tipoListaBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo = new Snebur.Reflexao.TipoListaBaseDominio("ListaTipoBaseDominio_ResultadoServicoArquivo", "Snebur.ServicoArquivo", "System.Collections.Generic.List`1[[Snebur.ServicoArquivo.ResultadoServicoArquivo, Snebur.ServicoArquivo]], mscorlib",__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo);
-	
-	//Adicionar BasesDominio
-	$Reflexao.Tipos.Adicionar("Snebur.ServicoArquivo.ResultadoServicoArquivo",__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo);
-	
-	$Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.ServicoArquivo.ResultadoServicoArquivo",__$tipoListaBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo);
-	
-	//Associar caminhos BaseDominio
-	
-	Snebur.ServicoArquivo.ResultadoServicoArquivo.__CaminhoTipo = "Snebur.ServicoArquivo.ResultadoServicoArquivo";
-	
-	//Atributos
-	
-	//TiposComplexos
-	
-	//ListaBaseDominio TipoComplexo
-	
-	//Adicionar TiposComplexos
-	
-	//Adicionar ListaBaseDominio TiposComplexos
-	
-	//Associar caminhos TiposComplexos
-	
-	//Atributos TiposComplexos
-	
-	//BaseEntidades
-	
-	//ListaBaseDominio TipoEntidade
-	
-	//ListaBaseEntidades
-	
-	//Adicionar BaseEntidades
-	
-	//Adicionar ListaBaseDominio TipoEntidade
-	
-	//Adicionar ListaBaseEntidades
-	
-	//Associar caminhos BaseEntidades
-	
-	//Atributos TipoEntidade
-	
-	export const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id = new Snebur.Reflexao.Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo, false);
-	
-	export const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso = new Snebur.Reflexao.Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo, false);
-	
-	export const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro = new Snebur.Reflexao.Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo, true);
-	
-	export const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo = new Snebur.Reflexao.Propriedade("TipoErroServicoArquivo", __$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo, __$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo, false);
-	
-	__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo.Propriedades.Add(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id);
-	__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo.Propriedades.Add(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso);
-	__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo.Propriedades.Add(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro);
-	__$tipoBaseDominioSnebur_ServicoArquivo_ResultadoServicoArquivo.Propriedades.Add(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo);
-	
+    
+    //#region Enum types Types
+    export const __$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo = new TipoEnum(Snebur.ServicoArquivo.EnumTipoErroServicoArquivo,"EnumTipoErroServicoArquivo","Snebur.ServicoArquivo","Snebur.ServicoArquivo.EnumTipoErroServicoArquivo, Snebur.ServicoArquivo",null,false);
+    //Collections
+    export const __$tipoListaEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo = new TipoListaEnum("ListaTipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo", "Snebur.ServicoArquivo", "Snebur.ServicoArquivo.EnumTipoErroServicoArquivo, Snebur.ServicoArquivo", __$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
+    
+    $Reflexao.Tipos.Adicionar("Snebur.ServicoArquivo.EnumTipoErroServicoArquivo",__$tipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
+    //Adding collections
+    $Reflexao.Tipos.Adicionar("ListaTipoEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo",__$tipoListaEnum_Snebur_ServicoArquivo_EnumTipoErroServicoArquivo);
+    //Type paths
+    Snebur.ServicoArquivo.EnumTipoErroServicoArquivo.__CaminhoTipo = "Snebur.ServicoArquivo.EnumTipoErroServicoArquivo";
+    
+    //#region Properties
+    //#endregion
+    
+    //#region Domain types Types
+    export const __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo = new TipoBaseDominio(Snebur.ServicoArquivo.ResultadoServicoArquivo,"ResultadoServicoArquivo","Snebur.ServicoArquivo","Snebur.ServicoArquivo.ResultadoServicoArquivo, Snebur.ServicoArquivo",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
+    //Collections
+    export const __$tipoListaBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo", "Snebur.ServicoArquivo", "Snebur.ServicoArquivo.ResultadoServicoArquivo, Snebur.ServicoArquivo", __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo);
+    
+    $Reflexao.Tipos.Adicionar("Snebur.ServicoArquivo.ResultadoServicoArquivo",__$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo);
+    //Adding collections
+    $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo",__$tipoListaBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo);
+    //Type paths
+    Snebur.ServicoArquivo.ResultadoServicoArquivo.__CaminhoTipo = "Snebur.ServicoArquivo.ResultadoServicoArquivo";
+    
+    //#region Properties
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id = new Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro = new Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, true);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo = new Propriedade("TipoErroServicoArquivo", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
+    __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id)
+    __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso)
+    __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro)
+    __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo)
+    //#endregion
+    //#endregion
 }

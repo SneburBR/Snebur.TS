@@ -1,11 +1,11 @@
 ﻿/*eslint-disable*/
+//@Artifact: Enums
 //@Project: Snebur.ServicoArquivo 
 //@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@Artifact: Enums
-//@DataHora: 2025-09-26 15:30:59
+//@DataHora: 2025-10-06 17:02:24
 
 namespace Snebur.ServicoArquivo
 {

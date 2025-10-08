@@ -1,11 +1,11 @@
 ﻿/*eslint-disable*/
+//@Artifact: Enums
 //@Project: Snebur.Depuracao 
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@Artifact: Enums
-//@DataHora: 2025-09-26 15:30:55
+//@DataHora: 2025-10-06 17:02:18
 
 namespace Snebur.Depuracao
 {
@@ -33,6 +33,7 @@ namespace Snebur.Depuracao
         , TEMP_Undefined = 0
     }
     (EnumTipoMensagem as any).Rotulos = {};
+    (EnumTipoMensagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoMensagem as any).Rotulos["Ping"] = "Ping";
     (EnumTipoMensagem as any).Rotulos["AtualizarEstiloCss"] = "AtualizarEstiloCss";
     (EnumTipoMensagem as any).Rotulos["AtualizarControle"] = "AtualizarControle";

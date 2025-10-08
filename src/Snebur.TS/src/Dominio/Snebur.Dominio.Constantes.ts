@@ -1,18 +1,15 @@
-﻿/*eslint-disable*/
-//@Namespace: Snebur.Dominio
+﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
+//@DataHora: 2025-10-08 09:20:17
+//@Artifact: Constantes
+//@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
-//@Globalizar: False
+//@Globalizar: False 
 //@Dominios dependentes: []
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur
 {
-    export class ConstantesDominioSuperior
-    {
-        public static readonly DOMIMIO_SUPERIOR_LOCALHOST : string = ".localhost";
-        public static readonly DOMIMIO_SUPERIOR_INTERNO : string = ".int";
-        public static readonly DOMIMIO_SUPERIOR_TESTE : string = ".tmp.br";
-        public static readonly DOMIMIO_SUPERIOR_PRODUCAO : string = ".com.br";
-    }
     export class ConstantesCabecalho
     {
         public static readonly IDENTIFICADOR_USUARIO : string = "IdentificadorUsuario";
@@ -24,6 +21,13 @@ namespace Snebur
         public static readonly TOKEN : string = "Token";
         public static readonly MANIPULADOR : string = "Manipulador";
         public static readonly IDENTIFICADOR_SESSAO_USUARIO : string = "IdentificadorSessaoUsuario";
+    }
+    export class ConstantesDominioSuperior
+    {
+        public static readonly DOMIMIO_SUPERIOR_LOCALHOST : string = ".localhost";
+        public static readonly DOMIMIO_SUPERIOR_INTERNO : string = ".int";
+        public static readonly DOMIMIO_SUPERIOR_TESTE : string = ".tmp.br";
+        public static readonly DOMIMIO_SUPERIOR_PRODUCAO : string = ".com.br";
     }
 }
 namespace Snebur.Imagens

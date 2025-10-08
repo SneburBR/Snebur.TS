@@ -1,5 +1,5 @@
 ﻿/*eslint-disable*/
-//@Namespace: Snebur.Comunicacao
+//@Namespace: Snebur.Comunicacao.Dominio
 //@PrioridadeDominio: 1
 //@Globalizar: False
 //@Dominios dependentes: []

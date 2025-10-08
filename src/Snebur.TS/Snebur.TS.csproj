@@ -10,6 +10,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="src\Globalizacao\**" />
+	  <Content Remove="src\Globalizacao\**" />
+	  <EmbeddedResource Remove="src\Globalizacao\**" />
+	  <None Remove="src\Globalizacao\**" />
+	  <TypeScriptCompile Remove="src\Globalizacao\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Include="..\..\..\Snebur.Framework\src\Depuracao\Startup.cs" Link="Startup.cs" />
 	</ItemGroup>
 

@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
-//@Project: Snebur.AcessoDados 
+﻿// Auto-generated file. Enums - Snebur.AcessoDados. Do not modify directly. 
+//@Project: Snebur.AcessoDados
+//@DataHora: 2025-10-08 10:46:49
+//@Artifact: Enums
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@Artifact: Enums
-//@DataHora: 2025-09-26 15:26:24
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.AcessoDados
 {
@@ -17,6 +19,7 @@ namespace Snebur.AcessoDados
         , TEMP_Undefined = 0
     }
     (EnumPosicaoOrdenacao as any).Rotulos = {};
+    (EnumPosicaoOrdenacao as any).Rotulos["Undefined"] = "Undefined";
     (EnumPosicaoOrdenacao as any).Rotulos["Afrente"] = "Afrente";
     (EnumPosicaoOrdenacao as any).Rotulos["Atras"] = "Atras";
     export enum EnumTipoFuncao
@@ -32,6 +35,7 @@ namespace Snebur.AcessoDados
         , TEMP_Undefined = 0
     }
     (EnumTipoFuncao as any).Rotulos = {};
+    (EnumTipoFuncao as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoFuncao as any).Rotulos["Consulta"] = "Consulta";
     (EnumTipoFuncao as any).Rotulos["Contar"] = "Contar";
     (EnumTipoFuncao as any).Rotulos["Somar"] = "Somar";

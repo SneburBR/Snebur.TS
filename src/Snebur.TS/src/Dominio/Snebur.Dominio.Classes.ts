@@ -1,811 +1,710 @@
-﻿/*eslint-disable*/
-//@Namespace: Snebur.Dominio
+﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
+//@DataHora: 2025-10-08 09:20:43
+//@Artifact: Classes
+//@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
-//@Globalizar: False
+//@Globalizar: False 
 //@Dominios dependentes: []
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.Comunicacao
 {
-    export class InfoRequisicao extends Snebur.Dominio.BaseDominio
+    export abstract class BaseResultadoRecuperarSenha  extends Snebur.Dominio.BaseDominio
     {
-        //#region Propriedades
-
-        private _userAgent: string = null;
-        private _ipRequisicao: string = null;
-        private _credencialUsuario: string = null;
-
-        public get UserAgent(): string 
-        {
-            return this._userAgent;
-        }
-
-        public set UserAgent(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("UserAgent", this._userAgent, this._userAgent = value);
-        }
-
-        public get IpRequisicao(): string 
-        {
-            return this._ipRequisicao;
-        }
-
-        public set IpRequisicao(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IpRequisicao", this._ipRequisicao, this._ipRequisicao = value);
-        }
-
-        public get CredencialUsuario(): string 
-        {
-            return this._credencialUsuario;
-        }
-
-        public set CredencialUsuario(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("CredencialUsuario", this._credencialUsuario, this._credencialUsuario = value);
-        }
+        //#region Private Fields
+        protected _isSucesso: boolean  = false;
+        protected _limiteTentantivaAtingido: number  = 0;
+        protected _tempoRestante: number  = 0;
+        protected _mensagemErro: string | null  = null;
         //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<InfoRequisicao>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export abstract class BaseResultadoRecuperarSenha extends Snebur.Dominio.BaseDominio
-    {
-        //#region Propriedades
-
-        private _isSucesso: boolean = false;
-        private _limiteTentantivaAtingido: number = 0;
-        private _tempoRestante: number = 0;
-        private _mensagemErro: string = null;
-
-        public get IsSucesso(): boolean 
-        {
-            return this._isSucesso;
-        }
-
-        public set IsSucesso(value: boolean) 
-        {
-            this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
-        }
-
-        public get LimiteTentantivaAtingido(): number 
-        {
-            return this._limiteTentantivaAtingido;
-        }
-
-        public set LimiteTentantivaAtingido(value: number) 
-        {
-            this.NotificarValorPropriedadeAlterada("LimiteTentantivaAtingido", this._limiteTentantivaAtingido, this._limiteTentantivaAtingido = value);
-        }
-
-        public get TempoRestante(): number 
-        {
-            return this._tempoRestante;
-        }
-
-        public set TempoRestante(value: number) 
-        {
-            this.NotificarValorPropriedadeAlterada("TempoRestante", this._tempoRestante, this._tempoRestante = value);
-        }
-
-        public get MensagemErro(): string 
-        {
-            return this._mensagemErro;
-        }
-
-        public set MensagemErro(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("MensagemErro", this._mensagemErro, this._mensagemErro = value);
-        }
-        //#endregion
-
-        //#region Construtor
-
+        
         public constructor(inicializador?: Partial<BaseResultadoRecuperarSenha>) 
         {
             super(inicializador);
         }
-        //#endregion
-    }
-    export class ResultadoAutenticacao extends Snebur.Dominio.BaseDominio
-    {
-        //#region Propriedades
-
-        private _isSucesso: boolean = false;
-        private _resultado: Snebur.Dominio.EnumResultadoAutenticacao = -1
-        private _isAlterarSenhaProximoAcesso: boolean = false;
-        private _tempoEsperar: number = 0;
-
-        public get IsSucesso(): boolean 
+        
+        public get IsSucesso(): boolean
         {
             return this._isSucesso;
         }
-
         public set IsSucesso(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("IsSucesso", this._isSucesso, this._isSucesso = value);
+            this.SetProperty("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
-
-        public get Resultado(): Snebur.Dominio.EnumResultadoAutenticacao 
+        
+        public get LimiteTentantivaAtingido(): number
         {
-            return this._resultado;
+            return this._limiteTentantivaAtingido;
         }
-
-        public set Resultado(value: Snebur.Dominio.EnumResultadoAutenticacao) 
+        public set LimiteTentantivaAtingido(value: number) 
         {
-            this.NotificarValorPropriedadeAlterada("Resultado", this._resultado, this._resultado = value);
+            this.SetProperty("LimiteTentantivaAtingido", this._limiteTentantivaAtingido, this._limiteTentantivaAtingido = value);
         }
-
-        public get IsAlterarSenhaProximoAcesso(): boolean 
+        
+        public get TempoRestante(): number
         {
-            return this._isAlterarSenhaProximoAcesso;
+            return this._tempoRestante;
         }
-
-        public set IsAlterarSenhaProximoAcesso(value: boolean) 
+        public set TempoRestante(value: number) 
         {
-            this.NotificarValorPropriedadeAlterada("IsAlterarSenhaProximoAcesso", this._isAlterarSenhaProximoAcesso, this._isAlterarSenhaProximoAcesso = value);
+            this.SetProperty("TempoRestante", this._tempoRestante, this._tempoRestante = value);
         }
-
-        public get TempoEsperar(): number 
+        
+        public get MensagemErro(): string | null
         {
-            return this._tempoEsperar;
+            return this._mensagemErro;
         }
-
-        public set TempoEsperar(value: number) 
+        public set MensagemErro(value: string | null) 
         {
-            this.NotificarValorPropriedadeAlterada("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
+            this.SetProperty("MensagemErro", this._mensagemErro, this._mensagemErro = value);
         }
+    }
+    export class InfoRequisicao  extends Snebur.Dominio.BaseDominio
+    {
+        //#region Private Fields
+        private _userAgent: string | null  = null;
+        private _ipRequisicao: string | null  = null;
+        private _credencialUsuario: string | null  = null;
         //#endregion
-
-        //#region Construtor
-
+        
+        public constructor(inicializador?: Partial<InfoRequisicao>) 
+        {
+            super(inicializador);
+        }
+        
+        public get UserAgent(): string | null
+        {
+            return this._userAgent;
+        }
+        public set UserAgent(value: string | null) 
+        {
+            this.SetProperty("UserAgent", this._userAgent, this._userAgent = value);
+        }
+        
+        public get IpRequisicao(): string | null
+        {
+            return this._ipRequisicao;
+        }
+        public set IpRequisicao(value: string | null) 
+        {
+            this.SetProperty("IpRequisicao", this._ipRequisicao, this._ipRequisicao = value);
+        }
+        
+        public get CredencialUsuario(): string | null
+        {
+            return this._credencialUsuario;
+        }
+        public set CredencialUsuario(value: string | null) 
+        {
+            this.SetProperty("CredencialUsuario", this._credencialUsuario, this._credencialUsuario = value);
+        }
+    }
+    export class ResultadoAutenticacao  extends Snebur.Dominio.BaseDominio
+    {
+        //#region Private Fields
+        private _isSucesso: boolean  = false;
+        private _resultado: Snebur.Dominio.EnumResultadoAutenticacao  = Snebur.Dominio.EnumResultadoAutenticacao.Undefined;
+        private _isAlterarSenhaProximoAcesso: boolean  = false;
+        private _tempoEsperar: number  = 0;
+        //#endregion
+        
         public constructor(inicializador?: Partial<ResultadoAutenticacao>) 
         {
             super(inicializador);
-            this.Inicializar();
         }
-        //#endregion
-    }
-    export class ResultadoExisteIdentificadoUsuario extends Snebur.Dominio.BaseDominio
-    {
-        //#region Propriedades
-
-        private _nome: string = null;
-        private _isExiste: boolean = false;
-
-        public get Nome(): string 
+        
+        public get IsSucesso(): boolean
         {
-            return this._nome;
+            return this._isSucesso;
         }
-
-        public set Nome(value: string) 
+        public set IsSucesso(value: boolean) 
         {
-            this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
+            this.SetProperty("IsSucesso", this._isSucesso, this._isSucesso = value);
         }
-
-        public get IsExiste(): boolean 
+        
+        public get Resultado(): Snebur.Dominio.EnumResultadoAutenticacao
         {
-            return this._isExiste;
+            return this._resultado;
         }
-
-        public set IsExiste(value: boolean) 
+        public set Resultado(value: Snebur.Dominio.EnumResultadoAutenticacao) 
         {
-            this.NotificarValorPropriedadeAlterada("IsExiste", this._isExiste, this._isExiste = value);
+            this.SetProperty("Resultado", this._resultado, this._resultado = value);
         }
-        //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<ResultadoExisteIdentificadoUsuario>) 
+        
+        public get IsAlterarSenhaProximoAcesso(): boolean
         {
-            super(inicializador);
-            this.Inicializar();
+            return this._isAlterarSenhaProximoAcesso;
         }
-        //#endregion
-    }
-    export class ResultadoAlterarSenha extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
-    {
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<ResultadoAlterarSenha>) 
+        public set IsAlterarSenhaProximoAcesso(value: boolean) 
         {
-            super(inicializador);
-            this.Inicializar();
+            this.SetProperty("IsAlterarSenhaProximoAcesso", this._isAlterarSenhaProximoAcesso, this._isAlterarSenhaProximoAcesso = value);
         }
-        //#endregion
-    }
-    export class ResultadoEnviarCodigoRecuperarSenha extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
-    {
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<ResultadoEnviarCodigoRecuperarSenha>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class ResultadoRecuperarSenha extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
-    {
-        //#region Propriedades
-
-        private _isUsuarioEncontrado: boolean = false;
-        private _status: Snebur.Dominio.EnumStatusCodigoRecuperarSenha = 0;
-
-        public get IsUsuarioEncontrado(): boolean 
-        {
-            return this._isUsuarioEncontrado;
-        }
-
-        public set IsUsuarioEncontrado(value: boolean) 
-        {
-            this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
-        }
-
-        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha 
-        {
-            return this._status;
-        }
-
-        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
-        {
-            this.NotificarValorPropriedadeAlterada("Status", this._status, this._status = value);
-        }
-        //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<ResultadoRecuperarSenha>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class ResultadoValidarCodigoRecuperarSenha extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
-    {
-        //#region Propriedades
-
-        private _isUsuarioEncontrado: boolean = false;
-        private _status: Snebur.Dominio.EnumStatusCodigoRecuperarSenha = 0;
-        private _tempoEsperar: number = 0;
-
-        public get IsUsuarioEncontrado(): boolean 
-        {
-            return this._isUsuarioEncontrado;
-        }
-
-        public set IsUsuarioEncontrado(value: boolean) 
-        {
-            this.NotificarValorPropriedadeAlterada("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
-        }
-
-        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha 
-        {
-            return this._status;
-        }
-
-        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
-        {
-            this.NotificarValorPropriedadeAlterada("Status", this._status, this._status = value);
-        }
-
-        public get TempoEsperar(): number 
+        
+        public get TempoEsperar(): number
         {
             return this._tempoEsperar;
         }
-
         public set TempoEsperar(value: number) 
         {
-            this.NotificarValorPropriedadeAlterada("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
+            this.SetProperty("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
         }
+    }
+    export class ResultadoExisteIdentificadoUsuario  extends Snebur.Dominio.BaseDominio
+    {
+        //#region Private Fields
+        private _isExiste: boolean  = false;
+        private _nome: string | null  = null;
         //#endregion
-
-        //#region Construtor
-
+        
+        public constructor(inicializador?: Partial<ResultadoExisteIdentificadoUsuario>) 
+        {
+            super(inicializador);
+        }
+        
+        public get IsExiste(): boolean
+        {
+            return this._isExiste;
+        }
+        public set IsExiste(value: boolean) 
+        {
+            this.SetProperty("IsExiste", this._isExiste, this._isExiste = value);
+        }
+        
+        public get Nome(): string | null
+        {
+            return this._nome;
+        }
+        public set Nome(value: string | null) 
+        {
+            this.SetProperty("Nome", this._nome, this._nome = value);
+        }
+    }
+    export class ResultadoAlterarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
+    {
+        
+        public constructor(inicializador?: Partial<ResultadoAlterarSenha>) 
+        {
+            super(inicializador);
+        }
+    }
+    export class ResultadoEnviarCodigoRecuperarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
+    {
+        
+        public constructor(inicializador?: Partial<ResultadoEnviarCodigoRecuperarSenha>) 
+        {
+            super(inicializador);
+        }
+    }
+    export class ResultadoRecuperarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
+    {
+        //#region Private Fields
+        private _isUsuarioEncontrado: boolean  = false;
+        private _status: Snebur.Dominio.EnumStatusCodigoRecuperarSenha  = Snebur.Dominio.EnumStatusCodigoRecuperarSenha.Undefined;
+        //#endregion
+        
+        public constructor(inicializador?: Partial<ResultadoRecuperarSenha>) 
+        {
+            super(inicializador);
+        }
+        
+        public get IsUsuarioEncontrado(): boolean
+        {
+            return this._isUsuarioEncontrado;
+        }
+        public set IsUsuarioEncontrado(value: boolean) 
+        {
+            this.SetProperty("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
+        }
+        
+        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha
+        {
+            return this._status;
+        }
+        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
+        {
+            this.SetProperty("Status", this._status, this._status = value);
+        }
+    }
+    export class ResultadoValidarCodigoRecuperarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
+    {
+        //#region Private Fields
+        private _isUsuarioEncontrado: boolean  = false;
+        private _status: Snebur.Dominio.EnumStatusCodigoRecuperarSenha  = Snebur.Dominio.EnumStatusCodigoRecuperarSenha.Undefined;
+        private _tempoEsperar: number  = 0;
+        //#endregion
+        
         public constructor(inicializador?: Partial<ResultadoValidarCodigoRecuperarSenha>) 
         {
             super(inicializador);
-            this.Inicializar();
         }
-        //#endregion
+        
+        public get IsUsuarioEncontrado(): boolean
+        {
+            return this._isUsuarioEncontrado;
+        }
+        public set IsUsuarioEncontrado(value: boolean) 
+        {
+            this.SetProperty("IsUsuarioEncontrado", this._isUsuarioEncontrado, this._isUsuarioEncontrado = value);
+        }
+        
+        public get Status(): Snebur.Dominio.EnumStatusCodigoRecuperarSenha
+        {
+            return this._status;
+        }
+        public set Status(value: Snebur.Dominio.EnumStatusCodigoRecuperarSenha) 
+        {
+            this.SetProperty("Status", this._status, this._status = value);
+        }
+        
+        public get TempoEsperar(): number
+        {
+            return this._tempoEsperar;
+        }
+        public set TempoEsperar(value: number) 
+        {
+            this.SetProperty("TempoEsperar", this._tempoEsperar, this._tempoEsperar = value);
+        }
     }
 }
 namespace Snebur.Dominio
 {
-    export class InformacaoSessao extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.IInformacaoSessao, Snebur.Dominio.IIdentificadorAplicacao 
+    export class DadosIPInformacao  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.IIPInformacao
     {
-        //#region Propriedades
-
-        private _identificadorAplicacaoGuid: string = "00000000-0000-0000-0000-000000000000";
-        private _identificadorAplicacao: string = null;
-        private _cultura: string = null;
-        private _idioma: string = null;
-        private _plataforma: Snebur.Dominio.EnumPlataforma = -1;
-        private _tipoAplicacao: Snebur.Dominio.EnumTipoAplicacao = -1;
-        private _resolucao: Snebur.Dominio.Dimensao = new Snebur.Dominio.Dimensao();
-        private _userAgent: string = null;
-        private _navegador: Snebur.Dominio.Navegador = new Snebur.Dominio.Navegador();
-        private _sistemaOperacional: Snebur.Dominio.SistemaOperacional = new Snebur.Dominio.SistemaOperacional();
-        private _versaoAplicacao: string = null;
-        private _nomeComputador: string = null;
-
-        public get IdentificadorAplicacaoGuid(): string 
-        {
-            return this._identificadorAplicacaoGuid;
-        }
-
-        public set IdentificadorAplicacaoGuid(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IdentificadorAplicacaoGuid", this._identificadorAplicacaoGuid, this._identificadorAplicacaoGuid = value);
-        }
-
-        public get IdentificadorAplicacao(): string 
-        {
-            return this._identificadorAplicacao;
-        }
-
-        public set IdentificadorAplicacao(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IdentificadorAplicacao", this._identificadorAplicacao, this._identificadorAplicacao = value);
-        }
-
-        public get Cultura(): string 
-        {
-            return this._cultura;
-        }
-
-        public set Cultura(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Cultura", this._cultura, this._cultura = value);
-        }
-
-        public get Idioma(): string 
-        {
-            return this._idioma;
-        }
-
-        public set Idioma(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Idioma", this._idioma, this._idioma = value);
-        }
-
-        public get Plataforma(): Snebur.Dominio.EnumPlataforma 
-        {
-            return this._plataforma;
-        }
-
-        public set Plataforma(value: Snebur.Dominio.EnumPlataforma) 
-        {
-            this.NotificarValorPropriedadeAlterada("Plataforma", this._plataforma, this._plataforma = value);
-        }
-
-        public get TipoAplicacao(): Snebur.Dominio.EnumTipoAplicacao 
-        {
-            return this._tipoAplicacao;
-        }
-
-        public set TipoAplicacao(value: Snebur.Dominio.EnumTipoAplicacao) 
-        {
-            this.NotificarValorPropriedadeAlterada("TipoAplicacao", this._tipoAplicacao, this._tipoAplicacao = value);
-        }
-
-        public get Resolucao(): Snebur.Dominio.Dimensao 
-        {
-            return this._resolucao;
-        }
-
-        public set Resolucao(value: Snebur.Dominio.Dimensao) 
-        {
-            this.NotificarValorPropriedadeAlteradaTipoCompleto("Resolucao", this._resolucao, this._resolucao = value.Clone());
-        }
-
-        public get UserAgent(): string 
-        {
-            return this._userAgent;
-        }
-
-        public set UserAgent(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("UserAgent", this._userAgent, this._userAgent = value);
-        }
-
-        public get Navegador(): Snebur.Dominio.Navegador 
-        {
-            return this._navegador;
-        }
-
-        public set Navegador(value: Snebur.Dominio.Navegador) 
-        {
-            this.NotificarValorPropriedadeAlteradaTipoCompleto("Navegador", this._navegador, this._navegador = value.Clone());
-        }
-
-        public get SistemaOperacional(): Snebur.Dominio.SistemaOperacional 
-        {
-            return this._sistemaOperacional;
-        }
-
-        public set SistemaOperacional(value: Snebur.Dominio.SistemaOperacional) 
-        {
-            this.NotificarValorPropriedadeAlteradaTipoCompleto("SistemaOperacional", this._sistemaOperacional, this._sistemaOperacional = value.Clone());
-        }
-
-        public get VersaoAplicacao(): string 
-        {
-            return this._versaoAplicacao;
-        }
-
-        public set VersaoAplicacao(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("VersaoAplicacao", this._versaoAplicacao, this._versaoAplicacao = value);
-        }
-
-        public get NomeComputador(): string 
-        {
-            return this._nomeComputador;
-        }
-
-        public set NomeComputador(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("NomeComputador", this._nomeComputador, this._nomeComputador = value);
-        }
+        //#region Private Fields
+        private _ip: string  = "";
+        private _mascaraIp4: string  = "";
+        private _cidade: string | null  = null;
+        private _codigoPostal: string | null  = null;
+        private _hostname: string | null  = null;
+        private _pais: string | null  = null;
+        private _provedorInternet: string | null  = null;
+        private _regiao: string | null  = null;
+        private _localizacao: Snebur.Dominio.Localizacao  = new Snebur.Dominio.Localizacao(0, 0);
         //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<InformacaoSessao>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class NovoUsuario extends Snebur.Dominio.BaseDominio
-    {
-        //#region Propriedades
-
-        private _nome: string = null;
-        private _email: string = null;
-        private _telefone: string = null;
-        private _senha: string = null;
-        private _isMaster: boolean = false;
-
-        public get Nome(): string 
-        {
-            return this._nome;
-        }
-
-        public set Nome(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
-        }
-
-        public get Email(): string 
-        {
-            return this._email;
-        }
-
-        public set Email(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Email", this._email, this._email = value);
-        }
-
-        public get Telefone(): string 
-        {
-            return this._telefone;
-        }
-
-        public set Telefone(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Telefone", this._telefone, this._telefone = value);
-        }
-
-        public get Senha(): string 
-        {
-            return this._senha;
-        }
-
-        public set Senha(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
-        }
-
-        public get IsMaster(): boolean 
-        {
-            return this._isMaster;
-        }
-
-        public set IsMaster(value: boolean) 
-        {
-            this.NotificarValorPropriedadeAlterada("IsMaster", this._isMaster, this._isMaster = value);
-        }
-        //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<NovoUsuario>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
-    }
-    export class DadosIPInformacao extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.IIPInformacao 
-    {
-        //#region Propriedades
-
-        private _ip: string = null;
-        private _mascaraIp4: string = null;
-        private _cidade: string = null;
-        private _codigoPostal: string = null;
-        private _hostname: string = null;
-        private _localizacao: Snebur.Dominio.Localizacao = new Snebur.Dominio.Localizacao(0, 0);
-        private _pais: string = null;
-        private _provedorInternet: string = null;
-        private _regiao: string = null;
-
-        public get IP(): string 
-        {
-            return this._ip;
-        }
-
-        public set IP(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IP", this._ip, this._ip = value);
-        }
-
-        public get MascaraIp4(): string 
-        {
-            return this._mascaraIp4;
-        }
-
-        public set MascaraIp4(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("MascaraIp4", this._mascaraIp4, this._mascaraIp4 = value);
-        }
-
-        public get Cidade(): string 
-        {
-            return this._cidade;
-        }
-
-        public set Cidade(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Cidade", this._cidade, this._cidade = value);
-        }
-
-        public get CodigoPostal(): string 
-        {
-            return this._codigoPostal;
-        }
-
-        public set CodigoPostal(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("CodigoPostal", this._codigoPostal, this._codigoPostal = value);
-        }
-
-        public get Hostname(): string 
-        {
-            return this._hostname;
-        }
-
-        public set Hostname(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Hostname", this._hostname, this._hostname = value);
-        }
-
-        public get Localizacao(): Snebur.Dominio.Localizacao 
-        {
-            return this._localizacao;
-        }
-
-        public set Localizacao(value: Snebur.Dominio.Localizacao) 
-        {
-            this.NotificarValorPropriedadeAlteradaTipoCompleto("Localizacao", this._localizacao, this._localizacao = value.Clone());
-        }
-
-        public get Pais(): string 
-        {
-            return this._pais;
-        }
-
-        public set Pais(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Pais", this._pais, this._pais = value);
-        }
-
-        public get ProvedorInternet(): string 
-        {
-            return this._provedorInternet;
-        }
-
-        public set ProvedorInternet(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("ProvedorInternet", this._provedorInternet, this._provedorInternet = value);
-        }
-
-        public get Regiao(): string 
-        {
-            return this._regiao;
-        }
-
-        public set Regiao(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Regiao", this._regiao, this._regiao = value);
-        }
-        //#endregion
-
-        //#region Construtor
-
+        
         public constructor(inicializador?: Partial<DadosIPInformacao>) 
         {
             super(inicializador);
-            this.Inicializar();
         }
-        //#endregion
+        
+        public get IP(): string
+        {
+            return this._ip;
+        }
+        public set IP(value: string) 
+        {
+            this.SetProperty("IP", this._ip, this._ip = value);
+        }
+        
+        public get MascaraIp4(): string
+        {
+            return this._mascaraIp4;
+        }
+        public set MascaraIp4(value: string) 
+        {
+            this.SetProperty("MascaraIp4", this._mascaraIp4, this._mascaraIp4 = value);
+        }
+        
+        public get Cidade(): string | null
+        {
+            return this._cidade;
+        }
+        public set Cidade(value: string | null) 
+        {
+            this.SetProperty("Cidade", this._cidade, this._cidade = value);
+        }
+        
+        public get CodigoPostal(): string | null
+        {
+            return this._codigoPostal;
+        }
+        public set CodigoPostal(value: string | null) 
+        {
+            this.SetProperty("CodigoPostal", this._codigoPostal, this._codigoPostal = value);
+        }
+        
+        public get Hostname(): string | null
+        {
+            return this._hostname;
+        }
+        public set Hostname(value: string | null) 
+        {
+            this.SetProperty("Hostname", this._hostname, this._hostname = value);
+        }
+        
+        public get Pais(): string | null
+        {
+            return this._pais;
+        }
+        public set Pais(value: string | null) 
+        {
+            this.SetProperty("Pais", this._pais, this._pais = value);
+        }
+        
+        public get ProvedorInternet(): string | null
+        {
+            return this._provedorInternet;
+        }
+        public set ProvedorInternet(value: string | null) 
+        {
+            this.SetProperty("ProvedorInternet", this._provedorInternet, this._provedorInternet = value);
+        }
+        
+        public get Regiao(): string | null
+        {
+            return this._regiao;
+        }
+        public set Regiao(value: string | null) 
+        {
+            this.SetProperty("Regiao", this._regiao, this._regiao = value);
+        }
+        
+        public get Localizacao(): Snebur.Dominio.Localizacao
+        {
+            return this._localizacao;
+        }
+        public set Localizacao(value: Snebur.Dominio.Localizacao) 
+        {
+            Guard.NotNull(value, "The property Localizacao of complex type 'Snebur.Dominio.Localizacao' cannot set null value.");
+            this.SetComplexTypeProperty("Localizacao", this._localizacao, this._localizacao = value.Clone());
+        }
     }
-    export class ErroValidacao extends Snebur.Dominio.BaseDominio
+    export class ErroValidacaoInfo  extends Snebur.Dominio.BaseDominio
     {
-        //#region Propriedades
-
-        private _nomeTipoEntidade: string = null;
-        private _nomePropriedade: string = null;
-        private _nomeTipoValidacao: string = null;
-        private _mensagem: string = null;
-
-        public get NomeTipoEntidade(): string 
+        //#region Private Fields
+        private _nomeTipoEntidade: string  = "";
+        private _nomePropriedade: string  = "";
+        private _nomeTipoValidacao: string  = "";
+        private _mensagem: string  = "";
+        private _valorPropriedade: any | null  = null;
+        //#endregion
+        
+        public constructor(inicializador?: Partial<ErroValidacaoInfo>) 
+        {
+            super(inicializador);
+        }
+        
+        public get NomeTipoEntidade(): string
         {
             return this._nomeTipoEntidade;
         }
-
         public set NomeTipoEntidade(value: string) 
         {
-            this.NotificarValorPropriedadeAlterada("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
+            this.SetProperty("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
         }
-
-        public get NomePropriedade(): string 
+        
+        public get NomePropriedade(): string
         {
             return this._nomePropriedade;
         }
-
         public set NomePropriedade(value: string) 
         {
-            this.NotificarValorPropriedadeAlterada("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
+            this.SetProperty("NomePropriedade", this._nomePropriedade, this._nomePropriedade = value);
         }
-
-        public get NomeTipoValidacao(): string 
+        
+        public get NomeTipoValidacao(): string
         {
             return this._nomeTipoValidacao;
         }
-
         public set NomeTipoValidacao(value: string) 
         {
-            this.NotificarValorPropriedadeAlterada("NomeTipoValidacao", this._nomeTipoValidacao, this._nomeTipoValidacao = value);
+            this.SetProperty("NomeTipoValidacao", this._nomeTipoValidacao, this._nomeTipoValidacao = value);
         }
-
-        public get Mensagem(): string 
+        
+        public get Mensagem(): string
         {
             return this._mensagem;
         }
-
         public set Mensagem(value: string) 
         {
-            this.NotificarValorPropriedadeAlterada("Mensagem", this._mensagem, this._mensagem = value);
+            this.SetProperty("Mensagem", this._mensagem, this._mensagem = value);
         }
+        
+        public get ValorPropriedade(): any | null
+        {
+            return this._valorPropriedade;
+        }
+        public set ValorPropriedade(value: any | null) 
+        {
+            this.SetProperty("ValorPropriedade", this._valorPropriedade, this._valorPropriedade = value);
+        }
+    }
+    export class InformacaoSessao  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.IIdentificadorAplicacao, Snebur.Dominio.IInformacaoSessao
+    {
+        //#region Private Fields
+        private _identificadorAplicacaoGuid: string  = "00000000-0000-0000-0000-000000000000";
+        private _plataforma: Snebur.Dominio.EnumPlataforma  = Snebur.Dominio.EnumPlataforma.Undefined;
+        private _tipoAplicacao: Snebur.Dominio.EnumTipoAplicacao  = Snebur.Dominio.EnumTipoAplicacao.Undefined;
+        private _identificadorAplicacao: string  = "";
+        private _cultura: string | null  = null;
+        private _idioma: string  = "";
+        private _userAgent: string | null  = null;
+        private _versaoAplicacao: string  = "";
+        private _nomeComputador: string | null  = null;
+        private _resolucao: Snebur.Dominio.Dimensao  = new Snebur.Dominio.Dimensao( 0, 0);
+        private _navegador: Snebur.Dominio.Navegador  = new Snebur.Dominio.Navegador(Snebur.Dominio.EnumNavegador.Undefined, "", "");
+        private _sistemaOperacional: Snebur.Dominio.SistemaOperacional  = new Snebur.Dominio.SistemaOperacional(Snebur.Dominio.EnumSistemaOperacional.Undefined, "", "", "");
         //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<ErroValidacao>) 
+        
+        public constructor(inicializador?: Partial<InformacaoSessao>) 
         {
             super(inicializador);
-            this.Inicializar();
         }
+        
+        public get IdentificadorAplicacaoGuid(): string
+        {
+            return this._identificadorAplicacaoGuid;
+        }
+        public set IdentificadorAplicacaoGuid(value: string) 
+        {
+            this.SetProperty("IdentificadorAplicacaoGuid", this._identificadorAplicacaoGuid, this._identificadorAplicacaoGuid = value);
+        }
+        
+        public get Plataforma(): Snebur.Dominio.EnumPlataforma
+        {
+            return this._plataforma;
+        }
+        public set Plataforma(value: Snebur.Dominio.EnumPlataforma) 
+        {
+            this.SetProperty("Plataforma", this._plataforma, this._plataforma = value);
+        }
+        
+        public get TipoAplicacao(): Snebur.Dominio.EnumTipoAplicacao
+        {
+            return this._tipoAplicacao;
+        }
+        public set TipoAplicacao(value: Snebur.Dominio.EnumTipoAplicacao) 
+        {
+            this.SetProperty("TipoAplicacao", this._tipoAplicacao, this._tipoAplicacao = value);
+        }
+        
+        public get IdentificadorAplicacao(): string
+        {
+            return this._identificadorAplicacao;
+        }
+        public set IdentificadorAplicacao(value: string) 
+        {
+            this.SetProperty("IdentificadorAplicacao", this._identificadorAplicacao, this._identificadorAplicacao = value);
+        }
+        
+        public get Cultura(): string | null
+        {
+            return this._cultura;
+        }
+        public set Cultura(value: string | null) 
+        {
+            this.SetProperty("Cultura", this._cultura, this._cultura = value);
+        }
+        
+        public get Idioma(): string
+        {
+            return this._idioma;
+        }
+        public set Idioma(value: string) 
+        {
+            this.SetProperty("Idioma", this._idioma, this._idioma = value);
+        }
+        
+        public get UserAgent(): string | null
+        {
+            return this._userAgent;
+        }
+        public set UserAgent(value: string | null) 
+        {
+            this.SetProperty("UserAgent", this._userAgent, this._userAgent = value);
+        }
+        
+        public get VersaoAplicacao(): string
+        {
+            return this._versaoAplicacao;
+        }
+        public set VersaoAplicacao(value: string) 
+        {
+            this.SetProperty("VersaoAplicacao", this._versaoAplicacao, this._versaoAplicacao = value);
+        }
+        
+        public get NomeComputador(): string | null
+        {
+            return this._nomeComputador;
+        }
+        public set NomeComputador(value: string | null) 
+        {
+            this.SetProperty("NomeComputador", this._nomeComputador, this._nomeComputador = value);
+        }
+        
+        public get Resolucao(): Snebur.Dominio.Dimensao
+        {
+            return this._resolucao;
+        }
+        public set Resolucao(value: Snebur.Dominio.Dimensao) 
+        {
+            Guard.NotNull(value, "The property Resolucao of complex type 'Snebur.Dominio.Dimensao' cannot set null value.");
+            this.SetComplexTypeProperty("Resolucao", this._resolucao, this._resolucao = value.Clone());
+        }
+        
+        public get Navegador(): Snebur.Dominio.Navegador
+        {
+            return this._navegador;
+        }
+        public set Navegador(value: Snebur.Dominio.Navegador) 
+        {
+            Guard.NotNull(value, "The property Navegador of complex type 'Snebur.Dominio.Navegador' cannot set null value.");
+            this.SetComplexTypeProperty("Navegador", this._navegador, this._navegador = value.Clone());
+        }
+        
+        public get SistemaOperacional(): Snebur.Dominio.SistemaOperacional
+        {
+            return this._sistemaOperacional;
+        }
+        public set SistemaOperacional(value: Snebur.Dominio.SistemaOperacional) 
+        {
+            Guard.NotNull(value, "The property SistemaOperacional of complex type 'Snebur.Dominio.SistemaOperacional' cannot set null value.");
+            this.SetComplexTypeProperty("SistemaOperacional", this._sistemaOperacional, this._sistemaOperacional = value.Clone());
+        }
+    }
+    export abstract class NovoUsuario  extends Snebur.Dominio.BaseDominio
+    {
+        //#region Private Fields
+        protected _isValido: boolean  = false;
+        protected _nome: string | null  = null;
+        protected _email: string | null  = null;
+        protected _telefone: string | null  = null;
+        protected _senha: string | null  = null;
         //#endregion
+        
+        public constructor(inicializador?: Partial<NovoUsuario>) 
+        {
+            super(inicializador);
+        }
+        
+        public get IsValido(): boolean
+        {
+            return this._isValido;
+        }
+        
+        public get Nome(): string | null
+        {
+            return this._nome;
+        }
+        public set Nome(value: string | null) 
+        {
+            this.SetProperty("Nome", this._nome, this._nome = value);
+        }
+        
+        public get Email(): string | null
+        {
+            return this._email;
+        }
+        public set Email(value: string | null) 
+        {
+            this.SetProperty("Email", this._email, this._email = value);
+        }
+        
+        public get Telefone(): string | null
+        {
+            return this._telefone;
+        }
+        public set Telefone(value: string | null) 
+        {
+            this.SetProperty("Telefone", this._telefone, this._telefone = value);
+        }
+        
+        public get Senha(): string | null
+        {
+            return this._senha;
+        }
+        public set Senha(value: string | null) 
+        {
+            this.SetProperty("Senha", this._senha, this._senha = value);
+        }
     }
 }
 namespace Snebur.Seguranca
 {
-    export abstract class Credencial extends Snebur.Dominio.BaseDominio implements Snebur.Dominio.ICredencial 
+    export abstract class Credencial  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.ICredencial
     {
-        //#region Propriedades
-
-        private _identificadorUsuario: string = null;
-        private _senha: string = null;
-
-        public get IdentificadorUsuario(): string 
-        {
-            return this._identificadorUsuario;
-        }
-
-        public set IdentificadorUsuario(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("IdentificadorUsuario", this._identificadorUsuario, this._identificadorUsuario = value);
-        }
-
-        public get Senha(): string 
-        {
-            return this._senha;
-        }
-
-        public set Senha(value: string) 
-        {
-            this.NotificarValorPropriedadeAlterada("Senha", this._senha, this._senha = value);
-        }
+        //#region Private Fields
+        protected _isValido: boolean  = false;
+        protected _identificadorUsuario: string | null  = null;
+        protected _senha: string | null  = null;
         //#endregion
-
-        //#region Construtor
-
+        
         public constructor(inicializador?: Partial<Credencial>) 
         {
             super(inicializador);
         }
-        //#endregion
+        
+        public get IsValido(): boolean
+        {
+            return this._isValido;
+        }
+        
+        public get IdentificadorUsuario(): string | null
+        {
+            return this._identificadorUsuario;
+        }
+        public set IdentificadorUsuario(value: string | null) 
+        {
+            this.SetProperty("IdentificadorUsuario", this._identificadorUsuario, this._identificadorUsuario = value);
+        }
+        
+        public get Senha(): string | null
+        {
+            return this._senha;
+        }
+        public set Senha(value: string | null) 
+        {
+            this.SetProperty("Senha", this._senha, this._senha = value);
+        }
     }
-    export class CredencialServico extends Snebur.Seguranca.Credencial
+    export class CredencialServico  extends Snebur.Seguranca.Credencial
     {
-        //#region Construtor
-
+        
         public constructor(inicializador?: Partial<CredencialServico>) 
         {
             super(inicializador);
-            this.Inicializar();
         }
-        //#endregion
     }
-    export class CredencialUsuario extends Snebur.Seguranca.Credencial
+    export class CredencialUsuario  extends Snebur.Seguranca.Credencial
     {
-        //#region Propriedades
-
-        private _nome: string = null;
-        private _identificadorAmigavel: string | null = null;
-
-        public get Nome(): string 
+        //#region Private Fields
+        private _nome: string | null  = null;
+        private _identificadorAmigavel: string | null  = null;
+        //#endregion
+        
+        public constructor(inicializador?: Partial<CredencialUsuario>) 
+        {
+            super(inicializador);
+        }
+        
+        public get Nome(): string | null
         {
             return this._nome;
         }
-
-        public set Nome(value: string) 
+        public set Nome(value: string | null) 
         {
-            this.NotificarValorPropriedadeAlterada("Nome", this._nome, this._nome = value);
+            this.SetProperty("Nome", this._nome, this._nome = value);
         }
-
+        
         public get IdentificadorAmigavel(): string | null
         {
             return this._identificadorAmigavel;
         }
-
-        public set IdentificadorAmigavel(value: string) 
+        public set IdentificadorAmigavel(value: string | null) 
         {
-            this.NotificarValorPropriedadeAlterada("IdentificadorAmigavel", this._identificadorAmigavel, this._identificadorAmigavel = value);
+            this.SetProperty("IdentificadorAmigavel", this._identificadorAmigavel, this._identificadorAmigavel = value);
         }
-        //#endregion
-
-        //#region Construtor
-
-        public constructor(inicializador?: Partial<CredencialUsuario>) 
-        {
-            super(inicializador);
-            this.Inicializar();
-        }
-        //#endregion
     }
 }
 namespace Snebur.Servicos
 {
-    export abstract class BaseInformacaoAdicionalServicoCompartilhado extends Snebur.Dominio.BaseDominio
+    export abstract class BaseInformacaoAdicionalServicoCompartilhado  extends Snebur.Dominio.BaseDominio
     {
-        //#region Construtor
-
+        
         public constructor(inicializador?: Partial<BaseInformacaoAdicionalServicoCompartilhado>) 
         {
             super(inicializador);
         }
-        //#endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*eslint-disable*/
-//@Namespace: Snebur.ServicoArquivo
+//@Namespace: Snebur.ServicoArquivo.Dominio
 //@PrioridadeDominio: 2
 //@Globalizar: False
 //@Dominios dependentes: []
