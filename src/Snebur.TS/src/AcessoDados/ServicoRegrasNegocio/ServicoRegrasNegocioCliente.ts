@@ -3,28 +3,30 @@
     export abstract class ServicoRegrasNegocioCliente extends Snebur.Comunicacao.BaseComunicacaoCliente implements IServicoRegrasNegocio 
     {
 
-        public constructor(urlServico: string, urlServicoDebug?:string)
+        public constructor(urlServico: string, urlServicoDebug?: string)
         {
             super(urlServico, urlServicoDebug);
         }
-         
-        public ChamarRegraAsync(chamadaRegraNegocio: c.ChamadaRegraNegocio, ...parametros: Array<IParametroRegraNegocio | Function>): void
+
+        public ChamarRegraAsync(
+            chamadaRegraNegocio: c.ChamadaRegraNegocio,
+            argumentos: any[],
+            resolver: (resultado: any) => void,
+            reject: (reason: any) => void)
         {
             /*eslint-disable*/
-            this.ChamarServicoAsync("ChamarRegraAsync", arguments);
+            this.ChamarServicoAsync("ChamarRegraAsync", argumentos, resolver, reject);
             /*eslint-enable*/
         }
 
         protected override RetornarParametros(
             nomeMetoedo: string,
             metodo: Function,
-            valoresArgumentos: IArguments,
+            argumentos: any[],
             isAsync = true): Array<ParChaveValorSimples<any>>
         {
 
             const parametros = Array<ParChaveValorSimples<any>>();
-
-            const argumentos = u.Util.CopiarArray(valoresArgumentos);
             const chamadaRegraNegocio = argumentos.FirstOrDefault();
             const callback = argumentos.LastOrDefault();
 
