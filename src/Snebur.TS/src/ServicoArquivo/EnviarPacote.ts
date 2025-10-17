@@ -20,8 +20,7 @@
 
             this.TIMEOUT = ($Configuracao.IsProducao) ? TimeSpan.FromMinutes(5) : TimeSpan.FromSeconds(30);
             this.Pacote = pacote;
-            this.XmlHttp = new XMLHttpRequest();
-            this.XmlHttp.open(u.EnumHttpMethod.POST, url, true);
+            this.XmlHttp = XMLHttpRequestFactory.Create(this.Url, u.EnumHttpMethod.POST, true);
             this.XmlHttp.timeout = EnviarPacote.TIMEOUT_ENVIAR_PACOTE;
             this.XmlHttp.onreadystatechange = this.Xmlhttp_ReadyStateChange.bind(this);
             this.XmlHttp.onerror = this.Xmlhttp_Error.bind(this);

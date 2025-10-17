@@ -10,6 +10,7 @@
         IsDesativarServicoDepuracao?: boolean;
         IsProtegerUrl?: boolean;
         IsDepuracaoUtilizarHostLocal?: boolean;
+        IsUsarHostAtualParaHtmlReferencia?: boolean;
         IsProducao?: boolean;
         IsGlobalizar?: boolean;
         IdiomaPadrao: string;

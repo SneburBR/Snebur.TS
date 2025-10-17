@@ -166,6 +166,7 @@ namespace Snebur
         "__hashCode": true,
         "__nomeConstrutor": true,
         "__IdentificadorUnico": true,
+        "__privateFields": true,
         "ToString": true,
         "Equals": true,
         "_identificadorUnico": true,

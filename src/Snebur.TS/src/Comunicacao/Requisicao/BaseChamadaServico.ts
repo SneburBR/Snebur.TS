@@ -50,8 +50,7 @@
             isAsync: boolean): XMLHttpRequest
         {
 
-            const xmlHttp = new XMLHttpRequest();
-            xmlHttp.open(u.EnumHttpMethod.POST, this.Url, isAsync);
+            const xmlHttp = XMLHttpRequestFactory.Create(this.Url, u.EnumHttpMethod.POST, isAsync);
 
             xmlHttp.setRequestHeader("Usuario", u.Base64Util.Encode(this.Credencial.IdentificadorUsuario));
             xmlHttp.setRequestHeader("Senha", u.Base64Util.Encode(this.Credencial.Senha));

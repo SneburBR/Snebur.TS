@@ -53,8 +53,7 @@
             const url = "/vs-porta-depuracao";
             return new Promise((resolve, reject) =>
             {
-                const xhr = new XMLHttpRequest();
-                xhr.open("GET", url, true);
+                const xhr = XMLHttpRequestFactory.Create(url, "GET", true);
                 xhr.onreadystatechange = function ()
                 {
                     if (xhr.readyState === 4 && xhr.status === 200)
@@ -151,7 +150,10 @@
 
         public EnviarMensagem(mensagem: Mensagem): void
         {
-            const contrato = new Contrato(mensagem);
+            const contrato = new Contrato({
+                Mensagem: mensagem
+            });
+
             const constratoSerializado = JsonUtil.Serializar(contrato);
             this.ServicoWebScoket.send(constratoSerializado);
         }

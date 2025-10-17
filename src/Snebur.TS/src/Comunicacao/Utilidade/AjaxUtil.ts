@@ -1,15 +1,16 @@
 ﻿namespace Snebur.Utilidade
 {
+   
     export class AjaxUtil
     {
+
 
         public static RetornarTextoSync(url: string): string
         public static RetornarTextoSync(url: string, isRetornarErro: true): string | Error
         public static RetornarTextoSync(url: string, isRetornarErro: false): string
         public static RetornarTextoSync(url: string, isRetornarErro: boolean = false): string | Error
         {
-            const xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", url, false);
+            const xmlHttp = XMLHttpRequestFactory.Create(url, "GET", false);
             xmlHttp.setRequestHeader("Content-type", "text/html");
 
             xmlHttp.send(null);
@@ -33,9 +34,7 @@
             type: EnumMimetypeString = EnumMimetypeString.Bin,
             callback: CallbackResultado<string | Blob | Erro>): void
         {
-            const xmlHttp = new XMLHttpRequest();
-
-            xmlHttp.open("GET", url, true);
+            const xmlHttp = XMLHttpRequestFactory.Create(url, "GET", true);
             xmlHttp.setRequestHeader("Content-type", EnumMimetypeString.Bin);
             xmlHttp.responseType = "blob";
 
@@ -125,8 +124,8 @@
             callback: CallbackResultado<string | Erro>): void
         {
             const metodo = formData != null ? u.EnumHttpMethod.POST : u.EnumHttpMethod.GET;
-            const xmlHttp = new XMLHttpRequest();
-            xmlHttp.open(metodo, url, true);
+
+            const xmlHttp = XMLHttpRequestFactory.Create(url, metodo, true);
             xmlHttp.setRequestHeader("Content-type", "text/json");
 
             if (typeof $Aplicacao.FuncaoNormalizarRequisicao === "function")
@@ -169,11 +168,7 @@
             callbackProgresso: CallbackResultado<ProgressoEventArgs> | null,
             callback: CallbackResultado<ArrayBuffer | Error>): void
         {
-            const xmlHttp = new XMLHttpRequest();
-
-            xmlHttp.open(metodo, url, true);
-
-
+            const xmlHttp = XMLHttpRequestFactory.Create(url, metodo, true);
             if (!String.IsNullOrEmpty(token))
             {
                 xmlHttp.setRequestHeader(c.ParametrosComunicacao.TOKEN, encodeURIComponent(token));
