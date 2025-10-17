@@ -44,13 +44,8 @@
                     }
                 }
             }
-            const htmlDecodificado = HtmlReferenciaUtil.RetornarHtmlDecodificado(htmlReferencia);
-            if (htmlReferencia != null)
-            {
-                htmlReferencia.HtmlDecodificado = htmlDecodificado;
-                htmlReferencia.IsHtmlDecodificado = true;
-                htmlReferencia.DataHoraDecodificado = new Date();
-            }
+            htmlReferencia.DecodificarHtml();
+         
             return htmlReferencia.HtmlDecodificado;
         }
 
@@ -106,7 +101,8 @@
             throw new Erro("O tipo não foi ser encontrado");
         }
 
-        private static RetornarHtmlDecodificado(htmlReferencia: HtmlReferencia): string
+        /*@internal*/
+        public static RetornarHtmlDecodificado(htmlReferencia: HtmlReferencia): string
         {
             if ($Configuracao.IsProducao || !$Configuracao.IsDebug)
             {
@@ -127,16 +123,16 @@
             }
         }
 
-        private static RetornarConteudoHtml(htmlReferencia: HtmlReferencia): string
+        private static RetornarConteudoHtml(htmlReferencia: HtmlReferencia, retry : number= 0): string
         {
-            const url = htmlReferencia.UrlDesenvolvimentoAbsoluta + "?" + u.GuidUtil.RetornarNovoGuid();
 
+            const url = htmlReferencia.UrlDesenvolvimento;
             try
             {
                 let html = u.AjaxUtil.RetornarTextoSync(url);
                 html = html.replace(/(<!--.*?-->)|(<!--[\w\W\n\s]+?-->)/g, "");
 
-                const corpo = HtmlReferenciaUtil.RetornarCorpoHtml(html, htmlReferencia.UrlDesenvolvimentoAbsoluta);
+                const corpo = HtmlReferenciaUtil.RetornarCorpoHtml(html, url);
                 const dicionario = this.RetornarDicionarioAtributos(html);
                 if (dicionario)
                 {
@@ -146,6 +142,10 @@
             }
             catch (erro)
             {
+                if ($Configuracao.IsDebug && retry< 3)
+                {
+                    return this.RetornarConteudoHtml(htmlReferencia, retry + 1);
+                }
                 console.error(`Não foi possível carregar a URL ${url} - ${erro} `);
                 return u.Base64Util.Decode(htmlReferencia.Html);
             }
