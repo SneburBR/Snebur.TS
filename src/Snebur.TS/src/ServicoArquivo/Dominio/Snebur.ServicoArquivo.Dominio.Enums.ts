@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Enums - Snebur.ServicoArquivo. Do not modify directly. 
+//@Project: Snebur.ServicoArquivo
+//@DataHora: 2025-10-10 09:31:54
 //@Artifact: Enums
-//@Project: Snebur.ServicoArquivo 
 //@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:02:24
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.ServicoArquivo
 {
@@ -22,6 +24,7 @@ namespace Snebur.ServicoArquivo
         , TEMP_Undefined = 0
     }
     (EnumTipoErroServicoArquivo as any).Rotulos = {};
+    (EnumTipoErroServicoArquivo as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoErroServicoArquivo as any).Rotulos["ChecksumArquivoDiferente"] = "Checksum do arquivo diferentes";
     (EnumTipoErroServicoArquivo as any).Rotulos["ChecksumPacoteDiferente"] = "Checksum do pacote diferentes";
     (EnumTipoErroServicoArquivo as any).Rotulos["TotalBytesDiferente"] = "Total de bytes diferente";

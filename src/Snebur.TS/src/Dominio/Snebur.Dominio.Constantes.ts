@@ -1,5 +1,6 @@
-﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
-//@DataHora: 2025-10-08 09:20:17
+﻿// Auto-generated file. Constantes - Snebur. Do not modify directly. 
+//@Project: Snebur
+//@DataHora: 2025-10-16 16:10:46
 //@Artifact: Constantes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -28,6 +29,17 @@ namespace Snebur
         public static readonly DOMIMIO_SUPERIOR_INTERNO : string = ".int";
         public static readonly DOMIMIO_SUPERIOR_TESTE : string = ".tmp.br";
         public static readonly DOMIMIO_SUPERIOR_PRODUCAO : string = ".com.br";
+    }
+    export class ConstantesReflexao
+    {
+        public static readonly PREFIXO_LISTA_TIPO_PRIMARIO : string = "ListaTipoPrimario_";
+        public static readonly PREFIXO_LISTA_TIPO_ENUM : string = "ListaTipoEnum_";
+        public static readonly PREFIXO_LISTA_TIPO_COMPLEXO : string = "ListaTipoComplexo_";
+        public static readonly PREFIXO_LISTA_TIPO_BASE_DOMINIO : string = "ListaTipoBaseDominio_";
+        public static readonly PREFIXO_LISTA_TIPO_ENTIDADE : string = "ListaTipoEntidade_";
+        public static readonly PREFIXO_LISTA_TIPO_DICIONARIO : string = "Dicionario_";
+        public static readonly METODO_LIGACAO_COLECAO : string = "Incluir()";
+        public static readonly CAMINHO_TIPO : string = "__CaminhoTipo";
     }
 }
 namespace Snebur.Imagens

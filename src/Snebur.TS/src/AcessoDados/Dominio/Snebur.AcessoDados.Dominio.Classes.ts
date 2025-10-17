@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Classes - Snebur.AcessoDados. Do not modify directly. 
+//@Project: Snebur.AcessoDados
+//@DataHora: 2025-10-16 14:31:18
 //@Artifact: Classes
-//@Project: Snebur.AcessoDados 
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:01:42
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.AcessoDados
 {
@@ -119,6 +121,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<ConsultaFiltroColecao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Relacao(): string | null
@@ -150,6 +153,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<EntidadeSalvaInfo>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Id(): number
@@ -201,6 +205,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<EstruturaConsulta>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsIncluirDeletados(): boolean
@@ -335,6 +340,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<Ordenacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get SentidoOrdenacaoEnum(): Snebur.Dominio.EnumSentidoOrdenacao
@@ -365,6 +371,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<PropriedadeComputada>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomePropriedade(): string
@@ -448,6 +455,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<FiltroPropriedade>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario
@@ -495,7 +503,6 @@ namespace Snebur.AcessoDados
         public constructor(caminhoPropriedade: string, lista: Array<string>) 
         {
             super();
-            Guard.NotNull( caminhoPropriedade, "The argument caminhoPropriedade cannot be null.");
             Guard.NotNull( lista, "The argument lista cannot be null.");
             this._caminhoPropriedade = caminhoPropriedade;
             this.Lista.AddRange(lista);
@@ -521,6 +528,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<RelacaoAbertaColecao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get EstruturaConsulta(): Snebur.AcessoDados.EstruturaConsulta | null
@@ -538,6 +546,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<RelacaoAbertaEntidade>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ResultadoConsulta  extends Snebur.AcessoDados.Resultado
@@ -549,6 +558,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<ResultadoConsulta>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TotalRegistros(): number
@@ -567,6 +577,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<ResultadoDeletar>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ResultadoSalvar  extends Snebur.AcessoDados.Resultado
@@ -575,6 +586,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<ResultadoSalvar>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         public readonly EntidadesSalvas = new Array<Snebur.AcessoDados.EntidadeSalvaInfo>();
         public readonly ErrosValidacao = new Array<Snebur.Dominio.ErroValidacaoInfo>();
@@ -585,6 +597,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<FiltroGrupoE>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class FiltroGrupoNAO  extends Snebur.AcessoDados.BaseFiltroGrupo
@@ -593,6 +606,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<FiltroGrupoNAO>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class FiltroGrupoOU  extends Snebur.AcessoDados.BaseFiltroGrupo
@@ -601,6 +615,7 @@ namespace Snebur.AcessoDados
         public constructor(inicializador?: Partial<FiltroGrupoOU>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
 }

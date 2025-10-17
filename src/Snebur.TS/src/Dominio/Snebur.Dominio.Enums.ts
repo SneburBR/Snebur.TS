@@ -1,5 +1,6 @@
-﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
-//@DataHora: 2025-10-08 09:20:15
+﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
+//@Project: Snebur
+//@DataHora: 2025-10-10 09:31:22
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -19,6 +20,7 @@ namespace Snebur
         Producao = 3
     }
     (EnumAmbienteServidor as any).Rotulos = {};
+    (EnumAmbienteServidor as any).Rotulos["Undefined"] = "Undefined";
     (EnumAmbienteServidor as any).Rotulos["Localhost"] = "Localhost";
     (EnumAmbienteServidor as any).Rotulos["Interno"] = "Interno";
     (EnumAmbienteServidor as any).Rotulos["Teste"] = "Teste";
@@ -234,6 +236,7 @@ namespace Snebur.Dominio
         Sabado = 6
     }
     (EnumDiaSemana as any).Rotulos = {};
+    (EnumDiaSemana as any).Rotulos["Undefined"] = "Undefined";
     (EnumDiaSemana as any).Rotulos["Domingo"] = "Domingo";
     (EnumDiaSemana as any).Rotulos["SegundaFeira"] = "Segunda-feira";
     (EnumDiaSemana as any).Rotulos["TercaFeira"] = "Terça-feira";
@@ -333,6 +336,7 @@ namespace Snebur.Dominio
         Amarelo = 11
     }
     (EnumFiltroImagem as any).Rotulos = {};
+    (EnumFiltroImagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumFiltroImagem as any).Rotulos["Exposicao"] = "Exposição";
     (EnumFiltroImagem as any).Rotulos["Brilho"] = "Brilho";
     (EnumFiltroImagem as any).Rotulos["Contraste"] = "Contraste";
@@ -397,6 +401,7 @@ namespace Snebur.Dominio
         EPS = 29
     }
     (EnumFormatoImagem as any).Rotulos = {};
+    (EnumFormatoImagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumFormatoImagem as any).Rotulos["Desconhecido"] = "Desconhecido";
     (EnumFormatoImagem as any).Rotulos["JPEG"] = "Joint Photographic Experts Group";
     (EnumFormatoImagem as any).Rotulos["BMP"] = "BMP file format";
@@ -558,6 +563,7 @@ namespace Snebur.Dominio
         Heic = 7214
     }
     (EnumMimeType as any).Rotulos = {};
+    (EnumMimeType as any).Rotulos["Undefined"] = "Undefined";
     (EnumMimeType as any).Rotulos["Desconhecido"] = "Desconhecido";
     (EnumMimeType as any).Rotulos["Aac"] = "Arquivo de audio AAC";
     (EnumMimeType as any).Rotulos["Abw"] = "Documento AbiWord";
@@ -690,6 +696,7 @@ namespace Snebur.Dominio
         Proteger = 64
     }
     (EnumOpcoesAlterarPropriedade as any).Rotulos = {};
+    (EnumOpcoesAlterarPropriedade as any).Rotulos["Undefined"] = "Undefined";
     (EnumOpcoesAlterarPropriedade as any).Rotulos["Nenhuma"] = "Nenhuma";
     (EnumOpcoesAlterarPropriedade as any).Rotulos["NotificarNovoCadastro"] = "NotificarNovoCadastro";
     (EnumOpcoesAlterarPropriedade as any).Rotulos["VerificarAlteracaoNoBanco"] = "VerificarAlteracaoNoBanco";
@@ -736,6 +743,7 @@ namespace Snebur.Dominio
         Esticar = 4
     }
     (EnumPreenchimentoImagem as any).Rotulos = {};
+    (EnumPreenchimentoImagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumPreenchimentoImagem as any).Rotulos["Vazio"] = "Vazio";
     (EnumPreenchimentoImagem as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumPreenchimentoImagem as any).Rotulos["UniformeDentro"] = "UniformeDentro";
@@ -788,6 +796,7 @@ namespace Snebur.Dominio
         Rotacao360AntiHorario = -360
     }
     (EnumRotacaoImagem as any).Rotulos = {};
+    (EnumRotacaoImagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumRotacaoImagem as any).Rotulos["Normal"] = "Normal";
     (EnumRotacaoImagem as any).Rotulos["Rotacao90"] = "Rotacao90";
     (EnumRotacaoImagem as any).Rotulos["Rotacao180"] = "Rotacao180";
@@ -992,6 +1001,7 @@ namespace Snebur.Dominio
         DataMuitoPassado = 9
     }
     (EnumTipoData as any).Rotulos = {};
+    (EnumTipoData as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoData as any).Rotulos["Normal"] = "Normal";
     (EnumTipoData as any).Rotulos["DataPassadoFuturoProximo"] = "DataPassadoFuturoProximo";
     (EnumTipoData as any).Rotulos["DataPassadoFuturo"] = "DataPassadoFuturo";
@@ -1022,6 +1032,7 @@ namespace Snebur.Dominio
         Amortizado = 3
     }
     (EnumTipoJuros as any).Rotulos = {};
+    (EnumTipoJuros as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoJuros as any).Rotulos["SemJuros"] = "SemJuros";
     (EnumTipoJuros as any).Rotulos["Simples"] = "Simples";
     (EnumTipoJuros as any).Rotulos["Composto"] = "Composto";
@@ -1035,6 +1046,7 @@ namespace Snebur.Dominio
         HorasUteis = 3
     }
     (EnumTipoPrazo as any).Rotulos = {};
+    (EnumTipoPrazo as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoPrazo as any).Rotulos["DiasUteis"] = "Dias úteis";
     (EnumTipoPrazo as any).Rotulos["DiasCorrido"] = "Dias corridos";
     (EnumTipoPrazo as any).Rotulos["Horas"] = "Horas";
@@ -1051,6 +1063,7 @@ namespace Snebur.Dominio
         ValorPropriedadeNullOrWhiteSpace = 6
     }
     (EnumTipoValorPadrao as any).Rotulos = {};
+    (EnumTipoValorPadrao as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoValorPadrao as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumTipoValorPadrao as any).Rotulos["IndentificadorProprietario"] = "IndentificadorProprietario";
     (EnumTipoValorPadrao as any).Rotulos["SessaoUsuario_Id"] = "SessaoUsuario_Id";
@@ -1067,6 +1080,7 @@ namespace Snebur.Dominio
         AtualizarDataHoraFimAlteracao = 8
     }
     (EnunFlagAlteracaoPropriedade as any).Rotulos = {};
+    (EnunFlagAlteracaoPropriedade as any).Rotulos["Undefined"] = "Undefined";
     (EnunFlagAlteracaoPropriedade as any).Rotulos["None"] = "None";
     (EnunFlagAlteracaoPropriedade as any).Rotulos["NotificarNovoCadastro"] = "NotificarNovoCadastro";
     (EnunFlagAlteracaoPropriedade as any).Rotulos["VerificarAlteracaoNoBanco"] = "VerificarAlteracaoNoBanco";
@@ -1083,6 +1097,7 @@ namespace Snebur.Dominio.Atributos
         Personalizado = 3
     }
     (EnumFormatacaoDados as any).Rotulos = {};
+    (EnumFormatacaoDados as any).Rotulos["Undefined"] = "Undefined";
     (EnumFormatacaoDados as any).Rotulos["SomenteNumeros"] = "SomenteNumeros";
     (EnumFormatacaoDados as any).Rotulos["SomenteLetras"] = "SomenteLetras";
     (EnumFormatacaoDados as any).Rotulos["LetrasNumeros"] = "LetrasNumeros";
@@ -1101,6 +1116,7 @@ namespace Snebur.Dominio.Atributos
         MenorIgual = 8
     }
     (EnumOpcoesComparacaoAuxiliar as any).Rotulos = {};
+    (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Undefined"] = "Undefined";
     (EnumOpcoesComparacaoAuxiliar as any).Rotulos["Nenhuma"] = "Nenhuma";
     (EnumOpcoesComparacaoAuxiliar as any).Rotulos["True"] = "True";
     (EnumOpcoesComparacaoAuxiliar as any).Rotulos["False"] = "False";
@@ -1122,6 +1138,7 @@ namespace Snebur.Dominio.Atributos
         MenorIgualA = 6
     }
     (EnumOperadorComparacao as any).Rotulos = {};
+    (EnumOperadorComparacao as any).Rotulos["Undefined"] = "Undefined";
     (EnumOperadorComparacao as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumOperadorComparacao as any).Rotulos["Igual"] = "Igual";
     (EnumOperadorComparacao as any).Rotulos["Diferente"] = "Diferente";
@@ -1167,6 +1184,7 @@ namespace Snebur.Dominio.Interface.Media
         Grayscale = 3
     }
     (EnumFamiliaPerfilIcc as any).Rotulos = {};
+    (EnumFamiliaPerfilIcc as any).Rotulos["Undefined"] = "Undefined";
     (EnumFamiliaPerfilIcc as any).Rotulos["Desconhecido"] = "Desconhecido";
     (EnumFamiliaPerfilIcc as any).Rotulos["Rgb"] = "Rgb";
     (EnumFamiliaPerfilIcc as any).Rotulos["Cmyk"] = "Cmyk";
@@ -1187,6 +1205,7 @@ namespace Snebur.Imagens
         ToBottomLeft = 7
     }
     (EnumDirecaoGradiente as any).Rotulos = {};
+    (EnumDirecaoGradiente as any).Rotulos["Undefined"] = "Undefined";
     (EnumDirecaoGradiente as any).Rotulos["ToLeft"] = "to left";
     (EnumDirecaoGradiente as any).Rotulos["ToRight"] = "to right";
     (EnumDirecaoGradiente as any).Rotulos["ToTop"] = "to top";
@@ -1218,6 +1237,7 @@ namespace Snebur.Imagens
         RightBottom = 8
     }
     (EnumPosicaoGradiente as any).Rotulos = {};
+    (EnumPosicaoGradiente as any).Rotulos["Undefined"] = "Undefined";
     (EnumPosicaoGradiente as any).Rotulos["LeftTop"] = "left top";
     (EnumPosicaoGradiente as any).Rotulos["CenterTop"] = "center top";
     (EnumPosicaoGradiente as any).Rotulos["RightTop"] = "right top";
@@ -1236,6 +1256,7 @@ namespace Snebur.Imagens
         FarthestCorner = 3
     }
     (EnumTamanhoGradiente as any).Rotulos = {};
+    (EnumTamanhoGradiente as any).Rotulos["Undefined"] = "Undefined";
     (EnumTamanhoGradiente as any).Rotulos["ClosestSide"] = "closest-side";
     (EnumTamanhoGradiente as any).Rotulos["FarthestSide"] = "farthest-side";
     (EnumTamanhoGradiente as any).Rotulos["ClosestCorner"] = "closest-corner";
@@ -1250,6 +1271,7 @@ namespace Snebur.Imagens
         , TEMP_Undefined = 0
     }
     (EnumTipoSobrePosicao as any).Rotulos = {};
+    (EnumTipoSobrePosicao as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoSobrePosicao as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumTipoSobrePosicao as any).Rotulos["Solida"] = "Solida";
     (EnumTipoSobrePosicao as any).Rotulos["GradienteLinear"] = "GradienteLinear";
@@ -1386,6 +1408,7 @@ namespace Snebur.UI
         _512px = 512
     }
     (BaseEnumComprimento as any).Rotulos = {};
+    (BaseEnumComprimento as any).Rotulos["Undefined"] = "Undefined";
     (BaseEnumComprimento as any).Rotulos["Vazio"] = "Vazio";
     (BaseEnumComprimento as any).Rotulos["Auto"] = "Auto";
     (BaseEnumComprimento as any).Rotulos["_8P"] = "_8P";
@@ -1433,6 +1456,7 @@ namespace Snebur.UI
         DireitaAbsoluto = 5
     }
     (EnumAlinhamentoHorizontal as any).Rotulos = {};
+    (EnumAlinhamentoHorizontal as any).Rotulos["Undefined"] = "Undefined";
     (EnumAlinhamentoHorizontal as any).Rotulos["Esquerda"] = "Esquerda";
     (EnumAlinhamentoHorizontal as any).Rotulos["Centro"] = "Centro";
     (EnumAlinhamentoHorizontal as any).Rotulos["Direita"] = "Direita";
@@ -1448,6 +1472,7 @@ namespace Snebur.UI
         Justificado = 3
     }
     (EnumAlinhamentoTexto as any).Rotulos = {};
+    (EnumAlinhamentoTexto as any).Rotulos["Undefined"] = "Undefined";
     (EnumAlinhamentoTexto as any).Rotulos["Esquerda"] = "Esquerda";
     (EnumAlinhamentoTexto as any).Rotulos["Centro"] = "Centro";
     (EnumAlinhamentoTexto as any).Rotulos["Direita"] = "Direita";
@@ -1463,6 +1488,7 @@ namespace Snebur.UI
         InferiorAbsoluto = 5
     }
     (EnumAlinhamentoVertical as any).Rotulos = {};
+    (EnumAlinhamentoVertical as any).Rotulos["Undefined"] = "Undefined";
     (EnumAlinhamentoVertical as any).Rotulos["Superior"] = "Superior";
     (EnumAlinhamentoVertical as any).Rotulos["Centro"] = "Centro";
     (EnumAlinhamentoVertical as any).Rotulos["Inferior"] = "Inferior";
@@ -1488,6 +1514,7 @@ namespace Snebur.UI
         _100P = 10000000
     }
     (EnumAltura as any).Rotulos = {};
+    (EnumAltura as any).Rotulos["Undefined"] = "Undefined";
     (EnumAltura as any).Rotulos["Vazio"] = "Vazio";
     (EnumAltura as any).Rotulos["Auto"] = "Auto";
     (EnumAltura as any).Rotulos["_8P"] = "_8P";
@@ -1509,6 +1536,7 @@ namespace Snebur.UI
         Auto = 0
     }
     (EnumAlturaLinha as any).Rotulos = {};
+    (EnumAlturaLinha as any).Rotulos["Undefined"] = "Undefined";
     (EnumAlturaLinha as any).Rotulos["Vazio"] = "Vazio";
     (EnumAlturaLinha as any).Rotulos["Auto"] = "Auto";
     export enum EnumAparencia
@@ -1525,14 +1553,14 @@ namespace Snebur.UI
     export enum EnumBarraRolagem
     {
         Undefined = -1,
-        NaoDefino = 0,
         Oculta = 1,
         Automatica = 2,
         Visivel = 3,
         Transbordar = 4
+        , TEMP_Undefined = 0
     }
     (EnumBarraRolagem as any).Rotulos = {};
-    (EnumBarraRolagem as any).Rotulos["NaoDefino"] = "NaoDefino";
+    (EnumBarraRolagem as any).Rotulos["Undefined"] = "Undefined";
     (EnumBarraRolagem as any).Rotulos["Oculta"] = "Oculta";
     (EnumBarraRolagem as any).Rotulos["Automatica"] = "Automatica";
     (EnumBarraRolagem as any).Rotulos["Visivel"] = "Visivel";
@@ -1549,6 +1577,7 @@ namespace Snebur.UI
         Personalizado = 6
     }
     (EnumBotoesAlerta as any).Rotulos = {};
+    (EnumBotoesAlerta as any).Rotulos["Undefined"] = "Undefined";
     (EnumBotoesAlerta as any).Rotulos["SimNao"] = "SimNao";
     (EnumBotoesAlerta as any).Rotulos["Fechar"] = "Fechar";
     (EnumBotoesAlerta as any).Rotulos["FecharVoltar"] = "FecharVoltar";
@@ -1596,6 +1625,7 @@ namespace Snebur.UI
         Preta = 305
     }
     (EnumCor as any).Rotulos = {};
+    (EnumCor as any).Rotulos["Undefined"] = "Undefined";
     (EnumCor as any).Rotulos["Vazio"] = "Vazio";
     (EnumCor as any).Rotulos["Transparente"] = "Transparente";
     (EnumCor as any).Rotulos["SistemaPadrao"] = "Padrão";
@@ -6089,6 +6119,7 @@ namespace Snebur.UI
         _100P = 10000000
     }
     (EnumLargura as any).Rotulos = {};
+    (EnumLargura as any).Rotulos["Undefined"] = "Undefined";
     (EnumLargura as any).Rotulos["Vazio"] = "Vazio";
     (EnumLargura as any).Rotulos["Auto"] = "Auto";
     (EnumLargura as any).Rotulos["_8P"] = "_8P";
@@ -6218,6 +6249,7 @@ namespace Snebur.UI
         Tudo = 16
     }
     (EnumPosicao as any).Rotulos = {};
+    (EnumPosicao as any).Rotulos["Undefined"] = "Undefined";
     (EnumPosicao as any).Rotulos["Vazio"] = "Vazio";
     (EnumPosicao as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumPosicao as any).Rotulos["Esquerda"] = "Esquerda";
@@ -6252,6 +6284,7 @@ namespace Snebur.UI
         EfetuarPgto = 6
     }
     (EnumResultadoAlerta as any).Rotulos = {};
+    (EnumResultadoAlerta as any).Rotulos["Undefined"] = "Undefined";
     (EnumResultadoAlerta as any).Rotulos["Sim"] = "Sim";
     (EnumResultadoAlerta as any).Rotulos["Nao"] = "Nao";
     (EnumResultadoAlerta as any).Rotulos["Continuar"] = "Continuar";
@@ -6272,6 +6305,7 @@ namespace Snebur.UI
         Grande = 6
     }
     (EnumTamanhoIcone as any).Rotulos = {};
+    (EnumTamanhoIcone as any).Rotulos["Undefined"] = "Undefined";
     (EnumTamanhoIcone as any).Rotulos["Vazio"] = "Vazio";
     (EnumTamanhoIcone as any).Rotulos["Padrao"] = "Padrao";
     (EnumTamanhoIcone as any).Rotulos["Pequeno"] = "Pequeno";
@@ -6292,6 +6326,7 @@ namespace Snebur.UI
         CarregandoSemLoader = 6
     }
     (EnumTipoAlerta as any).Rotulos = {};
+    (EnumTipoAlerta as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoAlerta as any).Rotulos["Atencao"] = "Atencao";
     (EnumTipoAlerta as any).Rotulos["Informacao"] = "Informacao";
     (EnumTipoAlerta as any).Rotulos["Sucesso"] = "Sucesso";
@@ -6306,6 +6341,7 @@ namespace Snebur.UI
         Deslizante = 1
     }
     (EnumTipoAnimacao as any).Rotulos = {};
+    (EnumTipoAnimacao as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoAnimacao as any).Rotulos["Nenhuma"] = "Nenhuma";
     (EnumTipoAnimacao as any).Rotulos["Deslizante"] = "Deslizante";
     export enum EnumTipoBotao
@@ -6361,6 +6397,7 @@ namespace Snebur.UI
         Url = 7
     }
     (EnumTipoEntrada as any).Rotulos = {};
+    (EnumTipoEntrada as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoEntrada as any).Rotulos["Nenhum"] = "Nenhum";
     (EnumTipoEntrada as any).Rotulos["Texto"] = "Texto";
     (EnumTipoEntrada as any).Rotulos["Decimal"] = "Decimal";
@@ -6473,6 +6510,7 @@ namespace Snebur.UI
         Aplha90 = 90
     }
     (EnumTonalidade as any).Rotulos = {};
+    (EnumTonalidade as any).Rotulos["Undefined"] = "Undefined";
     (EnumTonalidade as any).Rotulos["Vazio"] = "Vazio";
     (EnumTonalidade as any).Rotulos["Padrao"] = "Padrao";
     (EnumTonalidade as any).Rotulos["T100"] = "T100";
@@ -6527,6 +6565,7 @@ namespace Snebur.Utilidade
         UpperCase = 12
     }
     (CaseType as any).Rotulos = {};
+    (CaseType as any).Rotulos["Undefined"] = "Undefined";
     (CaseType as any).Rotulos["Unknown"] = "Unknown";
     (CaseType as any).Rotulos["LowerCase"] = "LowerCase";
     (CaseType as any).Rotulos["PascalCase"] = "PascalCase";
@@ -6548,6 +6587,7 @@ namespace Snebur.Utilidade
         Virgula = 2
     }
     (EnumDivisorDecimal as any).Rotulos = {};
+    (EnumDivisorDecimal as any).Rotulos["Undefined"] = "Undefined";
     (EnumDivisorDecimal as any).Rotulos["CulturaAtual"] = "CulturaAtual";
     (EnumDivisorDecimal as any).Rotulos["Ponto"] = "Ponto";
     (EnumDivisorDecimal as any).Rotulos["Virgula"] = "Virgula";
@@ -6595,6 +6635,7 @@ namespace Snebur.Utilidade
         KebabCase = 4
     }
     (EnumFormatacaoCodigo as any).Rotulos = {};
+    (EnumFormatacaoCodigo as any).Rotulos["Undefined"] = "Undefined";
     (EnumFormatacaoCodigo as any).Rotulos["PascalCase"] = "PascalCase";
     (EnumFormatacaoCodigo as any).Rotulos["CamelCase"] = "CamelCase";
     (EnumFormatacaoCodigo as any).Rotulos["SnakeCase"] = "SnakeCase";

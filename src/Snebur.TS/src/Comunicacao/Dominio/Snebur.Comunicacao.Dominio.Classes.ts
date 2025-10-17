@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Classes - Snebur.Comunicacao. Do not modify directly. 
+//@Project: Snebur.Comunicacao
+//@DataHora: 2025-10-16 14:31:22
 //@Artifact: Classes
-//@Project: Snebur.Comunicacao 
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:02:06
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.Comunicacao
 {
@@ -29,6 +31,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ContratoMensageiro>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeRecurso(): string | null
@@ -73,6 +76,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<Remetente>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class Cabecalho  extends Snebur.Comunicacao.BaseComunicao
@@ -88,6 +92,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<Cabecalho>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IdentificadorProprietario(): string | null
@@ -145,6 +150,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ChamadaRegraNegocio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get AssemblyQualifiedName(): string | null
@@ -174,6 +180,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ConfiguracaoServicoImagem>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get UrlVisualizarImagem(): string | null
@@ -199,6 +206,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ContratoChamada>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IdentificadorSessaoUsuario(): string
@@ -266,6 +274,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<DominioGlobalizacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NamespaceGlobalizacao(): string | null
@@ -386,6 +395,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoGlobalizacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get JsonIdiomaBase64(): string | null
@@ -418,6 +428,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<TelaGlobalizacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NamespaceGlobalizacao(): string | null
@@ -447,6 +458,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaBaseDominio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get BaseDominio(): Snebur.Dominio.BaseDominio | null
@@ -469,6 +481,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaEnum>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Valor(): number
@@ -512,6 +525,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaNulo>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ParametroChamadaTipoPrimario  extends Snebur.Comunicacao.ParametroChamada
@@ -524,6 +538,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaTipoPrimario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario
@@ -553,6 +568,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaBaseDominio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get BaseDominio(): Snebur.Dominio.BaseDominio | null
@@ -575,6 +591,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaEnum>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Valor(): number
@@ -674,6 +691,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaTipoPrimario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario
@@ -700,6 +718,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaVazio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ParametroChamadaListaBaseDominio  extends Snebur.Comunicacao.ParametroChamadaLista
@@ -712,6 +731,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaListaBaseDominio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeTipoBaseDominio(): string | null
@@ -743,6 +763,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaListaEnum>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeTipoEnum(): string | null
@@ -773,6 +794,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ParametroChamadaListaTipoPrimario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario
@@ -791,6 +813,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaErroInternoServidor>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ResultadoChamadaListaBaseDominio  extends Snebur.Comunicacao.ResultadoChamadaLista
@@ -803,6 +826,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaListaBaseDominio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeTipoBaseDominio(): string | null
@@ -834,6 +858,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaListaEnum>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeTipoEnum(): string | null
@@ -864,6 +889,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoChamadaListaTipoPrimario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoPrimarioEnum(): Snebur.Reflexao.EnumTipoPrimario
@@ -887,7 +913,6 @@ namespace Snebur.Comunicacao
         {
             super();
             Guard.NotNull( statusSessaoUsuario, "The argument statusSessaoUsuario cannot be null.");
-            Guard.NotNull( mensagemErro, "The argument mensagemErro cannot be null.");
             this._statusSessaoUsuario = statusSessaoUsuario;
             this._identificadorSessaoUsuario = identificadorSessaoUsuario;
             this._mensagemErro = mensagemErro;

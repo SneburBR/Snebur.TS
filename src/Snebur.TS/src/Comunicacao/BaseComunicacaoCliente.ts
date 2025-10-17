@@ -91,6 +91,12 @@
             const parametros = this.RetornarParametros(nomeMetodo, metodo, argumentos, true);
             const contrato = this.RetornarContratoChamada(nomeMetodo, parametros, true);
             const nomeManipualdor = this.RetornarNomeManipulador();
+
+            /*Guard.*/
+            Guard.NotNullOrEmpty(nomeManipualdor, "Nome do manipulador não foi definido");
+            Guard.NotNullOrEmpty(contrato.Cabecalho?.CredencialUsuario?.IdentificadorUsuario, "Identificador do usuário não foi definido");
+            Guard.NotNullOrEmpty(contrato.Cabecalho?.CredencialUsuario?.Senha, "Senha da credencial do serviço não foi definida");
+
             const jsonConteudo = u.JsonUtil.Serializar(contrato);
             const credencial = this.CredencialServico;
             const pacote = await PacoteUtil.CompactarPacoteAsync(jsonConteudo);

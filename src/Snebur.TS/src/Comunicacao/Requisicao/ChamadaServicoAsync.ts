@@ -94,66 +94,6 @@
                 //#endregion
 
             });
-
-            //nunca mexa aqui;
-            /*this.Callback = callback;*/
-
-            //this.XmlHttp.send(this.Pacote);
-
-            //return;
-
-            //if ($Configuracao.IsDebug && !_isPararPilharDebug)
-            //{
-            //    this.XmlHttp.send(this.Pacote);
-            //    return;
-            //}
-
-
-
-            //let elemento = document.createElement("button");
-            //elemento.addEventListener("click", function ()
-            //{
-            //    let urlWorker = s.ParaPilha.RetornarUrlWorker();
-            //    let w = new Worker(urlWorker);
-            //    let continuar = (function ()
-            //    {
-            //        w.terminate();
-
-            //        window.URL.revokeObjectURL(urlWorker);
-
-
-
-            //    }.bind(this));
-
-            //    w.addEventListener("message", continuar);
-            //    w.addEventListener("error", continuar);
-            //    w.postMessage("parar");
-
-            //}.bind(this));
-            //elemento.click();
-
-
-
-            //s.ParaPilha.ParaAsync((() =>
-            //{
-            //    var a = this.Pacote;
-            //    var __this = this;
-
-            //    (function ()
-            //    {
-            //        setTimeout(() =>
-            //        {
-            //            var t = this.Tk;
-            //            var h = this.XmlHttp,
-            //                c = a, z = Snebur,
-            //                x = eval(_be22),
-            //                l = (z as any)[t](c);
-            //        });
-
-            //    }).bind(__this)();
-
-
-            //}).bind(this));
         }
 
         private FinalizarChamarAsync(resultadoChamada: ResultadoChamada)

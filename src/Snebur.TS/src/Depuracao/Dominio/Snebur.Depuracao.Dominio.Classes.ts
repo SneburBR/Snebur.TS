@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Classes - Snebur.Depuracao. Do not modify directly. 
+//@Project: Snebur.Depuracao
+//@DataHora: 2025-10-16 14:31:30
 //@Artifact: Classes
-//@Project: Snebur.Depuracao 
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:02:23
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.Depuracao
 {
@@ -18,6 +20,7 @@ namespace Snebur.Depuracao
         public constructor(inicializador?: Partial<Contrato>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Mensagem(): Snebur.Depuracao.Mensagem | null
@@ -49,6 +52,7 @@ namespace Snebur.Depuracao
         public constructor(inicializador?: Partial<MensagemControleAlterado>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsScript(): boolean
@@ -96,6 +100,7 @@ namespace Snebur.Depuracao
         public constructor(inicializador?: Partial<MensagemEstiloCssAlterado>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeArquivo(): string
@@ -110,13 +115,14 @@ namespace Snebur.Depuracao
     export class MensagemLog  extends Snebur.Depuracao.Mensagem
     {
         //#region Private Fields
-        private _tipoLog: Snebur.Depuracao.EnumTipoLog  = Snebur.Depuracao.EnumTipoLog.Normal;
+        private _tipoLog: Snebur.Depuracao.EnumTipoLog  = Snebur.Depuracao.EnumTipoLog.Undefined;
         private _mensagem: string  = "";
         //#endregion
         
         public constructor(inicializador?: Partial<MensagemLog>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get TipoLog(): Snebur.Depuracao.EnumTipoLog
@@ -147,6 +153,7 @@ namespace Snebur.Depuracao
         public constructor(inicializador?: Partial<MensagemPing>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Ping(): boolean
@@ -176,6 +183,7 @@ namespace Snebur.Depuracao
         public constructor(inicializador?: Partial<MensagemScriptAlterado>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeArquivo(): string

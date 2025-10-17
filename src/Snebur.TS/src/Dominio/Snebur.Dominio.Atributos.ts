@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-08 12:29:11
+//@DataHora: 2025-10-16 14:31:23
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -154,12 +154,13 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<IgnorarValidacaoTipoComplexo>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class NotificarAlteracaoPropriedadeAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Private Fields
-        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Nenhuma;
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Undefined;
         private _nomePropriedadeAlterada: string  = "";
         private _nomePropriedadeRelacao: string  = "";
         private _tipoEntidadeAlteracaoPropriedade: r.BaseTipo | string  = "";
@@ -220,7 +221,7 @@ namespace Snebur.Dominio.Atributos
     export class NotificarAlteracaoPropriedadeGenericaAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Private Fields
-        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Nenhuma;
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Undefined;
         private _isEnum: boolean  = false;
         private _formatacaoPersonalizada: string | null  = null;
         private _formatacao: string  = "";
@@ -232,8 +233,6 @@ namespace Snebur.Dominio.Atributos
         {
             super();
             Guard.NotNull( formatacao, "The argument formatacao cannot be null.");
-            Guard.NotNull( tipoPropriedadeRelacao, "The argument tipoPropriedadeRelacao cannot be null.");
-            Guard.NotNull( caminhoTipoPropriedadeRelacao, "The argument caminhoTipoPropriedadeRelacao cannot be null.");
             Guard.NotNull( opcoes, "The argument opcoes cannot be null.");
             this._formatacao = formatacao;
             this._tipoPropriedadeRelacao = tipoPropriedadeRelacao;
@@ -295,12 +294,13 @@ namespace Snebur.Dominio.Atributos
     export class NotificarTodasAlteracoesPropriedadeGenericaAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         //#region Private Fields
-        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Nenhuma;
+        private _opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade  = Snebur.Dominio.EnumOpcoesAlterarPropriedade.Undefined;
         //#endregion
         
         public constructor(inicializador?: Partial<NotificarTodasAlteracoesPropriedadeGenericaAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Opcoes(): Snebur.Dominio.EnumOpcoesAlterarPropriedade
@@ -314,6 +314,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<OcultarColunaAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class PropriedadeComputadaBancoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -322,6 +323,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<PropriedadeComputadaBancoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class PropriedadeDescricaoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -359,6 +361,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<PropriedadeIdentificadorProprietarioAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsTipoNullableRequerido(): boolean
@@ -423,7 +426,6 @@ namespace Snebur.Dominio.Atributos
         {
             super();
             Guard.NotNull( rotulo, "The argument rotulo cannot be null.");
-            Guard.NotNull( rotuloPlural, "The argument rotuloPlural cannot be null.");
             this._rotulo = rotulo;
             this._rotuloPlural = rotuloPlural;
         }
@@ -449,6 +451,15 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<SomenteLeituraAttribute>) 
         {
             super(inicializador);
+        }
+    }
+    export class UndefinedEnumValueAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
+    {
+        
+        public constructor(inicializador?: Partial<UndefinedEnumValueAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
         }
     }
     export class ValorEnumStringAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -484,10 +495,9 @@ namespace Snebur.Dominio.Atributos
         private _nomePropriedadeChaveEstrangeira: string | null  = null;
         //#endregion
         
-        public constructor(nomePropriedadeChaveEstrangeira: string) 
+        public constructor(nomePropriedadeChaveEstrangeira?: string) 
         {
             super();
-            Guard.NotNull( nomePropriedadeChaveEstrangeira, "The argument nomePropriedadeChaveEstrangeira cannot be null.");
             this._nomePropriedadeChaveEstrangeira = nomePropriedadeChaveEstrangeira;
         }
         
@@ -599,6 +609,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoCepAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -611,6 +622,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoCnpjAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -620,7 +632,7 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoComparacaoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         //#region Private Fields
-        private _operador: Snebur.Dominio.Atributos.EnumOperadorComparacao  = Snebur.Dominio.Atributos.EnumOperadorComparacao.Nenhum;
+        private _operador: Snebur.Dominio.Atributos.EnumOperadorComparacao  = Snebur.Dominio.Atributos.EnumOperadorComparacao.Undefined;
         private _valor: any | null  = null;
         //#endregion
         
@@ -684,6 +696,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoCpfAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -696,6 +709,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoCpfOuCnpjAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -736,7 +750,7 @@ namespace Snebur.Dominio.Atributos
         //#region Private Fields
         private _dataMaxima: Date | null  = null;
         private _dataMinima: Date | null  = null;
-        private _tipoData: Snebur.Dominio.EnumTipoData  = Snebur.Dominio.EnumTipoData.Normal;
+        private _tipoData: Snebur.Dominio.EnumTipoData  = Snebur.Dominio.EnumTipoData.Undefined;
         private _isPrimeiraHoraDoDia: boolean  = false;
         private _isUltimaHoraDoDia: boolean  = false;
         private _isHoraFimD: boolean  = false;
@@ -845,6 +859,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoDataNascimentoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -857,6 +872,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoDataPublicacaoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "A '{0}' deve ser superior ou igual à data de hoje.";
@@ -881,6 +897,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoEmailAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -893,6 +910,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoEmailOuTelefoneAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -932,6 +950,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoFlagsEnumRequeridoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} deve ser preenchido.";
@@ -944,6 +963,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoGuidAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -985,6 +1005,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoIndentificador>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -997,6 +1018,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoInteiroAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido";
@@ -1048,6 +1070,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoIPAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O ip {0} é invalido.";
@@ -1060,6 +1083,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoLongAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido";
@@ -1072,6 +1096,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoMdr5Attribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1154,6 +1179,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoNomeCompletoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "Informe seu nome completo";
@@ -1209,6 +1235,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoPrimeiroNomeAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "Informe seu nome";
@@ -1221,6 +1248,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoQuantidadeAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo '{0}' deve ser um número não negativo.";
@@ -1239,9 +1267,6 @@ namespace Snebur.Dominio.Atributos
         public constructor(opcoesComparacaoAuxiliar?: Snebur.Dominio.Atributos.EnumOpcoesComparacaoAuxiliar, nomePropridadeAuxiliar?: string, isIgnorarValidacaoSeAuxiliarInvalido?: boolean, valorComparar?: any | null) 
         {
             super();
-            Guard.NotNull( opcoesComparacaoAuxiliar, "The argument opcoesComparacaoAuxiliar cannot be null.");
-            Guard.NotNull( nomePropridadeAuxiliar, "The argument nomePropridadeAuxiliar cannot be null.");
-            Guard.NotNull( isIgnorarValidacaoSeAuxiliarInvalido, "The argument isIgnorarValidacaoSeAuxiliarInvalido cannot be null.");
             this._opcoesComparacaoAuxiliar = opcoesComparacaoAuxiliar;
             this._nomePropridadeAuxiliar = nomePropridadeAuxiliar;
             this._isIgnorarValidacaoSeAuxiliarInvalido = isIgnorarValidacaoSeAuxiliarInvalido;
@@ -1295,6 +1320,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoRequeridoDebugAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} deve ser preenchido.";
@@ -1307,6 +1333,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoRotaAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "Rota invalida";
@@ -1362,6 +1389,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoSubDominio>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1374,6 +1402,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoTelefoneAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1389,7 +1418,6 @@ namespace Snebur.Dominio.Atributos
         public constructor(isAceitarPontosSinais?: boolean) 
         {
             super();
-            Guard.NotNull( isAceitarPontosSinais, "The argument isAceitarPontosSinais cannot be null.");
             this._isAceitarPontosSinais = isAceitarPontosSinais;
         }
         
@@ -1456,6 +1484,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoUFAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1467,7 +1496,7 @@ namespace Snebur.Dominio.Atributos
         //#region Private Fields
         private _isIgnorarNulo: boolean  = false;
         private _isIgnorarZero: boolean  = false;
-        private _operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao  = Snebur.Dominio.Atributos.EnumOperadorComparacao.Nenhum;
+        private _operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao  = Snebur.Dominio.Atributos.EnumOperadorComparacao.Undefined;
         private _isUnique: boolean  = false;
         private _nomePropriedadeFiltro: string | null  = null;
         private _valorPropriedadeFiltro: any | null  = null;
@@ -1477,11 +1506,8 @@ namespace Snebur.Dominio.Atributos
         public constructor(tipoEntidade: r.BaseTipo | string, isIgnorarNulo: boolean, isIgnorarZero: boolean, nomePropriedadeFiltro: string, valorPropriedadeFiltro: any, operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
         {
             super();
-            Guard.NotNull( tipoEntidade, "The argument tipoEntidade cannot be null.");
             Guard.NotNull( isIgnorarNulo, "The argument isIgnorarNulo cannot be null.");
             Guard.NotNull( isIgnorarZero, "The argument isIgnorarZero cannot be null.");
-            Guard.NotNull( nomePropriedadeFiltro, "The argument nomePropriedadeFiltro cannot be null.");
-            Guard.NotNull( valorPropriedadeFiltro, "The argument valorPropriedadeFiltro cannot be null.");
             Guard.NotNull( operadorFiltro, "The argument operadorFiltro cannot be null.");
             this._tipoEntidade = tipoEntidade;
             this._isIgnorarNulo = isIgnorarNulo;
@@ -1587,6 +1613,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoUrlAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "A url {0} é invalido.";
@@ -1599,6 +1626,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoVersaoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1617,6 +1645,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValorPadraoDataHoraServidorAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsDataHoraUTC(): boolean
@@ -1661,6 +1690,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValorPadraoIPAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsValorPadraoOnUpdate(): boolean
@@ -1703,6 +1733,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<ValidacaoDominioDNSAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class RelacaoPaiAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoPaiAttribute
@@ -1715,7 +1746,6 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedadeLinkNavegacao?: string | null, tipoExclusao?: Snebur.Dominio.Atributos.EnumTipoExclusaoRelacao) 
         {
             super();
-            Guard.NotNull( tipoExclusao, "The argument tipoExclusao cannot be null.");
             this._nomePropriedadeLinkNavegacao = nomePropriedadeLinkNavegacao;
             this._tipoExclusao = tipoExclusao;
         }
@@ -1745,6 +1775,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<RelacaoUmUmFilhoAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class RelacaoUmUmPaiAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoPaiAttribute
@@ -1753,6 +1784,7 @@ namespace Snebur.Dominio.Atributos
         public constructor(inicializador?: Partial<RelacaoUmUmPaiAttribute>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
 }

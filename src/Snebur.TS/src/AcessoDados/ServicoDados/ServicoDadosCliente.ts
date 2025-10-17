@@ -7,42 +7,42 @@ namespace Snebur.AcessoDados
         //#region Automático
         public RetornarValorScalarAsync(estruturaConsulta: Snebur.AcessoDados.EstruturaConsulta) : Promise<any | null>
         {
-            return new Promise<any | null>( (resolver, reject) =>
+            return new Promise<any | null>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("RetornarValorScalarAsync", [estruturaConsulta], resolver, reject);
             });
         }
         public RetornarResultadoConsultaAsync(estruturaConsulta: Snebur.AcessoDados.EstruturaConsulta) : Promise<Snebur.AcessoDados.ResultadoConsulta>
         {
-            return new Promise<Snebur.AcessoDados.ResultadoConsulta>( (resolver, reject) =>
+            return new Promise<Snebur.AcessoDados.ResultadoConsulta>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("RetornarResultadoConsultaAsync", [estruturaConsulta], resolver, reject);
             });
         }
         public SalvarAsync(entidades: Array<Snebur.Dominio.IEntidade>) : Promise<Snebur.AcessoDados.ResultadoSalvar>
         {
-            return new Promise<Snebur.AcessoDados.ResultadoSalvar>( (resolver, reject) =>
+            return new Promise<Snebur.AcessoDados.ResultadoSalvar>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("SalvarAsync", [entidades], resolver, reject);
             });
         }
         public DeletarAsync(entidades: Array<Snebur.Dominio.IEntidade>, relacoesEmCascata: string) : Promise<Snebur.AcessoDados.ResultadoDeletar>
         {
-            return new Promise<Snebur.AcessoDados.ResultadoDeletar>( (resolver, reject) =>
+            return new Promise<Snebur.AcessoDados.ResultadoDeletar>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("DeletarAsync", [entidades, relacoesEmCascata], resolver, reject);
             });
         }
         public RetornarDataHoraAsync() : Promise<Date>
         {
-            return new Promise<Date>( (resolver, reject) =>
+            return new Promise<Date>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("RetornarDataHoraAsync", [], resolver, reject);
             });
         }
         public RetornarDataHoraUTCAsync() : Promise<Date>
         {
-            return new Promise<Date>( (resolver, reject) =>
+            return new Promise<Date>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("RetornarDataHoraUTCAsync", [], resolver, reject);
             });

@@ -9,5 +9,13 @@
                 throw new Error(message ?? "Value cannot be null or undefined");
             }
         }
+
+        public static NotNullOrEmpty(value: string | null | undefined, message?: string): asserts value is string
+        {
+            if (value == null || value.trimEnd().length === 0)
+            {
+                throw new Error(message ?? "Value cannot be null or undefined");
+            }
+        }
     }
 }

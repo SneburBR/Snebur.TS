@@ -6,21 +6,21 @@ namespace Snebur.Comunicacao
         //#region Automático
         public NotificarInicioEnvioAsync(totalArquivos: number, totalBytes: number) : Promise<string>
         {
-            return new Promise<string>( (resolver, reject) =>
+            return new Promise<string>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("NotificarInicioEnvioAsync", [totalArquivos, totalBytes], resolver, reject);
             });
         }
         public NotificarProgressoEnvioArquivoAsync(identificadorLog: string, progresso: number, bytesEnvidos: number) : Promise<boolean>
         {
-            return new Promise<boolean>( (resolver, reject) =>
+            return new Promise<boolean>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("NotificarProgressoEnvioArquivoAsync", [identificadorLog, progresso, bytesEnvidos], resolver, reject);
             });
         }
         public NotificarFimEnvioAsync(identificadorLog: string, totalBytesEnviado: number) : Promise<boolean>
         {
-            return new Promise<boolean>( (resolver, reject) =>
+            return new Promise<boolean>((resolver, reject) =>
             {
                 this.ChamarServicoAsync("NotificarFimEnvioAsync", [identificadorLog, totalBytesEnviado], resolver, reject);
             });

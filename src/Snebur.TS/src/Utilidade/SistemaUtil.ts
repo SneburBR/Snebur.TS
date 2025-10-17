@@ -186,12 +186,10 @@
 
         private static RetornarIdioma(): string
         {
-            if (typeof window !== "undefined")
+            if (typeof window !== "undefined" &&
+                window.navigator != null)
             {
-                if (u.ValidacaoUtil.IsDecimal(window.navigator))
-                {
-                    return u.ConverterUtil.ParaString(window.navigator.language);
-                }
+                return u.ConverterUtil.ParaString(window.navigator.language);
             }
             return String.Empty;
         }
@@ -342,7 +340,7 @@
         public static ECMAVersion(): EnumECMAVersion
         {
             const _global: any = Util.SafeGlobalThis;
-                
+
             if (typeof _global.BigInt === "function")
             {
                 return EnumECMAVersion.ES2020;

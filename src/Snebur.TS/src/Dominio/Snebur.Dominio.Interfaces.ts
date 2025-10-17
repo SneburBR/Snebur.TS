@@ -1,5 +1,6 @@
-﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
-//@DataHora: 2025-10-08 09:20:29
+﻿// Auto-generated file. Interfaces - Snebur. Do not modify directly. 
+//@Project: Snebur
+//@DataHora: 2025-10-16 15:09:38
 //@Artifact: Interfaces
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -248,7 +249,7 @@ namespace Snebur.Dominio
         Plataforma: Snebur.Dominio.EnumPlataforma;
         TipoAplicacao: Snebur.Dominio.EnumTipoAplicacao;
         Cultura: string | null;
-        Idioma: string;
+        Idioma: string | null;
         UserAgent: string | null;
         VersaoAplicacao: string;
         NomeComputador: string | null;

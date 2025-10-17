@@ -2,14 +2,6 @@
 {
     export class ReflexaoUtil
     {
-        public static CAMINHO_TIPO: string = "__CaminhoTipo";
-
-        private static PREFIXO_LISTA_TIPO_PRIMARIO: string = "ListaTipoPrimario_";
-        private static PREFIXO_LISTA_TIPO_ENUM: string = "ListaTipoEnum_";
-        private static PREFIXO_LISTA_TIPO_BASEDOMINIO: string = "ListaTipoBaseDominio_";
-        private static PREFIXO_LISTA_TIPO_ENTIDADE: string = "ListaTipoEntidade_";
-        private static METODO_LIGACAO_COLECAO: string = "Incluir()";
-
         public static RetornarTipo(construtor: Function): r.BaseTipo
         public static RetornarTipo(caminhoTipo: string): r.BaseTipo
         public static RetornarTipo(caminhoTipoOuConstrutor: string | Function): r.BaseTipo
@@ -124,22 +116,27 @@
             const caminhoTipo = tipo.__CaminhoTipo;
             if (tipo instanceof r.TipoPrimario || tipo instanceof r.TipoSistema)
             {
-                return `${ReflexaoUtil.PREFIXO_LISTA_TIPO_PRIMARIO}${caminhoTipo}`;
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_PRIMARIO}${caminhoTipo}`;
             }
             if (tipo instanceof r.TipoEnum)
             {
-                return `${ReflexaoUtil.PREFIXO_LISTA_TIPO_ENUM}${caminhoTipo}`;
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_ENUM}${caminhoTipo}`;
             }
 
-            if (tipo instanceof r.TipoBaseViewModel)
+            if (tipo instanceof r.TipoComplexo)
             {
                 const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;
-                return `${ReflexaoUtil.PREFIXO_LISTA_TIPO_BASEDOMINIO}${caminhoBaseDominio}`;
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_COMPLEXO}${caminhoBaseDominio}`;
+            }
+            if (tipo instanceof r.TipoEntidade)
+            {
+                const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_ENTIDADE}${caminhoBaseDominio}`;
             }
 
             if (tipo instanceof r.TipoBaseDominio)
             {
-                return `${ReflexaoUtil.PREFIXO_LISTA_TIPO_BASEDOMINIO}${caminhoTipo}`;
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_BASE_DOMINIO}${caminhoTipo}`;
             }
             throw new Erro("O tipo não suportado");
         }
@@ -152,7 +149,7 @@
 
         public static RetornarTipoListaEntidade(tipo: Snebur.Reflexao.TipoBaseDominio): Snebur.Reflexao.TipoListaEntidade
         {
-            const caminho = `${ReflexaoUtil.PREFIXO_LISTA_TIPO_ENTIDADE}${tipo.__CaminhoTipo}`;
+            const caminho = `${ConstantesReflexao.PREFIXO_LISTA_TIPO_ENTIDADE}${tipo.__CaminhoTipo}`;
             return $Reflexao.Tipos.Item(caminho) as Snebur.Reflexao.TipoListaEntidade;
         }
 
@@ -175,7 +172,7 @@
             while (nomesPropriedade.Count > 0)
             {
                 const nomePropriedade = nomesPropriedade.shift();
-                if (nomePropriedade === ReflexaoUtil.METODO_LIGACAO_COLECAO)
+                if (nomePropriedade === ConstantesReflexao.METODO_LIGACAO_COLECAO)
                 {
                     continue;
                 }
@@ -517,8 +514,5 @@
                 }
             }
         }
-
-
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Snebur
 {
-    Object.defineProperty(Uint8Array.prototype, "arrauButter", {
+    Object.defineProperty(Uint8Array.prototype, "arrayBuffer", {
         get: function (this: Uint8Array)
         {
             if (this.buffer instanceof ArrayBuffer)

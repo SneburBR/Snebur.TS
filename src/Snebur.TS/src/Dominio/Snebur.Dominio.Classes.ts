@@ -1,5 +1,6 @@
-﻿//@Project: Snebur -- Auto-generated file. Do not modify directly. 
-//@DataHora: 2025-10-08 09:20:43
+﻿// Auto-generated file. Classes - Snebur. Do not modify directly. 
+//@Project: Snebur
+//@DataHora: 2025-10-16 15:09:44
 //@Artifact: Classes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -71,6 +72,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<InfoRequisicao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get UserAgent(): string | null
@@ -112,6 +114,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoAutenticacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsSucesso(): boolean
@@ -160,6 +163,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoExisteIdentificadoUsuario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsExiste(): boolean
@@ -186,6 +190,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoAlterarSenha>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ResultadoEnviarCodigoRecuperarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
@@ -194,6 +199,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoEnviarCodigoRecuperarSenha>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class ResultadoRecuperarSenha  extends Snebur.Comunicacao.BaseResultadoRecuperarSenha
@@ -206,6 +212,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoRecuperarSenha>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsUsuarioEncontrado(): boolean
@@ -237,6 +244,7 @@ namespace Snebur.Comunicacao
         public constructor(inicializador?: Partial<ResultadoValidarCodigoRecuperarSenha>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IsUsuarioEncontrado(): boolean
@@ -286,6 +294,7 @@ namespace Snebur.Dominio
         public constructor(inicializador?: Partial<DadosIPInformacao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IP(): string
@@ -383,6 +392,7 @@ namespace Snebur.Dominio
         public constructor(inicializador?: Partial<ErroValidacaoInfo>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get NomeTipoEntidade(): string
@@ -438,7 +448,7 @@ namespace Snebur.Dominio
         private _tipoAplicacao: Snebur.Dominio.EnumTipoAplicacao  = Snebur.Dominio.EnumTipoAplicacao.Undefined;
         private _identificadorAplicacao: string  = "";
         private _cultura: string | null  = null;
-        private _idioma: string  = "";
+        private _idioma: string | null  = null;
         private _userAgent: string | null  = null;
         private _versaoAplicacao: string  = "";
         private _nomeComputador: string | null  = null;
@@ -450,6 +460,7 @@ namespace Snebur.Dominio
         public constructor(inicializador?: Partial<InformacaoSessao>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get IdentificadorAplicacaoGuid(): string
@@ -497,11 +508,11 @@ namespace Snebur.Dominio
             this.SetProperty("Cultura", this._cultura, this._cultura = value);
         }
         
-        public get Idioma(): string
+        public get Idioma(): string | null
         {
             return this._idioma;
         }
-        public set Idioma(value: string) 
+        public set Idioma(value: string | null) 
         {
             this.SetProperty("Idioma", this._idioma, this._idioma = value);
         }
@@ -664,6 +675,7 @@ namespace Snebur.Seguranca
         public constructor(inicializador?: Partial<CredencialServico>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
     }
     export class CredencialUsuario  extends Snebur.Seguranca.Credencial
@@ -676,6 +688,7 @@ namespace Snebur.Seguranca
         public constructor(inicializador?: Partial<CredencialUsuario>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Nome(): string | null

@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Enums - Snebur.Depuracao. Do not modify directly. 
+//@Project: Snebur.Depuracao
+//@DataHora: 2025-10-10 09:31:45
 //@Artifact: Enums
-//@Project: Snebur.Depuracao 
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:02:18
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.Depuracao
 {
@@ -19,6 +21,7 @@ namespace Snebur.Depuracao
         Acao = 4
     }
     (EnumTipoLog as any).Rotulos = {};
+    (EnumTipoLog as any).Rotulos["Undefined"] = "Undefined";
     (EnumTipoLog as any).Rotulos["Normal"] = "Normal";
     (EnumTipoLog as any).Rotulos["Alerta"] = "Alerta";
     (EnumTipoLog as any).Rotulos["Erro"] = "Erro";

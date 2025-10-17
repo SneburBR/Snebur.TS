@@ -1,11 +1,13 @@
-﻿/*eslint-disable*/
+﻿// Auto-generated file. Classes - Snebur.ServicoArquivo. Do not modify directly. 
+//@Project: Snebur.ServicoArquivo
+//@DataHora: 2025-10-16 14:31:37
 //@Artifact: Classes
-//@Project: Snebur.ServicoArquivo 
 //@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
 //@Globalizar: False 
 //@Dominios dependentes: []
-//@DataHora: 2025-10-06 17:02:25
+/*eslint-disable*/
+// Ignore Spelling: *
 
 namespace Snebur.ServicoArquivo
 {
@@ -14,13 +16,14 @@ namespace Snebur.ServicoArquivo
         //#region Private Fields
         private _id: number  = 0;
         private _isSucesso: boolean  = false;
-        private _tipoErroServicoArquivo: Snebur.ServicoArquivo.EnumTipoErroServicoArquivo  = Snebur.ServicoArquivo.EnumTipoErroServicoArquivo.Desconhecido;
+        private _tipoErroServicoArquivo: Snebur.ServicoArquivo.EnumTipoErroServicoArquivo  = Snebur.ServicoArquivo.EnumTipoErroServicoArquivo.Undefined;
         private _mensagemErro: string | null  = null;
         //#endregion
         
         public constructor(inicializador?: Partial<ResultadoServicoArquivo>) 
         {
             super(inicializador);
+            this.Inicializar();
         }
         
         public get Id(): number
