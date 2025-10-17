@@ -15,7 +15,7 @@
 
         protected RetornarValorParaAtributo(compronenteApresentacao: ComponenteApresentacao, alinhamento: EnumBarraRolagem): string
         {
-            if (alinhamento === EnumBarraRolagem.NaoDefino)
+            if (alinhamento === EnumBarraRolagem.Undefined)
             {
                 return String.Empty;
             }
@@ -26,7 +26,7 @@
         {
             if (String.IsNullOrEmpty(valorDom))
             {
-                return EnumBarraRolagem.NaoDefino;
+                return EnumBarraRolagem.Undefined;
             }
             return EnumUtil.RetornarValor(EnumBarraRolagem, valorDom);
         }
@@ -36,7 +36,7 @@
             const elemento = componenteApresentacao.ElementoApresentacao;
             CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeBarraRolagemVertical.PREFIXO_CLASSE_CSS_BARRA_ROLAGEM_VERTICAL);
 
-            if (alinhamento !== EnumBarraRolagem.NaoDefino)
+            if (alinhamento !== EnumBarraRolagem.Undefined)
             {
                 const cssClasse = this.RetornarCssClasseAlinhamento(alinhamento);
                 elemento.classList.add(cssClasse);
@@ -47,7 +47,7 @@
         {
             switch (alinhamento)
             {
-                case EnumBarraRolagem.NaoDefino:
+                case EnumBarraRolagem.Undefined:
 
                     return String.Empty;
 

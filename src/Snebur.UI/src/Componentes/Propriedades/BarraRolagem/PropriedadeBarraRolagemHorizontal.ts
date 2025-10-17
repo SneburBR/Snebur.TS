@@ -1,7 +1,7 @@
 ﻿namespace Snebur.UI
 {
     export class PropriedadeBarraRolagemHorizontal extends PropriedadeApresentacao<EnumBarraRolagem>
-	{
+    {
         private static readonly PREFIXO_CLASSE_CSS_BARRA_ROLAGEM_HORIZONTAL = "ap-barra-rolagem-horizontal--";
         private static readonly NOME_CLASSE_CSS_BARRA_ROLAGEM_HORIZONTAL_OCULTA = "ap-barra-rolagem-horizontal--oculta";
         private static readonly NOME_CLASSE_CSS_BARRA_ROLAGEM_HORIZONTAL_AUTOMATICA = "ap-barra-rolagem-horizontal--automatica";
@@ -13,20 +13,20 @@
             super(AtributosHtml.BarraRolagemHorizontal);
         }
 
-        protected RetornarValorParaAtributo(compronenteApresentacao: ComponenteApresentacao,alinhamento: EnumBarraRolagem): string
+        protected RetornarValorParaAtributo(compronenteApresentacao: ComponenteApresentacao, alinhamento: EnumBarraRolagem): string
         {
-            if (alinhamento === EnumBarraRolagem.NaoDefino)
+            if (alinhamento === EnumBarraRolagem.Undefined)
             {
                 return String.Empty;
             }
             return EnumUtil.RetornarDescricao(EnumBarraRolagem, alinhamento);
 
         }
-        protected RetornarValorParaComponente(compronenteApresentacao: ComponenteApresentacao,valorDom: string): EnumBarraRolagem
+        protected RetornarValorParaComponente(compronenteApresentacao: ComponenteApresentacao, valorDom: string): EnumBarraRolagem
         {
             if (String.IsNullOrEmpty(valorDom))
             {
-                return EnumBarraRolagem.NaoDefino;
+                return EnumBarraRolagem.Undefined;
             }
             return EnumUtil.RetornarValor(EnumBarraRolagem, valorDom);
         }
@@ -35,7 +35,7 @@
             const elemento = componenteApresentacao.ElementoApresentacao;
             CssClassUtil.RemoverClssClasseComecaCom(elemento, PropriedadeBarraRolagemHorizontal.PREFIXO_CLASSE_CSS_BARRA_ROLAGEM_HORIZONTAL);
 
-            if (alinhamento !== EnumBarraRolagem.NaoDefino)
+            if (alinhamento !== EnumBarraRolagem.Undefined)
             {
                 const cssClasse = this.RetornarCssClasseAlinhamento(alinhamento);
                 elemento.classList.add(cssClasse);
@@ -46,7 +46,7 @@
         {
             switch (alinhamento)
             {
-                case EnumBarraRolagem.NaoDefino:
+                case EnumBarraRolagem.Undefined:
 
                     return String.Empty;
 
@@ -72,5 +72,5 @@
             }
 
         }
-	}
+    }
 }
