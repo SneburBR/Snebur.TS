@@ -7,13 +7,11 @@
         private _isChaveEstrangeira: boolean;
         private _propriedadeRelacaoChaveEstrangeira: r.Propriedade;
 
-        public Nome: string;
-
-        public AceitaNulo: boolean;
-
-        public Tipo: BaseTipo;
-
-        public TipoDeclarado: BaseTipo;
+        public readonly Nome: string;
+        public readonly IsNullable: boolean;
+        public readonly IsPrimaryKey: boolean;
+        public readonly Tipo: BaseTipo;
+        public readonly TipoDeclarado: BaseTipo;
 
         public get Atributos(): ReadonlyArray<at.BaseAtributoDominio>
         {
@@ -44,12 +42,18 @@
             return this.Atributos.OfType<d.Atributos.PropriedadeIdentificadorProprietarioAttribute>(d.Atributos.PropriedadeIdentificadorProprietarioAttribute).Count > 0;
         }
 
-        public constructor(nome: string, tipo: BaseTipo, tipoDeclarado: BaseTipo, aceitaNulo: boolean)
+        public constructor(
+            nome: string,
+            tipo: BaseTipo,
+            tipoDeclarado: BaseTipo,
+            isNullable: boolean,
+            isPrimaryKey: boolean)
         {
             this.Nome = nome;
             this.Tipo = tipo;
             this.TipoDeclarado = tipoDeclarado;
-            this.AceitaNulo = aceitaNulo;
+            this.IsNullable = isNullable;
+            this.IsPrimaryKey = isPrimaryKey;
         }
 
         public RetornarValor(objeto: any)

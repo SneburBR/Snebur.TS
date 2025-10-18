@@ -37,7 +37,7 @@
             }
 
             if (valorPropriedade == null &&
-                propriedade.AceitaNulo)
+                propriedade.IsNullable)
             {
                 return true;
             }

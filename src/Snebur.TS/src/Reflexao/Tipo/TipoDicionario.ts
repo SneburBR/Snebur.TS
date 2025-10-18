@@ -7,7 +7,7 @@
 
         public constructor(keyType: BaseTipo, valueType: BaseTipo)
         {
-            super(`Dicionario_${valueType.Nome}`, "System.Collections.Generic", `System.Collections.Generic.Dictionary\`2[[${keyType.AssemblyQualifiedName}, mscorlib],[${valueType.AssemblyQualifiedName}]], mscorlib`);
+            super(`Dicionario_${valueType.Nome}`, "System.Collections.Generic", `System.Collections.Generic.Dictionary\`2[[${keyType.AssemblyQualifiedName}],[${valueType.AssemblyQualifiedName}]], System.Private.CoreLib`);
             this.KeyType = keyType;
             this.ValueType = valueType;
             this.TipoReflexao = EnumTipoReflexao.Dicionario;

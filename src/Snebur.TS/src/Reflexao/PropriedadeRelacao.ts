@@ -2,11 +2,15 @@
 {
     export class PropriedadeRelacao extends Propriedade
     {
-        public Relacao: Relacao;
+        public readonly Relacao: Relacao;
 
-        public constructor(nome: string, tipo: BaseTipo, tipoDeclarado: BaseTipo, aceitaNulo: boolean)
+        public constructor(
+            nome: string,
+            tipo: BaseTipo,
+            tipoDeclarado: BaseTipo,
+            isNullable: boolean)
         {
-            super(nome, tipo, tipoDeclarado, aceitaNulo);
+            super(nome, tipo, tipoDeclarado, isNullable, false);
         }
     }
 }

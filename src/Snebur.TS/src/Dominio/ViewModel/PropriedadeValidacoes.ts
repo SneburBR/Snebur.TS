@@ -31,7 +31,7 @@
             }
             else
             {
-                this.Propriedade = new r.Propriedade(nomePropriedade, $Reflexao.TipoDesconhecido, null, true);
+                this.Propriedade = new r.Propriedade(nomePropriedade, $Reflexao.TipoDesconhecido, null, true, false);
             }
         }
 

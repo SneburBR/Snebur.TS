@@ -209,7 +209,7 @@
 
         private RetornarValorPropriedadeNuloSerializado(valorPropriedade: any, propriedade: r.Propriedade): string
         {
-            if (propriedade.AceitaNulo)
+            if (propriedade.IsNullable)
             {
                 return "null";
             } else

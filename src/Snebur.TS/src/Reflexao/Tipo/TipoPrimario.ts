@@ -3,11 +3,11 @@ namespace Snebur.Reflexao
 {
     export class TipoPrimario extends BaseTipo
     {
-        public TipoPrimarioEnum: EnumTipoPrimario;
+        public readonly TipoPrimarioEnum: EnumTipoPrimario;
 
         public constructor(nome: string, tipoPrimarioEnum: number)
         {
-            super(nome, "", `System.${TipoPrimario.NormalizarTipoDotNet(tipoPrimarioEnum, nome)}, mscorlib`, null, false);
+            super(nome, "", `System.${TipoPrimario.NormalizarTipoDotNet(tipoPrimarioEnum, nome)}, System.Private.CoreLib`, null, false);
             this.TipoPrimarioEnum = tipoPrimarioEnum;
             this.TipoReflexao = EnumTipoReflexao.TipoPrimario;
         }

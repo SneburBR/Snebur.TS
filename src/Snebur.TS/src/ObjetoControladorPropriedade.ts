@@ -213,7 +213,7 @@
             if (!(propriedade instanceof r.Propriedade))
             {
                 const valor = (this as any)[nome]?.GetType() ?? u.ReflexaoUtil.RetornarTipoPrimario(r.EnumTipoPrimario.Object);
-                propriedade = new r.Propriedade(nome, valor, this.GetType(), true);
+                propriedade = new r.Propriedade(nome, valor, this.GetType(), true, false);
                 this.GetType().AdicionarPropriedade(propriedade);
                 return this.RetornarPropriedadeInterno(nome);
             }
@@ -238,7 +238,7 @@
         public DeclararPropriedade(expressaoPropriedade: string, construtor: Function, rotulo?: string, callbackValorAlterado?: CallbackT<PropriedadeAlteradaEventArgs<any>>, isAceitaNulo?: boolean): void;
         public DeclararPropriedade(expressaoPropriedade: string, construtor: Function, callbackValorAlterado?: CallbackT<PropriedadeAlteradaEventArgs<any>>): void;
         /*public DeclararPropriedade<TPropriedade, TThis extends this = this>(expressaoPropriedade: (value: TThis) => TPropriedade | string, argumentoTipo: IConstrutor<TPropriedade>, rotuloOuCallbackValorAlterado: string | CallbackT<PropriedadeAlteradaEventArgs> = null, argumentocallbackValorAlterado: CallbackT<PropriedadeAlteradaEventArgs> = null, isAceitaNulo = true): void*/
-        public DeclararPropriedade(expressaoPropriedade: Function | string, argumentoTipo: Function, rotuloOuCallbackValorAlterado: string | CallbackT<PropriedadeAlteradaEventArgs> = null, argumentocallbackValorAlterado: CallbackT<PropriedadeAlteradaEventArgs> = null, isAceitaNulo = true): void
+        public DeclararPropriedade(expressaoPropriedade: Function | string, argumentoTipo: Function, rotuloOuCallbackValorAlterado: string | CallbackT<PropriedadeAlteradaEventArgs> = null, argumentocallbackValorAlterado: CallbackT<PropriedadeAlteradaEventArgs> = null, isNullable = true): void
         {
             const nomePropriedade = typeof expressaoPropriedade === "string" ?
                 expressaoPropriedade :
@@ -252,7 +252,7 @@
             if (!(propriedade instanceof r.Propriedade))
             {
                 const tipo = this.RetornarTipoPropriedadeDeclarada(argumentoTipo);
-                propriedade = new r.Propriedade(nomePropriedade, tipo, this.GetType(), isAceitaNulo);
+                propriedade = new r.Propriedade(nomePropriedade, tipo, this.GetType(), isNullable, false);
                 this.GetType().AdicionarPropriedade(propriedade);
 
                 const rotulo = typeof rotuloOuCallbackValorAlterado === "string" ? rotuloOuCallbackValorAlterado : null;
@@ -318,7 +318,7 @@
             if (!this.__propriedadesSomenteLeituras__.ContainsKey(nomePropriedade))
             {
                 const tipo = this.RetornarTipoPropriedadeDeclarada(construtor);
-                const propriedade = new r.Propriedade(nomePropriedade, tipo, this.GetType(), true);
+                const propriedade = new r.Propriedade(nomePropriedade, tipo, this.GetType(), true, false);
                 this.__propriedadesSomenteLeituras__.Add(nomePropriedade, propriedade);
             }
         }

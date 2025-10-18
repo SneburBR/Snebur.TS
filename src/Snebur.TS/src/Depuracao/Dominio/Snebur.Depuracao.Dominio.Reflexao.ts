@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-10-16 16:38:34
+//@DataHora: 2025-10-18 15:50:11
 //@Artifact: Reflexao
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -75,27 +75,27 @@ namespace Snebur.Reflexao
     //#endregion
     
     //#region Properties
-    const __$propriedade_Snebur_Depuracao_Contrato_Mensagem = new Propriedade("Mensagem", __$tipoBaseDominio_Snebur_Depuracao_Mensagem, __$tipoBaseDominio_Snebur_Depuracao_Contrato, true);
+    const __$propriedade_Snebur_Depuracao_Contrato_Mensagem = new Propriedade("Mensagem", __$tipoBaseDominio_Snebur_Depuracao_Mensagem, __$tipoBaseDominio_Snebur_Depuracao_Contrato, true, false);
     __$tipoBaseDominio_Snebur_Depuracao_Contrato.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_Contrato_Mensagem)
-    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_IsScript = new Propriedade("IsScript", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false);
-    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_UrlScriptRuntime = new Propriedade("UrlScriptRuntime", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false);
-    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_CaminhoConstrutor = new Propriedade("CaminhoConstrutor", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false);
-    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_NomeControle = new Propriedade("NomeControle", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false);
+    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_IsScript = new Propriedade("IsScript", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_UrlScriptRuntime = new Propriedade("UrlScriptRuntime", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_CaminhoConstrutor = new Propriedade("CaminhoConstrutor", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemControleAlterado_NomeControle = new Propriedade("NomeControle", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemControleAlterado_IsScript)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemControleAlterado_UrlScriptRuntime)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemControleAlterado_CaminhoConstrutor)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemControleAlterado_NomeControle)
-    const __$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado, false);
+    const __$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo)
-    const __$propriedade_Snebur_Depuracao_MensagemLog_Mensagem = new Propriedade("Mensagem", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false);
-    const __$propriedade_Snebur_Depuracao_MensagemLog_TipoLog = new Propriedade("TipoLog", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false);
+    const __$propriedade_Snebur_Depuracao_MensagemLog_Mensagem = new Propriedade("Mensagem", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemLog_TipoLog = new Propriedade("TipoLog", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemLog.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemLog_Mensagem)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemLog.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemLog_TipoLog)
-    const __$propriedade_Snebur_Depuracao_MensagemPing_Ping = new Propriedade("Ping", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Depuracao_MensagemPing, false);
-    const __$propriedade_Snebur_Depuracao_MensagemPing_DataHora = new Propriedade("DataHora", __$tipoTipoPrimario_DateTime, __$tipoBaseDominio_Snebur_Depuracao_MensagemPing, false);
+    const __$propriedade_Snebur_Depuracao_MensagemPing_Ping = new Propriedade("Ping", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Depuracao_MensagemPing, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemPing_DataHora = new Propriedade("DataHora", __$tipoTipoPrimario_DateTime, __$tipoBaseDominio_Snebur_Depuracao_MensagemPing, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemPing.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemPing_Ping)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemPing.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemPing_DataHora)
-    const __$propriedade_Snebur_Depuracao_MensagemScriptAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado, false);
+    const __$propriedade_Snebur_Depuracao_MensagemScriptAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemScriptAlterado_NomeArquivo)
     //#endregion
 }

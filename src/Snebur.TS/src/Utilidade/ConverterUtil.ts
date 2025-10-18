@@ -26,9 +26,14 @@
 
         public static ParaTipoPrimario(valor: any, tipoPrimarioEnum: r.EnumTipoPrimario, isNullable: boolean = false, isIgnorarErro: boolean = false): any
         {
+
             switch (tipoPrimarioEnum)
             {
                 case (r.EnumTipoPrimario.Object):
+
+                    return ConverterUtil.NormalizarObjeto(valor, isNullable);
+
+
                 case (r.EnumTipoPrimario.Guid):
                 case (r.EnumTipoPrimario.String):
                 case (r.EnumTipoPrimario.Char):
@@ -66,6 +71,21 @@
 
                     throw new ErroNaoSuportado(`O tipoPrimarioEnum ${u.EnumUtil.RetornarDescricao(r.EnumTipoPrimario, tipoPrimarioEnum)} não é suportado`, this);
             }
+        }
+
+        public static NormalizarObjeto(valor: any, isNullable: boolean): any
+        {
+            if (valor == null && isNullable)
+                return valor;
+
+            const type = valor.GetType();
+            if (valor.GetType() instanceof r.TipoPrimario)
+            {
+                return ConverterUtil.ParaTipoPrimario(valor, type.TipoPrimarioEnum, isNullable);
+            }
+            console.error(`O valor ${valor} do tipo  ${type.Nome} não foi convertido`);
+            DebugUtil.Break();
+            return valor;
         }
 
         public static RetornarValorNuloPadrao(tipo: r.BaseTipo): any
@@ -421,7 +441,7 @@
                         ? EnumFormatoData.MDY
                         : EnumFormatoData.DMY;
 
-                    console.warn(`Tentando converter para o formato ${EnumFormatoData[formatoAlternativo]}`)
+                    console.warn(`Tentando converter para o formato ${EnumFormatoData[formatoAlternativo]}`);
 
                     if (!u.ValidacaoUtil.IsDateString(valor, formatoAlternativo))
                     {
@@ -601,7 +621,6 @@
 
                 return TimeSpan.FromMilliseconds(valorTipado);
             }
-
 
 
             if (ignorarErro)

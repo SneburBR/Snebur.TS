@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.AcessoDados. Do not modify directly. 
 //@Project: Snebur.AcessoDados
-//@DataHora: 2025-10-16 16:38:15
+//@DataHora: 2025-10-18 15:49:05
 //@Artifact: Reflexao
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
@@ -145,54 +145,54 @@ namespace Snebur.Reflexao
     //#endregion
     
     //#region Properties
-    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_MensagemErro = new Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, true);
-    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_FalhaAutenticacao = new Propriedade("FalhaAutenticacao", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, false);
-    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_Comandos = new Propriedade("Comandos", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, false);
+    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_MensagemErro = new Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_FalhaAutenticacao = new Propriedade("FalhaAutenticacao", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, false, false);
+    const __$propriedade_Snebur_AcessoDados_BaseAcessoDados_Comandos = new Propriedade("Comandos", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseAcessoDados_MensagemErro)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseAcessoDados_FalhaAutenticacao)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseAcessoDados.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseAcessoDados_Comandos)
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true);
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade = new Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true);
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado = new Propriedade("NomeTipoDeclarado", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true);
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName = new Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true);
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName = new Propriedade("TipoDeclaradoAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true);
-    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas = new Propriedade("PropriedadesAbertas", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade = new Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado = new Propriedade("NomeTipoDeclarado", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName = new Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName = new Propriedade("TipoDeclaradoAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, true, false);
+    const __$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas = new Propriedade("PropriedadesAbertas", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_CaminhoPropriedade)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoEntidade)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_NomeTipoDeclarado)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoEntidadeAssemblyQualifiedName)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_TipoDeclaradoAssemblyQualifiedName)
     __$tipoBaseDominio_Snebur_AcessoDados_BaseRelacaoAberta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseRelacaoAberta_PropriedadesAbertas)
-    const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao = new Propriedade("Relacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao, true);
-    const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta = new Propriedade("EstruturaConsulta", __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao, true);
+    const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao = new Propriedade("Relacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao, true, false);
+    const __$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta = new Propriedade("EstruturaConsulta", __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao, true, false);
     __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_Relacao)
     __$tipoBaseDominio_Snebur_AcessoDados_ConsultaFiltroColecao.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ConsultaFiltroColecao_EstruturaConsulta)
-    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_Id = new Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false);
-    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_IdentificadorUnicoEntidade = new Propriedade("IdentificadorUnicoEntidade", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false);
-    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_CaminhoTipoEntidadeSalva = new Propriedade("CaminhoTipoEntidadeSalva", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false);
-    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_PropriedadesComputada = new Propriedade("PropriedadesComputada", __$tipoListaBaseDominio_Snebur_AcessoDados_PropriedadeComputada, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false);
+    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_Id = new Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false, false);
+    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_IdentificadorUnicoEntidade = new Propriedade("IdentificadorUnicoEntidade", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false, false);
+    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_CaminhoTipoEntidadeSalva = new Propriedade("CaminhoTipoEntidadeSalva", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false, false);
+    const __$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_PropriedadesComputada = new Propriedade("PropriedadesComputada", __$tipoListaBaseDominio_Snebur_AcessoDados_PropriedadeComputada, __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_Id)
     __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_IdentificadorUnicoEntidade)
     __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_CaminhoTipoEntidadeSalva)
     __$tipoBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EntidadeSalvaInfo_PropriedadesComputada)
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_NomeTipoEntidade = new Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoEntidadeAssemblyQualifiedName = new Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirDeletados = new Propriedade("IsIncluirDeletados", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirInativos = new Propriedade("IsIncluirInativos", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsDesativarOrdenacao = new Propriedade("IsDesativarOrdenacao", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Take = new Propriedade("Take", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Skip = new Propriedade("Skip", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_PaginaAtual = new Propriedade("PaginaAtual", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_CaminhoPropriedadeFuncao = new Propriedade("CaminhoPropriedadeFuncao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoFuncaoEnum = new Propriedade("TipoFuncaoEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_FiltroGrupoE = new Propriedade("FiltroGrupoE", __$tipoBaseDominio_Snebur_AcessoDados_FiltroGrupoE, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_FiltroGrupoOU = new Propriedade("FiltroGrupoOU", __$tipoBaseDominio_Snebur_AcessoDados_FiltroGrupoOU, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Ordenacoes = new Propriedade("Ordenacoes", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, "Dicionario__System.String_Snebur.AcessoDados.Ordenacao"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_RelacoesAbertaFiltro = new Propriedade("RelacoesAbertaFiltro", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaEntidade"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_RelacoesAberta = new Propriedade("RelacoesAberta", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaEntidade"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_ColecoesAberta = new Propriedade("ColecoesAberta", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaColecao"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_PropriedadesAbertas = new Propriedade("PropriedadesAbertas", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_ContarRegistros = new Propriedade("ContarRegistros", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_NomeTipoEntidade = new Propriedade("NomeTipoEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoEntidadeAssemblyQualifiedName = new Propriedade("TipoEntidadeAssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirDeletados = new Propriedade("IsIncluirDeletados", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirInativos = new Propriedade("IsIncluirInativos", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsDesativarOrdenacao = new Propriedade("IsDesativarOrdenacao", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Take = new Propriedade("Take", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Skip = new Propriedade("Skip", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_PaginaAtual = new Propriedade("PaginaAtual", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_CaminhoPropriedadeFuncao = new Propriedade("CaminhoPropriedadeFuncao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, true, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoFuncaoEnum = new Propriedade("TipoFuncaoEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_FiltroGrupoE = new Propriedade("FiltroGrupoE", __$tipoBaseDominio_Snebur_AcessoDados_FiltroGrupoE, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_FiltroGrupoOU = new Propriedade("FiltroGrupoOU", __$tipoBaseDominio_Snebur_AcessoDados_FiltroGrupoOU, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_Ordenacoes = new Propriedade("Ordenacoes", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, "Dicionario__System.String_Snebur.AcessoDados.Ordenacao"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_RelacoesAbertaFiltro = new Propriedade("RelacoesAbertaFiltro", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaEntidade"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_RelacoesAberta = new Propriedade("RelacoesAberta", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaEntidade, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaEntidade"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_ColecoesAberta = new Propriedade("ColecoesAberta", TipoDicionario.GetOrCreate(__$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao, "Dicionario__System.String_Snebur.AcessoDados.RelacaoAbertaColecao"), __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_PropriedadesAbertas = new Propriedade("PropriedadesAbertas", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_EstruturaConsulta_ContarRegistros = new Propriedade("ContarRegistros", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_NomeTipoEntidade)
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_TipoEntidadeAssemblyQualifiedName)
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_IsIncluirDeletados)
@@ -211,42 +211,42 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_ColecoesAberta)
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_PropriedadesAbertas)
     __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_EstruturaConsulta_ContarRegistros)
-    const __$propriedade_Snebur_AcessoDados_Ordenacao_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, true);
-    const __$propriedade_Snebur_AcessoDados_Ordenacao_SentidoOrdenacaoEnum = new Propriedade("SentidoOrdenacaoEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, false);
+    const __$propriedade_Snebur_AcessoDados_Ordenacao_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, true, false);
+    const __$propriedade_Snebur_AcessoDados_Ordenacao_SentidoOrdenacaoEnum = new Propriedade("SentidoOrdenacaoEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_Ordenacao_CaminhoPropriedade)
     __$tipoBaseDominio_Snebur_AcessoDados_Ordenacao.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_Ordenacao_SentidoOrdenacaoEnum)
-    const __$propriedade_Snebur_AcessoDados_PropriedadeComputada_NomePropriedade = new Propriedade("NomePropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada, false);
-    const __$propriedade_Snebur_AcessoDados_PropriedadeComputada_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada, true);
+    const __$propriedade_Snebur_AcessoDados_PropriedadeComputada_NomePropriedade = new Propriedade("NomePropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada, false, false);
+    const __$propriedade_Snebur_AcessoDados_PropriedadeComputada_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada, true, false);
     __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_PropriedadeComputada_NomePropriedade)
     __$tipoBaseDominio_Snebur_AcessoDados_PropriedadeComputada.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_PropriedadeComputada_Valor)
-    const __$propriedade_Snebur_AcessoDados_Resultado_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_Resultado, false);
-    const __$propriedade_Snebur_AcessoDados_Resultado_Permissao = new Propriedade("Permissao", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_Resultado, false);
+    const __$propriedade_Snebur_AcessoDados_Resultado_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_AcessoDados_Resultado, false, false);
+    const __$propriedade_Snebur_AcessoDados_Resultado_Permissao = new Propriedade("Permissao", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_Resultado, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_Resultado.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_Resultado_IsSucesso)
     __$tipoBaseDominio_Snebur_AcessoDados_Resultado.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_Resultado_Permissao)
-    const __$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros = new Propriedade("Filtros", __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro, __$tipoBaseDominio_Snebur_AcessoDados_BaseFiltroGrupo, false);
+    const __$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros = new Propriedade("Filtros", __$tipoListaBaseDominio_Snebur_AcessoDados_BaseFiltro, __$tipoBaseDominio_Snebur_AcessoDados_BaseFiltroGrupo, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_BaseFiltroGrupo.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_BaseFiltroGrupo_Filtros)
-    const __$propriedade_Snebur_AcessoDados_FiltroIds_Ids = new Propriedade("Ids", __$tipoListaTipoPrimario_Long, __$tipoBaseDominio_Snebur_AcessoDados_FiltroIds, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroIds_Ids = new Propriedade("Ids", __$tipoListaTipoPrimario_Long, __$tipoBaseDominio_Snebur_AcessoDados_FiltroIds, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroIds.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroIds_Ids)
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, true);
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, false);
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_Operador = new Propriedade("Operador", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, false);
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, true);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, true, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, false, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_Operador = new Propriedade("Operador", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, false, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedade_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade, true, false);
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_CaminhoPropriedade)
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_TipoPrimarioEnum)
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_Operador)
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedade.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedade_Valor)
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn, true);
-    const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista = new Propriedade("Lista", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade = new Propriedade("CaminhoPropriedade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn, true, false);
+    const __$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista = new Propriedade("Lista", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_CaminhoPropriedade)
     __$tipoBaseDominio_Snebur_AcessoDados_FiltroPropriedadeIn.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_FiltroPropriedadeIn_Lista)
-    const __$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta = new Propriedade("EstruturaConsulta", __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao, true);
+    const __$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta = new Propriedade("EstruturaConsulta", __$tipoBaseDominio_Snebur_AcessoDados_EstruturaConsulta, __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao, true, false);
     __$tipoBaseDominio_Snebur_AcessoDados_RelacaoAbertaColecao.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_RelacaoAbertaColecao_EstruturaConsulta)
-    const __$propriedade_Snebur_AcessoDados_ResultadoConsulta_Entidades = new Propriedade("Entidades", __$tipoListaTipoPrimario_Object, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta, false);
-    const __$propriedade_Snebur_AcessoDados_ResultadoConsulta_TotalRegistros = new Propriedade("TotalRegistros", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta, false);
+    const __$propriedade_Snebur_AcessoDados_ResultadoConsulta_Entidades = new Propriedade("Entidades", __$tipoListaEntidade_Snebur_Dominio_Entidade, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta, false, false);
+    const __$propriedade_Snebur_AcessoDados_ResultadoConsulta_TotalRegistros = new Propriedade("TotalRegistros", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ResultadoConsulta_Entidades)
     __$tipoBaseDominio_Snebur_AcessoDados_ResultadoConsulta.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ResultadoConsulta_TotalRegistros)
-    const __$propriedade_Snebur_AcessoDados_ResultadoSalvar_EntidadesSalvas = new Propriedade("EntidadesSalvas", __$tipoListaBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar, false);
-    const __$propriedade_Snebur_AcessoDados_ResultadoSalvar_ErrosValidacao = new Propriedade("ErrosValidacao", __$tipoListaBaseDominio_Snebur_Dominio_ErroValidacaoInfo, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar, false);
+    const __$propriedade_Snebur_AcessoDados_ResultadoSalvar_EntidadesSalvas = new Propriedade("EntidadesSalvas", __$tipoListaBaseDominio_Snebur_AcessoDados_EntidadeSalvaInfo, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar, false, false);
+    const __$propriedade_Snebur_AcessoDados_ResultadoSalvar_ErrosValidacao = new Propriedade("ErrosValidacao", __$tipoListaBaseDominio_Snebur_Dominio_ErroValidacaoInfo, __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar, false, false);
     __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ResultadoSalvar_EntidadesSalvas)
     __$tipoBaseDominio_Snebur_AcessoDados_ResultadoSalvar.AdicionarPropriedade(__$propriedade_Snebur_AcessoDados_ResultadoSalvar_ErrosValidacao)
     //#endregion

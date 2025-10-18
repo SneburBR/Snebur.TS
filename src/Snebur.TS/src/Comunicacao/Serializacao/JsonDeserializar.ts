@@ -140,7 +140,7 @@
         {
             if (!u.ValidacaoUtil.IsDefinido(valorPropriedade))
             {
-                if (propriedade.AceitaNulo)
+                if (propriedade.IsNullable)
                 {
                     return null;
                 }

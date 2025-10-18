@@ -11,7 +11,7 @@
         private _isIdentity: boolean;
         private _isImplementaIDeletado: boolean;
         private _isImplementaIAtivo: boolean;
-        private _propriedadeChavePrimaria: r.Propriedade;
+        private _propriedadeChavePrimaria: r.Propriedade | null = null;
 
         public override get Construtor(): d.EntidadeConstrutor
         {
@@ -53,6 +53,7 @@
 
         public get PropriedadeChavePrimaria(): Propriedade
         {
+            Guard.NotNull(this._propriedadeChavePrimaria, "_propriedadeChavePrimaria");
             return this._propriedadeChavePrimaria;
         }
 
@@ -194,7 +195,16 @@
             return propriedadesPesquisa;
         }
 
-        public SetPropriedadeChavePrimaria(propriedade: r.Propriedade): void
+        public override AdicionarPropriedade(propriedade: Propriedade)
+        {
+            if (propriedade.IsPrimaryKey)
+            {
+                this.SetPropriedadeChavePrimaria(propriedade);
+            }
+            super.AdicionarPropriedade(propriedade);
+        }
+
+        private SetPropriedadeChavePrimaria(propriedade: r.Propriedade): void
         {
             if (this._propriedadeChavePrimaria != null)
             {

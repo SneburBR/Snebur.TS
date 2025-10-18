@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-10-16 14:31:22
+//@DataHora: 2025-10-18 15:50:00
 //@Artifact: Classes
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -753,6 +753,38 @@ namespace Snebur.Comunicacao
         }
         public readonly BasesDominio: Array<Snebur.Dominio.BaseDominio | null> = new Array<Snebur.Dominio.BaseDominio>();
     }
+    export class ParametroChamadaListaEntidades  extends Snebur.Comunicacao.ParametroChamadaLista
+    {
+        //#region Private Fields
+        private _nomeTipoEntidade: string | null  = null;
+        private _nomeNamespaceNomeTipoEntidade: string | null  = null;
+        //#endregion
+        
+        public constructor(inicializador?: Partial<ParametroChamadaListaEntidades>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        
+        public get NomeTipoEntidade(): string | null
+        {
+            return this._nomeTipoEntidade;
+        }
+        public set NomeTipoEntidade(value: string | null) 
+        {
+            this.SetProperty("NomeTipoEntidade", this._nomeTipoEntidade, this._nomeTipoEntidade = value);
+        }
+        
+        public get NomeNamespaceNomeTipoEntidade(): string | null
+        {
+            return this._nomeNamespaceNomeTipoEntidade;
+        }
+        public set NomeNamespaceNomeTipoEntidade(value: string | null) 
+        {
+            this.SetProperty("NomeNamespaceNomeTipoEntidade", this._nomeNamespaceNomeTipoEntidade, this._nomeNamespaceNomeTipoEntidade = value);
+        }
+        public readonly Entidades: Array<Snebur.Dominio.Entidade | null> = new Array<Snebur.Dominio.Entidade>();
+    }
     export class ParametroChamadaListaEnum  extends Snebur.Comunicacao.ParametroChamadaLista
     {
         //#region Private Fields
@@ -784,6 +816,38 @@ namespace Snebur.Comunicacao
             this.SetProperty("NamespaceEnum", this._namespaceEnum, this._namespaceEnum = value);
         }
         public readonly Valores = new Array<number>();
+    }
+    export class ParametroChamadaListaTipoComplexo  extends Snebur.Comunicacao.ParametroChamadaLista
+    {
+        //#region Private Fields
+        private _nomeTipoComplexo: string | null  = null;
+        private _nomeNamespaceTipoComplexo: string | null  = null;
+        //#endregion
+        
+        public constructor(inicializador?: Partial<ParametroChamadaListaTipoComplexo>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        
+        public get NomeTipoComplexo(): string | null
+        {
+            return this._nomeTipoComplexo;
+        }
+        public set NomeTipoComplexo(value: string | null) 
+        {
+            this.SetProperty("NomeTipoComplexo", this._nomeTipoComplexo, this._nomeTipoComplexo = value);
+        }
+        
+        public get NomeNamespaceTipoComplexo(): string | null
+        {
+            return this._nomeNamespaceTipoComplexo;
+        }
+        public set NomeNamespaceTipoComplexo(value: string | null) 
+        {
+            this.SetProperty("NomeNamespaceTipoComplexo", this._nomeNamespaceTipoComplexo, this._nomeNamespaceTipoComplexo = value);
+        }
+        public readonly TiposComplexo: Array<Snebur.Dominio.BaseTipoComplexo | null> = new Array<Snebur.Dominio.BaseTipoComplexo>();
     }
     export class ParametroChamadaListaTipoPrimario  extends Snebur.Comunicacao.ParametroChamadaLista
     {

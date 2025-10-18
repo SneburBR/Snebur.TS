@@ -213,12 +213,16 @@
 
                     return this.RetornarParametroChamadaListaBaseDominio(parametro, tipo as r.TipoListaBaseDominio);
 
+                case Snebur.Reflexao.EnumTipoReflexao.TipoListaEntidade:
+
+                    return this.RetornarParametroChamadaListaEntidade(parametro, tipo as r.TipoListaEntidade);
+
                 default:
 
                     throw new ErroNaoSuportado("Tipo parâmetro não suportado", this);
             }
         }
-
+    
         private RetornarParametroChammadaTipoPrimario(parametro: ParChaveValorSimples<any>, tipo: Snebur.Reflexao.TipoPrimario): ParametroChamadaTipoPrimario
         {
             const parametroChamada = new ParametroChamadaTipoPrimario();
@@ -261,6 +265,16 @@
             {
                 parametroChamada.TipoPrimarioEnum = r.EnumTipoPrimario.Object;
             }
+            if (parametro.Valor != null)
+            {
+                Guard.MustBeArray(parametro.Valor);
+                for (const value of parametro.Valor)
+                {
+                    Guard.MustBePrimaryValue(value);
+                    parametroChamada.Lista.Add(value);
+                }
+            }
+          
             return parametroChamada;
         }
 
@@ -269,16 +283,58 @@
             const parametroChamada = new ParametroChamadaListaEnum();
             parametroChamada.Nome = parametro.Chave;
             parametroChamada.AssemblyQualifiedName = tipo.AssemblyQualifiedName;
+            if (parametro.Valor != null)
+            {
+                Guard.MustBeArray(parametro.Valor);
+                for (const enumValue of parametro.Valor)
+                {
+                    Guard.MustBeNumber(enumValue);
+                    parametroChamada.Valores.Add(enumValue);
+                }
+            }
             return parametroChamada;
         }
 
-        private RetornarParametroChamadaListaBaseDominio(parametro: ParChaveValorSimples<object>, tipo: Snebur.Reflexao.TipoListaBaseDominio): ParametroChamadaListaBaseDominio
+        private RetornarParametroChamadaListaBaseDominio(
+            parametro: ParChaveValorSimples<object>,
+            tipo: Snebur.Reflexao.TipoListaBaseDominio): ParametroChamadaListaBaseDominio
         {
             const parametroChamada = new ParametroChamadaListaBaseDominio();
             parametroChamada.Nome = parametro.Chave;
             parametroChamada.AssemblyQualifiedName = tipo.TipoBaseDominio.AssemblyQualifiedName;
+
+            if (parametro.Valor != null)
+            {
+                Guard.MustBeArray(parametro.Valor);
+                for (const baseDominio of parametro.Valor)
+                {
+                    Guard.MustBeBaseDomain(baseDominio);
+                    parametroChamada.BasesDominio.Add(baseDominio);
+                }
+            }
             return parametroChamada;
         }
+
+        private RetornarParametroChamadaListaEntidade(
+            parametro: ParChaveValorSimples<any>,
+            tipo: r.TipoListaEntidade): ParametroChamada
+        {
+            const parametroChamada = new ParametroChamadaListaBaseDominio();
+            parametroChamada.Nome = parametro.Chave;
+            parametroChamada.AssemblyQualifiedName = tipo.TipoBaseDominio.AssemblyQualifiedName;
+
+            if (parametro.Valor != null)
+            {
+                Guard.MustBeArray(parametro.Valor);
+                for (const entidade of parametro.Valor)
+                {
+                    Guard.MustBeEntidfade(entidade);
+                    parametroChamada.BasesDominio.Add(entidade);
+                }
+            }
+            return parametroChamada;
+        }
+
 
         private RetornarCabecalho(): Cabecalho
         {

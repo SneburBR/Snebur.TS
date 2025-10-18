@@ -31,7 +31,7 @@
         private RetornarPropriedadeEntidadesRemovida(): Propriedade
         {
             const tipoListaEntidades = this.RetornarTipoListaEntidades();
-            return new Propriedade("EntidadesRemovida", tipoListaEntidades, this, false);
+            return new Propriedade("EntidadesRemovida", tipoListaEntidades, this, false, false);
         }
 
         private RetornarTipoListaEntidades(): TipoListaBaseDominio

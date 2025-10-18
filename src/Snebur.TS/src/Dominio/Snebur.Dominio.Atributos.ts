@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-16 14:31:23
+//@DataHora: 2025-10-18 15:50:02
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0

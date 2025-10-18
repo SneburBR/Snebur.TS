@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.ServicoArquivo. Do not modify directly. 
 //@Project: Snebur.ServicoArquivo
-//@DataHora: 2025-10-16 16:38:40
+//@DataHora: 2025-10-18 15:50:18
 //@Artifact: Reflexao
 //@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
@@ -40,10 +40,10 @@ namespace Snebur.Reflexao
     //#endregion
     
     //#region Properties
-    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id = new Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
-    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
-    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro = new Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, true);
-    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo = new Propriedade("TipoErroServicoArquivo", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id = new Propriedade("Id", __$tipoTipoPrimario_Long, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro = new Propriedade("MensagemErro", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, true, false);
+    const __$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_TipoErroServicoArquivo = new Propriedade("TipoErroServicoArquivo", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo, false, false);
     __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_Id)
     __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_IsSucesso)
     __$tipoBaseDominio_Snebur_ServicoArquivo_ResultadoServicoArquivo.AdicionarPropriedade(__$propriedade_Snebur_ServicoArquivo_ResultadoServicoArquivo_MensagemErro)

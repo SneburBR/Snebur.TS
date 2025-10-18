@@ -2,6 +2,7 @@
 {
     export class DebugUtil
     {
+
         public static ThrowAndContinue(mensagem: string)
         {
             try
@@ -15,6 +16,15 @@
             catch /*eslint-disable*/
             {
             }
+        }
+
+        public static Break(): void
+        {
+            if ($Configuracao.IsDebug)
+            {
+                debugger;
+            }
+
         }
     }
 }

@@ -12,7 +12,7 @@
             super(nome, _namespace, assemblyQualifiedName, null, false);
             if (__$tipoTipoPrimario_Integer != null)
             {
-                this.AdicionarPropriedade(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false));
+                this.AdicionarPropriedade(new Propriedade("Count", __$tipoTipoPrimario_Integer, null, false, false));
             }
         }
 

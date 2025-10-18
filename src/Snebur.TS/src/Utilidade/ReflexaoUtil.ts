@@ -106,7 +106,7 @@
             return $Reflexao.Tipos.Item(descricaoEnum) as r.TipoPrimario;
         }
 
-        public static RetornarCaminhoTipoLista(tipo: Snebur.Reflexao.BaseTipo): string
+        private static RetornarCaminhoTipoLista(tipo: Snebur.Reflexao.BaseTipo): string
         {
             if (tipo instanceof r.BaseTipoLista)
             {
@@ -125,19 +125,20 @@
 
             if (tipo instanceof r.TipoComplexo)
             {
-                const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;
-                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_COMPLEXO}${caminhoBaseDominio}`;
+                /*const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;*/
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_COMPLEXO}${caminhoTipo}`;
             }
             if (tipo instanceof r.TipoEntidade)
             {
-                const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;
-                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_ENTIDADE}${caminhoBaseDominio}`;
+                /*const caminhoBaseDominio = Snebur.Dominio.BaseViewModel.GetType().__CaminhoTipo;*/
+                return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_ENTIDADE}${caminhoTipo}`;
             }
 
             if (tipo instanceof r.TipoBaseDominio)
             {
                 return `${ConstantesReflexao.PREFIXO_LISTA_TIPO_BASE_DOMINIO}${caminhoTipo}`;
             }
+
             throw new Erro("O tipo não suportado");
         }
 
@@ -419,6 +420,12 @@
             if ($Reflexao.Tipos.ContainsKey(caminhoTipoLista))
             {
                 return $Reflexao.Tipos.Item(caminhoTipoLista) as Snebur.Reflexao.BaseTipoLista;
+            }
+
+            DebugUtil.Break();
+            if ($Configuracao.IsDebug)
+            {
+                throw new Erro(`Não foi possível retornar o tipo da lista para o tipo ${tipo.Nome}`, this);
             }
             return $Reflexao.TipoListaItemDesconhecido;
         }

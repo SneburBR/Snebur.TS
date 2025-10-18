@@ -65,6 +65,10 @@ namespace Snebur.AcessoDados
 
         protected override NormalizarValorParametro(valorParametro: any): any
         {
+            if (Array.isArray(valorParametro))
+            {
+                DebugUtil.Break();
+            }
             return valorParametro;
         }
 
