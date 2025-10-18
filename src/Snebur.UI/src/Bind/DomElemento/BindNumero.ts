@@ -60,7 +60,7 @@
         {
             const valorPropriedade = super.RetornarValorPropriedade();
             if (valorPropriedade == null &&
-                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.AceitaNulo))
+                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.IsNullable))
             {
                 return null;
             }
@@ -88,7 +88,7 @@
         public override RetornarValorConvertidoParaPropriedade(valorDom: string): number
         {
             if (String.IsNullOrWhiteSpace(valorDom) &&
-                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.AceitaNulo))
+                (this.PropriedadeLigacao == null || this.PropriedadeLigacao?.IsNullable))
             {
                 return null;
             }

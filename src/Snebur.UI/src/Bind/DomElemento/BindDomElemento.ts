@@ -408,7 +408,7 @@
         {
             if (this.PropriedadeLigacao instanceof r.Propriedade)
             {
-                if (this.PropriedadeLigacao.AceitaNulo && (String.IsNullOrEmpty(valorDom) || !this.IsValorDomValido(valorDom)))
+                if (this.PropriedadeLigacao.IsNullable && (String.IsNullOrEmpty(valorDom) || !this.IsValorDomValido(valorDom)))
                 {
                     return null;
                 }
