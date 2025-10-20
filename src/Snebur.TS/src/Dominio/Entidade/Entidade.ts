@@ -9,7 +9,6 @@
         private _id: number = 0;
         private __isNewEntity__: boolean = true;
         private __isIdentity__: boolean
-
         public readonly __IsSomenteLeitura: boolean = false;
 
         //private _entidadeCloneSomenteId: Entidade;
@@ -21,7 +20,6 @@
 
         public set Id(value: number)
         {
-
             if (this._id > 0 && this._id !== value)
             {
                 throw new ErroOperacaoInvalida("Não possível sobre escrever um id já existente");
@@ -34,6 +32,7 @@
 
             const isNotificarEntidadeSalva = (this._id === 0 && value > 0);
             this.NotificarValorPropriedadeAlterada("Id", this._id, this._id = value);
+
             if (isNotificarEntidadeSalva)
             {
                 this.EventoEntidadeSalva.Notificar(this, EventArgs.Empty);
@@ -339,7 +338,6 @@
             {
                 this.NotificarPropriedadeAlterada(propriedade.Nome);
             }
-
             this.NotificarPropriedadesSomenteLeituraAlteradas();
         }
 

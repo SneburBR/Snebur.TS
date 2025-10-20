@@ -992,7 +992,10 @@
             return false;
         }
 
-        public static IsTipoPrimarioDefinido(valorPropriedade: any, tipoPrimario?: r.EnumTipoPrimario, isAceitarString: boolean = false): boolean
+        public static IsTipoPrimarioDefinido(
+            valorPropriedade: any,
+            tipoPrimario?: r.EnumTipoPrimario,
+            isAceitarString: boolean = false): boolean
         {
             if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
             {
@@ -1033,6 +1036,13 @@
 
                         return u.ValidacaoUtil.IsTimeSpan(valorPropriedade, isAceitarString);
 
+                    case (r.EnumTipoPrimario.EnumValor):
+
+                        if (ValidacaoUtil.IsNumber(valorPropriedade, isAceitarString))
+                        {
+                            return (u.ConverterUtil.ParaNumero(valorPropriedade, false) > 0);
+                        }
+                        return false;
                     default:
 
                         throw new ErroNaoSuportado(`O tipo primário não é suportado ${u.EnumUtil.RetornarDescricao(r.EnumTipoPrimario, tipoPrimario)}`, this);

@@ -105,12 +105,6 @@
 
         if (u.ValidacaoUtil.IsDefinido(valorPropriedade))
         {
-            if (propriedade.Tipo instanceof r.TipoPrimario)
-            {
-                const tipoPrimario = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
-                return ValidacaoUtil.IsTipoPrimarioDefinido(valorPropriedade, tipoPrimario, true);
-            }
-
             if (propriedade.Tipo instanceof r.TipoEnum)
             {
                 if (u.ValidacaoUtil.IsNumber(valorPropriedade))
@@ -120,6 +114,12 @@
                 }
             }
 
+            if (propriedade.Tipo instanceof r.TipoPrimario)
+            {
+                const tipoPrimario = (propriedade.Tipo as r.TipoPrimario).TipoPrimarioEnum;
+                return ValidacaoUtil.IsTipoPrimarioDefinido(valorPropriedade, tipoPrimario, true);
+            }
+             
             if (propriedade.Tipo instanceof r.TipoBaseDominio)
             {
                 return valorPropriedade instanceof BaseDominio;

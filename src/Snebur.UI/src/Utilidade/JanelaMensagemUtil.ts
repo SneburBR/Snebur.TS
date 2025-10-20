@@ -67,7 +67,7 @@
         public static async MostrarMensagemErroAsync(
             controlePai: BaseControle,
             mensagem: string,
-            titulo: string = "Oops!! Algo deu erro"): Promise<ResultadoJanelaMensagemArgs>
+            titulo: string = "Oops!! Algo deu errado"): Promise<ResultadoJanelaMensagemArgs>
         {
             await JanelaMensagem.AguardarFecharMensagemAsync();
             const janela = new JanelaMensagem(controlePai, titulo, mensagem, EnumBotoesJanelaMensagem.Ok);
