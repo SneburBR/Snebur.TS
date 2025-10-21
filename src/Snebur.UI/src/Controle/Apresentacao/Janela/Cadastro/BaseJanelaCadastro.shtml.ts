@@ -277,7 +277,7 @@
             try
             {
                 this.OcuparElemento();
-                await this.SalvarAsync();
+                await this.SalvarAsync(true);
             }
             catch (erro)
             {
