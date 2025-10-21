@@ -1038,11 +1038,12 @@
 
                     case (r.EnumTipoPrimario.EnumValor):
 
-                        if (ValidacaoUtil.IsNumber(valorPropriedade, isAceitarString))
-                        {
-                            return (u.ConverterUtil.ParaNumero(valorPropriedade, false) > 0);
-                        }
-                        return false;
+                        throw new Error(`O tipo enum deve ser validado usando  u.EnumUtil.IsDefind`)
+                        //if (ValidacaoUtil.IsNumber(valorPropriedade, isAceitarString))
+                        //{
+                        //    return (u.ConverterUtil.ParaNumero(valorPropriedade, false) > 0);
+                        //}
+                        //return false;
                     default:
 
                         throw new ErroNaoSuportado(`O tipo primário não é suportado ${u.EnumUtil.RetornarDescricao(r.EnumTipoPrimario, tipoPrimario)}`, this);

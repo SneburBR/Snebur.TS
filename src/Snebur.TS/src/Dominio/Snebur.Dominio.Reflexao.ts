@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-18 15:50:04
+//@DataHora: 2025-10-21 11:17:07
 //@Artifact: Reflexao
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -924,7 +924,7 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Comunicacao_InfoRequisicao.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_InfoRequisicao_IpRequisicao)
     __$tipoBaseDominio_Snebur_Comunicacao_InfoRequisicao.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_InfoRequisicao_CredencialUsuario)
     const __$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_IsSucesso = new Propriedade("IsSucesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao, false, false);
-    const __$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_Resultado = new Propriedade("Resultado", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_Resultado = new Propriedade("Resultado", __$tipoEnum_Snebur_Dominio_EnumResultadoAutenticacao, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao, false, false);
     const __$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_IsAlterarSenhaProximoAcesso = new Propriedade("IsAlterarSenhaProximoAcesso", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao, false, false);
     const __$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_TempoEsperar = new Propriedade("TempoEsperar", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoAutenticacao.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoAutenticacao_IsSucesso)
@@ -970,8 +970,8 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Dominio_InformacaoSessao_IdentificadorAplicacao = new Propriedade("IdentificadorAplicacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
     const __$propriedade_Snebur_Dominio_InformacaoSessao_Cultura = new Propriedade("Cultura", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
     const __$propriedade_Snebur_Dominio_InformacaoSessao_Idioma = new Propriedade("Idioma", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Plataforma = new Propriedade("Plataforma", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_TipoAplicacao = new Propriedade("TipoAplicacao", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoSessao_Plataforma = new Propriedade("Plataforma", __$tipoEnum_Snebur_Dominio_EnumPlataforma, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoSessao_TipoAplicacao = new Propriedade("TipoAplicacao", __$tipoEnum_Snebur_Dominio_EnumTipoAplicacao, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
     const __$propriedade_Snebur_Dominio_InformacaoSessao_Resolucao = new Propriedade("Resolucao", __$tipoComplexo_Snebur_Dominio_Dimensao, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
     const __$propriedade_Snebur_Dominio_InformacaoSessao_UserAgent = new Propriedade("UserAgent", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
     const __$propriedade_Snebur_Dominio_InformacaoSessao_Navegador = new Propriedade("Navegador", __$tipoComplexo_Snebur_Dominio_Navegador, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
@@ -1013,11 +1013,11 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Seguranca_Credencial.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_Credencial_IdentificadorUsuario)
     __$tipoBaseDominio_Snebur_Seguranca_Credencial.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_Credencial_Senha)
     const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_IsUsuarioEncontrado = new Propriedade("IsUsuarioEncontrado", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha, false, false);
-    const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status = new Propriedade("Status", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status = new Propriedade("Status", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_IsUsuarioEncontrado)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status)
     const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_IsUsuarioEncontrado = new Propriedade("IsUsuarioEncontrado", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false, false);
-    const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Status = new Propriedade("Status", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Status = new Propriedade("Status", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false, false);
     const __$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_TempoEsperar = new Propriedade("TempoEsperar", __$tipoTipoPrimario_Integer, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_IsUsuarioEncontrado)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoValidarCodigoRecuperarSenha_Status)
@@ -1068,7 +1068,7 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Dominio_Localizacao_Longitude = new Propriedade("Longitude", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_Localizacao, false, false);
     __$tipoComplexo_Snebur_Dominio_Localizacao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Localizacao_Latitude)
     __$tipoComplexo_Snebur_Dominio_Localizacao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Localizacao_Longitude)
-    const __$propriedade_Snebur_Dominio_Navegador_NavegadorEnum = new Propriedade("NavegadorEnum", __$tipoTipoPrimario_EnumValor, __$tipoComplexo_Snebur_Dominio_Navegador, false, false);
+    const __$propriedade_Snebur_Dominio_Navegador_NavegadorEnum = new Propriedade("NavegadorEnum", __$tipoEnum_Snebur_Dominio_EnumNavegador, __$tipoComplexo_Snebur_Dominio_Navegador, false, false);
     const __$propriedade_Snebur_Dominio_Navegador_Nome = new Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_Navegador, false, false);
     __$propriedade_Snebur_Dominio_Navegador_Nome.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 255)]);
     const __$propriedade_Snebur_Dominio_Navegador_Codenome = new Propriedade("Codenome", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_Navegador, false, false);
@@ -1080,7 +1080,7 @@ namespace Snebur.Reflexao
     __$tipoComplexo_Snebur_Dominio_Navegador.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Navegador_Codenome)
     __$tipoComplexo_Snebur_Dominio_Navegador.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Navegador_Versao)
     const __$propriedade_Snebur_Dominio_PrazoTempo_Prazo = new Propriedade("Prazo", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_PrazoTempo, false, false);
-    const __$propriedade_Snebur_Dominio_PrazoTempo_TipoPrazo = new Propriedade("TipoPrazo", __$tipoTipoPrimario_EnumValor, __$tipoComplexo_Snebur_Dominio_PrazoTempo, false, false);
+    const __$propriedade_Snebur_Dominio_PrazoTempo_TipoPrazo = new Propriedade("TipoPrazo", __$tipoEnum_Snebur_Dominio_EnumTipoPrazo, __$tipoComplexo_Snebur_Dominio_PrazoTempo, false, false);
     __$tipoComplexo_Snebur_Dominio_PrazoTempo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_PrazoTempo_Prazo)
     __$tipoComplexo_Snebur_Dominio_PrazoTempo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_PrazoTempo_TipoPrazo)
     const __$propriedade_Snebur_Dominio_PropriedadeAlteradaTipoComplexo_NomePropriedadeEntidade = new Propriedade("NomePropriedadeEntidade", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_PropriedadeAlteradaTipoComplexo, false, false);
@@ -1108,7 +1108,7 @@ namespace Snebur.Reflexao
     __$tipoComplexo_Snebur_Dominio_RedeSociais.AdicionarPropriedade(__$propriedade_Snebur_Dominio_RedeSociais_LinkedIn)
     __$tipoComplexo_Snebur_Dominio_RedeSociais.AdicionarPropriedade(__$propriedade_Snebur_Dominio_RedeSociais_Youtube)
     __$tipoComplexo_Snebur_Dominio_RedeSociais.AdicionarPropriedade(__$propriedade_Snebur_Dominio_RedeSociais_Github)
-    const __$propriedade_Snebur_Dominio_SistemaOperacional_SistemaOperacionalEnum = new Propriedade("SistemaOperacionalEnum", __$tipoTipoPrimario_EnumValor, __$tipoComplexo_Snebur_Dominio_SistemaOperacional, false, false);
+    const __$propriedade_Snebur_Dominio_SistemaOperacional_SistemaOperacionalEnum = new Propriedade("SistemaOperacionalEnum", __$tipoEnum_Snebur_Dominio_EnumSistemaOperacional, __$tipoComplexo_Snebur_Dominio_SistemaOperacional, false, false);
     const __$propriedade_Snebur_Dominio_SistemaOperacional_Nome = new Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_SistemaOperacional, false, false);
     __$propriedade_Snebur_Dominio_SistemaOperacional_Nome.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 255)]);
     const __$propriedade_Snebur_Dominio_SistemaOperacional_Codenome = new Propriedade("Codenome", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_SistemaOperacional, false, false);

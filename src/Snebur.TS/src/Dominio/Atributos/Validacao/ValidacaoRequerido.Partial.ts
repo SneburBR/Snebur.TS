@@ -112,6 +112,7 @@
                     const construtorEnum = u.ReflexaoUtil.RetornarConstrutorEnum(propriedade.Tipo);
                     return u.EnumUtil.IsDefindo(construtorEnum, u.ConverterUtil.ParaNumero(valorPropriedade));
                 }
+                return false;
             }
 
             if (propriedade.Tipo instanceof r.TipoPrimario)

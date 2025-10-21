@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-10-18 15:50:11
+//@DataHora: 2025-10-21 11:17:17
 //@Artifact: Reflexao
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -88,7 +88,7 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo)
     const __$propriedade_Snebur_Depuracao_MensagemLog_Mensagem = new Propriedade("Mensagem", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
-    const __$propriedade_Snebur_Depuracao_MensagemLog_TipoLog = new Propriedade("TipoLog", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemLog_TipoLog = new Propriedade("TipoLog", __$tipoEnum_Snebur_Depuracao_EnumTipoLog, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemLog.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemLog_Mensagem)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemLog.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemLog_TipoLog)
     const __$propriedade_Snebur_Depuracao_MensagemPing_Ping = new Propriedade("Ping", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Depuracao_MensagemPing, false, false);

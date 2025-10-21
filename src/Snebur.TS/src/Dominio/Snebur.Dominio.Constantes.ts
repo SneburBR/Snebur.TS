@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Constantes - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-16 16:10:46
+//@DataHora: 2025-10-21 10:18:27
 //@Artifact: Constantes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -38,6 +38,7 @@ namespace Snebur
         public static readonly PREFIXO_LISTA_TIPO_BASE_DOMINIO : string = "ListaTipoBaseDominio_";
         public static readonly PREFIXO_LISTA_TIPO_ENTIDADE : string = "ListaTipoEntidade_";
         public static readonly PREFIXO_LISTA_TIPO_DICIONARIO : string = "Dicionario_";
+        public static readonly PREFIXO_LISTA_TIPO_HASHSET : string = "HashSet_";
         public static readonly METODO_LIGACAO_COLECAO : string = "Incluir()";
         public static readonly CAMINHO_TIPO : string = "__CaminhoTipo";
     }

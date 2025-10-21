@@ -18,7 +18,10 @@
             return this.ValueType;
         }
 
-        public static GetOrCreate(keyType: BaseTipo, valueType: BaseTipo, keyTypeName: string): TipoDicionario
+        public static GetOrCreate(
+            keyType: BaseTipo,
+            valueType: BaseTipo,
+            keyTypeName: string): TipoDicionario
         {
             if ($Reflexao.Tipos.ContainsKey(keyTypeName))
             {
@@ -33,4 +36,5 @@
             return newType;
         }
     }
+ 
 }

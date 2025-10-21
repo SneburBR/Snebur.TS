@@ -22,6 +22,8 @@
 
         Dicionario = 9,
 
-        Generico =10
+        HashSet = 10,
+
+        Generico =11
     }
 }

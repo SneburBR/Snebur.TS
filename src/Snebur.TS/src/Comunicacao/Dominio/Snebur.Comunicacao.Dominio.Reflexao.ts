@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-10-18 15:50:02
+//@DataHora: 2025-10-21 11:17:06
 //@Artifact: Reflexao
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -266,7 +266,7 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaEnum.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaEnum_NamespaceEnum)
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaEnum.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaEnum_Valor)
     const __$propriedade_Snebur_Comunicacao_ParametroChamadaTipoPrimario_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaTipoPrimario, true, false);
-    const __$propriedade_Snebur_Comunicacao_ParametroChamadaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaTipoPrimario, false, false);
+    const __$propriedade_Snebur_Comunicacao_ParametroChamadaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaTipoPrimario, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaTipoPrimario_Valor)
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaTipoPrimario_TipoPrimarioEnum)
     const __$propriedade_Snebur_Comunicacao_ResultadoChamadaBaseDominio_BaseDominio = new Propriedade("BaseDominio", __$tipoBaseDominio_Snebur_Dominio_BaseDominio, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaBaseDominio, true, false);
@@ -286,7 +286,7 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Comunicacao_ResultadoChamadaLista_AssemblyQualifiedName = new Propriedade("AssemblyQualifiedName", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaLista, true, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaLista.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaLista_AssemblyQualifiedName)
     const __$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_Valor = new Propriedade("Valor", __$tipoTipoPrimario_Object, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario, true, false);
-    const __$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_Valor)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaTipoPrimario_TipoPrimarioEnum)
     const __$propriedade_Snebur_Comunicacao_ParametroChamadaListaBaseDominio_NomeTipoBaseDominio = new Propriedade("NomeTipoBaseDominio", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaBaseDominio, true, false);
@@ -314,7 +314,7 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoComplexo.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoComplexo_NomeNamespaceTipoComplexo)
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoComplexo.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoComplexo_TiposComplexo)
     const __$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario_Lista = new Propriedade("Lista", __$tipoListaTipoPrimario_Object, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario, false, false);
-    const __$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario, false, false);
+    const __$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario, __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario_Lista)
     __$tipoBaseDominio_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ParametroChamadaListaTipoPrimario_TipoPrimarioEnum)
     const __$propriedade_Snebur_Comunicacao_ResultadoChamadaListaBaseDominio_NomeTipoBaseDominio = new Propriedade("NomeTipoBaseDominio", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaBaseDominio, true, false);
@@ -330,10 +330,10 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaEnum.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaListaEnum_NamespaceEnum)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaEnum.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaListaEnum_Valores)
     const __$propriedade_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario_Valores = new Propriedade("Valores", __$tipoListaTipoPrimario_Object, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario, false, false);
-    const __$propriedade_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario_TipoPrimarioEnum = new Propriedade("TipoPrimarioEnum", __$tipoEnum_Snebur_Reflexao_EnumTipoPrimario, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario, false, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario_Valores)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoChamadaListaTipoPrimario_TipoPrimarioEnum)
-    const __$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_StatusSessaoUsuario = new Propriedade("StatusSessaoUsuario", __$tipoTipoPrimario_EnumValor, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida, false, false);
+    const __$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_StatusSessaoUsuario = new Propriedade("StatusSessaoUsuario", __$tipoEnum_Snebur_Dominio_EnumStatusSessaoUsuario, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida, false, false);
     const __$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_IdentificadorSessaoUsuario = new Propriedade("IdentificadorSessaoUsuario", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida, true, false);
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_StatusSessaoUsuario)
     __$tipoBaseDominio_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ResultadoSessaoUsuarioInvalida_IdentificadorSessaoUsuario)
