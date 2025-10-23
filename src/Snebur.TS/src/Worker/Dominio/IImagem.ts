@@ -1,4 +1,5 @@
-﻿enum EnumTamanhoImagem
+﻿
+enum EnumTamanhoImagem
 {
     Undefined = -1,
     Miniatura = 2,
@@ -6,8 +7,7 @@
     Media = 8,
     Grande = 16,
     Impressao = 32,
-    Automatico = 999,
-    TEMP_Undefined = 0
+    Automatico = 999
 }
 
 interface IRecorte
@@ -15,6 +15,7 @@ interface IRecorte
     XScalar: number;
     YScalar: number;
 }
+
 interface IDimensao
 {
     Largura: number;

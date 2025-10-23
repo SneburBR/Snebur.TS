@@ -3,15 +3,15 @@
     export abstract class BaseNamespace
     {
         protected _namespacePai: BaseNamespace;
-        private _instancia: any;
+        private _versao: string;
+        private _instancia: any;    
         private _caminho: any;
         private _prioridade: any;
-        private _versao: string;
         private _tipoNamespace: EnumTipoNamespace;
         private _namespaces: BaseNamespace[];
 
-        public readonly Nome: string;
         private readonly Seguimentos: string[];
+        public readonly Nome: string;
         public readonly NamespacesFilho = new DicionarioSimples<NamespaceFilho>();
 
         public get Instancia(): any
@@ -66,6 +66,7 @@
             {
                 throw new Erro(`O nome do namespace '${nome}' deve iniciar com letra maiúscula`);
             }
+
             this._namespacePai = namespacePai;
             this.Nome = nome;
             this._tipoNamespace = tipoNamespace;
@@ -79,11 +80,6 @@
         public RetornarCaminhoTipoCompleto(caminhoCompletoOuParcial: string): string
         {
             throw new ErroNaoImplementado();
-            //if (caminhoCompletoOuParcial.startsWith(this.Caminho))
-            //{
-            //    return caminhoCompletoOuParcial;
-            //}
-            //return this.Caminho + "." + caminhoCompletoOuParcial;
         }
 
         public RetornarInstanciaObjeto(caminho: string): any
@@ -186,7 +182,7 @@
             {
                 if (!this.Instancia.__IsScriptNormalizado)
                 {
-                    const mensagem = "O projeto " + this.Caminho + " não foi normalizado pela extensão Snebur.VisualStudio";
+                    const mensagem = `O projeto ${this.Caminho} não foi normalizado pela extensão Snebur.VisualStudio`;
                     alert(mensagem);
                     throw new Erro(mensagem);
                 }

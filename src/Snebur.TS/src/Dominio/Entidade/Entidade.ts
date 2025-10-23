@@ -303,7 +303,7 @@
             {
                 if (!descricaoOuNome?.Contains("deletado", true))
                 {
-                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (DELETADO) </span>`;
+                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (Deletado) </span>`;
                 }
             }
             return descricaoOuNome;
