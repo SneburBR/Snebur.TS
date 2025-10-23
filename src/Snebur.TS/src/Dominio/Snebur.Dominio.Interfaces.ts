@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Interfaces - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-16 15:09:38
+//@DataHora: 2025-10-23 17:43:31
 //@Artifact: Interfaces
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -302,6 +302,10 @@ namespace Snebur.Dominio
     }
     export interface INormalizarIdentificadorProprietario
     {
+    }
+    export interface INormalizarString
+    {
+        Normalizar(valor: string | null): string | null;
     }
     export interface IOrdenacao
     {

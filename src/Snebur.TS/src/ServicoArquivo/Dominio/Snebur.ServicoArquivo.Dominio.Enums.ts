@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur.ServicoArquivo. Do not modify directly. 
 //@Project: Snebur.ServicoArquivo
-//@DataHora: 2025-10-10 09:31:54
+//@DataHora: 2025-10-23 13:42:30
 //@Artifact: Enums
 //@Namespace: Snebur.ServicoArquivo.Dominio 
 //@PrioridadeDominio: 2
@@ -21,7 +21,7 @@ namespace Snebur.ServicoArquivo
         Desconhecido = 5,
         ArquivoNaoEncontrado = 6,
         IdArquivoNaoExiste = 7
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoErroServicoArquivo as any).Rotulos = {};
     (EnumTipoErroServicoArquivo as any).Rotulos["Undefined"] = "Undefined";

@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-21 11:17:07
+//@DataHora: 2025-10-23 17:46:40
 //@Artifact: Reflexao
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -836,6 +836,7 @@ namespace Snebur.Reflexao
     Snebur.Dominio.Atributos.ChavePrimariaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ChavePrimariaAttribute";
     Snebur.Dominio.Atributos.EnumTSStringAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.EnumTSStringAttribute";
     Snebur.Dominio.Atributos.IgnorarValidacaoTipoComplexo.__CaminhoTipo = "Snebur.Dominio.Atributos.IgnorarValidacaoTipoComplexo";
+    Snebur.Dominio.Atributos.NormalizarStringAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.NormalizarStringAttribute";
     Snebur.Dominio.Atributos.NotificarAlteracaoPropriedadeAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.NotificarAlteracaoPropriedadeAttribute";
     Snebur.Dominio.Atributos.NotificarAlteracaoPropriedadeGenericaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.NotificarAlteracaoPropriedadeGenericaAttribute";
     Snebur.Dominio.Atributos.NotificarTodasAlteracoesPropriedadeGenericaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.NotificarTodasAlteracoesPropriedadeGenericaAttribute";
@@ -850,6 +851,8 @@ namespace Snebur.Reflexao
     Snebur.Dominio.Atributos.RelacaoUmUmFilhoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RelacaoUmUmFilhoAttribute";
     Snebur.Dominio.Atributos.RelacaoUmUmPaiAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RelacaoUmUmPaiAttribute";
     Snebur.Dominio.Atributos.RelacaoUmUmReversaAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RelacaoUmUmReversaAttribute";
+    Snebur.Dominio.Atributos.RemoverEspacosLateraisAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RemoverEspacosLateraisAttribute";
+    Snebur.Dominio.Atributos.RemoverMascaraAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RemoverMascaraAttribute";
     Snebur.Dominio.Atributos.RotuloAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.RotuloAttribute";
     Snebur.Dominio.Atributos.SomenteLeituraAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.SomenteLeituraAttribute";
     Snebur.Dominio.Atributos.UndefinedEnumValueAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.UndefinedEnumValueAttribute";

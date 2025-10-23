@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-10-10 09:31:45
+//@DataHora: 2025-10-23 13:42:23
 //@Artifact: Enums
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -33,7 +33,7 @@ namespace Snebur.Depuracao
         Ping = 1,
         AtualizarEstiloCss = 2,
         AtualizarControle = 3
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoMensagem as any).Rotulos = {};
     (EnumTipoMensagem as any).Rotulos["Undefined"] = "Undefined";

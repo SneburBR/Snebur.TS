@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-18 15:50:02
+//@DataHora: 2025-10-23 17:46:39
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -155,6 +155,14 @@ namespace Snebur.Dominio.Atributos
         {
             super(inicializador);
             this.Inicializar();
+        }
+    }
+    export abstract class NormalizarStringAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio  implements Snebur.Dominio.INormalizarString
+    {
+        
+        public constructor(inicializador?: Partial<NormalizarStringAttribute>) 
+        {
+            super(inicializador);
         }
     }
     export class NotificarAlteracaoPropriedadeAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -551,6 +559,24 @@ namespace Snebur.Dominio.Atributos
         public get NomePropriedadeChaveEstrangeiraReversa(): string
         {
             return this._nomePropriedadeChaveEstrangeiraReversa;
+        }
+    }
+    export class RemoverEspacosLateraisAttribute  extends Snebur.Dominio.Atributos.NormalizarStringAttribute
+    {
+        
+        public constructor(inicializador?: Partial<RemoverEspacosLateraisAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+    }
+    export class RemoverMascaraAttribute  extends Snebur.Dominio.Atributos.NormalizarStringAttribute
+    {
+        
+        public constructor(inicializador?: Partial<RemoverMascaraAttribute>) 
+        {
+            super(inicializador);
+            this.Inicializar();
         }
     }
     export class ValidacaoBase36Attribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao

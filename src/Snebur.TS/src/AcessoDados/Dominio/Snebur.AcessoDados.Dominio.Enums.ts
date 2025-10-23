@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur.AcessoDados. Do not modify directly. 
 //@Project: Snebur.AcessoDados
-//@DataHora: 2025-10-08 10:46:49
+//@DataHora: 2025-10-23 13:40:34
 //@Artifact: Enums
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
@@ -16,7 +16,7 @@ namespace Snebur.AcessoDados
         Undefined = -1,
         Afrente = 1,
         Atras = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumPosicaoOrdenacao as any).Rotulos = {};
     (EnumPosicaoOrdenacao as any).Rotulos["Undefined"] = "Undefined";
@@ -32,7 +32,7 @@ namespace Snebur.AcessoDados
         Minimo = 5,
         Media = 6,
         Existe = 7
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoFuncao as any).Rotulos = {};
     (EnumTipoFuncao as any).Rotulos["Undefined"] = "Undefined";

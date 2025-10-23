@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-10 09:31:22
+//@DataHora: 2025-10-23 16:16:56
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -32,7 +32,7 @@ namespace Snebur
         Normal = 2,
         Alerta = 3,
         Critico = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumNivelErro as any).Rotulos = {};
     (EnumNivelErro as any).Rotulos["Undefined"] = "Undefined";
@@ -56,7 +56,7 @@ namespace Snebur.AcessoDados
         IniciaCom = 8,
         TerminaCom = 9,
         Possui = 10
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumOperadorFiltro as any).Rotulos = {};
     (EnumOperadorFiltro as any).Rotulos["Undefined"] = "Undefined";
@@ -79,7 +79,7 @@ namespace Snebur.AcessoDados.Seguranca
         Autorizado = 1,
         AvalistaRequerido = 2,
         Negado = -99
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumPermissao as any).Rotulos = {};
     (EnumPermissao as any).Rotulos["Undefined"] = "Undefined";
@@ -109,7 +109,7 @@ namespace Snebur.Arquivo
         xls = 16384,
         doc = 32768,
         txt = 65536
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoArquivo as any).Rotulos = {};
     (EnumTipoArquivo as any).Rotulos["Undefined"] = "Undefined";
@@ -139,7 +139,7 @@ namespace Snebur.Comparer
         Igual = 1,
         NomePropriedade = 2,
         TipoPropriedade = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumCompararPropriedade as any).Rotulos = {};
     (EnumCompararPropriedade as any).Rotulos["Undefined"] = "Undefined";
@@ -179,7 +179,7 @@ namespace Snebur.Dne
         SaoPaulo = 25,
         Sergipe = 26,
         Tocantins = 27
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumUF as any).Rotulos = {};
     (EnumUF as any).Rotulos["Undefined"] = "Undefined";
@@ -218,7 +218,7 @@ namespace Snebur.Dominio
         Undefined = -1,
         Normal = 1,
         Italico = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumAparenciaFonte as any).Rotulos = {};
     (EnumAparenciaFonte as any).Rotulos["Undefined"] = "Undefined";
@@ -306,7 +306,7 @@ namespace Snebur.Dominio
         Negrito = 700,
         ExtraNegrito = 800,
         Forte = 900
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumEspessuraFonte as any).Rotulos = {};
     (EnumEspessuraFonte as any).Rotulos["Undefined"] = "Undefined";
@@ -357,7 +357,7 @@ namespace Snebur.Dominio
         Woff2 = 3,
         Svg = 4,
         Eot = 5
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumFormatoArquivoFonte as any).Rotulos = {};
     (EnumFormatoArquivoFonte as any).Rotulos["Undefined"] = "Undefined";
@@ -447,7 +447,7 @@ namespace Snebur.Dominio
         Outubro = 10,
         Novembro = 11,
         Dezembro = 12
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumMes as any).Rotulos = {};
     (EnumMes as any).Rotulos["Undefined"] = "Undefined";
@@ -671,7 +671,7 @@ namespace Snebur.Dominio
         EdgeChromium = 7,
         Nenhum = 98,
         Desconhecido = 99
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumNavegador as any).Rotulos = {};
     (EnumNavegador as any).Rotulos["Undefined"] = "Undefined";
@@ -710,7 +710,7 @@ namespace Snebur.Dominio
         Quadrado = 2,
         Horizontal = 4,
         Vertical = 8
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumOrientacao as any).Rotulos = {};
     (EnumOrientacao as any).Rotulos["Undefined"] = "Undefined";
@@ -724,7 +724,7 @@ namespace Snebur.Dominio
         Celular = 2,
         Tablet = 3,
         Desconhecido = 99
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumPlataforma as any).Rotulos = {};
     (EnumPlataforma as any).Rotulos["Undefined"] = "Undefined";
@@ -758,7 +758,7 @@ namespace Snebur.Dominio
         SenhaInvalida = 3,
         MaximoTentativa = 4,
         UsuarioBloqueado = 5
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumResultadoAutenticacao as any).Rotulos = {};
     (EnumResultadoAutenticacao as any).Rotulos["Undefined"] = "Undefined";
@@ -774,7 +774,7 @@ namespace Snebur.Dominio
         UsuarioNaoExiste = 2,
         SenhaIncorreta = 3,
         MaximoTentativaAtingido = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumResultadoValidacaoCredencial as any).Rotulos = {};
     (EnumResultadoValidacaoCredencial as any).Rotulos["Undefined"] = "Undefined";
@@ -811,7 +811,7 @@ namespace Snebur.Dominio
         Undefined = -1,
         Crescente = 1,
         Decrescente = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumSentidoOrdenacao as any).Rotulos = {};
     (EnumSentidoOrdenacao as any).Rotulos["Undefined"] = "Undefined";
@@ -827,7 +827,7 @@ namespace Snebur.Dominio
         iOS = 5,
         Linux = 6,
         Desconhecido = 99
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumSistemaOperacional as any).Rotulos = {};
     (EnumSistemaOperacional as any).Rotulos["Undefined"] = "Undefined";
@@ -847,7 +847,7 @@ namespace Snebur.Dominio
         ArquivoDeletado = 4,
         Pendente = 5,
         ChecksumInvalido = 6
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumStatusArquivo as any).Rotulos = {};
     (EnumStatusArquivo as any).Rotulos["Undefined"] = "Undefined";
@@ -932,7 +932,7 @@ namespace Snebur.Dominio
         Ativo = 3,
         Inativo = 4,
         Bloqueado = 5
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumStatusUsuario as any).Rotulos = {};
     (EnumStatusUsuario as any).Rotulos["Undefined"] = "Undefined";
@@ -948,7 +948,7 @@ namespace Snebur.Dominio
         Media = 8,
         Grande = 16,
         Impressao = 32
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTamanhoImagem as any).Rotulos = {};
     (EnumTamanhoImagem as any).Rotulos["Undefined"] = "Undefined";
@@ -971,7 +971,7 @@ namespace Snebur.Dominio
         MaiuNet = 9,
         DotNet_Console = 10,
         Desconhecido = 99
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoAplicacao as any).Rotulos = {};
     (EnumTipoAplicacao as any).Rotulos["Undefined"] = "Undefined";
@@ -1017,7 +1017,7 @@ namespace Snebur.Dominio
         Undefined = -1,
         Tudo = 1,
         UmPorVez = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoDesbloqueio as any).Rotulos = {};
     (EnumTipoDesbloqueio as any).Rotulos["Undefined"] = "Undefined";
@@ -1150,22 +1150,20 @@ namespace Snebur.Dominio.Atributos
     {
         Undefined = -1,
         Inicio = 1,
-        Fim = 2,
-        Aleatorio = 3
-        , TEMP_Undefined = 0
+        Fim = 2
+        /* TEMP_Undefined = 0 */
     }
     (EnumOrdenacaoNovoRegistro as any).Rotulos = {};
     (EnumOrdenacaoNovoRegistro as any).Rotulos["Undefined"] = "Undefined";
     (EnumOrdenacaoNovoRegistro as any).Rotulos["Inicio"] = "Inicio";
     (EnumOrdenacaoNovoRegistro as any).Rotulos["Fim"] = "Fim";
-    (EnumOrdenacaoNovoRegistro as any).Rotulos["Aleatorio"] = "Aleatorio";
     export enum EnumTipoExclusaoRelacao
     {
         Undefined = -1,
         NaoDeletar = 1,
         Cascata = 2,
         Zerar = 3
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoExclusaoRelacao as any).Rotulos = {};
     (EnumTipoExclusaoRelacao as any).Rotulos["Undefined"] = "Undefined";
@@ -1218,7 +1216,7 @@ namespace Snebur.Imagens
     {
         Undefined = -1,
         SoftLight = 10
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumMixagem as any).Rotulos = {};
     (EnumMixagem as any).Rotulos["Undefined"] = "Undefined";
@@ -1268,7 +1266,7 @@ namespace Snebur.Imagens
         Solida = 2,
         GradienteLinear = 3,
         GradienteRadial = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoSobrePosicao as any).Rotulos = {};
     (EnumTipoSobrePosicao as any).Rotulos["Undefined"] = "Undefined";
@@ -1284,7 +1282,7 @@ namespace Snebur.Servicos
         Undefined = -1,
         LentidaoServicoComunicacao = 1,
         Renderizador = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoLogDesempenho as any).Rotulos = {};
     (EnumTipoLogDesempenho as any).Rotulos["Undefined"] = "Undefined";
@@ -1322,7 +1320,7 @@ namespace Snebur.Servicos
         ServicoNaoEncontrado = 27,
         TentativaExecutarSql = 28,
         ManipuladorNaoDefinido = 29
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoLogSeguranca as any).Rotulos = {};
     (EnumTipoLogSeguranca as any).Rotulos["Undefined"] = "Undefined";
@@ -1362,7 +1360,7 @@ namespace Snebur.UI
     {
         Undefined = -1,
         Vazio = -100
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (BaseEnumApresentacao as any).Rotulos = {};
     (BaseEnumApresentacao as any).Rotulos["Undefined"] = "Undefined";
@@ -1544,7 +1542,7 @@ namespace Snebur.UI
         Undefined = -1,
         Clara = 1,
         Escura = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumAparencia as any).Rotulos = {};
     (EnumAparencia as any).Rotulos["Undefined"] = "Undefined";
@@ -1557,7 +1555,7 @@ namespace Snebur.UI
         Automatica = 2,
         Visivel = 3,
         Transbordar = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumBarraRolagem as any).Rotulos = {};
     (EnumBarraRolagem as any).Rotulos["Undefined"] = "Undefined";
@@ -1682,7 +1680,7 @@ namespace Snebur.UI
         DireitaCentro = 16,
         DireitaInferior = 17,
         Centro = 18
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumDestinoControleFlutuante as any).Rotulos = {};
     (EnumDestinoControleFlutuante as any).Rotulos["Undefined"] = "Undefined";
@@ -1742,7 +1740,7 @@ namespace Snebur.UI
         _224px = 224,
         _256px = 256,
         _512px = 512
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumDistanciaMargem as any).Rotulos = {};
     (EnumDistanciaMargem as any).Rotulos["Undefined"] = "Undefined";
@@ -1787,7 +1785,7 @@ namespace Snebur.UI
         Vazio = -100,
         Solida = -99,
         Pontilhada = -98
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumEstiloBorda as any).Rotulos = {};
     (EnumEstiloBorda as any).Rotulos["Undefined"] = "Undefined";
@@ -1800,7 +1798,7 @@ namespace Snebur.UI
         Vazio = -100,
         Roboto = 1,
         RobotoCondensed = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumFonte as any).Rotulos = {};
     (EnumFonte as any).Rotulos["Undefined"] = "Undefined";
@@ -1814,7 +1812,7 @@ namespace Snebur.UI
         CaixaAlta = 2,
         CaixaBaixa = 3,
         PrimeiraLetraMaiuscula = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumFormatacaoTexto as any).Rotulos = {};
     (EnumFormatacaoTexto as any).Rotulos["Undefined"] = "Undefined";
@@ -3951,7 +3949,7 @@ namespace Snebur.UI
         BroadcastOnHome = 2123,
         VerticalShades = 2124,
         CurtainsClosed = 2125
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumIcone as any).Rotulos = {};
     (EnumIcone as any).Rotulos["Undefined"] = "Undefined";
@@ -6090,7 +6088,7 @@ namespace Snebur.UI
         Rounded = -97,
         Sharp = -96,
         TwoTone = -95
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumIconeCategoria as any).Rotulos = {};
     (EnumIconeCategoria as any).Rotulos["Undefined"] = "Undefined";
@@ -6150,7 +6148,7 @@ namespace Snebur.UI
         _83P = 8333333,
         _92P = 9166667,
         _100P = 10000000
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumLarguraBloco as any).Rotulos = {};
     (EnumLarguraBloco as any).Rotulos["Undefined"] = "Undefined";
@@ -6174,7 +6172,7 @@ namespace Snebur.UI
         Superior = 4,
         Direita = 8,
         Inferior = 16
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumMargem as any).Rotulos = {};
     (EnumMargem as any).Rotulos["Undefined"] = "Undefined";
@@ -6192,7 +6190,7 @@ namespace Snebur.UI
         Grande = -96,
         SubTitulo = -95,
         Titulo = -94
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumMostrar as any).Rotulos = {};
     (EnumMostrar as any).Rotulos["Undefined"] = "Undefined";
@@ -6209,7 +6207,7 @@ namespace Snebur.UI
         Adicionar = 1,
         Substituir = 2,
         Alterar = 3
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumOpcapBindCssClasse as any).Rotulos = {};
     (EnumOpcapBindCssClasse as any).Rotulos["Undefined"] = "Undefined";
@@ -6226,7 +6224,7 @@ namespace Snebur.UI
         Negrito = 4,
         Pesado = 5,
         SuperPesado = 6
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumPesoFonte as any).Rotulos = {};
     (EnumPesoFonte as any).Rotulos["Undefined"] = "Undefined";
@@ -6264,7 +6262,7 @@ namespace Snebur.UI
         Quebrar = 1,
         NaoQuebrar = 2,
         NaoQuebrarSemEllipsis = 3
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumQuebrar as any).Rotulos = {};
     (EnumQuebrar as any).Rotulos["Undefined"] = "Undefined";
@@ -6358,7 +6356,7 @@ namespace Snebur.UI
         Menu = 9,
         FlatBox = 10,
         Tab = 11
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoBotao as any).Rotulos = {};
     (EnumTipoBotao as any).Rotulos["Undefined"] = "Undefined";
@@ -6378,7 +6376,7 @@ namespace Snebur.UI
         Undefined = -1,
         Padrao = 1,
         Delineada = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoCaixa as any).Rotulos = {};
     (EnumTipoCaixa as any).Rotulos["Undefined"] = "Undefined";
@@ -6427,7 +6425,7 @@ namespace Snebur.UI
         Descricao2 = -85,
         BotaoCaixaAlta = -84,
         LinhaCaixaAlta = -83
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipografia as any).Rotulos = {};
     (EnumTipografia as any).Rotulos["Undefined"] = "Undefined";
@@ -6461,7 +6459,7 @@ namespace Snebur.UI
         PilhaHorizontalCheia = 6,
         PilhaVerticalCheia = 7,
         PilhaHorizontalEmLinha = 8
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoPainel as any).Rotulos = {};
     (EnumTipoPainel as any).Rotulos["Undefined"] = "Undefined";
@@ -6479,7 +6477,7 @@ namespace Snebur.UI
         Undefined = -1,
         Padrao = 1,
         MaterialDesign = 3
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoPainelAba as any).Rotulos = {};
     (EnumTipoPainelAba as any).Rotulos["Undefined"] = "Undefined";
@@ -6537,7 +6535,7 @@ namespace Snebur.UI
         Visivel = 100,
         Invisivel = 200,
         Oculto = 300
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumVisibilidade as any).Rotulos = {};
     (EnumVisibilidade as any).Rotulos["Undefined"] = "Undefined";
@@ -6599,7 +6597,7 @@ namespace Snebur.Utilidade
         IgnorarChavePrimaria = 4,
         IgnorarPropriedadeProtegida = 8,
         IgnorarChaveEstrangeira = 16
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumFiltroPropriedadeCampo as any).Rotulos = {};
     (EnumFiltroPropriedadeCampo as any).Rotulos["Undefined"] = "Undefined";
@@ -6616,7 +6614,7 @@ namespace Snebur.Utilidade
         Megabytes = 3,
         Gigabytes = 4,
         Terabytes = 5
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumFormatacaoBytes as any).Rotulos = {};
     (EnumFormatacaoBytes as any).Rotulos["Undefined"] = "Undefined";
@@ -6649,7 +6647,7 @@ namespace Snebur.Utilidade
         DiaMes = 3,
         MesAno = 4,
         Ignorar = 5
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumOpcoesCompararData as any).Rotulos = {};
     (EnumOpcoesCompararData as any).Rotulos["Undefined"] = "Undefined";
@@ -6665,7 +6663,7 @@ namespace Snebur.Utilidade
         DiretorioNaoExiste = 2,
         SemPermissaoGravacao = 3,
         EspacoInsuficiente = 4
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumStatusDiretorio as any).Rotulos = {};
     (EnumStatusDiretorio as any).Rotulos["Undefined"] = "Undefined";
@@ -6678,7 +6676,7 @@ namespace Snebur.Utilidade
         Undefined = -1,
         CaminhoWeb = 1,
         CaminhoWindows = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoCaminho as any).Rotulos = {};
     (EnumTipoCaminho as any).Rotulos["Undefined"] = "Undefined";
@@ -6689,7 +6687,7 @@ namespace Snebur.Utilidade
         Undefined = -1,
         Javascript = 1,
         DotNet = 2
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (EnumTipoSerializacao as any).Rotulos = {};
     (EnumTipoSerializacao as any).Rotulos["Undefined"] = "Undefined";
@@ -6704,7 +6702,7 @@ namespace Snebur.Utilidade
         HoraMinutoSegundo = 4,
         HoraMinutoSegundosMilesegundos = 5,
         Ignorar = 7
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (OpcoesCompararHora as any).Rotulos = {};
     (OpcoesCompararHora as any).Rotulos["Undefined"] = "Undefined";
@@ -6727,7 +6725,7 @@ namespace Snebur.Utilidade
         AAAA = 28,
         SRV = 33,
         ANY = 255
-        , TEMP_Undefined = 0
+        /* TEMP_Undefined = 0 */
     }
     (QueryType as any).Rotulos = {};
     (QueryType as any).Rotulos["Undefined"] = "Undefined";
