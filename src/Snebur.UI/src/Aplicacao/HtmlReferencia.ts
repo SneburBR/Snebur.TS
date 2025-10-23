@@ -57,7 +57,7 @@
 
         public DecodificarHtml(): void
         {
-            if (this._isHtmlDecodificado)
+            if (this._isHtmlDecodificado && $Configuracao.IsDebug)
                 return;
 
             const htmlDecodificado = HtmlReferenciaUtil.RetornarHtmlDecodificado(this);

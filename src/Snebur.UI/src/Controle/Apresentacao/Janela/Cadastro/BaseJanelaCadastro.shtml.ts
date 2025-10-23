@@ -15,7 +15,7 @@
         public IsMostrarBotaoVoltar: boolean = false;
         public IsMostrarBotaoContinuar: boolean = false;
         public IsMostraarOpcaoSalvarAoSair: boolean = true;
-         
+
         public Contexto: a.BaseContextoDados;
         public Titulo: string;
         public SubTitulo: string;
@@ -296,7 +296,7 @@
                 this.OcuparElemento();
                 await this.VoltarAsync();
             }
-            catch(erro)
+            catch (erro)
             {
                 console.error(erro);
             }
@@ -432,7 +432,7 @@
 
                             throw new Erro("Opção não suportada");
                     }
-                    
+
                 }
             }
             return [true, resultado];
@@ -455,7 +455,7 @@
                 return await this.RetornarResultadoSalvarAsync();
             });
 
-            if (isFechar && resultado.IsSucesso)
+            if (resultado.IsSucesso && isFechar)
             {
                 this.FecharAsync(true);
             }
@@ -464,9 +464,10 @@
 
         protected async RetornarResultadoSalvarAsync(): Promise<a.ResultadoSalvar>
         {
+            const entidade = this.ViewModel.Entidade;
             if ($Configuracao.IsDebug)
             {
-                const mensagensValidacao = await this.ViewModel.Entidade.RetornarTodasMensagemValidacoesPendentesAsync();
+                const mensagensValidacao = await entidade.RetornarTodasMensagemValidacoesPendentesAsync();
                 if (mensagensValidacao.Count > 0)
                 {
                     const mensagem = String.Join("<br>", mensagensValidacao);
@@ -480,7 +481,8 @@
             }
 
             this.AntesSalvar();
-            const resultadoSalvar = await this.Contexto.SalvarAsync(this.ViewModel.Entidade);
+
+            const resultadoSalvar = await this.Contexto.SalvarAsync(entidade);
             if (!resultadoSalvar.IsSucesso)
             {
                 if ($Configuracao.IsDebug)
@@ -497,12 +499,17 @@
                 const mensagemErro = "Desculpe, mas não possível salvar a alteração";
 
                 await ui.MensagemUtil.MostrarMensagemAsync(this, tituloErro, mensagemErro, EnumBotoesJanelaMensagem.Ok);
+                return resultadoSalvar;
             }
-            else
+            if (entidade.Id <= 0)
             {
-                this.DepoisSalvar();
-                await this.DepoisSalvarAsync();
+                const messagemErro = `O Id  entidade ${entidade.GetType().Nome} não foi atualizado depois de salvo`;
+                DebugUtil.Break();
+                throw new Error(messagemErro);
             }
+
+            this.DepoisSalvar();
+            await this.DepoisSalvarAsync();
             return resultadoSalvar;
         }
 
@@ -560,19 +567,19 @@
     //#endregion
 
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
-	{
-		readonly TextoTitulo: ui.Texto;
-		readonly BlocoFormulario: ui.Bloco;
-		readonly BlocoBotoes: ui.Bloco;
-		readonly BtnCancelarInterno: ui.Botao;
-		readonly BtnVoltarInterno: ui.Botao;
-		readonly BtnContinuarInterno: ui.Botao;
-		readonly BtnSalvarInterno: ui.Botao;
-	}
+    export interface BaseJanelaCadastro<TEntidade extends IEntidade = Entidade>
+    {
+        readonly TextoTitulo: ui.Texto;
+        readonly BlocoFormulario: ui.Bloco;
+        readonly BlocoBotoes: ui.Bloco;
+        readonly BtnCancelarInterno: ui.Botao;
+        readonly BtnVoltarInterno: ui.Botao;
+        readonly BtnContinuarInterno: ui.Botao;
+        readonly BtnSalvarInterno: ui.Botao;
+    }
 
-	//#endregion
+    //#endregion
 
 }

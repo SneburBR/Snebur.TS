@@ -115,7 +115,7 @@
         protected override RetornarNovoItemBloco(item: TItem): ItemBlocoOrdenacao
         {
             const objetoOrdenacao = this.RetornarObjetoOrdenacaoInterno(item);
-            if (!u.ValidacaoUtil.IsNumber(((objetoOrdenacao as any) as d.IOrdenacao).Ordenacao))
+            if (((objetoOrdenacao as any) as d.IOrdenacao).Ordenacao === undefined)
             {
                 const nomePropriedade = u.ReflexaoUtil.RetornarCaminhoPropriedade<d.IOrdenacao>(x => x.Ordenacao);
                 const mensagem = `Não foi encontrado a propriedade '${nomePropriedade}' no objeto '${objetoOrdenacao.GetType()}' em '${this.ControleApresentacao.___NomeConstrutor}'`;
