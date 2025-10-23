@@ -48,10 +48,20 @@
 
             consulta.Take = 1;
 
-            consulta.FiltroGrupoE.Filtros.Add(a.ConsultaUtil.RetornarNovoFiltroPropriedade(tipoEntidade.PropriedadeChavePrimaria, a.EnumOperadorFiltro.Diferente, entidade.Id));
+            if (entidade.Id > 0)
+            {
+                consulta.FiltroGrupoE.Filtros.Add(a.ConsultaUtil.RetornarNovoFiltroPropriedade(tipoEntidade.PropriedadeChavePrimaria, a.EnumOperadorFiltro.Diferente, entidade.Id));
+            }
 
             for (const nomePropriedade of this.ExpressoesPropriedadeFiltro)
             {
+                if (nomePropriedade === a.ConsultaUtil.NOME_PROPRIEDADE_NOME_TIPO_ENTIDADE)
+                {
+                    const fitroNomeTipoEntidade = a.ConsultaUtil.RetornarFitroNomeTipoEntidade(tipoEntidade)
+                    consulta.FiltroGrupoE.Filtros.Add(fitroNomeTipoEntidade);
+                    continue;
+                }
+
                 let propriedadeFiltro = tipoEntidade.RetornarPropriedade(nomePropriedade, false);
                 let valorPropriedadeFiltro: any;
                 if (propriedadeFiltro.IsIdentificadorProprietario)
