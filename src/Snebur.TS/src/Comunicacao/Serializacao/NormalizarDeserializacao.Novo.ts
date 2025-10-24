@@ -1,5 +1,6 @@
 ﻿namespace Snebur.Serializacao
 {
+    /*@internal*/
     export class NormalizarDeserializacao implements IDisposable
     {
         private static readonly MAXIMO = 100000000;
@@ -169,9 +170,7 @@
                 }
             }
         }
-
-
-
+         
         private AdicioanrReferenciaRaiz(baseDominio: IBaseDominioReferencia): void
         {
             this.AdicioanrReferencia(baseDominio, new ReferenciaRaiz());

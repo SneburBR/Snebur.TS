@@ -1,5 +1,6 @@
 ﻿namespace Snebur.Serializacao
 {
+    /*@internal*/
     export class JsonDeserializar extends BaseJsonSerializacao implements IDisposable
     {
         private BasesDominioDeserializadas: DicionarioSimples<d.BaseDominio>;

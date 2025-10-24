@@ -1,6 +1,7 @@
-﻿namespace Snebur.Serializacao
+﻿namespace Snebur
 {
 
+    /*@internal*/
     export interface IBaseDominioReferencia extends ICaminhoTipo
     {
         __IdentificadorUnico?: string;

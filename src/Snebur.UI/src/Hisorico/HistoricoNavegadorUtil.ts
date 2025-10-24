@@ -91,7 +91,10 @@
                         throw new Erro("Parâmetro não suportado");
                     }
 
-                    const valorSerializado = Serializacao.JsonSerializar.RetornarValorTipoPrimarioSerializado(valor, tipo.TipoPrimarioEnum);
+                    const valorSerializado = JsonUtil.SerializarValorTipoPrimario(
+                        valor,
+                        tipo.TipoPrimarioEnum);
+
                     const prefixo = String.Format(this.PREFIXO_CHAVE_TIPO_PRIMARIO_FORMATAR, tipo.TipoPrimarioEnum);
                     return `${prefixo}${valorSerializado}`;
                 }

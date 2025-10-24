@@ -1,15 +1,17 @@
 ﻿namespace Snebur.Serializacao
 {
+    /*@internal*/
     export abstract class Referencia
     {
          
     }
-
+    /*@internal*/
     export class ReferenciaRaiz extends Referencia
     {
 
     }
 
+    /*@internal*/
     export class ReferenciaColecao extends Referencia
     {
         public readonly Colecao: Array<any>
@@ -22,6 +24,7 @@
         }
     }
 
+    /*@internal*/
     export class ReferenciaDicionario extends Referencia
     {
         public readonly Dicionario: DicionarioSimples;
@@ -34,6 +37,7 @@
         }
     }
 
+    /*@internal*/
     export class ReferenciaPropriedade extends Referencia
     {
         public readonly ObjetoPai: any;
@@ -46,7 +50,8 @@
         }
     }
 
-    export class BaseDominioRefenciada
+    /*@internal*/
+    export class BaseDominioRefenciada 
     {
         public readonly BaseDominio: IBaseDominioReferencia;
         public readonly Referencia: Referencia;
@@ -58,6 +63,7 @@
         }
     }
 
+    /*@internal*/
     export class BaseDominioOrigem
     {
         public readonly BaseDominio: IBaseDominioReferencia;

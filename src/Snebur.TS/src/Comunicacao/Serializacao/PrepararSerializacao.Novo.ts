@@ -1,6 +1,7 @@
 ﻿
 namespace Snebur.Serializacao
 {
+    /*@internal*/
     export class PrapararSerializacao implements IDisposable
     {
         private static readonly MAXIMO = 100000000;
@@ -186,7 +187,9 @@ namespace Snebur.Serializacao
             this.AdicionarReferenciarBaseOrigem(baseDominio, referenciaColecao);
         }
 
-        private AdicionarReferenciarBaseOrigem(baseDominio: d.BaseDominio, referencia: Referencia): void
+        private AdicionarReferenciarBaseOrigem(
+            baseDominio: d.BaseDominio,
+            referencia: Referencia): void
         {
             (baseDominio as any as IBaseDominioReferencia).IsSerializando = true;
 
