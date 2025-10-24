@@ -23,5 +23,4 @@
 
         return TextoUtil.RetornarSomenteNumeros(valor, false);
     };
-
 }

@@ -2,6 +2,7 @@
 {
     export abstract class Entidade extends BaseDominio implements IEntidade, IEquals, IClone<Entidade>
     {
+
         private _entidadeHashCode: number;
 
         //#region Propriedades
@@ -256,6 +257,20 @@
             }
         }
 
+
+        protected SetDisplayProperty(propertyName: string,
+            currentValue: string | null,
+            newValue: string | null)
+        {
+            newValue = this.RemoverDeletadoSpanTag(newValue);
+            this.SetProperty(propertyName, currentValue, newValue);
+        }
+
+        private RemoverDeletadoSpanTag(newValue: string | null): string | null
+        {
+            return DeletedMarkerFormatter.RemoveDeletedMarker(newValue);
+
+        }
         //os o id da chave primaria, e id das chave estrangeiras, e todoas as propriedades alteradas
 
 
@@ -299,14 +314,16 @@
 
         public RetornarDescricaoComDeletado(descricaoOuNome: string)
         {
+            if ((this as any as IBaseDominioReferencia).IsSerializando)
+            {
+                return descricaoOuNome;
+            }
+
             if ((this as any as IDeletado).IsDeletado)
             {
-                if (!descricaoOuNome?.Contains("deletado", true))
-                {
-                    return `${descricaoOuNome} - <span class='sn-cor-texto--falha'> (Deletado) </span>`;
-                }
+                return DeletedMarkerFormatter.AppendDeletedMarker(descricaoOuNome);
             }
-            return descricaoOuNome;
+            return DeletedMarkerFormatter.RemoveDeletedMarker(descricaoOuNome);
         }
 
         //#region Clonar
@@ -434,5 +451,5 @@
 
     export declare type FuncaoClonarPropriedade = (propriedade: r.Propriedade, valorPropriedade: Entidade) => any | undefined;
 
-
+   
 }
