@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-10-18 15:50:00
+//@DataHora: 2025-10-27 15:11:27
 //@Artifact: Classes
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -976,7 +976,10 @@ namespace Snebur.Comunicacao
         public constructor(statusSessaoUsuario: Snebur.Dominio.EnumStatusSessaoUsuario, identificadorSessaoUsuario: string | null, mensagemErro: string) 
         {
             super();
-            Guard.NotNull( statusSessaoUsuario, "The argument statusSessaoUsuario cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(statusSessaoUsuario, "statusSessaoUsuario");
+            }
             this._statusSessaoUsuario = statusSessaoUsuario;
             this._identificadorSessaoUsuario = identificadorSessaoUsuario;
             this._mensagemErro = mensagemErro;

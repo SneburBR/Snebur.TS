@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-16 15:09:44
+//@DataHora: 2025-10-27 15:11:27
 //@Artifact: Classes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -375,7 +375,7 @@ namespace Snebur.Dominio
         }
         public set Localizacao(value: Snebur.Dominio.Localizacao) 
         {
-            Guard.NotNull(value, "The property Localizacao of complex type 'Snebur.Dominio.Localizacao' cannot set null value.");
+            Snebur.Guard.NotNull(value, "Localizacao");
             this.SetComplexTypeProperty("Localizacao", this._localizacao, this._localizacao = value.Clone());
         }
     }
@@ -550,7 +550,7 @@ namespace Snebur.Dominio
         }
         public set Resolucao(value: Snebur.Dominio.Dimensao) 
         {
-            Guard.NotNull(value, "The property Resolucao of complex type 'Snebur.Dominio.Dimensao' cannot set null value.");
+            Snebur.Guard.NotNull(value, "Resolucao");
             this.SetComplexTypeProperty("Resolucao", this._resolucao, this._resolucao = value.Clone());
         }
         
@@ -560,7 +560,7 @@ namespace Snebur.Dominio
         }
         public set Navegador(value: Snebur.Dominio.Navegador) 
         {
-            Guard.NotNull(value, "The property Navegador of complex type 'Snebur.Dominio.Navegador' cannot set null value.");
+            Snebur.Guard.NotNull(value, "Navegador");
             this.SetComplexTypeProperty("Navegador", this._navegador, this._navegador = value.Clone());
         }
         
@@ -570,7 +570,7 @@ namespace Snebur.Dominio
         }
         public set SistemaOperacional(value: Snebur.Dominio.SistemaOperacional) 
         {
-            Guard.NotNull(value, "The property SistemaOperacional of complex type 'Snebur.Dominio.SistemaOperacional' cannot set null value.");
+            Snebur.Guard.NotNull(value, "SistemaOperacional");
             this.SetComplexTypeProperty("SistemaOperacional", this._sistemaOperacional, this._sistemaOperacional = value.Clone());
         }
     }

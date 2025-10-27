@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.AcessoDados. Do not modify directly. 
 //@Project: Snebur.AcessoDados
-//@DataHora: 2025-10-16 14:31:18
+//@DataHora: 2025-10-27 15:11:27
 //@Artifact: Classes
 //@Namespace: Snebur.AcessoDados.Dominio 
 //@PrioridadeDominio: 2
@@ -437,7 +437,10 @@ namespace Snebur.AcessoDados
         public constructor(ids: Array<number>) 
         {
             super();
-            Guard.NotNull( ids, "The argument ids cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(ids, "ids");
+            }
             this.Ids.AddRange(ids);
         }
         
@@ -503,7 +506,10 @@ namespace Snebur.AcessoDados
         public constructor(caminhoPropriedade: string, lista: Array<string>) 
         {
             super();
-            Guard.NotNull( lista, "The argument lista cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(lista, "lista");
+            }
             this._caminhoPropriedade = caminhoPropriedade;
             this.Lista.AddRange(lista);
         }

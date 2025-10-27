@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-23 17:46:39
+//@DataHora: 2025-10-27 15:11:27
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -44,7 +44,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedade: string) 
         {
             super();
-            Guard.NotNull( nomePropriedade, "The argument nomePropriedade cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedade, "nomePropriedade");
+            }
             this._nomePropriedade = nomePropriedade;
         }
         
@@ -68,7 +71,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedade: string) 
         {
             super();
-            Guard.NotNull( nomePropriedade, "The argument nomePropriedade cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedade, "nomePropriedade");
+            }
             this._nomePropriedade = nomePropriedade;
         }
         
@@ -96,7 +102,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedade: string) 
         {
             super();
-            Guard.NotNull( nomePropriedade, "The argument nomePropriedade cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedade, "nomePropriedade");
+            }
             this._nomePropriedade = nomePropriedade;
         }
         
@@ -119,7 +128,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(isIdentity: boolean) 
         {
             super();
-            Guard.NotNull( isIdentity, "The argument isIdentity cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(isIdentity, "isIdentity");
+            }
             this._isIdentity = isIdentity;
         }
         
@@ -138,7 +150,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(tsValue: string) 
         {
             super();
-            Guard.NotNull( tsValue, "The argument tsValue cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tsValue, "tsValue");
+            }
             this._tsValue = tsValue;
         }
         
@@ -180,10 +195,13 @@ namespace Snebur.Dominio.Atributos
         public constructor(tipoEntidadeAlteracaoPropriedade: r.BaseTipo | string, nomePropriedadeRelacao: string, nomePropriedadeAlterada: string, opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
             super();
-            Guard.NotNull( tipoEntidadeAlteracaoPropriedade, "The argument tipoEntidadeAlteracaoPropriedade cannot be null.");
-            Guard.NotNull( nomePropriedadeRelacao, "The argument nomePropriedadeRelacao cannot be null.");
-            Guard.NotNull( nomePropriedadeAlterada, "The argument nomePropriedadeAlterada cannot be null.");
-            Guard.NotNull( opcoes, "The argument opcoes cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tipoEntidadeAlteracaoPropriedade, "tipoEntidadeAlteracaoPropriedade");
+                Snebur.Guard.NotNull(nomePropriedadeRelacao, "nomePropriedadeRelacao");
+                Snebur.Guard.NotNull(nomePropriedadeAlterada, "nomePropriedadeAlterada");
+                Snebur.Guard.NotNull(opcoes, "opcoes");
+            }
             this._tipoEntidadeAlteracaoPropriedade = tipoEntidadeAlteracaoPropriedade;
             this._nomePropriedadeRelacao = nomePropriedadeRelacao;
             this._nomePropriedadeAlterada = nomePropriedadeAlterada;
@@ -240,8 +258,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(formatacao: string, tipoPropriedadeRelacao: r.BaseTipo | string, caminhoTipoPropriedadeRelacao: string, opcoes: Snebur.Dominio.EnumOpcoesAlterarPropriedade) 
         {
             super();
-            Guard.NotNull( formatacao, "The argument formatacao cannot be null.");
-            Guard.NotNull( opcoes, "The argument opcoes cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(formatacao, "formatacao");
+                Snebur.Guard.NotNull(opcoes, "opcoes");
+            }
             this._formatacao = formatacao;
             this._tipoPropriedadeRelacao = tipoPropriedadeRelacao;
             this._caminhoTipoPropriedadeRelacao = caminhoTipoPropriedadeRelacao;
@@ -343,7 +364,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedade: string) 
         {
             super();
-            Guard.NotNull( nomePropriedade, "The argument nomePropriedade cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedade, "nomePropriedade");
+            }
             this._nomePropriedade = nomePropriedade;
         }
         
@@ -409,7 +433,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedade: string) 
         {
             super();
-            Guard.NotNull( nomePropriedade, "The argument nomePropriedade cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedade, "nomePropriedade");
+            }
             this._nomePropriedade = nomePropriedade;
         }
         
@@ -433,7 +460,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(rotulo: string, rotuloPlural?: string) 
         {
             super();
-            Guard.NotNull( rotulo, "The argument rotulo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(rotulo, "rotulo");
+            }
             this._rotulo = rotulo;
             this._rotuloPlural = rotuloPlural;
         }
@@ -479,7 +509,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(valor: string) 
         {
             super();
-            Guard.NotNull( valor, "The argument valor cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(valor, "valor");
+            }
             this._valor = valor;
         }
         
@@ -528,7 +561,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomeTipoEntidadeRelacao: string) 
         {
             super();
-            Guard.NotNull( nomeTipoEntidadeRelacao, "The argument nomeTipoEntidadeRelacao cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomeTipoEntidadeRelacao, "nomeTipoEntidadeRelacao");
+            }
             this._nomeTipoEntidadeRelacao = nomeTipoEntidadeRelacao;
         }
         
@@ -551,7 +587,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedadeChaveEstrangeiraReversa: string) 
         {
             super();
-            Guard.NotNull( nomePropriedadeChaveEstrangeiraReversa, "The argument nomePropriedadeChaveEstrangeiraReversa cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedadeChaveEstrangeiraReversa, "nomePropriedadeChaveEstrangeiraReversa");
+            }
             this._nomePropriedadeChaveEstrangeiraReversa = nomePropriedadeChaveEstrangeiraReversa;
         }
         
@@ -590,8 +629,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(isPermitirEspaco: boolean, isIgnorarCase: boolean, caracteresExtra: string | null) 
         {
             super();
-            Guard.NotNull( isPermitirEspaco, "The argument isPermitirEspaco cannot be null.");
-            Guard.NotNull( isIgnorarCase, "The argument isIgnorarCase cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(isPermitirEspaco, "isPermitirEspaco");
+                Snebur.Guard.NotNull(isIgnorarCase, "isIgnorarCase");
+            }
             this._isPermitirEspaco = isPermitirEspaco;
             this._isIgnorarCase = isIgnorarCase;
             this._caracteresExtra = caracteresExtra;
@@ -665,7 +707,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(valor: any | null, operador: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
         {
             super();
-            Guard.NotNull( operador, "The argument operador cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(operador, "operador");
+            }
             this._valor = valor;
             this._operador = operador;
         }
@@ -698,7 +743,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedadeSenha: string) 
         {
             super();
-            Guard.NotNull( nomePropriedadeSenha, "The argument nomePropriedadeSenha cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedadeSenha, "nomePropriedadeSenha");
+            }
             this._nomePropriedadeSenha = nomePropriedadeSenha;
         }
         
@@ -751,7 +799,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedadeIdentificador: string) 
         {
             super();
-            Guard.NotNull( nomePropriedadeIdentificador, "The argument nomePropriedadeIdentificador cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedadeIdentificador, "nomePropriedadeIdentificador");
+            }
             this._nomePropriedadeIdentificador = nomePropriedadeIdentificador;
         }
         
@@ -785,7 +836,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(tipoData: Snebur.Dominio.EnumTipoData, dataMinima?: Date | null, dataMaxima?: Date | null) 
         {
             super();
-            Guard.NotNull( tipoData, "The argument tipoData cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tipoData, "tipoData");
+            }
             this._tipoData = tipoData;
             this._dataMinima = dataMinima;
             this._dataMaxima = dataMaxima;
@@ -859,7 +913,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(nomePropriedadeDataPublicacao: string) 
         {
             super();
-            Guard.NotNull( nomePropriedadeDataPublicacao, "The argument nomePropriedadeDataPublicacao cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedadeDataPublicacao, "nomePropriedadeDataPublicacao");
+            }
             this._nomePropriedadeDataPublicacao = nomePropriedadeDataPublicacao;
         }
         
@@ -952,7 +1009,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(expressaoRegular: string) 
         {
             super();
-            Guard.NotNull( expressaoRegular, "The argument expressaoRegular cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(expressaoRegular, "expressaoRegular");
+            }
             this._expressaoRegular = expressaoRegular;
         }
         
@@ -1005,7 +1065,10 @@ namespace Snebur.Dominio.Atributos
         public constructor(isNovoIdentificador: boolean) 
         {
             super();
-            Guard.NotNull( isNovoIdentificador, "The argument isNovoIdentificador cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(isNovoIdentificador, "isNovoIdentificador");
+            }
             this._isNovoIdentificador = isNovoIdentificador;
         }
         
@@ -1061,8 +1124,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(minimo: number, maximo: number) 
         {
             super();
-            Guard.NotNull( minimo, "The argument minimo cannot be null.");
-            Guard.NotNull( maximo, "The argument maximo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(minimo, "minimo");
+                Snebur.Guard.NotNull(maximo, "maximo");
+            }
             this._minimo = minimo;
             this._maximo = maximo;
         }
@@ -1141,10 +1207,13 @@ namespace Snebur.Dominio.Atributos
         public constructor(aceitarNulo: boolean, aceitarNegativo: boolean, valorMinimo: number, valorMaximo: number) 
         {
             super();
-            Guard.NotNull( aceitarNulo, "The argument aceitarNulo cannot be null.");
-            Guard.NotNull( aceitarNegativo, "The argument aceitarNegativo cannot be null.");
-            Guard.NotNull( valorMinimo, "The argument valorMinimo cannot be null.");
-            Guard.NotNull( valorMaximo, "The argument valorMaximo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(aceitarNulo, "aceitarNulo");
+                Snebur.Guard.NotNull(aceitarNegativo, "aceitarNegativo");
+                Snebur.Guard.NotNull(valorMinimo, "valorMinimo");
+                Snebur.Guard.NotNull(valorMaximo, "valorMaximo");
+            }
             this._aceitarNulo = aceitarNulo;
             this._aceitarNegativo = aceitarNegativo;
             this._valorMinimo = valorMinimo;
@@ -1222,8 +1291,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
-            Guard.NotNull( tamanhoMinimo, "The argument tamanhoMinimo cannot be null.");
-            Guard.NotNull( tamanhoMaximo, "The argument tamanhoMaximo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tamanhoMinimo, "tamanhoMinimo");
+                Snebur.Guard.NotNull(tamanhoMaximo, "tamanhoMaximo");
+            }
             this._tamanhoMinimo = tamanhoMinimo;
             this._tamanhoMaximo = tamanhoMaximo;
         }
@@ -1376,8 +1448,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
-            Guard.NotNull( tamanhoMinimo, "The argument tamanhoMinimo cannot be null.");
-            Guard.NotNull( tamanhoMaximo, "The argument tamanhoMaximo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tamanhoMinimo, "tamanhoMinimo");
+                Snebur.Guard.NotNull(tamanhoMaximo, "tamanhoMaximo");
+            }
             this._tamanhoMinimo = tamanhoMinimo;
             this._tamanhoMaximo = tamanhoMaximo;
         }
@@ -1471,8 +1546,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(tamanhoMinimo: number, tamanhoMaximo: number) 
         {
             super();
-            Guard.NotNull( tamanhoMinimo, "The argument tamanhoMinimo cannot be null.");
-            Guard.NotNull( tamanhoMaximo, "The argument tamanhoMaximo cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tamanhoMinimo, "tamanhoMinimo");
+                Snebur.Guard.NotNull(tamanhoMaximo, "tamanhoMaximo");
+            }
             this._tamanhoMinimo = tamanhoMinimo;
             this._tamanhoMaximo = tamanhoMaximo;
         }
@@ -1532,9 +1610,12 @@ namespace Snebur.Dominio.Atributos
         public constructor(tipoEntidade: r.BaseTipo | string, isIgnorarNulo: boolean, isIgnorarZero: boolean, nomePropriedadeFiltro: string, valorPropriedadeFiltro: any, operadorFiltro: Snebur.Dominio.Atributos.EnumOperadorComparacao) 
         {
             super();
-            Guard.NotNull( isIgnorarNulo, "The argument isIgnorarNulo cannot be null.");
-            Guard.NotNull( isIgnorarZero, "The argument isIgnorarZero cannot be null.");
-            Guard.NotNull( operadorFiltro, "The argument operadorFiltro cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(isIgnorarNulo, "isIgnorarNulo");
+                Snebur.Guard.NotNull(isIgnorarZero, "isIgnorarZero");
+                Snebur.Guard.NotNull(operadorFiltro, "operadorFiltro");
+            }
             this._tipoEntidade = tipoEntidade;
             this._isIgnorarNulo = isIgnorarNulo;
             this._isIgnorarZero = isIgnorarZero;
@@ -1602,8 +1683,11 @@ namespace Snebur.Dominio.Atributos
         public constructor(tipoEntidade: r.BaseTipo | string, expressoesPropriedadeFiltro: Array<string>) 
         {
             super();
-            Guard.NotNull( tipoEntidade, "The argument tipoEntidade cannot be null.");
-            Guard.NotNull( expressoesPropriedadeFiltro, "The argument expressoesPropriedadeFiltro cannot be null.");
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(tipoEntidade, "tipoEntidade");
+                Snebur.Guard.NotNull(expressoesPropriedadeFiltro, "expressoesPropriedadeFiltro");
+            }
             this._tipoEntidade = tipoEntidade;
             this.ExpressoesPropriedadeFiltro.AddRange(expressoesPropriedadeFiltro);
         }
