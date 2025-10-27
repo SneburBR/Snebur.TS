@@ -57,7 +57,10 @@
             }
         }
 
-
+        public static ThrowNotInitialized = function (argumentName: any): never
+        {
+            DebugUtil.Break();
+            throw new Error(`O argument ${argumentName} is not initialized.`);
+        };
     }
 }
- 
