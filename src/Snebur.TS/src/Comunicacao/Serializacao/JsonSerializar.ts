@@ -208,7 +208,7 @@
                 case (tipoPropriedade instanceof r.TipoPrimario): {
 
                     const tipoPrimario = tipoPropriedade as r.TipoPrimario;
-                    return JsonSerializar.RetornarValorTipoPrimarioSerializado(valorPropriedade as Array<any>, tipoPrimario.TipoPrimarioEnum);
+                    return JsonUtil.SerializarValorTipoPrimario(valorPropriedade as Array<any>, tipoPrimario.TipoPrimarioEnum);
                 }
                 case (tipoPropriedade instanceof r.TipoBaseDominio):
 
@@ -238,9 +238,7 @@
                 return this.RetornarValorPropriedadeSerializado(valorNuloPadrao, propriedade);
             }
         }
-
-
-
+         
         private RetornarListaSerializada(lista: Array<any>, tipoLista: r.BaseTipoLista): string
         {
 
@@ -352,14 +350,10 @@
             {
                 throw new ErroNaoSuportado("O tipo do objeto não é suportado", this);
             }
-            return JsonSerializar.RetornarValorTipoPrimarioSerializado(objeto, (tipo as r.TipoPrimario).TipoPrimarioEnum);
+            return JsonUtil.SerializarValorTipoPrimario(objeto, (tipo as r.TipoPrimario).TipoPrimarioEnum);
         }
 
-        private static RetornarValorTipoPrimarioSerializado(valorPrimario: any, tipoPrimarioEnum: r.EnumTipoPrimario): string
-        {
-            return JsonUtil.SerializarValorTipoPrimario(valorPrimario, tipoPrimarioEnum);
-            
-        }
+      
 
         private RetornarValorEnumSerializado(objeto: any): string
         {

@@ -2,8 +2,35 @@
 {
     export class JsonUtil
     {
-       
+        private static __isSerializado: boolean = false
+        
+
+        public static get IsSerializado(): boolean
+        {
+            return JsonUtil.__isSerializado;
+        }
+
         public static Serializar(obj: any, isIdentar?: boolean): string
+        {
+            if (JsonUtil.IsSerializado)
+            {
+                throw new Erro("Já existe um precesso serialização ou desserializado em andamento.");
+            }
+            try
+            {
+                JsonUtil.__isSerializado = true;
+                return JsonUtil.SerializarInterno(obj, isIdentar);
+            }
+            catch (erro)
+            {
+                throw new Erro(`Falha ao serializar objeto: ${obj} - ${ErroUtil.RetornarErro(erro)}`);
+            }
+            finally
+            {
+                JsonUtil.__isSerializado = false;
+            }
+        }
+        private static SerializarInterno(obj: any, isIdentar?: boolean): string
         {
             const serializador = new Snebur.Serializacao.JsonSerializar(isIdentar);
             const json = serializador.Serializar(obj);
@@ -11,10 +38,34 @@
             return json;
         }
 
+        public static Deserializar<T extends d.BaseDominio>(
+            json: string,
+            tipoOuConstrutor: r.BaseTipo | IConstrutor<T>): T
+        {
+            if (JsonUtil.IsSerializado)
+            {
+                throw new Erro("Já existe um precesso serialização ou desserializado em andamento.");
+            }
+            try
+            {
+                JsonUtil.__isSerializado = true;
+                return JsonUtil.DeserializarInterno(json, tipoOuConstrutor);
+            }
+            catch (erro)
+            {
+                throw new Erro(`Falha ao desserializar json: ${json.substring(0, 1000)} - ${ErroUtil.RetornarErro(erro)}`);
+            }
+            finally
+            {
+                JsonUtil.__isSerializado = false;
+            }
+
+        }
         //public static Deserializar<T extends d.BaseDominio>(json: any, tipo: d.BaseDominioConstrutor<T>): T
-        public static Deserializar<T extends d.BaseDominio>(json: string, construtor: IConstrutor<T>): T
-        public static Deserializar<T>(json: string, tipo: r.BaseTipo): T
-        public static Deserializar<T extends d.BaseDominio>(json: any, tipoOuConstrutor: r.BaseTipo | IConstrutor<T>): T
+
+        public static DeserializarInterno<T extends d.BaseDominio>(
+            json: string,
+            tipoOuConstrutor: r.BaseTipo | IConstrutor<T>): T
         {
             const tipo = tipoOuConstrutor instanceof r.BaseTipo ? tipoOuConstrutor : tipoOuConstrutor.GetType();
             const deserializador = new Snebur.Serializacao.JsonDeserializar();
