@@ -23,6 +23,8 @@
         private _stopwatch: Stopwatch;
         private _isTimeouotAtigindo: boolean = false;
         private _isIntervalAtingido: boolean = false;
+        private _count: number = 0;
+        private _ultimoLogInterval: number = 0;
 
         /*private readonly Pacote: Uint8Array;*/
         private Resolver: (resultadoChamada: ResultadoChamada) => void;
@@ -70,7 +72,7 @@
 
             if ($Configuracao.IsDebug)
             {
-                this._idInterval = window.setInterval(this.ChamadaServico_Interval.bind(this), 2000);
+                this._idInterval = window.setTimeout(this.ChamadaServico_Interval.bind(this), 2000);
             }
 
             return new Promise(resolver =>
@@ -153,14 +155,22 @@
 
         private ChamadaServico_Interval()
         {
-            const mensagem = `A requisição '${this.Requisicao.UrlCompleta}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
-            const logHandler = (this._stopwatch.TotalSeconds > 5)
-                ? console.error : console.warn;
+            if (Date.now() - this._ultimoLogInterval < 5000)
+            {
+                return;
+            }
 
+            this._ultimoLogInterval = Date.now();
+            this._count++;
+            const mensagem = `A requisição '${this.Requisicao.UrlCompleta}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
+            const logHandler = this._count % 10 === 0
+                ? console.error
+                : console.warn;
+                 
             this._isIntervalAtingido = true;
             logHandler(mensagem);
         }
-
+         
         private async XmlHttp_ReadyStateChange(event: ProgressEvent)
         {
             if (this.XmlHttp?.readyState === 4)

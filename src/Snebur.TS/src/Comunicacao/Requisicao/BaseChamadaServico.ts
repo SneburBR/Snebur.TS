@@ -106,6 +106,7 @@
 
         protected RetornarResultadoChamadaErro(erro: Error): ResultadoChamadaErro
         {
+            DebugUtil.Break();
             const resultadoErro = new ResultadoChamadaErroCliente(this.Requisicao);
             resultadoErro.Erro = erro;
             resultadoErro.StatusCode = this.XmlHttp.status;
