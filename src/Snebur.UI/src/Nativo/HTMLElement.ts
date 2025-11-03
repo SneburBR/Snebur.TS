@@ -1,7 +1,6 @@
 ﻿
 namespace Snebur
 {
-
     Object.defineProperty(HTMLElement.prototype, "Dimensao", {
         get: function ()
         {
@@ -113,14 +112,18 @@ namespace Snebur
         },
         set: function (value: string)
         {
+            if (!Array.isArray(this.__urlsHistorico))
+            {
+                this.__urlsHistorico = [];
+            }
+            this.__urlsHistorico.push(value);
             if (this.src !== value)
             {
                 this.src = value;
             }
         }
     });
-
-
+     
     if (!HTMLCanvasElement.prototype.toBlob)
     {
         HTMLCanvasElement.prototype.toBlob = function (callback: (blob: Blob | null) => void, formato: any, qualidade: number): void

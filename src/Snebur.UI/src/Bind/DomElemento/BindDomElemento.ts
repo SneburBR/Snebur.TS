@@ -325,9 +325,9 @@
 
                 if (elemento instanceof HTMLImageElement)
                 {
-                    if (elemento.src !== novoValorDom)
+                    if (elemento.UrlImagem !== novoValorDom)
                     {
-                        elemento.src = novoValorDom;
+                        elemento.UrlImagem = novoValorDom;
                     }
                     return;
                 }

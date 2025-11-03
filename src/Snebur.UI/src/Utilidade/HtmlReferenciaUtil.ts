@@ -27,14 +27,16 @@
         private static RetornarHtmlInterno(tipoOuConstrutor: r.TipoUIHtml | BaseUIElemento | IConstrutor<BaseUIElemento>): string
         {
             const htmlReferencia = HtmlReferenciaUtil.RetornarHtmlReferencia(tipoOuConstrutor);
+            const isReiniciando = $Configuracao.IsDebug &&
+                tipoOuConstrutor instanceof BaseUIElemento &&
+                tipoOuConstrutor.__IsReiniciado;
+
             if (htmlReferencia.IsHtmlDecodificado)
             {
                 if (!$Configuracao.IsDebug || $Configuracao.IsDebugApresentacao === false)
                 {
                     return htmlReferencia.HtmlDecodificado;
                 }
-
-                const isReiniciando = tipoOuConstrutor instanceof BaseUIElemento && tipoOuConstrutor.__IsReiniciado;
                 if (!isReiniciando)
                 {
                     const tempoUtlimaDecodificacao = Date.now() - htmlReferencia.DataHoraDecodificado.getTime();
@@ -44,7 +46,7 @@
                     }
                 }
             }
-            htmlReferencia.DecodificarHtml();
+            htmlReferencia.DecodificarHtml(isReiniciando);
          
             return htmlReferencia.HtmlDecodificado;
         }
@@ -123,9 +125,10 @@
             }
         }
 
-        private static RetornarConteudoHtml(htmlReferencia: HtmlReferencia, retry : number= 0): string
+        private static RetornarConteudoHtml(
+            htmlReferencia: HtmlReferencia,
+            retry: number = 0): string
         {
-
             const url = htmlReferencia.UrlDesenvolvimento;
             try
             {

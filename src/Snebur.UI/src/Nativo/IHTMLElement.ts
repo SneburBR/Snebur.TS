@@ -50,8 +50,17 @@ namespace Snebur.Nativo
     {
         /*TamanhoImagem: Snebur.Dominio.EnumTamanhoImagem;*/
         UrlImagem: string;
+        readonly __urlsHistorico?: string[] | undefined;
+       
+        /*@override*/
     }
-
-
-
+}
+interface HTMLImageElementSrcReadOnly extends HTMLElement
+{
+    readonly naturalWidth: number;
+    readonly naturalHeight: number;
+    readonly src: string;
+    UrlImagem: string;
+    width: number;
+    height: number;
 }

@@ -55,13 +55,12 @@
             return this.UrlDesenvolvimentoAbsoluta + "?" + u.GuidUtil.RetornarNovoGuid();
         }
 
-        public DecodificarHtml(): void
+        public DecodificarHtml(isReiniciando: boolean): void
         {
-            if (this._isHtmlDecodificado && $Configuracao.IsDebug)
+            if (!isReiniciando && this._isHtmlDecodificado)
                 return;
 
             const htmlDecodificado = HtmlReferenciaUtil.RetornarHtmlDecodificado(this);
-
             Guard.NotNull(htmlDecodificado);
 
             this._htmlDecodificado = htmlDecodificado;
