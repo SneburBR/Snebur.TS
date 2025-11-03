@@ -265,8 +265,7 @@
             //{
             //    return ConverterUtil.ParaNumero(parametrosHash.Item(this.PARAMETRO_VS_PORTA_DEPURACAO));
             //}
-
-
+             
             const parametrosUrl = u.UrlUtil.RetornarParametroQuerysUrl();
             if (parametrosUrl.ContainsKey(this.PARAMETRO_VS_PORTA_DEPURACAO))
             {

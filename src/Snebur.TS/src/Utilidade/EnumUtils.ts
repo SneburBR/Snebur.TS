@@ -218,7 +218,7 @@
         public static IsDefindo<TEnum>(construtorEnum: TEnum, valor: TEnum[keyof TEnum] | string | number): valor is TEnum[keyof TEnum]
         public static IsDefindo<TEnum extends object>(construtorEnum: TEnum, chaveOrValor: string | number | any): chaveOrValor is TEnum[keyof TEnum]
         {
-            if (chaveOrValor == null)
+            if (chaveOrValor == null )
                 return false;
 
             if (chaveOrValor === EnumUtil.UNDEFINED_VALUE)
@@ -231,9 +231,22 @@
             }
 
             const valor = (construtorEnum as any)[chaveOrValor];
-            if (typeof valor === "string")
+            if (typeof valor === "string" )
             {
-                return (construtorEnum as any)[valor] === chaveOrValor;
+                if (typeof chaveOrValor === "number")
+                {
+                    return (construtorEnum as any)[valor] === chaveOrValor;
+                }
+
+                if (typeof chaveOrValor === "string")
+                {
+                    return true;
+                }
+                
+                DebugUtil.Break();
+                console.error(`O tipo do valor: $chaveOrValorv} não suportado pelo enum`);
+                return false;
+                
             }
 
             if (typeof valor === "number")

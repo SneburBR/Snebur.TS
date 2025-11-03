@@ -18,6 +18,19 @@
             }
         }
 
+        public static ArrayNotEmpty<T>(value: Array<T> | null | undefined, argumentName: string = "value"): asserts value is Array<T>
+        {
+            if (!Array.isArray(value))
+            {
+                throw new Error(`The ${argumentName} is not an array`);
+            }
+
+            if (value.length === 0)
+            {
+                throw new Error(`The ${argumentName} cannot be an empty array`);
+            }
+        }
+
         public static MustBeArray(value: any, argumentName: string = "value"): asserts value is Array<any>
         {
             if (!Array.isArray(value))
@@ -62,5 +75,17 @@
             DebugUtil.Break();
             throw new Error(`O argument ${argumentName} is not initialized.`);
         };
+
+        public static ValidUri(value: string | null | undefined, argumentName: string = "value"): asserts value is string
+        {
+            if (value == null)
+            {
+                throw new Error(`The ${argumentName} cannot be null or undefined`);
+            }
+            if (!ValidacaoUtil.IsUrl(value))
+            {
+                throw new Error(`The ${argumentName} is not a valid URI`);
+            }
+        }
     }
 }

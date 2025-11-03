@@ -352,15 +352,13 @@
             }
             return JsonUtil.SerializarValorTipoPrimario(objeto, (tipo as r.TipoPrimario).TipoPrimarioEnum);
         }
-
-      
-
+         
         private RetornarValorEnumSerializado(objeto: any): string
         {
             return u.ConverterUtil.ParaInteiro(objeto).ToString();
         }
 
-        public Dispose()
+        public Dispose(): void
         {
             delete this.__ObjsetosSerializados;
         }
