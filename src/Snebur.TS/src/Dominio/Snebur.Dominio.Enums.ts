@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-23 16:16:56
+//@DataHora: 2025-10-31 16:19:49
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -757,7 +757,8 @@ namespace Snebur.Dominio
         UsuarioNaoExiste = 2,
         SenhaInvalida = 3,
         MaximoTentativa = 4,
-        UsuarioBloqueado = 5
+        UsuarioBloqueado = 5,
+        ContaAtualNaoDefinida = 9
         /* TEMP_Undefined = 0 */
     }
     (EnumResultadoAutenticacao as any).Rotulos = {};
@@ -767,6 +768,7 @@ namespace Snebur.Dominio
     (EnumResultadoAutenticacao as any).Rotulos["SenhaInvalida"] = "SenhaInvalida";
     (EnumResultadoAutenticacao as any).Rotulos["MaximoTentativa"] = "MaximoTentativa";
     (EnumResultadoAutenticacao as any).Rotulos["UsuarioBloqueado"] = "UsuarioBloqueado";
+    (EnumResultadoAutenticacao as any).Rotulos["ContaAtualNaoDefinida"] = "ContaAtualNaoDefinida";
     export enum EnumResultadoValidacaoCredencial
     {
         Undefined = -1,

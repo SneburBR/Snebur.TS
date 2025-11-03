@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-27 15:11:27
+//@DataHora: 2025-11-03 14:43:40
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -22,9 +22,9 @@ namespace Snebur.Dominio.Atributos
     export class BaseRelacaoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         
-        public constructor(inicializador?: Partial<BaseRelacaoAttribute>) 
+        public constructor()
         {
-            super(inicializador);
+            super();
         }
     }
     export abstract class BaseValidacaoEntidadeAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -340,10 +340,9 @@ namespace Snebur.Dominio.Atributos
     export class OcultarColunaAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         
-        public constructor(inicializador?: Partial<OcultarColunaAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
     }
     export class PropriedadeComputadaBancoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -486,9 +485,9 @@ namespace Snebur.Dominio.Atributos
     export class SomenteLeituraAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
     {
         
-        public constructor(inicializador?: Partial<SomenteLeituraAttribute>) 
+        public constructor()
         {
-            super(inicializador);
+            super();
         }
     }
     export class UndefinedEnumValueAttribute  extends Snebur.Dominio.Atributos.BaseAtributoDominio
@@ -525,9 +524,9 @@ namespace Snebur.Dominio.Atributos
     export abstract class RelacaoChaveEstrangeiraAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
     {
         
-        public constructor(inicializador?: Partial<RelacaoChaveEstrangeiraAttribute>) 
+        public constructor()
         {
-            super(inicializador);
+            super();
         }
     }
     export class RelacaoFilhosAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoAttribute
@@ -965,9 +964,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDominioAttribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         
-        public constructor(inicializador?: Partial<ValidacaoDominioAttribute>) 
+        public constructor()
         {
-            super(inicializador);
+            super();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";
@@ -1033,10 +1032,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoFlagsEnumRequeridoAttribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         
-        public constructor(inicializador?: Partial<ValidacaoFlagsEnumRequeridoAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} deve ser preenchido.";
@@ -1415,10 +1413,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoRequeridoDebugAttribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
         
-        public constructor(inicializador?: Partial<ValidacaoRequeridoDebugAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} deve ser preenchido.";
@@ -1752,10 +1749,9 @@ namespace Snebur.Dominio.Atributos
         private _isTipoNullableRequerido: boolean  = false;
         //#endregion
         
-        public constructor(inicializador?: Partial<ValorPadraoDataHoraServidorAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
         
         public get IsDataHoraUTC(): boolean
@@ -1797,10 +1793,9 @@ namespace Snebur.Dominio.Atributos
         private _isTipoNullableRequerido: boolean  = false;
         //#endregion
         
-        public constructor(inicializador?: Partial<ValorPadraoIPAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
         
         public get IsValorPadraoOnUpdate(): boolean
@@ -1823,9 +1818,9 @@ namespace Snebur.Dominio.Atributos
         protected _ignorarAlerta: boolean  = false;
         //#endregion
         
-        public constructor(inicializador?: Partial<BaseRelacaoPaiAttribute>) 
+        public constructor()
         {
-            super(inicializador);
+            super();
         }
         
         public get IgnorarAlerta(): boolean
@@ -1840,10 +1835,9 @@ namespace Snebur.Dominio.Atributos
     export class ValidacaoDominioDNSAttribute  extends Snebur.Dominio.Atributos.ValidacaoDominioAttribute
     {
         
-        public constructor(inicializador?: Partial<ValidacaoDominioDNSAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
     }
     export class RelacaoPaiAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoPaiAttribute
@@ -1882,19 +1876,17 @@ namespace Snebur.Dominio.Atributos
     export class RelacaoUmUmFilhoAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoPaiAttribute
     {
         
-        public constructor(inicializador?: Partial<RelacaoUmUmFilhoAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
     }
     export class RelacaoUmUmPaiAttribute  extends Snebur.Dominio.Atributos.BaseRelacaoPaiAttribute
     {
         
-        public constructor(inicializador?: Partial<RelacaoUmUmPaiAttribute>) 
+        public constructor()
         {
-            super(inicializador);
-            this.Inicializar();
+            super();
         }
     }
 }

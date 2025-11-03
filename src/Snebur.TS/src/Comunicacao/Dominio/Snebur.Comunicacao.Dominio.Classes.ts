@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-10-27 15:11:27
+//@DataHora: 2025-11-03 14:49:16
 //@Artifact: Classes
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -11,7 +11,7 @@
 
 namespace Snebur.Comunicacao
 {
-    export class BaseComunicao  extends Snebur.Dominio.BaseDominio
+    export abstract class BaseComunicao  extends Snebur.Dominio.BaseDominio
     {
         
         public constructor(inicializador?: Partial<BaseComunicao>) 

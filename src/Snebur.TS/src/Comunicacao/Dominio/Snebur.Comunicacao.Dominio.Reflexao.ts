@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-10-21 11:17:06
+//@DataHora: 2025-11-03 14:49:16
 //@Artifact: Reflexao
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -13,7 +13,7 @@ namespace Snebur.Reflexao
 {
     
     //#region Domain types Types
-    export const __$tipoBaseDominio_Snebur_Comunicacao_BaseComunicao = new TipoBaseDominio(Snebur.Comunicacao.BaseComunicao,"BaseComunicao","Snebur.Comunicacao","Snebur.Comunicacao.BaseComunicao, Snebur.Comunicacao",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
+    export const __$tipoBaseDominio_Snebur_Comunicacao_BaseComunicao = new TipoBaseDominio(Snebur.Comunicacao.BaseComunicao,"BaseComunicao","Snebur.Comunicacao","Snebur.Comunicacao.BaseComunicao, Snebur.Comunicacao",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,true);
     export const __$tipoBaseDominio_Snebur_Comunicacao_ContratoMensageiro = new TipoBaseDominio(Snebur.Comunicacao.ContratoMensageiro,"ContratoMensageiro","Snebur.Comunicacao","Snebur.Comunicacao.ContratoMensageiro, Snebur.Comunicacao",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
     export const __$tipoBaseDominio_Snebur_Comunicacao_Remetente = new TipoBaseDominio(Snebur.Comunicacao.Remetente,"Remetente","Snebur.Comunicacao","Snebur.Comunicacao.Remetente, Snebur.Comunicacao",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
     export const __$tipoBaseDominio_Snebur_Comunicacao_Cabecalho = new TipoBaseDominio(Snebur.Comunicacao.Cabecalho,"Cabecalho","Snebur.Comunicacao","Snebur.Comunicacao.Cabecalho, Snebur.Comunicacao",__$tipoBaseDominio_Snebur_Comunicacao_BaseComunicao,false);
