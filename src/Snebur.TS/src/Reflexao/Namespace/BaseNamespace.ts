@@ -4,7 +4,7 @@
     {
         protected _namespacePai: BaseNamespace;
         private _versao: string;
-        private _instancia: any;    
+        private _instancia: any;
         private _caminho: any;
         private _prioridade: any;
         private _tipoNamespace: EnumTipoNamespace;

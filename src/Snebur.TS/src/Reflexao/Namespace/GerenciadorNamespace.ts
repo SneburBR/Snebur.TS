@@ -179,9 +179,9 @@
 
     export enum EnumTipoNamespace
     {
-        Aplicacao = 0,
-        Entidades = 1,
-        Depedencia = 2,
-        Framework = 3
+        Aplicacao = 1,
+        Entidades = 2,
+        Depedencia = 3,
+        Framework = 4
     }
 }

@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-31 16:19:49
+//@DataHora: 2025-11-05 16:41:32
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0

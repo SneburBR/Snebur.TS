@@ -74,15 +74,17 @@
                             }
                             catch (erro)
                             {
-                                console.error(`Erro ao inicializar a propriedade ${nomePropriedade} do objeto ${this.___NomeConstrutor}`);
+                                console.warn(`Não foi possível inicializar a propriedade ${nomePropriedade} do objeto ${this.___NomeConstrutor}`);
                             }
                         }
                     }
                     else
                     {
+                        const errorMessage = `A Propriedade '${nomePropriedade}' não pode ser inicializada no construtor do objeto ${this.___NomeConstrutor}, Ela pode ser Protegida Ex. Id ou tipo privado Iniciando _ ex. _descricao `;
+                        console.error(errorMessage);
                         if ($Configuracao.IsDebug)
                         {
-                            throw new Erro(`A Propriedade '${nomePropriedade}' não pode ser inicializada no construtor do objeto ${this.___NomeConstrutor}, Ela pode ser Protegida Ex. Id ou tipo privado Iniciando _ ex. _descricao `);
+                            throw new Erro(errorMessage);
                         }
                     }
                 }

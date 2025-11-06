@@ -13,7 +13,7 @@
             nome: string)
         {
             super(namespacePai, tipoNamespace, nome);
-        }
+         }
 
         protected override RetornarCaminho(): string
         {
