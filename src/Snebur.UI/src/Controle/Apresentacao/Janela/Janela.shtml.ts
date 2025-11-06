@@ -638,13 +638,13 @@
         //}
 
 
-        public async FecharAsync(argumento?: boolean | TResultadoFecharJanelaArgs, erro?: Error, callback?: Function): Promise<any>
+        public async FecharAsync(argumento?: boolean | TResultadoFecharJanelaArgs, erro?: Error ): Promise<any>
         {
             await this.FecharInternoAsync(argumento, erro);
-            if (callback != null)
-            {
-                callback();
-            }
+            //if (callback != null)
+            //{
+            //    callback();
+            //}
         }
 
         private async FecharInternoAsync(argumento?: boolean | TResultadoFecharJanelaArgs, erro?: Error): Promise<void>

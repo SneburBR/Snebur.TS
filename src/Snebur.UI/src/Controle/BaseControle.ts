@@ -3,7 +3,7 @@
     export abstract class BaseControle extends Snebur.UI.ComponenteApresentacaoConteudo
     {
         //private _isMarcarItem: boolean = null;
-        private __isOcupado__: boolean = false;
+        protected static __isOcupado__: boolean = false;
 
         /*readonly #camposPrivados = new BaseControleCamposPrivados();*/
         private readonly __camposPrivadosBaseControle = new BaseControleCamposPrivados();
@@ -51,14 +51,7 @@
 
         public get IsOcupado(): boolean
         {
-            return this.__isOcupado__;
-        }
-
-        //se renomeado alterar em ui.DocumentoPrincipal
-        private set IsOcupadoInterno(value: boolean)
-        {
-            this.__isOcupado__ = value;
-            this.NotificarPropriedadeAlterada(x => x.IsOcupado);
+            return BaseControle.__isOcupado__;
         }
 
         public get IsSistemaOcupado(): boolean
@@ -67,7 +60,7 @@
             {
                 return $Aplicacao.DocumentoPrincipal.IsOcupado;
             }
-            return this.IsOcupadoInterno;
+            return BaseControle.__isOcupado__;
         }
 
         public get IsReiniciando(): boolean
@@ -127,8 +120,6 @@
             }
 
             //this.NomeControle = String.Empty;
-            this.IsOcupadoInterno = false;
-
             //this.ControlesFilho = this.RetornarControleFilhos();
             this.DesativarObservadorPropriedadeAlterada();
             this.DicionarioElementosSnebur = new DicionarioSimples<Array<HTMLElement>>();
@@ -558,7 +549,7 @@
         }
 
         //#endregion
-         
+
         //#region Controles filho
 
         public RetornarControleFilho<TControle extends BaseControle>(construtorControle: IControleConstrutor<TControle>, recursivo: boolean = false, isIgnorarErro: boolean = false): TControle
@@ -630,7 +621,6 @@
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
             {
                 $Aplicacao.DocumentoPrincipal.Ocupar(opcaoOcupar as any, mensagem, this);
-                this.IsOcupadoInterno = true;
             }
             else
             {
@@ -667,12 +657,10 @@
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
             {
                 await $Aplicacao.DocumentoPrincipal.DesocuparAsync();
-                this.IsOcupadoInterno = false;
             }
             else
             {
                 this.DesocuparElemento();
-                this.IsOcupadoInterno = false;
             }
         }
 
@@ -728,6 +716,19 @@
 
         //#region OcuparAsync
 
+        public async OcuparDebugAsync(totalSegundos: number): Promise<void>
+        {
+            await this.OcuparAsync(async () =>
+            {
+                let transcorrido = 0;
+                while (transcorrido < totalSegundos)
+                {
+                    this.MensagemOcupado(`Aguardando  ${parseInt(transcorrido)} s`);
+                    transcorrido += 1;
+                    await ThreadUtil.EsperarAsync(1000);
+                }
+            });
+        }
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>): Promise<T>
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueio: (value: TThis) => boolean): Promise<T>
         public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, identificadorBloqueio: string): Promise<T>
@@ -748,11 +749,13 @@
                 }
                 return null;
             }
-
+             
             try
             {
                 (this as any)[nomeFlagDeBloqueio] = true;
                 this.Ocupar();
+
+                DebugUtil.ProibirDesocuparUI();
 
                 if (!funcAsync.IsBoundThis)
                 {
@@ -767,6 +770,7 @@
             }
             finally
             {
+                DebugUtil.PermitirDesocuparUI();
                 (this as any)[nomeFlagDeBloqueio] = false;
                 await this.DesocuparAsync();
             }
@@ -973,8 +977,6 @@
 
         private DispensarVariaveis()
         {
-            delete this.__isOcupado__;
-            delete this.IsOcupadoInterno;
             delete this.__isControleCarregado;
             delete (this as any).__classesCssControle;
             this.__isControleInicializado = false;
@@ -987,8 +989,6 @@
                 this.Elemento.remove();
             }
         }
-
-
 
         //#endregion
     }
@@ -1022,8 +1022,5 @@
         {
             super();
         }
-
-
-
     }
 }

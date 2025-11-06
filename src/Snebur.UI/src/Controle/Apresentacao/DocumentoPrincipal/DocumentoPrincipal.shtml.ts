@@ -10,8 +10,6 @@
         private readonly DicionarioNavegador = new DicionarioSimples<BaseNavegador>();
         protected _titulo: string;
         private __NavegadorPrincipal: NavegadorPrincipal;
-        private __IdentificadorTimeoutMostrarJanelaOcupado: number;
-        private __IdentificadorTimeoutFecharJanelaOcupado: number;
         private __JanelaOcupado: JanelaOcupado;
         //private __IsSistemaOcupado: boolean = false;
         private __BarraEnvioArquivos: BarraEnvioArquivos;
@@ -32,7 +30,7 @@
         public readonly JanelasCarregada = new List<Janela>();
         public readonly EventoJanelaCarregada = new Evento(this);
         public readonly EventoJanelaDescarregada = new Evento(this);
-         
+
         public get Titulo(): string
         {
             return this._titulo;
@@ -54,7 +52,7 @@
         protected override Inicializar()
         {
             super.Inicializar();
-             
+
             this.EventoJanelaCarregada.AddHandler(this.DocumentoPrincipal_JanelaCarregada, this);
             this.EventoJanelaDescarregada.AddHandler(this.DocumentoPrincipal_JanelaDescarregada, this);
 
@@ -194,7 +192,7 @@
             this.JanelasCarregada.Remove(janela);
         }
         //#endregion
-         
+
 
         protected override RetornarElementoDestino(): HTMLElement
         {
@@ -260,10 +258,9 @@
         public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null, baseControle: BaseControle = this): void
         {
             const [opcao, titulo] = this.NormalizarArgumentoOcupar(argumento);
-            window.clearTimeout(this.__IdentificadorTimeoutFecharJanelaOcupado);
-
             if (!this.IsOcupado)
             {
+                BaseControle.__isOcupado__ = true;
                 this.OcuparElemento();
 
                 const controlesFilhos = this.DicionarioControlesFilho.Valores;
@@ -271,7 +268,7 @@
                 {
                     (controleFilho as any as IOcuparElemento).OcuparElemento();
                 }
-                (this as any).IsOcupadoInterno = true;
+                
 
                 switch (opcao)
                 {
@@ -282,7 +279,7 @@
                     case EnumOpcaoOcupar.Padrao:
 
                         //a janela de ocupado ir abrir depois de 1 segundo
-                        this.__IdentificadorTimeoutMostrarJanelaOcupado = window.setTimeout(this.MostrarJanelaOcupado.bind(this, titulo, mensagem, baseControle), DocumentoPrincipal.TEMPO_MOSTRAR_JANELA_OCUPADO);
+                        window.setTimeout(this.MostrarJanelaOcupado.bind(this, titulo, mensagem, baseControle), DocumentoPrincipal.TEMPO_MOSTRAR_JANELA_OCUPADO);
                         break;
                     case EnumOpcaoOcupar.MostrarJanelaOcupadoImediatamente:
 
@@ -312,59 +309,35 @@
             }
             return [EnumOpcaoOcupar.Padrao, null];
         }
-         
 
-        public override DesocuparAsync(): Promise<void>
+
+        public override async DesocuparAsync(): Promise<void>
         {
-            return new Promise<void>(resolver =>
-            {
-                this.DesocuparInterno(() =>
-                {
-                    (this as any).IsOcupadoInterno = false;
-                    resolver();
-                });
-            });
-        }
-
-        private readonly CallbacksDesocupar = new List<Function>();
-
-        private DesocuparInterno(callback: Function = null): void
-        {
-            window.clearTimeout(this.__IdentificadorTimeoutMostrarJanelaOcupado);
-
             if (!this.IsOcupado)
             {
-                if (u.ValidacaoUtil.IsFunction(callback))
-                {
-                    callback();
-                }
                 return;
             }
+            BaseControle.__isOcupado__ = false;
+            await this.DesocuparInternoAsync();
+        }
+
+        private async DesocuparInternoAsync(): Promise<void>
+        {
+            if (!DebugUtil.IsPodeDesocuparUI)
+            {
+                DebugUtil.Break();
+                throw new ErroOperacaoInvalida("O controle não pode ser desocupado no momento", this);
+            }
+             
             this.DesocuparElemento();
-
-
+             
             const controlesFilhos = this.DicionarioControlesFilho.Valores;
             for (const controleFilho of controlesFilhos)
             {
                 (controleFilho as any as IOcuparElemento).DesocuparElemento();
             }
-            (this as any).IsOcuapdoInterno = false;
-
-            if (this.__JanelaOcupado instanceof JanelaOcupado)
-            {
-                if (callback instanceof Function)
-                {
-                    this.CallbacksDesocupar.Add(callback);
-                }
-                this.__IdentificadorTimeoutFecharJanelaOcupado = window.setTimeout(this.FecharJanelaOcupado.bind(this), DocumentoPrincipal.TEMPO_FECHAR_JANELA_OCUPADO);
-            }
-            else
-            {
-                if (callback instanceof Function)
-                {
-                    callback();
-                }
-            }
+            await this.FecharJanelaOcupadoAsync();
+           
         }
 
         protected override OcuparElemento(): void
@@ -384,10 +357,15 @@
             }
             super.DesocuparElemento();
         }
-         
+
         private MostrarJanelaOcupado(titulo: string, mensagem: string, baseControleOrigem: BaseControle): void
         {
             //janela pode ser sido dispensar por outro controle, no evento Dispose
+            if (!this.IsOcupado)
+            {
+                return;
+            }
+
             if (this.__JanelaOcupado?.IsDispensado)
             {
                 this.__JanelaOcupado = null;
@@ -401,23 +379,13 @@
             this.MensagemOcupado(mensagem);
         }
 
-        private FecharJanelaOcupado(): void
+        private async FecharJanelaOcupadoAsync(): Promise<void>
         {
             const janelaOcupado = this.__JanelaOcupado;
             if (janelaOcupado instanceof JanelaOcupado)
             {
                 this.__JanelaOcupado = null;
-                janelaOcupado.FecharAsync(true);
-
-                while (this.CallbacksDesocupar.Count > 0)
-                {
-                    const callback = this.CallbacksDesocupar.shift();
-                    if (callback instanceof Function)
-                    {
-                        callback();
-                        /*setTimeout(callback);*/
-                    }
-                }
+                await janelaOcupado.FecharAsync(true);
             }
         }
 
