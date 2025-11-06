@@ -10,7 +10,7 @@
             formatacaoOrigem: EnumFormatacaoCodigo,
             formatacaoDestino: EnumFormatacaoCodigo): string
         {
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 if (/\s+/.test(nome))
                 {

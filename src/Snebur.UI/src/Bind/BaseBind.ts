@@ -453,7 +453,7 @@
 
             if (isInverterOrdem)
             {
-                //if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                //if ($Configuracao.IsDebugOuTeste)
                 //{
                 //    console.warn(`Normalizadores  Converter e Formatar, ordem inversa, bind:  ${this.ValorAtributo} em ${this.ControleApresentacao.___NomeConstrutor}`);
                 //}

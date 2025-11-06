@@ -85,7 +85,7 @@
 
         public static ThrowIfDebugOrTest(mensagem: string)
         {
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 throw mensagem;
             }

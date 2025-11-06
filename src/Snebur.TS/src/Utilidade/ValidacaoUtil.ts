@@ -2,7 +2,6 @@
 {
     export class ValidacaoUtil
     {
-        
         public static IsImageData(argumento: ImageData | Partial<ImageData>): argumento is ImageData
         {
             if (argumento instanceof ImageData)
@@ -1169,7 +1168,7 @@
         {
             return window.setTimeout(function ()
             {
-                if (!isSomenteDebug && ($Configuracao.IsDebug || $Configuracao.IsTeste))
+                if (!isSomenteDebug && ($Configuracao.IsDebugOuTeste))
                 {
                     throw new Erro(`O time limite para a operação ${descricao} foi atingido`)
                 }

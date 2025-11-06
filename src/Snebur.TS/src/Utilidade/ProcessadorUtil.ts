@@ -5,7 +5,7 @@
         public static async CalcularNotaProcessaadorAsync(isMainThread: boolean): Promise<{ MainThread: w.IResultadoProcessador; Worker: w.IResultadoProcessador }>
         {
             const worker = await w.Cpu.CalcularNotaProcessaadorAsync();
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 const estilo = "color:blue;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
                 console.LogDebug("%cWORKER TEMPO : " + worker.Tempo + " ms", estilo);
@@ -23,7 +23,7 @@
                     Total: totalOpacoes
                 };
 
-                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                if ($Configuracao.IsDebugOuTeste)
                 {
                     const estilo = "color:red;font-family:system-ui;font-size:25px;-webkit-text-stroke: 1px black;font-weight:bold";
                     console.LogDebug("%cMAINTHREAD TEMPO : " + tempo + " ms", estilo);
