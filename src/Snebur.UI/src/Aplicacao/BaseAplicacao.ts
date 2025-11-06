@@ -91,7 +91,13 @@
 
             await super.InicializarAsync();
             this.IncrementarProcessoCarregandoAplicacao();
+
+            const stopwatch = Stopwatch.StartNew();
+            console.time("inicializar-fontes");
             await this.CarregarFonteIconesAsync();
+            console.timeEnd("inicializar-fontes");
+            console.log(`Fontes inicializadas em ${stopwatch.ElapsedMilliseconds} ms`);
+
             this.IncrementarProcessoCarregandoAplicacao();
 
             if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
@@ -123,6 +129,9 @@
 
             console.log(" ANTES DE CARREGAR O DOCUMENTO PRINCIPAL");
 
+
+            const swUiComponents = Stopwatch.StartNew();
+            console.time("inicializar-componentes-ui");
             await this.InicializarRotasAsync();
             this.IncrementarProcessoCarregandoAplicacao();
             await this.AntesInicializarDocumentoPrincipalAsync();
@@ -131,6 +140,9 @@
             this.IncrementarProcessoCarregandoAplicacao();
             await this.DepoisInicializarDocumentoPrincipalAsync();
             this.IncrementarProcessoCarregandoAplicacao();
+
+            console.timeEnd("inicializar-componentes-ui");
+            console.log(` Componentes UI inicializados em ${swUiComponents.ElapsedMilliseconds} ms`);
         }
 
         private AdicionarClassBody()
@@ -371,7 +383,7 @@
 
         private Console_Log(provedor: any, e: ConsoleLogArgs)
         {
-            if ((e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta) && ($Configuracao.IsDebug || $Configuracao.IsTeste))
+            if ((e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta) && ($Configuracao.IsDebugOuTeste))
             {
                 ConsoleUtil.InicializarVisualizacaoConsole(e);
             }

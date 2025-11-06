@@ -3,12 +3,14 @@
     export class DebugUtil
     {
 
+        private static __isPodeDesocuparUI: boolean = true;
+         
         public static ThrowAndContinue(mensagem: string)
         {
             try
             {
                 console.error(mensagem);
-                if ($Configuracao.IsDebug)
+                if (Snebur.$Configuracao?.IsDebug)
                 {
                     throw new Erro(mensagem);
                 }
@@ -20,10 +22,28 @@
 
         public static Break(): void
         {
-            if ($Configuracao.IsDebug)
+            if (Snebur.$Configuracao?.IsDebug)
             {
                 debugger;
             }
         }
+
+        public static get IsPodeDesocuparUI(): boolean
+        {
+            if ($Configuracao.IsProducao)
+                return true;
+            return this.__isPodeDesocuparUI;
+        }
+
+        public static PermitirDesocuparUI(): void
+        {
+            this.__isPodeDesocuparUI = true;
+        }
+
+        public static ProibirDesocuparUI(): void
+        {
+            this.__isPodeDesocuparUI = false;
+        }
     }
+
 }

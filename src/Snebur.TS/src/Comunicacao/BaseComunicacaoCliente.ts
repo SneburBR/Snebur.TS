@@ -461,7 +461,7 @@
 
             if (resultadoChamada instanceof ResultadoSessaoUsuarioInvalida)
             {
-                if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+                if ($Configuracao.IsDebugOuTeste)
                 {
                     alert("Reiniciando sessão do usuário -- sessão usuário invalida");
                 }

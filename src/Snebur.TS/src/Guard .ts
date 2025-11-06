@@ -87,5 +87,16 @@
                 throw new Error(`The ${argumentName} is not a valid URI`);
             }
         }
+
+        public static MustBeEmail(
+            value: string | null | undefined,
+            argumentName: string = "value"): asserts value is string
+        {
+            if (value == null)
+                throw new Error(`The email cannot be null or undefined`);
+
+            if (!ValidacaoUtil.IsEmail(value))
+                throw new Error(`The ${argumentName} is not a valid email`);
+        }
     }
 }

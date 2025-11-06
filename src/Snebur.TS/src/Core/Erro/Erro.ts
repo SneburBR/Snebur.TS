@@ -11,7 +11,7 @@
         public constructor(mensagem: string, origem: any, erroInterno?: Error)
         public constructor(mensagem: string, argumento1?: any, argumento2?: any)
         {
-            super(`mensagem ${mensagem} ${Erro.MensagemTeste}`);
+            super(`mensagem ${mensagem}`);
 
             DebugUtil.Break();
 
@@ -35,16 +35,7 @@
                 return String.Empty;
             }
         }
-
-        private static get MensagemTeste()
-        {
-            if ($Configuracao == null || $Configuracao.IsTeste)
-            {
-                return `\r\nObs: Tente simular novamente, anote todos os passos, tire um print do console, e depois passe para  o desenvolvimento. :) `;
-            }
-            return ``;
-        }
-    }
+     }
 
     export class InfoErro
     {

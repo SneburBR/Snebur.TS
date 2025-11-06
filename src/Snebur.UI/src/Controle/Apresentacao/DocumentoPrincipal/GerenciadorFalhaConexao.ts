@@ -79,7 +79,7 @@
             recipienteMensagem.appendChild(tentativa);
             recipienteMensagem.appendChild(tempoSemConexao);
 
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 const botao = ElementoUtil.RetornarNovoElemento("button", "Copiar dados debug", "sn-falha-conexao-botao-debug");
                 botao.addEventListener("click", this.CopiarMensagemDebug.bind(this));
@@ -116,7 +116,7 @@
             //sb.AppendLine(`Tentativa: ${args.Tentativa}`);
             //elementoMensagem.innerHTML = sb.ToHtml();
 
-            if ($Configuracao.IsDebug || $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 const sbDebug = new StringBuilder();
                 sbDebug.AppendLine(`----------------------------------------------------------------------`);
