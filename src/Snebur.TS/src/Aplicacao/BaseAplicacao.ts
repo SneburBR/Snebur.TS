@@ -166,15 +166,14 @@
         {
             super();
 
-
             if (BaseAplicacao.__instancia != null)
             {
-                throw new Erro("Já existe uma aplicação Snebur instanciada");
+                throw new Erro(`Já existe uma instancia aplicação '${BaseAplicacao.__instancia.constructor?.name}'`);
             }
             BaseAplicacao.__instancia = this;
         }
 
-        public async Inicializar() 
+        public async InicializarAplicacaoAsync() :Promise<void>
         {
             this.DefinirVersaoDebug();
             this.InicializarConfiguracoes();
@@ -186,7 +185,7 @@
             this.DataHoraIniciando = new Date();
             const tempoAteInicio = this.DataHoraIniciando.getTime() - $DataHoraInicio.getTime();
 
-            console.log(`Iniciando aplicação. Tempo até aqui (carregar todas classes e metadados etc.) ${tempoAteInicio}  em ms`);
+            console.log(`Iniciando:  (carregar todas classes e metadados etc.) ${tempoAteInicio}  em ms`);
             /*console.error(` Carregar scripts: ${tempoAteInicio.ToDecimal()}s`);*/
 
             await this.InicializarAsync();
@@ -225,8 +224,12 @@
             //this._diferencaDataHoraUtcServidor = await this.RetornarDataHoraUtcServidor();
 
             const stopwatch = Stopwatch.StartNew();
+            
+            console.time("inicializar-sessao-usuario");
             await this.InicializarSessaoUsuarioAsync();
-            console.log(`Tempo de inicialização da sessão do usuário: ${stopwatch.ElapsedMilliseconds}ms`);
+            console.timeEnd("inicializar-sessao-usuario");
+            console.log(`Tempo sessão do usuário: ${stopwatch.ElapsedMilliseconds}ms`);
+            
 
             await this.DepoisInicializarSessaoUsuarioAsync();
 
@@ -482,6 +485,11 @@
         public static get Instancia(): BaseAplicacao
         {
             return BaseAplicacao.__instancia;
+        }
+
+        public static get IsExisteInstancia(): boolean
+        {
+            return BaseAplicacao.__instancia instanceof BaseAplicacao;
         }
 
         //#endregion

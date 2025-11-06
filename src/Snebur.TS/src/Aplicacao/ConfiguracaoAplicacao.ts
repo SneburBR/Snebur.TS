@@ -6,7 +6,6 @@
         IsDebug: boolean;
         IsTeste?: boolean;
 
-        IsNaoAlertarErro?: boolean;
         IsDesativarServicoDepuracao?: boolean;
         IsProtegerUrl?: boolean;
         IsDepuracaoUtilizarHostLocal?: boolean;
