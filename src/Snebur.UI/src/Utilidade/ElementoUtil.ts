@@ -321,9 +321,7 @@
 
 
         }
-
-
-
+         
         public static RetornarPosicaoElemento(refElemento: HTMLElement | string): IClientRect
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
@@ -529,9 +527,7 @@
                 await ThreadUtil.QuebrarAsync();
             }
         }
-
-
-
+         
         public static CriarElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
         {
             return ElementoUtil.RetornarNovoElemento(tag, innerHTML, className);
