@@ -455,7 +455,7 @@
             {
                 let tempo = Stopwatch.StartNew();
                 this.__CarregarFonteIconesInternoAsync(resolver);
-                 
+
                 let isLogNotificado = false;
                 while (!isFonteCarregada && !isFinalzizado)
                 {
@@ -552,12 +552,10 @@
             this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
         }
 
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>): Promise<T>
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueio: (value: TThis) => boolean): Promise<T>
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, identificadorBloqueio: string): Promise<T>
-        public async OcuparAsync<T, TThis extends this = this>(funcAsync: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean)): Promise<T>
+
+        public async OcuparAsync<T>(funcAsync: () => Promise<T>): Promise<T>
         {
-            return this.DocumentoPrincipal?.OcuparAsync(funcAsync, expressaoFlagBloqueioOuIdentificador as any);
+            return this.DocumentoPrincipal?.OcuparAsync(funcAsync);
         }
 
         public override TituloOcupado(titulo: string): void

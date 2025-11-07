@@ -255,7 +255,12 @@
         public override Ocupar(opcao: EnumOpcaoOcupar): void;
         public override Ocupar(isOcuparImeditamente: boolean): void;
         public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): void;
-        public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null, baseControle: BaseControle = this): void
+
+        /*@internal*/
+        public override Ocupar(
+            argumento?: EnumOpcaoOcupar | boolean | string,
+            mensagem: string = null,
+            baseControle: BaseControle = this): void
         {
             const [opcao, titulo] = this.NormalizarArgumentoOcupar(argumento);
             if (!this.IsOcupado)
@@ -323,10 +328,11 @@
 
         private async DesocuparInternoAsync(): Promise<void>
         {
-            if (!DebugUtil.IsPodeDesocuparUI)
+            if (!UILockManager.CanRelease)
             {
                 DebugUtil.Break();
-                throw new ErroOperacaoInvalida("O controle não pode ser desocupado no momento", this);
+                LogUtil.Erro("O controle não pode ser desocupado no momento");
+                return;
             }
              
             this.DesocuparElemento();
@@ -337,7 +343,6 @@
                 (controleFilho as any as IOcuparElemento).DesocuparElemento();
             }
             await this.FecharJanelaOcupadoAsync();
-           
         }
 
         protected override OcuparElemento(): void
