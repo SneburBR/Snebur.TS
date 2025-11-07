@@ -616,11 +616,11 @@
         public Ocupar(opcao: EnumOpcaoOcupar): void;
         public Ocupar(isOcuparImeditamente: boolean): void;
         public Ocupar(opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
-        public Ocupar(opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
+        public Ocupar(argumento1?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
             {
-                $Aplicacao.DocumentoPrincipal.Ocupar(opcaoOcupar as any, mensagem, this);
+                $Aplicacao.DocumentoPrincipal.Ocupar(argumento1 as any, mensagem, this);
             }
             else
             {
@@ -729,33 +729,42 @@
                 }
             });
         }
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>): Promise<T>
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, expressaoFlagBloqueio: (value: TThis) => boolean): Promise<T>
-        public OcuparAsync<T, TThis extends this = this>(funcAsunc: () => Promise<T>, identificadorBloqueio: string): Promise<T>
-        public async OcuparAsync<T, TThis extends this = this>(funcAsync: () => Promise<T>, expressaoFlagBloqueioOuIdentificador?: string | ((value: TThis) => boolean)): Promise<T>
-        {
-            const nomeFlagDeBloqueio = expressaoFlagBloqueioOuIdentificador == null ?
-                "__flagsOcupado__ocupado" : typeof expressaoFlagBloqueioOuIdentificador === "string" ?
-                    "__flagsOcupado__" + expressaoFlagBloqueioOuIdentificador :
-                    ExpressaoUtil.RetornarNomePropriedade(expressaoFlagBloqueioOuIdentificador);
 
-            if ((this as any)[nomeFlagDeBloqueio])
-            {
-                const mensagem = "OcuparAsync - o sistema já está ocupado";
-                console.error(mensagem);
-                if ($Configuracao.IsDebug)
-                {
-                    DebugUtil.ThrowAndContinue(mensagem);
-                }
-                return null;
-            }
-             
+
+        public OcuparAsync<T>(funcAsync: () => Promise<T>): Promise<T>;
+        public OcuparAsync<T>(funcAsync: () => Promise<T>, titulo: string, mensagem: string): Promise<T>;
+        public OcuparAsync<T>(funcAsync: () => Promise<T>, opcao: EnumOpcaoOcupar): Promise<T>;
+        public OcuparAsync<T>(funcAsync: () => Promise<T>, isOcuparImeditamente: boolean): Promise<T>;
+        public OcuparAsync<T>(funcAsync: () => Promise<T>, opcaoOcupar: EnumOpcaoOcupar | boolean | string, mensagem?: string): Promise<T>
+        public OcuparAsync<T>(funcAsync: () => Promise<T>, opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): Promise<T>
+
+        public async OcuparAsync<T>(
+            funcAsync: () => Promise<T>,
+            argumento?: EnumOpcaoOcupar | boolean | string,
+            mensagem?: string): Promise<T>
+        {
+            //const nomeFlagDeBloqueio = expressaoFlagBloqueioOuIdentificador == null ?
+            //    "__flagsOcupado__ocupado" : typeof expressaoFlagBloqueioOuIdentificador === "string" ?
+            //        "__flagsOcupado__" + expressaoFlagBloqueioOuIdentificador :
+            //        ExpressaoUtil.RetornarNomePropriedade(expressaoFlagBloqueioOuIdentificador);
+
+            //if ((this as any)[nomeFlagDeBloqueio])
+            //{
+            //    const mensagem = "OcuparAsync - o sistema já está ocupado";
+            //    console.error(mensagem);
+            //    if ($Configuracao.IsDebug)
+            //    {
+            //        DebugUtil.ThrowAndContinue(mensagem);
+            //    }
+            //    return null;
+            //}
+
             try
             {
-                (this as any)[nomeFlagDeBloqueio] = true;
-                this.Ocupar();
+                /*(this as any)[nomeFlagDeBloqueio] = true;*/
+                this.Ocupar(argumento, mensagem);
 
-                DebugUtil.ProibirDesocuparUI();
+                UILockManager.PreventRelease();
 
                 if (!funcAsync.IsBoundThis)
                 {
@@ -770,8 +779,7 @@
             }
             finally
             {
-                DebugUtil.PermitirDesocuparUI();
-                (this as any)[nomeFlagDeBloqueio] = false;
+                UILockManager.AllowRelease();
                 await this.DesocuparAsync();
             }
         }

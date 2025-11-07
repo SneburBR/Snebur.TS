@@ -2,9 +2,6 @@
 {
     export class DebugUtil
     {
-
-        private static __isPodeDesocuparUI: boolean = true;
-         
         public static ThrowAndContinue(mensagem: string)
         {
             try
@@ -28,22 +25,6 @@
             }
         }
 
-        public static get IsPodeDesocuparUI(): boolean
-        {
-            if ($Configuracao.IsProducao)
-                return true;
-            return this.__isPodeDesocuparUI;
-        }
-
-        public static PermitirDesocuparUI(): void
-        {
-            this.__isPodeDesocuparUI = true;
-        }
-
-        public static ProibirDesocuparUI(): void
-        {
-            this.__isPodeDesocuparUI = false;
-        }
     }
 
 }
