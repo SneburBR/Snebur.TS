@@ -3,6 +3,7 @@
     export abstract class BaseJanelaCadastro<TEntidade extends IEntidade = Entidade> extends Janela   
     {
         private _isNovaEntidade: boolean = false;
+        private _isSalvando: boolean = false;
         private readonly __novaEntidade: TEntidade;
         private readonly __editarEntidade: TEntidade;
 
@@ -29,6 +30,11 @@
         public RotuloBotaoContinuar: string = "Continuar";
 
         protected AtivarEnterSalvar: boolean;
+
+        public get IsSalvando(): boolean
+        {
+            return this._isSalvando;
+        }
 
         public get ViewModel(): EntidadeCadastroViewModel<TEntidade>
         {
@@ -445,7 +451,21 @@
             {
                 return false;
             }
-            return this.SalvarInternoAsync(isFechar);
+            try
+            {
+                this._isSalvando = true;
+                return await this.SalvarInternoAsync(isFechar);
+            }
+            catch (ex)
+            {
+                console.error(`Falha ao salvar entidade do tipo ${this.TipoEntidade.Nome} ${this.Entidade}`, ex);
+                return false;
+            }
+            finally
+            {
+                this._isSalvando = false;
+            }
+            
         }
 
         protected async SalvarInternoAsync(isFechar: boolean = true): Promise<boolean>

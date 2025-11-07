@@ -97,11 +97,11 @@
             {
                 this.OcultarBotaoFechar();
             }
-  
+
             this.EventoCarregado.AddHandler(this.JanelaMensagem_Carregada, this);
             this.ControlePai?.ControlesFilho?.Add(this);
         }
-         
+
         private JanelaMensagem_Carregada(): void
         {
             this.DataSource = this.JanelaMensagemVM;
@@ -156,9 +156,23 @@
 
         public override async MostrarAsync(callback?: (resultado: ResultadoJanelaMensagemArgs) => void): Promise<ResultadoJanelaMensagemArgs>
         {
-            await this.DesocuparAsync();
+            if (this.ControlePai.IsOcupado)
+            {
+                if (this.IsMostrarLogErroSistemaOcupado())
+                {
+                    console.error(`O controle pai ${this.ControlePai.constructor.name} está ocupado ao mostrar a janela mensagem.`);
+                }
+                UILockManager.AllowRelease();
+                await this.DesocuparAsync();
+            }
             return await super.MostrarAsync(callback);
         }
+
+        private IsMostrarLogErroSistemaOcupado(): boolean
+        {
+            return !(this.ControlePai instanceof BaseJanelaCadastro && this.ControlePai.IsSalvando);
+        }
+
         //public override async MostrarAsync(): Promise<ResultadoJanelaMensagemArgs>
         //public override async MostrarAsync(callback: (resultado: ResultadoJanelaMensagemArgs) => void): Promise<void>
         //{
@@ -185,7 +199,7 @@
             if (typeof args === "boolean" && args === false)
             {
                 const resultadoCancelar = this.RetornarRetornarResultadoCancelar();
-                args = new ResultadoJanelaMensagemArgs(this, resultadoCancelar, isFechou );
+                args = new ResultadoJanelaMensagemArgs(this, resultadoCancelar, isFechou);
             }
             if (typeof args === "boolean" && args === true)
             {
@@ -265,7 +279,7 @@
             return JanelaMensagem._janelaAtual;
         }
 
-        public static async AguardarFecharMensagemAsync():Promise<void>
+        public static async AguardarFecharMensagemAsync(): Promise<void>
         {
             const tempo = Stopwatch.StartNew();
             while (this._janelaAtual != null && this._janelaAtual.IsAberta)
@@ -282,14 +296,14 @@
 
     }
 
-	//#region Elementos da apresentação - código gerado automaticamente #
+    //#region Elementos da apresentação - código gerado automaticamente #
 
-	export interface JanelaMensagem
-	{
-		readonly PainelListaBotoes: ui.PainelLista;
-	}
+    export interface JanelaMensagem
+    {
+        readonly PainelListaBotoes: ui.PainelLista;
+    }
 
-	//#endregion
+    //#endregion
 
     export interface OptionsMensagem
     {

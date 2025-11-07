@@ -131,7 +131,7 @@
         {
             super.Inicializar();
 
-            this._isAsync =this.RetornarValorAtributoBoolean(AtributosHtml.IsAsync, false);
+            this._isAsync = this.RetornarValorAtributoBoolean(AtributosHtml.IsAsync, false);
             this.TipoItemLista = this.RetornarTipoItemLista();
             this.RelacoesAberta = this.RetornarValorAtributo(AtributosHtml.RelacoesAberta, null);
             this.IsConsultarTipoAutomaticamente = this.RetornarValorAtributoBoolean(AtributosHtml.ConultarTipoAutomaticamente, false);
@@ -243,7 +243,7 @@
             }
             await ThreadUtil.EsperarAsync(200);
         }
-         
+
         //#region AcessoDados - Pesquisa - Ordenação - Paginação
 
         public ControlePaginacao_PaginacaoAlterada(provedor: ControlePaginacao, e: PaginacaoAlteradaEventArgs): void
@@ -293,11 +293,11 @@
             if (consultaAsync instanceof Promise)
             {
                 //### Adicionado para paginação
-                this.Ocupar(EnumOpcaoOcupar.MostrarJanelaOcupadoImediatamente);
-
-                const resultado = await consultaAsync;
-                await this.AtualizarResultadoConsultaAsync(resultado);
-                await this.DesocuparAsync();
+                await this.OcuparAsync(async () =>
+                {
+                    const resultado = await consultaAsync;
+                    await this.AtualizarResultadoConsultaAsync(resultado);
+                });
             }
         }
 

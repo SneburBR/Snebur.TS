@@ -95,11 +95,8 @@ namespace Snebur
                 const args = new ConsoleLogArgs(tipo, mensagem);
                 console.EventoLog.Notificar(console, args);
             }
-
         };
-
-
-
+         
         const ErrorInternal = function (
             this: Console,
             isDebug: boolean,

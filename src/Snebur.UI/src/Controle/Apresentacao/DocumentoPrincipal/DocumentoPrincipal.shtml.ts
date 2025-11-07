@@ -250,12 +250,16 @@
             return this.__JanelaOcupado?.Progresso ?? 0;
         }
 
+        /*@internal*/
         public override Ocupar(): void;
+        /*@internal*/
         public override Ocupar(titulo: string, mensagem: string): void;
+        /*@internal*/
         public override Ocupar(opcao: EnumOpcaoOcupar): void;
+        /*@internal*/
         public override Ocupar(isOcuparImeditamente: boolean): void;
+        /*@internal*/
         public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): void;
-
         /*@internal*/
         public override Ocupar(
             argumento?: EnumOpcaoOcupar | boolean | string,
@@ -273,12 +277,11 @@
                 {
                     (controleFilho as any as IOcuparElemento).OcuparElemento();
                 }
-                
+
 
                 switch (opcao)
                 {
                     case EnumOpcaoOcupar.NaoMostrarJanelaOcupado:
-                    case EnumOpcaoOcupar.SomenteElemento:
                         //não faz nada;
                         break;
                     case EnumOpcaoOcupar.Padrao:
@@ -297,6 +300,13 @@
                 }
             }
         }
+        //public override OcuparAsync(
+        //    argumento?: EnumOpcaoOcupar | boolean | string,
+        //    mensagem: string = null,
+        //    baseControle: BaseControle = this): void
+        //{
+
+        //}
 
         private NormalizarArgumentoOcupar(argumento: boolean | EnumOpcaoOcupar | string): [EnumOpcaoOcupar, string]
         {
@@ -316,6 +326,7 @@
         }
 
 
+        /*@internal*/
         public override async DesocuparAsync(): Promise<void>
         {
             if (!this.IsOcupado)
@@ -334,9 +345,9 @@
                 LogUtil.Erro("O controle não pode ser desocupado no momento");
                 return;
             }
-             
+
             this.DesocuparElemento();
-             
+
             const controlesFilhos = this.DicionarioControlesFilho.Valores;
             for (const controleFilho of controlesFilhos)
             {

@@ -74,7 +74,8 @@
             return await janela.MostrarAsync();
         }
 
-        public static async MostrarMensagemAsync(controlePai: BaseControle,
+        public static async MostrarMensagemAsync(
+            controlePai: BaseControle,
             titulo: string, mensagem: string,
             opcoes: EnumBotoesJanelaMensagem = EnumBotoesJanelaMensagem.OkEntendi): Promise<ResultadoJanelaMensagemArgs>
         {
