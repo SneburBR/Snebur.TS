@@ -24,9 +24,9 @@
 
             try
             {
-                if (Snebur.$Configuracao && Snebur.$Configuracao.IsDebug)
+                if (Snebur.$Configuracao?.IsDebugOuTeste === true)
                 {
-                    if (Snebur.$Aplicacao && Snebur.$Aplicacao.IsConectadoServicoDepuracao)
+                    if (Snebur.$Aplicacao?.IsConectadoServicoDepuracao === true)
                     {
                         const mensagemLog = new Depuracao.MensagemLog();
                         mensagemLog.Mensagem = mensagem;

@@ -270,6 +270,10 @@
                     this.Elemento?.classList.remove("sn-janela-sair");
                     this.Elemento.classList.add("sn-janela-entrar");
                     await ThreadUtil.QuebrarAsync();
+                    
+                    if (this.IsDispensado)
+                        return;
+
                     this.Centralizar();
                 }
             }

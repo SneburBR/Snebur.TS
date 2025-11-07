@@ -201,10 +201,17 @@ namespace Snebur
 
     String.prototype.substrCompat = function (this: string, from: number, length?: number): string
     {
+        /*eslint-disable*/
+        if (typeof this.substr === "function")
+        {
+            return this.substr(from, length);
+        }
+        /*eslint-enable*/
+
         if (length == null)
         {
             return this.slice(from);
         }
         return this.slice(from, from + length);
-    }
+    };
 }
