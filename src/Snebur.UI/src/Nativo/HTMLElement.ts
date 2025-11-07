@@ -102,27 +102,7 @@ namespace Snebur
         }
     });
 
-
-    //
-    Object.defineProperty(HTMLImageElement.prototype, "UrlImagem", {
-
-        get: function ()
-        {
-            return this.src;
-        },
-        set: function (value: string)
-        {
-            if (!Array.isArray(this.__urlsHistorico))
-            {
-                this.__urlsHistorico = [];
-            }
-            this.__urlsHistorico.push(value);
-            if (this.src !== value)
-            {
-                this.src = value;
-            }
-        }
-    });
+     
      
     if (!HTMLCanvasElement.prototype.toBlob)
     {

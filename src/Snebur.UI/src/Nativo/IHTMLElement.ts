@@ -50,8 +50,12 @@ namespace Snebur.Nativo
     {
         /*TamanhoImagem: Snebur.Dominio.EnumTamanhoImagem;*/
         UrlImagem: string;
+        CarregarImagemAsync(urlImagem: string): Promise<void | Error>;
+        CarregarImagemAsync(urlImagem: string, igorarErro: false): Promise<void | Error>
+        CarregarImagemAsync(urlImagem: string, igorarErro: true): Promise<void | Error>
+        CarregarImagemAsync(urlImagem: string, igorarErro: boolean): Promise<void | Error>
         readonly __urlsHistorico?: string[] | undefined;
-       
+
         /*@override*/
     }
 }
