@@ -2,7 +2,7 @@
 {
     export abstract class BaseUIElemento extends Snebur.ObjetoControladorPropriedade implements IDisposable
     {
-
+        private _debugElementPath: string;
         //#region Constantes
         private static readonly PREFIXO_PROPRIEDADE = "sn-prop-";
         //#endregion
@@ -232,7 +232,7 @@
 
         private RetornarNomePropriedadePrefixoPro(nomeAtributo: string): string
         {
-            const nomePropriedadeAtributo = nomeAtributo.substr(BaseUIElemento.PREFIXO_PROPRIEDADE.length);
+            const nomePropriedadeAtributo = nomeAtributo.substrCompat(BaseUIElemento.PREFIXO_PROPRIEDADE.length);
             const partes = nomePropriedadeAtributo.split("-");
             return String.Join("", partes.Select(x => TextoUtil.FormatarPrimeiraLetraMaiuscula(x)));
         }
@@ -416,7 +416,11 @@
 
         protected HtmlCarregado(): void
         {
-
+            if (Snebur.$Configuracao.IsDebugOuTeste)
+            {
+                this._debugElementPath = DebugUIUtil.BuildIdElementPath(this);
+                this.Elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, this._debugElementPath);
+            }
         }
 
         protected NormalizarHtmlInterno(htmlInterno: string): string
@@ -804,6 +808,11 @@
             if (String.IsNullOrWhiteSpace(elemento.id))
             {
                 elemento.id = ElementoUtil.RetornarNovoIDElemento(this, nomeItemControle);
+                if (Snebur.$Configuracao.IsDebugOuTeste)
+                {
+                    const itemElementPath = this._debugElementPath + "-" + nomeItemControle;
+                    elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, itemElementPath);
+                }
             }
             return elemento.id;
         }

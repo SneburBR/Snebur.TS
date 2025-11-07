@@ -2,6 +2,15 @@
 {
     export class ElementoUtil
     {
+        public static GetElementSiblingIndex(elemento: HTMLElement)
+        {
+            let i = 0;
+            let node: NonDocumentTypeChildNode = elemento;
+            while ((node = node.previousElementSibling) != null)
+                i++;
+            return i;
+        }
+
         private static ContadorElemento: number = 0;
         private static UsarIdCurto: boolean = false;
 
