@@ -22,6 +22,15 @@ namespace Snebur.Comunicacao
             return true;
         }
 
+        public override async RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<d.IContextoSessaoUsuario>
+        {
+            return {
+                IsSessaoAtiva: false,
+                SessaoUsuario: null,
+                Usuario: null
+            };
+        }
+
         public override async FinalizarSessaoUsuarioAsync(identificadorSessaoUsuario: string): Promise<void>
         {
             return;

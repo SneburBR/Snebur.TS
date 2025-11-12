@@ -3,12 +3,18 @@ namespace Snebur.Aplicacao
 {
     export class CacheSessaoUsuario
     {
-        public IdentificadorSessaoUsuario: string;
-        public Credencial: d.ICredencialUsuario;
+        public readonly IdentificadorSessaoUsuario: string;
+        public readonly Credencial: d.ICredencialUsuario;
 
-        public constructor()
+        public constructor(identificadorSessaoUsuario: string, credencial: d.ICredencialUsuario)
         {
-            this.Credencial = {} as d.ICredencialUsuario;
+            this.IdentificadorSessaoUsuario = identificadorSessaoUsuario;
+            this.Credencial = {
+                IdentificadorUsuario: credencial.IdentificadorAmigavel,
+                Nome: credencial.Nome,
+                Senha: credencial.Senha,
+                IdentificadorAmigavel: credencial.Senha
+            };
         }
 
         public static IsValido(dados: CacheSessaoUsuario): boolean

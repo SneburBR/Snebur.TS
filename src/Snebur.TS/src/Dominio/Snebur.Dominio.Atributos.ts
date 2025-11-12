@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-03 14:43:40
+//@DataHora: 2025-11-12 15:31:18
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -1182,11 +1182,23 @@ namespace Snebur.Dominio.Atributos
     }
     export class ValidacaoMdr5Attribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
     {
+        //#region Private Fields
+        private _ignorarCadastroAntigo: boolean  = false;
+        //#endregion
         
         public constructor(inicializador?: Partial<ValidacaoMdr5Attribute>) 
         {
             super(inicializador);
             this.Inicializar();
+        }
+        
+        public get IgnorarCadastroAntigo(): boolean
+        {
+            return this._ignorarCadastroAntigo;
+        }
+        public set IgnorarCadastroAntigo(value: boolean) 
+        {
+            this.SetProperty("IgnorarCadastroAntigo", this._ignorarCadastroAntigo, this._ignorarCadastroAntigo = value);
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "O campo {0} é invalido.";

@@ -58,7 +58,7 @@
             return this._usuario;
         }
 
-        public set Usuario(value: d.IUsuario)
+        private set Usuario(value: d.IUsuario)
         {
             this.NotificarPropriedadeAlterada("Usuario", this._usuario, this._usuario = value);
             this.NotificarUsuarioLogadoAlterado();
@@ -77,7 +77,7 @@
         {
             return this._sessaoUsuario;
         }
-        public set SessaoUsuario(value: d.ISessaoUsuario)
+        private set SessaoUsuario(value: d.ISessaoUsuario)
         {
             this.NotificarPropriedadeAlterada("SessaoUsuario", this._sessaoUsuario, this._sessaoUsuario = value);
         }
@@ -173,7 +173,7 @@
             BaseAplicacao.__instancia = this;
         }
 
-        public async InicializarAplicacaoAsync() :Promise<void>
+        public async InicializarAplicacaoAsync(): Promise<void>
         {
             this.DefinirVersaoDebug();
             this.InicializarConfiguracoes();
@@ -215,21 +215,26 @@
         {
             this.Servicos.AddRange(this.RetornarServicos());
 
-            this._servicoLogServicoArquivo = this.Servicos.OfType<Snebur.Comunicacao.BaseServicoLogServicoArquivo>(Snebur.Comunicacao.BaseServicoLogServicoArquivo).SingleOrDefault();
+            this._servicoLogServicoArquivo ??= this.Servicos
+                .OfType(Snebur.Comunicacao.BaseServicoLogServicoArquivo)
+                .FirstOrDefault();
             this._gerenciadorServioArquivoPadrao = this.RetornarGerenciadorServicoArquivoPadrao();
 
-            this._servicoUsuario = this.Servicos.OfType<Snebur.Comunicacao.BaseServicoUsuarioCliente>(Snebur.Comunicacao.BaseServicoUsuarioCliente).SingleOrDefault();
-            this._servicoRegrasNegocio = this.Servicos.OfType<Snebur.AcessoDados.ServicoRegrasNegocioCliente>(Snebur.AcessoDados.ServicoRegrasNegocioCliente).SingleOrDefault();
+            this._servicoUsuario ??= this.Servicos
+                .OfType(Snebur.Comunicacao.BaseServicoUsuarioCliente).FirstOrDefault();
+
+            this._servicoRegrasNegocio ??= this.Servicos
+                .OfType(Snebur.AcessoDados.ServicoRegrasNegocioCliente).FirstOrDefault();
 
             //this._diferencaDataHoraUtcServidor = await this.RetornarDataHoraUtcServidor();
 
             const stopwatch = Stopwatch.StartNew();
-            
+
             console.time("inicializar-sessao-usuario");
             await this.InicializarSessaoUsuarioAsync();
             console.timeEnd("inicializar-sessao-usuario");
             console.log(`Tempo sessão do usuário: ${stopwatch.ElapsedMilliseconds}ms`);
-            
+
 
             await this.DepoisInicializarSessaoUsuarioAsync();
 
@@ -244,6 +249,19 @@
                 console.warn("A URL dos serviço workers não foi definida");
             }
             console.log(`UrlServicosWorker : ${$Configuracao.UrlServicosWorker}`);
+
+        }
+
+        protected SetServicoUsuario(servicoUsuario: Snebur.Comunicacao.IServicoUsuario)
+        {
+            if (servicoUsuario != null)
+            {
+                if (!c.ServicoUsuarioUtil.IsServicoUsuario(servicoUsuario))
+                {
+                    throw new Erro("O serviço usuário informado não implementa a interface IServicoUsuario");
+                }
+            }
+            this._servicoUsuario = servicoUsuario;
         }
 
         private InicializarConfiguracoes()
@@ -340,18 +358,58 @@
                 throw new ErroNaoDefinido("O serviço usuário não foi definido", this);
             }
 
-            const isSessaoUsuarioAtiva = await this.ServicoUsuario.SessaoUsuarioAtivaAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
-            if (isSessaoUsuarioAtiva)
+            const contextoSessaoUsuario = await this.ServicoUsuario.RetornarContextoSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
+            if (contextoSessaoUsuario.IsSessaoAtiva)
             {
-                const usuario = await this.ServicoUsuario.RetornarUsuarioAsync(credencialUsuario);
-                this.Usuario = usuario;
-                this.SessaoUsuario = await this.ServicoUsuario.RetornarSessaoUsuarioAsync(this.IdentificadorSessaoUsuario);    /*throw new Erro("Usuário não está definido");*/
+                await this.SetContextoSessaoUsuarioAsync(contextoSessaoUsuario);
             }
             else
             {
-                u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
-                await this.InicializarSessaoUsuarioAsync();
+                await this.InicializarSessaoUsuarioAnonimaAsync();
             }
+            //const isSessaoUsuarioAtiva = await this.ServicoUsuario.SessaoUsuarioAtivaAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
+            //if (isSessaoUsuarioAtiva)
+            //{
+            //    const usuario = await this.ServicoUsuario.RetornarUsuarioAsync(credencialUsuario);
+            //    this.Usuario = usuario;
+            //    this.SessaoUsuario = await this.ServicoUsuario.RetornarSessaoUsuarioAsync(this.IdentificadorSessaoUsuario);    /*throw new Erro("Usuário não está definido");*/
+            //}
+            //else
+            //{
+            //    await this.InicializarSessaoUsuarioAnonimaAsync();
+            //    if (credencialUsuario.IsAnonimo)
+            //    {
+            //        console.error(`A sessão anônima não está ativa. Iniciando nova sessão anônima.`);
+            //    }
+            //    u.SessaoUsuarioUtil.SalvarSessaoAnonima();
+
+            //    await this.InicializarSessaoUsuarioAsync();
+            //}
+        }
+
+        protected async InicializarSessaoUsuarioAnonimaAsync()
+        {
+            u.SessaoUsuarioUtil.SalvarSessaoAnonima();
+            this.Usuario = null;
+            const credencialUsuario = this.CredencialUsuario;
+            if (!credencialUsuario.IsAnonimo)
+            {
+                throw new Error("Falha ao salvar sessão anônima");
+            }
+            const contexoSessaoUsuario = await this.ServicoUsuario.RetornarContextoSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
+            if (!contexoSessaoUsuario.IsSessaoAtiva)
+            {
+                throw new Error("Falha ao iniciar sessão anônima");
+            }
+            await this.SetContextoSessaoUsuarioAsync(contexoSessaoUsuario);
+        }
+
+        protected async SetContextoSessaoUsuarioAsync(contextoSessaoUsuario: d.IContextoSessaoUsuario): Promise<void>
+        {
+            Guard.NotNull(contextoSessaoUsuario.Usuario, "contextoSessaoUsuario.Usuario");
+            Guard.NotNull(contextoSessaoUsuario.SessaoUsuario, "contextoSessaoUsuario.SessaoUsuario");
+            this.Usuario = contextoSessaoUsuario.Usuario;
+            this.SessaoUsuario = contextoSessaoUsuario.SessaoUsuario;
         }
 
         protected async DepoisInicializarSessaoUsuarioAsync(): Promise<void>
@@ -418,10 +476,9 @@
         {
             await this.FinalizarSessaoUsuarioAsync();
             await this.AntesSairAsync();
-
             u.CookieUtil.Remover(u.SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO);
             u.SessionStorageUtil.ClearAll();
-            u.SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
+            await this.InicializarSessaoUsuarioAnonimaAsync();
 
             this.RedirecionarAoSair();
             console.warn("Redirecionando");

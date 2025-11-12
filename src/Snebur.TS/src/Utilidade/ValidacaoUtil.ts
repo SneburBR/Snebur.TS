@@ -884,8 +884,8 @@
 
         public static CredencialValida(credencial1: s.Credencial, credencial2: s.Credencial)
         {
-            return credencial1.IdentificadorUsuario === credencial2.IdentificadorUsuario &&
-                credencial1.Senha === credencial2.Senha;
+            return CredencialUtil.ValidarCredencial(credencial1, credencial2);
+           
         }
 
         public static IsHora(horaString: string): boolean

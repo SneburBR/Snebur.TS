@@ -3,6 +3,7 @@
     export class SessaoUsuarioUtil
     {
         public static readonly CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
+        public static readonly CHAVE_DADOS_CREDENCIAL_USUARI: string = "CHAVE_CREDENCIAL_USUARIO";
 
         public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessao 
         {
@@ -23,12 +24,11 @@
         {
             const cache = SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
             const credencial = new s.CredencialUsuario({
-                IdentificadorUsuario : cache.Credencial.IdentificadorUsuario,
+                IdentificadorUsuario: cache.Credencial.IdentificadorUsuario,
                 Senha: cache.Credencial.Senha,
                 Nome: cache.Credencial.Nome,
                 IdentificadorAmigavel: cache.Credencial.IdentificadorAmigavel
             });
-           
             return credencial;
         }
 
@@ -43,13 +43,8 @@
             identificadorSessaoUsuario: string,
             isManterConectado: boolean): void
         {
-            const cache = new ap.CacheSessaoUsuario();
-            cache.IdentificadorSessaoUsuario = identificadorSessaoUsuario;
-            cache.Credencial.IdentificadorUsuario = credencial.IdentificadorUsuario;
-            cache.Credencial.Senha = credencial.Senha;
-            cache.Credencial.IdentificadorAmigavel = credencial.IdentificadorAmigavel;
-            cache.Credencial.Nome = credencial.Nome;
 
+            const cache = new ap.CacheSessaoUsuario(identificadorSessaoUsuario, credencial);
             const json = JSON.stringify(cache);
             CookieUtil.SalvarCookie(SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO, json, isManterConectado);
         }
@@ -71,50 +66,39 @@
             credencialCache.IdentificadorAmigavel = identificadorAmiguavel;
             credencialCache.IdentificadorUsuario = usuario.IdentificadorUsuario;
             credencialCache.Senha = credencial.Senha;
-            SessaoUsuarioUtil.SalvarSessaoUsuario(credencialCache, identificadorSessaoUsuario, isManterConectado);
-            $Aplicacao.Usuario = usuario;
+
+            SessaoUsuarioUtil.SalvarSessaoUsuario(
+                credencialCache,
+                identificadorSessaoUsuario,
+                isManterConectado);
             await $Aplicacao.InicializarSessaoUsuarioAsync();
         }
-
-        //public static InicializarNovaSessaoUsuarioAsync(usuario: d.IUsuario, callback: Callback): void
-        //{
-        //    let identificadorSessaoUsuario = GuidUtil.RetornarNovoGuid();
-        //    let credencial = new s.CredencialUsuario();
-        //    credencial.IdentificadorUsuario = usuario.IdentificadorUsuario;
-        //    credencial.Senha = usuario.Senha;
-        //    this.SalvarSessaoUsuario(credencial, identificadorSessaoUsuario);
-        //    callback();
-        //}
 
         private static RetornarCacheSessaoUsuairo(): ap.CacheSessaoUsuario
         {
             const jsonCacheSessaoUsuario = CookieUtil.RetornarCookie(SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO);
             if (String.IsNullOrEmpty(jsonCacheSessaoUsuario))
             {
-                SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
+                this.SalvarSessaoAnonima();
                 return SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
             }
             const dados: ap.CacheSessaoUsuario = JSON.parse(jsonCacheSessaoUsuario);
             if (!ap.CacheSessaoUsuario.IsValido(dados))
             {
                 LogUtil.Erro(new ErroOperacaoInvalida("O dados da sessão usuário salva no cookie são inválidos", this));
-                SessaoUsuarioUtil.IniciarNovaSessaoUsuarioAnonima();
+                this.SalvarSessaoAnonima();
                 return SessaoUsuarioUtil.RetornarCacheSessaoUsuairo();
             }
             return dados;
         }
 
-        public static IniciarNovaSessaoUsuarioAnonima(): void   
+        /*@internal*/
+        public static SalvarSessaoAnonima(): void
         {
             this.SalvarSessaoUsuario(
                 s.CredencialAnonimo.Anonimo,
                 GuidUtil.RetornarNovoGuid(),
                 true);
-
-            if ($Aplicacao instanceof Snebur.Aplicacao.BaseAplicacao)
-            {
-                $Aplicacao.Usuario = null;
-            }
         }
 
         public static async SairAsync()

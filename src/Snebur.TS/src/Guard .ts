@@ -98,5 +98,16 @@
             if (!ValidacaoUtil.IsEmail(value))
                 throw new Error(`The ${argumentName} is not a valid email`);
         }
+
+        public static EnumDefined<TEnum>(
+            construtorEnum: TEnum,
+            value: TEnum[keyof TEnum],
+            argumentName: string = "value"): asserts value is TEnum[keyof TEnum]
+        {
+            if (!EnumUtil.IsDefindo(construtorEnum, value))
+            {
+                throw new Error(`The ${argumentName} is not a valid value of ${construtorEnum?.constructor.name}`);
+            }
+        }
     }
 }

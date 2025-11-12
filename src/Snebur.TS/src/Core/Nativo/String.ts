@@ -110,19 +110,17 @@ namespace Snebur
                 //    return (this.toLowerCase().trim() === obj.toLowerCase().trim());
                 //}
             }
+             
+            if (obj == null)
+            {
+                return this?.trim().length === 0;
+            }
 
             if (typeof comparacao === "boolean" && comparacao)
             {
                 return (this.toLowerCase().trim() === obj.toLowerCase().trim());
             }
-
-            if (obj === null)
-            {
-                return this?.trim().length === 0;
-            }
             return this.toString() === obj;
-
-
         },
         writable: false,
         configurable: false,

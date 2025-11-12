@@ -5,6 +5,10 @@ namespace Snebur.Utilidade
     {
         public static RetornarHash(argumento: ArrayBuffer | Uint8Array | string): string
         {
+            if (argumento == null)
+            {
+                return "";
+            }
             return md5(argumento);
         }
 

@@ -22,6 +22,8 @@
 
         SessaoUsuarioAtivaAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<boolean>;
 
+        RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<d.IContextoSessaoUsuario>;
+         
         RetornarUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<d.IUsuario>;
 
         AutenticarAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<c.ResultadoAutenticacao>;

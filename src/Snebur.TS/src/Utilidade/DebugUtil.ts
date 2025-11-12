@@ -9,7 +9,7 @@
                 console.error(mensagem);
                 if (Snebur.$Configuracao?.IsDebug)
                 {
-                    throw new Erro(mensagem);
+                    DebugUtil.Break();
                 }
             }
             catch /*eslint-disable*/
@@ -24,7 +24,5 @@
                 debugger;
             }
         }
-
     }
-
 }
