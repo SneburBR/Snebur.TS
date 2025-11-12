@@ -71,7 +71,7 @@
 
             if ($Configuracao.IsDebugOuTeste &&
                 Snebur.$Aplicacao.DocumentoPrincipal.IsOcupado &&
-                !resultadoNormalizado.IsSucesso  )
+                !resultadoNormalizado.IsSucesso)
             {
                 const nomeApresentacao = this.ControleApresentacaoPai?.___NomeConstrutor ?? this.ControlePai.Nome;
                 const mensagem = `Atenção, O controle ${nomeApresentacao} está sendo  dispensado sem desocupar.
@@ -81,7 +81,7 @@
 
                 DebugUtil.ThrowAndContinue(mensagem);
 
-                await Snebur.$Aplicacao.DocumentoPrincipal.DesocuparAsync();
+                await Snebur.$Aplicacao.DocumentoPrincipal.ForcarDesocupacaoAsync();
             }
         }
 

@@ -547,10 +547,10 @@
             return this.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
         }
 
-        public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null): void
-        {
-            this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
-        }
+        //public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null): void
+        //{
+        //    this.DocumentoPrincipal?.Ocupar(argumento, mensagem)
+        //}
 
 
         public async OcuparAsync<T>(funcAsync: () => Promise<T>): Promise<T>
@@ -573,9 +573,14 @@
             return this.DocumentoPrincipal?.ProgressoOcupado(progresso);
         }
 
-        public override DesocuparAsync(): Promise<void>
+        //public override DesocuparAsync(): Promise<void>
+        //{
+        //    return this.DocumentoPrincipal?.DesocuparAsync();
+        //}
+
+        public override AguardarDesocuparAsync(): Promise<void>
         {
-            return this.DocumentoPrincipal?.DesocuparAsync();
+            return this.DocumentoPrincipal?.AguardarDesocuparAsync();
         }
 
         //#endregion Desocupar
@@ -632,6 +637,7 @@ namespace Snebur.Aplicacao
         TituloOcupado(mensagem: string): void;
         ProgressoOcupado(progresso: number): void;
         DesocuparAsync(): Promise<void>
+        AguardarDesocuparAsync(): Promise<void>
 
         RetornarBarraEnvio(documentoPrincipal: ui.DocumentoPrincipal): ui.BarraEnvioArquivos;
         NotificarControleCarregado(controle: ui.BaseControle): void;

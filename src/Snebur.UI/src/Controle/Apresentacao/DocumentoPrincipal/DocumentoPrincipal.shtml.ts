@@ -8,6 +8,7 @@
         private static readonly CSS_MOSTRAR_FUNDO_OCUPADO = "sn-fundo-ocupado--mostrar";
 
         private readonly DicionarioNavegador = new DicionarioSimples<BaseNavegador>();
+        private readonly _callbackOcupado: Array<() => void> = [];
         protected _titulo: string;
         private __NavegadorPrincipal: NavegadorPrincipal;
         private __JanelaOcupado: JanelaOcupado;
@@ -250,21 +251,10 @@
             return this.__JanelaOcupado?.Progresso ?? 0;
         }
 
-        /*@internal*/
-        public override Ocupar(): void;
-        /*@internal*/
-        public override Ocupar(titulo: string, mensagem: string): void;
-        /*@internal*/
-        public override Ocupar(opcao: EnumOpcaoOcupar): void;
-        /*@internal*/
-        public override Ocupar(isOcuparImeditamente: boolean): void;
-        /*@internal*/
-        public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): void;
-        /*@internal*/
-        public override Ocupar(
+        private OcuparDocumento(
             argumento?: EnumOpcaoOcupar | boolean | string,
             mensagem: string = null,
-            baseControle: BaseControle = this): void
+            baseControle: BaseControle = null): void
         {
             const [opcao, titulo] = this.NormalizarArgumentoOcupar(argumento);
             if (!this.IsOcupado)
@@ -300,6 +290,84 @@
                 }
             }
         }
+
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>): Promise<T>;
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>, titulo: string, mensagem: string): Promise<T>;
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>, opcao: EnumOpcaoOcupar): Promise<T>;
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>, isOcuparImeditamente: boolean): Promise<T>;
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>, opcaoOcupar: EnumOpcaoOcupar | boolean | string, mensagem?: string): Promise<T>
+        public override OcuparAsync<T>(funcAsync: () => Promise<T>, opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string, baseControle?: BaseControle): Promise<T>
+
+        public override async OcuparAsync<T>(
+            funcAsync: () => Promise<T>,
+            argumento: EnumOpcaoOcupar | boolean | string = undefined,
+            mensagem: string = undefined,
+            baseControle: BaseControle = this
+        ): Promise<T>
+        {
+            try
+            {
+                if (this.IsOcupado)
+                {
+                    console.error("OcuparAsync - o sistema já está ocupado");
+                    await this.AguardarDesocupacaoAsync();
+                }
+                /*(this as any)[nomeFlagDeBloqueio] = true;*/
+                await this.AntesOcuparAsync();
+                this.OcuparDocumento(argumento, mensagem, baseControle);
+
+                UILockManager.PreventRelease();
+
+                if (!funcAsync.IsBoundThis)
+                {
+                    funcAsync = funcAsync.bind(baseControle);
+                }
+                return await funcAsync();
+            }
+            catch (erro)
+            {
+                console.error(erro);
+                throw erro;
+            }
+            finally
+            {
+                UILockManager.AllowRelease();
+                await this.DesocuparDocumentoAsync();
+                this.ResolvingCallbackAguardandoDesocupar();
+            }
+        }
+
+
+        public AguardarDesocuparAsync(): Promise<void>  
+        {
+            if (!this.IsOcupado)
+            {
+                return Promise.resolve();
+            }
+
+            return new Promise<void>((resolver) =>
+            {
+                this._callbackOcupado.push(resolver);
+            });
+        }
+
+
+        private ResolvingCallbackAguardandoDesocupar()
+        {
+            while (this._callbackOcupado.length > 0)
+            {
+                const callback = this._callbackOcupado.shift();
+                try
+                {
+                    callback();
+                }
+                catch (erro)
+                {
+                    console.error(erro);
+                }
+            }
+
+        }
         //public override OcuparAsync(
         //    argumento?: EnumOpcaoOcupar | boolean | string,
         //    mensagem: string = null,
@@ -325,9 +393,17 @@
             return [EnumOpcaoOcupar.Padrao, null];
         }
 
+        public override async ForcarDesocupacaoAsync(): Promise<void>
+        {
+            if (!this.IsOcupado)
+            {
+                return;
+            }
+            console.warn("ForcarDesocupacaoAsync -Isso pode causar comportamentos inesperados.");
+            await this.DesocuparDocumentoAsync();
+        }
 
-        /*@internal*/
-        public override async DesocuparAsync(): Promise<void>
+        private async DesocuparDocumentoAsync(): Promise<void>
         {
             if (!this.IsOcupado)
             {

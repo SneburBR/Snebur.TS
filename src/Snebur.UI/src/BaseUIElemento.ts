@@ -937,6 +937,17 @@
             this.OcultarElemento();
 
         }
+
+        private async DesocuparAsync(): Promise<void>
+        {
+            //metodo protegito para evitar sobrescrita
+        }
+
+        private Ocupar(): void
+        {
+
+        }
+
         //#endregion
 
         //#region IDisposable 

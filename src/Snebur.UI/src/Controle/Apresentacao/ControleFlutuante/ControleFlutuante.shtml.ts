@@ -428,7 +428,7 @@
 
                 if (EstiloUtil.IsPosicaoZerada(posicaoElementoRelativo))
                 {
-                    console.error(`Elemento relativo do controle flutuante ${this.___NomeConstrutor} não está visível ou não possui posição elementoRelativo.getBoundingClientRect(); `);
+                    console.warn(`Elemento relativo do controle flutuante ${this.___NomeConstrutor} não está visível ou não possui posição elementoRelativo.getBoundingClientRect(); `);
                 }
 
                 const tamanhoFonteDocumento = EstiloUtil.TamanhoFonteDocumento;

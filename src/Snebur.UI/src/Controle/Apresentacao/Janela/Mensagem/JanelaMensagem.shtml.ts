@@ -163,7 +163,7 @@
                     console.error(`O controle pai ${this.ControlePai.constructor.name} está ocupado ao mostrar a janela mensagem.`);
                 }
                 UILockManager.AllowRelease();
-                await this.DesocuparAsync();
+                await this.ForcarDesocupacaoAsync();
             }
             return await super.MostrarAsync(callback);
         }

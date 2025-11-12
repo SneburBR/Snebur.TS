@@ -759,6 +759,20 @@
             }
         }
 
+        protected CheckIsSucesso(argumento: boolean | sn.ui.ResultadoFecharJanelaArgs)
+        {
+            if (argumento == null)
+                return false;
+
+            if (typeof argumento === "boolean")
+                return argumento === true;
+
+            if (argumento instanceof ui.ResultadoFecharJanelaArgs)
+                return argumento.IsSucesso === true;
+
+            return false;
+        }
+
         public override Dispose()
         {
             if (!this.IsDispensado)

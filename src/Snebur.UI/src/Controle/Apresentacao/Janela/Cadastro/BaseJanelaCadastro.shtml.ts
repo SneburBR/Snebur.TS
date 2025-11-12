@@ -505,27 +505,22 @@
             const resultadoSalvar = await this.Contexto.SalvarAsync(entidade);
             if (!resultadoSalvar.IsSucesso)
             {
-                if ($Configuracao.IsDebug)
-                {
-                    const mensagem = `Serviços dados: ${this.Contexto.UrlServico} <br />
+                const mensagem = `Serviços dados: ${this.Contexto.UrlServico} <br />
                                       ${resultadoSalvar.MensagemErro} <br />
                                       ${String.Join("<br />", resultadoSalvar.ErrosValidacao.Select(x => x.Mensagem))}`;
 
-                    alert(mensagem);
-                    throw new Erro(mensagem);
-                }
+                console.error(mensagem);
 
-                const tituloErro = "OPS!";
-                const mensagemErro = "Desculpe, mas não possível salvar a alteração";
-
-                await ui.MensagemUtil.MostrarMensagemAsync(this, tituloErro, mensagemErro, EnumBotoesJanelaMensagem.Ok);
+                await ui.MensagemUtil.MostrarMensagemErroSalvarAsync(this, resultadoSalvar);
                 return resultadoSalvar;
             }
+
             if (entidade.Id <= 0)
             {
-                const messagemErro = `O Id  entidade ${entidade.GetType().Nome} não foi atualizado depois de salvo`;
+                const mensagemErro = `O Id  entidade ${entidade.GetType().Nome} não foi atualizado depois de salvo`;
+                console.error(mensagemErro);
                 DebugUtil.Break();
-                throw new Error(messagemErro);
+                throw new Error(mensagemErro);
             }
 
             this.DepoisSalvar();

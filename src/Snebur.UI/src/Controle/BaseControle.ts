@@ -610,30 +610,7 @@
         {
             return $Aplicacao.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
         }
-
-        /*@internal*/
-        public Ocupar(): void;
-        /*@internal*/
-        public Ocupar(titulo: string, mensagem: string): void;
-        /*@internal*/
-        public Ocupar(opcao: EnumOpcaoOcupar): void;
-        /*@internal*/
-        public Ocupar(isOcuparImeditamente: boolean): void;
-        /*@internal*/
-        public Ocupar(opcaoOcupar?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
-        /*@internal*/
-        public Ocupar(argumento1?: EnumOpcaoOcupar | boolean | string, mensagem?: string): void
-        {
-            if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
-            {
-                $Aplicacao.DocumentoPrincipal.Ocupar(argumento1 as any, mensagem, this);
-            }
-            else
-            {
-                this.OcuparElemento();
-            }
-        }
-
+         
         public ProgressoOcupado(processo: number): void
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
@@ -656,30 +633,6 @@
             {
                 $Aplicacao.DocumentoPrincipal.MensagemOcupado(mensagem);
             }
-        }
-
-        /*@internal*/
-        public async DesocuparAsync(): Promise<void>
-        {
-            if (!this.IsOcupado)
-            {
-                return;
-            }
-
-            await this.AntesDesocuparAsync();
-            if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
-            {
-                await $Aplicacao.DocumentoPrincipal.DesocuparAsync();
-            }
-            else
-            {
-                this.DesocuparElemento();
-            }
-        }
-
-        protected async AntesDesocuparAsync(): Promise<void> 
-        {
-            //Pode ser sobrescrito
         }
 
         protected OcuparElemento(): void
@@ -748,6 +701,14 @@
             });
         }
 
+        public async ForcarDesocupacaoAsync(): Promise<void>
+        {
+            if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
+            {
+                return $Aplicacao.DocumentoPrincipal.ForcarDesocupacaoAsync();
+            }
+            this.DesocuparElemento();
+        }
 
         public OcuparAsync<T>(funcAsync: () => Promise<T>): Promise<T>;
         public OcuparAsync<T>(funcAsync: () => Promise<T>, titulo: string, mensagem: string): Promise<T>;
@@ -761,39 +722,33 @@
             argumento?: EnumOpcaoOcupar | boolean | string,
             mensagem?: string): Promise<T>
         {
-            //const nomeFlagDeBloqueio = expressaoFlagBloqueioOuIdentificador == null ?
-            //    "__flagsOcupado__ocupado" : typeof expressaoFlagBloqueioOuIdentificador === "string" ?
-            //        "__flagsOcupado__" + expressaoFlagBloqueioOuIdentificador :
-            //        ExpressaoUtil.RetornarNomePropriedade(expressaoFlagBloqueioOuIdentificador);
+            if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
+            {
+                this.AntesOcuparAsync();
+                const resultado = await $Aplicacao.DocumentoPrincipal.OcuparAsync(funcAsync, argumento, mensagem, this);
+                await this.DepoisDesocuparAsync();
+                return resultado;
+            }
+            return this.OcuparElementoAsync(funcAsync);
+        }
 
-            //if ((this as any)[nomeFlagDeBloqueio])
-            //{
-            //    const mensagem = "OcuparAsync - o sistema já está ocupado";
-            //    console.error(mensagem);
-            //    if ($Configuracao.IsDebug)
-            //    {
-            //        DebugUtil.ThrowAndContinue(mensagem);
-            //    }
-            //    return null;
-            //}
-             
+        protected async AntesOcuparAsync(): Promise<void>
+        {
+            //Pode ser sobrescrito
+        }
+
+        protected async DepoisDesocuparAsync(): Promise<void> 
+        {
+            //Pode ser sobrescrito
+        }
+
+
+        private async OcuparElementoAsync<T>(funcAsync: () => Promise<T>): Promise<T>
+        {
+            this.OcuparElemento();
             try
             {
-                if (this.IsOcupado)
-                {
-                    console.error("OcuparAsync - o sistema já está ocupado");
-                    await this.AguardarDesocupacaoAsync();
-                }
-                /*(this as any)[nomeFlagDeBloqueio] = true;*/
-                await this.AntesOcuparAsync();
-                this.Ocupar(argumento, mensagem);
-
-                UILockManager.PreventRelease();
-
-                if (!funcAsync.IsBoundThis)
-                {
-                    funcAsync = funcAsync.bind(this);
-                }
+                funcAsync = funcAsync.bind(this);
                 return await funcAsync();
             }
             catch (erro)
@@ -803,15 +758,12 @@
             }
             finally
             {
-                UILockManager.AllowRelease();
-                await this.DesocuparAsync();
+                this.DesocuparElemento();
             }
         }
 
-        protected async AntesOcuparAsync(): Promise<void>
-        {
+      
 
-        }
 
         protected async AguardarDesocupacaoAsync(): Promise<void>
         {

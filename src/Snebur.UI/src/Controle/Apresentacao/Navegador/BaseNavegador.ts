@@ -198,6 +198,12 @@
             expressaoParametrosOuChave: Function | DicionarioSimples | string | List<ITupleParametroPagina> = null, valor: any = null,
             isSalvarHistoricoVoltar: boolean = true, isSalvarHistoricoRota: boolean = true): Promise<void>
         {
+            if (this.IsOcupado)
+            {
+                UILockManager.AllowRelease();
+                await this.ForcarDesocupacaoAsync();
+            }
+            
 
             const parametros = this.RetornarParametrosPagina(expressaoParametrosOuChave, valor);
             const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
@@ -313,6 +319,10 @@
             isSalvarHistoricoVoltar: boolean = true,
             isSalvarHistoricoNavegador: boolean = true) 
         {
+            UILockManager.AllowRelease();
+
+            await this.ForcarDesocupacaoAsync();
+
             const parametros = this.RetornarParametrosPagina(expressoesParametrosOuChave, valor);
             const argsAntesNavegar = this.NotificarEventoAntesNavegar(refPagina, parametros);
             if (argsAntesNavegar.IsCancelarNavegacao)
@@ -673,9 +683,7 @@
         }
 
         //url do document.href alterada
-
-
-
+         
         //#endregion
 
         //#region EventoPaginaAltera
