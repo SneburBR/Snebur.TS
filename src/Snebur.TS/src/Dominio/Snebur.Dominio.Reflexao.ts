@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-05 16:41:32
+//@DataHora: 2025-11-11 15:18:29
 //@Artifact: Reflexao
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -1012,8 +1012,10 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Dominio_PropriedadeAlterada.AdicionarPropriedade(__$propriedade_Snebur_Dominio_PropriedadeAlterada_AntigoValor)
     __$tipoBaseDominio_Snebur_Dominio_PropriedadeAlterada.AdicionarPropriedade(__$propriedade_Snebur_Dominio_PropriedadeAlterada_NovoValor)
     const __$propriedade_Snebur_Seguranca_Credencial_IdentificadorUsuario = new Propriedade("IdentificadorUsuario", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Seguranca_Credencial, true, false);
+    const __$propriedade_Snebur_Seguranca_Credencial_IdentificadorAmigavel = new Propriedade("IdentificadorAmigavel", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Seguranca_Credencial, true, false);
     const __$propriedade_Snebur_Seguranca_Credencial_Senha = new Propriedade("Senha", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Seguranca_Credencial, true, false);
     __$tipoBaseDominio_Snebur_Seguranca_Credencial.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_Credencial_IdentificadorUsuario)
+    __$tipoBaseDominio_Snebur_Seguranca_Credencial.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_Credencial_IdentificadorAmigavel)
     __$tipoBaseDominio_Snebur_Seguranca_Credencial.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_Credencial_Senha)
     const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_IsUsuarioEncontrado = new Propriedade("IsUsuarioEncontrado", __$tipoTipoPrimario_Boolean, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha, false, false);
     const __$propriedade_Snebur_Comunicacao_ResultadoRecuperarSenha_Status = new Propriedade("Status", __$tipoEnum_Snebur_Dominio_EnumStatusCodigoRecuperarSenha, __$tipoBaseDominio_Snebur_Comunicacao_ResultadoRecuperarSenha, false, false);
@@ -1028,8 +1030,18 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Dominio_BaseListaTipoComplexo_Json = new Propriedade("Json", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_BaseListaTipoComplexo, false, false);
     __$propriedade_Snebur_Dominio_BaseListaTipoComplexo_Json.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 32767)]);
     __$tipoComplexo_Snebur_Dominio_BaseListaTipoComplexo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_BaseListaTipoComplexo_Json)
+    const __$propriedade_Snebur_Dominio_Cor_Red = new Propriedade("Red", __$tipoTipoPrimario_Byte, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
+    const __$propriedade_Snebur_Dominio_Cor_Green = new Propriedade("Green", __$tipoTipoPrimario_Byte, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
+    const __$propriedade_Snebur_Dominio_Cor_Blue = new Propriedade("Blue", __$tipoTipoPrimario_Byte, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
+    const __$propriedade_Snebur_Dominio_Cor_Alpha = new Propriedade("Alpha", __$tipoTipoPrimario_Byte, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
+    const __$propriedade_Snebur_Dominio_Cor_AlphaDecimal = new Propriedade("AlphaDecimal", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
     const __$propriedade_Snebur_Dominio_Cor_Rgba = new Propriedade("Rgba", __$tipoTipoPrimario_String, __$tipoComplexo_Snebur_Dominio_Cor, false, false);
     __$propriedade_Snebur_Dominio_Cor_Rgba.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 32)]);
+    __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_Red)
+    __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_Green)
+    __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_Blue)
+    __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_Alpha)
+    __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_AlphaDecimal)
     __$tipoComplexo_Snebur_Dominio_Cor.AdicionarPropriedade(__$propriedade_Snebur_Dominio_Cor_Rgba)
     const __$propriedade_Snebur_Dominio_FiltroImagem_Exposicao = new Propriedade("Exposicao", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_FiltroImagem, true, false);
     __$propriedade_Snebur_Dominio_FiltroImagem_Exposicao.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoIntervaloAttribute(-100, 100)]);
@@ -1123,9 +1135,7 @@ namespace Snebur.Reflexao
     __$tipoComplexo_Snebur_Dominio_SistemaOperacional.AdicionarPropriedade(__$propriedade_Snebur_Dominio_SistemaOperacional_Codenome)
     __$tipoComplexo_Snebur_Dominio_SistemaOperacional.AdicionarPropriedade(__$propriedade_Snebur_Dominio_SistemaOperacional_Versao)
     const __$propriedade_Snebur_Seguranca_CredencialUsuario_Nome = new Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Seguranca_CredencialUsuario, true, false);
-    const __$propriedade_Snebur_Seguranca_CredencialUsuario_IdentificadorAmigavel = new Propriedade("IdentificadorAmigavel", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Seguranca_CredencialUsuario, true, false);
     __$tipoBaseDominio_Snebur_Seguranca_CredencialUsuario.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_CredencialUsuario_Nome)
-    __$tipoBaseDominio_Snebur_Seguranca_CredencialUsuario.AdicionarPropriedade(__$propriedade_Snebur_Seguranca_CredencialUsuario_IdentificadorAmigavel)
     const __$propriedade_Snebur_Dominio_Area_Esquerda = new Propriedade("Esquerda", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_Area, true, false);
     const __$propriedade_Snebur_Dominio_Area_Superior = new Propriedade("Superior", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_Area, true, false);
     const __$propriedade_Snebur_Dominio_Area_Direita = new Propriedade("Direita", __$tipoTipoPrimario_Double, __$tipoComplexo_Snebur_Dominio_Area, true, false);

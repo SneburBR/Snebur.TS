@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Interfaces - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-23 17:43:31
+//@DataHora: 2025-11-11 15:33:47
 //@Artifact: Interfaces
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -25,6 +25,7 @@ namespace Snebur.Comunicacao
         ExisteIdentificadorUsuarioAsync(identificadorUsuario: string): Promise<Snebur.Comunicacao.ResultadoExisteIdentificadoUsuario>;
         ValidarCredencialAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Dominio.EnumResultadoValidacaoCredencial>;
         SessaoUsuarioAtivaAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string): Promise<boolean>;
+        RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string): Promise<Snebur.Dominio.IContextoSessaoUsuario>;
         RetornarUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Dominio.IUsuario | null>;
         AutenticarAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Comunicacao.ResultadoAutenticacao>;
         RetornarSessaoUsuarioAsync(identificadorSessaoUsuario: string): Promise<Snebur.Dominio.ISessaoUsuario | null>;
@@ -120,6 +121,12 @@ namespace Snebur.Dominio
     {
         IsCongelado: boolean;
     }
+    export interface IContextoSessaoUsuario
+    {
+        readonly IsSessaoAtiva: boolean;
+        readonly Usuario: Snebur.Dominio.IUsuario | null;
+        readonly SessaoUsuario: Snebur.Dominio.ISessaoUsuario | null;
+    }
     export interface ICor
     {
         readonly Red: number;
@@ -130,13 +137,13 @@ namespace Snebur.Dominio
     }
     export interface ICredencial
     {
-        IdentificadorUsuario: string | null;
-        Senha: string | null;
+        readonly IdentificadorUsuario: string | null;
+        readonly IdentificadorAmigavel?: string | null;
+        readonly Senha: string | null;
     }
     export interface ICredencialUsuario  extends Snebur.Dominio.ICredencial
     {
         Nome: string;
-        IdentificadorAmigavel: string;
     }
     export interface IDeletado  extends Snebur.Dominio.IEntidade
     {

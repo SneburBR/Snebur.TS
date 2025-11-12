@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-10-27 15:11:27
+//@DataHora: 2025-11-11 15:33:47
 //@Artifact: Classes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -633,11 +633,12 @@ namespace Snebur.Dominio
 }
 namespace Snebur.Seguranca
 {
-    export abstract class Credencial  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.ICredencial
+    export abstract class Credencial  extends Snebur.Dominio.BaseDominio
     {
         //#region Private Fields
         protected _isValido: boolean  = false;
         protected _identificadorUsuario: string | null  = null;
+        protected _identificadorAmigavel: string | null  = null;
         protected _senha: string | null  = null;
         //#endregion
         
@@ -658,6 +659,15 @@ namespace Snebur.Seguranca
         public set IdentificadorUsuario(value: string | null) 
         {
             this.SetProperty("IdentificadorUsuario", this._identificadorUsuario, this._identificadorUsuario = value);
+        }
+        
+        public get IdentificadorAmigavel(): string | null
+        {
+            return this._identificadorAmigavel;
+        }
+        public set IdentificadorAmigavel(value: string | null) 
+        {
+            this.SetProperty("IdentificadorAmigavel", this._identificadorAmigavel, this._identificadorAmigavel = value);
         }
         
         public get Senha(): string | null
@@ -682,7 +692,6 @@ namespace Snebur.Seguranca
     {
         //#region Private Fields
         private _nome: string | null  = null;
-        private _identificadorAmigavel: string | null  = null;
         //#endregion
         
         public constructor(inicializador?: Partial<CredencialUsuario>) 
@@ -698,15 +707,6 @@ namespace Snebur.Seguranca
         public set Nome(value: string | null) 
         {
             this.SetProperty("Nome", this._nome, this._nome = value);
-        }
-        
-        public get IdentificadorAmigavel(): string | null
-        {
-            return this._identificadorAmigavel;
-        }
-        public set IdentificadorAmigavel(value: string | null) 
-        {
-            this.SetProperty("IdentificadorAmigavel", this._identificadorAmigavel, this._identificadorAmigavel = value);
         }
     }
 }

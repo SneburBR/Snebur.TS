@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-05 16:41:32
+//@DataHora: 2025-11-10 14:15:53
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -775,7 +775,9 @@ namespace Snebur.Dominio
         Sucesso = 1,
         UsuarioNaoExiste = 2,
         SenhaIncorreta = 3,
-        MaximoTentativaAtingido = 4
+        MaximoTentativaAtingido = 4,
+        EmailInvalido = 5,
+        UsuarioOuSenhaInvalido = 5
         /* TEMP_Undefined = 0 */
     }
     (EnumResultadoValidacaoCredencial as any).Rotulos = {};
@@ -784,6 +786,8 @@ namespace Snebur.Dominio
     (EnumResultadoValidacaoCredencial as any).Rotulos["UsuarioNaoExiste"] = "UsuarioNaoExiste";
     (EnumResultadoValidacaoCredencial as any).Rotulos["SenhaIncorreta"] = "SenhaIncorreta";
     (EnumResultadoValidacaoCredencial as any).Rotulos["MaximoTentativaAtingido"] = "MaximoTentativaAtingido";
+    (EnumResultadoValidacaoCredencial as any).Rotulos["EmailInvalido"] = "EmailInvalido";
+    (EnumResultadoValidacaoCredencial as any).Rotulos["UsuarioOuSenhaInvalido"] = "UsuarioOuSenhaInvalido";
     export enum EnumRotacaoImagem
     {
         Undefined = -1,
