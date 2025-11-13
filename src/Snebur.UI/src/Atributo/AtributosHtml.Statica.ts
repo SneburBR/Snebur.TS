@@ -2,11 +2,11 @@
 {
     export class AtributosHtml
     {
-        
+
         //#region controle apresentação 
         //debug
         public static readonly IsPontilharAreas = new AtributoHtml("sn-is-pontilhar-areas", Boolean);
-        
+
         public static readonly IsEditar = new AtributoHtml("sn-is-editar", Boolean);
         public static readonly IsMarcarLinha = new AtributoHtml("sn-is-marcar-linha", Boolean);
         public static readonly IsMarcarItem = new AtributoHtml("sn-is-marcar-item", Boolean);
@@ -94,9 +94,9 @@
         public static readonly TipoCaixa = new AtributoHtml("ap-tipo-caixa", Snebur.UI.EnumTipoCaixa);
         public static readonly SkipTab = new AtributoHtml("sn-skip-tab", Snebur.UI.EnumTipoCaixa);
 
-         
+
         //#endregion
-         
+
         //public static Lacuna = new AtributoHtml("ap-lacuna", Snebur.UI.EnumDistanciaMargem);
 
         //cores
@@ -116,7 +116,7 @@
 
         //public static readonly AlturaZS = new AtributoHtml("sn-obsoleto-altura", Number);
         //public static readonly LarguraZS = new AtributoHtml("sn-obsoleto-largura", Number);
-         
+
         //Comuns
         public static readonly Nome = new AtributoHtml("sn-nome", String);
         //public static readonly NomeElemento = new AtributoHtml("sn-nome-elemento", String);
@@ -142,7 +142,7 @@
 
         public static readonly IsRotuloVazio = new AtributoHtml("sn-is-rotulo-vazio", Boolean);
         public static readonly IsRotuloFlutuante = new AtributoHtml("sn-is-rotulo-flutuante", Boolean);
-                 
+
         //validação
         public static readonly DestinoMensagemValidacao = new AtributoHtml("sn-destino-mensagem-validacao", String);
         public static readonly ManterEspacoMensagemValidacao = new AtributoHtml("sn-manter-espaco-mensagem-validacao", Boolean);
@@ -174,7 +174,7 @@
         public static readonly ConultarTipoAutomaticamente = new AtributoHtml("sn-consultar-tipo-automaticamente", String);
 
         public static readonly MetodoSalvarEntidadesOrdenada = new AtributoHtml("sn-metodo-salvar-entidades-ordenada", String);
-        
+
 
         //Controle
         public static readonly Controle = new AtributoHtml("sn-controle", String);
@@ -190,7 +190,7 @@
         public static readonly IsSenhaMd5 = new AtributoHtml("sn-is-senha-md5", Boolean);
         public static readonly IgnorarValidacao = new AtributoHtml("sn-ignorar-validacao", Boolean);
         public static readonly ValidarValorPropriedadeAlterado = new AtributoHtml("sn-validar-valor-propriedade-alterado", Boolean);
-         
+
         //Controle flutuante
         public static readonly Flutuante = new AtributoHtml("sn-flutuante", Boolean);
         public static readonly DestinoControleFlutuante = new AtributoHtml("sn-destino-controle-flutuante", Snebur.UI.EnumDestinoControleFlutuante);
@@ -202,7 +202,7 @@
         public static readonly IsSomenteLeitura = new AtributoHtml("sn-somente-leitura", Boolean);
         public static readonly IsAtualizarDigitando = new AtributoHtml("sn-is-atualizar-digitando", Boolean);
         public static readonly DesativarAutoCompletar = new AtributoHtml("sn-desativar-auto-completar", Boolean);
-         
+
         //Controle ordenação
         public static readonly SensibilidadeVertical = new AtributoHtml("sn-sensibilidade-vertical", Boolean);
         //public static AnimacaoOrdenacaoSimples = new AtributoHtml("sn-animacao-ordenacao-simples", Boolean);
@@ -225,7 +225,7 @@
         public static readonly IsAbasCheia = new AtributoHtml("sn-is-abas-cheia", Boolean);
         public static readonly IsFuncaoPodeNavegarAba = new AtributoHtml("sn-funcao-is-pode-navegar-aba", String);
         public static readonly TipoPainelAba = new AtributoHtml("ap-tipo-painel-aba", EnumTipoPainelAba);
-        
+
         //Botão
         public static readonly TipoBotao = new AtributoHtml("sn-tipo-botao", Snebur.UI.EnumTipoBotao);
         public static readonly Multiselecao = new AtributoHtml("sn-multiselecao", Boolean);
@@ -274,8 +274,7 @@
         //Eventos
         public static readonly Click = new AtributoHtml("sn-click", Event);
         public static readonly Enter = new AtributoHtml("sn-enter", Event);
-        /*public static readonly ClickAsync = new AtributoHtml("sn-click-async", Event);*/
-         
+
         //public static DuploClick = new AtributoHtml("sn-duplo-click", Event);
         public static readonly ItemClick = new AtributoHtml("sn-item-click", Event);
 
@@ -295,7 +294,7 @@
         //caixa hora
         public static readonly TipoData = new AtributoHtml("sn-tipo-data", d.EnumTipoData);
         public static readonly IsHorasDia = new AtributoHtml("sn-is-hora-dia", String);
-         
+
         //Binds-dom
         public static readonly BindTexto = new AtributoHtml("sn-bind-texto", String);
         public static readonly BindRotulo = new AtributoHtml("sn-bind-rotulo", String);
@@ -331,14 +330,14 @@
 
         public static readonly UrlImagemPendente = new AtributoHtml("sn-url-imagem-pendente", String);
         public static readonly NomePropriedadeSugestao = new AtributoHtml("sn-nome-propriedade-sugestao", String);
-        
+
 
         //Mascara
         public static readonly Mascara = new AtributoHtml("sn-mascara", String);
 
         //Formatar
         public static readonly Formatar = new AtributoHtml("sn-formatar", Snebur.UI.EnumFormatacao);
-         
+
         //Formatar função e formatar valor são utilizados na caixa slider para ter conflito com os bind        
         public static readonly FormatarFuncao = new AtributoHtml("sn-formatar-funcao", String);
         public static readonly FormatarValor = new AtributoHtml("sn-formatar-valor", Snebur.UI.EnumFormatacao);
@@ -348,7 +347,7 @@
         public static readonly IsAutoSalvar = new AtributoHtml("sn-is-auto-salvar", Boolean);
 
         //Navegador
-        public static readonly TipoAnimacao = new AtributoHtml("ap-tipo-animacao", Snebur.UI.EnumTipoAnimacao );
+        public static readonly TipoAnimacao = new AtributoHtml("ap-tipo-animacao", Snebur.UI.EnumTipoAnimacao);
         /*public static readonly NavegadorPrincipal = new AtributoHtml("sn-navegador-principal", Boolean);*/
         public static readonly IdentificadorNavegador = new AtributoHtml("sn-identificador-navegador", String);
         public static readonly PaginaInicial = new AtributoHtml("sn-pagina-inicial", String);
@@ -369,12 +368,15 @@
 
         private static _atributos: DicionarioSimples<AtributoHtml>;
 
+        private static _atributosEvento: AtributoHtml[];
+        private static _atributosBind: AtributoHtml[];
+
         public static get Atributos(): DicionarioSimples<AtributoHtml>
         {
             if (!u.ValidacaoUtil.IsDefinido(AtributosHtml._atributos))
             {
                 AtributosHtml._atributos = new DicionarioSimples<AtributoHtml>();
-                
+
                 const chaves = Object.keys(AtributosHtml);
                 for (const chave of chaves)
                 {
@@ -389,5 +391,23 @@
             return AtributosHtml._atributos;
         }
         //#endregion
+
+        public static get AtributosEvento(): AtributoHtml[]
+        {
+            if (AtributosHtml._atributosEvento == null)
+            {
+                AtributosHtml._atributosEvento = AtributosHtml.Atributos.Valores.Where(a => a.IsEvent);
+            }
+            return AtributosHtml._atributosEvento;
+        }
+
+        public static get AtributosBind(): AtributoHtml[]
+        {
+            if (AtributosHtml._atributosBind == null)
+            {
+                AtributosHtml._atributosBind = AtributosHtml.Atributos.Valores.Where(a => a.IsBind);
+            }
+            return AtributosHtml._atributosBind;
+        }
     }
 }

@@ -842,7 +842,19 @@
         private async AbrirDepoisReiniciarAsync()
         {
             await ThreadUtil.EsperarAsync(500);
-            this.Mostrar();
+            this.__isReiniciando = true;
+            try
+            {
+                this.Mostrar();
+            }
+            catch
+            {
+                //ignorar
+            }
+            finally
+            {
+                this.__isReiniciando = false;
+            }
         }
 
         public override Dispose(): void

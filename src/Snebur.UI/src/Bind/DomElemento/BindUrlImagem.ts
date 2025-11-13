@@ -17,17 +17,20 @@
             }
         }
 
-        private ElementoImagem_Error(): void
+        private ElementoImagem_Error(e: ErrorEvent): void
         {
-            DebugUtil.Break();
-
             const elementoImagem = this.ElementoImageem;
-            if (elementoImagem != null &&
-                ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem) &&
-                elementoImagem.UrlImagem !== Snebur.$Configuracao.UrlImagemSemImagem)
+            if (elementoImagem != null)
             {
-                elementoImagem.dataset["urlErro"] = elementoImagem.UrlImagem;
-                elementoImagem.UrlImagem = Snebur.$Configuracao.UrlImagemSemImagem;
+                DebugUtil.Break(`Erro carregar imagem:${elementoImagem.UrlImagem}:${e.message}`);
+
+                if (ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem) &&
+                    elementoImagem.UrlImagem !== Snebur.$Configuracao.UrlImagemSemImagem)
+                {
+                    elementoImagem.dataset["urlErro"] = elementoImagem.UrlImagem;
+                    elementoImagem.UrlImagem = Snebur.$Configuracao.UrlImagemSemImagem;
+                }
+                
             }
         }
 
@@ -70,12 +73,6 @@
 
         protected override AtribuirValorDom(valorPropriedade: any): void
         {
-            if (typeof valorPropriedade === "string" &&
-                valorPropriedade.startsWith("https://gabaritos.sigi.com.br/392/1/thumb_3693.png"))
-            {
-                DebugUtil.Break();
-            }
-
             super.AtribuirValorDom(valorPropriedade);
         }
 

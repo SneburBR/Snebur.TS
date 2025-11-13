@@ -79,6 +79,8 @@
 
         protected override async InicializarAsync(): Promise<void>
         {
+            DebugUIUtil.Inicializar();
+
             window.EventoStopPropagation = new Snebur.Evento(this);
 
             this.AdicionarClassBody();
@@ -88,8 +90,9 @@
 
             this.GerenciadorAbrirImagemLocal = new GerenciadorAbrirImagemLocal();
             this.RegistrarIdElementoCorpo();
-
+                    DebugUIUtil.Inicializar();
             await super.InicializarAsync();
+    
             this.IncrementarProcessoCarregandoAplicacao();
 
             const stopwatch = Stopwatch.StartNew();

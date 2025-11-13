@@ -419,6 +419,7 @@
             if (Snebur.$Configuracao.IsDebugOuTeste)
             {
                 this._debugElementPath = DebugUIUtil.BuildIdElementPath(this);
+                DebugUIUtil.SetDebugIrParaCodigo(this);
                 this.Elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, this._debugElementPath);
             }
         }
@@ -812,6 +813,7 @@
                 {
                     const itemElementPath = this._debugElementPath + "-" + nomeItemControle;
                     elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, itemElementPath);
+                    DebugUIUtil.SetDebugIrParaCodigo(this, elemento);
                 }
             }
             return elemento.id;

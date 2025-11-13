@@ -20,7 +20,7 @@
             controlePai.EventosAmarrados.Add(this);
         }
 
-        private RetornarManipulador():  [UIEventoHandler, BaseControle]
+        private RetornarManipulador(): [UIEventoHandler, BaseControle]
         {
             let controle = this.ControlePai as any;
             let manipulador: UIEventoHandler = controle[this.NomeManipulador];

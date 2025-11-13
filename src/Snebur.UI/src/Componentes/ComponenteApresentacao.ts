@@ -177,6 +177,11 @@
             this.AdicionarEventoPropriedadeApresentacaoAlterada(AtributosHtml.VisibilidadeApresentacao, this.VisibilidadeApresentacao_Alterada);
         }
 
+        protected override HtmlCarregado(): void
+        {
+            super.HtmlCarregado();
+        }
+
         protected DepoisInicializarComponentesApresentacao()
         {
             //esse método poderá ser sobre escrito

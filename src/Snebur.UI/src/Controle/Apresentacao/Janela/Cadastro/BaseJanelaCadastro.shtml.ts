@@ -375,9 +375,7 @@
         //#endregion
 
         //#region Salvar
-
-
-
+         
         protected override async IsPodeFecharJanelaAsync(resultado: ResultadoFecharJanelaArgs): Promise<[boolean, ResultadoFecharJanelaArgs]>
         {
             if (!resultado.IsSucesso)
@@ -519,7 +517,6 @@
             {
                 const mensagemErro = `O Id  entidade ${entidade.GetType().Nome} não foi atualizado depois de salvo`;
                 console.error(mensagemErro);
-                DebugUtil.Break();
                 throw new Error(mensagemErro);
             }
 

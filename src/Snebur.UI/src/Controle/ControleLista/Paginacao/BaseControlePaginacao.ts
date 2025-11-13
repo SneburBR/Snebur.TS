@@ -5,12 +5,13 @@
         //#region Propriedades
 
         private _totalPaginas: number = 0;
+        private _isMostrarControleRegistrosPorPagina: boolean = false;
+        private _isOcultarControelRegistrosPorPagina: boolean = false;
 
         protected readonly ControleLista: BaseControleLista;
 
-        public IsMostrarControleRegistrosPorPagina: boolean = false;
         public RegistrosPorPagina: number = ConstantesPaginacao.REGISTROS_POR_PAGINA_PADRAO
-         
+
         public readonly Limites = new ListaObservacao<number>();
         public readonly Paginas = new ListaObservacao<NumeroPaginaViewModel>();
 
@@ -37,10 +38,16 @@
             return !this.IsCarregando && this.TotalPaginas > 1;
         }
 
-      
-     
-
-
+        public get IsMostrarControleRegistrosPorPagina(): boolean
+        {
+            return !this._isOcultarControelRegistrosPorPagina && this._isMostrarControleRegistrosPorPagina;
+        }
+        private set IsMostrarControleRegistrosPorPagina(value: boolean)
+        {
+            this._isMostrarControleRegistrosPorPagina = value;
+            this.NotificarPropriedadeAlterada(x => x.IsMostrarControleRegistrosPorPagina);
+        }
+         
         //#endregion
         public readonly EventoPaginacaoAlterada = new Evento<PaginacaoAlteradaEventArgs>(this);
 
@@ -51,7 +58,6 @@
             this.DeclararPropriedade(x => x.TotalRegistros, Number, this.AtualizarPaginacao);
             this.DeclararPropriedade(x => x.PaginaAtual, Number, this.AtualizarPaginacao);
             this.DeclararPropriedade(x => x.RegistrosPorPagina, Number, this.RegistrosPorPagina_Alterado);
-            this.DeclararPropriedade(x => x.IsMostrarControleRegistrosPorPagina, Boolean);
             this.DeclararPropriedade(x => x.IsCarregando, Boolean, this.IsCarregando_Alterado);
 
             this.ControleLista = this.RetornarControleLista();
@@ -110,6 +116,12 @@
             this._totalPaginas = 0;
             this.TotalRegistros = 0;
             this.PaginaAtual = 1;
+        }
+
+        public OcultarControleRegistrosPorPagina()
+        {
+            this._isOcultarControelRegistrosPorPagina = true;
+            this.NotificarPropriedadeAlterada(x => x.IsMostrarControleRegistrosPorPagina);
         }
 
         //#region Métodos protegidos

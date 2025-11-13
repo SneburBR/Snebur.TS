@@ -15,9 +15,15 @@
     Object.defineProperty(Event.prototype, "stopImmediatePropagation", {
         value: function (this: Event)
         {
-            this.BaseStopImmediatePropagation();
+   
             this.IsCancelado = true;
-            window.EventoStopPropagation?.Notificar(this, new StopPropagationEventArgs(this));
+            const args = new StopPropagationEventArgs(this);
+            window.EventoStopPropagation?.Notificar(this, args);
+            if (args.ContinarPropagacao)
+            {
+                return;
+            }
+            this.BaseStopImmediatePropagation();
         }
     });
 

@@ -417,8 +417,7 @@
         {
             if (!UILockManager.CanRelease)
             {
-                DebugUtil.Break();
-                LogUtil.Erro("O controle não pode ser desocupado no momento");
+                console.error("O controle não pode ser desocupado no momento");
                 return;
             }
 

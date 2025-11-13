@@ -55,6 +55,10 @@
 
         private ManipuladorkEventListenerDomInterno(e: UIEvent): void
         {
+            if ($Configuracao.IsDebug && DebugUIUtil.IsDebugAtivado(e))
+            {
+                return;
+            }
             if (!this.ControlePai.IsDesabilitado)
             {
                 this.ManipuladorkEventListenerDom(e);

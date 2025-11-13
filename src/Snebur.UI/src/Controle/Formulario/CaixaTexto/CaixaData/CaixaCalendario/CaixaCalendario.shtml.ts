@@ -49,6 +49,8 @@
 
         public override Mostrar(): void
         {
+            if (this.__IsReiniciado)
+                return;
             throw new Erro("Utilizar método mostrar await");
         }
 
@@ -452,12 +454,12 @@
         }
     }
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface CaixaCalendario
-    {
-    }
+	export interface CaixaCalendario
+	{
+	}
 
-    //#endregion
+	//#endregion
 
 }

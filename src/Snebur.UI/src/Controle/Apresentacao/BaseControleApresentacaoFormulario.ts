@@ -42,7 +42,7 @@
             {
                 controlesApresentacao = controlesApresentacao.Where(x => x.IsVisivel).ToList();
             }
-             
+
             const todosControlesFormularios = new List<ui.BaseControleFormulario>();
             for (const controleApresenta of controlesApresentacao)
             {
@@ -77,7 +77,7 @@
             }
         }
 
-        private async ValidarFormularioInternoAsync(isSomenteControlesVisiveis:boolean)
+        private async ValidarFormularioInternoAsync(isSomenteControlesVisiveis: boolean)
         {
             const indeficadorTimeout = ValidacaoUtil.ValidarTimeout("Validação do formulário", 5000, true);
             const resultado = await this.ValidarControlesFormularioInternoAsync(isSomenteControlesVisiveis);
@@ -110,18 +110,21 @@
                 }
             }
 
-            const controlesFumulario = this.ControlesFilho.OfType(BaseControleFormulario);
-            let controles = controlesFumulario.Where(x => !x.IsIgnorarValidacao);
-            if (isSomenteControlesVisiveis)
-            {
-                controles = controles.Where(x => x.IsVisivel).ToList();
-            }
-            controles.ForEach(x => x.OcultarMensagemValidacao());
+            const controlesFumulario = isSomenteControlesVisiveis
+                ? this.ControlesFilho.OfType(BaseControleFormulario)
+                    .Where(x => x.IsVisivel).ToList()
+                : this.ControlesFilho.OfType(BaseControleFormulario);
+                 
+            return await this.ValidarControlesFormularioAsync(controlesFumulario);
+        }
 
+
+        public async ValidarControlesFormularioAsync(controles: BaseControleFormulario[]): Promise<ResultadoValidacao>
+        {
+            controles.ForEach(x => x.OcultarMensagemValidacao());
             const validador = new ValidarControlesFormulario(controles);
             const [isSucesso, controle] = await validador.ValidarAsync();
             validador.Dispose();
-
             return new ResultadoValidacao(controle, isSucesso);
         }
 

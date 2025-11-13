@@ -184,9 +184,11 @@
             //{
             this._valorPropriedade = valorNormalizado;
             this.ValorPropriedadeAlterado(antigoValor, valorNormalizado);
+            this.DefinirAtributosDebugValor(value, valorNormalizado);
             //}
         }
 
+        
         protected abstract ValorPropriedadeAlterado(antigoValor: any, novoValor: any): void;
 
         protected RetornarValorPropriedade(): any
@@ -364,7 +366,7 @@
 
         protected NormalizarValorPropriedade(valor: any): any
         {
-            
+
             if (!ValidacaoUtil.IsDefinido(valor, true) &&
                 u.ValidacaoUtil.IsDefinido(this.ValorPadrao, true))
             {
@@ -415,8 +417,6 @@
                 }
             }
 
-
-
             if (this.MaximoCaracteres > 0 && typeof valor === "string" && valor.length > this.MaximoCaracteres)
             {
                 return valor.substring(0, this.MaximoCaracteres);
@@ -427,10 +427,7 @@
                 valor = null;
             }
 
-            if ($Configuracao.IsDebug)
-            {
-                this.Elemento.setAttribute("debug-valor-bind-computado", valor?.toString().substr(0, 10) ?? "null");
-            }
+
             return valor;
         }
 
@@ -624,6 +621,27 @@
                               <br>Defina null para a propriedade, para não mostrar mais esse alerta.`);
                     this._isAlertaFalhaBindMostrado = true;
                 }
+            }
+        }
+
+
+        private DefinirAtributosDebugValor(valor: any, valorComputado: any): void
+        {
+            if ($Configuracao.IsDebug)
+            {
+                const nomePropriedade = this.NomePropriedadeLigacao ?? "propriedade-sem-nome";
+                const atribute = `debug-bind-valor${nomePropriedade}`;
+                const valorAtributo = valor?.toString().substr(0, 10) ?? "null";
+                this.Elemento.setAttribute(atribute, valorAtributo);
+
+                // eslint-disable-next-line eqeqeq
+                if (valor != valorComputado)
+                {
+                    const atributeComputador = `debug-bind-valor-computador-${nomePropriedade}`;
+                    const valorCompuitadoAtributo = valorComputado?.toString().substr(0, 10) ?? "null";
+                    this.Elemento.setAttribute(atributeComputador, valorCompuitadoAtributo);
+                }
+
             }
         }
 
