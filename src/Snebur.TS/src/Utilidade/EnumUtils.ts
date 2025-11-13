@@ -243,8 +243,7 @@
                     return true;
                 }
                 
-                DebugUtil.Break();
-                console.error(`O tipo do valor: $chaveOrValorv} não suportado pelo enum`);
+                console.error(`O tipo do valor: ${chaveOrValor} não suportado pelo enum`);
                 return false;
                 
             }

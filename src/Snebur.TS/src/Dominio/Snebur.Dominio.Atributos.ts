@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Atributos - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-12 15:31:18
+//@DataHora: 2025-11-13 11:04:01
 //@Artifact: Atributos
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -930,6 +930,38 @@ namespace Snebur.Dominio.Atributos
         }
         //#region Static Properties
         public static readonly MensagemValidacao: string = "A '{0}' deve ser superior a data de publicação.";
+        public static readonly MensagemValidacaoComposta: string = "A '{0}' deve ser superior à '{1}'.";
+        public static readonly IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
+        public static readonly IDENTIFICADOR_MENSAGEM_VALIDACAO_COMPOSTA: string = "MensagemValidacaoComposta";
+        //#endregion
+    }
+    export class ValidacaoDataFimAttribute  extends Snebur.Dominio.Atributos.BaseAtributoValidacao
+    {
+        //#region Private Fields
+        private _nomePropriedadeDataInicio: string  = "";
+        //#endregion
+        
+        public constructor(nomePropriedadeDataInicio: string) 
+        {
+            super();
+            if (!Snebur.u.JsonUtil.IsSerializado)
+            {
+                Snebur.Guard.NotNull(nomePropriedadeDataInicio, "nomePropriedadeDataInicio");
+            }
+            this._nomePropriedadeDataInicio = nomePropriedadeDataInicio;
+        }
+        
+        
+        public get NomePropriedadeDataInicio(): string
+        {
+            return this._nomePropriedadeDataInicio;
+        }
+        public set NomePropriedadeDataInicio(value: string) 
+        {
+            this.SetProperty("NomePropriedadeDataInicio", this._nomePropriedadeDataInicio, this._nomePropriedadeDataInicio = value);
+        }
+        //#region Static Properties
+        public static readonly MensagemValidacao: string = "A '{0}' deve ser superior a data de inicio.";
         public static readonly MensagemValidacaoComposta: string = "A '{0}' deve ser superior à '{1}'.";
         public static readonly IDENTIFICADOR_MENSAGEM_VALIDACAO: string = "MensagemValidacao";
         public static readonly IDENTIFICADOR_MENSAGEM_VALIDACAO_COMPOSTA: string = "MensagemValidacaoComposta";

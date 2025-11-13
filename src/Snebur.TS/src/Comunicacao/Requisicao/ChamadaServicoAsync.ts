@@ -41,13 +41,13 @@
 
         public constructor(
             requisicao: Requisicao,
-            url: string,
+            urlServico: string,
             nomeManipuador: string,
             nomeMetodo: string,
             credencial: Snebur.Seguranca.CredencialServico,
             token: string)
         {
-            super(requisicao, url, nomeManipuador, nomeMetodo, credencial, true, token);
+            super(requisicao, urlServico, nomeManipuador, nomeMetodo, credencial, true, token);
 
             this.XmlHttp.onreadystatechange = this.XmlHttp_ReadyStateChange.bind(this);
             this.XmlHttp.onload = this.Xmlhttp_Load.bind(this);
@@ -110,7 +110,7 @@
 
             if ($Configuracao.IsDebug && this._isIntervalAtingido)
             {
-                console.warn(` A requisição ${this.Requisicao.UrlCompleta} concluída em ${this._stopwatch.TotalSeconds}s`);
+                console.warn(` A requisição ${this.Requisicao.UrlRequisicao} concluída em ${this._stopwatch.TotalSeconds}s`);
             }
 
             if (this._isTimeouotAtigindo)
@@ -162,7 +162,7 @@
 
             this._ultimoLogInterval = Date.now();
             this._count++;
-            const mensagem = `A requisição '${this.Requisicao.UrlCompleta}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
+            const mensagem = `A requisição '${this.Requisicao.UrlRequisicao}' está em andamento a ${this._stopwatch?.TotalSeconds}s.`;
             const logHandler = this._count % 10 === 0
                 ? console.error
                 : console.warn;
@@ -185,9 +185,7 @@
                     }
                     default: {
 
-                        const mensagem = `Erro ReadyState servidor, URL: ${this.Requisicao.UrlCompleta}, Código ${this.XmlHttp.status}`;
-                        console.error(mensagem);
-
+                        const mensagem = `Erro ReadyState servidor, URL: ${this.Requisicao.UrlRequisicao}, Código ${this.XmlHttp.status}`;
                         const erro = new ErroComunicacao(mensagem, this.Url, this.XmlHttp.status, this);
                         this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));
                         break;
@@ -203,8 +201,7 @@
                 console.warn("XmlHttp_Error: A chamada de requisição já foi dispensada");
                 return;
             }
-            const mensagem = `Erro serviço OnError  ${this.Requisicao.UrlCompleta}`;
-            console.error(mensagem);
+            const mensagem = `Erro serviço OnError  ${this.Requisicao.UrlRequisicao}`;
 
             const erro = new ErroComunicacao(mensagem, this.Url, this.HttpStatus, this);
             this.FinalizarChamarAsync(this.RetornarResultadoChamadaErro(erro));

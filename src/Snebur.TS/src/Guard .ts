@@ -72,8 +72,7 @@
 
         public static ThrowNotInitialized = function (argumentName: any): never
         {
-            DebugUtil.Break();
-            throw new Error(`O argument ${argumentName} is not initialized.`);
+            throw new Erro(`O argument ${argumentName} is not initialized.`);
         };
 
         public static ValidUri(value: string | null | undefined, argumentName: string = "value"): asserts value is string

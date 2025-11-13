@@ -24,12 +24,12 @@
     {
         if (!String.IsNullOrWhiteSpace((valorPropriedade)))
         {
-            if (!u.InterfaceUtil.IsIEntidade(paiPropriedade))
-            {
-                console.error(`O pai da propriedade do tipo ${paiPropriedade?.GetType().Nome} não é uma implementa  interface IEntidade,
-                               O ValidacaoDataExpiracaoAttribute deve pertence uma entidade ou implementar a Interface IEntidade em caso de ViewModel`);
-                return false;
-            }
+            //if (!u.InterfaceUtil.IsIEntidade(paiPropriedade))
+            //{
+            //    console.error(`O pai da propriedade do tipo ${paiPropriedade?.GetType().Nome} não é uma implementa  interface IEntidade,
+            //                   O ValidacaoDataExpiracaoAttribute deve pertence uma entidade ou implementar a Interface IEntidade em caso de ViewModel`);
+            //    return false;
+            //}
             if (u.ValidacaoUtil.IsDataValida(valorPropriedade))
             {
                 const dataExpiracao = valorPropriedade as Date;

@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-10-16 14:31:30
+//@DataHora: 2025-11-13 14:51:28
 //@Artifact: Classes
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -110,6 +110,57 @@ namespace Snebur.Depuracao
         public set NomeArquivo(value: string) 
         {
             this.SetProperty("NomeArquivo", this._nomeArquivo, this._nomeArquivo = value);
+        }
+    }
+    export class MensagemIrParaCodigo  extends Snebur.Depuracao.Mensagem
+    {
+        //#region Private Fields
+        private _nomeControle: string  = "";
+        private _searchElementPattern: string  = "";
+        private _tagElemento: string  = "";
+        private _namespace: string  = "";
+        //#endregion
+        
+        public constructor(inicializador?: Partial<MensagemIrParaCodigo>) 
+        {
+            super(inicializador);
+            this.Inicializar();
+        }
+        
+        public get NomeControle(): string
+        {
+            return this._nomeControle;
+        }
+        public set NomeControle(value: string) 
+        {
+            this.SetProperty("NomeControle", this._nomeControle, this._nomeControle = value);
+        }
+        
+        public get SearchElementPattern(): string
+        {
+            return this._searchElementPattern;
+        }
+        public set SearchElementPattern(value: string) 
+        {
+            this.SetProperty("SearchElementPattern", this._searchElementPattern, this._searchElementPattern = value);
+        }
+        
+        public get TagElemento(): string
+        {
+            return this._tagElemento;
+        }
+        public set TagElemento(value: string) 
+        {
+            this.SetProperty("TagElemento", this._tagElemento, this._tagElemento = value);
+        }
+        
+        public get Namespace(): string
+        {
+            return this._namespace;
+        }
+        public set Namespace(value: string) 
+        {
+            this.SetProperty("Namespace", this._namespace, this._namespace = value);
         }
     }
     export class MensagemLog  extends Snebur.Depuracao.Mensagem

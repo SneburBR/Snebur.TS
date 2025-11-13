@@ -2,27 +2,25 @@
 {
     export class DebugUtil
     {
+        /*eslint-disable*/
         public static ThrowAndContinue(mensagem: string)
         {
             try
             {
                 console.error(mensagem);
-                if (Snebur.$Configuracao?.IsDebug)
-                {
-                    DebugUtil.Break();
-                }
+                DebugUtil.Break(mensagem);
             }
             catch /*eslint-disable*/
             {
             }
         }
 
-        public static Break(): void
+        public static Break(mensagem: string): void
         {
             if (Snebur.$Configuracao?.IsDebug)
             {
                 debugger;
             }
-        }
+        } 
     }
 }

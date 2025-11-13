@@ -167,7 +167,7 @@
             const valorParametro = parametro.Valor;
             if (valorParametro === undefined)
             {
-                throw new Erro("O valor do parâmetro não foi definido", this);
+                throw new Erro(`O valor do parâmetro ${parametro.Chave} não foi definido`, this);
             }
 
             if (valorParametro === null)

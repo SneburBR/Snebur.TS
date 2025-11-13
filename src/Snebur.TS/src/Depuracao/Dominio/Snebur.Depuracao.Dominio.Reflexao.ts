@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-10-21 11:17:17
+//@DataHora: 2025-11-13 14:51:28
 //@Artifact: Reflexao
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -34,6 +34,7 @@ namespace Snebur.Reflexao
     export const __$tipoBaseDominio_Snebur_Depuracao_Mensagem = new TipoBaseDominio(Snebur.Depuracao.Mensagem,"Mensagem","Snebur.Depuracao","Snebur.Depuracao.Mensagem, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,true);
     export const __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado = new TipoBaseDominio(Snebur.Depuracao.MensagemControleAlterado,"MensagemControleAlterado","Snebur.Depuracao","Snebur.Depuracao.MensagemControleAlterado, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
     export const __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado = new TipoBaseDominio(Snebur.Depuracao.MensagemEstiloCssAlterado,"MensagemEstiloCssAlterado","Snebur.Depuracao","Snebur.Depuracao.MensagemEstiloCssAlterado, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
+    export const __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo = new TipoBaseDominio(Snebur.Depuracao.MensagemIrParaCodigo,"MensagemIrParaCodigo","Snebur.Depuracao","Snebur.Depuracao.MensagemIrParaCodigo, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
     export const __$tipoBaseDominio_Snebur_Depuracao_MensagemLog = new TipoBaseDominio(Snebur.Depuracao.MensagemLog,"MensagemLog","Snebur.Depuracao","Snebur.Depuracao.MensagemLog, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
     export const __$tipoBaseDominio_Snebur_Depuracao_MensagemPing = new TipoBaseDominio(Snebur.Depuracao.MensagemPing,"MensagemPing","Snebur.Depuracao","Snebur.Depuracao.MensagemPing, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
     export const __$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado = new TipoBaseDominio(Snebur.Depuracao.MensagemScriptAlterado,"MensagemScriptAlterado","Snebur.Depuracao","Snebur.Depuracao.MensagemScriptAlterado, Snebur.Depuracao",__$tipoBaseDominio_Snebur_Depuracao_Mensagem,false);
@@ -42,6 +43,7 @@ namespace Snebur.Reflexao
     export const __$tipoListaBaseDominio_Snebur_Depuracao_Mensagem = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.Mensagem", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.Mensagem, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_Mensagem);
     export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemControleAlterado = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemControleAlterado", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemControleAlterado, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado);
     export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemEstiloCssAlterado", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemEstiloCssAlterado, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado);
+    export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemIrParaCodigo", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemIrParaCodigo, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo);
     export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemLog = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemLog", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemLog, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemLog);
     export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemPing = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemPing", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemPing, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemPing);
     export const __$tipoListaBaseDominio_Snebur_Depuracao_MensagemScriptAlterado = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Depuracao.MensagemScriptAlterado", "Snebur.Depuracao", "System.Collections.Generic.List`1[[Snebur.Depuracao.MensagemScriptAlterado, Snebur.Depuracao]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado);
@@ -50,6 +52,7 @@ namespace Snebur.Reflexao
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.Mensagem",__$tipoBaseDominio_Snebur_Depuracao_Mensagem);
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemControleAlterado",__$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado);
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemEstiloCssAlterado",__$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado);
+    $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemIrParaCodigo",__$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo);
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemLog",__$tipoBaseDominio_Snebur_Depuracao_MensagemLog);
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemPing",__$tipoBaseDominio_Snebur_Depuracao_MensagemPing);
     $Reflexao.Tipos.Adicionar("Snebur.Depuracao.MensagemScriptAlterado",__$tipoBaseDominio_Snebur_Depuracao_MensagemScriptAlterado);
@@ -58,6 +61,7 @@ namespace Snebur.Reflexao
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.Mensagem",__$tipoListaBaseDominio_Snebur_Depuracao_Mensagem);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemControleAlterado",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemControleAlterado);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemEstiloCssAlterado",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado);
+    $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemIrParaCodigo",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemLog",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemLog);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemPing",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemPing);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Depuracao.MensagemScriptAlterado",__$tipoListaBaseDominio_Snebur_Depuracao_MensagemScriptAlterado);
@@ -66,6 +70,7 @@ namespace Snebur.Reflexao
     Snebur.Depuracao.Mensagem.__CaminhoTipo = "Snebur.Depuracao.Mensagem";
     Snebur.Depuracao.MensagemControleAlterado.__CaminhoTipo = "Snebur.Depuracao.MensagemControleAlterado";
     Snebur.Depuracao.MensagemEstiloCssAlterado.__CaminhoTipo = "Snebur.Depuracao.MensagemEstiloCssAlterado";
+    Snebur.Depuracao.MensagemIrParaCodigo.__CaminhoTipo = "Snebur.Depuracao.MensagemIrParaCodigo";
     Snebur.Depuracao.MensagemLog.__CaminhoTipo = "Snebur.Depuracao.MensagemLog";
     Snebur.Depuracao.MensagemPing.__CaminhoTipo = "Snebur.Depuracao.MensagemPing";
     Snebur.Depuracao.MensagemScriptAlterado.__CaminhoTipo = "Snebur.Depuracao.MensagemScriptAlterado";
@@ -87,6 +92,14 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Depuracao_MensagemControleAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemControleAlterado_NomeControle)
     const __$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo)
+    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_NomeControle = new Propriedade("NomeControle", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPattern = new Propriedade("SearchElementPattern", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_TagElemento = new Propriedade("TagElemento", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_Namespace = new Propriedade("Namespace", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
+    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_NomeControle)
+    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPattern)
+    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_TagElemento)
+    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_Namespace)
     const __$propriedade_Snebur_Depuracao_MensagemLog_Mensagem = new Propriedade("Mensagem", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
     const __$propriedade_Snebur_Depuracao_MensagemLog_TipoLog = new Propriedade("TipoLog", __$tipoEnum_Snebur_Depuracao_EnumTipoLog, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemLog.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemLog_Mensagem)

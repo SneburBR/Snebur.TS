@@ -4,7 +4,8 @@
     {
         private static MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR: number = 10;
         private static readonly TEMPO_ESPERAR_FALHA = 2;
-        private UrlServico: string
+
+        private _urlServico: string
         private Tentativa: number = 0;
 
         private get Gerencaidor(): GerenciadorRequiscao
@@ -14,16 +15,12 @@
 
         public get UrlRequisicao(): string
         {
-            return this.UrlServico;
-        }
-
-        public get UrlCompleta(): string
-        {
-            return UrlUtil.Combinar(this.UrlRequisicao,
+            return RequisicaoUtil.RetornarUrlRequisicao(
+                this._urlServico,
                 this.NomeManipualdor,
-                this.NomeMetodo, `\\${BaseRequisicao.Contador}\\`);
+                this.NomeMetodo);
         }
-
+          
         public constructor(
             public readonly BaseServico: BaseComunicacaoCliente,
             public readonly NomeManipualdor: string,
@@ -33,7 +30,7 @@
         {
             super();
 
-            this.UrlServico = this.BaseServico.UrlServico;
+            this._urlServico = this.BaseServico.UrlServico;
         }
 
         public override async ExecutarAsync(): Promise<ResultadoChamada>
@@ -52,7 +49,7 @@
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(
                 this,
-                this.UrlServico,
+                this._urlServico,
                 this.NomeManipualdor,
                 this.NomeMetodo,
                 this.Credencial,
@@ -91,16 +88,16 @@
 
             return $Configuracao.IsDebug &&
                 Snebur.$Configuracao.IsAlterarUrlDebug &&
-                this.UrlServico !== this.BaseServico.UrlServicoDebug &&
+                this._urlServico !== this.BaseServico.UrlServicoDebug &&
                 !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug);
         }
 
         public UsarUrlServicoDEBUG()
         {
-            if (this.UrlServico !== this.BaseServico.UrlServicoDebug)
+            if (this._urlServico !== this.BaseServico.UrlServicoDebug)
             {
                 this.BaseServico.UsarUrlServicoDEBUG();
-                this.UrlServico = this.BaseServico.UrlServico;
+                this._urlServico = this.BaseServico.UrlServico;
             }
         }
 
@@ -113,7 +110,7 @@
 
             const sb = new StringBuilder();
             sb.AppendLine(`Falha na requisição interno no servidor (Status) ${chamarServico.HttpStatus}`);
-            sb.AppendLine("URL: " + this.UrlServico);
+            sb.AppendLine("URL: " + this._urlServico);
             sb.AppendLine("Serviço: " + this.NomeManipualdor);
             sb.AppendLine("Operação: " + this.NomeMetodo);
             sb.AppendLine("Tentativa: " + this.Tentativa + 1);
@@ -154,7 +151,7 @@
 
             const args = new FalhaConexaoEventArgs(
                 resultadoChamada,
-                this.UrlServico,
+                this._urlServico,
                 this.NomeManipualdor,
                 this.NomeMetodo,
                 this.Tentativa);
@@ -175,15 +172,14 @@
 
         //#region Normalizar resultado
 
-        
-
-       
-
         //#endregion
 
         public override toString(): string
         {
-            return this.UrlCompleta;
+            return this.UrlRequisicao;
         }
     }
+
+
+
 }

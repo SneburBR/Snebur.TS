@@ -13,7 +13,7 @@
         {
             super(`mensagem ${mensagem}`);
 
-            DebugUtil.Break();
+            DebugUtil.Break(mensagem);
 
             const argumentoErro = (argumento2 instanceof Error) ? argumento2 : argumento1;
             const erroInterno = (argumentoErro instanceof Error) ? argumentoErro : null;

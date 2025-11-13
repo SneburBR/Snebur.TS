@@ -154,6 +154,12 @@
                 Mensagem: mensagem
             });
 
+            if (!this.IsConectado)
+            {
+                console.error(`O servico de depuração não está ativo`);
+                return;
+            }
+                 
             const constratoSerializado = JsonUtil.Serializar(contrato);
             this.ServicoWebScoket.send(constratoSerializado);
         }

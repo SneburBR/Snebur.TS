@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-11 15:18:29
+//@DataHora: 2025-11-13 11:04:01
 //@Artifact: Reflexao
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -866,6 +866,7 @@ namespace Snebur.Reflexao
     Snebur.Dominio.Atributos.ValidacaoCredencialAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoCredencialAttribute";
     Snebur.Dominio.Atributos.ValidacaoDataAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataAttribute";
     Snebur.Dominio.Atributos.ValidacaoDataExpiracaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataExpiracaoAttribute";
+    Snebur.Dominio.Atributos.ValidacaoDataFimAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataFimAttribute";
     Snebur.Dominio.Atributos.ValidacaoDataNascimentoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataNascimentoAttribute";
     Snebur.Dominio.Atributos.ValidacaoDataPublicacaoAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDataPublicacaoAttribute";
     Snebur.Dominio.Atributos.ValidacaoDominioAttribute.__CaminhoTipo = "Snebur.Dominio.Atributos.ValidacaoDominioAttribute";

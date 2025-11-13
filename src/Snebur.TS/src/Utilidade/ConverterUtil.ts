@@ -84,7 +84,6 @@
                 return ConverterUtil.ParaTipoPrimario(valor, type.TipoPrimarioEnum, isNullable);
             }
             console.error(`O valor ${valor} do tipo  ${type.Nome} não foi convertido`);
-            DebugUtil.Break();
             return valor;
         }
 

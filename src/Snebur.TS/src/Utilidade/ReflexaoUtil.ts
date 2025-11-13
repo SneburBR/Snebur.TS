@@ -422,7 +422,7 @@
                 return $Reflexao.Tipos.Item(caminhoTipoLista) as Snebur.Reflexao.BaseTipoLista;
             }
 
-            DebugUtil.Break();
+            DebugUtil.Break(`O tipo da lista não foi encontrado para o tipo ${tipo.Nome}`); 
             if ($Configuracao.IsDebug)
             {
                 throw new Erro(`Não foi possível retornar o tipo da lista para o tipo ${tipo.Nome}`, this);

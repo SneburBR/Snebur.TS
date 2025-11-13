@@ -885,7 +885,7 @@
         public static CredencialValida(credencial1: s.Credencial, credencial2: s.Credencial)
         {
             return CredencialUtil.ValidarCredencial(credencial1, credencial2);
-           
+
         }
 
         public static IsHora(horaString: string): boolean
@@ -908,7 +908,8 @@
             return new Date().AddYears(50);
         }
 
-        public static IsDataValida(data: any): boolean
+
+        public static IsDataValida(data: any): data is Date
         {
             if (this.IsDate(data) && !isNaN(data.getTime()))
             {
@@ -1038,11 +1039,11 @@
                     case (r.EnumTipoPrimario.EnumValor):
 
                         throw new Error(`O tipo enum deve ser validado usando  u.EnumUtil.IsDefind`)
-                        //if (ValidacaoUtil.IsNumber(valorPropriedade, isAceitarString))
-                        //{
-                        //    return (u.ConverterUtil.ParaNumero(valorPropriedade, false) > 0);
-                        //}
-                        //return false;
+                    //if (ValidacaoUtil.IsNumber(valorPropriedade, isAceitarString))
+                    //{
+                    //    return (u.ConverterUtil.ParaNumero(valorPropriedade, false) > 0);
+                    //}
+                    //return false;
                     default:
 
                         throw new ErroNaoSuportado(`O tipo primário não é suportado ${u.EnumUtil.RetornarDescricao(r.EnumTipoPrimario, tipoPrimario)}`, this);

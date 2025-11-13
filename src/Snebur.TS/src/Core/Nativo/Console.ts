@@ -96,7 +96,7 @@ namespace Snebur
                 console.EventoLog.Notificar(console, args);
             }
         };
-         
+
         const ErrorInternal = function (
             this: Console,
             isDebug: boolean,
@@ -104,7 +104,7 @@ namespace Snebur
             base: (...data: any[]) => void,
             ...data: any[]): void
         {
-            DebugUtil.Break();
+            DebugUtil.Break(data[0] as string ?? "sem mensagem");
             logInternal.bind(this)(isDebug, tipo, base, ...data);
         };
 

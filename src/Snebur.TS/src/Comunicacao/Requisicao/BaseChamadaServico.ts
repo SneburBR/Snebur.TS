@@ -13,16 +13,16 @@
 
         public constructor(
             protected readonly Requisicao: Requisicao,
-            url: string,
+            urlServico: string,
             nomeManipulador: string,
-            nomeMetodo :string,
+            nomeMetodo: string,
             credencial: Snebur.Seguranca.CredencialServico,
             isAsync: boolean,
             token: string)
         {
             super();
 
-            if (!u.ValidacaoUtil.IsDefinido(url))
+            if (!u.ValidacaoUtil.IsDefinido(urlServico))
             {
                 throw new ErroNaoDefinido("A URL não foi definida", this);
             }
@@ -32,7 +32,8 @@
                 throw new ErroNaoDefinido("A credencial não foi definida", this);
             }
 
-            const urlRequisicao = this.RetornarUrlRequisicao(url,
+            const urlRequisicao = RequisicaoUtil.RetornarUrlRequisicao(
+                urlServico,
                 nomeManipulador,
                 nomeMetodo);
 
@@ -61,7 +62,7 @@
 
             if (typeof $Aplicacao?.FuncaoNormalizarRequisicao === "function")
             {
-              
+
                 $Aplicacao?.FuncaoNormalizarRequisicao(
                     this.Requisicao.BaseServico,
                     u.EnumHttpMethod.POST,
@@ -106,7 +107,8 @@
 
         protected RetornarResultadoChamadaErro(erro: Error): ResultadoChamadaErro
         {
-            DebugUtil.Break();
+            console.error(erro?.message?? "erro desconhecido");
+
             const resultadoErro = new ResultadoChamadaErroCliente(this.Requisicao);
             resultadoErro.Erro = erro;
             resultadoErro.StatusCode = this.XmlHttp.status;
@@ -122,14 +124,6 @@
             return resultadoErro;
         }
 
-        private RetornarUrlRequisicao(url: string, servico: string, operacao:string): string
-        {
-            /*const nomeArquivo = u.Md5Util.RetornarHash(token);*/
-            //urlRequisicao = u.UrlUtil.RetornarURL(urlRequisicao, [new ParChaveValorSimples<string>("State", u.RandomUtil.RetornarRandom().toString())]);
-            //return urlRequisicao;
-            operacao = operacao.Replace("Async", String.Empty);
-            return u.UrlUtil.Combinar(url, u.CodigoUtil.PascalToKebabCase(servico), u.CodigoUtil.PascalToKebabCase(operacao));
-        }
 
         public override Dispose()
         {
