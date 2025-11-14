@@ -23,7 +23,7 @@
         public readonly ElementosCliqueNaoFechar = new Array<HTMLElement>();
         public readonly EventoFechou = new Evento<ui.FechouControleFlutanteEventArgs>(this);
         public readonly EventoMostrou = new Evento<ui.MostrouControleFlutanteEventArgs>(this);
-        private readonly AtualizarPosicaoDepois = new ExecutarDepois(this.AtualizarPosicaoAsync.bind(this), 250);
+        private readonly AtualizarPosicaoDepois = new ExecutarDepois(this.AtualizarPosicaoAsync.bind(this), 250, true);
 
         protected get LarguraInicial(): number
         {

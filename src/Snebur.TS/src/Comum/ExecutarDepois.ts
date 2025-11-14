@@ -2,103 +2,133 @@
 {
     export class ExecutarDepois<TAcao extends Function = Function> implements IDisposable
     {
-        private _totalMilesegundos: number;
+        private readonly _acao: TAcao
 
-        private Identificador: number = null;
-        private IdentificadorIntervalo: number = null;
-        private IdentificadorLimparIntervalo: number = null;
+        private _isDisposed: boolean = false;
+        private _isExistePedencia: boolean = false;
+        private _isNuncaExecutado: boolean = true;
+        private _identificadorTimeout: number = null;
+        private _isNaoValidarArgumentoDiferentes: boolean = false;
+        //private _identificadorInterval: number = null;
+        //private _identificadorLimparInterval: number = null;
+        /*private _totalMilesegundosLimparIntervalo: number;*/
 
-        private Acao: TAcao
-        private TotalMilesegundosIntervalo: number;
-        private TotalMilesegundosLimparIntervalo: number;
-        private ParametrosIntervalo: any;
+        private _timeout: number;
+        private _interval: number;
+        private _ultimosArgmentos: Array<any> = undefined;
 
-        public IsExecutarPedente: boolean;
-
-        public  IsNuncaExecutado: boolean = true;
-        public get TotalMilesegundos(): number
+        public get IsExistePedencia(): boolean
         {
-            return this._totalMilesegundos;
+            return this._isExistePedencia;
+        }
+        public get IsNuncaExecutado(): boolean
+        {
+            return this._isNuncaExecutado;
         }
 
-        public set TotalMilesegundos(value: number)
+        public get Timeout(): number
         {
-            u.ValidacaoUtil.ValidarPositivo(value);
-            this._totalMilesegundos = value;
+            return this._timeout;
         }
-        public constructor(acao: TAcao, totalMilisegundos: number)
-        public constructor(acao: TAcao, tempo: TimeSpan)
-        public constructor(acao: TAcao, totalMilisegundos: number, totalMilesegundosIntervalo: number)
-        public constructor(acao: TAcao, tempo: TimeSpan, tempoIntervalo: TimeSpan)
-        public constructor(acao: TAcao, tempoOuTotalMilesegundos: number | TimeSpan, tempoOUTotalMilesegundosIntervalo?: number | TimeSpan)
+        public get Interval(): number | null
+        {
+            return this._interval;
+        }
+
+        public constructor(acao: TAcao, timeout?: number, isNaoValidarArgumentoDiferentes?: boolean)
+        public constructor(acao: TAcao, timeout?: TimeSpan, isNaoValidarArgumentoDiferentes?: boolean)
+        //public constructor(acao: TAcao, timeout: number, interval: number)
+        //public constructor(acao: TAcao, timeout: TimeSpan, interval: TimeSpan)
+        public constructor(acao: TAcao, timeout?: number | TimeSpan, isNaoValidarArgumentoDiferentes?: boolean)
         {
             if (!(acao instanceof Function))
             {
                 throw new Erro("A ação não foi definida ou não é suportada");
             }
 
-            this.Acao = acao;
-            this._totalMilesegundos = this.RetornarTotalMilesegundos(tempoOuTotalMilesegundos);
+            this._acao = acao;
+            this._timeout = this.RetornarTotalMilesegundos(timeout);
+            this._isNaoValidarArgumentoDiferentes = isNaoValidarArgumentoDiferentes;
 
-            if (typeof tempoOUTotalMilesegundosIntervalo === "number" && tempoOUTotalMilesegundosIntervalo > 0)
+            //if (typeof interval === "number" && interval > 0)
+            //{
+            //    this._interval = this.RetornarTotalMilesegundos(interval);
+            //    this._totalMilesegundosLimparIntervalo = this._totalMilesegundosIntervalo * 3;
+            //}
+        }
+
+        public async Executar(...argumentos: Array<any>): Promise<void>
+        {
+            window.clearTimeout(this._identificadorTimeout);
+            this.CheckIsDisposed();
+            if (this.IsExecutarIntervaloPendente(argumentos))
             {
-                this.TotalMilesegundosIntervalo = this.RetornarTotalMilesegundos(tempoOUTotalMilesegundosIntervalo);
-                this.TotalMilesegundosLimparIntervalo = this.TotalMilesegundosIntervalo * 3;
+                console.warn(`Aguarmento ${this._ultimosArgmentos} <> ${argumentos}`);
+                console.warn(`ExecutarDepois: A execução anterior está pendente e será executada imediatamente pois o argumento é diferente do último.`);
+                await this.ExecutarIntervalo();
+            }
+            this._ultimosArgmentos = argumentos ?? null;
+            this._isExistePedencia = true;
+            this._identificadorTimeout = window.setTimeout(this.ExecutarInterno.bind(this, argumentos), this._timeout);
+        }
+
+        private IsExecutarIntervaloPendente(parametros: any[])
+        {
+            if (this._isNaoValidarArgumentoDiferentes)
+            {
+                return false;
+            }
+            if (this._ultimosArgmentos === undefined)
+                return false;
+                
+            if ((this._ultimosArgmentos?.length ?? 0) === (parametros?.length ?? 0))
+            {
+                return false;
+            }
+            return !Util.IsArrayIgual(this._ultimosArgmentos, parametros);
+        }
+
+        public ExecutarAgoara(...parametros: Array<any>): Promise<any>
+        {
+            this.CheckIsDisposed();
+            return this.ExecutarInterno(parametros);
+        }
+
+        private async ExecutarIntervalo(): Promise<void>
+        {
+            if (this.IsExistePedencia)
+            {
+                await this.ExecutarInterno(this._ultimosArgmentos);
+                this._ultimosArgmentos = undefined;
+                this._isExistePedencia = false;
             }
         }
 
-        public Executar(...parametros: Array<any>): void
+        private async ExecutarInterno(parametros: Array<any>): Promise<any>
         {
-            window.clearTimeout(this.Identificador);
-            this.Identificador = window.setTimeout(this.ExecutarInterno.bind(this, parametros), this.TotalMilesegundos);
-            this.ParametrosIntervalo = parametros;
-            this.IsExecutarPedente = true;
-
-            if (this.IdentificadorIntervalo == null)
+            try
             {
-                this.IdentificadorIntervalo = window.setInterval(this.ExecutarIntervalo.bind(this), this.TotalMilesegundosIntervalo);
+                const result = await this.Invokar(parametros);
+                this._isNuncaExecutado = false;
+                return result;
             }
-        }
-
-        public ExecutarAgoara(...parametros: Array<any>): void
-        {
-            this.ExecutarInterno(parametros);
-        }
-
-        private ExecutarIntervalo(): void
-        {
-            if (this.IsExecutarPedente)
+            catch (erro)
             {
-                this.ExecutarInterno(this.ParametrosIntervalo);
+                console.error(`Falha ao executar ação em ExecutarDepois: ${erro}`);
             }
+
+
         }
-
-        private ExecutarInterno(parametros: Array<any>): void
+        private Invokar(parametros: any[]): any
         {
-            if (this.Acao)
+            if (parametros instanceof Array)
             {
-                if (parametros instanceof Array)
-                {
-                    this.Acao.apply(null, parametros);
-                }
-                else
-                {
-                    this.Acao.call(null);
-                }
+                return this._acao.apply(null, parametros);
             }
-            this.IsNuncaExecutado = false;
-            this.IsExecutarPedente = false;
-
-            if (typeof this.IdentificadorIntervalo === "number" && this.IdentificadorIntervalo  > 0)
+            else
             {
-                window.clearTimeout(this.IdentificadorLimparIntervalo);
-                this.IdentificadorLimparIntervalo = window.setTimeout(this.LimparIntervalo.bind(this), this.TotalMilesegundosLimparIntervalo);
+                return this._acao.call(null);
             }
-        }
-
-        private LimparIntervalo(): void
-        {
-            window.clearTimeout(this.IdentificadorIntervalo);
         }
 
         private RetornarTotalMilesegundos(tempoOuTotalMilesegundos: number | TimeSpan): number
@@ -119,17 +149,38 @@
 
         public Cancelar(): void
         {
-            window.clearTimeout(this.Identificador);
+            window.clearTimeout(this._identificadorTimeout);
             //window.clearInterval(this.IdentificadorIntervalo);
+        }
+
+        public async AguardarPedenciasAsync(): Promise<void>
+        {
+            while (this._isExistePedencia)
+            {
+                await ThreadUtil.EsperarAsync(50);
+            }
+        }
+        private CheckIsDisposed(): void
+        {
+            if (this._isDisposed)
+            {
+                console.error(`ExecutarDepois já foi descartado e não pode mais ser utilizado.`);
+            }
         }
 
         public Dispose(): void
         {
-            window.clearTimeout(this.Identificador);
-            window.clearInterval(this.IdentificadorIntervalo);
-            window.clearInterval(this.IdentificadorLimparIntervalo);
-
-            delete this.Acao;
+            if (this.IsExistePedencia)
+            {
+                console.error(
+                    `ExecutarDepois está sendo descartado com pendências de execução.\r\n
+                    Chamar o método 'AguardarPedenciasAsync' antes de descartar para evitar este problema.`)
+            }
+            window.clearTimeout(this._identificadorTimeout);
+            this._isDisposed = true;
+            //window.clearInterval(this._identificadorIntervalo);
+            //window.clearInterval(this.IdentificadorLimparIntervalo);
+            /*delete this._acao;*/
         }
     }
 }

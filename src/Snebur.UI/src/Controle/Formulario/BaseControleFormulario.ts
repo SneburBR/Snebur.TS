@@ -376,6 +376,7 @@
 
         private readonly AutoSalvarExecutarDepois = new ExecutarDepois(this.AutoSalvar_Depois, TimeSpan.FromSeconds(2));
         private IsSalvarEntiade: boolean = false;
+        private readonly _propriedadesEntidadeAlteradas = new HashSet<r.Propriedade>();
 
         protected AutoSalvarAsync(): void
         {
@@ -390,20 +391,21 @@
                     const entidade = this.PaiPropriedade as d.Entidade;
                     if (entidade.__IsExisteAlteracao)
                     {
+                        this._propriedadesEntidadeAlteradas.Add(this.Propriedade);
                         this.AutoSalvarExecutarDepois.Executar(entidade, this.Propriedade, this.ValorProprieade);
                     }
                 }
             }
         }
 
-        private async AutoSalvar_Depois(entidade: d.Entidade, propriedade: r.Propriedade, valorPropriedade: any)
+        private async AutoSalvar_Depois(entidade: d.Entidade)
         {
             await ThreadUtil.BloquearAsync(this, () => this.IsSalvarEntiade);
             this.IsSalvarEntiade = true;
             try
             {
                 const contexto = $Aplicacao.RetornarContextoDados(entidade.GetType() as r.TipoEntidade);
-                const resultado = await contexto.SalvarPropriedadesAsync(entidade, propriedade);
+                const resultado = await contexto.SalvarPropriedadesAsync(entidade, ... this._propriedadesEntidadeAlteradas.ToList());
 
                 if (!resultado.IsSucesso)
                 {
@@ -411,7 +413,9 @@
                     {
                         throw new Erro("Não foi possível salvar" + resultado.MensagemErro);
                     }
+                    return;
                 }
+                this._propriedadesEntidadeAlteradas.Clear();
             }
             catch (erro)
             {

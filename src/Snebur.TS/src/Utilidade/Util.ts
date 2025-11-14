@@ -38,6 +38,11 @@
             {
                 return true;
             }
+             
+            if (valor1 == null || valor1 == null)
+            {
+                return false;
+            }
 
             if (valor1 instanceof d.Entidade && valor2 instanceof d.Entidade)
             {
@@ -63,6 +68,14 @@
 
         public static IsArrayIgual(array1: List<any>, array2: List<any>): boolean
         {
+            if (array1 == null && array2 == null)
+            {
+                return true;
+            }
+            if (array1 == null || array2 == null)
+            {
+                return false;
+            }
             if (array1.length === array2.length)
             {
                 const len = array1.length;
@@ -70,7 +83,7 @@
                 {
                     const item1 = array1[i];
                     const item2 = array2[i];
-                    if (item1 !== item2)
+                    if (!Util.IsIgual( item1 , item2))
                     {
                         return false;
                     }

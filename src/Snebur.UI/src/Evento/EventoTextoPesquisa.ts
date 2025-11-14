@@ -7,6 +7,7 @@
         //private TempoUltimaPesquisa: TimeSpan;
         private ValorUltimaPesquisa: string;
         private ElementoInput: HTMLInputElement;
+        private _ultimoEventoDom: KeyboardEvent;
 
         private readonly ExecutarDepois = new ExecutarDepois(this.Continuar.bind(this), EventoTextoPesquisa.INTERVALO);
         public constructor(controlePai: BaseControle, elemento: HTMLElement)
@@ -36,13 +37,15 @@
             throw new Erro("Não possível encontrar o elemento input dentro do controle {0}", this.ControlePai.___NomeConstrutor);
         }
 
+        
         protected override ManipuladorkEventListenerDom(e: KeyboardEvent): void
         {
             /*this.TempoUltimaPesquisa = new Date().TimeOfDay;*/
-            this.ExecutarDepois.Executar(e);
+            this.ExecutarDepois.Executar();
+            this._ultimoEventoDom = e;
         }
 
-        private Continuar(domEvent: KeyboardEvent)
+        private Continuar()
         {
             const elemento = this.ElementoInput as HTMLInputElement;
             if (elemento instanceof HTMLInputElement)
@@ -52,12 +55,12 @@
                 {
                     if (pesquisa !== this.ValorUltimaPesquisa)
                     {
-                        this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, pesquisa));
+                        this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), this._ultimoEventoDom, pesquisa));
                     }
                 }
                 else
                 {
-                    this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), domEvent, ""));
+                    this.Manipulador(this, new TextoPesquisaEventArgs(this.Elemento, this.RetornarParametros(), this._ultimoEventoDom, ""));
                 }
             }
         }

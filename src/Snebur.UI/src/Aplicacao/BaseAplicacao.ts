@@ -7,6 +7,7 @@
 
     export abstract class BaseAplicacao<TDocumentoPrincipal extends DocumentoPrincipal = DocumentoPrincipal> extends Snebur.Aplicacao.BaseAplicacao
     {
+        private _isValidandoFormulario: boolean = false;
         //#region Contantes
         private static readonly TEMPO_MAXIMO_CARREGAR_FONTES_ICONE = 30000;
         private static readonly FONTE_ICONES = "24px 'Material Icons'"
@@ -23,6 +24,11 @@
         public override get DocumentoPrincipal(): TDocumentoPrincipal
         {
             return this._documentoPrincipal;
+        }
+
+        public override get IsValidandoFormulario(): boolean
+        {
+            return this._isValidandoFormulario;
         }
 
         public override GerenciadorAbrirImagemLocal: GerenciadorAbrirImagemLocal;
@@ -537,6 +543,7 @@
         //#endregion
 
 
+
         //#region Ocupar
 
         public override get IsOcupado(): boolean
@@ -547,6 +554,12 @@
         public override get ProgressoOcupadoAtual(): number
         {
             return this.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
+        }
+
+        /*@internal*/
+        public override SetIsValidandoFormulario(value: boolean)
+        {
+            this._isValidandoFormulario = value;
         }
 
         //public override Ocupar(argumento?: EnumOpcaoOcupar | boolean | string, mensagem: string = null): void
@@ -646,6 +659,11 @@ namespace Snebur.Aplicacao
         NotificarControleCarregadoDescarregado(controle: BaseControle): void;
         AtivarObservacaoHistorico(): void;
         DesativarObservacaoHistorico(): void;
+
+        /*@internal*/
+        SetIsValidandoFormulario(value: boolean): void;
+
+        readonly IsValidandoFormulario: boolean;
     }
 }
 

@@ -20,7 +20,9 @@
             this.ControleLista = conroleLista;
             this.ElementoScroll = elementoScroll;
 
-            const valorOverflowY = window.getComputedStyle(elementoScroll).getPropertyValue("overflowY");
+            const valorOverflowY = window.getComputedStyle(elementoScroll)
+                .getPropertyValue("overflowY");
+
             if (valorOverflowY !== "auto")
             {
                 //throw new Erro("somente virtualização vertical é suportada");

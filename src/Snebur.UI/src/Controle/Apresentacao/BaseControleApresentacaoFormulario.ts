@@ -63,6 +63,7 @@
             this.OcuparElemento();
             try
             {
+                $Aplicacao.SetIsValidandoFormulario(true);
                 await ThreadUtil.EsperarAsync(10);
                 return await this.ValidarFormularioInternoAsync(isSomenteControlesVisiveis);
             }
@@ -73,6 +74,7 @@
             }
             finally
             {
+                $Aplicacao.SetIsValidandoFormulario(true);
                 this.DesocuparElemento();
             }
         }
