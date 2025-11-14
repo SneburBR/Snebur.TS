@@ -156,7 +156,7 @@
 
             if (!this.IsConectado)
             {
-                console.error(`O servico de depuração não está ativo`);
+                console.baseError(`O servico de depuração não está ativo`);
                 return;
             }
                  

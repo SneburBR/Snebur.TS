@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-11-13 14:51:28
+//@DataHora: 2025-11-14 08:07:40
 //@Artifact: Classes
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -116,7 +116,6 @@ namespace Snebur.Depuracao
     {
         //#region Private Fields
         private _nomeControle: string  = "";
-        private _searchElementPattern: string  = "";
         private _tagElemento: string  = "";
         private _namespace: string  = "";
         //#endregion
@@ -136,15 +135,6 @@ namespace Snebur.Depuracao
             this.SetProperty("NomeControle", this._nomeControle, this._nomeControle = value);
         }
         
-        public get SearchElementPattern(): string
-        {
-            return this._searchElementPattern;
-        }
-        public set SearchElementPattern(value: string) 
-        {
-            this.SetProperty("SearchElementPattern", this._searchElementPattern, this._searchElementPattern = value);
-        }
-        
         public get TagElemento(): string
         {
             return this._tagElemento;
@@ -162,6 +152,7 @@ namespace Snebur.Depuracao
         {
             this.SetProperty("Namespace", this._namespace, this._namespace = value);
         }
+        public readonly SearchElementPatterns = new Array<string>();
     }
     export class MensagemLog  extends Snebur.Depuracao.Mensagem
     {

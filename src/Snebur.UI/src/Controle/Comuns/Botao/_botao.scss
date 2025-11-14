@@ -245,7 +245,7 @@ sn-botao {
             @include botao-circulo($largura-icone-pequeno);
 
             ap-icone {
-                top:   4px;
+                top: 4px;
                 left: 4px
             }
         }
@@ -336,13 +336,15 @@ sn-botao {
     }
 
     &.sn-tipo-botao--link {
-        > conteudo-apresentacao {
-            text-decoration: underline;
+
+        > conteudo-apresentacao * {
+            text-decoration: underline !important;
+ 
         }
     }
 
     &.sn-tipo-botao--link-destaque {
-        > conteudo-apresentacao {
+        > conteudo-apresentacao  {
             &:hover {
                 rotulo-botao {
                     text-decoration: underline;

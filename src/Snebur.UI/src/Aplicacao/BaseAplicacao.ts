@@ -110,7 +110,7 @@
                 this.ServicoDepuracao.EventoScriptAlterado.AddHandler(this.ServicoDepuracao_ScriptAlterado, this);
             }
 
-            if ($Configuracao.IsDebug && $Configuracao.IsTeste)
+            if ($Configuracao.IsDebugOuTeste)
             {
                 window.addEventListener("keydown", this.WindowDebug_KeyDow.bind(this));
             }
@@ -419,7 +419,6 @@
                     console.warn(DebugUIInfoUtil.RetornarInfoResumido(this));
                     return;
                 }
-
             }
         }
 

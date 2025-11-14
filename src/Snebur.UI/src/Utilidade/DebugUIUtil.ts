@@ -21,6 +21,11 @@
             {
                 if (e.ctrlKey === true && e.altKey === true && e.shiftKey === true)
                 {
+                    if (e.key?.toUpperCase() === "W")
+                    {
+                        $Configuracao.IsAlterarUrlDebug = !$Configuracao.IsAlterarUrlDebug;
+                        console.warn(`Alterar URL WebService Debug: ${$Configuracao.IsAlterarUrlDebug}`);
+                    }
                     document.body.classList.add(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
                     DebugUIUtil._debugAtivado = true;
                 }
@@ -75,11 +80,11 @@
 
             const element = refElemento ?? uiElement.Elemento;
             const nomeControle = `${constructorName}.shtml`;
-            const searchElementPattern = DebugUIUtil.BuildSearchElementPattern(uiElement, element);
+            const searchElementPatterns = DebugUIUtil.BuildSearchElementPattern(uiElement, element);
 
             const mensagemIrParaCodigo = new Depuracao.MensagemIrParaCodigo({
                 NomeControle: nomeControle,
-                SearchElementPattern: searchElementPattern,
+                SearchElementPatterns: searchElementPatterns,
                 TagElemento: element.tagName.toLowerCase(),
                 Namespace: $Configuracao.NamespaceAplicacao
             });
@@ -96,21 +101,23 @@
                 {
                     e.stopPropagation();
                     e.stopImmediatePropagation();
-                    console.warn(`Ir para código: ${nomeControle} [${searchElementPattern}]`);
+                    e.preventDefault();
+                    console.warn(`Ir para código: ${nomeControle} [${searchElementPatterns}]`);
                     $Aplicacao.ServicoDepuracao.EnviarMensagem(mensagemIrParaCodigo);
                 }
             });
         }
 
-        private static BuildSearchElementPattern(uiElement: BaseUIElemento, element: HTMLElement)
+        private static BuildSearchElementPattern(uiElement: BaseUIElemento, element: HTMLElement) : string[]
         {
+            const partterns: string[] = [];
             const attributes: string[] = [AtributosHtml.Nome.Nome, AtributosHtml.ItemElemento.Nome];
             for (const atributo of attributes)
             {
                 const valorAtributo = element.getAttribute(atributo);
                 if (valorAtributo != null)
                 {
-                    return `${atributo}="${valorAtributo}"`;
+                    partterns.push(`${atributo}="${valorAtributo}"`);
                 }
             }
 
@@ -119,7 +126,7 @@
                 const valorAtributo = element.getAttribute(atributo);
                 if (valorAtributo != null)
                 {
-                    return `${atributo}="${valorAtributo}"`;
+                    partterns.Add(`${atributo}="${valorAtributo}"`);
                 }
             }
 
@@ -128,10 +135,10 @@
                 const valorAtributo = element.getAttribute(atributo);
                 if (valorAtributo != null)
                 {
-                    return `${atributo}="${valorAtributo}"`;
+                    partterns.Add(`${atributo}="${valorAtributo}"`);
                 }
             }
-            return "";
+            return partterns;
         }
         public static IsDebugAtivado(uiEvent: UIEvent)
         {

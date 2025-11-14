@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Depuracao. Do not modify directly. 
 //@Project: Snebur.Depuracao
-//@DataHora: 2025-11-13 14:51:28
+//@DataHora: 2025-11-14 08:07:40
 //@Artifact: Reflexao
 //@Namespace: Snebur.Depuracao.Dominio 
 //@PrioridadeDominio: 4
@@ -93,11 +93,11 @@ namespace Snebur.Reflexao
     const __$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo = new Propriedade("NomeArquivo", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemEstiloCssAlterado.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemEstiloCssAlterado_NomeArquivo)
     const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_NomeControle = new Propriedade("NomeControle", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
-    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPattern = new Propriedade("SearchElementPattern", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
+    const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPatterns = new Propriedade("SearchElementPatterns", __$tipoListaTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
     const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_TagElemento = new Propriedade("TagElemento", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
     const __$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_Namespace = new Propriedade("Namespace", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo, false, false);
     __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_NomeControle)
-    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPattern)
+    __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_SearchElementPatterns)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_TagElemento)
     __$tipoBaseDominio_Snebur_Depuracao_MensagemIrParaCodigo.AdicionarPropriedade(__$propriedade_Snebur_Depuracao_MensagemIrParaCodigo_Namespace)
     const __$propriedade_Snebur_Depuracao_MensagemLog_Mensagem = new Propriedade("Mensagem", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Depuracao_MensagemLog, false, false);

@@ -6,7 +6,7 @@
         private static readonly TEMPO_ESPERAR_FALHA = 2;
 
         private _urlServico: string
-        private Tentativa: number = 0;
+        private _tentativas: number = 0;
 
         private get Gerencaidor(): GerenciadorRequiscao
         {
@@ -20,7 +20,7 @@
                 this.NomeManipualdor,
                 this.NomeMetodo);
         }
-          
+
         public constructor(
             public readonly BaseServico: BaseComunicacaoCliente,
             public readonly NomeManipualdor: string,
@@ -46,6 +46,9 @@
 
         private async ExecutarInternoAsync(): Promise<ResultadoChamada>
         {
+
+            this.TalvezUtilizarUrlServicoDebug();
+
             const token = await s.Token.RetornarTokenAsync();
             const chamadaServico = new ChamadaServicoAsync(
                 this,
@@ -71,7 +74,7 @@
             return resultadoChamada;
         }
 
-        private TentarUtilizarUrlServicoDebug()
+        private TalvezUtilizarUrlServicoDebug()
         {
             if (this.IsUsarUrlServicoDEBUG())
             {
@@ -80,16 +83,21 @@
         }
         private IsUsarUrlServicoDEBUG()
         {
-            if ($Configuracao.IsTeste &&
-                $Configuracao.IsAlterarUrlDebug)
+            if (String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug) ||
+                this._urlServico === this.BaseServico.UrlServicoDebug)
             {
-                return this.Tentativa > 5;
+                return false;
             }
-
-            return $Configuracao.IsDebug &&
-                Snebur.$Configuracao.IsAlterarUrlDebug &&
-                this._urlServico !== this.BaseServico.UrlServicoDebug &&
-                !String.IsNullOrEmpty(this.BaseServico.UrlServicoDebug);
+             
+            if ($Configuracao.IsDebugOuTeste)
+            {
+                if ($Configuracao.IsAlterarUrlDebug)
+                {
+                    return true;
+                }
+                return this._tentativas > 5;
+            }
+            return false;
         }
 
         public UsarUrlServicoDEBUG()
@@ -113,7 +121,7 @@
             sb.AppendLine("URL: " + this._urlServico);
             sb.AppendLine("Serviço: " + this.NomeManipualdor);
             sb.AppendLine("Operação: " + this.NomeMetodo);
-            sb.AppendLine("Tentativa: " + this.Tentativa + 1);
+            sb.AppendLine("Tentativa: " + this._tentativas + 1);
             sb.AppendLine();
 
             const linhas = TextoUtil.RetornarLinhas(resultadoChamada.MensagemErro);
@@ -128,14 +136,14 @@
             if (!$Configuracao.IsDebug)
             {
                 if (isErroInternoServidor &&
-                    this.Tentativa > Requisicao.MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR)
+                    this._tentativas > Requisicao.MAXIMA_TENTATIVA_ERRO_INTERNO_SERVIDOR)
                 {
                     throw new Error(mensagem);
                 }
             }
 
-            this.TentarUtilizarUrlServicoDebug();
-            this.Tentativa += 1;
+            this.TalvezUtilizarUrlServicoDebug();
+            this._tentativas += 1;
         }
 
         private async TentarNovamenteAsync(
@@ -154,7 +162,7 @@
                 this._urlServico,
                 this.NomeManipualdor,
                 this.NomeMetodo,
-                this.Tentativa);
+                this._tentativas);
 
             $Aplicacao.EventoFalhaConexao.Notificar(this, args);
 
@@ -164,7 +172,7 @@
                 await u.InternetUtil.AguardarConexaoInternerAsync();
             }
 
-            const totalSegundos = Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this.Tentativa, 10);
+            const totalSegundos = Requisicao.TEMPO_ESPERAR_FALHA * Math.min(this._tentativas, 10);
             const esperarProximaTentativa = TimeSpan.FromSeconds(Math.min(totalSegundos, 60));
             await u.ThreadUtil.EsperarAsync(esperarProximaTentativa);
             return await this.ExecutarInternoAsync();
@@ -179,7 +187,4 @@
             return this.UrlRequisicao;
         }
     }
-
-
-
 }

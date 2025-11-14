@@ -55,17 +55,23 @@
                     LogUtil.Erro(erro);
                     throw erro;
                 }
-                
+
             }
         }
 
         private IsSairLinkRota(domEvent: UIEvent): boolean
         {
+            return $Configuracao.IsDebug
+                && domEvent instanceof MouseEvent
+                && domEvent.ctrlKey
+                && this.IsLinkRota(domEvent);
+        }
+
+        private IsLinkRota(domEvent: UIEvent): boolean
+        {
             const controlePai = this.ControlePai;
-            return controlePai instanceof Botao &&
-                controlePai.IsLinkRota &&
-                domEvent instanceof MouseEvent &&
-                (domEvent.shiftKey || domEvent.ctrlKey);
+            return controlePai instanceof Botao
+                && controlePai.IsLinkRota;
         }
 
         private ValidarControleManipulador(): void
