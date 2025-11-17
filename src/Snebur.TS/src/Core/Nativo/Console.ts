@@ -1,6 +1,7 @@
 ﻿interface Console
 {
-    sucess(...data: any[]): void;
+
+    success(...data: any[]): void;
     baseLog(...data: any[]): void;
     baseInfo(...data: any[]): void;
     baseError(...data: any[]): void;
@@ -37,14 +38,13 @@ namespace Snebur
                 || Snebur.$Configuracao.IsDebug
                 || Snebur.$Configuracao.IsTeste;
         };
-
-        const logInternal = function (
+       
+        const __logInternal = function (
             this: Console,
             isDebug: boolean,
             tipo: EnumTipoLog,
             base: (...data: any[]) => void, ...data: any[]): void
         {
-
             if (isDebug)
             {
                 if (Snebur.$Configuracao != null && Snebur.$Configuracao.IsDebugOuTeste !== true)
@@ -83,7 +83,7 @@ namespace Snebur
 
             if ($Configuracao != null &&
                 ($Configuracao.IsDebugOuTeste) &&
-                (tipo === EnumTipoLog.Erro || tipo === EnumTipoLog.Alerta))
+                (tipo === EnumTipoLog.Erro || tipo === EnumTipoLog.Alerta || tipo === EnumTipoLog.Sucesso))
             {
                 if (console.EventoLog == null)
                 {
@@ -91,9 +91,24 @@ namespace Snebur
                         console.baseError(`console.EventoLog não inicializado.`);
                     return;
                 }
-
                 const args = new ConsoleLogArgs(tipo, mensagem);
                 console.EventoLog.Notificar(console, args);
+            }
+        };
+
+        const logInternal = function (
+            this: Console,
+            isDebug: boolean,
+            tipo: EnumTipoLog,
+            base: (...data: any[]) => void, ...data: any[]): void
+        {
+            try
+            {
+                __logInternal.bind(this)(isDebug, tipo, base, ...data);
+            }
+            catch (e)
+            {
+                console.baseError(`Erro ao registrar log: ${e}`);
             }
         };
 
@@ -117,7 +132,7 @@ namespace Snebur
         console.info = logInternal.bind(console, false, EnumTipoLog.Info, console.baseInfo);
         console.warn = logInternal.bind(console, false, EnumTipoLog.Alerta, console.baseWarm);
         console.error = ErrorInternal.bind(console, false, EnumTipoLog.Erro, console.baseError);
-        console.sucess = logInternal.bind(console, false, EnumTipoLog.Sucesso, console.baseLog);
+        console.success = logInternal.bind(console, false, EnumTipoLog.Sucesso, console.baseLog);
 
         console.LogDebug = logInternal.bind(console, true, EnumTipoLog.Log, console.baseLog);
         console.InfoDebug = logInternal.bind(console, true, EnumTipoLog.Info, console.baseInfo);

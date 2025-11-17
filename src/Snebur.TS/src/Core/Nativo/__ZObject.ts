@@ -173,15 +173,21 @@ namespace Snebur
         "null": true
     };
 
+    Object.assignBase = Object.assign;
+    Object.keysBase = Object.keys;
+    Object.valuesBase = Object.values;
+
     Object.defineProperty(Object, "assign", {
         value: function assign(destino: any, origens: any)
         {
-            if (typeof destino !== "object")
+            if (!(destino instanceof Snebur.ObjetoControladorPropriedade))
             {
-                throw new TypeError("Somente objeto podem ser assinados");
+                /*eslint-disable*/
+                return Object.assignBase.apply(Object, arguments as any);
+                /*eslint-enable*/
             }
 
-
+            const obj = destino as any;
             for (let index = 1; index < arguments.length; index++)
             {
                 /*eslint-disable*/
@@ -200,7 +206,8 @@ namespace Snebur
                                 {
                                     try
                                     {
-                                        destino[proprieade] = valor;
+
+                                        obj[proprieade] = valor;
                                     }
                                     catch
                                     {
@@ -221,15 +228,18 @@ namespace Snebur
     });
 
 
-    Object.keysBase = Object.keys;
+
 
     Object.defineProperty(Object, "keys", {
         value: function (obj: object)
         {
-            if (obj == null)
+            if (!(Object instanceof Snebur.ObjetoControladorPropriedade))
             {
-                return [];
+                /*eslint-disable*/
+                return Object.keysBase.apply(Object, arguments as any);
+                /*eslint-enable*/
             }
+            
             const chaves = Object.keysBase(obj);
             return chaves.Where(x => !___PropriedadesMetodosProtegidos[x]);
         },
@@ -238,23 +248,29 @@ namespace Snebur
         enumerable: false
     });
 
-    Object.defineProperty(Object, "isKey", {
-        value: function (chave: string)
-        {
-            return !___PropriedadesMetodosProtegidos[chave];
-        },
-        writable: false,
-        configurable: false,
-        enumerable: false
-    });
+    if (Object.isKey == null)
+    {
+        Object.defineProperty(Object, "isKey", {
+            value: function (chave: string)
+            {
+                return !___PropriedadesMetodosProtegidos[chave];
+            },
+            writable: false,
+            configurable: false,
+            enumerable: false
+        });
+    }
+
 
 
     Object.defineProperty(Object, "values", {
         value: function (obj: any): any
         {
-            if (obj == null)
+            if (!(Object instanceof Snebur.ObjetoControladorPropriedade))
             {
-                return [];
+                /*eslint-disable*/
+                return Object.valuesBase.apply(Object, arguments as any);
+                /*eslint-enable*/
             }
             const chaves = Object.keys(obj);
             return chaves.Select(x => obj[x]);

@@ -143,14 +143,14 @@
 
         private async AbrirImagemInternoAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            if (i.MagickInitUtil.IsInicializado  && !window.__IS_USAR_CANVAS__ )
+            if (i.MagickInitUtil.IsInicializado && !window.IS_USAR_CANVAS)
             {
                 try
                 {
                     const resultado = await this.AbrirImagemMagickAsync();
                     if (resultado instanceof DicionarioSimples &&
                         resultado.Count > 0 &&
-                        resultado.Valores.All(x=> x.IsSucesso))
+                        resultado.Valores.All(x => x.IsSucesso))
                     {
                         return resultado;
                     }
@@ -190,15 +190,15 @@
                 resolverAsync(true);
             }
         }
-         
+
         //#endregion
 
-        public AtualizarDimensaoLocal(mimeType: ImagemMimeType, dimensao:IDimensao)
+        public AtualizarDimensaoLocal(mimeType: ImagemMimeType, dimensao: IDimensao)
         {
             const imagem = this.Imagem;
-            const formatoImagem = ImagemUtil.RetornarFormatoImagemFromMimeType(mimeType as u.EnumMimeTypeImagemString );
+            const formatoImagem = ImagemUtil.RetornarFormatoImagemFromMimeType(mimeType as u.EnumMimeTypeImagemString);
             const mimeTypeNum = ImagemUtil.RetornarMimeTypeEnumFromString(mimeType as u.EnumMimeTypeImagemString);
-            
+
             if (ImagemUtil.AtualizarDimensaLocal(imagem, dimensao, formatoImagem, mimeTypeNum, false))
             {
                 this._isSalvarPendente = true;
@@ -257,17 +257,101 @@
     //#endregion
 }
 
-
 interface Window
 {
-    __IS_USAR_CANVAS__: boolean;
-    __IS_USAR_PICA__: boolean;
-    __IS_SALVAR_ARQUIVOS__: boolean;
-    __IS_SALVAR_ARQUIVOS__IMPRESSAO__: boolean;
-    __TAMANHO_MAXIMO_RESIZE_CANVAS__: number;
+
+    /*@internal*/
+    __is_usar_pica__: boolean;
+    /*@internal*/
+    __is_usar_canvas__: boolean;
+    /*@internal*/
+    __is_salvar_arquivos__: boolean;
+    /*@internal*/
+    __is_salvar_arquivos_impressao__: boolean;
+    /*@internal*/
+    __tamanho_maximo_resize_canvas__: number;
 }
 
-window.__IS_USAR_CANVAS__ = false;
-window.__IS_SALVAR_ARQUIVOS__ = false;
-window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__ = false;
-window.__TAMANHO_MAXIMO_RESIZE_CANVAS__ = 16383;
+window.__is_usar_pica__ = false;
+window.__is_usar_canvas__ = false;
+window.__is_salvar_arquivos__ = false;
+window.__is_salvar_arquivos_impressao__ = false;
+window.__tamanho_maximo_resize_canvas__ = 16383;
+interface Window
+{
+    readonly IS_USAR_CANVAS: boolean;
+    readonly IS_USAR_PICA: boolean;
+    readonly IS_SALVAR_ARQUIVOS: boolean;
+    readonly IS_SALVAR_ARQUIVOS_IMPRESSAO: boolean;
+    readonly TAMANHO_MAXIMO_RESIZE_CANVAS: number;
+
+    SetIsUsarCanvasDEBUG(isUsarCanvas: boolean): void;
+    SetIsUsarPicaDEBUG(isUsarPica: boolean): void;
+    SetIsSalvarArquivosDEBUG(isSalvarArquivos: boolean): void;
+    SetIsSalvarArquivosImpressaoDEBUG(isSalvarArquivosImpressao: boolean): void;
+    SetTamanhoMaximoResizeCanvasDEBUG(tamanhoMaximo: number): void;
+}
+
+// GETTERS
+
+Object.defineProperty(Window.prototype, "IS_USAR_CANVAS", {
+    get: function (this: Window)
+    {
+        return this.__is_usar_canvas__;
+    }
+});
+
+Object.defineProperty(Window.prototype, "IS_USAR_PICA", {
+    get: function (this: Window)
+    {
+        return this.__is_usar_pica__;
+    }
+});
+
+Object.defineProperty(Window.prototype, "IS_SALVAR_ARQUIVOS", {
+    get: function (this: Window)
+    {
+        return this.__is_salvar_arquivos__;
+    }
+});
+
+Object.defineProperty(Window.prototype, "IS_SALVAR_ARQUIVOS_IMPRESSAO", {
+    get: function (this: Window)
+    {
+        return this.__is_salvar_arquivos_impressao__;
+    }
+});
+
+Object.defineProperty(Window.prototype, "TAMANHO_MAXIMO_RESIZE_CANVAS", {
+    get: function (this: Window)
+    {
+        return this.__tamanho_maximo_resize_canvas__;
+    }
+});
+
+// SETTERS DEBUG
+
+Window.prototype.SetIsUsarCanvasDEBUG = function (this: Window, value: boolean): void
+{
+    this.__is_usar_canvas__ = value;
+};
+
+Window.prototype.SetIsUsarPicaDEBUG = function (this: Window, value: boolean): void
+{
+    this.__is_usar_pica__ = value;
+};
+
+Window.prototype.SetIsSalvarArquivosDEBUG = function (this: Window, value: boolean): void
+{
+    this.__is_salvar_arquivos__ = value;
+};
+
+Window.prototype.SetIsSalvarArquivosImpressaoDEBUG = function (this: Window, value: boolean): void
+{
+    this.__is_salvar_arquivos_impressao__ = value;
+};
+
+Window.prototype.SetTamanhoMaximoResizeCanvasDEBUG = function (this: Window, value: number): void
+{
+    this.__tamanho_maximo_resize_canvas__ = value;
+};

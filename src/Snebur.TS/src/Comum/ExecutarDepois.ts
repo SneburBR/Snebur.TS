@@ -35,10 +35,10 @@
             return this._interval;
         }
 
-        public constructor(acao: TAcao, timeout?: number, isNaoValidarArgumentoDiferentes?: boolean)
-        public constructor(acao: TAcao, timeout?: TimeSpan, isNaoValidarArgumentoDiferentes?: boolean)
         //public constructor(acao: TAcao, timeout: number, interval: number)
         //public constructor(acao: TAcao, timeout: TimeSpan, interval: TimeSpan)
+        public constructor(acao: TAcao, timeout?: number, isNaoValidarArgumentoDiferentes?: boolean)
+        public constructor(acao: TAcao, timeout?: TimeSpan, isNaoValidarArgumentoDiferentes?: boolean)
         public constructor(acao: TAcao, timeout?: number | TimeSpan, isNaoValidarArgumentoDiferentes?: boolean)
         {
             if (!(acao instanceof Function))
@@ -80,7 +80,7 @@
             }
             if (this._ultimosArgmentos === undefined)
                 return false;
-                
+
             if ((this._ultimosArgmentos?.length ?? 0) === (parametros?.length ?? 0))
             {
                 return false;
@@ -172,9 +172,13 @@
         {
             if (this.IsExistePedencia)
             {
-                console.error(
-                    `ExecutarDepois está sendo descartado com pendências de execução.\r\n
-                    Chamar o método 'AguardarPedenciasAsync' antes de descartar para evitar este problema.`)
+                const baseControleFormularioConstrutor = u.ReflexaoUtil.RetornarConstrutor(Snebur, "UI.BaseControleFormulario");
+                if (baseControleFormularioConstrutor != null && !(this._acao?.BoundThis instanceof baseControleFormularioConstrutor))
+                {
+                    console.WarmDebug(
+                        `ExecutarDepois está sendo descartado com pendências de execução.\r\n
+                         Chamar o método 'AguardarPedenciasAsync' antes de descartar para evitar este problema.`);
+                }
             }
             window.clearTimeout(this._identificadorTimeout);
             this._isDisposed = true;

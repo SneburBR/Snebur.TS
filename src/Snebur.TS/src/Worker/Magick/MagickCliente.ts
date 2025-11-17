@@ -57,7 +57,7 @@ namespace Snebur.WebWorker
                 IdentificadorMensagem: identificadorMensagem,
                 Opcoes: opcoes,
                 MagickInit: {
-                    BlobWasm: i.MagickInitUtil.BlobWasm,
+                    BytesWasm: i.MagickInitUtil.BytesWasm,
                     UrlBlobMagick: i.MagickInitUtil.UrlBlobMagick,
                     BytesPerfilSRGB: i.MagickInitUtil.BytesPerfilSRGB,
                 }
@@ -75,9 +75,9 @@ namespace Snebur.WebWorker
                     resolver(null);
                 };
 
-                const timeout = $Configuracao.IsDebug ? 20 * 60 * 1000:
+                const timeout = $Configuracao.IsDebug ? 20 * 60 * 1000 :
                     opcoes.Redimensinamentos.Any(x => x.TamanhoImagem === EnumTamanhoImagem.Impressao) ?
-                    MagickWorkerCliente.TIMEOUT_IMPRESSAO : MagickWorkerCliente.TIMEOUT_VISUALIZACAO;
+                        MagickWorkerCliente.TIMEOUT_IMPRESSAO : MagickWorkerCliente.TIMEOUT_VISUALIZACAO;
                 const idTimeout = window.setTimeout(ontimeout.bind(this), timeout);
 
                 const worker = this.RetornarWorker();
@@ -109,14 +109,15 @@ namespace Snebur.WebWorker
                 worker.onerror = (e) =>
                 {
                     window.clearInterval(idTimeout);
-                    this.LogErro(opcoes, `onerror: ${e.message}: \r\nArquivo:${e.filename}\r\n Linha: ${e.lineno}, Col:${e.colno}  ${u.ErroUtil.RetornarMensagemErro(e.error)}`);
+                    const url = worker?.scriptURL ?? this.UrlWorker;
+                    this.LogErro(opcoes, `Url: ${url}, onerror: ${e.message}: \r\nArquivo:${e.filename}\r\n Linha: ${e.lineno}, Col:${e.colno}  ${u.ErroUtil.RetornarMensagemErro(e.error)}`);
                     this.Finalizar(false);
                     resolver(null);
                 };
 
                 this.IdentificadorMensagem = identificadorMensagem;
                 this.NomeArquivoOrigem = opcoes.NomeArquivoOrigem;
-                this.Worker.postMessage(memsnagem);
+                worker.postMessage(memsnagem);
                 /*this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);*/
             });
         }
@@ -131,7 +132,7 @@ namespace Snebur.WebWorker
             this.Dispose();
         }
 
-        private RetornarWorker()
+        private RetornarWorker(): Worker
         {
             if (this.IsReciclar || this.Worker === null)
             {
@@ -143,6 +144,7 @@ namespace Snebur.WebWorker
                 this.Worker = new Worker(this.UrlWorker);
             }
             return this.Worker;
+
         }
 
         private Finalizar(isSucesso: boolean)
@@ -173,4 +175,8 @@ namespace Snebur.WebWorker
 
 
     }
+}
+interface Worker
+{
+    readonly scriptURL?: string;
 }

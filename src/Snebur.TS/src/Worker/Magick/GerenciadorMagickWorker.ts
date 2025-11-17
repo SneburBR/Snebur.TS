@@ -24,7 +24,7 @@
             this.UrlBlobWorker = urlBlobWorker;
             this._totalThreads = u.ProcessadorUtil.RetornarTotalThreadsWorker();
             this._totalProcessamentoReciclar = u.ProcessadorUtil.RetornarTotalProcessamentoRecilar();
-            console.warn(`CARREGAMENTO IMAGENS THREADS ${this._totalThreads} - RECICLAR ${this._totalProcessamentoReciclar} `);
+            console.log(`CARREGAMENTO IMAGENS THREADS ${this._totalThreads} - RECICLAR ${this._totalProcessamentoReciclar} `);
 
             this.AtualizarThreads(this.TotalThreas);
         }
@@ -65,7 +65,7 @@
                     {
                         workerCliente.Reciclar();
                         console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
-                        if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__)
+                        if (window.IS_SALVAR_ARQUIVOS_IMPRESSAO)
                         {
                             Salvar.SalvarComo(impressao.Arquivo, `MAGICK-IMPRESSAO-${opcoes?.NomeArquivoOrigem}t-${t.ElapsedMilliseconds}.${resultado.MagickFormat.toLocaleLowerCase()}`);
                         }

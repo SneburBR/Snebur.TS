@@ -5,7 +5,7 @@ const QUALIDADE_IMPRESSAO_MAGICK = 90;
 interface IMagickInit
 {
     readonly UrlBlobMagick: string;
-    readonly BlobWasm: Blob;
+    readonly BytesWasm: Uint8Array;
     readonly BytesPerfilSRGB: Uint8Array;
 }
 

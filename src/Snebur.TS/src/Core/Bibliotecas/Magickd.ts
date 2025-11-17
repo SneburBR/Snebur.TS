@@ -1579,7 +1579,7 @@
         readFromCanvas<TReturnType>(canvas: HTMLCanvasElement, func: (image: IMagickImage) => Promise<TReturnType>): Promise<TReturnType>;
 
     }
-    function initializeImageMagick(wasmLocation?: string | ArrayBuffer | Blob | Uint8Array): Promise<void>;
+    function initializeImageMagick(wasmLocation: ArrayBuffer | Uint8Array): Promise<void>;
     class MagickColors
     {
         static get None(): MagickColor;
