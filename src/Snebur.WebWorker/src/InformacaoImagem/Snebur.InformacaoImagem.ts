@@ -75,7 +75,7 @@ class InformacaoImagem
             }
             catch (erro)
             {
-                console.error("Informa��o imagem " + erro?.message ?? erro);
+                console.error(`Informa��o imagem ${erro?.message ?? erro}`);
 
             }
         }
