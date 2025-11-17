@@ -2,9 +2,9 @@
 class MagickUtil
 {
     /*@internal*/
-    public static readonly IsWorker: boolean = true;
+    public static readonly IsWorker: boolean = false;
 
-    public static  Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"]
+    public static Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"];
 
     public static async RemoverExif(imageMagick: MagickWasm.IMagickImage)
     {

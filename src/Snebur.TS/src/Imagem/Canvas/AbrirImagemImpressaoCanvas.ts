@@ -33,7 +33,7 @@
             if (blob != null)
             {
                 console.warn(`Processado Canvas  : Arquivo: ${this.ArquivoLocal.name} - t ${t.TotalSeconds} `);
-                if (window.__IS_SALVAR_ARQUIVOS__IMPRESSAO__)
+                if (window.IS_SALVAR_ARQUIVOS_IMPRESSAO)
                 {
                     const extensao = mimeType.substring(mimeType.indexOf("/") + 1);
                     Salvar.SalvarComo(blob, `CANVAS-IMPRESSAO-${this.ArquivoLocal.NameWithOutExtension}-t-${t.ElapsedMilliseconds}.${extensao}`);

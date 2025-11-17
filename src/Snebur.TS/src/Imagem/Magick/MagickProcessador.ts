@@ -36,8 +36,9 @@
         catch (erro)
         {
             if (erro instanceof Error)
-                return erro
-            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`)
+                return erro;
+
+            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`);
         }
     }
 
@@ -125,8 +126,8 @@
 
                 await imageMagick.write(formatoDestino, (bytes) =>
                 {
-                    /*const buffer = new Uint8Array(bytes).buffer;*/
-                    const blob = new Blob([bytes.arrayBuffer], { type: mimeType });
+                    const buffer = new Uint8Array(bytes).buffer as ArrayBuffer;
+                    const blob = new Blob([buffer], { type: mimeType });
 
                     imagensCarregada.push({
                         Arquivo: blob,
@@ -150,8 +151,8 @@
         catch (erro)
         {
             if (erro instanceof Error)
-                return erro
-            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`)
+                return erro;
+            return new Error(`Erro desconhecido no processamento da imagem. ${erro}`);
         }
         finally
         {

@@ -16,8 +16,8 @@
         private static _sRgbProfile: Uint8Array;
         private static _urlBlobMagick: string;
         private static _urlBlobMagickWorker: string;
-        private static _bufferWasm: ArrayBuffer;
-        private static _blobWasm: Blob;
+        private static _bytesWasm: Uint8Array;
+        /*private static _blobWasm: Blob;*/
 
         private static ProgressosHandler = new Array<(e: ProgressoEventArgs) => void>();
 
@@ -31,14 +31,14 @@
             return this.Status === EnumStatusInicializacaoMagick.Sucesso;
         }
 
-        public static get BufferWasm(): ArrayBuffer
+        public static get BytesWasm(): Uint8Array
         {
-            return MagickInitUtil._bufferWasm;
+            return MagickInitUtil._bytesWasm;
         }
-        public static get BlobWasm(): Blob
-        {
-            return MagickInitUtil._blobWasm;
-        }
+        //public static get BlobWasm(): Blob
+        //{
+        //    return MagickInitUtil._blobWasm;
+        //}
 
         public static get UrlBlobMagick(): string
         {
@@ -104,7 +104,69 @@
             return Snebur.$Configuracao.UrlMagick;
         }
 
-        private static async InicializaMagickAsync()
+        private static async InicializaMagickAsync(): Promise<EnumStatusInicializacaoMagick>
+        {
+            await MagickInitUtil.InicializarPackageMagickAsync();
+            if (MagickInitUtil.IsInicializado)
+            {
+                return EnumStatusInicializacaoMagick.Sucesso;
+            }
+            console.error("Falha ao inicializar MagickWasm via package. Tentando método alternativo.");
+            return await MagickInitUtil.InicializaMagickAsyncTemporaria();
+
+        }
+
+        private static async InicializaMagickAsyncTemporaria(): Promise<EnumStatusInicializacaoMagick>
+        {
+           
+            console.warn("Tentando nova inicialização do MagickWasm");
+            const scripBuffer = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick_251117_03.js?v=12312");
+            const blobMagick = new Blob([scripBuffer.buffer as ArrayBuffer], { type: "application/javascript" });
+            const urlBlobMagick = window.URL.createObjectURL(blobMagick);
+            const isSucesso = await u.ScriptUtil.CarregarScriptAsync(urlBlobMagick, true);
+            if (!isSucesso)
+            {
+                return EnumStatusInicializacaoMagick.Erro;
+            }
+
+            /*const wasBuffer = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick_251117_03.js?v=12312");*/
+            const bytesWasm = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick.wasm");
+
+            try
+            {
+                await MagickWasm.initializeImageMagick(bytesWasm);
+
+                if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
+                {
+                    console.success(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
+
+                    this._bytesWasm = bytesWasm;
+                    this._urlBlobMagick = urlBlobMagick;
+                    this._urlBlobMagickWorker = "https://cdn.sigi.com.br/lib/magick/MagickWorker_251117_03.js?v=12312";
+                    console.warn("MagickWasm initialized successfully");
+                    return EnumStatusInicializacaoMagick.Sucesso;
+                }
+                return EnumStatusInicializacaoMagick.Erro;
+            }
+            catch (erro)
+            {
+                console.error("Erro ao inicializar MagickWasm", erro);
+                return EnumStatusInicializacaoMagick.Erro;
+            }
+        }
+
+        private static async getBufferFromUrl(url: string): Promise<Uint8Array>
+        {
+            const response = await fetch(url);
+            if (!response.ok)
+            {
+                throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
+            }
+            const arrayBuffer = await response.arrayBuffer();
+            return new Uint8Array(arrayBuffer);
+        }
+
+        private static async InicializarPackageMagickAsync()
         {
             try
             {
@@ -141,11 +203,11 @@
                 const zip = new JSZip();
                 await zip.loadAsync(bytes);
 
-                const bufferWasm = await zip.file("magick.wasm").async("arraybuffer");
+                const bytesWasm = await zip.file("magick.wasm").async("uint8array");
                 const blobMagick = await zip.file("magick.js").async("blob");
                 const blobMagickWorker = await zip.file("MagickWorker.js").async("blob");
                 const bytessRGB = await zip.file("sRGB.icm").async("uint8array");
-                const blobWasm = new Blob([bufferWasm], { type: "application/wasm" });
+                const blobWasm = new Blob([bytesWasm.buffer as ArrayBuffer], { type: "application/wasm" });
                 const urlBlobMagick = window.URL.createObjectURL(blobMagick);
                 const urlBlobMagickWorker = window.URL.createObjectURL(blobMagickWorker);
                 const urlBlobWasm = window.URL.createObjectURL(blobWasm);
@@ -156,10 +218,10 @@
                     return EnumStatusInicializacaoMagick.Erro;
                 }
 
-                this._blobWasm = blobWasm;
+                /*this._blobWasm = blobWasm;*/
                 this._urlBlobMagick = urlBlobMagick;
                 this._urlBlobMagickWorker = urlBlobMagickWorker;
-                this._bufferWasm = bufferWasm;
+                this._bytesWasm = bytesWasm;
 
                 if (typeof MagickWasm?.initializeImageMagick !== "function")
                 {
@@ -172,7 +234,7 @@
                     console.error("Perfil sRGB inválido");
                 }
 
-                await MagickWasm.initializeImageMagick(urlBlobWasm);
+                await MagickWasm.initializeImageMagick(bytesWasm);
 
                 /*await this.SimularProgressoAsync();*/
 
@@ -181,7 +243,7 @@
 
                 if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
                 {
-                    console.warn(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
+                    console.success(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
                     return EnumStatusInicializacaoMagick.Sucesso;
                 }
             }
@@ -193,7 +255,7 @@
             return EnumStatusInicializacaoMagick.Erro;
         }
 
-        private static IsMagickSuportado():boolean
+        private static IsMagickSuportado(): boolean
         {
             if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
                 SistemaUtil.Navegador.VersaoPrincipal < 14.1)
@@ -241,6 +303,6 @@
                 progress(e);
             }
         }
-         
+
     }
 }

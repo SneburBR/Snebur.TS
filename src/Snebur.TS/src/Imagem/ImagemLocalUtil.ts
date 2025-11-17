@@ -15,7 +15,7 @@
 
         private static async RetornarElementoImagemDoArquivoAsync(
             arquivo: SnBlob,
-            isIgnorarErro: boolean ): Promise<HTMLImageElement>
+            isIgnorarErro: boolean): Promise<HTMLImageElement>
         {
             let imagem = await ImagemLocalUtil.RetornarElementoImagemDaUrlAsync(arquivo.UrlBlob, true);
             if (imagem === null)
@@ -84,44 +84,21 @@
             arquivo: SnBlob,
             alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
-
-            if (i.MagickInitUtil.IsInicializado &&
-                !window.__IS_USAR_CANVAS__ &&
-                !window.__IS_USAR_PICA__)
-            {
-                const resultadoMagick = await ImagemLocalUtil.CarregarImagemArquivoMagickAsync(
-                    arquivo,
-                    alturaMaxima);
-
-                if (resultadoMagick != null)
-                {
-                    return resultadoMagick;
-                }
-            }
-
-            //const infoPerfil = await ExifUtil.RetornarNomePerfilCorExifAsync(arquivo);
-            //if ($Configuracao.IsDebugOuTeste)
-            //{
-            //    const descricaoPerfilCor = infoPerfil ?? "Sem perfil";
-            //    console.warn(`Arquivo ${arquivo.name} carregado com canvas. Perfil: ${descricaoPerfilCor}, ColorSpace: ${infoPerfil?.ColorSpace}`);
-            //}
-
-            //if (SistemaUtil.NavegadorEnum === d.EnumNavegador.Safari &&
-            //    infoPerfil.ColorSpace === ColorSpaceData.CMYK)
-            //{
-            //    return {
-            //        IsIcone: true,
-            //        Url: arquivo.UrlIcone,
-            //        IsErro: false
-            //    };
-            //}
-
-            const resultadoCanvas = await ImagemLocalUtil.CarregarImagemArquivoCanvasAsync(
+             
+            const resultadoMagick = await ImagemLocalUtil.TryCarregarImagemArquivoMagickAsync(
                 arquivo,
-                alturaMaxima );
+                alturaMaxima);
 
-            if (resultadoCanvas == null ||
-                resultadoCanvas?.IsAlertaSemPerfilBrancaOuPreta)
+            if (resultadoMagick != null)
+            {
+                return resultadoMagick;
+            }
+ 
+            const resultadoCanvas = await ImagemLocalUtil.TryCarregarImagemArquivoCanvasAsync(
+                arquivo,
+                alturaMaxima);
+
+            if (resultadoCanvas == null || resultadoCanvas?.IsAlertaSemPerfilBrancaOuPreta)
             {
                 return {
                     IsIcone: true,
@@ -129,19 +106,48 @@
                     IsErro: false
                 };
             }
-
-            //const isAlertaPerfilCor = (infoPerfil.ColorSpace === ColorSpaceData.Desconhecido ||
-            //    String.IsNullOrWhiteSpace(infoPerfil.Nome));
-
-            ///*infoPerfil.Nome !== "sRGB IEC61966-2.1";*/
-
-            //resultadoCanvas.PerfilCor = infoPerfil.Nome;
-            //resultadoCanvas.ColorSpace = infoPerfil.ColorSpace;
-            //resultadoCanvas.IsAlertaPerfilCor = isAlertaPerfilCor;
             return resultadoCanvas;
         }
 
-        private static async CarregarImagemArquivoCanvasAsync(
+        private static async TryCarregarImagemArquivoMagickAsync(
+            arquivo: SnBlob,
+            alturaMaxima: number): Promise<ResultadoCarregarImagem>
+        {
+            if (!Snebur.i.MagickInitUtil.IsInicializado)
+            {
+                console.warn("Magick não inicializado, pulando tentativa Magick");
+            }
+
+            if (window.IS_USAR_CANVAS === true || window.IS_USAR_PICA === true)
+            {
+                console.warn("Magick - pulando - Canvas ou PicaJS selecionado motor principal para processar Imagem");
+                return null;
+            }
+
+            const dimensao = { Largura: alturaMaxima * 1.5, Altura: alturaMaxima };
+            const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
+            const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
+            if (resultado != null && resultado.ImagensCarregada.Count === 1)
+            {
+                const imagemCarregada = resultado.ImagensCarregada[0];
+                const blob = imagemCarregada.Arquivo;
+                const url = window.URL.createObjectURL(blob);
+
+                console.success(`Magick - Imagem carregar com sucesso: ${arquivo.name}`);
+                return {
+                    AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
+                    LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
+                    Url: url,
+                    Blob: blob,
+                    LarguraImagem: imagemCarregada.Dimensao.Largura,
+                    AlturaImagem: imagemCarregada.Dimensao.Altura
+                };
+            }
+            console.error("Magick - Falha ao carregar imagem, próxima tentativa Canvas");
+            return null;
+        }
+
+        private static async TryCarregarImagemArquivoCanvasAsync(
             arquivo: SnBlob,
             alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
@@ -165,44 +171,16 @@
                     Url: resultado.Url
                 };
             }
+            console.error("Canvas - Falha ao carregar imagem.");
             return null;
         }
-
-        private static async CarregarImagemArquivoMagickAsync(
-            arquivo: SnBlob,
-            alturaMaxima: number): Promise<ResultadoCarregarImagem>
-        {
-            if (i.MagickInitUtil.IsInicializado)
-            {
-                const dimensao = { Largura: alturaMaxima * 1.5, Altura: alturaMaxima };
-                const abrirArquivoLocalMagick = new AbrirArquivoLocalMagick(arquivo, dimensao);
-                const resultado = await abrirArquivoLocalMagick.ProcessarAsync();
-                if (resultado != null && resultado.ImagensCarregada.Count === 1)
-                {
-                    const imagemCarregada = resultado.ImagensCarregada[0];
-                    const blob = imagemCarregada.Arquivo;
-                    const url = window.URL.createObjectURL(blob);
-
-                    return {
-                        AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
-                        LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
-                        Url: url,
-                        Blob: blob,
-                        LarguraImagem: imagemCarregada.Dimensao.Largura,
-                        AlturaImagem: imagemCarregada.Dimensao.Altura
-                    };
-                }
-            }
-            return null;
-        }
-
+       
         public static IsElementoImagemCarregado(elementoImagem: HTMLImageElement)
         {
             return elementoImagem.complete &&
                 elementoImagem.naturalHeight > 0 &&
                 elementoImagem.naturalWidth > 0;
         }
-
     }
 
     export interface ResultadoCarregarImagem

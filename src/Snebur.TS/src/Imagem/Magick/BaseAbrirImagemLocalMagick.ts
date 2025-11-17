@@ -29,7 +29,7 @@
             return {
                 NomeArquivoOrigem: this.NomeArquivo,
                 /*BytesOrigem: bytesOrigem,*/
-                ArquivoOrigem: this.ArquivoLocal.Blob ,
+                ArquivoOrigem: this.ArquivoLocal.Blob,
                 IsRemoverExif: true,
                 IsPngParaJpeg: false,
                 Qualidade: QUALIDADE_APRESENTACAO_MAGICK,
@@ -58,19 +58,19 @@
                 return null;
             }
         }
-         
+
         private async ProcessarInternoAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
         {
             try
             {
-                if (MagickUtil.IsWorker && !$Configuracao.IsDebug)
+                if (MagickUtil.IsWorker)
                 {
                     const resultado = await this.ProcessarWorkerAsync(opcoes);
-                    if (!(resultado instanceof Error) && resultado != null)
+                    if (resultado != null && !(resultado instanceof Error))
                     {
                         return resultado;
                     }
-                    console.error("Falha magick worker " + this.NomeArquivo);
+                    console.error(`Magick Worker - Falha ao processar imagem - tentando processar na main thread: ${opcoes.NomeArquivoOrigem}`);
                 }
             }
             catch (erro)
@@ -81,26 +81,24 @@
             const t = Stopwatch.StartNew();
             const processador = new MagickProcessador(opcoes, MagickInitUtil.BytesPerfilSRGB);
             const resultado = await processador.ProcessarAsync();
-            if (!(resultado instanceof Error) && resultado != null)
+            if (resultado == null || resultado instanceof Error)
             {
-                if (this instanceof AbrirImagemImpressaoMagick)
-                {
-                    console.warn(`Processado Magick Main Thread  : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
-                }
-                return resultado;
+                console.error(`Magick Main Thread  -Falha ao processar imagem: ${opcoes.NomeArquivoOrigem} - ${resultado}`);
+                return null;
             }
-            console.error("Falha magick main thread " + this.NomeArquivo);
-            return null;
+            console.success(`Magick Main Thread - Imagem processada com sucesso: ${opcoes.NomeArquivoOrigem}`);
+            return resultado;
         }
 
         private async ProcessarWorkerAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
         {
             const resultado = await w.GerenciadorMagickWorker.Instancia.ProcessarAsync(opcoes);
-            if (resultado instanceof Error)
+            if (resultado == null || resultado instanceof Error)
             {
-                console.error("Falha ao processar imagem MagickWorker " + resultado);
+                console.error(`Falha ao processar imagem MagickWorker: ${resultado}`);
                 return null;
             }
+            console.success(`Magick Worker - Imagem processada com sucesso: ${opcoes.NomeArquivoOrigem}`);
             return resultado;
         }
 
