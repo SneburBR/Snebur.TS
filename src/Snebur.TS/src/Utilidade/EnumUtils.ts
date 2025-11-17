@@ -11,7 +11,7 @@
 
         public static RetornarValoresEnum<TEnum>(construtorEnum: TEnum): Array<TEnum[keyof TEnum]>
         {
-            const valores = Object.values(construtorEnum as any);
+            const valores = Object.values(construtorEnum);
             const valoresNumeros = valores.Where(x => typeof x === "number" && x !== EnumUtil.UNDEFINED_VALUE);
             if (valoresNumeros.Count > 0)
             {

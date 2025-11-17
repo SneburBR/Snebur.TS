@@ -2,6 +2,7 @@
 {
     export class ReflexaoUtil
     {
+       
         public static RetornarTipo(construtor: Function): r.BaseTipo
         public static RetornarTipo(caminhoTipo: string): r.BaseTipo
         public static RetornarTipo(caminhoTipoOuConstrutor: string | Function): r.BaseTipo
@@ -422,7 +423,7 @@
                 return $Reflexao.Tipos.Item(caminhoTipoLista) as Snebur.Reflexao.BaseTipoLista;
             }
 
-            DebugUtil.Break(`O tipo da lista não foi encontrado para o tipo ${tipo.Nome}`); 
+            DebugUtil.Break(`O tipo da lista não foi encontrado para o tipo ${tipo.Nome}`);
             if ($Configuracao.IsDebug)
             {
                 throw new Erro(`Não foi possível retornar o tipo da lista para o tipo ${tipo.Nome}`, this);
@@ -521,5 +522,25 @@
                 }
             }
         }
+
+        public static RetornarConstrutor(
+            parentObj: object,
+            caminho: string,
+            ignorarValorNaoEncontrado = false)
+        {
+            const valor = u.ReflexaoUtil.RetornarValorPropriedade(parentObj, caminho, true);
+            if (valor instanceof Function)
+            {
+                return valor;
+            }
+            if (valor != null)
+            {
+                throw new Erro(`O valor retornado para o caminho ${caminho} não é um construtor`, this);
+            }
+            if (ignorarValorNaoEncontrado)
+                return null;
+            throw new Erro(`O valor para o caminho ${caminho} não foi encontrado`, this);
+        }
+
     }
 }
