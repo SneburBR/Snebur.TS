@@ -231,11 +231,13 @@
             //this.ControleItemSelecionado.OcultarElemento();
         }
 
+        /*@internal*/
         protected override OcuparElementosFilho(): void
         {
             //não faz nada
         }
 
+        /*@internal*/
         protected override DesocuparElementosFilho(): void
         {
             //não faz nada

@@ -2,14 +2,15 @@
 {
     export class ConsoleUtil
     {
+        private static readonly CSS_CLASS_EXPANDIDO = "sn-expandido";
+        private static readonly ALTURA_NORMAL = 50;
         private static _isInicializando: boolean;
         private static ElementoConsole: HTMLElement;
         private static ElementoBotaoExpandir: HTMLElement;
-        private static CSS_CLASS_EXPANDIDO = "sn-expandido";
-        private static ALTURA_NORMAL = 50;
         private static IsExpandido: boolean = false;
 
-        private static AltertasDisparados = new HashSet<number>();
+        private static readonly TIMEOUT_MENSAGEM_REPETIDA = 10000; //10 segundos
+        private static readonly _mensagemDisparadas = new DicionarioSimples<number, number>();
 
         public static InicializarVisualizacaoConsole(e: ConsoleLogArgs)
         {
@@ -140,45 +141,47 @@
 
         private static ConsoleUtil_Log(provedcor: any, e: ConsoleLogArgs)
         {
-            if (ConsoleUtil._isInicializando)
+            if (ConsoleUtil.IgnorarMensagem(e))
             {
-                if (e.Tipo === EnumTipoLog.Alerta)
-                {
-                    //if ($Configuracao.IsTeste)
-                    //{
-                    //    return;
-                    //}
+                return;
+            }
 
-                    if (ConsoleUtil.AltertasDisparados.Contains(e.Mensagem.GetHashCode()))
-                    {
-                        return;
-                    }
-                    ConsoleUtil.AltertasDisparados.Add(e.Mensagem.GetHashCode());
-                }
+            ConsoleUtil._mensagemDisparadas.AddOrUpdate(e.Mensagem.GetHashCode(), Date.now());
+            const log = document.createElement("div");
+            log.style.color = ConsoleUtil.RetornarCorLog(e.Tipo);
+            log.innerHTML = FormatacaoUtil.FormatarHtml(e.Mensagem);
 
-                if (e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta)
-                {
-                    if (e.Mensagem?.Contains("ignore:"))
-                    {
-                        return;
-                    }
+            const destino = this.ElementoConsole.querySelector("destino");
+            destino.appendChild(log);
+            destino.appendChild(document.createElement("hr"));
 
-                    const log = document.createElement("div");
-                    log.style.color = ConsoleUtil.RetornarCorLog(e.Tipo);
-                    log.innerHTML = FormatacaoUtil.FormatarHtml(e.Mensagem);
-
-                    const destino = this.ElementoConsole.querySelector("destino");
-                    destino.appendChild(log);
-                    destino.appendChild(document.createElement("hr"));
-
-                    if (!ConsoleUtil.IsExpandido)
-                    {
-                        ElementoUtil.ScrollTo(log);
-                    }
-                }
+            if (!ConsoleUtil.IsExpandido)
+            {
+                ElementoUtil.ScrollTo(log);
             }
         }
 
+        private static IgnorarMensagem(e: ConsoleLogArgs)
+        {
+            return !ConsoleUtil._isInicializando
+                || !$Configuracao.IsDebugOuTeste 
+                || e.Tipo === EnumTipoLog.Info
+                || e.Tipo === EnumTipoLog.Log
+                || String.IsNullOrWhiteSpace(e.Mensagem)
+                || e.Mensagem?.Contains("ignore:")
+                || ConsoleUtil.IsMensagemDisparadaRecentemente(e.Mensagem?.GetHashCode());
+        }
+
+        private static IsMensagemDisparadaRecentemente(hashCode: number): boolean
+        {
+            if (!ConsoleUtil._mensagemDisparadas.ContainsKey(hashCode))
+            {
+                return false;
+            }
+            const time = ConsoleUtil._mensagemDisparadas.Item(hashCode);
+            const diferenca = Date.now() - time;
+            return diferenca < ConsoleUtil.TIMEOUT_MENSAGEM_REPETIDA;
+        }
 
         private static RetornarCorLog(tipo: EnumTipoLog): string
         {
@@ -186,15 +189,13 @@
             {
                 case EnumTipoLog.Alerta:
                     return "darkorange";
-
                 case EnumTipoLog.Info:
-
                     return "blue";
-
                 case EnumTipoLog.Erro:
                     return "red";
+                case EnumTipoLog.Sucesso:
+                    return "darkgreen";
                 default:
-
                     return "white";
             }
         }

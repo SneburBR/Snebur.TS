@@ -610,7 +610,7 @@
         {
             return $Aplicacao.DocumentoPrincipal?.ProgressoOcupadoAtual ?? 0;
         }
-         
+
         public ProgressoOcupado(processo: number): void
         {
             if ($Aplicacao.DocumentoPrincipal instanceof DocumentoPrincipal)
@@ -635,6 +635,7 @@
             }
         }
 
+        /*@internal*/
         protected OcuparElemento(): void
         {
             //CssClassUtil.AdicionarCssClasse(this.Elemento, BaseControle.CssClasseOcupado, true);
@@ -649,6 +650,7 @@
             }
         }
 
+        /*@internal*/
         protected OcuparElementosFilho(): void
         {
             const controlesFilhos = this.DicionarioControlesFilho.Valores;
@@ -659,6 +661,7 @@
             }
         }
 
+        /*@internal*/
         protected DesocuparElemento(): void
         {
             const elemento = this.Elemento;
@@ -729,7 +732,7 @@
                 await this.DepoisDesocuparAsync();
                 return resultado;
             }
-            return this.OcuparElementoAsync(funcAsync);
+            return this.OcuparElementoAsyncInterno(funcAsync);
         }
 
         protected async AntesOcuparAsync(): Promise<void>
@@ -742,8 +745,12 @@
             //Pode ser sobrescrito
         }
 
+        public async OcuparElementoAsync<T>(funcAsync: () => Promise<T>): Promise<T>
+        {
+            return this.OcuparAsync(funcAsync, EnumOpcaoOcupar.NaoMostrarJanelaOcupado);
+        }
 
-        private async OcuparElementoAsync<T>(funcAsync: () => Promise<T>): Promise<T>
+        private async OcuparElementoAsyncInterno<T>(funcAsync: () => Promise<T>): Promise<T>
         {
             this.OcuparElemento();
             try
@@ -761,9 +768,6 @@
                 this.DesocuparElemento();
             }
         }
-
-      
-
 
         protected async AguardarDesocupacaoAsync(): Promise<void>
         {

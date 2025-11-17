@@ -392,11 +392,11 @@
 
         private Console_Log(provedor: any, e: ConsoleLogArgs)
         {
-            if ((e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta) && ($Configuracao.IsDebugOuTeste))
+            if ($Configuracao.IsDebugOuTeste &&
+                (e.Tipo === EnumTipoLog.Erro || e.Tipo === EnumTipoLog.Alerta || e.Tipo === EnumTipoLog.Sucesso))
             {
                 ConsoleUtil.InicializarVisualizacaoConsole(e);
             }
-
         }
 
         private Aplicacao_Error(e: ErrorEvent)

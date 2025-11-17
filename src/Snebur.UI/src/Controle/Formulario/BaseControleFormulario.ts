@@ -782,6 +782,7 @@
             ElementoUtil.AdicionarAtributo(this.ElementoInput, AtributosHtml.Disabled, AtributosHtml.Disabled.Nome);
         }
 
+        /*@internal*/
         protected override DesocuparElemento(): void
         {
             if (!this.IsDispensado)
