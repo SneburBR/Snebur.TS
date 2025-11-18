@@ -16,7 +16,7 @@
 
             const settings = new MagickWasm.MagickReadSettings();
             settings.setDefine(MagickWasm.MagickFormat.Jpeg, "lossless", true);
-            settings.setDefine(MagickWasm.MagickFormat.Webp, "lossless", true);
+            settings.setDefine(MagickWasm.MagickFormat.WebP, "lossless", true);
 
             const bytesIamgem = await MagickWasm.ImageMagick.read<ArrayBuffer>(
                 bytesArquivo,
@@ -31,7 +31,7 @@
             const formatoDestino = (imagem.format === MagickWasm.MagickFormat.Jpeg ||
                 imagem.format === MagickWasm.MagickFormat.Jpg) ?
                 MagickWasm.MagickFormat.Jpeg :
-                MagickWasm.MagickFormat.Webp;
+                MagickWasm.MagickFormat.WebP;
 
             const dimensaoImpressao = this.DimensaoImpressao;
             imagem.filterType = MagickWasm.FilterType.Lagrange;

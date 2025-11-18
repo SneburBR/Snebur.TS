@@ -3,10 +3,14 @@ namespace Snebur.WebWorker
 {
     export class MagickWorkerCliente  
     {
-        private static readonly UrlWorkerDebug: string = "/build/MagickWorker.js?";
+        public static readonly IsMagickDebug = true;
+        public static readonly UrlWorkerDebug: string = "/workers/magick/MagickWorker.js?";
+        public static readonly UrlMagickScriptDebug: string = "/workers/magick/Magick.js?";
         private static readonly TIMEOUT_VISUALIZACAO = 1 * 60 * 1000;
         private static readonly TIMEOUT_IMPRESSAO = 3 * 60 * 1000;
 
+
+        public readonly UrlMagickScript: string;
         private _isProcessando: boolean = false;
         private _isReciclarPedente: boolean = false;
         private Worker: Worker;
@@ -17,14 +21,7 @@ namespace Snebur.WebWorker
                 this.TotalProcessado >= this.TotalProcessosReciclar;
         }
 
-        public get UrlWorker(): string
-        {
-            if (!$Configuracao.IsDebug && ValidacaoUtil.IsUrlBlob(this.UrlBlobWorker))
-            {
-                return this.UrlBlobWorker;
-            }
-            return MagickWorkerCliente.UrlWorkerDebug + $Configuracao.Versao;
-        }
+      
 
         private TotalProcessado: number = 0;
 
@@ -34,9 +31,20 @@ namespace Snebur.WebWorker
 
         public constructor(
             public readonly Numero: number,
-            public readonly UrlBlobWorker: string,
-            public readonly TotalProcessosReciclar: number)
+            public readonly UrlWorker: string,
+            private readonly TotalProcessosReciclar: number)
         {
+            Guard.MustBeUrlBlob(UrlWorker, "UrlBlobWorker");
+
+            this.UrlMagickScript = i.MagickInitUtil.UrlBlobMagickScript;
+
+            if (MagickWorkerCliente.IsMagickDebug && $Configuracao.IsDebug)
+            {
+                this.UrlWorker = MagickWorkerCliente.UrlWorkerDebug + $Configuracao.Versao;
+                this.UrlMagickScript = MagickWorkerCliente.UrlMagickScriptDebug + $Configuracao.Versao;
+                return;
+            }
+         
             //this.__Worker_Message = this.Worker_Message.bind(this);
             //this.__Worker_Error = this.Worker_Error.bind(this);
             //this.__Worker_MessageError = this.Worker_MessageError.bind(this);
@@ -58,8 +66,8 @@ namespace Snebur.WebWorker
                 Opcoes: opcoes,
                 MagickInit: {
                     BytesWasm: i.MagickInitUtil.BytesWasm,
-                    UrlBlobMagick: i.MagickInitUtil.UrlBlobMagick,
                     BytesPerfilSRGB: i.MagickInitUtil.BytesPerfilSRGB,
+                    UrlBlobMagick: this.UrlMagickScript,
                 }
             };
 
@@ -118,7 +126,6 @@ namespace Snebur.WebWorker
                 this.IdentificadorMensagem = identificadorMensagem;
                 this.NomeArquivoOrigem = opcoes.NomeArquivoOrigem;
                 worker.postMessage(memsnagem);
-                /*this.IdTimeout = window.setTimeout(this.Worker_Timeout.bind(this), MagickWorkerCliente.TIMEOUT);*/
             });
         }
 

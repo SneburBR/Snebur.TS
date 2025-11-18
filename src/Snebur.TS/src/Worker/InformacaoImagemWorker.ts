@@ -4,10 +4,6 @@
     {
         private static get UrlWorker(): string
         {
-            if (u.SistemaUtil.IsInternetExplorer11)
-            {
-                return "/workers/Snebur.InformacaoImagem.js?v=1";
-            }
             return "/workers/Snebur.InformacaoImagem.Moderno.js?v=1";
         }
 

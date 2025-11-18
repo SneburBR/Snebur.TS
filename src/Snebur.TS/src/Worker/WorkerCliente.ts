@@ -26,7 +26,10 @@
             workerInterno.EnviarMensagem(mensagem, callback);
         }
 
-        protected NormalizarResultado(mensagem: TMensagem, resultado: TResultado | Error, argumento: any): Promise<TResultado | Error> | TResultado | Error
+        protected NormalizarResultado(
+            mensagem: TMensagem,
+            resultado: TResultado | Error,
+            argumento: any): Promise<TResultado | Error> | TResultado | Error
         {
             return resultado;
         }

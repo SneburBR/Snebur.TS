@@ -1,8 +1,16 @@
-﻿importScripts("Bibliotecas/buffers.js");
-importScripts("Bibliotecas/sizeof.js");
+﻿
+let _isInicializado: boolean = false;
 
 self.onmessage = function (e)
 {
+
+    if (!_isInicializado)
+    {
+        importScripts("./lib/buffers.js");
+        importScripts("./lib/sizeof.js");
+    }
+    
+
     const arquivo = e.data as Blob;
     const leitor = new FileReader();
 

@@ -87,7 +87,7 @@
                 imageMagick.format === MagickWasm.MagickFormat.Heic;
 
             const formatoDestino = (isSalvarJpeg) ? MagickWasm.MagickFormat.Jpeg :
-                this.Opcoes.IsPngParaJpeg ? MagickWasm.MagickFormat.Png : MagickWasm.MagickFormat.Webp;
+                this.Opcoes.IsPngParaJpeg ? MagickWasm.MagickFormat.Png : MagickWasm.MagickFormat.WebP;
 
             const mimeType = isSalvarJpeg ? "image/jpeg" : this.Opcoes.IsPngParaJpeg ? "image/png" : "image/webp";
             const dimensaoLocal = this.RetornarDimensaoLocal(imageMagick);

@@ -12,7 +12,7 @@ async function inicializarMagickAsync(mensagem: IMensagemMagickWorker): Promise<
     {
         while (self.__isInicilizando)
         {
-            console.error("MAGICK SENDO INICIALIZADO");
+            console.warn("Magick já está sendo inicializado. Aguardando...");
             await daley(100);
         }
     }
@@ -20,22 +20,24 @@ async function inicializarMagickAsync(mensagem: IMensagemMagickWorker): Promise<
     if (!self.__isMagickCarregado)
     {
         self.__isInicilizando = true;
-        const url = self.URL.createObjectURL(mensagem.MagickInit.BlobWasm);
+        const bytes = mensagem.MagickInit.BytesWasm;
         try
         {
             importScripts(mensagem.MagickInit.UrlBlobMagick);
-            await MagickWasm.initializeImageMagick(url);
+            await MagickWasm.initializeImageMagick(bytes);
            
             if (MagickWasm.Magick.imageMagickVersion != null)
             {
                 self.__isMagickCarregado = true;
-                console.log("Magick worker Carregado v:" + MagickWasm.Magick.imageMagickVersion);
                 return true;
             }
         }
+        catch (erro)
+        {
+            console.error(`Falha ao inicializar o Magick no Worker: ${erro}`);
+        }
         finally
         {
-            self.URL.revokeObjectURL(url);
             self.__isInicilizando = false;
         }
         return false;

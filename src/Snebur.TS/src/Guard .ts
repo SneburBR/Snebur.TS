@@ -104,9 +104,18 @@
             argumentName: string = "value"): asserts value is TEnum[keyof TEnum]
         {
             if (!EnumUtil.IsDefindo(construtorEnum, value))
-            {
                 throw new Error(`The ${argumentName} is not a valid value of ${construtorEnum?.constructor.name}`);
-            }
+        }
+
+        public static MustBeUrlBlob(
+            value: string | null | undefined,
+            argumentName: string = "value"): asserts value is string
+        {
+            if (value == null)
+                throw new Error(` The ${argumentName} cannot be null or undefined`);
+
+            if (!ValidacaoUtil.IsUrlBlob(value))
+                throw new Error(` The ${argumentName} is not a valid Blob URL`);
         }
     }
 }

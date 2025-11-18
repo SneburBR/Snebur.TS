@@ -133,7 +133,7 @@
                 const blob = imagemCarregada.Arquivo;
                 const url = window.URL.createObjectURL(blob);
 
-                console.success(`Magick - Imagem carregar com sucesso: ${arquivo.name}`);
+                console.success(`Magick - Imagem carregada com sucesso: ${arquivo.name}`);
                 return {
                     AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
                     LarguraImagemOrigem: resultado.DimensaoLocal.Largura,

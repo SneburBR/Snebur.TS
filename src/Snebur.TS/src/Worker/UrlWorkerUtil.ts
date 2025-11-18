@@ -2,6 +2,7 @@
 {
     export class UrlWorkerUtil
     {
+        public static readonly _isWorkerDebug: boolean = true;
         private static readonly UrlsBlobsWorksCache = new DicionarioSimples();
         private static _versao: string | null = null;
 
@@ -17,6 +18,16 @@
 
         public static async RetornarUrlCompletaServicoWorker(urlWorker: string): Promise<string>
         {
+            if (UrlWorkerUtil._isWorkerDebug && $Configuracao.IsDebug)
+            {
+                return urlWorker;
+            }
+
+            if (ValidacaoUtil.IsUrlBlob(urlWorker) || ValidacaoUtil.IsUrlHttp(urlWorker))
+            {
+                return urlWorker;
+            }
+
             const urlRelativa = UrlUtil.CombinarQueryChaveValor(urlWorker, "v", UrlWorkerUtil.Versao);
             if (!ValidacaoUtil.IsUrlHttp(urlRelativa))
             {

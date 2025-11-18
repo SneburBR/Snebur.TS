@@ -16,28 +16,28 @@
             });
         }
 
-        public static ExecutarWithTimeOutAsync(tempo: TimeSpan | number, callback: () => Promise<void>): Promise<void>
+        public static ExecutarWithTimeOutAsync(tempo: TimeSpan | number, func: () => Promise<void>): Promise<void>
         {
             const totalMilisegundos = ThreadUtil.RetornarTotalMilesegundos(tempo);
             /* eslint-disable-next-line*/
-            return new Promise<void>(async (resolver, rejeitar) =>
+            return new Promise<void>(async (resolve, reject) =>
             {
                 const idTimeout = setTimeout(async () =>
                 {
-                    resolver = null;
-                    rejeitar(new Error("Tempo limite atingido"));
+                    resolve = null;
+                    reject(new Error("Tempo limite atingido"));
 
                 }, totalMilisegundos);
 
                 try
                 {
-                    await callback();
+                    await func();
                     window.clearTimeout(idTimeout);
-                    resolver?.();
+                    resolve?.();
                 }
                 catch (erro)
                 {
-                    rejeitar?.(erro);
+                    reject?.(erro);
                 }
             });
 

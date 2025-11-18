@@ -1,10 +1,7 @@
 ﻿
 class MagickUtil
 {
-    /*@internal*/
-    public static readonly IsWorker: boolean = false;
-
-    public static Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"];
+    public static readonly Profiles = ["ifd0", "ifd1", "exif", "gps", "interop", "thumbnail", "iptc"];
 
     public static async RemoverExif(imageMagick: MagickWasm.IMagickImage)
     {
@@ -18,16 +15,18 @@ class MagickUtil
         }
     }
 
-    public static async ConverterPerfilAsync(imageMagick: MagickWasm.IMagickImage, perfilData: Uint8Array): Promise<void>
+    public static async ConverterPerfilAsync(
+        imageMagick: MagickWasm.IMagickImage,
+        perfilData: Uint8Array): Promise<void>
     {
         try
         {
             const icc = imageMagick.getProfile("icc");
-            const iccData = icc?.getData();
+            const iccData = icc?.data;
             if (iccData == null || !MagickUtil.IsMesmoPerfil(iccData, perfilData))
             {
                 imageMagick.setArtifact("profile:highres-transform", false);
-                imageMagick.addProfile("icc", perfilData);
+                imageMagick.setProfile("icc", perfilData);
             }
         }
         catch (erro)

@@ -9,7 +9,7 @@
 
         private _totalThreads: number = 0;
         private _totalProcessamentoReciclar: number = 0;
-        public get TotalThreas(): number
+        public get TotalThreads(): number
         {
             return this._totalThreads;
         }
@@ -25,24 +25,21 @@
             this._totalThreads = u.ProcessadorUtil.RetornarTotalThreadsWorker();
             this._totalProcessamentoReciclar = u.ProcessadorUtil.RetornarTotalProcessamentoRecilar();
             console.log(`CARREGAMENTO IMAGENS THREADS ${this._totalThreads} - RECICLAR ${this._totalProcessamentoReciclar} `);
-
-            this.AtualizarThreads(this.TotalThreas);
         }
 
-        private AtualizarThreads(totalThreads: number)
+        private InicializarThreads()
         {
             if (this.WorkersOcupados.Count > 0)
             {
-                console.error("O Gerenciador do worker está ocupado, espera desocupar para atualizar as threads");
                 return;
             }
 
             this.WorkersDisponivel.forEach(x => x.Dispose());
             this.WorkersDisponivel.Clear();
             this.WorkersOcupados.Clear();
-            this._totalThreads = totalThreads;
+            this._totalThreads = this.TotalThreads;
 
-            for (let i = 0; i < this.TotalThreas; i++)
+            for (let i = 0; i < this.TotalThreads; i++)
             {
                 this.WorkersDisponivel.Add(new MagickWorkerCliente(i + 1, this.UrlBlobWorker, this.TotalProcessamentoReciclar));
             }
@@ -50,6 +47,12 @@
 
         public async ProcessarAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick | null>
         {
+            if (!i.MagickInitUtil.IsInicializado)
+            {
+                throw new Error("O Magick não foi inicializado corretamente");
+            }
+            this.InicializarThreads();
+
             const workerCliente = await this.RetornarWorkerClienteDisponivelAsync();
             let isSucesso: boolean = false;
             try

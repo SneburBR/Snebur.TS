@@ -48,15 +48,6 @@
 
         private RetornarUrlWorkderAsync(): string | PromiseLike<string>
         {
-            if (this.IsDebug)
-            {
-                return this.UrlWorkerRelativa;
-            }
-
-            if (ValidacaoUtil.IsUrlBlob(this.UrlWorkerRelativa))
-            {
-                return this.UrlWorkerRelativa;
-            }
             return UrlWorkerUtil.RetornarUrlCompletaServicoWorker(this.UrlWorkerRelativa);
         }
 

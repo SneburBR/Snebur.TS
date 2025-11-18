@@ -63,7 +63,7 @@
         {
             try
             {
-                if (MagickUtil.IsWorker)
+                if (MagickInitUtil.IsWorker)
                 {
                     const resultado = await this.ProcessarWorkerAsync(opcoes);
                     if (resultado != null && !(resultado instanceof Error))

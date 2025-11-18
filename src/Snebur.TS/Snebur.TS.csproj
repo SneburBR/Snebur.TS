@@ -45,6 +45,11 @@
 	  <None Include="src\Dominio\Atributos\Validacao\ValidacaoQuantidadeAttribute.Partial.ts" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <TypeScriptCompile Include="src\Core\Bibliotecas\Magickd.ts.old" />
+	</ItemGroup>
+
 </Project>
 
 
