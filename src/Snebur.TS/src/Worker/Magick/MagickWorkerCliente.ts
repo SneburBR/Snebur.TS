@@ -8,9 +8,9 @@ namespace Snebur.WebWorker
         public static readonly UrlMagickScriptDebug: string = "/workers/magick/Magick.js?";
         private static readonly TIMEOUT_VISUALIZACAO = 1 * 60 * 1000;
         private static readonly TIMEOUT_IMPRESSAO = 3 * 60 * 1000;
-
-
+         
         public readonly UrlMagickScript: string;
+
         private _isProcessando: boolean = false;
         private _isReciclarPedente: boolean = false;
         private Worker: Worker;
@@ -20,21 +20,17 @@ namespace Snebur.WebWorker
             return this._isReciclarPedente ||
                 this.TotalProcessado >= this.TotalProcessosReciclar;
         }
-
-      
-
+         
         private TotalProcessado: number = 0;
-
         private IdentificadorMensagem: string;
         private NomeArquivoOrigem: string;
-
-
+         
         public constructor(
             public readonly Numero: number,
             public readonly UrlWorker: string,
             private readonly TotalProcessosReciclar: number)
         {
-            Guard.MustBeUrlBlob(UrlWorker, "UrlBlobWorker");
+            Guard.UrlBlob(UrlWorker, "UrlBlobWorker");
 
             this.UrlMagickScript = i.MagickInitUtil.UrlBlobMagickScript;
 
@@ -93,7 +89,8 @@ namespace Snebur.WebWorker
                 {
                     window.clearInterval(idTimeout);
                     let resultado = e.data;
-                    const isSucesso = e.data != null && identificadorMensagem === (e.data as IResultadoMagickWorker).IdentificadorMensagem;
+                    const isSucesso = e.data != null
+                        && identificadorMensagem === (e.data as IResultadoMagickWorker).IdentificadorMensagem;
 
                     if (!isSucesso)
                     {
@@ -172,15 +169,13 @@ namespace Snebur.WebWorker
         {
             if (this.Worker instanceof Worker)
             {
-                console.warn("Reciclando MagickWorkerCliente Thread " + this.Numero);
+                console.log("Reciclando MagickWorkerCliente Thread " + this.Numero);
                 this.Worker.terminate();
                 this.Worker = null;
                 this.TotalProcessado = 0;
                 delete this.Worker;
             }
         }
-
-
     }
 }
 interface Worker

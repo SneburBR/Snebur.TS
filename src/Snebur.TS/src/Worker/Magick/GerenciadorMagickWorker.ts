@@ -67,13 +67,7 @@
                     if (impressao != null)
                     {
                         workerCliente.Reciclar();
-                        console.warn(`Processado Magick Worker Thread (${workerCliente.Numero}) : Arquivo: ${opcoes?.NomeArquivoOrigem} - t ${t.TotalSeconds} `);
-                        if (window.IS_SALVAR_ARQUIVOS_IMPRESSAO)
-                        {
-                            Salvar.SalvarComo(impressao.Arquivo, `MAGICK-IMPRESSAO-${opcoes?.NomeArquivoOrigem}t-${t.ElapsedMilliseconds}.${resultado.MagickFormat.toLocaleLowerCase()}`);
-                        }
                     }
-
                     isSucesso = true;
                     return resultado;
                 }

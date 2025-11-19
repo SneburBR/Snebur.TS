@@ -2,9 +2,9 @@
 {
     export class UrlWorkerUtil
     {
-        public static readonly _isWorkerDebug: boolean = true;
         private static readonly UrlsBlobsWorksCache = new DicionarioSimples();
         private static _versao: string | null = null;
+        public static readonly IsWorkerDebug: boolean = false;
 
         private static get Versao(): string
         {
@@ -18,7 +18,7 @@
 
         public static async RetornarUrlCompletaServicoWorker(urlWorker: string): Promise<string>
         {
-            if (UrlWorkerUtil._isWorkerDebug && $Configuracao.IsDebug)
+            if (UrlWorkerUtil.IsWorkerDebug && $Configuracao.IsDebug)
             {
                 return urlWorker;
             }

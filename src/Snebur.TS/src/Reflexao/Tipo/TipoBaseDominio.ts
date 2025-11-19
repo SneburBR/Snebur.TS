@@ -47,6 +47,7 @@
     {
         private static AssemblyNames = [
             "Zyoncore.Sigi.Online.Dominio.MontagemFotoProduto, Zyoncore.Sigi.Online.Dominio",
+            "Zyoncore.Sigi.Online.Dominio.MontagemFotoMontagem, Zyoncore.Sigi.Online.Dominio",
             "Zyoncore.Sigi.Online.Dominio.ItemMontagemServidor, Zyoncore.Sigi.Online.Dominio",
             "Zyoncore.Sigi.Online.Dominio.ItemMontagemAreaFoto, Zyoncore.Sigi.Online.Dominio",
             "Zyoncore.Sigi.Online.Dominio.ItemMontagemAreaMontagemLivre, Zyoncore.Sigi.Online.Dominio"
@@ -54,6 +55,7 @@
 
         private static AssemblyNamesReplace = [
             "Zyoncore.Sigi.Dominio.MontagemFotoProduto, Zyoncore.Sigi.Dominio",
+            "Zyoncore.Sigi.Dominio.MontagemFotoMontagem, Zyoncore.Sigi.Dominio",
             "Zyoncore.Sigi.Dominio.ItemMontagemServidor, Zyoncore.Sigi.Dominio",
             "Zyoncore.Sigi.Dominio.ItemMontagemAreaFoto, Zyoncore.Sigi.Dominio",
             "Zyoncore.Sigi.Dominio.ItemMontagemAreaMontagemLivre, Zyoncore.Sigi.Dominio"

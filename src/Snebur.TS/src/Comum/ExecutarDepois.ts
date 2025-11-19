@@ -61,12 +61,21 @@
         {
             window.clearTimeout(this._identificadorTimeout);
             this.CheckIsDisposed();
-            if (this.IsExecutarIntervaloPendente(argumentos))
+            if (argumentos?.length > 0)
             {
-                console.warn(`Aguarmento ${this._ultimosArgmentos} <> ${argumentos}`);
-                console.warn(`ExecutarDepois: A execução anterior está pendente e será executada imediatamente pois o argumento é diferente do último.`);
-                await this.ExecutarIntervalo();
+                const copiaArgumentos = [...argumentos];
+                if (this.IsExecutarIntervaloPendente(copiaArgumentos))
+                {
+                    console.warn(`Aguarmento ${this._ultimosArgmentos} <> ${copiaArgumentos}`);
+                    console.warn(`ExecutarDepois: A execução anterior está pendente e será executada imediatamente pois o argumento é diferente do último.`);
+                    await this.ExecutarIntervalo();
+                }
+                if (copiaArgumentos.length !== argumentos.length)
+                {
+                    DebugUtil.Break("");
+                }
             }
+
             this._ultimosArgmentos = argumentos ?? null;
             this._isExistePedencia = true;
             this._identificadorTimeout = window.setTimeout(this.ExecutarInterno.bind(this, argumentos), this._timeout);
@@ -81,9 +90,15 @@
             if (this._ultimosArgmentos === undefined)
                 return false;
 
-            if ((this._ultimosArgmentos?.length ?? 0) === (parametros?.length ?? 0))
+            if ((this._ultimosArgmentos?.length ?? 0) === 0 &&
+                (parametros?.length ?? 0) === 0)
             {
                 return false;
+            }
+
+            if ((this._ultimosArgmentos?.length ?? 0) !== (parametros?.length ?? 0))
+            {
+                return true;
             }
             return !Util.IsArrayIgual(this._ultimosArgmentos, parametros);
         }

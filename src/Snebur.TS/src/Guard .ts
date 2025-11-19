@@ -31,7 +31,7 @@
             }
         }
 
-        public static MustBeArray(value: any, argumentName: string = "value"): asserts value is Array<any>
+        public static Array(value: any, argumentName: string = "value"): asserts value is Array<any>
         {
             if (!Array.isArray(value))
             {
@@ -39,21 +39,21 @@
             }
         }
 
-        public static MustBeBaseDomain(value: any, argumentName: string = "value"): asserts value is d.BaseDominio
+        public static BaseDomain(value: any, argumentName: string = "value"): asserts value is d.BaseDominio
         {
             if (!(value instanceof d.BaseDominio))
             {
                 throw new Error(`The ${argumentName} must be an instance of BaseDominio`);
             }
         }
-        public static MustBeEntidfade(value: any, argumentName: string = "value"): asserts value is d.BaseDominio
+        public static Entity(value: any, argumentName: string = "value"): asserts value is d.BaseDominio
         {
             if (!(value instanceof d.Entidade))
             {
                 throw new Error(`The ${argumentName} must be an instance of Entidade`);
             }
         }
-        public static MustBeNumber(value: any, argumentName: string = "value"): asserts value is number
+        public static Number(value: any, argumentName: string = "value"): asserts value is number
         {
             if (typeof value !== "number")
             {
@@ -61,7 +61,7 @@
             }
         }
 
-        public static MustBePrimaryValue(value: any, argumentName: string = "value")
+        public static PrimaryValue(value: any, argumentName: string = "value")
         {
             const type = value.GetType();
             if (!(type instanceof r.TipoPrimario))
@@ -75,7 +75,7 @@
             throw new Erro(`O argument ${argumentName} is not initialized.`);
         };
 
-        public static ValidUri(value: string | null | undefined, argumentName: string = "value"): asserts value is string
+        public static Uri(value: string | null | undefined, argumentName: string = "value"): asserts value is string
         {
             if (value == null)
             {
@@ -87,7 +87,7 @@
             }
         }
 
-        public static MustBeEmail(
+        public static Email(
             value: string | null | undefined,
             argumentName: string = "value"): asserts value is string
         {
@@ -107,7 +107,7 @@
                 throw new Error(`The ${argumentName} is not a valid value of ${construtorEnum?.constructor.name}`);
         }
 
-        public static MustBeUrlBlob(
+        public static UrlBlob(
             value: string | null | undefined,
             argumentName: string = "value"): asserts value is string
         {
@@ -116,6 +116,14 @@
 
             if (!ValidacaoUtil.IsUrlBlob(value))
                 throw new Error(` The ${argumentName} is not a valid Blob URL`);
+        }
+
+        public static InstanceOf<T>(value: any, constructor: IConstrutor<T>, argumentName: string = "value"): asserts value is T
+        {
+            if (!(value instanceof constructor))
+            {
+                throw new Error(`The ${argumentName} is not an instance of ${constructor.name}`);
+            }
         }
     }
 }

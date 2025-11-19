@@ -4,7 +4,7 @@
     {
         protected abstract UrlWorker: string;
         protected constructor(
-            public readonly IsDebug: boolean = false)
+            public readonly IsDebug: boolean = WebWorker.UrlWorkerUtil.IsWorkerDebug)
         {
 
         }

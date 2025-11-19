@@ -267,10 +267,10 @@
             }
             if (parametro.Valor != null)
             {
-                Guard.MustBeArray(parametro.Valor);
+                Guard.Array(parametro.Valor);
                 for (const value of parametro.Valor)
                 {
-                    Guard.MustBePrimaryValue(value);
+                    Guard.PrimaryValue(value);
                     parametroChamada.Lista.Add(value);
                 }
             }
@@ -285,10 +285,10 @@
             parametroChamada.AssemblyQualifiedName = tipo.AssemblyQualifiedName;
             if (parametro.Valor != null)
             {
-                Guard.MustBeArray(parametro.Valor);
+                Guard.Array(parametro.Valor);
                 for (const enumValue of parametro.Valor)
                 {
-                    Guard.MustBeNumber(enumValue);
+                    Guard.Number(enumValue);
                     parametroChamada.Valores.Add(enumValue);
                 }
             }
@@ -305,10 +305,10 @@
 
             if (parametro.Valor != null)
             {
-                Guard.MustBeArray(parametro.Valor);
+                Guard.Array(parametro.Valor);
                 for (const baseDominio of parametro.Valor)
                 {
-                    Guard.MustBeBaseDomain(baseDominio);
+                    Guard.BaseDomain(baseDominio);
                     parametroChamada.BasesDominio.Add(baseDominio);
                 }
             }
@@ -325,10 +325,10 @@
 
             if (parametro.Valor != null)
             {
-                Guard.MustBeArray(parametro.Valor);
+                Guard.Array(parametro.Valor);
                 for (const entidade of parametro.Valor)
                 {
-                    Guard.MustBeEntidfade(entidade);
+                    Guard.Entity(entidade);
                     parametroChamada.BasesDominio.Add(entidade);
                 }
             }
@@ -343,8 +343,7 @@
             cabecalho.CredencialServico = this.RetornarCredencialServico();
             return cabecalho;
         }
-
-
+         
         // #endregion
 
         //#region Parâmetros da operação

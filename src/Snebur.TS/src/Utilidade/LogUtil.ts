@@ -21,24 +21,6 @@
                 mensagem = `${mesagemComplementar}\r\n ${mensagem}`;
             }
             console.error(mensagem);
-
-            try
-            {
-                if (Snebur.$Configuracao?.IsDebugOuTeste === true)
-                {
-                    if (Snebur.$Aplicacao?.IsConectadoServicoDepuracao === true)
-                    {
-                        const mensagemLog = new Depuracao.MensagemLog();
-                        mensagemLog.Mensagem = mensagem;
-                        mensagemLog.TipoLog = Depuracao.EnumTipoLog.Erro;
-                        $Aplicacao.ServicoDepuracao.EnviarMensagem(mensagemLog);
-                    }
-                }
-            }
-            catch (ex)
-            {
-                console.baseError(ex);
-            }
         }
 
         public static Depuracao(mensagem: string): void

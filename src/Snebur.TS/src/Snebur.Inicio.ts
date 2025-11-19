@@ -2,7 +2,9 @@
 {
     export const $DataHoraInicio = new Date();
     export declare let __IsScriptNormalizado: boolean;
-    export const $Global: Window = (typeof window !== "undefined") ? window : (typeof self !== "undefined") ? self : globalThis as any as Window;
+    export const $Global: Window = (typeof window !== "undefined")
+        ? window : (typeof self !== "undefined")
+            ? self : globalThis as any as Window;
 }
 
 if (typeof globalThis === "undefined")

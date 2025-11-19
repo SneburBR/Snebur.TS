@@ -143,7 +143,7 @@
 
         private async AbrirImagemInternoAsync(): Promise<DicionarioSimples<i.ImagemLocalCarregada, d.EnumTamanhoImagem>>
         {
-            if (i.MagickInitUtil.IsInicializado && !window.IS_USAR_CANVAS)
+            if (i.MagickInitUtil.IsUsarMagick)
             {
                 try
                 {
@@ -256,102 +256,3 @@
 
     //#endregion
 }
-
-interface Window
-{
-
-    /*@internal*/
-    __is_usar_pica__: boolean;
-    /*@internal*/
-    __is_usar_canvas__: boolean;
-    /*@internal*/
-    __is_salvar_arquivos__: boolean;
-    /*@internal*/
-    __is_salvar_arquivos_impressao__: boolean;
-    /*@internal*/
-    __tamanho_maximo_resize_canvas__: number;
-}
-
-window.__is_usar_pica__ = false;
-window.__is_usar_canvas__ = false;
-window.__is_salvar_arquivos__ = false;
-window.__is_salvar_arquivos_impressao__ = false;
-window.__tamanho_maximo_resize_canvas__ = 16383;
-interface Window
-{
-    readonly IS_USAR_CANVAS: boolean;
-    readonly IS_USAR_PICA: boolean;
-    readonly IS_SALVAR_ARQUIVOS: boolean;
-    readonly IS_SALVAR_ARQUIVOS_IMPRESSAO: boolean;
-    readonly TAMANHO_MAXIMO_RESIZE_CANVAS: number;
-
-    SetIsUsarCanvasDEBUG(isUsarCanvas: boolean): void;
-    SetIsUsarPicaDEBUG(isUsarPica: boolean): void;
-    SetIsSalvarArquivosDEBUG(isSalvarArquivos: boolean): void;
-    SetIsSalvarArquivosImpressaoDEBUG(isSalvarArquivosImpressao: boolean): void;
-    SetTamanhoMaximoResizeCanvasDEBUG(tamanhoMaximo: number): void;
-}
-
-// GETTERS
-
-Object.defineProperty(Window.prototype, "IS_USAR_CANVAS", {
-    get: function (this: Window)
-    {
-        return this.__is_usar_canvas__;
-    }
-});
-
-Object.defineProperty(Window.prototype, "IS_USAR_PICA", {
-    get: function (this: Window)
-    {
-        return this.__is_usar_pica__;
-    }
-});
-
-Object.defineProperty(Window.prototype, "IS_SALVAR_ARQUIVOS", {
-    get: function (this: Window)
-    {
-        return this.__is_salvar_arquivos__;
-    }
-});
-
-Object.defineProperty(Window.prototype, "IS_SALVAR_ARQUIVOS_IMPRESSAO", {
-    get: function (this: Window)
-    {
-        return this.__is_salvar_arquivos_impressao__;
-    }
-});
-
-Object.defineProperty(Window.prototype, "TAMANHO_MAXIMO_RESIZE_CANVAS", {
-    get: function (this: Window)
-    {
-        return this.__tamanho_maximo_resize_canvas__;
-    }
-});
-
-// SETTERS DEBUG
-
-Window.prototype.SetIsUsarCanvasDEBUG = function (this: Window, value: boolean): void
-{
-    this.__is_usar_canvas__ = value;
-};
-
-Window.prototype.SetIsUsarPicaDEBUG = function (this: Window, value: boolean): void
-{
-    this.__is_usar_pica__ = value;
-};
-
-Window.prototype.SetIsSalvarArquivosDEBUG = function (this: Window, value: boolean): void
-{
-    this.__is_salvar_arquivos__ = value;
-};
-
-Window.prototype.SetIsSalvarArquivosImpressaoDEBUG = function (this: Window, value: boolean): void
-{
-    this.__is_salvar_arquivos_impressao__ = value;
-};
-
-Window.prototype.SetTamanhoMaximoResizeCanvasDEBUG = function (this: Window, value: number): void
-{
-    this.__tamanho_maximo_resize_canvas__ = value;
-};

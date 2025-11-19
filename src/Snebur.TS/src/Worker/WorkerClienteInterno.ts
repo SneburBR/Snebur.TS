@@ -24,7 +24,7 @@
         {
             await this.InicializarUrlWorker();
 
-            if (!this.IsDebug && !ValidacaoUtil.IsUrlBlob(this.UrlWorker))
+            if (!this.IsDebug && !ValidacaoUtil.IsUrl(this.UrlWorker))
             {
                 console.error("Não foi possível carregar o urlblob do serviço worker.");
                 console.error(`Url. ${$Configuracao.UrlServicosWorker}`);
@@ -75,7 +75,6 @@
             let mensagem = `Worker: ${this.UrlWorker}, linha ${e.lineno}, coluna ${e.colno}`;
             mensagem += `\r\n ${e.message ?? e.error?.message ?? "erro desconhecido"}`;
             const erro = new Erro(mensagem);
-            LogUtil.Erro(erro);
             this.Finalizar(erro);
         }
 
