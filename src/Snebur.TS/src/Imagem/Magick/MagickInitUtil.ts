@@ -10,9 +10,9 @@
 
     export class MagickInitUtil
     {
-        public static readonly IsWorker: boolean = true;
         private static _status: EnumStatusInicializacaoMagick = EnumStatusInicializacaoMagick.Aguardando;
         private static readonly TIMEOUT = 5 * 60 * 1000;
+
         /*private static readonly DA = "__DA__";*/
         private static _sRgbProfile: Uint8Array;
         private static _urlBlobMagickScript: string;
@@ -35,6 +35,22 @@
         public static get BytesWasm(): Uint8Array
         {
             return MagickInitUtil._bytesWasm;
+        }
+
+        public static get IsWorker(): boolean
+        {
+            return MagickInitUtil.IsInicializado && window.MOTOR_PROCESSAMENTO_IMAGEM === i.EnumMotorProcessamentoImagem.MagickWorker;
+        }
+
+        public static get IsUsarMagick(): boolean
+        {
+            return MagickInitUtil.IsInicializado && MagickInitUtil.IsMotorMagick;
+        }
+        private static get IsMotorMagick(): boolean
+        {
+            return (window.MOTOR_PROCESSAMENTO_IMAGEM === i.EnumMotorProcessamentoImagem.MagickMainThread ||
+                window.MOTOR_PROCESSAMENTO_IMAGEM === i.EnumMotorProcessamentoImagem.MagickWorker);
+
         }
         //public static get BlobWasm(): Blob
         //{
@@ -97,6 +113,10 @@
         private static async InicializarInternoAsync()
         {
             const status = await MagickInitUtil.InicializaMagickAsync();
+            if (status === EnumStatusInicializacaoMagick.Erro)
+            {
+                window.SetMotorProcessamentoImagem(i.EnumMotorProcessamentoImagem.PicaJS);
+            }
             MagickInitUtil._status = status;
         }
 
@@ -107,7 +127,7 @@
 
         private static async InicializaMagickAsync(): Promise<EnumStatusInicializacaoMagick>
         {
-            if ($Configuracao.IsDebug && window.IS_USAR_CANVAS)
+            if ($Configuracao.IsDebug && !MagickInitUtil.IsMotorMagick)
             {
                 return EnumStatusInicializacaoMagick.Erro;
             }
@@ -122,48 +142,6 @@
 
         }
 
-        private static async InicializaMagickAsyncTemporaria(): Promise<EnumStatusInicializacaoMagick>
-        {
-
-            console.warn("Tentando nova inicialização do MagickWasm");
-            const scripBuffer = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick_251118.js?v=12312");
-            const blobMagick = new Blob([scripBuffer.buffer as ArrayBuffer], { type: "application/javascript" });
-            const urlBlobMagick = window.URL.createObjectURL(blobMagick);
-            const isSucesso = await u.ScriptUtil.CarregarScriptAsync(urlBlobMagick, true);
-            if (!isSucesso)
-            {
-                return EnumStatusInicializacaoMagick.Erro;
-            }
-
-            /*const wasBuffer = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick_251118.js?v=12312");*/
-            const bytesWasm = await this.getBufferFromUrl("https://cdn.sigi.com.br/lib/magick/magick.wasm");
-
-            try
-            {
-                await ThreadUtil.ExecutarWithTimeOutAsync(5000, async () =>
-                {
-                    await MagickWasm.initializeImageMagick(bytesWasm);
-                });
-
-
-                if (!String.IsNullOrWhiteSpace(MagickWasm.Magick.imageMagickVersion))
-                {
-                    console.success(`Image Magick ${MagickWasm.Magick.imageMagickVersion} carregado com sucesso`);
-
-                    this._bytesWasm = bytesWasm;
-                    this._urlBlobMagickScript = urlBlobMagick;
-                    this._urlBlobMagickWorker = "https://cdn.sigi.com.br/lib/magick/MagickWorker_251117_03.js?v=12312";
-                    console.warn("MagickWasm initialized successfully");
-                    return EnumStatusInicializacaoMagick.Sucesso;
-                }
-                return EnumStatusInicializacaoMagick.Erro;
-            }
-            catch (erro)
-            {
-                console.error("Erro ao inicializar MagickWasm", erro);
-                return EnumStatusInicializacaoMagick.Erro;
-            }
-        }
 
         private static async getBufferFromUrl(url: string): Promise<Uint8Array>
         {
@@ -248,13 +226,13 @@
                     console.error("Perfil sRGB inválido");
                 }
 
-                
+
                 await ThreadUtil.ExecutarWithTimeOutAsync(10000, async () =>
                 {
                     await MagickWasm.initializeImageMagick(bytesWasm);
                 });
                 /*await this.SimularProgressoAsync();*/
-                 
+
                 window.URL.revokeObjectURL(urlPackage);
                 window.URL.revokeObjectURL(urlBlobWasm);
 

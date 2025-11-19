@@ -2,6 +2,7 @@
 {
     export class AbrirArquivoLocalMagick extends BaseAbrirImagemLocalMagick
     {
+        protected override readonly IsImpressao: boolean = false;
         public constructor(
             arquivo: SnBlob,
             private readonly Dimensao: IDimensao)

@@ -15,6 +15,7 @@
             return this.ArquivoLocal.name;
         }
 
+        protected abstract readonly IsImpressao: boolean;
         public constructor(
             private readonly ArquivoLocal: SnBlob)
         {
@@ -63,7 +64,7 @@
         {
             try
             {
-                if (MagickInitUtil.IsWorker)
+                if (MagickInitUtil.IsWorker )
                 {
                     const resultado = await this.ProcessarWorkerAsync(opcoes);
                     if (resultado != null && !(resultado instanceof Error))
@@ -78,7 +79,7 @@
                 console.error("Falha ao processar no worker " + erro);
             }
 
-            const t = Stopwatch.StartNew();
+            const stopwatch = Stopwatch.StartNew();
             const processador = new MagickProcessador(opcoes, MagickInitUtil.BytesPerfilSRGB);
             const resultado = await processador.ProcessarAsync();
             if (resultado == null || resultado instanceof Error)
@@ -86,19 +87,33 @@
                 console.error(`Magick Main Thread  -Falha ao processar imagem: ${opcoes.NomeArquivoOrigem} - ${resultado}`);
                 return null;
             }
-            console.success(`Magick Main Thread - Imagem processada com sucesso: ${opcoes.NomeArquivoOrigem}`);
+            LogImagemUtil.SucessoMagick(
+                EnumMotorProcessamentoImagem.MagickMainThread,
+                opcoes,
+                resultado,
+                stopwatch,
+                this.IsImpressao);
+             
             return resultado;
         }
 
         private async ProcessarWorkerAsync(opcoes: IOpcoesMagick): Promise<IResultadoMagick>
         {
+            const stopwatch = Stopwatch.StartNew();
             const resultado = await w.GerenciadorMagickWorker.Instancia.ProcessarAsync(opcoes);
             if (resultado == null || resultado instanceof Error)
             {
                 console.error(`Falha ao processar imagem MagickWorker: ${resultado}`);
                 return null;
             }
-            console.success(`Magick Worker - Imagem processada com sucesso: ${opcoes.NomeArquivoOrigem}`);
+
+            LogImagemUtil.SucessoMagick(
+                EnumMotorProcessamentoImagem.MagickWorker,
+                opcoes,
+                resultado,
+                stopwatch,
+                this.IsImpressao);
+                 
             return resultado;
         }
 
@@ -107,4 +122,6 @@
 
         }
     }
+
+
 }

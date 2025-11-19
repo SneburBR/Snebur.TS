@@ -84,7 +84,7 @@
             arquivo: SnBlob,
             alturaMaxima: number): Promise<ResultadoCarregarImagem>
         {
-             
+
             const resultadoMagick = await ImagemLocalUtil.TryCarregarImagemArquivoMagickAsync(
                 arquivo,
                 alturaMaxima);
@@ -93,7 +93,7 @@
             {
                 return resultadoMagick;
             }
- 
+
             const resultadoCanvas = await ImagemLocalUtil.TryCarregarImagemArquivoCanvasAsync(
                 arquivo,
                 alturaMaxima);
@@ -118,7 +118,8 @@
                 console.warn("Magick não inicializado, pulando tentativa Magick");
             }
 
-            if (window.IS_USAR_CANVAS === true || window.IS_USAR_PICA === true)
+            if (window.MOTOR_PROCESSAMENTO_IMAGEM !== EnumMotorProcessamentoImagem.MagickMainThread &&
+                window.MOTOR_PROCESSAMENTO_IMAGEM !== EnumMotorProcessamentoImagem.MagickWorker)
             {
                 console.warn("Magick - pulando - Canvas ou PicaJS selecionado motor principal para processar Imagem");
                 return null;
@@ -133,7 +134,6 @@
                 const blob = imagemCarregada.Arquivo;
                 const url = window.URL.createObjectURL(blob);
 
-                console.success(`Magick - Imagem carregada com sucesso: ${arquivo.name}`);
                 return {
                     AlturaImagemOrigem: resultado.DimensaoLocal.Altura,
                     LarguraImagemOrigem: resultado.DimensaoLocal.Largura,
@@ -161,6 +161,8 @@
                 resultado.LarguraImagemOrigem > 0 &&
                 resultado.AlturaImagemOrigem > 0)
             {
+
+
                 return {
                     AlturaImagemOrigem: resultado.AlturaImagemOrigem,
                     LarguraImagemOrigem: resultado.LarguraImagemOrigem,
@@ -174,7 +176,7 @@
             console.error("Canvas - Falha ao carregar imagem.");
             return null;
         }
-       
+
         public static IsElementoImagemCarregado(elementoImagem: HTMLImageElement)
         {
             return elementoImagem.complete &&

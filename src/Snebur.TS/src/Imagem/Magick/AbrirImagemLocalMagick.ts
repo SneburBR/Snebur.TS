@@ -4,6 +4,10 @@
     {
 
         public readonly OrigemImagemLocal: sa.OrigemImagemLocal;
+        protected override get IsImpressao(): boolean
+        {
+            return this.TamanhosImagem.Any(x => x === EnumTamanhoImagem.Impressao);
+        }
 
         public get Imagem(): d.IImagem
         {
