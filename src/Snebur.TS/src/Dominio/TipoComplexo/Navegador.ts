@@ -98,9 +98,18 @@
             super();
 
             this._navegadorEnum = navegadorEnum;
-            this._nome = nome;
-            this._codenome = codeNome;
-            this._versao = versao;
+            this._nome = this.NormalizarNome(nome, navegadorEnum);
+            this._codenome = this.NormalizarNome(codeNome, navegadorEnum);
+            this._versao = versao ?? "";
+        }
+
+        private NormalizarNome(nome: string, navegadorEnum: EnumNavegador): string
+        {
+            if (nome == null || nome === "")
+            {
+                return EnumNavegador[navegadorEnum] ?? "Desconhecido";
+            }
+            return nome;
         }
         //#endregion
 
