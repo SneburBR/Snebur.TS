@@ -8,6 +8,7 @@ interface ObjectConstructor extends Snebur.Nativo.IObjectConstructor
 {
     assignBase: (obj: object) => string[];
     keysBase: (obj: object) => string[];
+    values(o: {}): any[];
     valuesBase(o: {}): any[];
     isKey(key: string): boolean;
 }

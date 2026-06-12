@@ -173,6 +173,27 @@ namespace Snebur
         "null": true
     };
 
+    if (!Object.values)
+    {
+        Object.values = function (obj: any)
+        {
+            if (obj !== Object(obj))
+            {
+                throw new TypeError("Object.values called on a non-object");
+            }
+
+            const values = [];
+            for (const key in obj)
+            {
+                if (Object.prototype.hasOwnProperty.call(obj, key))
+                {
+                    values.push(obj[key]);
+                }
+            }
+            return values;
+        };
+    }
+
     Object.assignBase = Object.assign;
     Object.keysBase = Object.keys;
     Object.valuesBase = Object.values;
@@ -239,7 +260,7 @@ namespace Snebur
                 return Object.keysBase.apply(Object, arguments as any);
                 /*eslint-enable*/
             }
-            
+
             const chaves = Object.keysBase(obj);
             return chaves.Where(x => !___PropriedadesMetodosProtegidos[x]);
         },
