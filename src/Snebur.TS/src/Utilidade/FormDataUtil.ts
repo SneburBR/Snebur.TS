@@ -33,7 +33,11 @@
 
         public static RetornarParametros(objeto: any): List<string>
         {
+            if (objeto == null)
+                return [];
+
             const parametros = new DicionarioSimples<string>();
+             
             FormDataUtil.MontarParametros(parametros, null, objeto);
 
             if (Array.isArray(objeto))
@@ -73,7 +77,8 @@
             {
                 if (String.IsNullOrWhiteSpace(prefixo))
                 {
-                    throw new Erro("O prefixo não foi definido");
+                    console.error("Falha ao montar pagrametros da requisilçao. O prefixo não foi definido");
+                    return;
                 }
                 parametros.Add(prefixo, objeto?.toString() ?? "");
             }

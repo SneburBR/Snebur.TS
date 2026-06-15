@@ -22,7 +22,7 @@
             const elementoImagem = this.ElementoImageem;
             if (elementoImagem != null)
             {
-                DebugUtil.Break(`Erro carregar imagem:${elementoImagem.UrlImagem}:${e.message}`);
+                DebugUtil.Break(`Erro carregar imagem:${elementoImagem.UrlImagem}:${e.message ?? ""}`);
 
                 if (ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem) &&
                     elementoImagem.UrlImagem !== Snebur.$Configuracao.UrlImagemSemImagem)
@@ -30,7 +30,7 @@
                     elementoImagem.dataset["urlErro"] = elementoImagem.UrlImagem;
                     elementoImagem.UrlImagem = Snebur.$Configuracao.UrlImagemSemImagem;
                 }
-                
+
             }
         }
 
