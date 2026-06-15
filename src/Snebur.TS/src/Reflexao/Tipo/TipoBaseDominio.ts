@@ -63,6 +63,11 @@
 
         public static Normalize(assemblyQualifiedName: string): string
         {
+            if (!window.__isNormalizarNamespaceServicoRenderizacao__)
+            {
+                return assemblyQualifiedName;
+            }
+
             for (let i = 0; i < this.AssemblyNames.length; i++)
             {
                 if (assemblyQualifiedName === this.AssemblyNames[i])

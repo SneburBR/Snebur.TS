@@ -29,5 +29,7 @@ interface Window
     /*@internal*/
     __tamanho_maximo_resize_canvas__: number;
 
+    __isNormalizarNamespaceServicoRenderizacao__: boolean;
+
 }
 
