@@ -18,3 +18,16 @@ if (typeof globalThis === "undefined")
 }
 Snebur.__IsScriptNormalizado = false;
 
+
+function __checkLibRequeriments()
+{
+    if (typeof JSZip === "undefined")
+        console.error("The lib JSZip is not loaded");
+
+    if (typeof UAParser === "undefined")
+        console.error("The lib JSZip is not loaded");
+
+    if (typeof md5 === "undefined")
+        console.error("The lib JSZip is not loaded");
+}
+__checkLibRequeriments();

@@ -29,7 +29,7 @@ interface Window
 }
 
 
-if (typeof Window !== "undefined")
+if (typeof Window === "undefined")
 {
     console.error(" Não foi implementado ainda para o ambiente Node or Worker ");
 }

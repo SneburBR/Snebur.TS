@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Interfaces - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-11 15:33:47
+//@DataHora: 2026-06-09 09:07:13
 //@Artifact: Interfaces
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -184,6 +184,7 @@ namespace Snebur.Dominio
         Creating(): void;
         Saving(): void;
         Saved(): void;
+        Loaded(): void;
         Deleting(): void;
         Deleted(): void;
     }

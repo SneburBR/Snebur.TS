@@ -238,7 +238,7 @@
 
             await this.DepoisInicializarSessaoUsuarioAsync();
 
-            if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
+            if ($Configuracao.IsDebug && !Snebur.$Configuracao.IsDesativarServicoDepuracao)
             {
                 this._servicoDepuracao = new Snebur.Depuracao.ServicoDepuracao();
                 this._servicoDepuracao.InicializarAsync();
