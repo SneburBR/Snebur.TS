@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-11-03 14:49:16
+//@DataHora: 2026-06-17 12:16:05
 //@Artifact: Classes
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -200,7 +200,7 @@ namespace Snebur.Comunicacao
         private _async: boolean  = false;
         private _operacao: string | null  = null;
         private _cabecalho: Snebur.Comunicacao.Cabecalho | null  = null;
-        private _informacaoSessao: Snebur.Dominio.InformacaoSessao | null  = null;
+        private _informacaoSessao: Snebur.Dominio.InformacaoAmbienteSessaoCliente | null  = null;
         //#endregion
         
         public constructor(inicializador?: Partial<ContratoChamada>) 
@@ -254,11 +254,11 @@ namespace Snebur.Comunicacao
             this.SetProperty("Cabecalho", this._cabecalho, this._cabecalho = value);
         }
         
-        public get InformacaoSessao(): Snebur.Dominio.InformacaoSessao | null
+        public get InformacaoSessao(): Snebur.Dominio.InformacaoAmbienteSessaoCliente | null
         {
             return this._informacaoSessao;
         }
-        public set InformacaoSessao(value: Snebur.Dominio.InformacaoSessao | null) 
+        public set InformacaoSessao(value: Snebur.Dominio.InformacaoAmbienteSessaoCliente | null) 
         {
             this.SetProperty("InformacaoSessao", this._informacaoSessao, this._informacaoSessao = value);
         }

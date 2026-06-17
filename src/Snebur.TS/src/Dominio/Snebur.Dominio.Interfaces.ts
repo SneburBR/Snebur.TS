@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Interfaces - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2026-06-09 09:07:13
+//@DataHora: 2026-06-17 12:16:05
 //@Artifact: Interfaces
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -25,7 +25,7 @@ namespace Snebur.Comunicacao
         ExisteIdentificadorUsuarioAsync(identificadorUsuario: string): Promise<Snebur.Comunicacao.ResultadoExisteIdentificadoUsuario>;
         ValidarCredencialAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Dominio.EnumResultadoValidacaoCredencial>;
         SessaoUsuarioAtivaAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string): Promise<boolean>;
-        RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string): Promise<Snebur.Dominio.IContextoSessaoUsuario>;
+        RetornarInformacoesSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string): Promise<Snebur.Dominio.IInformacoesSessaoUsuario>;
         RetornarUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Dominio.IUsuario | null>;
         AutenticarAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<Snebur.Comunicacao.ResultadoAutenticacao>;
         RetornarSessaoUsuarioAsync(identificadorSessaoUsuario: string): Promise<Snebur.Dominio.ISessaoUsuario | null>;
@@ -120,12 +120,6 @@ namespace Snebur.Dominio
     export interface ICongelado  extends Snebur.Dominio.IEntidade
     {
         IsCongelado: boolean;
-    }
-    export interface IContextoSessaoUsuario
-    {
-        readonly IsSessaoAtiva: boolean;
-        readonly Usuario: Snebur.Dominio.IUsuario | null;
-        readonly SessaoUsuario: Snebur.Dominio.ISessaoUsuario | null;
     }
     export interface ICor
     {
@@ -252,7 +246,7 @@ namespace Snebur.Dominio
         DimensaoImagemLocal: Snebur.Dominio.Dimensao;
         DimensaoImagemImpressao: Snebur.Dominio.Dimensao;
     }
-    export interface IInformacaoSessao  extends Snebur.Dominio.IIdentificadorAplicacao
+    export interface IInformacaoAmbienteSessaoCliente  extends Snebur.Dominio.IIdentificadorAplicacao
     {
         Plataforma: Snebur.Dominio.EnumPlataforma;
         TipoAplicacao: Snebur.Dominio.EnumTipoAplicacao;
@@ -264,6 +258,12 @@ namespace Snebur.Dominio
         Resolucao: Snebur.Dominio.Dimensao;
         Navegador: Snebur.Dominio.Navegador;
         SistemaOperacional: Snebur.Dominio.SistemaOperacional;
+    }
+    export interface IInformacoesSessaoUsuario
+    {
+        readonly IsSessaoAtiva: boolean;
+        readonly Usuario: Snebur.Dominio.IUsuario | null;
+        readonly SessaoUsuario: Snebur.Dominio.ISessaoUsuario | null;
     }
     export interface IIPInformacao
     {
@@ -360,7 +360,7 @@ namespace Snebur.Dominio
     {
         IsSelecionado: boolean;
     }
-    export interface ISessaoUsuario  extends Snebur.Dominio.IEntidade,Snebur.Dominio.IInformacaoSessao,Snebur.Dominio.IIdentificadorAplicacao,Snebur.Dominio.IIdentificadorSessaoUsuario,Snebur.Dominio.IIdentificadorProprietario
+    export interface ISessaoUsuario  extends Snebur.Dominio.IEntidade,Snebur.Dominio.IInformacaoAmbienteSessaoCliente,Snebur.Dominio.IIdentificadorAplicacao,Snebur.Dominio.IIdentificadorSessaoUsuario,Snebur.Dominio.IIdentificadorProprietario
     {
         Usuario_Id: number;
         Status: Snebur.Dominio.EnumStatusSessaoUsuario;

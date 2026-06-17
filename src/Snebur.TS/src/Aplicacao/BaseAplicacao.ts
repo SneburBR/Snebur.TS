@@ -96,7 +96,7 @@
             return u.SessaoUsuarioUtil.RetornarCredencialUsuario();
         }
 
-        public get InformacaoSessao(): Snebur.Dominio.InformacaoSessao
+        public get InformacaoSessao(): Snebur.Dominio.InformacaoAmbienteSessaoCliente
         {
             return u.SessaoUsuarioUtil.RetornarInformacaoSessaoUsuario();
         }
@@ -170,6 +170,7 @@
             {
                 throw new Erro(`Já existe uma instancia aplicação '${BaseAplicacao.__instancia.constructor?.name}'`);
             }
+            LibraryDependencyCheckerUtil.Check();
             BaseAplicacao.__instancia = this;
         }
 
@@ -213,7 +214,7 @@
 
         protected async InicializarAsync(): Promise<void>
         {
-            LibraryDependencyCheckerUtil.Check();
+            
 
             this.Servicos.AddRange(this.RetornarServicos());
 
@@ -361,10 +362,10 @@
                 throw new ErroNaoDefinido("O serviço usuário não foi definido", this);
             }
 
-            const contextoSessaoUsuario = await this.ServicoUsuario.RetornarContextoSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
-            if (contextoSessaoUsuario.IsSessaoAtiva)
+            const informacoesSessaoUsuario = await this.ServicoUsuario.RetornarInformacoesSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
+            if (informacoesSessaoUsuario.IsSessaoAtiva)
             {
-                await this.SetContextoSessaoUsuarioAsync(contextoSessaoUsuario);
+                await this.SetInformacoesSessaoUsuarioAsync(informacoesSessaoUsuario);
             }
             else
             {
@@ -399,20 +400,20 @@
             {
                 throw new Error("Falha ao salvar sessão anônima");
             }
-            const contexoSessaoUsuario = await this.ServicoUsuario.RetornarContextoSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
-            if (!contexoSessaoUsuario.IsSessaoAtiva)
+            const informacoesSessaoUsuario = await this.ServicoUsuario.RetornarInformacoesSessaoUsuarioAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
+            if (!informacoesSessaoUsuario.IsSessaoAtiva)
             {
                 throw new Error("Falha ao iniciar sessão anônima");
             }
-            await this.SetContextoSessaoUsuarioAsync(contexoSessaoUsuario);
+            await this.SetInformacoesSessaoUsuarioAsync(informacoesSessaoUsuario);
         }
 
-        protected async SetContextoSessaoUsuarioAsync(contextoSessaoUsuario: d.IContextoSessaoUsuario): Promise<void>
+        protected async SetInformacoesSessaoUsuarioAsync(informacoesSessaoUsuario: d.IInformacoesSessaoUsuario): Promise<void>
         {
-            Guard.NotNull(contextoSessaoUsuario.Usuario, "contextoSessaoUsuario.Usuario");
-            Guard.NotNull(contextoSessaoUsuario.SessaoUsuario, "contextoSessaoUsuario.SessaoUsuario");
-            this.Usuario = contextoSessaoUsuario.Usuario;
-            this.SessaoUsuario = contextoSessaoUsuario.SessaoUsuario;
+            Guard.NotNull(informacoesSessaoUsuario.Usuario, "informacoesSessaoUsuario.Usuario");
+            Guard.NotNull(informacoesSessaoUsuario.SessaoUsuario, "informacoesSessaoUsuario.SessaoUsuario");
+            this.Usuario = informacoesSessaoUsuario.Usuario;
+            this.SessaoUsuario = informacoesSessaoUsuario.SessaoUsuario;
         }
 
         protected async DepoisInicializarSessaoUsuarioAsync(): Promise<void>

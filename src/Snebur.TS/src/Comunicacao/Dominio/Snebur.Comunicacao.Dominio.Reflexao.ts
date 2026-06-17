@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur.Comunicacao. Do not modify directly. 
 //@Project: Snebur.Comunicacao
-//@DataHora: 2025-11-03 14:49:16
+//@DataHora: 2026-06-17 12:16:05
 //@Artifact: Reflexao
 //@Namespace: Snebur.Comunicacao.Dominio 
 //@PrioridadeDominio: 1
@@ -214,7 +214,7 @@ namespace Snebur.Reflexao
     __$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem.AdicionarAtributos([new Snebur.Dominio.Atributos.RotuloAttribute("Url visualiuzar imagem", "Url visualiuzar imagem"), new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null, null, false, null), new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 500)]);
     __$tipoBaseDominio_Snebur_Comunicacao_ConfiguracaoServicoImagem.AdicionarPropriedade(__$propriedade_Snebur_Comunicacao_ConfiguracaoServicoImagem_UrlVisualizarImagem)
     const __$propriedade_Snebur_Comunicacao_ContratoChamada_Cabecalho = new Propriedade("Cabecalho", __$tipoBaseDominio_Snebur_Comunicacao_Cabecalho, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, true, false);
-    const __$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessao = new Propriedade("InformacaoSessao", __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, true, false);
+    const __$propriedade_Snebur_Comunicacao_ContratoChamada_InformacaoSessao = new Propriedade("InformacaoSessao", __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, true, false);
     const __$propriedade_Snebur_Comunicacao_ContratoChamada_IdentificadorSessaoUsuario = new Propriedade("IdentificadorSessaoUsuario", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, false, false);
     const __$propriedade_Snebur_Comunicacao_ContratoChamada_Operacao = new Propriedade("Operacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, true, false);
     const __$propriedade_Snebur_Comunicacao_ContratoChamada_DataHora = new Propriedade("DataHora", __$tipoTipoPrimario_DateTime, __$tipoBaseDominio_Snebur_Comunicacao_ContratoChamada, false, false);

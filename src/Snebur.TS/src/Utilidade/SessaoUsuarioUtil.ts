@@ -5,9 +5,9 @@
         public static readonly CHAVE_DADOS_SESSAO_USUARIO: string = "CHAVE_SESSAO_USUARIO";
         public static readonly CHAVE_DADOS_CREDENCIAL_USUARI: string = "CHAVE_CREDENCIAL_USUARIO";
 
-        public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoSessao 
+        public static RetornarInformacaoSessaoUsuario(): Snebur.Dominio.InformacaoAmbienteSessaoCliente 
         {
-            const informacao = new Snebur.Dominio.InformacaoSessao({
+            const informacao = new Snebur.Dominio.InformacaoAmbienteSessaoCliente({
                 IdentificadorAplicacao: $Configuracao.IdentificadorAplicacao,
                 VersaoAplicacao: $Configuracao.Versao,
                 Resolucao: u.SistemaUtil.Resolucao,

@@ -22,7 +22,7 @@
 
         SessaoUsuarioAtivaAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<boolean>;
 
-        RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<d.IContextoSessaoUsuario>;
+        RetornarInformacoesSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialServico, identificadorSessaoUsuario: string): Promise<d.IInformacoesSessaoUsuario>;
          
         RetornarUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario): Promise<d.IUsuario>;
 

@@ -41,15 +41,13 @@ namespace Snebur.Comunicacao
                 this.ChamarServicoAsync("SessaoUsuarioAtivaAsync", [credencial, identificadorSessaoUsuario], resolver, reject);
             });
         }
-
-        public RetornarContextoSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string) : Promise<Snebur.Dominio.IContextoSessaoUsuario>
+        public RetornarInformacoesSessaoUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario, identificadorSessaoUsuario: string) : Promise<Snebur.Dominio.IInformacoesSessaoUsuario>
         {
-            return new Promise<Snebur.Dominio.IContextoSessaoUsuario>((resolver, reject) =>
+            return new Promise<Snebur.Dominio.IInformacoesSessaoUsuario>((resolver, reject) =>
             {
-                this.ChamarServicoAsync("RetornarContextoSessaoUsuarioAsync", [credencial, identificadorSessaoUsuario], resolver, reject);
+                this.ChamarServicoAsync("RetornarInformacoesSessaoUsuarioAsync", [credencial, identificadorSessaoUsuario], resolver, reject);
             });
         }
-
         public RetornarUsuarioAsync(credencial: Snebur.Seguranca.CredencialUsuario) : Promise<Snebur.Dominio.IUsuario | null>
         {
             return new Promise<Snebur.Dominio.IUsuario | null>((resolver, reject) =>

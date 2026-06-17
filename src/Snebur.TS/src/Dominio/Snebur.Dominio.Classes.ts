@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Classes - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-11 15:33:47
+//@DataHora: 2026-06-17 12:16:05
 //@Artifact: Classes
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -440,7 +440,7 @@ namespace Snebur.Dominio
             this.SetProperty("ValorPropriedade", this._valorPropriedade, this._valorPropriedade = value);
         }
     }
-    export class InformacaoSessao  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.IIdentificadorAplicacao, Snebur.Dominio.IInformacaoSessao
+    export class InformacaoAmbienteSessaoCliente  extends Snebur.Dominio.BaseDominio  implements Snebur.Dominio.IIdentificadorAplicacao, Snebur.Dominio.IInformacaoAmbienteSessaoCliente
     {
         //#region Private Fields
         private _identificadorAplicacaoGuid: string  = "00000000-0000-0000-0000-000000000000";
@@ -457,7 +457,7 @@ namespace Snebur.Dominio
         private _sistemaOperacional: Snebur.Dominio.SistemaOperacional  = new Snebur.Dominio.SistemaOperacional(Snebur.Dominio.EnumSistemaOperacional.Undefined, "", "", "");
         //#endregion
         
-        public constructor(inicializador?: Partial<InformacaoSessao>) 
+        public constructor(inicializador?: Partial<InformacaoAmbienteSessaoCliente>) 
         {
             super(inicializador);
             this.Inicializar();

@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Reflexao - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-13 11:04:01
+//@DataHora: 2026-06-17 12:16:05
 //@Artifact: Reflexao
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -613,7 +613,7 @@ namespace Snebur.Reflexao
     export const __$tipoBaseDominio_Snebur_Dominio_BaseViewModel = new TipoBaseDominio(Snebur.Dominio.BaseViewModel,"BaseViewModel","Snebur.Dominio","Snebur.Dominio.BaseViewModel, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,true);
     export const __$tipoBaseDominio_Snebur_Dominio_DadosIPInformacao = new TipoBaseDominio(Snebur.Dominio.DadosIPInformacao,"DadosIPInformacao","Snebur.Dominio","Snebur.Dominio.DadosIPInformacao, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
     export const __$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo = new TipoBaseDominio(Snebur.Dominio.ErroValidacaoInfo,"ErroValidacaoInfo","Snebur.Dominio","Snebur.Dominio.ErroValidacaoInfo, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
-    export const __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao = new TipoBaseDominio(Snebur.Dominio.InformacaoSessao,"InformacaoSessao","Snebur.Dominio","Snebur.Dominio.InformacaoSessao, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
+    export const __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente = new TipoBaseDominio(Snebur.Dominio.InformacaoAmbienteSessaoCliente,"InformacaoAmbienteSessaoCliente","Snebur.Dominio","Snebur.Dominio.InformacaoAmbienteSessaoCliente, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
     export const __$tipoBaseDominio_Snebur_Dominio_NovoUsuario = new TipoBaseDominio(Snebur.Dominio.NovoUsuario,"NovoUsuario","Snebur.Dominio","Snebur.Dominio.NovoUsuario, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,true);
     export const __$tipoBaseDominio_Snebur_Dominio_PropriedadeAlterada = new TipoBaseDominio(Snebur.Dominio.PropriedadeAlterada,"PropriedadeAlterada","Snebur.Dominio","Snebur.Dominio.PropriedadeAlterada, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,false);
     export const __$tipoBaseDominio_Snebur_Seguranca_Credencial = new TipoBaseDominio(Snebur.Seguranca.Credencial,"Credencial","Snebur.Seguranca","Snebur.Seguranca.Credencial, Snebur",__$tipoBaseDominio_Snebur_Dominio_BaseDominio,true);
@@ -634,7 +634,7 @@ namespace Snebur.Reflexao
     export const __$tipoListaBaseDominio_Snebur_Dominio_BaseViewModel = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.BaseViewModel", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.BaseViewModel, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_BaseViewModel);
     export const __$tipoListaBaseDominio_Snebur_Dominio_DadosIPInformacao = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.DadosIPInformacao", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.DadosIPInformacao, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_DadosIPInformacao);
     export const __$tipoListaBaseDominio_Snebur_Dominio_ErroValidacaoInfo = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.ErroValidacaoInfo", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.ErroValidacaoInfo, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo);
-    export const __$tipoListaBaseDominio_Snebur_Dominio_InformacaoSessao = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.InformacaoSessao", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.InformacaoSessao, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao);
+    export const __$tipoListaBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.InformacaoAmbienteSessaoCliente", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.InformacaoAmbienteSessaoCliente, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente);
     export const __$tipoListaBaseDominio_Snebur_Dominio_NovoUsuario = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.NovoUsuario", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.NovoUsuario, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_NovoUsuario);
     export const __$tipoListaBaseDominio_Snebur_Dominio_PropriedadeAlterada = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Dominio.PropriedadeAlterada", "Snebur.Dominio", "System.Collections.Generic.List`1[[Snebur.Dominio.PropriedadeAlterada, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Dominio_PropriedadeAlterada);
     export const __$tipoListaBaseDominio_Snebur_Seguranca_Credencial = new TipoListaBaseDominio("ListaTipoBaseDominio_Snebur.Seguranca.Credencial", "Snebur.Seguranca", "System.Collections.Generic.List`1[[Snebur.Seguranca.Credencial, Snebur]], System.Private.CoreLib", __$tipoBaseDominio_Snebur_Seguranca_Credencial);
@@ -655,7 +655,7 @@ namespace Snebur.Reflexao
     $Reflexao.Tipos.Adicionar("Snebur.Dominio.BaseViewModel",__$tipoBaseDominio_Snebur_Dominio_BaseViewModel);
     $Reflexao.Tipos.Adicionar("Snebur.Dominio.DadosIPInformacao",__$tipoBaseDominio_Snebur_Dominio_DadosIPInformacao);
     $Reflexao.Tipos.Adicionar("Snebur.Dominio.ErroValidacaoInfo",__$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo);
-    $Reflexao.Tipos.Adicionar("Snebur.Dominio.InformacaoSessao",__$tipoBaseDominio_Snebur_Dominio_InformacaoSessao);
+    $Reflexao.Tipos.Adicionar("Snebur.Dominio.InformacaoAmbienteSessaoCliente",__$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente);
     $Reflexao.Tipos.Adicionar("Snebur.Dominio.NovoUsuario",__$tipoBaseDominio_Snebur_Dominio_NovoUsuario);
     $Reflexao.Tipos.Adicionar("Snebur.Dominio.PropriedadeAlterada",__$tipoBaseDominio_Snebur_Dominio_PropriedadeAlterada);
     $Reflexao.Tipos.Adicionar("Snebur.Seguranca.Credencial",__$tipoBaseDominio_Snebur_Seguranca_Credencial);
@@ -676,7 +676,7 @@ namespace Snebur.Reflexao
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.BaseViewModel",__$tipoListaBaseDominio_Snebur_Dominio_BaseViewModel);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.DadosIPInformacao",__$tipoListaBaseDominio_Snebur_Dominio_DadosIPInformacao);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.ErroValidacaoInfo",__$tipoListaBaseDominio_Snebur_Dominio_ErroValidacaoInfo);
-    $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.InformacaoSessao",__$tipoListaBaseDominio_Snebur_Dominio_InformacaoSessao);
+    $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.InformacaoAmbienteSessaoCliente",__$tipoListaBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.NovoUsuario",__$tipoListaBaseDominio_Snebur_Dominio_NovoUsuario);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Dominio.PropriedadeAlterada",__$tipoListaBaseDominio_Snebur_Dominio_PropriedadeAlterada);
     $Reflexao.Tipos.Adicionar("ListaTipoBaseDominio_Snebur.Seguranca.Credencial",__$tipoListaBaseDominio_Snebur_Seguranca_Credencial);
@@ -697,7 +697,7 @@ namespace Snebur.Reflexao
     Snebur.Dominio.BaseViewModel.__CaminhoTipo = "Snebur.Dominio.BaseViewModel";
     Snebur.Dominio.DadosIPInformacao.__CaminhoTipo = "Snebur.Dominio.DadosIPInformacao";
     Snebur.Dominio.ErroValidacaoInfo.__CaminhoTipo = "Snebur.Dominio.ErroValidacaoInfo";
-    Snebur.Dominio.InformacaoSessao.__CaminhoTipo = "Snebur.Dominio.InformacaoSessao";
+    Snebur.Dominio.InformacaoAmbienteSessaoCliente.__CaminhoTipo = "Snebur.Dominio.InformacaoAmbienteSessaoCliente";
     Snebur.Dominio.NovoUsuario.__CaminhoTipo = "Snebur.Dominio.NovoUsuario";
     Snebur.Dominio.PropriedadeAlterada.__CaminhoTipo = "Snebur.Dominio.PropriedadeAlterada";
     Snebur.Seguranca.Credencial.__CaminhoTipo = "Snebur.Seguranca.Credencial";
@@ -970,30 +970,30 @@ namespace Snebur.Reflexao
     __$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_ErroValidacaoInfo_NomeTipoValidacao)
     __$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_ErroValidacaoInfo_Mensagem)
     __$tipoBaseDominio_Snebur_Dominio_ErroValidacaoInfo.AdicionarPropriedade(__$propriedade_Snebur_Dominio_ErroValidacaoInfo_ValorPropriedade)
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_IdentificadorAplicacaoGuid = new Propriedade("IdentificadorAplicacaoGuid", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_IdentificadorAplicacao = new Propriedade("IdentificadorAplicacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Cultura = new Propriedade("Cultura", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Idioma = new Propriedade("Idioma", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Plataforma = new Propriedade("Plataforma", __$tipoEnum_Snebur_Dominio_EnumPlataforma, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_TipoAplicacao = new Propriedade("TipoAplicacao", __$tipoEnum_Snebur_Dominio_EnumTipoAplicacao, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Resolucao = new Propriedade("Resolucao", __$tipoComplexo_Snebur_Dominio_Dimensao, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_UserAgent = new Propriedade("UserAgent", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_Navegador = new Propriedade("Navegador", __$tipoComplexo_Snebur_Dominio_Navegador, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_SistemaOperacional = new Propriedade("SistemaOperacional", __$tipoComplexo_Snebur_Dominio_SistemaOperacional, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_VersaoAplicacao = new Propriedade("VersaoAplicacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, false, false);
-    const __$propriedade_Snebur_Dominio_InformacaoSessao_NomeComputador = new Propriedade("NomeComputador", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao, true, false);
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_IdentificadorAplicacaoGuid)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_IdentificadorAplicacao)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_Cultura)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_Idioma)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_Plataforma)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_TipoAplicacao)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_Resolucao)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_UserAgent)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_Navegador)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_SistemaOperacional)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_VersaoAplicacao)
-    __$tipoBaseDominio_Snebur_Dominio_InformacaoSessao.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoSessao_NomeComputador)
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_IdentificadorAplicacaoGuid = new Propriedade("IdentificadorAplicacaoGuid", __$tipoTipoPrimario_Guid, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_IdentificadorAplicacao = new Propriedade("IdentificadorAplicacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Cultura = new Propriedade("Cultura", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, true, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Idioma = new Propriedade("Idioma", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, true, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Plataforma = new Propriedade("Plataforma", __$tipoEnum_Snebur_Dominio_EnumPlataforma, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_TipoAplicacao = new Propriedade("TipoAplicacao", __$tipoEnum_Snebur_Dominio_EnumTipoAplicacao, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Resolucao = new Propriedade("Resolucao", __$tipoComplexo_Snebur_Dominio_Dimensao, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_UserAgent = new Propriedade("UserAgent", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, true, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Navegador = new Propriedade("Navegador", __$tipoComplexo_Snebur_Dominio_Navegador, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_SistemaOperacional = new Propriedade("SistemaOperacional", __$tipoComplexo_Snebur_Dominio_SistemaOperacional, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_VersaoAplicacao = new Propriedade("VersaoAplicacao", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, false, false);
+    const __$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_NomeComputador = new Propriedade("NomeComputador", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente, true, false);
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_IdentificadorAplicacaoGuid)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_IdentificadorAplicacao)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Cultura)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Idioma)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Plataforma)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_TipoAplicacao)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Resolucao)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_UserAgent)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_Navegador)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_SistemaOperacional)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_VersaoAplicacao)
+    __$tipoBaseDominio_Snebur_Dominio_InformacaoAmbienteSessaoCliente.AdicionarPropriedade(__$propriedade_Snebur_Dominio_InformacaoAmbienteSessaoCliente_NomeComputador)
     const __$propriedade_Snebur_Dominio_NovoUsuario_Nome = new Propriedade("Nome", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_NovoUsuario, true, false);
     __$propriedade_Snebur_Dominio_NovoUsuario_Nome.AdicionarAtributos([new Snebur.Dominio.Atributos.ValidacaoRequeridoAttribute(null, null, false, null), new Snebur.Dominio.Atributos.ValidacaoTextoTamanhoAttribute(0, 255)]);
     const __$propriedade_Snebur_Dominio_NovoUsuario_Email = new Propriedade("Email", __$tipoTipoPrimario_String, __$tipoBaseDominio_Snebur_Dominio_NovoUsuario, true, false);
