@@ -213,11 +213,14 @@
 
         protected async InicializarAsync(): Promise<void>
         {
+            LibraryDependencyCheckerUtil.Check();
+
             this.Servicos.AddRange(this.RetornarServicos());
 
             this._servicoLogServicoArquivo ??= this.Servicos
                 .OfType(Snebur.Comunicacao.BaseServicoLogServicoArquivo)
                 .FirstOrDefault();
+
             this._gerenciadorServioArquivoPadrao = this.RetornarGerenciadorServicoArquivoPadrao();
 
             this._servicoUsuario ??= this.Servicos
