@@ -37,9 +37,6 @@
         public constructor()
         {
             super();
-            window.addEventListener("hashchange", this.Window_HashChange.bind(this));
-
-
             this.EventoPing.AddHandler(this.ServicoDepuracao_Ping, this);
         }
 
@@ -56,11 +53,27 @@
                 const xhr = XMLHttpRequestFactory.Create(url, "GET", true);
                 xhr.onreadystatechange = function ()
                 {
-                    if (xhr.readyState === 4 && xhr.status === 200)
+                    if (xhr.readyState !== XMLHttpRequest.DONE)
                     {
-                        resolve(ConverterUtil.ParaNumero(xhr.responseText));
+                        return;
+                    }
+                    const porta = ConverterUtil.ParaNumero(xhr.responseText);
+
+                    if (Number.isNaN(porta) || !Number.isFinite(porta) )
+                    {
+                        return;
+                    }
+
+                    if (!isNaN(porta) && isFinite(porta) && porta > 0 && porta < Number.UInt16MaxValue)
+                    {
+                        resolve(porta);
+                    }
+                    else
+                    {
+                        reject(new Erro(`Invalid port number. ${porta}`));
                     }
                 };
+                xhr.onerror = () => reject(new Erro("Network error. /vs-porta-depuracao"));
                 xhr.send();
             });
         }
@@ -159,7 +172,7 @@
                 console.baseError(`O servico de depuração não está ativo`);
                 return;
             }
-                 
+
             const constratoSerializado = JsonUtil.Serializar(contrato);
             this.ServicoWebScoket.send(constratoSerializado);
         }
@@ -253,32 +266,6 @@
         }
 
         //#region Métodos privados
-
-        private Window_HashChange(): void
-        {
-            const porta = this.RetornarPorta();
-            if (this.PortaAtual !== porta)
-            {
-                this.PortaAtual = porta;
-                this.ConectarAsync();
-            }
-        }
-
-        private RetornarPorta(): number
-        {
-            //let parametrosHash = u.UrlUtil.RetornarParametrosUrl();
-            //if (parametrosHash.ContainsKey(this.PARAMETRO_VS_PORTA_DEPURACAO))
-            //{
-            //    return ConverterUtil.ParaNumero(parametrosHash.Item(this.PARAMETRO_VS_PORTA_DEPURACAO));
-            //}
-             
-            const parametrosUrl = u.UrlUtil.RetornarParametroQuerysUrl();
-            if (parametrosUrl.ContainsKey(this.PARAMETRO_VS_PORTA_DEPURACAO))
-            {
-                return ConverterUtil.ParaNumero(parametrosUrl.Item(this.PARAMETRO_VS_PORTA_DEPURACAO));
-            }
-            return 0;
-        }
 
         private DesconectarSessaoAtual(): void
         {

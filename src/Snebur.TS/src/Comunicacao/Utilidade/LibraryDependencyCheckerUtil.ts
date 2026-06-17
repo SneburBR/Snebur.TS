@@ -22,7 +22,7 @@ namespace Snebur
             {
                 if ((window as any)[libName] === undefined)
                 {
-                    console.error(`The depedency ${libName} is not loaded`);
+                    console.error(`The depedency '${libName}' is not loaded`);
                 }
             }
         }
