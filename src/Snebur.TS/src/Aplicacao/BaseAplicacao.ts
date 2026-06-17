@@ -15,7 +15,7 @@
         private _isAplicacaoInicializada: boolean = false;
 
         private _diferencaDataHoraUtcServidor: number = 0;
-
+        
         private DataHoraIniciando: Date;
         private DataHoraFimInicializando: Date;
 
@@ -56,6 +56,11 @@
         public get Usuario(): d.IUsuario
         {
             return this._usuario;
+        }
+
+        public get IsPermitirSessaoAnonima(): boolean
+        {
+            return this._isPermitirSessaoAnonima;
         }
 
         private set Usuario(value: d.IUsuario)
@@ -161,6 +166,8 @@
         //#endregion
 
         //#region Inicializar
+
+        protected readonly _isPermitirSessaoAnonima: boolean = true;
 
         public constructor()
         {
@@ -369,26 +376,13 @@
             }
             else
             {
+                if (!this.IsPermitirSessaoAnonima)
+                {
+                    await this.SairAsync();
+                    return;
+                }
                 await this.InicializarSessaoUsuarioAnonimaAsync();
             }
-            //const isSessaoUsuarioAtiva = await this.ServicoUsuario.SessaoUsuarioAtivaAsync(credencialUsuario, this.IdentificadorSessaoUsuario);
-            //if (isSessaoUsuarioAtiva)
-            //{
-            //    const usuario = await this.ServicoUsuario.RetornarUsuarioAsync(credencialUsuario);
-            //    this.Usuario = usuario;
-            //    this.SessaoUsuario = await this.ServicoUsuario.RetornarSessaoUsuarioAsync(this.IdentificadorSessaoUsuario);    /*throw new Erro("Usuário não está definido");*/
-            //}
-            //else
-            //{
-            //    await this.InicializarSessaoUsuarioAnonimaAsync();
-            //    if (credencialUsuario.IsAnonimo)
-            //    {
-            //        console.error(`A sessão anônima não está ativa. Iniciando nova sessão anônima.`);
-            //    }
-            //    u.SessaoUsuarioUtil.SalvarSessaoAnonima();
-
-            //    await this.InicializarSessaoUsuarioAsync();
-            //}
         }
 
         protected async InicializarSessaoUsuarioAnonimaAsync()
@@ -412,6 +406,7 @@
         {
             Guard.NotNull(informacoesSessaoUsuario.Usuario, "informacoesSessaoUsuario.Usuario");
             Guard.NotNull(informacoesSessaoUsuario.SessaoUsuario, "informacoesSessaoUsuario.SessaoUsuario");
+
             this.Usuario = informacoesSessaoUsuario.Usuario;
             this.SessaoUsuario = informacoesSessaoUsuario.SessaoUsuario;
         }
@@ -482,8 +477,11 @@
             await this.AntesSairAsync();
             u.CookieUtil.Remover(u.SessaoUsuarioUtil.CHAVE_DADOS_SESSAO_USUARIO);
             u.SessionStorageUtil.ClearAll();
-            await this.InicializarSessaoUsuarioAnonimaAsync();
 
+            if (this.IsPermitirSessaoAnonima)
+            {
+                await this.InicializarSessaoUsuarioAnonimaAsync();
+            }
             this.RedirecionarAoSair();
             console.warn("Redirecionando");
             throw new Error("Saindo da aplicação ");
@@ -586,6 +584,4 @@
 
         u.ErroUtil.NotificarErroGlobal(e, erroInterno);
     };
-
-
 }
