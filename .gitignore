@@ -376,7 +376,7 @@ Snebur.AcessoDados.Dominio.Classes.ts
 *.[Dd]ominio.[Ee]num.ts
 *.[Dd]ominio.[Ii]nterfaces.ts
 *.[Dd]ominio.[Rr]eflexao.ts
-Html.Referencias.ts
+#Html.Referencias.ts
 [Hh]tml.[Rr]eferencias.ts
 vs-depuracao-porta.info
 
