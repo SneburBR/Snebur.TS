@@ -72,7 +72,12 @@
                     if (this.PaiPropriedadeLigacao == null ||
                         String.IsNullOrWhiteSpace(this.NomePropriedadeLigacao))
                     {
-                        console.error(`O bind ${this.___NomeConstrutor} não possui propriedade de ligação ou objeto  pai (dataSource ou Origem) não forem definido`, this);
+                        const caminho = `${this.ControleApresentacao?.___NomeConstrutor}.${this.___NomeConstrutor}.${this.NomePropriedadeLigacao}`;
+                        const mensagem = this.PaiPropriedadeLigacao == null
+                            ? `O bind ${caminho} não possui possui um data source ou origem definido) `
+                            : `O bind ${caminho} não está definido`;
+                        //`O bind ${caminho} não possui propriedade de ligação ou objeto  pai (dataSource ou Origem) não forem definido`, this);
+                        console.error(mensagem);
                         return;
                     }
                     const valorPropriedade = this.RetornarValorConvertidoParaPropriedade(valorDom);
