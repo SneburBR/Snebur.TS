@@ -15,7 +15,7 @@
         private _isAplicacaoInicializada: boolean = false;
 
         private _diferencaDataHoraUtcServidor: number = 0;
-        
+
         private DataHoraIniciando: Date;
         private DataHoraFimInicializando: Date;
 
@@ -183,6 +183,9 @@
 
         public async InicializarAplicacaoAsync(): Promise<void>
         {
+            if (this._isAplicacaoInicializada)
+                throw new Error(`Aplicação ja inicializada`);
+
             this.DefinirVersaoDebug();
             this.InicializarConfiguracoes();
 
@@ -221,7 +224,7 @@
 
         protected async InicializarAsync(): Promise<void>
         {
-            
+
 
             this.Servicos.AddRange(this.RetornarServicos());
 
@@ -275,12 +278,15 @@
             this._servicoUsuario = servicoUsuario;
         }
 
-        private InicializarConfiguracoes()
+        private InicializarConfiguracoes(): void
         {
             if (Snebur.$Configuracao == null)
             {
                 throw new Error("O objeto configuração $Configuração não foi definido");
             }
+
+            if (typeof Snebur.$Configuracao.IsDebugOuTeste === "boolean")
+                return;
 
             Object.defineProperty(Snebur.$Configuracao, "IsDebugOuTeste", {
                 get: function ()

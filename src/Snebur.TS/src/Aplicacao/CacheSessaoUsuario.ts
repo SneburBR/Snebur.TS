@@ -13,7 +13,7 @@ namespace Snebur.Aplicacao
                 IdentificadorUsuario: credencial.IdentificadorAmigavel,
                 Nome: credencial.Nome,
                 Senha: credencial.Senha,
-                IdentificadorAmigavel: credencial.Senha
+                IdentificadorAmigavel: credencial.IdentificadorAmigavel
             };
         }
 
