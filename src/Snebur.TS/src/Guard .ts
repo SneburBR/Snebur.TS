@@ -125,5 +125,17 @@
                 throw new Error(`The ${argumentName} is not an instance of ${constructor.name}`);
             }
         }
+
+        public static DebugNotDeleted(entities: IDeletado[]): void
+        {
+            if (!$Configuracao.IsDebug)
+                return;
+
+            for (const entity of entities)
+            {
+                if (entity.IsDeletado)
+                    throw new Error(`The entity ${entities} is flaged as deleted`);
+            }
+        }
     }
 }
