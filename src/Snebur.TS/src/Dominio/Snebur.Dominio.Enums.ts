@@ -1,6 +1,6 @@
 ﻿// Auto-generated file. Enums - Snebur. Do not modify directly. 
 //@Project: Snebur
-//@DataHora: 2025-11-10 14:15:53
+//@DataHora: 2026-06-18 11:33:48
 //@Artifact: Enums
 //@Namespace: Snebur.Dominio 
 //@PrioridadeDominio: 0
@@ -907,6 +907,7 @@ namespace Snebur.Dominio
     {
         Undefined = -1,
         Desconhecido = 0,
+        Inicializando = 1,
         Nova = 100,
         Ativo = 200,
         Inativo = 300,
@@ -921,6 +922,7 @@ namespace Snebur.Dominio
     (EnumStatusSessaoUsuario as any).Rotulos = {};
     (EnumStatusSessaoUsuario as any).Rotulos["Undefined"] = "Undefined";
     (EnumStatusSessaoUsuario as any).Rotulos["Desconhecido"] = "Desconhecido";
+    (EnumStatusSessaoUsuario as any).Rotulos["Inicializando"] = "Inicializando";
     (EnumStatusSessaoUsuario as any).Rotulos["Nova"] = "Nova";
     (EnumStatusSessaoUsuario as any).Rotulos["Ativo"] = "Ativo";
     (EnumStatusSessaoUsuario as any).Rotulos["Inativo"] = "Inativo";

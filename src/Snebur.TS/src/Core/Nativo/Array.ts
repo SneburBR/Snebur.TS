@@ -610,13 +610,13 @@ namespace Snebur
     {
         if (this.length === 0)
         {
-            let mensagem = "A coleção não contem elementos" + mensagens?.call(null).Vazia;
+            const mensagem = `A coleção não contem elementos ${mensagens?.call(null).Vazia}`;
             throw new Erro(mensagem, this);
         }
 
         if (this.length > 1)
         {
-            let mensagem = "A coleção contem mais de um elemento. " + mensagens?.call(null).MaisDeUm;
+            const mensagem = `A coleção contem mais de um elemento.  ${mensagens?.call(null).MaisDeUm}`;
             throw new Erro(mensagem, this);
         }
         return this[0];
@@ -630,8 +630,8 @@ namespace Snebur
         }
         if (this.length > 1)
         {
-            let mensagem = "A coleção contem mais de um elemento. " + mensagens?.call(null).MaisDeUm;
-            throw new Erro(mensagem, this);
+            const mensagem = `A coleção contem mais de um elemento.  ${mensagens?.call(null).MaisDeUm}`;
+            console.error(mensagem, this);
         }
         return this[0];
     });
