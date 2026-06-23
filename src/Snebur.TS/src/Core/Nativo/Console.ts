@@ -5,7 +5,7 @@
     baseLog(...data: any[]): void;
     baseInfo(...data: any[]): void;
     baseError(...data: any[]): void;
-    baseWarm(...data: any[]): void;
+    baseWarn(...data: any[]): void;
 
     LogDebug(...data: any[]): void;
     InfoDebug(...data: any[]): void;
@@ -126,17 +126,17 @@ namespace Snebur
         console.baseLog = console.log;
         console.baseInfo = console.info;
         console.baseError = console.error;
-        console.baseWarm = console.warn;
+        console.baseWarn = console.warn;
 
         console.log = logInternal.bind(console, false, EnumTipoLog.Log, console.baseLog);
         console.info = logInternal.bind(console, false, EnumTipoLog.Info, console.baseInfo);
-        console.warn = logInternal.bind(console, false, EnumTipoLog.Alerta, console.baseWarm);
+        console.warn = logInternal.bind(console, false, EnumTipoLog.Alerta, console.baseWarn);
         console.error = ErrorInternal.bind(console, false, EnumTipoLog.Erro, console.baseError);
         console.success = logInternal.bind(console, false, EnumTipoLog.Sucesso, console.baseLog);
 
         console.LogDebug = logInternal.bind(console, true, EnumTipoLog.Log, console.baseLog);
         console.InfoDebug = logInternal.bind(console, true, EnumTipoLog.Info, console.baseInfo);
-        console.WarmDebug = logInternal.bind(console, true, EnumTipoLog.Alerta, console.baseWarm);
+        console.WarmDebug = logInternal.bind(console, true, EnumTipoLog.Alerta, console.baseWarn);
         console.ErrorDebug = logInternal.bind(console, true, EnumTipoLog.Erro, console.baseError);
     })();
 

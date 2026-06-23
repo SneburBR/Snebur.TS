@@ -10,7 +10,7 @@
                 ? `[Blob-${ArquivoUtil.RetornarNomeArquivo(bytesOuArquivo)}]`
                 : `[buffer-${bytesOuArquivo.constructor.name}-${bytesOuArquivo.byteLength} ]`;
 
-            console.baseWarm(`CALCULADO checksum do arquivo: ${nomeArquivo} - CARREGANDO BUFFER PRIMEIRO`);
+            console.baseWarn(`CALCULADO checksum do arquivo: ${nomeArquivo} - CARREGANDO BUFFER PRIMEIRO`);
 
             const buffer = await this.RetornarBufferAsync(bytesOuArquivo);
             const checksum = await this.RetornarChecksumInternoAsync(buffer, nomeArquivo);
@@ -72,7 +72,7 @@
 
             if (bufferOrBlob instanceof SnBlob)
             {
-                console.baseWarm(`bufferOrBlob - SN-BLOB `);
+                console.baseWarn(`bufferOrBlob - SN-BLOB `);
             }
 
             return await bufferOrBlob.arrayBuffer();
