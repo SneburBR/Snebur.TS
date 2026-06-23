@@ -11,7 +11,7 @@
         public constructor(mensagem: string, origem: any, erroInterno?: Error)
         public constructor(mensagem: string, argumento1?: any, argumento2?: any)
         {
-            super(`mensagem ${mensagem}`);
+            super(mensagem);
 
             DebugUtil.Break(mensagem);
 

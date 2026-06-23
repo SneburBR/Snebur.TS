@@ -36,6 +36,7 @@
             this.Worker = new Worker(this.UrlWorker);
             this.Worker.onmessage = this.Worker_Message.bind(this);
             this.Worker.onerror = this.Worker_Error.bind(this);
+            this.Worker.onmessageerror = this.Worker_Error.bind(this);
         }
 
         private async InicializarUrlWorker(): Promise<void> 
@@ -59,21 +60,32 @@
                 return;
             }
             let retorno = e.data;
-            if (retorno.IsErro && !String.IsNullOrWhiteSpace(retorno.MessagemErro))
+            try
             {
-                const mensagem = `Erro no worker ${this.UrlWorker} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
-                retorno = new Error(mensagem);
-                LogUtil.Erro(retorno);
+                if (retorno.IsErro)
+                {
+                    const mensagem = `Erro no worker ${this.UrlWorker} ${e.data.MessagemErro ?? "Erro desconhecido"}`;
+                    console.error(mensagem);
+                    retorno = new Error(mensagem);
+                    LogUtil.Erro(retorno);
+                }
+                this.Worker?.terminate();
+                
             }
-            this.Worker.terminate();
+            catch(erro)
+            {
+                console.error(`Falha ao processar a resposta do worker ${this.UrlWorker}: ${erro}`);
+            }
             this.Finalizar(retorno);
         }
 
         private Worker_Error(e: ErrorEvent): void
         {
             this.Worker.terminate();
-            let mensagem = `Worker: ${this.UrlWorker}, linha ${e.lineno}, coluna ${e.colno}`;
-            mensagem += `\r\n ${e.message ?? e.error?.message ?? "erro desconhecido"}`;
+
+            const mensagemBase = e.message ?? e.error?.message ?? "erro desconhecido";
+            const mensagem = `WORKER ERROR: ${this.UrlWorker}, linha ${e.lineno}, coluna ${e.colno}\r\n ${mensagemBase}`;
+            console.error(mensagem);
             const erro = new Erro(mensagem);
             this.Finalizar(erro);
         }
@@ -92,7 +104,6 @@
                 this.Finalizar(erro);
 
             }, WorkerClienteInterno.TIMEOUT);
-
             this.Worker.postMessage(mensagem);
         }
 
@@ -104,10 +115,11 @@
         public Finalizar(resultado: Error | any): void
         {
             window.clearTimeout(this.IdTimeout);
-            if (this.Callback != null)
+            const callback = this.Callback;
+            if (callback != null)
             {
-                this.Callback(resultado);
                 this.Callback = null;
+                callback(resultado);
                 this.Worker?.terminate();
                 delete this.Worker;
             }

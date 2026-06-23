@@ -355,5 +355,12 @@
             }
             return hash;
         }
+
+        public static AdicionarHostPrefixo(url: string, prefixo: string): string
+        {
+            const urlObj = new URL(url);
+            urlObj.hostname = prefixo + urlObj.hostname;
+            return urlObj.toString();
+        }
     }
 }

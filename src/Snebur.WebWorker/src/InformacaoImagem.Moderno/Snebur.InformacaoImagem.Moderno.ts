@@ -50,7 +50,6 @@ self.onmessage = function (e)
         catch (erro)
         {
             console.error(`leitor.onload ${erro?.message ?? erro}`);
-
             const resultado = InvalidoResultado();
             self.postMessage(resultado);
         }

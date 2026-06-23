@@ -22,7 +22,7 @@
             const elementoImagem = this.ElementoImageem;
             if (elementoImagem != null)
             {
-                const errorMessage = `Erro carregar imagem: ${elementoImagem.dataset["urlErro"] ?? elementoImagem.UrlImagem}:${e.message ?? ""}`;
+                const errorMessage = `Erro carregar imagem: ${elementoImagem.dataset["urlErro"] ?? elementoImagem.UrlImagem} :${e.message ?? ""}`;
                 console.error(errorMessage);
                 
                 if (ValidacaoUtil.IsUrl(Snebur.$Configuracao.UrlImagemSemImagem) &&

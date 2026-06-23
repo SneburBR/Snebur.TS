@@ -12,7 +12,7 @@ namespace Snebur.Utilidade
             return md5(argumento);
         }
 
-        public static IsMd5(hash: string | any): boolean
+        public static IsMd5(hash: string | any): hash is string
         {
             if (typeof hash === "string")
             {
