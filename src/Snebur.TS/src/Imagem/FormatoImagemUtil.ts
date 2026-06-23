@@ -2,27 +2,21 @@
 {
     export class FormatoImagemUtil
     {
-        public static RetornarFormatoImagemAsync(arquivo: SnBlob, isIgnorarErro: boolean): Promise<d.EnumFormatoImagem>
+        public static async RetornarFormatoImagemAsync(arquivo: SnBlob, isIgnorarErro: boolean): Promise<d.EnumFormatoImagem>
         {
-            return new Promise<d.EnumFormatoImagem>((resolve, reject) =>
+            try
             {
-                const reader = new FileReader();
-                reader.onload = (e) =>
+                const buffer = await arquivo.arrayBuffer();
+                return FormatoImagemUtil.RetornarFormatoImagem(buffer);
+            }
+            catch(erro)
+            {
+                if (isIgnorarErro)
                 {
-                    const resultado = FormatoImagemUtil.RetornarFormatoImagem(reader.result as ArrayBuffer);
-                    resolve(resultado);
-                };
-                reader.onerror = (e) =>
-                {
-                    if (isIgnorarErro)
-                    {
-                        resolve(d.EnumFormatoImagem.Desconhecido);
-                        return;
-                    }
-                    reject(e);
-                };
-                reader.readAsArrayBuffer(arquivo.Blob);
-            });
+                    return d.EnumFormatoImagem.Desconhecido;
+                }
+                throw erro;
+            }
         }
 
 

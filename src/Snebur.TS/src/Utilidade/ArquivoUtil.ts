@@ -123,31 +123,23 @@
         public static RetornarBufferArrayAsync(arquivoOuBlob: Blob | SnBlob): Promise<ArrayBuffer | null>
         public static RetornarBufferArrayAsync(arquivoOuBlob: Blob | SnBlob, isIgnorarErro: true): Promise<ArrayBuffer | null>
         public static RetornarBufferArrayAsync(arquivoOuBlob: Blob | SnBlob, isIgnorarErro: false): Promise<ArrayBuffer | Error>
-        public static RetornarBufferArrayAsync(arquivoOuBlob: Blob | SnBlob, isIgnorarErro: boolean = true): Promise<ArrayBuffer | Error | null>
+        public static async RetornarBufferArrayAsync(arquivoOuBlob: Blob | SnBlob, isIgnorarErro: boolean = true): Promise<ArrayBuffer | Error | null>
         {
-            const blob = arquivoOuBlob instanceof SnBlob ? arquivoOuBlob.Blob : arquivoOuBlob;
-            return new Promise<ArrayBuffer | Error | null>(resolver => 
+            try
             {
-                const leitor = new FileReader();
-                leitor.onload = function ()
+                return await arquivoOuBlob.arrayBuffer();
+            }
+            catch (erro)
+            {
+                if (isIgnorarErro)
                 {
-                    resolver(leitor.result as ArrayBuffer);
-                };
-                leitor.onerror = function (e: ProgressEvent<FileReader>)
-                {
-                    const nomeArquivo = ArquivoUtil.RetornarNomeArquivo(arquivoOuBlob);
-                    const mensagem = `Não foi possível ler arquivo ${nomeArquivo}`;
+                    return null;
+                }
+                const nomeArquivo = ArquivoUtil.RetornarNomeArquivo(arquivoOuBlob);
+                const mensagem = `Não foi possível ler arquivo ${nomeArquivo}`;
+                return new Error(`${mensagem}: ${erro instanceof Error ? erro.message : erro}`);
+            }
 
-                    let retorno = new Error(mensagem);
-                    LogUtil.Erro(retorno, leitor.error?.message);
-                    if (isIgnorarErro)
-                    {
-                        retorno = null;
-                    }
-                    resolver(retorno);
-                };
-                leitor.readAsArrayBuffer(blob);
-            });
         }
 
         public static async RetornarBase64FromUrlAsync(url: string, tentativa = 0): Promise<string | null>
@@ -169,6 +161,21 @@
 
         public static RetornarBase64Async(arquivoOuBlob: File | Blob | SnBlob): Promise<string | null>
         {
+            try
+            {
+                //check this new implementation
+                DebugUtil.Break("check this new implementation - ArquivoUtil.RetornarBase64Async "); 
+                return ArquivoUtil.BlobToDataURLAsync(arquivoOuBlob instanceof SnBlob ? arquivoOuBlob.Blob : arquivoOuBlob);
+            }
+            catch(erro)
+            {
+                console.warn(`BlobToDataURLAsync falhou para ${ArquivoUtil.RetornarNomeArquivo(arquivoOuBlob)}: ${erro instanceof Error ? erro.message : erro}. Tentando método alternativo...`); 
+                return ArquivoUtil.RetornarBase64InternoAsync(arquivoOuBlob);
+            }
+        }
+
+        private static RetornarBase64InternoAsync(arquivoOuBlob: File | Blob | SnBlob): Promise<string | null>
+        {
             const blob = arquivoOuBlob instanceof SnBlob ? arquivoOuBlob.Blob : arquivoOuBlob;
             return new Promise<string>(resolver =>
             {
@@ -186,6 +193,26 @@
                 };
                 leitor.readAsDataURL(blob);
             });
+        }
+
+        private static async BlobToDataURLAsync(blob: File | Blob | SnBlob): Promise<string | null>
+        {
+            // 1. Get ArrayBuffer from Blob
+            const arrayBuffer = await blob.arrayBuffer();
+
+            // 2. Convert ArrayBuffer to a binary string
+            const bytes = new Uint8Array(arrayBuffer);
+            let binary = '';
+            for (let i = 0; i < bytes.byteLength; i++)
+            {
+                binary += String.fromCharCode(bytes[i]);
+            }
+
+            // 3. Encode to Base64
+            const base64 = btoa(binary);
+
+            // 4. Return the exact readAsDataURL equivalent format
+            return `data:${blob.type};base64,${base64}`;
         }
 
         public static FormatarNomeArquivo(nomeArquivo: string): string

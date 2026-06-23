@@ -42,24 +42,38 @@
         }
     }
 
-    public async RetornarBytesAsync(arquivo: Blob): Promise<Uint8Array>
+    public async RetornarBytesAsync(arquivo: Blob): Promise<Uint8Array | null>
     {
-        return new Promise(resolver =>
+        const nomeArquivo = arquivo instanceof File
+            ? arquivo.name
+            : `[Blob ${arquivo.type}-${arquivo.size}]`;
+        if (typeof arquivo.arrayBuffer === "function")
+        {
+            try
+            {
+                const arrayBuffer = await arquivo.arrayBuffer();
+                return new Uint8Array(arrayBuffer);
+            }
+            catch (erro)
+            {
+                console.error(`Erro ao ler o arquivo como Blob.arrayBuffer. Arquivo: ${nomeArquivo}. Erro: ${erro}`);
+            }
+        }
+
+        console.warn(`Blob.arrayBuffer não está disponível. Usando FileReader como fallback. Arquivo: ${nomeArquivo}`);
+        return new Promise((resolver, reject) =>
         {
             const fileReader = new FileReader();
-            fileReader.onload = function ()
+            fileReader.onload = () =>
             {
                 if (fileReader.result instanceof ArrayBuffer)
                 {
-                    resolver(new Uint8Array(fileReader.result));
+                    resolver(new Uint8Array(fileReader.result as ArrayBuffer));
                     return;
                 }
-                resolver(null);
+                reject(new Error(`Erro ao ler o arquivo como FileReader. Arquivo: ${nomeArquivo}`));
             };
-            fileReader.onerror = function ()
-            {
-                resolver(null);
-            };
+            fileReader.onerror = (err) => reject(new Error(`Erro ao ler o arquivo como FileReader. Arquivo: ${nomeArquivo}`));
             fileReader.readAsArrayBuffer(arquivo);
         });
     }
