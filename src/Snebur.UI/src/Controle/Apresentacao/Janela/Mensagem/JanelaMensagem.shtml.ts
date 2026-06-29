@@ -209,7 +209,8 @@
 
             if (!(args instanceof ResultadoJanelaMensagemArgs))
             {
-                throw new Error("O argumento ao fechar janela mensagem não é suportado");
+                console.error("O argumento ao fechar janela mensagem não é suportado");
+                args = new ResultadoJanelaMensagemArgs(this, EnumResultadoOpcaoMensagem.Cancelar, isFechou);
             }
             await super.FecharAsync(args);
         }

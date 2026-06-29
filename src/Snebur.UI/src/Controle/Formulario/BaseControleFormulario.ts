@@ -685,6 +685,7 @@
         {
             const elemento = document.createElement("sn-mensagem-validacao");
             elemento.OcultarElemento();
+            elemento.setAttribute("sn-referencia-id", this.IDElemento);
 
             const elementoDestino = ControleUtil.RetornarElementoDestinoFlutuante(this);
             elementoDestino.appendChild(elemento);
