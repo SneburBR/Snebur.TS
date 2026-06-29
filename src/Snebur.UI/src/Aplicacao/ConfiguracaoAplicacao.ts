@@ -3,7 +3,7 @@
     export interface ConfiguracaoAplicacao
     {
         IsPermitirUsuarioAnonimo?: boolean;
-        IsDebugApresentacao?: boolean;
+        IsDebugUI?: boolean;
         PrefixosCssClasse?: Array<string>;
         ConfiguracaoLayout?: IConfiguracaoLayout;
         CaminhoRotaNavegadorPrincipal?: string;

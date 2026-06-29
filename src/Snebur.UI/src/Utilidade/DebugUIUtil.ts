@@ -7,71 +7,48 @@
         private static readonly CSS_CLASS_DEBUG_OUTLINE_PRESENTATION: string = "debug-outline-presentation";
         private static readonly CSS_CLASS_ATIVAR_DEBUG: string = "debug-outline-active";
 
-        public static readonly DEBUG_ELEMENT_PATH: string = "debug-element-path";
+        public static readonly DEBUG_SELECTOR: string = "debug-ui-selector";
         private static _debugAtivado: boolean = false;
 
         public static Inicializar()
         {
-            if (!$Configuracao.IsDebug)
+            if (!$Configuracao.IsDebugUI)
             {
                 return;
             }
 
-            window.addEventListener("keydown", (e: KeyboardEvent) =>
-            {
-                if (e.ctrlKey === true && e.altKey === true && e.shiftKey === true)
-                {
-                    if (e.key?.toUpperCase() === "W")
-                    {
-                        $Configuracao.IsAlterarUrlDebug = !$Configuracao.IsAlterarUrlDebug;
-                        console.warn(`Alterar URL WebService Debug: ${$Configuracao.IsAlterarUrlDebug}`);
-                    }
-                    document.body.classList.add(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
-                    DebugUIUtil._debugAtivado = true;
-                }
-                else
-                {
-                    document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
-                    DebugUIUtil._debugAtivado = false;
-                }
-            });
-
-            window.addEventListener("keyup", (e: KeyboardEvent) =>
-            {
-                document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
-                DebugUIUtil._debugAtivado = false;
-            });
+            window.addEventListener("keydown", DebugUIUtil.Window_KeyDown);
+            window.addEventListener("keyup", DebugUIUtil.Window_KeyUp);
         }
 
-        public static BuildIdElementPath(uiElement: BaseUIElemento): string
+        private static Window_KeyDown(e: KeyboardEvent)
         {
-            const caminhos: string[] = [];
-
-            const name = uiElement.Elemento.getAttribute(AtributosHtml.Nome.Nome);
-            if (name != null)
+            if (e.ctrlKey === true && e.altKey === true && e.shiftKey === true)
             {
-                Guard.NotNullOrEmpty(name);
-                caminhos.push(name);
+                if (e.key?.toUpperCase() === "W")
+                {
+                    $Configuracao.IsAlterarUrlDebug = !$Configuracao.IsAlterarUrlDebug;
+                    console.warn(`Alterar URL WebService Debug: ${$Configuracao.IsAlterarUrlDebug}`);
+                }
+                document.body.classList.add(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
+                DebugUIUtil._debugAtivado = true;
             }
             else
             {
-                const index = ElementoUtil.GetElementSiblingIndex(uiElement.Elemento);
-                caminhos.push(index.toString());
+                document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
+                DebugUIUtil._debugAtivado = false;
             }
+        }
 
-            let current: BaseUIElemento = uiElement;
-            while (current != null)
-            {
-                Guard.NotNullOrEmpty(current.constructor.name);
-                caminhos.push(current.constructor.name);
-                current = current.ControleApresentacaoPai;
-            }
-            return caminhos.reverse().join("-");
+        private static Window_KeyUp(e: KeyboardEvent)
+        {
+            document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
+            DebugUIUtil._debugAtivado = false;
         }
 
         public static SetDebugIrParaCodigo(uiElement: BaseUIElemento, refElemento?: HTMLElement)
         {
-            if (!$Configuracao.IsDebug)
+            if (!$Configuracao.IsDebugUI)
                 return;
 
             const constructorName = uiElement.ControleApresentacao.___NomeConstrutor;
@@ -97,21 +74,68 @@
 
             element.addEventListener("mousedown", (e: MouseEvent) =>
             {
-                if (DebugUIUtil._debugAtivado)
-                {
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
-                    e.preventDefault();
-                    console.warn(`Ir para código: ${nomeControle} [${searchElementPatterns}]`);
-                    $Aplicacao.ServicoDepuracao.EnviarMensagem(mensagemIrParaCodigo);
-                }
+                if (!DebugUIUtil._debugAtivado)
+                    return;
+
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                e.preventDefault();
+                console.warn(`Ir para código: ${nomeControle} [${searchElementPatterns}]`);
+                $Aplicacao.ServicoDepuracao.EnviarMensagem(mensagemIrParaCodigo);
+                document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
+                DebugUIUtil._debugAtivado = false;
             });
         }
 
-        private static BuildSearchElementPattern(uiElement: BaseUIElemento, element: HTMLElement) : string[]
+        public static BuildElementSelector(uiElement: BaseUIElemento): string
+        {
+            const selectors: string[] = [];
+            let current: BaseUIElemento = uiElement;
+            let addIndexOfType = true;
+            while (current != null && current !== current.ControleApresentacaoPai)
+            {
+                Guard.NotNullOrEmpty(current.constructor.name);
+                selectors.push(DebugUIUtil.BuildSingleElementSelector(current, addIndexOfType));
+                current = current.ControleApresentacaoPai;
+                addIndexOfType = false;
+            }
+            return selectors.reverse().join(" ");
+        }
+
+        private static BuildSingleElementSelector(uiElement: BaseUIElemento, addIndexOfType: boolean): string
+        {
+            const selectors: string[] = [];
+            const tagName = uiElement.Elemento.tagName.toLowerCase();
+            selectors.push(tagName);
+
+            const name = uiElement.Elemento.getAttribute(AtributosHtml.Nome.Nome);
+            if (name != null)
+            {
+                selectors.push(`[${AtributosHtml.Nome}='${name}']`);
+            }
+
+            const constructor = uiElement.Elemento.getAttribute(AtributosHtml.Construtor.Nome);
+            if (constructor != null)
+            {
+                selectors.push(`[${AtributosHtml.Construtor}='${constructor}']`);
+            }
+
+            if (addIndexOfType)
+            {
+                const index = ElementoUtil.GetElementSiblingOfTypeIndex(uiElement.Elemento);
+                if (index > 0)
+                {
+                    selectors.push(`${tagName} [${index}]`);
+                }
+            }
+            return selectors.join("");
+        }
+
+        private static BuildSearchElementPattern(uiElement: BaseUIElemento, element: HTMLElement): string[]
         {
             const partterns: string[] = [];
             const attributes: string[] = [AtributosHtml.Nome.Nome, AtributosHtml.ItemElemento.Nome];
+
             for (const atributo of attributes)
             {
                 const valorAtributo = element.getAttribute(atributo);
@@ -126,7 +150,7 @@
                 const valorAtributo = element.getAttribute(atributo);
                 if (valorAtributo != null)
                 {
-                    partterns.Add(`${atributo}="${valorAtributo}"`);
+                    partterns.push(`${atributo}="${valorAtributo}"`);
                 }
             }
 
@@ -140,6 +164,7 @@
             }
             return partterns;
         }
+
         public static IsDebugAtivado(uiEvent: UIEvent)
         {
             if (this._debugAtivado)

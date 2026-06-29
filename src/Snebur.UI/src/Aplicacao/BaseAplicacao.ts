@@ -96,9 +96,9 @@
 
             this.GerenciadorAbrirImagemLocal = new GerenciadorAbrirImagemLocal();
             this.RegistrarIdElementoCorpo();
-                    DebugUIUtil.Inicializar();
+             
             await super.InicializarAsync();
-    
+
             this.IncrementarProcessoCarregandoAplicacao();
 
             const stopwatch = Stopwatch.StartNew();
@@ -109,7 +109,7 @@
 
             this.IncrementarProcessoCarregandoAplicacao();
 
-            if ($Configuracao.IsDebug && !$Configuracao.IsDesativarServicoDepuracao)
+            if ($Configuracao.IsDebugUI)
             {
                 this.ServicoDepuracao.EventoControleAlterado.AddHandler(this.ServicoDepuracao_ControleAlterado, this);
                 this.ServicoDepuracao.EventoEstiloCssAlterado.AddHandler(this.ServicoDepuracao_EstiloCssAlterado, this);
@@ -385,7 +385,7 @@
                 {
                     const novaUrlEstilo = elementoEstilo.href.split("?").First() + "?" + GuidUtil.RetornarNovoGuid();
                     elementoEstilo.href = novaUrlEstilo;
-                    console.WarmDebug(`Estilo atualizado: ${mensagem.NomeArquivo}`);
+                    console.WarnDebug(`Estilo atualizado: ${mensagem.NomeArquivo}`);
                 }
             }
         }

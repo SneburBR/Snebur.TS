@@ -33,7 +33,7 @@
 
             if (htmlReferencia.IsHtmlDecodificado)
             {
-                if (!$Configuracao.IsDebug || $Configuracao.IsDebugApresentacao === false)
+                if (!$Configuracao.IsDebug)
                 {
                     return htmlReferencia.HtmlDecodificado;
                 }

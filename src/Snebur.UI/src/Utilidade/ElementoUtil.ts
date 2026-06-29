@@ -2,15 +2,6 @@
 {
     export class ElementoUtil
     {
-        public static GetElementSiblingIndex(elemento: HTMLElement)
-        {
-            let i = 0;
-            let node: NonDocumentTypeChildNode = elemento;
-            while ((node = node.previousElementSibling) != null)
-                i++;
-            return i;
-        }
-
         private static ContadorElemento: number = 0;
         private static UsarIdCurto: boolean = false;
 
@@ -321,7 +312,7 @@
 
 
         }
-         
+
         public static RetornarPosicaoElemento(refElemento: HTMLElement | string): IClientRect
         {
             const elemento = ElementoUtil.RetornarElemento(refElemento);
@@ -527,7 +518,7 @@
                 await ThreadUtil.QuebrarAsync();
             }
         }
-         
+
         public static CriarElemento<K extends keyof HTMLElementTagNameMap>(tag: K, innerHTML: string | number = "", className: string = ""): HTMLElementTagNameMap[K]
         {
             return ElementoUtil.RetornarNovoElemento(tag, innerHTML, className);
@@ -554,6 +545,23 @@
                 behavior: "smooth"
             });
         }
+         
+        public static GetElementSiblingOfTypeIndex(elemento: HTMLElement)
+        {
+            const tagName = elemento.tagName;
+            let i = 0;
+            let currentElement: NonDocumentTypeChildNode = elemento;
+            while ((currentElement = currentElement.previousElementSibling) != null)
+            {
+                if (currentElement instanceof HTMLElement && currentElement.tagName === tagName)
+                {
+                    i++;
+                }
+            }
+
+            return i;
+        }
+
     }
 
     export interface IClientRect

@@ -2,7 +2,7 @@
 {
     export abstract class BaseUIElemento extends Snebur.ObjetoControladorPropriedade implements IDisposable
     {
-        private _debugElementPath: string;
+        private _debugUISelector: string;
         //#region Constantes
         private static readonly PREFIXO_PROPRIEDADE = "sn-prop-";
         //#endregion
@@ -416,11 +416,11 @@
 
         protected HtmlCarregado(): void
         {
-            if (Snebur.$Configuracao.IsDebugOuTeste)
+            if (Snebur.$Configuracao.IsDebugUI)
             {
-                this._debugElementPath = DebugUIUtil.BuildIdElementPath(this);
+                this._debugUISelector = DebugUIUtil.BuildElementSelector(this);
                 DebugUIUtil.SetDebugIrParaCodigo(this);
-                this.Elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, this._debugElementPath);
+                this.Elemento.setAttribute(DebugUIUtil.DEBUG_SELECTOR, this._debugUISelector);
             }
         }
 
@@ -809,10 +809,10 @@
             if (String.IsNullOrWhiteSpace(elemento.id))
             {
                 elemento.id = ElementoUtil.RetornarNovoIDElemento(this, nomeItemControle);
-                if (Snebur.$Configuracao.IsDebugOuTeste)
+                if (Snebur.$Configuracao.IsDebugUI)
                 {
-                    const itemElementPath = this._debugElementPath + "-" + nomeItemControle;
-                    elemento.setAttribute(DebugUIUtil.DEBUG_ELEMENT_PATH, itemElementPath);
+                    const itemElementSelector = `${this._debugUISelector} ${elemento.tagName.toLowerCase()}[${AtributosHtml.ItemElemento}=${nomeItemControle}]`;
+                    elemento.setAttribute(DebugUIUtil.DEBUG_SELECTOR, itemElementSelector);
                     DebugUIUtil.SetDebugIrParaCodigo(this, elemento);
                 }
             }

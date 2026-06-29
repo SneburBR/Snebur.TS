@@ -5,8 +5,7 @@
         readonly IsDebugOuTeste?: boolean;
         IsDebug: boolean;
         IsTeste?: boolean;
-
-        IsDesativarServicoDepuracao?: boolean;
+        IsDebugUI?: boolean;
         IsProtegerUrl?: boolean;
         IsDepuracaoUtilizarHostLocal?: boolean;
         IsUsarHostAtualParaHtmlReferencia?: boolean;
