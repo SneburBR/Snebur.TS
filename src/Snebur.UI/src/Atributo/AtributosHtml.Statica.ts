@@ -323,6 +323,8 @@
         public static readonly BindSelecaoCor = new AtributoHtml("sn-bind-selecao-cor", String);
         public static readonly BindSugestoes = new AtributoHtml("sn-bind-sugestoes", String);
 
+        public static readonly BindInfoData = new AtributoHtml("sn-bind-info-data", String);
+
         //Opções
         public static readonly OpcaoBindCssClasse = new AtributoHtml("sn-opcao-bind-css-classe", Snebur.UI.EnumOpcapBindCssClasse);
         public static readonly OpcaoBindCssclassePrefixoAlterar = new AtributoHtml("sn-opcao-bind-css-classe-prefixo-alterar", String);

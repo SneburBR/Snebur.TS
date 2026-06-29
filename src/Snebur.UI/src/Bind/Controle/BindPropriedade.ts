@@ -24,7 +24,7 @@
             u.ReflexaoUtil.AtribuirValorPropriedade(this.Controle, this.CaminhoPropriedadeControle, novoValor);
             //((this.Controle as any) as IProgresso)[this.CaminhoPropriedadeControle] = u.ConverterUtil.ParaNumero(novoValor);
         }
-
-         
     }
+
+   
 }
