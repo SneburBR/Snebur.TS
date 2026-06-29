@@ -225,8 +225,7 @@
                 {
                     console.error("Perfil sRGB inválido");
                 }
-
-
+                 
                 await ThreadUtil.ExecutarWithTimeOutAsync(10000, async () =>
                 {
                     await MagickWasm.initializeImageMagick(bytesWasm);

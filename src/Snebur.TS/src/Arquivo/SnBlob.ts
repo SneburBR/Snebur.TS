@@ -281,6 +281,8 @@
         {
             if (!this._isDispensado)
             {
+                console.warn(`SnBlob.Dispose: ${this._name ?? ""} - ${this._size ?? ""}b`);
+
                 this.RevokeUrlBlob();
                 delete this._blob;
                 delete this._buffer;

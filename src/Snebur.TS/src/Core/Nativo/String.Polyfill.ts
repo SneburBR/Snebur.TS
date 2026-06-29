@@ -103,3 +103,43 @@ if (typeof String.prototype.padStart === "undefined")
         }
     };
 }
+
+if (typeof String.prototype.matchAll !== "function")
+{
+    String.prototype.matchAll = function (regex: RegExp): IterableIterator<RegExpMatchArray>
+    {
+        if (regex == null)
+        {
+            throw new TypeError("Arguments to matchAll must not be null or undefined");
+        }
+        if (regex instanceof RegExp && !regex.global)
+        {
+            throw new TypeError(".matchAll called with a non-global RegExp argument");
+        }
+
+        const flags = regex.flags === undefined ? "" : regex.flags;
+        const matcher = new RegExp(regex.source, flags.includes("g") ? flags : flags + "g");
+        matcher.lastIndex = regex.lastIndex;
+
+        const str = String(this);
+        const results : any = [];
+        let match;
+
+        while ((match = matcher.exec(str)) !== null)
+        {
+            results.push(match);
+        }
+
+        // Return a basic ES6 iterator
+        let index = 0;
+        return {
+            next: function ()
+            {
+                return index < results.length
+                    ? { value: results[index++], done: false }
+                    : { value: undefined, done: true };
+            },
+            [Symbol.iterator]: function() { return this; }
+        };
+    };
+}

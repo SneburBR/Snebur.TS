@@ -10,7 +10,7 @@
     LogDebug(...data: any[]): void;
     InfoDebug(...data: any[]): void;
     ErrorDebug(...data: any[]): void;
-    WarmDebug(...data: any[]): void;
+    WarnDebug(...data: any[]): void;
 
     EventoLog: Snebur.Evento<Snebur.ConsoleLogArgs>;
 }
@@ -136,7 +136,7 @@ namespace Snebur
 
         console.LogDebug = logInternal.bind(console, true, EnumTipoLog.Log, console.baseLog);
         console.InfoDebug = logInternal.bind(console, true, EnumTipoLog.Info, console.baseInfo);
-        console.WarmDebug = logInternal.bind(console, true, EnumTipoLog.Alerta, console.baseWarn);
+        console.WarnDebug = logInternal.bind(console, true, EnumTipoLog.Alerta, console.baseWarn);
         console.ErrorDebug = logInternal.bind(console, true, EnumTipoLog.Erro, console.baseError);
     })();
 

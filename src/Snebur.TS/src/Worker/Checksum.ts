@@ -10,13 +10,13 @@
                 ? `[Blob-${ArquivoUtil.RetornarNomeArquivo(bytesOuArquivo)}]`
                 : `[buffer-${bytesOuArquivo.constructor.name}-${bytesOuArquivo.byteLength} ]`;
 
-            console.baseWarn(`CALCULADO checksum do arquivo: ${nomeArquivo} - CARREGANDO BUFFER PRIMEIRO`);
+            console.warn(`CALCULADO checksum do arquivo: ${nomeArquivo} - CARREGANDO BUFFER PRIMEIRO`);
 
             const buffer = await this.RetornarBufferAsync(bytesOuArquivo);
             const checksum = await this.RetornarChecksumInternoAsync(buffer, nomeArquivo);
             if (u.Md5Util.IsMd5(checksum))
             {
-                console.baseLog(`Checksum calculado com sucesso: arquivo ${nomeArquivo}: ${checksum}`);
+                console.success(`Checksum calculado com sucesso: arquivo ${nomeArquivo}: ${checksum}`);
                 return checksum;
             }
 
@@ -33,7 +33,6 @@
                 const checksum = await new Checksum().RetornarResultadoAsync(buffer);
                 if (u.Md5Util.IsMd5(checksum))
                 {
-                    console.baseLog(`Checksum calculado com sucesso: arquivo ${nomeArquivo}: ${checksum}`);
                     return checksum;
                 }
             }
@@ -42,7 +41,6 @@
                 const mensagemErro = `Falha ao calcular o checksum do arquivo ${nomeArquivo}: ${erro}`;
                 console.error(`WORKER: ${mensagemErro}`);
             }
-
             return this.CalcularChecksumMainThread(buffer, nomeArquivo);
         }
 

@@ -61,6 +61,7 @@ namespace Snebur.Nativo
         trimEnd(): string;
         padStart(length: number, fillStr?: string): string;
         padEnd(length: number, fillStr?: string): string;
+        matchAll(regex: RegExp): IterableIterator<RegExpMatchArray>;
 
         substrCompat(start: number, length?: number): string;
 

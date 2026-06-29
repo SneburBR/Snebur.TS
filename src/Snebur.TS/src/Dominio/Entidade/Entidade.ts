@@ -246,7 +246,7 @@
                     {
                         if (entidadeRelacao.Id !== novoValor)
                         {
-                            console.WarmDebug(`A propriedade chave estrangeira alterada ${this.GetType().Nome}.${nomePropriedade} = ${novoValor ?? "null"}
+                            console.WarnDebug(`A propriedade chave estrangeira alterada ${this.GetType().Nome}.${nomePropriedade} = ${novoValor ?? "null"}
                                                Propriedade da relação {} foi atribuído valor null.
                                                ${this.GetType().Nome}.${nomePropriedadeRelacao} = null`);
 

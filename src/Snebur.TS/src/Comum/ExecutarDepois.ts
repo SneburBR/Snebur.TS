@@ -190,7 +190,7 @@
                 const baseControleFormularioConstrutor = u.ReflexaoUtil.RetornarConstrutor(Snebur, "UI.BaseControleFormulario");
                 if (baseControleFormularioConstrutor != null && !(this._acao?.BoundThis instanceof baseControleFormularioConstrutor))
                 {
-                    console.WarmDebug(
+                    console.WarnDebug(
                         `ExecutarDepois está sendo descartado com pendências de execução.\r\n
                          Chamar o método 'AguardarPedenciasAsync' antes de descartar para evitar este problema.`);
                 }

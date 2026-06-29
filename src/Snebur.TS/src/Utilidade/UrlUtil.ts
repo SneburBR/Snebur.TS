@@ -321,7 +321,7 @@
             return url;
         }
 
-        public static AjustarBarraInicialFinal(endereco:string)
+        public static AjustarBarraInicialFinal(endereco: string)
         {
             return UrlUtil.AdicionarBarraInicial(UrlUtil.AdicionarBarraFinal(endereco));
         }
@@ -359,6 +359,9 @@
         public static AdicionarHostPrefixo(url: string, prefixo: string): string
         {
             const urlObj = new URL(url);
+            if (urlObj.hostname.startsWith(prefixo))
+                return url;
+
             urlObj.hostname = prefixo + urlObj.hostname;
             return urlObj.toString();
         }

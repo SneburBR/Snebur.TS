@@ -247,9 +247,7 @@ namespace Snebur
         configurable: false,
         enumerable: false,
     });
-
-
-
+     
 
     Object.defineProperty(Object, "keys", {
         value: function (obj: object)
@@ -281,9 +279,7 @@ namespace Snebur
             enumerable: false
         });
     }
-
-
-
+     
     Object.defineProperty(Object, "values", {
         value: function (obj: any): any
         {
