@@ -444,4 +444,5 @@ Snebur.Globalizacao.Dominio.Atributos.ts
 /src/Snebur.WebWorker/workers/Snebur.Checksum.js.map
 /src/Snebur.WebWorker/workers/Snebur.ConverterHeicParaJpeg.js.map
 /src/Snebur.WebWorker/workers/Snebur.SalvarJpeg.js.map
-/src/Snebur.TS/packages.lock.json
+
+packages.lock.json
