@@ -297,14 +297,15 @@
 
     }
 
-    //#region Elementos da apresentação - código gerado automaticamente #
+	//#region Elementos da apresentação - código gerado automaticamente #
 
-    export interface JanelaMensagem
-    {
-        readonly PainelListaBotoes: ui.PainelLista;
-    }
+	export interface JanelaMensagem
+	{
+		readonly TxtMensagem: ui.Texto;
+		readonly PainelListaBotoes: ui.PainelLista;
+	}
 
-    //#endregion
+	//#endregion
 
     export interface OptionsMensagem
     {

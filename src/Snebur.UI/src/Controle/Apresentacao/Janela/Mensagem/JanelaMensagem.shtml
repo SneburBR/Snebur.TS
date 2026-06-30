@@ -19,7 +19,9 @@
         <ap-texto ap-tipografia="Titulo" sn-bind="{{Titulo}}">
         </ap-texto>
 
-        <ap-texto ap-tipografia="Corpo"
+        <ap-texto 
+            sn-nome="TxtMensagem"
+            ap-tipografia="Corpo"
             ap-margem="0px 16px 0px 0px"
             sn-bind="{{Mensagem}}" sn-formatar="QuebrarLinhasHtml">
         </ap-texto>
@@ -31,7 +33,8 @@
                 sn-nome="PainelListaBotoes"
                 ap-tipo-painel="{{TipoPainel}}, Origem=this"
                 ap-alinhamento-horizontal="Centro"
-                sn-bind-lista="{{Botoes}}">
+                sn-bind-lista="{{Botoes}}"
+                >
                 <sn-bloco-template>
 
                     <sn-botao ap-margem="8px 0px"
@@ -40,7 +43,8 @@
                         sn-rotulo="{{Descricao}}"
                         sn-tipo-botao="{{TipoBotao}}"
                         ap-cor-fundo="{{CorFundo}}"
-                        ap-cor-texto="{{CorTexto}}">
+                        ap-cor-texto="{{CorTexto}}"
+                        sn-bind-nome="{{Resultado}}">
                     </sn-botao>
                 </sn-bloco-template>
             </sn-painel-lista>
