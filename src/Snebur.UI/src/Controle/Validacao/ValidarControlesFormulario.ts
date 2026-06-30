@@ -11,7 +11,6 @@
 
         public async ValidarAsync(): Promise<[boolean, BaseControleFormulario]>
         {
-
             let isValido = true;
             let controleInvalido: BaseControleFormulario = null;
             for (const controle of this.Controles)

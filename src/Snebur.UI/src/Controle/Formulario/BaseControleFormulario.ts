@@ -488,13 +488,13 @@
                                         valorPropriedade,
                                         rotulo);
 
+                                    this._isValido = false;
                                     this.MostrarMensagemValidacao(isForcar);
                                     if (validacao.IsAlerta === true)
                                     {
                                         this._isAlerta = true;
                                         continue;
                                     }
-                                    this._isValido = false;
                                     break;
                                 }
                             }
@@ -980,17 +980,11 @@
         {
             if ($Configuracao.IsDebug)
             {
-                //if (!this._isElementosInicializado)
-                //{
-                //    throw new Erro("Os elementos não foram inicializados, substituir o método HtmlCarregado para DepoisInicializarComponentesApresentacao")
-                //}
-
                 const elementoRecuperado = ElementoUtil.RetornarElemento(_idElemento, true) as THTMLElementInput;
                 if (elementoRecuperado != null)
                 {
                     if (elementoRecuperado !== elemento)
                     {
-
                         const mensagem = "O elemento input são diferente do " + this.___NomeConstrutor;
                         console.error(mensagem);
                         if (isThrow)
