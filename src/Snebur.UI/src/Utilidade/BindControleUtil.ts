@@ -32,6 +32,8 @@
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.BindImagens, BindImagens));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.BindSugestoes, BindSugestoes));
 
+                BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.BindNome, BindNome));
+
                 //BindUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.Visibilidade, BindVisibilidade));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.Visibilidade, BindVisibilidade));
                 BindControleUtil._atributosBind.Add(new AtributoHtmlBindConstrutor(AtributosHtml.Icone, BindIcone));
