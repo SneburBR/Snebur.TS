@@ -80,6 +80,24 @@
                 e.stopPropagation();
                 e.stopImmediatePropagation();
                 e.preventDefault();
+
+                if (e.IsBotaoDireito)
+                {
+                    const debugSelector = element.getAttribute(DebugUIUtil.DEBUG_SELECTOR);
+                    //copy to clipboard
+                    if (debugSelector != null)
+                    {
+                        navigator.clipboard.writeText(debugSelector).then(() =>
+                        {
+                            console.log(`Selector copiado para a área de transferência: ${debugSelector}\nSelector '${nomeControle}': ${debugSelector}`);
+                        }).catch(err =>
+                        {
+                            console.warn(`Erro ao copiar o selector para a área de transferência: ${err}\nSelector '${nomeControle}': ${debugSelector}\n`);
+                        });
+                    }
+                    return;
+                }
+
                 console.warn(`Ir para código: ${nomeControle} [${searchElementPatterns}]`);
                 $Aplicacao.ServicoDepuracao.EnviarMensagem(mensagemIrParaCodigo);
                 document.body.classList.remove(DebugUIUtil.CSS_CLASS_ATIVAR_DEBUG);
@@ -89,10 +107,16 @@
 
         public static BuildElementSelector(uiElement: BaseUIElemento): string
         {
+            if (uiElement instanceof DocumentoPrincipal)
+            {
+                return DebugUIUtil.BuildSingleElementSelector(uiElement, false);
+            }
+
             const selectors: string[] = [];
             let current: BaseUIElemento = uiElement;
             let addIndexOfType = true;
-            while (current != null && current !== current.ControleApresentacaoPai)
+
+            while (DebugUIUtil.ShouldContinueTraversal(current))
             {
                 Guard.NotNullOrEmpty(current.constructor.name);
                 selectors.push(DebugUIUtil.BuildSingleElementSelector(current, addIndexOfType));
@@ -100,6 +124,13 @@
                 addIndexOfType = false;
             }
             return selectors.reverse().join(" ");
+        }
+
+        private static ShouldContinueTraversal(current: BaseUIElemento): boolean
+        {
+            return current != null
+                && current !== current.ControleApresentacaoPai
+                && !(current instanceof DocumentoPrincipal);
         }
 
         private static BuildSingleElementSelector(uiElement: BaseUIElemento, addIndexOfType: boolean): string

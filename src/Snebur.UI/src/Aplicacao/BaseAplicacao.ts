@@ -109,7 +109,7 @@
 
             this.IncrementarProcessoCarregandoAplicacao();
 
-            if ($Configuracao.IsDebugUI)
+            if ($Configuracao.IsDebugUI && !$Configuracao.IsSeleniumTest)
             {
                 this.ServicoDepuracao.EventoControleAlterado.AddHandler(this.ServicoDepuracao_ControleAlterado, this);
                 this.ServicoDepuracao.EventoEstiloCssAlterado.AddHandler(this.ServicoDepuracao_EstiloCssAlterado, this);
