@@ -160,7 +160,7 @@
 
         public AlterarTipoNamespace(tipoNamespace: EnumTipoNamespace)
         {
-            console.warn(`Alterado o tipo do namespace:  ${this.Caminho}.
+            console.info(`Alterado o tipo do namespace:  ${this.Caminho}.
                          (${EnumTipoNamespace[this.TipoNamespace]}) => ${EnumTipoNamespace[tipoNamespace]}`);
             this._tipoNamespace = tipoNamespace;
         }

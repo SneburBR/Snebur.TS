@@ -6,6 +6,7 @@
         IsDebug: boolean;
         IsTeste?: boolean;
         IsDebugUI?: boolean;
+        IsSeleniumTest?: boolean;
         IsProtegerUrl?: boolean;
         IsDepuracaoUtilizarHostLocal?: boolean;
         IsUsarHostAtualParaHtmlReferencia?: boolean;

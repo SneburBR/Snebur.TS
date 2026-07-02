@@ -252,7 +252,7 @@
 
             await this.DepoisInicializarSessaoUsuarioAsync();
 
-            if (Snebur.$Configuracao.IsDebugUI)
+            if (Snebur.$Configuracao.IsDebugUI && !Snebur.$Configuracao.IsSeleniumTest)
             {
                 this._servicoDepuracao = new Snebur.Depuracao.ServicoDepuracao();
                 this._servicoDepuracao.InicializarAsync();
