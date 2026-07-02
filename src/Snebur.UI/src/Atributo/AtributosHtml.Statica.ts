@@ -156,6 +156,7 @@
         public static readonly Maximo = new AtributoHtml("sn-maximo", Number);
         public static readonly IsFormatarInteiro = new AtributoHtml("sn-is-formatar-inteiro", Number);
         public static readonly MaxLength = new AtributoHtml("sn-maxlength", Number);
+        public static readonly MinLength = new AtributoHtml("sn-minLength", Number);
         public static readonly IsMostrarContadorCaracteres = new AtributoHtml("sn-is-mostrar-contador-caracteres", Boolean);
         public static readonly IsNaoPermitirValorZero = new AtributoHtml("sn-is-nao-permitir-zero", Boolean);
         public static readonly IsNaoFormatarValorVazio = new AtributoHtml("sn-is-nao-formatar-valor-vazio", Boolean);

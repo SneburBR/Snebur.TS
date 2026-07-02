@@ -70,6 +70,7 @@
 
         //#region Validação
 
+
         public AdicionarValidacao<T extends this = this>(expressaoPropriedade: (value: T) => any, validacao: IBaseValidacao): void;
         public AdicionarValidacao<T extends this = this>(expressaoPropriedade: (value: T) => any, ...validacoes: IBaseValidacao[]): void;
         public AdicionarValidacao<T extends this = this>(expressaoPropriedade: (value: T) => any, ...validacoes: IBaseValidacao[]): void
@@ -118,6 +119,11 @@
                     validacaoTextoTamanho.TamanhoMaximo = tamanhoMaximo;
                 }
             }
+        }
+
+        public RetornarValidacaoDaPropriedade<TValidacao extends IBaseValidacao>(propriedade: r.Propriedade, validacaoType: new (...args: any[]) => TValidacao): TValidacao | null
+        {
+            return this.PropriedadesValidacoes.TryItem(propriedade.Nome)?.Validacoes.OfType(validacaoType).FirstOrDefault() ?? null;
         }
 
         public async RetornarMensagemValidacoesPendenteAsync(): Promise<string>

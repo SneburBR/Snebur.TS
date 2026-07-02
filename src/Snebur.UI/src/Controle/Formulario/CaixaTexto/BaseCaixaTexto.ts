@@ -110,6 +110,30 @@
             }
         }
 
+        public override ValorPropriedadeAlterado(
+            paiPropriedade: ObjetoControladorPropriedade,
+            nomePropriedade: string,
+            proprieade: r.Propriedade,
+            valorPropriedade: any): void
+        {
+            const isSetMaximumAndMinimumLengthAttributes = (this.PaiPropriedade !== paiPropriedade
+                || this.Propriedade !== proprieade
+                || this.NomePropriedade !== nomePropriedade)
+                && proprieade instanceof r.Propriedade
+                && paiPropriedade != null;
+
+            super.ValorPropriedadeAlterado(
+                paiPropriedade,
+                nomePropriedade,
+                proprieade,
+                valorPropriedade);
+                 
+            if (isSetMaximumAndMinimumLengthAttributes)
+            {
+                this.SetMaximumAndMinimumLengthAttributes(proprieade, paiPropriedade);
+            }
+        }
+
         private CorTextoApresentacao_PropriedadeApresentacaoAlterada(provedor: any, e: PropriedadeApresentacaoAlteradaEventArgs): void
         {
             if (EnumUtil.IsDefindo(EnumCor, e.Valor))
@@ -278,6 +302,20 @@
             if (this.PaiPropriedade instanceof ObjetoControladorPropriedade && this.Propriedade instanceof r.Propriedade)
             {
                 u.ReflexaoUtil.AtribuirValorPropriedade(this.PaiPropriedade, this.Propriedade, this.Valor);
+            }
+        }
+
+        private SetMaximumAndMinimumLengthAttributes(proprieade: r.Propriedade, paiPropriedade: ObjetoControladorPropriedade): void
+        {
+            const validacaoTamanho = paiPropriedade.RetornarValidacaoDaPropriedade(proprieade, at.ValidacaoTextoTamanhoAttribute)
+                ?? proprieade.Atributos.OfType(at.ValidacaoTextoTamanhoAttribute).FirstOrDefault();
+
+            const maxLength = validacaoTamanho?.TamanhoMaximo ?? (this instanceof CaixaAreaTexto ? Number.UInt16MaxValue : Number.Uint8MaxValue);
+            this.ElementoInput.setAttribute("maxlength", maxLength.toString());
+
+            if (validacaoTamanho?.TamanhoMinimo > 0)
+            {
+                this.ElementoInput.setAttribute("minlength", validacaoTamanho.TamanhoMinimo.toString());
             }
         }
     }

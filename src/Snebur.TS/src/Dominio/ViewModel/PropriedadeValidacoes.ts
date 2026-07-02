@@ -2,7 +2,6 @@
 {
     export class PropriedadeValidacoes extends Snebur.SneburObject
     {
-
         public readonly NomePropriedade: string;
         public readonly Propriedade: r.Propriedade;
         public readonly Validacoes = new List<IBaseValidacao>();
@@ -18,10 +17,6 @@
             {
                 //let atributosValidacao = propriedade.Atributos.OfType<d.Atributos.BaseAtributoValidacao>(d.Atributos.BaseAtributoValidacao).ToList();
                 //let atributosValidacaoAsync = propriedade.Atributos.OfType<d.Atributos.BaseAtributoValidacaoAsync>(d.Atributos.BaseAtributoValidacaoAsync).ToList();
-                
-
-
-
                 //this.Validacoes.AddRange(atributosValidacao);
                 //this.Validacoes.AddRange(atributosValidacaoAsync);
 
@@ -51,8 +46,5 @@
             }
             return false;
         }
-
-
-
     }
 }
