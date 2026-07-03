@@ -1,0 +1,22 @@
+{
+  "name": "snebur-ui-docs-generator",
+  "version": "1.0.0",
+  "description": "Automated markdown documentation generator for Snebur.UI framework",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "dev": "tsc && node dist/main.js",
+    "extract:metadata": "node dist/main.js --metadata-only",
+    "generate:docs": "node dist/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
